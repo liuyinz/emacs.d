@@ -1,0 +1,6 @@
+[submodule ".cache/github/color-rg"]
+	path = .cache/github/color-rg
+	url = https://github.com/manateelazycat/color-rg.git
+[submodule ".cache/github/lsp-lua-emmy"]
+	path = .cache/github/lsp-lua-emmy
+	url = https://github.com/phenix3443/lsp-lua-emmy.git
