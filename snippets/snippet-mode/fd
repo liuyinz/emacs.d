@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ${...} field
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: fd
+# --
+
+\$${1:{${2:n}:${3:$4\$(${5:lisp-fn})}\}}$0

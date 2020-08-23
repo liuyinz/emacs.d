@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: do..while..
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: dw
+# --
+
+do {
+   $1
+} while (${2:condition})
+$0

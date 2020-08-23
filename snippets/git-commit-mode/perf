@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: perf
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: perf
+# --
+perf : ${1:$$(capitalize-first yas-text)}$0

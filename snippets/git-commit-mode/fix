@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fix [#issue] : ...
+# key: fix
+# --
+fix${1: [${2:#${3:IssueID}}] }: ${4:$$(capitalize-first yas-text)}$0

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: case..break
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: case
+# --
+
+case ${1:expression}:
+  $2
+  break;$0

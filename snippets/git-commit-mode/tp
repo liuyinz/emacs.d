@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: type
+# key: tp
+# --
+${1:$$(yas-choose-value '("fix" "feat" "docs" "style" "refactor" "test" "chore" "perf"))} : ${2:$$(capitalize-first yas-text)}$0

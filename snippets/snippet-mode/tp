@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: type
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: tp
+# --
+
+# type: ${1:$$(yas-choose-value '("snippet" "command"))}

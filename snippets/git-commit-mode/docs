@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: docs
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: docs
+# --
+docs : ${1:$$(capitalize-first yas-text)}$0

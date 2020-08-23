@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: forIn
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: fin
+# --
+
+for(let ${1:item} in ${2:object}) {
+  $3
+}
+$0
