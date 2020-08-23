@@ -121,13 +121,13 @@
   (when (executable-find "python3")
     (setq lsp-python-ms-python-executable-cmd "python3")))
 
-(use-package lsp-lua-emmy
-  :ensure nil
-  :load-path "~/.emacs.d/.cache/github/lsp-lua-emmy"
-  :hook (lua-mode . (lambda () (require 'lsp-lua-emmy)))
-  :config
-  (setq lsp-lua-emmy-jar-path
-        (expand-file-name "EmmyLua-LS-all.jar" my-dir-ext)))
+;; (use-package lsp-lua-emmy
+;;   :ensure nil
+;;   :load-path "~/.emacs.d/.cache/github/lsp-lua-emmy"
+;;   :hook (lua-mode . (lambda () (require 'lsp-lua-emmy)))
+;;   :config
+;;   (setq lsp-lua-emmy-jar-path
+;;         (expand-file-name "EmmyLua-LS-all.jar" my-dir-ext)))
 
 ;; ;; C/C++/Objective-C support
 ;; (use-package ccls

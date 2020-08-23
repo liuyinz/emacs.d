@@ -22,7 +22,7 @@
   (cond
    ((eq major-mode 'emacs-lisp-mode) (ielm))
    ((eq major-mode 'python-mode) (run-python))
-   ((eq major-mode 'lua-mode) (run-lua))
+   ;; ((eq major-mode 'lua-mode) (run-lua))
    ((member major-mode '(js-mode js2-mode)) (nodejs-repl))
    (t (message "no repl for selected mode"))))
 
