@@ -2,13 +2,13 @@
 
 (use-package dash-at-point)
 
-(use-package leetcode
-  :commands leetcode
-  :init
-  (setq leetcode-prefer-language "javascript"
-        leetcode-prefer-sql "mysql"
-        leetcode-save-solutions t
-        leetcode-directory "~/Documents/repo/leetcode"))
+; (use-package leetcode
+;   :commands leetcode
+;   :init
+;   (setq leetcode-prefer-language "javascript"
+;         leetcode-prefer-sql "mysql"
+;         leetcode-save-solutions t
+;         leetcode-directory "~/Documents/repo/leetcode"))
 
 ;; Search tools
 ;; Writable `grep' buffer

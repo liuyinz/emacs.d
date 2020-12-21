@@ -37,7 +37,7 @@
         projectile-sort-order 'recently-active
         projectile-enable-caching t
         projectile-completion-system 'ivy
-        projectile-project-search-path '("~/Documents/repo/"))
+        projectile-project-search-path '("~/Code/repo/"))
   :config
   (setq projectile-generic-command
         (let ((rg-cmd ""))
