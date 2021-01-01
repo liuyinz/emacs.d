@@ -25,8 +25,8 @@
              (horizontal-scroll-bars)
              (font . "Sarasa Mono SC 16")
              (background-mode . dark)
-             (background-color . "#1D252C")
-             (foreground-color . "#A0B3C5")
+             (background-color . "#2B2C34")
+             (foreground-color . "#979EAB")
              (fullscreen . maximized)))
   (push p default-frame-alist))
 
