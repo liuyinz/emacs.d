@@ -2,7 +2,7 @@
 
 ;; yasnippet
 (use-package yasnippet
-  :diminish yas-minor-mode
+  :blackout yas-minor-mode
   :bind (:map yas-minor-mode-map
          ("C-t" . my-yasnippet-switch))
   :hook (after-init . yas-global-mode)
@@ -35,7 +35,7 @@ $0`(yas-escape-text yas-selected-text)`")
 
 (use-package company
   ;; :disabled
-  :diminish
+  :blackout
   :defines (company-dabbrev-ignore-case company-dabbrev-downcase)
   :functions (company-search-words-in-any-order-regexp)
   :commands company-cancel
@@ -55,6 +55,7 @@ $0`(yas-escape-text yas-selected-text)`")
          ("C-p" . company-select-previous))
   :init
   (setq company-tooltip-limit 12
+        tab-always-indent 'complete
         company-tooltip-align-annotations t
         company-idle-delay 0.0
         company-echo-delay nil
@@ -94,9 +95,6 @@ $0`(yas-escape-text yas-selected-text)`")
          'company-yasnippet))))
 
   :config
-  ;; (use-package company-prescient
-  ;;   :init (company-prescient-mode +1))
-
   ;; `yasnippet' integration
   (with-no-warnings
     (with-eval-after-load 'yasnippet

@@ -1,8 +1,5 @@
 (use-package color-rg
-  :demand
-  :ensure nil
-  :load-path "~/.emacs.d/.cache/github/color-rg"
-  )
+  :quelpa (color-rg :fetcher github :repo "manateelazycat/color-rg"))
 
 ;; ;; Fast search tool `ripgrep'
 ;; (use-package rg

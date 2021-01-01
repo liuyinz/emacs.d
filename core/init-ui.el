@@ -5,11 +5,8 @@
   :hook (after-init . doom-modeline-mode)
   :init
   (setq doom-modeline-icon nil
-        doom-modeline-github nil
-        ;; doom-modeline-github-interval (* 30 60)
-        doom-modeline-mu4e nil
         doom-modeline-persp-name nil
-        ;; doom-modeline-display-default-persp-name nil
+        doom-modeline-irc nil
         doom-modeline-project-detection 'projectile
         doom-modeline-minor-modes nil
         doom-modeline-enable-word-count nil
@@ -29,10 +26,11 @@
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
   :config
-  (load-theme 'doom-city-lights t)
+  (load-theme 'doom-one t)
   (doom-themes-org-config))
 
 (use-package centaur-tabs
+  :disabled
   :hook ((after-init . centaur-tabs-mode)
          ((dired-mode vterm-mode diff-mode) . centaur-tabs-local-mode))
   :bind (:map centaur-tabs-mode-map

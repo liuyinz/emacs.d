@@ -9,7 +9,6 @@
   (setq ibuffer-display-summary nil)
   (setq ibuffer-show-empty-filter-groups nil)
   :config
-
   ;; Use human readable Size column instead of original one
   (define-ibuffer-column size-h
     (:name "Size"

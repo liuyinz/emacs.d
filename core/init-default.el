@@ -1,3 +1,11 @@
+(use-package startup
+  :ensure nil
+  :init
+  (defun display-startup-echo-area-message ())
+  (setq inhibit-startup-screen t
+        inhibit-startup-echo-area-message (user-login-name)
+        initial-scratch-message nil))
+
 ;; Start server
 (use-package server
   :ensure nil
@@ -5,6 +13,7 @@
 
 ;;display line number
 (use-package display-line-numbers
+  :disabled
   :ensure nil
   :hook (prog-mode . display-line-numbers-mode)
   :init (setq-default display-line-numbers-type 'relative))
@@ -51,15 +60,15 @@
                         (transient-mark-mode)
                         (line-number-mode)
                         (column-number-mode)))
-  :init (setq line-move-visual nil
+  :init (setq line-move-visual t
               track-eol t
               set-mark-command-repeat-pop t))
 
-;; No backup file
 (use-package files
   :ensure nil
   :init
   (setq make-backup-files nil
+        enable-local-variables :all
         create-lockfiles nil
         auto-save-default nil
         auto-save-list-file-prefix nil
@@ -99,13 +108,6 @@
   :hook ((prog-mode . subword-mode)
          (minibuffer-setup . subword-mode)))
 
-;; ;; Hideshow
-;; (use-package hideshow
-;;   :ensure nil
-;;   :diminish hs-minor-mode
-;;   :bind (:map hs-minor-mode-map
-;;          ("C-`" . hs-toggle-hiding)))
-
 ;; Pass a URL to a WWW browser
 (use-package browse-url
   :ensure nil
@@ -137,14 +139,13 @@
 ;; Resolve diff3 conflicts
 (use-package smerge-mode
   :ensure nil
-  :diminish
+  :blackout
   :hook ((find-file . (lambda ()
                         (save-excursion
                           (goto-char (point-min))
                           (when (re-search-forward "^<<<<<<< " nil t)
                             (smerge-mode 1)
                             ))))))
-;; )
 
 ;; Whitespace-mode
 (use-package whitespace
@@ -164,57 +165,40 @@
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
 
-(setq load-prefer-newer t)
+      ;; adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*"
+      ;; adaptive-fill-first-line-regexp "^* *$"
+      ;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
+      ;; sentence-end-double-space nil)
 
-(setq inhibit-startup-message t
-      inhibit-startup-echo-area-message "ray"
-      initial-scratch-message nil
-      ;; initial-major-mode 'lisp-interaction-mode
-      window-resize-pixelwise t
-      frame-resize-pixelwise t)
-
-;; Mouse & Smooth Scroll
-(setq scroll-step 1
-      scroll-margin 0
-      scroll-conservatively 100000)
-
-(setq gc-cons-threshold 100000000)
-
+;; c source 
 (setq use-file-dialog nil
-      enable-local-variables :all
       use-dialog-box nil
+      load-prefer-newer t
       ad-redefinition-action 'accept
       delete-by-moving-to-trash t
-      inhibit-startup-echo-area-message (user-login-name)
       inhibit-compacting-font-caches t
-      ring-bell-function 'ignore
-      visible-bell t
-      inhibit-compacting-font-caches t
-      adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*"
-      adaptive-fill-first-line-regexp "^* *$"
-      sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
-      sentence-end-double-space nil)
+      window-resize-pixelwise t
+      frame-resize-pixelwise t
+      ring-bell-function 'ignore)
 
 (setq-default fill-column 80
               tab-width 4
-              tab-always-indent 'complete
-              indent-tabs-mode nil
-              ;; cursor-type 'bar
-              ;; Set fringe style
               fringes-outside-margins t
               fringe-indicator-alist nil
-              ;; hide margin
+              indent-tabs-mode nil
               left-margin-width 0
               right-margin-width 0
-              default-directory "~"
-              )
+              default-directory "~")
+
+;; ;; Mouse & Smooth Scroll
+;; (setq scroll-step 0
+;;       scroll-margin 0
+;;       scroll-conservatively 100000)
 
 ;; Misc
 (defalias 'yes-or-no-p 'y-or-n-p)
-(defalias 'list-buffers 'ibuffer-other-window)
 ;; Alias the UTF-8
 (define-coding-system-alias 'UTF-8 'utf-8)
-(defun display-startup-echo-area-message ())
 
 ;; Encoding
 ;; UTF-8 as the default coding system
@@ -234,44 +218,16 @@
 (modify-coding-system-alist 'process "*" 'utf-8)
 (setenv "LC_ALL" "en_CN.UTF-8")
 
-;; (setq profiler-report-cpu-line-format   ;让 profiler-report 第一列宽一点
-;;       '((100 left)
-;;         (24 right ((19 right)
-;;                    (5 right)))))
-;; (setq profiler-report-memory-line-format
-;;       '((100 left)
-;;         (19 right ((14 right profiler-format-number)
-;;                    (5 right)))))
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            ;; GC automatically while unfocusing the frame
-            (add-function :after after-focus-change-function
-              (lambda ()
-                (unless (frame-focus-state)
-                  (garbage-collect))))
-
-            ;; Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
-            ;; @see http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
-            (defun max-gc-limit ()
-              (setq gc-cons-threshold most-positive-fixnum))
-
-            (defun reset-gc-limit ()
-              (setq gc-cons-threshold 800000))
-
-            (add-hook 'minibuffer-setup-hook #'max-gc-limit)
-            (add-hook 'minibuffer-exit-hook #'reset-gc-limit)))
-
 ;; Don't ask me when kill process buffer
 (setq kill-buffer-query-functions
       (remq 'process-kill-buffer-query-function
             kill-buffer-query-functions))
 
 (if (get-buffer "*scratch*")
-    (setq default-directory "~/Documents/"))
+    (setq default-directory "~/Desktop/"))
 
 ;;unbind keys
 (dolist (key '("\M-j" "\M-k" "\M-u" "\M-l"))
   (global-unset-key key))
 
-(provide 'init-builtin)
+(provide 'init-default)

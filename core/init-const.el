@@ -18,15 +18,10 @@
   (expand-file-name "elpa" my-dir-cache)
   "User dir for packages from melpa")
 
-(defconst my-dir-github
-  (expand-file-name "github" my-dir-cache)
-  "User dir for packages from github")
-
 ;; ensure dir exists
 (dolist (dir (mapcar #'symbol-value '(my-dir-cache
                                       my-dir-core
                                       my-dir-elpa
-                                      my-dir-github
                                       my-dir-ext
                                       my-dir-snippets)))
   (unless (file-exists-p dir)

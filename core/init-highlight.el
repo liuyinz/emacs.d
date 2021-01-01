@@ -1,5 +1,4 @@
 (use-package hl-line
-  :ensure nil
   :hook (((evil-normal-state-entry
            evil-emacs-state-exit) . hl-line-mode)
          ((evil-insert-state-entry
@@ -7,17 +6,19 @@
 
 ;; Highlight brackets according to their depth
 (use-package rainbow-delimiters
+  :blackout
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package highlight-parentheses
   :hook (after-init . global-highlight-parentheses-mode)
   :init
-  (setq hl-paren-colors nil
-        hl-paren-background-colors '("#5d7281")
-        hl-paren-highlight-adjacent t))
+  (setq highlight-parentheses-colors nil
+        highlight-parentheses-background-colors '("#5d7281")
+        highlight-parentheses-highlight-adjacent t))
 
 ;;Highlight uncommitted changes using VC
 (use-package diff-hl
+  :blackout
   ;; :if (memq window-system '(mac ns))
   :hook ((after-init . global-diff-hl-mode)
          (dired-mode . diff-hl-dired-mode))
@@ -55,7 +56,7 @@
 
 ;; Colorize color names in buffers
 (use-package rainbow-mode
-  :diminish
+  :blackout
   :hook ((html-mode php-mode css-mode) . rainbow-mode)
   :config
   (with-no-warnings
@@ -77,6 +78,7 @@
 
 ;;indent-guide
 (use-package indent-guide
+  :blackout
   :hook (prog-mode . indent-guide-mode)
   :config
   (setq indent-guide-char "¦")

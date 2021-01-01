@@ -25,6 +25,7 @@
 (put 'shackle--current-popup-window 'permanent-local t)
 
 (use-package shackle
+  :disabled
   :hook (after-init . shackle-mode)
   :config
   (setq shackle-default-size 0.4

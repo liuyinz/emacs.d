@@ -8,9 +8,28 @@
 
 (load-file (expand-file-name "core/init-const.el" user-emacs-directory))
 
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            ;; GC automatically while unfocusing the frame
+            (add-function :after after-focus-change-function
+              (lambda ()
+                (unless (frame-focus-state)
+                  (garbage-collect))))
+
+            ;; Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
+            ;; @see http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
+            (defun max-gc-limit ()
+              (setq gc-cons-threshold most-positive-fixnum))
+
+            (defun reset-gc-limit ()
+              (setq gc-cons-threshold 800000))
+
+            (add-hook 'minibuffer-setup-hook #'max-gc-limit)
+            (add-hook 'minibuffer-exit-hook #'reset-gc-limit)))
+
 (let (;; 加载的时候临时增大`gc-cons-threshold'以加速启动速度。
       (gc-cons-threshold most-positive-fixnum)
-      (gc-cons-percentage 0.6)
+      (gc-cons-percentage 0.5)
       ;; 清空避免加载远程文件的时候分析文件。
       (file-name-handler-alist nil))
 
@@ -18,12 +37,12 @@
   ;; Optimize: Force "elpa" and "core" at the head to reduce the startup time.
   (defun update-load-path (&rest _)
     "Update `load-path'."
-    (dolist (dir (mapcar #'symbol-value '(my-dir-core my-dir-elpa my-dir-github)))
+    (dolist (dir (mapcar #'symbol-value '(my-dir-core my-dir-elpa)))
       (push dir load-path)))
 
   (defun add-subdirs-to-load-path (&rest _)
     "Add subdirectories to `load-path'."
-    (dolist (dir (mapcar #'symbol-value '(my-dir-elpa my-dir-github)))
+    (dolist (dir (mapcar #'symbol-value '(my-dir-elpa)))
       (let ((default-directory dir))
         (normal-top-level-add-subdirs-to-load-path))))
 
@@ -38,11 +57,8 @@
     (require 'init-benchmark)
 
     (require 'init-const)
-    (require 'init-funcs)
-
     (require 'init-package)
-    (require 'init-system)
-    (require 'init-builtin)
+    (require 'init-default)
 
     (require 'init-ivy)
     (require 'init-company)
@@ -53,7 +69,7 @@
     ;; ui
     (require 'init-ui)
     (require 'init-highlight)
-    (require 'init-frame)
+    ;; (require 'init-frame)
     (require 'init-window)
     (require 'init-ibuffer)
     (require 'init-dired)
@@ -61,7 +77,7 @@
     (require 'init-edit)
     (require 'init-shell)
     (require 'init-tool)
-    ; (require 'init-rg)
+    (require 'init-rg)
 
     ;; programing
     (require 'init-vcs)
@@ -78,4 +94,6 @@
     (require 'init-js)
 
     (require 'init-evil)
+    ; (require 'init-meow)
+    (require 'init-funcs)
     ))
