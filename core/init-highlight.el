@@ -1,4 +1,6 @@
 (use-package hl-line
+  :ensure nil
+  :blackout
   :hook (((evil-normal-state-entry
            evil-emacs-state-exit) . hl-line-mode)
          ((evil-insert-state-entry

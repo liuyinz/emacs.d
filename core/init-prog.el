@@ -1,4 +1,5 @@
 (use-package sh-script
+  :ensure nil
   :hook (sh-mode . my-sh-mode-setup)
   :config
   (defun my-sh-mode-setup ()
