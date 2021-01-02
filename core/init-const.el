@@ -15,7 +15,7 @@
   "User dir for recentf,places and so on.")
 
 (defconst my-dir-elpa
-  (expand-file-name "elpa" my-dir-cache)
+  (expand-file-name (concat "elpa-" emacs-version) my-dir-cache)
   "User dir for packages from melpa")
 
 ;; ensure dir exists
