@@ -9,12 +9,12 @@
 (setq byte-compile-warnings '(cl-function))
 
 ;; Speed up startup
-(defvar gc-cons-threshold-default (* 16 1024 1024)
-  "The default value to use for `gc-cons-threshold'. If you experience freezing,
-decrease this. If you experience stuttering, increase this.")
+;; If you experience freezing,decrease. If you experience stuttering, increase.
+(defvar gc-cons-default `(,(* 16 1024 1024) 0.1)
+  "The default value for `gc-cons-threshold' and `gc-cons-percentage'.")
 
-(defvar gc-cons-threshold-max (* 400 1024 1024)
-  "The temporary value for `gc-cons-threshold' to defer it.")
+(defvar gc-cons-max `(,(* 400 1024 1024) 0.6)
+  "The temporary value for `gc-cons-threshold' and `gc-cons-percentage'.")
 
 (defvar gc-timer-idle (run-with-idle-timer 10 t #'garbage-collect)
   "Run garbarge collection when idle 10s.")
@@ -22,14 +22,15 @@ decrease this. If you experience stuttering, increase this.")
 (defvar file-name-handler-alist-default file-name-handler-alist)
 
 (setq file-name-handler-alist nil
-      gc-cons-threshold gc-cons-threshold-max
-      gc-cons-percentage 0.5)
+      gc-cons-threshold (car gc-cons-max)
+      gc-cons-percentage (cadr gc-cons-max))
+
 (add-hook 'emacs-startup-hook
           (lambda ()
             "Restore defalut values after startup."
             (setq file-name-handler-alist file-name-handler-alist-default
-                  gc-cons-threshold gc-cons-threshold-default
-                  gc-cons-percentage 0.1)
+                  gc-cons-threshold (car gc-cons-default)
+                  gc-cons-percentage (cadr gc-cons-default))
 
             ;; GC automatically while unfocusing the frame
             (add-function :after after-focus-change-function
@@ -39,14 +40,14 @@ decrease this. If you experience stuttering, increase this.")
 
             ;; Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
             ;; @see http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
-            (defun gc-max ()
-              (setq gc-cons-threshold gc-cons-threshold-max))
+            (defun my-minibuffer-gc-max ()
+              (setq gc-cons-threshold (car gc-cons-max)))
 
-            (defun gc-default ()
-              (setq gc-cons-threshold gc-cons-threshold-default))
+            (defun my-minibuffer-gc-default ()
+              (setq gc-cons-threshold (car gc-cons-default)))
 
-            (add-hook 'minibuffer-setup-hook #'gc-max)
-            (add-hook 'minibuffer-exit-hook #'gc-default)))
+            (add-hook 'minibuffer-setup-hook #'my-minibuffer-gc-max)
+            (add-hook 'minibuffer-exit-hook #'my-minibuffer-gc-default)))
 
 ;; load core/init files
 (with-temp-message ""

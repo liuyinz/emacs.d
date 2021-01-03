@@ -167,6 +167,12 @@
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
 
+(use-package tooltip
+  :ensure nil
+  :config
+  (tooltip-mode 1)
+  (setq tooltip-resize-echo-area t))
+
       ;; adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*"
       ;; adaptive-fill-first-line-regexp "^* *$"
       ;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"

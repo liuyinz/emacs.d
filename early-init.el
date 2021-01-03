@@ -16,6 +16,7 @@
 
 ;; startup.el,don't load sitestart.el
 (setq site-run-file nil)
+
 ;; package.el
 (setq package-check-signature nil
       package-user-dir my-dir-elpa
@@ -26,7 +27,8 @@
 ;; font. By inhibiting this, we easily halve startup times with fonts that are
 ;; larger than the system default.
 (setq frame-inhibit-implied-resize t)
-(setq default-frame-alist '((menu-bar-lines . 0)
+
+(setq default-frame-alist '((menu-bar-lines . 1)
                             (tool-bar-lines . 0)
                             (vertical-scroll-bars . nil)
                             (horizontal-scroll-bars . nil)
@@ -37,23 +39,6 @@
                             (fullscreen . maximized)
                             (ns-appearance . dark)
                             (ns-transparent-titlebar . t)
-                            (ns-use-native-fullscreen . nil)
-                            ))
-
-; (dolist (p '((menu-bar-lines . 0)
-;              (tool-bar-lines . 0)
-;              (vertical-scroll-bars)
-;              (horizontal-scroll-bars)
-;              (font . "Sarasa Mono SC 16")
-;              (background-mode . dark)
-;              (background-color . "#2B2C34")
-;              (foreground-color . "#979EAB")
-;              (fullscreen . maximized)))
-;   (push p default-frame-alist))
-
-; (when (featurep 'ns)
-;   (push '(ns-transparent-titlebar . t) default-frame-alist)
-;   (push '(ns-use-native-fullscreen . nil) default-frame-alist)
-;   (push '(ns-appearance . dark) default-frame-alist))
+                            (ns-use-native-fullscreen . nil)))
 
 (provide 'early-init)
