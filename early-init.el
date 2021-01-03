@@ -9,18 +9,24 @@
 ; (setq package-enable-at-startup t)
 ;; (advice-add #'package--ensure-init-file :override #'ignore)
 
-(setq package-user-dir my-dir-elpa)
-(setq package-archives elpa-tsinghua)
-(setq package-quickstart t
-      package-quickstart-file (expand-file-name "quickstart.el" my-dir-cache))
-(setq package-check-signature nil)
+;; startup.el
+(setq site-run-file nil
+      inhibit-default-init t
+      inhibit-startup-screen t
+      inhibit-startup-echo-area-message (user-login-name)
+      initial-scratch-message nil)
+(defun display-startup-echo-area-message ())
+
+;; package.el
+(setq package-check-signature nil
+      package-user-dir my-dir-elpa
+      package-archives elpa-tsinghua
+      package-quickstart t
+      package-quickstart-file (expand-file-name "package-quickstart.el" my-dir-cache))
 
 ;; Resizing the Emacs frame can be a terribly expensive part of changing the
 ;; font. By inhibiting this, we easily halve startup times with fonts that are
 ;; larger than the system default.
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
 (setq frame-inhibit-implied-resize t)
 (setq default-frame-alist '((menu-bar-lines . 0)
                             (tool-bar-lines . 0)

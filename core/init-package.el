@@ -1,6 +1,5 @@
 ;; <package start>
 (require 'package)
-;; Setup `use-package'
 
 ;; Initialize packages
 (unless (bound-and-true-p package--initialized) ; To avoid warnings in 27
@@ -8,6 +7,7 @@
   ; (package-initialize)
   )
 
+;; Setup `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))

@@ -1,10 +1,11 @@
-(use-package startup
-  :ensure nil
-  :init
-  (defun display-startup-echo-area-message ())
-  (setq inhibit-startup-screen t
-        inhibit-startup-echo-area-message (user-login-name)
-        initial-scratch-message nil))
+; (use-package startup
+;   :ensure nil
+;   :init
+;   (defun display-startup-echo-area-message ())
+;   (setq inhibit-startup-screen t
+;         inhibit-startup-echo-area-message (user-login-name)
+;         initial-scratch-message nil
+;         inhibit-default-init t))
 
 ;; Start server
 (use-package server
@@ -170,7 +171,7 @@
       ;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
       ;; sentence-end-double-space nil)
 
-;; c source 
+;; c source
 (setq use-file-dialog nil
       use-dialog-box nil
       load-prefer-newer t
