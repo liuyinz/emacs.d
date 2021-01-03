@@ -1,12 +1,12 @@
 ;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
-;; (setq debug-on-error t)
+
+; (setq debug-on-error t)
+; (debug-on-entry 'package-initialize)
 
 (when (version< emacs-version "27")
   (error "please upgrade your emacs-version above 27 !"))
 
 (setq byte-compile-warnings '(cl-function))
-
-(load-file (expand-file-name "core/init-const.el" user-emacs-directory))
 
 (add-hook 'emacs-startup-hook
           (lambda ()
@@ -32,24 +32,6 @@
       (gc-cons-percentage 0.5)
       ;; 清空避免加载远程文件的时候分析文件。
       (file-name-handler-alist nil))
-
-  ;; Load path
-  ;; Optimize: Force "elpa" and "core" at the head to reduce the startup time.
-  (defun update-load-path (&rest _)
-    "Update `load-path'."
-    (dolist (dir (mapcar #'symbol-value '(my-dir-core my-dir-elpa)))
-      (push dir load-path)))
-
-  (defun add-subdirs-to-load-path (&rest _)
-    "Add subdirectories to `load-path'."
-    (dolist (dir (mapcar #'symbol-value '(my-dir-elpa)))
-      (let ((default-directory dir))
-        (normal-top-level-add-subdirs-to-load-path))))
-
-  (advice-add #'package-initialize :after #'update-load-path)
-  (advice-add #'package-initialize :after #'add-subdirs-to-load-path)
-
-  (update-load-path)
 
   ;; load core/init files
   (with-temp-message ""
@@ -93,7 +75,7 @@
     (require 'init-web)
     (require 'init-js)
 
-    (require 'init-evil)
+    ; (require 'init-evil)
     ; (require 'init-meow)
     (require 'init-funcs)
     ))

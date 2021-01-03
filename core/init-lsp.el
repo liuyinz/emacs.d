@@ -1,7 +1,7 @@
 (require 'init-const)
 
 (use-package lsp-mode
-  :diminish
+  :blackout
   :commands (lsp-install-server
              lsp
              lsp-deferred
@@ -94,7 +94,7 @@
 
 ;; (use-package dap-mode
 ;;   :functions dap-hydra/nil
-;;   :diminish
+;;   :blackout
 ;;   :bind (:map lsp-mode-map
 ;;               ("<f5>" . dap-debug)
 ;;               ("M-<f5>" . dap-hydra))

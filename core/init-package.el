@@ -1,42 +1,13 @@
-(require 'init-const)
-
 ;; <package start>
-;; HACK: DO NOT copy package-selected-packages to init/custom file forcibly.
-;; https://github.com/jwiegley/use-package/issues/383#issuecomment-247801751
-(defun my-save-selected-packages (&optional value)
-  "Set `package-selected-packages' to VALUE but don't save to `custom-file'."
-  (when value
-    (setq package-selected-packages value)))
-(advice-add 'package--save-selected-packages :override #'my-save-selected-packages)
-
-(setq package-user-dir my-dir-elpa)
-;; (setq package-check-signature nil)
-
-(setq package-archives
-      '(
-        ;; Tsinghua
-        ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-        ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-        ("org"   . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-
-        ;; Tencent cloud
-        ; ("gnu"   . "http://mirrors.cloud.tencent.com/elpa/gnu/")
-        ; ("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/")
-        ; ("org" . "http://mirrors.cloud.tencent.com/elpa/org/")
-
-        ;; ;; Emacs-china
-        ;; ("gnu"   . "http://elpa.emacs-china.org/gnu/")
-        ;; ("melpa" . "http://elpa.emacs-china.org/melpa/")
-        ;; ("org" . "http://elpa.emacs-china.org/org/")
-
-        ))
+(require 'package)
+;; Setup `use-package'
 
 ;; Initialize packages
 (unless (bound-and-true-p package--initialized) ; To avoid warnings in 27
   (setq package-enable-at-startup nil)          ; To prevent initializing twice
-  (package-initialize))
+  ; (package-initialize)
+  )
 
-;; Setup `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))

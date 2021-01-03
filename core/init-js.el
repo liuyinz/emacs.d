@@ -27,7 +27,7 @@
          ("C-c C-f" . nodejs-repl-load-file)))
 
 (use-package js2-refactor
-  :diminish
+  :blackout
   :hook (js2-mode . js2-refactor-mode)
   :config (js2r-add-keybindings-with-prefix "C-c C-m"))
 
