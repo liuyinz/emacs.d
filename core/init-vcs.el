@@ -1,8 +1,6 @@
 (declare-function yas-activate-extra-mode 'yasnippet)
 
 (use-package magit
-  :disabled
-  ; :quelpa (magit :fetcher github :repo "magit/magit"))
   :commands (magit-status magit-dispatch magit-file-popup)
   :hook ((after-init . global-auto-revert-mode)
          (git-commit-mode . (lambda ()

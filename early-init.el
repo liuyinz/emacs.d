@@ -7,7 +7,12 @@
 ;; In Emacs 27+, package initialization occurs before `user-init-file' is
 ;; loaded, but after `early-init-file'.
 ; (setq package-enable-at-startup t)
-;; (advice-add #'package--ensure-init-file :override #'ignore)
+; (advice-add #'package--ensure-init-file :override #'ignore)
+
+;; for native-comp branch
+; (setq comp-speed 2)
+; (when (boundp 'comp-eln-load-path)
+;   (setcar comp-eln-load-path (expand-file-name "eln-cache/" my-dir-cache)))
 
 ;; startup.el
 (setq site-run-file nil
