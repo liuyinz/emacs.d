@@ -9,37 +9,19 @@
 ; (setq package-enable-at-startup t)
 ;; (advice-add #'package--ensure-init-file :override #'ignore)
 
-(setq package-check-signature nil)
 (setq package-user-dir my-dir-elpa)
+(setq package-archives elpa-tsinghua)
 (setq package-quickstart t
       package-quickstart-file (expand-file-name "quickstart.el" my-dir-cache))
-(setq package-archives
-      '(
-        ;; Tsinghua
-        ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-        ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-        ("org"   . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-
-        ;; Tencent cloud
-        ; ("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/")
-        ; ("gnu"   . "http://mirrors.cloud.tencent.com/elpa/gnu/")
-        ; ("org" . "http://mirrors.cloud.tencent.com/elpa/org/")
-
-        ;; ;; Emacs-china
-        ;; ("gnu"   . "http://elpa.emacs-china.org/gnu/")
-        ;; ("melpa" . "http://elpa.emacs-china.org/melpa/")
-        ;; ("org" . "http://elpa.emacs-china.org/org/")
-
-        ))
-
+(setq package-check-signature nil)
 
 ;; Resizing the Emacs frame can be a terribly expensive part of changing the
 ;; font. By inhibiting this, we easily halve startup times with fonts that are
 ;; larger than the system default.
-(setq frame-inhibit-implied-resize t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(setq frame-inhibit-implied-resize t)
 (setq default-frame-alist '((menu-bar-lines . 0)
                             (tool-bar-lines . 0)
                             (vertical-scroll-bars)
