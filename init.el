@@ -13,11 +13,14 @@
 (defvar gc-cons-default `(,(* 16 1024 1024) 0.1)
   "The default value for `gc-cons-threshold' and `gc-cons-percentage'.")
 
-(defvar gc-cons-max `(,(* 400 1024 1024) 0.6)
+(defvar gc-cons-max `(,(* 512 1024 1024) 0.6)
   "The temporary value for `gc-cons-threshold' and `gc-cons-percentage'.")
 
-(defvar gc-timer-idle (run-with-idle-timer 10 t #'garbage-collect)
-  "Run garbarge collection when idle 10s.")
+(defvar gc-timer-default
+  (run-with-idle-timer 20 t (lambda ()
+                              (message "Garbage Collector has run for %.03fs"
+                                       (time-count (garbage-collect)))))
+  "Run garbarge collection when idle 20s.")
 
 (defvar file-name-handler-alist-default file-name-handler-alist)
 
@@ -55,6 +58,7 @@
   (require 'init-benchmark)
 
   (require 'init-const)
+  (require 'init-funcs)
   (require 'init-package)
   (require 'init-default)
 
@@ -92,5 +96,4 @@
   (require 'init-js)
 
   ;; (require 'init-evil)
-  (require 'init-meow)
-  (require 'init-funcs))
+  (require 'init-meow))

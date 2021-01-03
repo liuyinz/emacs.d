@@ -10,6 +10,13 @@
 (declare-function async-inject-variables 'async)
 (declare-function upgrade-packages 'init-package)
 
+;; time
+(defmacro time-count (&rest body)
+  "Measure and return the time it takes evaluating BODY."
+  `(let ((time (current-time)))
+     ,@body
+     (float-time (time-since time))))
+
 ;; Dos2Unix/Unix2Dos
 (defun dos2unix ()
   "Convert the current buffer to UNIX file format."
