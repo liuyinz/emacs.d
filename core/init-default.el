@@ -1,11 +1,12 @@
-; (use-package startup
-;   :ensure nil
-;   :init
-;   (defun display-startup-echo-area-message ())
-;   (setq inhibit-startup-screen t
-;         inhibit-startup-echo-area-message (user-login-name)
-;         initial-scratch-message nil
-;         inhibit-default-init t))
+ (use-package startup
+   :ensure nil
+   :init
+   (defun display-startup-echo-area-message ())
+   (setq inhibit-startup-screen t
+         inhibit-startup-echo-area-message (user-login-name)
+         initial-scratch-message nil
+         inhibit-default-init t
+         initial-major-mode 'fundamental-mode))
 
 ;; Start server
 (use-package server

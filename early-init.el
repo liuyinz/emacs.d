@@ -14,13 +14,8 @@
 ; (when (boundp 'comp-eln-load-path)
 ;   (setcar comp-eln-load-path (expand-file-name "eln-cache/" my-dir-cache)))
 
-;; startup.el
-(setq site-run-file nil
-      inhibit-default-init t
-      inhibit-startup-screen t
-      inhibit-startup-echo-area-message (user-login-name)
-      initial-scratch-message nil)
-(defun display-startup-echo-area-message ())
+;; startup.el,don't load sitestart.el
+(setq site-run-file nil)
 
 ;; package.el
 (setq package-check-signature nil
