@@ -181,6 +181,7 @@
 ;; c source
 (setq use-file-dialog nil
       use-dialog-box nil
+      garbage-collection-messages t
       load-prefer-newer t
       ad-redefinition-action 'accept
       delete-by-moving-to-trash t
