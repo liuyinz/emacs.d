@@ -1,10 +1,6 @@
-(use-package meow
-  :demand
-  :init
-  (meow-global-mode 1)
-  (defun meow-setup ()
-    (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
-    (meow-motion-overwrite-define-key
+(defun meow-setup ()
+  (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
+  (meow-motion-overwrite-define-key
    '("j" . meow-next)
    '("k" . meow-prev))
   (meow-leader-define-key
@@ -86,6 +82,19 @@
    '("&" . meow-query-replace)
    '("%" . meow-query-replace-regexp)
    '("<escape>" . meow-last-buffer)))
+
+(use-package meow
+  :demand
+  ; :quelpa (meow (:fetch github :repo "DogLooksGood/meow"))
+  :init
+  (meow-global-mode 1)
   :config
-  (meow-setup))
+  ; (setq meow-replace-state-name-list
+  ;   '((normal . "<N>")
+  ;     (insert . "<I>")
+  ;     (keypad . "<K>")
+  ;     (motion . "<M>")))
+  (meow-setup)
+  (meow-setup-indicator))
+
 (provide 'init-meow)
