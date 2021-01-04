@@ -22,27 +22,8 @@
 ;; Git related modes
 (use-package gitattributes-mode)
 (use-package gitconfig-mode)
-
 (use-package gitignore-mode)
 (use-package gitignore-templates
   :commands gitignore-templates-insert gitignore-templates-new-file)
-
-(use-package projectile
-  :diminish
-  :hook (after-init . projectile-mode)
-  :init
-  (setq projectile-indexing-method 'alien
-        projectile-mode-line-prefix ""
-        projectile-use-git-grep t
-        projectile-sort-order 'recently-active
-        projectile-enable-caching t
-        projectile-completion-system 'ivy
-        projectile-project-search-path '("~/Code/repo/"))
-  :config
-  (setq projectile-generic-command
-        (let ((rg-cmd ""))
-          (dolist (dir projectile-globally-ignored-directories)
-            (setq rg-cmd (format "%s --glob '!%s'" rg-cmd dir)))
-          (concat "rg -0 --files --color=never --hidden" rg-cmd))))
 
 (provide 'init-vcs)

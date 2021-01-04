@@ -84,6 +84,7 @@
 
   ;; programing
   (require 'init-vcs)
+  (require 'init-project)
   (require 'init-flycheck)
   (require 'init-format)
   (require 'init-quickrun)

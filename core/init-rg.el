@@ -3,7 +3,6 @@
 
 ;; ;; Fast search tool `ripgrep'
 ;; (use-package rg
-;;   :defines projectile-command-map
 ;;   :hook (after-init . rg-enable-default-bindings)
 ;;   :bind (:map rg-global-map
 ;;          ("c" . rg-dwim-current-dir)
@@ -15,10 +14,6 @@
 ;;               rg-show-columns t)
 ;;   :config
 ;;   (cl-pushnew '("tmpl" . "*.tmpl") rg-custom-type-aliases)
-
-;;   (with-eval-after-load 'projectile
-;;     (defalias 'projectile-ripgrep #'rg-project)
-;;     (bind-key "s R" #'rg-project projectile-command-map))
 
 ;;   (with-eval-after-load 'counsel
 ;;     (bind-keys

@@ -1,11 +1,11 @@
-(declare-function projectile-project-p 'projectile)
+; (declare-function projectile-project-p 'projectile)
 
-(defun my-search-all ()
-  "Search with Rg in project or directory"
-  (interactive)
-  (if (projectile-project-p)
-      (counsel-projectile-rg)
-    (counsel-rg)))
+; (defun my-search-all ()
+;   "Search with Rg in project or directory"
+;   (interactive)
+;   (if (projectile-project-p)
+;       (counsel-projectile-rg)
+;     (counsel-rg)))
 
 (use-package general
   :demand
@@ -37,8 +37,6 @@
     "b" 'ibuffer-other-window
     "w" 'ivy-switch-buffer
     "u" 'ivy-resume
-    ;;Projectile
-    "pp" 'counsel-projectile-switch-project
     ;; magit
     "gg" 'magit-status
     "gl" 'magit-log-all-branches

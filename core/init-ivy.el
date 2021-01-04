@@ -87,18 +87,9 @@
      ("w" ivy--switch-buffer-other-window-action "other window")
      ("x" counsel-open-buffer-file-externally "open externally")))
 
-  ;; Integration with `projectile'
-  (with-eval-after-load 'projectile
-    (setq projectile-completion-system 'ivy))
-
   ;; Integration with `magit'
   (with-eval-after-load 'magit
     (setq magit-completing-read-function 'ivy-completing-read))
-
-  ;; Ivy integration for Projectile
-  (use-package counsel-projectile
-    :hook (counsel-mode . counsel-projectile-mode)
-    :init (setq counsel-projectile-grep-initial-input '(ivy-thing-at-point)))
 
   ;; Integrate yasnippet
   (use-package ivy-yasnippet
@@ -123,8 +114,7 @@
 
 ;; More friendly display transformer for Ivy
 (use-package ivy-rich
-  :hook (;; Must load after `counsel-projectile'
-         (counsel-projectile-mode . ivy-rich-mode)
+  :hook ((counsel-mode . ivy-rich-mode)
          (ivy-rich-mode . (lambda ()
                             "Use abbreviate in `ivy-rich-mode'."
                             (setq ivy-virtual-abbreviate
