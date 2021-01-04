@@ -1,5 +1,4 @@
 (defun meow-setup ()
-  (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   (meow-motion-overwrite-define-key
    '("j" . meow-next)
    '("k" . meow-prev))
@@ -89,12 +88,12 @@
   :init
   (meow-global-mode 1)
   :config
-  ; (setq meow-replace-state-name-list
-  ;   '((normal . "<N>")
-  ;     (insert . "<I>")
-  ;     (keypad . "<K>")
-  ;     (motion . "<M>")))
-  (meow-setup)
-  (meow-setup-indicator))
+  (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
+  (setq meow-replace-state-name-list
+    '((normal . "<N>")
+      (insert . "<I>")
+      (keypad . "<K>")
+      (motion . "<M>")))
+  (meow-setup))
 
 (provide 'init-meow)
