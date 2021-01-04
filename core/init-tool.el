@@ -1,3 +1,11 @@
+; (use-package easy-hugo
+;   :custom ((easy-hugo-basedir  "~/gh/jiacai2050.github.io/")
+;        (easy-hugo-url  "https://liujiacai.net")
+;            (easy-hugo-default-ext ".org")
+;            (easy-hugo-bloglist '(((easy-hugo-basedir . "~/gh/en-blog/")
+;                                   (easy-hugo-default-ext ".org")
+;                               (easy-hugo-url . "https://en.liujiacai.net"))))))
+
 ;; IRC
 (use-package erc
   :ensure nil
