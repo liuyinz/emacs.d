@@ -30,6 +30,7 @@
     (use-package dired-quick-sort
       :bind (:map dired-mode-map
                   ("S" . hydra-dired-quick-sort/body))))
+
   ;; Show git info in dired
   (use-package dired-git-info
     :bind (:map dired-mode-map
@@ -44,47 +45,6 @@
   (use-package diredfl
     :init (diredfl-global-mode 1))
 
-  ;; Shows icons
-  ; (use-package all-the-icons-dired
-  ;   :diminish
-  ;   :hook (dired-mode . all-the-icons-dired-mode)
-  ;   :config
-    ;; FIXME: Refresh after creating or renaming the files/directories.
-    ;; @see https://github.com/jtbm37/all-the-icons-dired/issues/34.
-  ;   (with-no-warnings
-  ;     (advice-add 'dired-do-create-files :around #'all-the-icons-dired--refresh-advice)
-  ;     (advice-add 'dired-create-directory :around #'all-the-icons-dired--refresh-advice))
-  ;
-  ;   (with-no-warnings
-  ;     (defun my-all-the-icons-dired--refresh ()
-  ;       "Display the icons of files in a dired buffer."
-  ;       (all-the-icons-dired--remove-all-overlays)
-        ;; NOTE: don't display icons it too many items
-  ;       (if (<= (count-lines (point-min) (point-max)) 1000)
-  ;           (save-excursion
-              ;; TRICK: Use TAB to align icons
-  ;             (setq-local tab-width 1)
-  ;
-  ;             (goto-char (point-min))
-  ;             (while (not (eobp))
-  ;               (when-let ((file (dired-get-filename 'verbatim t)))
-  ;                 (let ((icon (if (file-directory-p file)
-  ;                                 (all-the-icons-icon-for-dir
-  ;                                  file
-  ;                                  :face 'all-the-icons-dired-dir-face
-  ;                                  :height 0.9
-  ;                                  :v-adjust all-the-icons-dired-v-adjust)
-  ;                               (all-the-icons-icon-for-file
-  ;                                file
-  ;                                :height 0.9
-  ;                                :v-adjust all-the-icons-dired-v-adjust))))
-  ;                   (if (member file '("." ".."))
-  ;                       (all-the-icons-dired--add-overlay (point) "  \t")
-  ;                     (all-the-icons-dired--add-overlay (point) (concat icon "\t")))))
-  ;               (dired-next-line 1)))
-  ;         (message "Not display icons because of too many items.")))
-  ;     (advice-add #'all-the-icons-dired--refresh :override #'my-all-the-icons-dired--refresh)))
-  ;
   ;; Extra Dired functionality
   (use-package dired-aux :ensure nil)
   (use-package dired-x

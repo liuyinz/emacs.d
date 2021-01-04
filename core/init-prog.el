@@ -27,7 +27,7 @@
 ;; (use-package mermaid-mode)
 (use-package plantuml-mode)
 ;; (use-package powershell)
-;; (use-package rmsbolt)                   ; A compiler output viewer
+;; (use-package rmsbolt)
 ;; (use-package scala-mode)
 ;; (use-package swift-mode)
 (use-package vimrc-mode)

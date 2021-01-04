@@ -17,11 +17,11 @@
   "The temporary value for `gc-cons-threshold' and `gc-cons-percentage'.")
 
 (defvar gc-timer-default
-  (run-with-idle-timer 15 t
+  (run-with-idle-timer 30 t
                        (lambda ()
                           (message "Garbage Collector has run for %.03fs"
                                    (time-count (garbage-collect)))))
-  "Run garbarge collection when idle 15s.")
+  "Run garbarge collection when idle 30s.")
 
 (defvar file-name-handler-alist-default file-name-handler-alist)
 
