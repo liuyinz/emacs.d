@@ -7,6 +7,8 @@
          ("C-t" . my-yasnippet-switch))
   :hook (after-init . yas-global-mode)
   :init
+  ;; silent yas message
+  ; (advice-add 'yas--load-snippet-dirs :around #'silent-message-advice)
   (setq yas-triggers-in-field t
         ;; yas-also-indent-empty-lines t
         ;; yas-indent-line 'auto
@@ -31,7 +33,8 @@ $0`(yas-escape-text yas-selected-text)`")
     (if (equal major-mode 'snippet-mode)
         (lisp-interaction-mode)
       (snippet-mode))
-    (evil-insert)))
+    (evil-insert))
+  )
 
 (use-package company
   ;; :disabled
