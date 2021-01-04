@@ -44,19 +44,14 @@
 
             ;; Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
             ;; @see http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
-            (defun my-minibuffer-gc-max ()
-              (setq gc-cons-threshold (car gc-cons-max)))
-
-            (defun my-minibuffer-gc-default ()
-              (setq gc-cons-threshold (car gc-cons-default)))
-
-            (add-hook 'minibuffer-setup-hook #'my-minibuffer-gc-max)
-            (add-hook 'minibuffer-exit-hook #'my-minibuffer-gc-default)))
+            (add-hook 'minibuffer-setup-hook
+                      (lambda () (setq gc-cons-threshold (car gc-cons-max))))
+            (add-hook 'minibuffer-exit-hook
+                      (lambda () (setq gc-cons-threshold (car gc-cons-default))))))
 
 ;; load core/init files
 (with-temp-message ""
   ;; benchmark
-  (require 'init-benchmark)
 
   (require 'init-const)
   (require 'init-funcs)

@@ -233,7 +233,7 @@
             kill-buffer-query-functions))
 
 (if (get-buffer "*scratch*")
-    (setq default-directory "~/Desktop/"))
+    (setq default-directory "~/"))
 
 ;;unbind keys
 (dolist (key '("\M-j" "\M-k" "\M-u" "\M-l"))

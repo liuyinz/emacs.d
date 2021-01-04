@@ -1,7 +1,8 @@
 ;; Defer garbage collection further back in the startup process
-(setq gc-cons-threshold most-positive-fixnum)
-
+; (setq gc-cons-threshold most-positive-fixnum)
+;
 (add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
+(require 'init-benchmark)
 (require 'init-const)
 
 ;; for native-comp branch
