@@ -30,14 +30,23 @@
   :hook (after-init . recentf-mode)
   :init
   (setq recentf-max-menu-items 20
-        recentf-max-saved-items 500
+        recentf-max-saved-items 1000
+        recentf-auto-cleanup 60
         recentf-exclude
         '("\\.?cache" ".cask" "url" "COMMIT_EDITMSG\\'" "bookmarks"
           "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
           "\\.?ido\\.last$" "\\.revive$" "/G?TAGS$" "/.elfeed/"
           "^/tmp/" "^/var/folders/.+$" ; "^/ssh:"
           (lambda (file) (file-in-directory-p file package-user-dir))))
-  :config (push (expand-file-name recentf-save-file) recentf-exclude))
+  :config
+  (push (expand-file-name recentf-save-file) recentf-exclude)
+
+  ;; silent message
+  (mapc (lambda (cmd)
+          (advice-add cmd :around #'silent-message-advice))
+        '(recentf-load-list
+          recentf-save-list
+          recentf-cleanup)))
 
 ;; Savehist
 (use-package savehist
@@ -181,7 +190,6 @@
 ;; c source
 (setq use-file-dialog nil
       use-dialog-box nil
-      garbage-collection-messages t
       load-prefer-newer t
       ad-redefinition-action 'accept
       delete-by-moving-to-trash t

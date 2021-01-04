@@ -11,7 +11,7 @@
 ;; load custom.el if exists.
 (setq custom-file (expand-file-name ".cache/etc/custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
-  (load custom-file))
+  (load custom-file nil :no-message))
 
 ;; Speed up startup
 ;; If you experience freezing,decrease. If you experience stuttering, increase.
@@ -22,10 +22,7 @@
   "The temporary value for `gc-cons-threshold' and `gc-cons-percentage'.")
 
 (defvar gc-timer-default
-  (run-with-idle-timer 30 t
-                       (lambda ()
-                          (message "Garbage Collector has run for %.03fs"
-                                   (time-count (garbage-collect)))))
+  (run-with-idle-timer 30 t #'garbage-collect)
   "Run garbarge collection when idle 30s.")
 
 (defvar file-name-handler-alist-default file-name-handler-alist)

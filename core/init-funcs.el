@@ -214,4 +214,11 @@ If SYNC is non-nil, the updating process is synchronous."
       (concat (upcase (substring s 0 1)) (downcase (substring s 1)))
     nil))
 
+;; silently message
+(defun silent-message-advice (original &rest args)
+  "silentl recentf message"
+  (let ((inhibit-message t)
+        (message-log-max nil))
+     (apply original args)))
+
 (provide 'init-funcs)
