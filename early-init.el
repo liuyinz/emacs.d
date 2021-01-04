@@ -1,9 +1,10 @@
 ;; Defer garbage collection further back in the startup process
 ; (setq gc-cons-threshold most-positive-fixnum)
-;
+
 (add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
+
+;; benchmark
 (require 'init-benchmark)
-(require 'init-const)
 
 ;; for native-comp branch
 ; (setq comp-speed 2)
@@ -19,9 +20,7 @@
 (setq site-run-file nil)
 
 ;; package.el
-(setq package-check-signature nil
-      package-user-dir my-dir-elpa
-      package-archives elpa-tsinghua
+(setq package-enable-at-startup nil
       package-quickstart t)
 
 ;; Resizing the Emacs frame can be a terribly expensive part of changing the

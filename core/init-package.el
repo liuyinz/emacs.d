@@ -1,11 +1,15 @@
 ;; <package start>
 (require 'package)
 
+;; package.el
+(setq package-check-signature nil
+      package-user-dir my-dir-elpa
+      package-archives elpa-tsinghua)
+
 ;; Initialize packages
 (unless (bound-and-true-p package--initialized) ; To avoid warnings in 27
   (setq package-enable-at-startup nil)          ; To prevent initializing twice
-  ; (package-initialize)
-  )
+  (package-initialize))
 
 ;; Setup `use-package'
 (unless (package-installed-p 'use-package)
@@ -82,9 +86,7 @@
     (add-to-list 'recentf-exclude no-littering-etc-directory))
   ;; save auto-save file if needed
   (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-  ;; save custom.el here
-  (setq custom-file (no-littering-expand-etc-file-name "custom.el")))
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 ;; (use-package with-proxy
 ;;   :init

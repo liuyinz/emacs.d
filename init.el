@@ -2,11 +2,16 @@
 ; (setq debug-on-error t)
 ; (debug-on-entry 'package-initialize)
 
+;; avoid cl depreciated warning
+(setq byte-compile-warnings '(cl-function))
+
 (when (version< emacs-version "27")
   (error "please upgrade your emacs-version above 27 !"))
 
-;; avoid cl depreciated warning
-(setq byte-compile-warnings '(cl-function))
+;; load custom.el if exists.
+(setq custom-file (expand-file-name ".cache/etc/custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;; Speed up startup
 ;; If you experience freezing,decrease. If you experience stuttering, increase.
@@ -51,7 +56,6 @@
 
 ;; load core/init files
 (with-temp-message ""
-  ;; benchmark
 
   (require 'init-const)
   (require 'init-funcs)
