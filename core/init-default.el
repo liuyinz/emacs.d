@@ -11,7 +11,15 @@
 ;; Start server
 (use-package server
   :ensure nil
-  :hook (after-init . server-mode))
+  :hook (after-init . (lambda ()
+                        (require 'server)
+                        (unless (server-running-p)
+                          (server-start))))
+  :init
+  (setq server-socket-dir (format "/tmp/emacs-%d-%s-%d"
+                                  (user-uid)
+                                  (format-time-string "%Y%m%d-%H%M%S")
+                                  (emacs-pid))))
 
 ;;display line number
 (use-package display-line-numbers
@@ -191,6 +199,7 @@
 (setq use-file-dialog nil
       use-dialog-box nil
       load-prefer-newer t
+      echo-keystrokes 0.1
       ad-redefinition-action 'accept
       delete-by-moving-to-trash t
       inhibit-compacting-font-caches t
@@ -206,6 +215,7 @@
               left-margin-width 0
               right-margin-width 0
               default-directory "~")
+
 
 ;; ;; Mouse & Smooth Scroll
 ;; (setq scroll-step 0

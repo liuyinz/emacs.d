@@ -16,11 +16,13 @@
 ;; cursor color is concerned).
 (advice-add #'x-apply-session-resources :override #'ignore)
 
-;; startup.el,don't load sitestart.el
+;; don't load sitestart.el
 (setq site-run-file nil)
 
-;; package.el
-(setq package-enable-at-startup nil
+;; Disable package initialize
+(setq package-enable-at-startup nil)
+;; Don't add (package-initialize) to .emacs.
+(setq package--init-file-ensured t
       package-quickstart t)
 
 ;; Resizing the Emacs frame can be a terribly expensive part of changing the
