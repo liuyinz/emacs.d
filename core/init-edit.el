@@ -74,7 +74,8 @@
         clm/logging-dir (expand-file-name "clm/logging/" my-dir-cache)))
 
 (use-package awesome-pair
-  :demand nil
+  :quelpa (awesome-pair :fetcher github :repo "manateelazycat/awesome-pair")
+  :demand
   :config
   (dolist (hook (list
                  'c-mode-common-hook
@@ -105,7 +106,7 @@
                  'minibuffer-inactive-mode-hook
                  ))
     (add-hook hook '(lambda () (awesome-pair-mode 1))))
-  
+
   (define-key awesome-pair-mode-map (kbd "(") 'awesome-pair-open-round)
   (define-key awesome-pair-mode-map (kbd "[") 'awesome-pair-open-bracket)
   (define-key awesome-pair-mode-map (kbd "{") 'awesome-pair-open-curly)
