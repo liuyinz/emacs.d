@@ -8,8 +8,6 @@
 
 ;; for native-comp branch
 ; (setq comp-speed 2)
-; (when (boundp 'comp-eln-load-path)
-;   (setcar comp-eln-load-path (expand-file-name "eln-cache/" my-dir-cache)))
 
 ;; Ignore X resources; its settings would be redundant with the other settings
 ;; in this file and can conflict with later config (particularly where the
