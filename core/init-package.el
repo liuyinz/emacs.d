@@ -33,6 +33,8 @@
 ;; Auto update packages
 (use-package auto-package-update
   :commands auto-package-update-now
+  :hook (auto-package-update-after . (lambda ()
+                                       (package-quickstart-refresh)))
   :init
   (setq auto-package-update-delete-old-versions t
         auto-package-update-hide-results nil)
