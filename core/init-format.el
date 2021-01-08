@@ -1,7 +1,7 @@
 ;; ;; Format HTML, CSS and JavaScript/JSON
 ;; ;; Install: npm -g install prettier
 (use-package prettier-js
-  :diminish
+  :blackout
   :commands prettier-js
   ;; :hook ((js-mode js2-mode json-mode web-mode css-mode sgml-mode html-mode)
   ;; . prettier-js-mode)
@@ -41,7 +41,7 @@
    (t (format-all-buffer))))
 
 (use-package editorconfig
-  :diminish
+  :blackout
   :hook (after-init . editorconfig-mode))
 
 (provide 'init-format)

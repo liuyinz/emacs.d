@@ -109,6 +109,6 @@ Lisp function does not specify a special indentation."
 ;; `global-eldoc-mode' is enabled by default.
 (use-package eldoc
   :ensure nil
-  :diminish)
+  :blackout)
 
 (provide 'init-elisp)

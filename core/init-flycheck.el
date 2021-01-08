@@ -1,6 +1,6 @@
 ;; flycheck
 (use-package flycheck
-  :diminish
+  :blackout
   :hook (after-init . global-flycheck-mode)
   :init
   (setq flycheck-stylelintrc "~/.stylelintrc.json"

@@ -140,24 +140,24 @@ If given a prefix ARG, visit the buffer listing instead."
 
 ;; ;; Live browser JavaScript, CSS, and HTML interaction
 ;; (use-package skewer-mode
-;;   :diminish
+;;   :blackout
 ;;   :hook (((js-mode js2-mode). skewer-mode)
 ;;          (css-mode . skewer-css-mode)
 ;;          (web-mode . skewer-html-mode)
 ;;          (html-mode . skewer-html-mode))
 ;;   :init
-;;   ;; diminish
+;;   ;; blackout
 ;;   (with-eval-after-load 'skewer-css
-;;     (diminish 'skewer-css-mode))
+;;     (blackout 'skewer-css-mode))
 ;;   (with-eval-after-load 'skewer-html
-;;     (diminish 'skewer-html-mode)))
+;;     (blackout 'skewer-html-mode)))
 
 ;; REST
 (use-package restclient
   :mode ("\\.http\\'" . restclient-mode)
   :config
   (use-package restclient-test
-    :diminish
+    :blackout
     :hook (restclient-mode . restclient-test-mode))
 
   (with-eval-after-load 'company

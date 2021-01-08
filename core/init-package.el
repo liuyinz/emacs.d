@@ -2,8 +2,7 @@
 (require 'package)
 
 ;; package.el
-(setq package-check-signature nil
-      package-user-dir my-dir-elpa
+(setq package-user-dir my-dir-elpa
       package-archives elpa-tsinghua)
 
 ;; Initialize packages
@@ -26,8 +25,10 @@
 
 (eval-when-compile
   (require 'use-package))
+
 (use-package blackout)
-(use-package bind-key)
+
+;; (setq package-check-signature nil)
 (use-package gnu-elpa-keyring-update :demand)
 
 (use-package quelpa
