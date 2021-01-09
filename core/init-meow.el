@@ -109,6 +109,7 @@
   (meow-global-mode 1)
   :config
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
+  ;; (setq meow-keypad-describe-keymap-function nil)
   (setq meow-replace-state-name-list
     '((normal . "<N>")
       (insert . "<I>")

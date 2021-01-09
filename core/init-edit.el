@@ -66,12 +66,10 @@
 
 (use-package command-log-mode
   :hook (after-init . global-command-log-mode)
-  ; :commands clm/open-command-log-buffer clm/toggle-command-log-buffer
   :init
   (setq command-log-mode-open-log-turns-on-mode t
         command-log-mode-is-global t
-        command-log-mode-window-size 40
-        clm/logging-dir (expand-file-name "clm/logging/" my-dir-cache)))
+        command-log-mode-window-size 40))
 
 (use-package awesome-pair
   :quelpa (awesome-pair :fetcher github :repo "manateelazycat/awesome-pair")
