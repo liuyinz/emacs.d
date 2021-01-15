@@ -1,7 +1,10 @@
+;;; init-ibuffer.el --- ibuffer setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (use-package ibuffer
   :defines ibuffer-show-empty-filter-groups
-  :ensure nil
-  :hook (ibuffer-mode .  (lambda ()
+  :hook (ibuffer-mode-hook .  (lambda ()
                            (ibuffer-auto-mode)
                            (ibuffer-vc-set-filter-groups-by-vc-root)
                            (unless (eq ibuffer-sorting-mode 'alphabetic)
@@ -13,7 +16,7 @@
   (setq ibuffer-display-summary nil)
   (setq ibuffer-show-empty-filter-groups nil)
   :config
-  ; Use human readable Size column instead of original one
+  ;; Use human readable Size column instead of original one
   (define-ibuffer-column size-h
     (:name "Size"
      :inline t
@@ -26,18 +29,19 @@
     (let ((size (buffer-size)))
       (propertize (file-size-human-readable size)
                   'size size)))
-  ;
-  ;; Modify the default ibuffer-formats
-  ; (setq ibuffer-formats
-  ;       '((mark " " (name 16 16 :left :elide)
-  ;               " " modified read-only locked
-  ;               " " (size-h 6 -1 :center)
-  ;               " " (mode 16 16 :left :elide)
-                ;; " " project-relative-file
-  ;               " " filename-and-process
-  ;               )))
+  
+  ;; ;; Modify the default ibuffer-formats
+  ;; (setq ibuffer-formats
+  ;;       '((mark " " (name 16 16 :left :elide)
+  ;;               " " modified read-only locked
+  ;;               " " (size-h 6 -1 :center)
+  ;;               " " (mode 16 16 :left :elide)
+  ;;               " " project-relative-file
+  ;;               " " filename-and-process
+  ;;               )))
 
   (use-package ibuffer-vc
+    :straight t
     :commands ibuffer-vc-set-filter-groups-by-vc-root
     :config
     (setq ibuffer-formats
@@ -81,3 +85,4 @@
 ;;   (ibuffer-update nil t))
 
 (provide 'init-ibuffer)
+;;; init-ibuffer.el ends here

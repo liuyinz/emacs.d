@@ -1,14 +1,27 @@
+;;; init-edit.el --- edit setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (require 'init-const)
+
+;; Writable `grep' buffer
+(use-package wgrep
+  :straight t
+  :init
+  (setq wgrep-auto-save-buffer t
+        wgrep-change-readonly-file t))
 
 ;; Hungry deletion
 (use-package hungry-delete
-  :blackout
-  :hook (after-init . global-hungry-delete-mode)
+  :straight t
+  :delight
+  :hook (after-init-hook . global-hungry-delete-mode)
   :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
 ;; Jump to things in Emacs tree-style
 (use-package avy
-  :hook (after-init . avy-setup-default)
+  :straight t
+  :hook (after-init-hook . avy-setup-default)
   :config
   (setq avy-all-windows nil
         avy-all-windows-alt t
@@ -21,8 +34,9 @@
 
 ;; Treat undo history as a tree
 (use-package undo-tree
+  :straight t
   ;; :functions undo-tree-visualizer-selection-mode
-  :hook (after-init . global-undo-tree-mode)
+  :hook (after-init-hook . global-undo-tree-mode)
   :init
   (setq undo-tree-visualizer-timestamps t
         undo-tree-enable-undo-in-region nil
@@ -53,6 +67,7 @@
     (setq-default undo-tree-visualizer-diff t)))
 
 (use-package comment-dwim-2
+  :straight t
   :bind ([remap comment-dwim] . comment-dwim-2))
 
 
@@ -60,19 +75,21 @@
 
 ;; Flexible text folding
 (use-package origami
-  :hook (after-init . global-origami-mode)
+  :straight t
+  :hook (after-init-hook . global-origami-mode)
   :init (setq origami-show-fold-header t)
   :config (face-spec-reset-face 'origami-fold-header-face))
 
 (use-package command-log-mode
-  :hook (after-init . global-command-log-mode)
+  :straight t
+  :hook (after-init-hook . global-command-log-mode)
   :init
   (setq command-log-mode-open-log-turns-on-mode t
         command-log-mode-is-global t
         command-log-mode-window-size 40))
 
 (use-package awesome-pair
-  :quelpa (awesome-pair :fetcher github :repo "manateelazycat/awesome-pair")
+  :straight (:type git :host github :repo "manateelazycat/awesome-pair")
   :demand
   :config
   (dolist (hook (list
@@ -134,3 +151,4 @@
   )
 
 (provide 'init-edit)
+;;; init-edit.el ends here

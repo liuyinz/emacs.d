@@ -1,14 +1,19 @@
+;;; init-quickrun.el --- Run code -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (declare-function imp-visit-buffer 'impatient-mode)
 
 ;; Run commands quickly
 (use-package quickrun
+  :straight t
   :commands (quickrun quickrun-region)
   :init
   (setq quickrun-focus-p nil
         quickrun-timeout-seconds 20))
 
 (defun my-run (&optional start end)
-  "running for whole or parts"
+  "Running for whole or parts."
   (interactive "r")
   (cond
    ((member major-mode '(html-mode web-mode)) (imp-visit-buffer))
@@ -17,7 +22,7 @@
         (quickrun)))))
 
 (defun my-repl ()
-  "runinig for interactive"
+  "Runinig for interactive."
   (interactive)
   (cond
    ((eq major-mode 'emacs-lisp-mode) (ielm))
@@ -27,7 +32,7 @@
    (t (message "no repl for selected mode"))))
 
 (defun quickrun-vterm ()
-  "Quickrun command in vterm"
+  "Quickrun command in vterm."
   (interactive)
   (let ((buffer buffer-file-name))
     (vterm-toggle-cd-show)
@@ -35,3 +40,4 @@
     (vterm-send-return)))
 
 (provide 'init-quickrun)
+;;; init-quickrun.el ends here

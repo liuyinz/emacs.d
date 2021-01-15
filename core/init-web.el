@@ -1,7 +1,10 @@
+;;; init-web.el --- web setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (use-package emmet-mode
-  ;; :ensure nil
-  ;; :load-path "~/.emacs.d/.cache/github/emmet-mode"
-  :hook ((sgml-mode html-mode css-mode web-mode) . emmet-mode)
+  :straight t
+  :hook ((sgml-mode-hook html-mode-hook css-mode-hook web-mode-hook) . emmet-mode)
   :bind (
          :map emmet-mode-keymap
          ;; ("C-j" . emmet-expand-line)
@@ -57,16 +60,17 @@
     (advice-add #'emmet-preview :override #'my-emmet-preview)))
 
 (use-package css-mode
-  :ensure nil
   :init
   (setq css-indent-offset 2)
   (setq css-fontify-colors nil))
 
 ;; SCSS mode
 (use-package scss-mode
+  :straight t
   :init (setq scss-compile-at-save nil))
 
 (use-package less-css-mode
+  :straight t
   :init (setq less-css-compile-at-save nil))
 
 ;; ;; CSS eldoc
@@ -76,8 +80,9 @@
 
 ;; Major mode for editing web templates
 (use-package web-mode
+  :straight t
   :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\|vue\\)$"
-  :hook (web-mode . my-web-mode-setup)
+  :hook (web-mode-hook . my-web-mode-setup)
   :config
   (setq web-mode-part-padding 0
         web-mode-enable-comment-interpolation t
@@ -112,12 +117,13 @@
   )
 
 ;; JSON mode
-(use-package json-mode)
-(use-package haml-mode)
-(use-package php-mode)
+(use-package json-mode :straight t)
+(use-package haml-mode :straight t)
+(use-package php-mode :straight t)
 
 (use-package impatient-mode
-  :hook ((web-mode html-mode css-mode js-mode js2-mode) . impatient-mode)
+  :straight t
+  :hook ((web-mode-hook html-mode-hook css-mode-hook js-mode-hook js2-mode-hook) . impatient-mode)
   :config
   ;; @https://github.com/skeeto/impatient-mode/issues/22
   (defun imp-visit-buffer (&optional arg)
@@ -154,15 +160,18 @@ If given a prefix ARG, visit the buffer listing instead."
 
 ;; REST
 (use-package restclient
+  :straight t
   :mode ("\\.http\\'" . restclient-mode)
   :config
   (use-package restclient-test
-    :blackout
+    :straight t
     :hook (restclient-mode . restclient-test-mode))
 
   (with-eval-after-load 'company
     (use-package company-restclient
+      :straight t
       :defines company-backends
       :init (add-to-list 'company-backends 'company-restclient))))
 
 (provide 'init-web)
+;;; init-web.el ends here

@@ -1,8 +1,12 @@
-;;; package --- init-ui.el
+;;; init-ui.el --- ui settings -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 ;; modeline
 (use-package doom-modeline
-  :hook (after-init . doom-modeline-mode)
+  :straight t
+  :delight t
+  :hook (after-init-hook . doom-modeline-mode)
   :init
   (setq doom-modeline-icon nil
         doom-modeline-persp-name nil
@@ -21,6 +25,7 @@
 
 ;;doom-theme
 (use-package doom-themes
+  :straight t
   :demand
   :init
   (setq doom-themes-enable-bold t
@@ -35,3 +40,4 @@
 ;; (set-fontset-font (frame-parameter nil 'font)
 ;; charset (font-spec :family "Source Han Serif"))
 ;; (setq face-font-rescale-alist '(("Source Han Serif" . 0.95))))
+;;; init-ui.el ends here

@@ -1,12 +1,16 @@
+;;; init.el ---  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
-; (setq debug-on-error t)
-; (debug-on-entry 'package-initialize)
+;; (setq debug-on-error t)
+;; (debug-on-entry 'package-initialize)
 
 ;; avoid cl depreciated warning
 (setq byte-compile-warnings '(cl-function))
 
 (when (version< emacs-version "27")
-  (error "please upgrade your emacs-version above 27 !"))
+  (error "Please upgrade your emacs-version above 27 !"))
 
 ;; load custom.el if exists.
 (setq custom-file (expand-file-name ".cache/etc/custom.el" user-emacs-directory))
@@ -40,9 +44,9 @@
 
             ;; GC automatically while unfocusing the frame
             (add-function :after after-focus-change-function
-              (lambda ()
-                (unless (frame-focus-state)
-                  (garbage-collect))))
+                          (lambda ()
+                            (unless (frame-focus-state)
+                              (garbage-collect))))
 
             ;; Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
             ;; @see http://bling.github.io/blog/2016/01/18/why-are-you-changing-gc-cons-threshold/
@@ -51,21 +55,21 @@
             (add-hook 'minibuffer-exit-hook
                       (lambda () (setq gc-cons-threshold (car gc-cons-default))))))
 
+(add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
+
 ;; load core/init files
 (with-temp-message ""
 
+  ;; benchmark
+  (require 'init-benchmark)
   (require 'init-const)
   (require 'init-funcs)
-  (require 'init-package)
+  (require 'init-straight)
   (require 'init-sys)
   (require 'init-default)
-
   (require 'init-ivy)
   (require 'init-company)
-
-  ;; test
   ;; (require 'init-test)
-
   ;; ui
   (require 'init-ui)
   (require 'init-highlight)
@@ -73,26 +77,23 @@
   (require 'init-window)
   (require 'init-ibuffer)
   (require 'init-dired)
-  (require 'init-org)
+  ;; (require 'init-org)
   (require 'init-edit)
   (require 'init-shell)
   (require 'init-tool)
   (require 'init-rg)
-
   ;; programing
   (require 'init-vcs)
   (require 'init-project)
   (require 'init-flycheck)
   (require 'init-format)
   (require 'init-quickrun)
-  (require 'init-code)
-  (require 'init-lsp)
-
+  ;; (require 'init-lsp)
   ;; language
-  (require 'init-prog)
+  (require 'init-lang)
   (require 'init-elisp)
   (require 'init-web)
   (require 'init-js)
-
-  ;; (require 'init-evil)
-  (require 'init-meow))
+  (require 'init-meow)
+  )
+;;; init.el ends here

@@ -1,11 +1,15 @@
+;;; init-meow.el --- meow setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (defun meow-setup ()
-  (meow-motion-overwrite-define-key
-   '("j" . meow-next)
-   '("k" . meow-prev))
+  ;; (meow-motion-overwrite-define-key
+  ;;  '("j" . meow-next)
+  ;;  '("k" . meow-prev))
   (meow-leader-define-key
    ;; SPC j/k will run the original command in MOTION state.
-   '("j" . meow-motion-origin-command)
-   '("k" . meow-motion-origin-command)
+   ;; '("j" . meow-motion-origin-command)
+   ;; '("k" . meow-motion-origin-command)
    ;; Use SPC (0-9) for digit arguments.
    '("1" . meow-digit-argument)
    '("2" . meow-digit-argument)
@@ -16,11 +20,12 @@
    '("7" . meow-digit-argument)
    '("8" . meow-digit-argument)
    '("9" . meow-digit-argument)
-   '("0" . meow-digit-argument))
+   '("0" . meow-digit-argument)
+   '("e" . magit-status))
 
   (meow-normal-define-key
    '("?" . negative-argument)
-    ;; Move
+   ;; Move
    '("G" . goto-line)
    '("j" . meow-next)
    '("k" . meow-prev)
@@ -89,7 +94,7 @@
    '("2" . meow-expand-2)
    '("1" . meow-expand-1)
 
-   ; '("g" . meow-keyboard-quit)
+   ;; '("g" . meow-keyboard-quit)
    '("M" . delete-indentation)
    '("q" . meow-quit)
    '("y" . meow-save)
@@ -98,23 +103,23 @@
    '("Z" . meow-pop-all-selection)
    '("&" . meow-query-replace)
    '("%" . meow-query-replace-regexp)
-   ; '("<escape>" . meow-last-buffer)
+   ;; '("<escape>" . meow-last-buffer)
    '("<escape>" . meow-keyboard-quit)
    ))
 
 (use-package meow
   :demand
-  ; :quelpa (meow (:fetch github :repo "DogLooksGood/meow"))
+  :straight (:type git :host github :repo "DogLooksGood/meow")
   :init
   (meow-global-mode 1)
   :config
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   ;; (setq meow-keypad-describe-keymap-function nil)
-  (setq meow-replace-state-name-list
-    '((normal . "<N>")
-      (insert . "<I>")
-      (keypad . "<K>")
-      (motion . "<M>")))
+  (setq meow-replace-state-name-list '((normal . "<N>")
+                                       (insert . "<I>")
+                                       (keypad . "<K>")
+                                       (motion . "<M>")))
   (meow-setup))
 
 (provide 'init-meow)
+;;; init-meow.el ends here

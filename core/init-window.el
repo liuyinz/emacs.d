@@ -1,5 +1,10 @@
+;;; init-window.el --- window setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (use-package ace-window
-  :hook (after-init . ace-window-display-mode)
+  :straight t
+  :hook (after-init-hook . ace-window-display-mode)
   :bind (("M-o" . ace-window))
   :init
   (setq aw-keys '(?a ?s ?d ?f ?q ?w ?r ?t)
@@ -163,3 +168,4 @@
 ;;         (tabulated-list-mode :size 0.4 :align 'below))))
 
 (provide 'init-window)
+;;; init-window.el ends here

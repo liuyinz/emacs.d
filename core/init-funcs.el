@@ -1,3 +1,7 @@
+;;; init-funcs.el --- functions defined by user -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;;; Code:
 
 (require 'cl-lib)
@@ -216,9 +220,17 @@ If SYNC is non-nil, the updating process is synchronous."
 
 ;; silently message
 (defun silent-message-advice (original &rest args)
-  "silentl recentf message"
+  "Silent recentf message."
   (let ((inhibit-message t)
         (message-log-max nil))
-     (apply original args)))
+    (apply original args)))
+
+(defun elisp-format ()
+  "Indent whole buffer."
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
 
 (provide 'init-funcs)
+;;; init-funcs.el ends here

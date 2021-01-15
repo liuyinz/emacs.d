@@ -1,17 +1,27 @@
- (use-package startup
-   :ensure nil
-   :init
-   (defun display-startup-echo-area-message ())
-   (setq inhibit-startup-screen t
-         inhibit-startup-echo-area-message (user-login-name)
-         initial-scratch-message nil
-         inhibit-default-init t
-         initial-major-mode 'fundamental-mode))
+;;; init-default.el --- setting for builtin package  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
+;; (use-package startup
+;;   :init
+;;   (defun display-startup-echo-area-message ())
+;;   (setq inhibit-startup-screen t
+;;         inhibit-startup-echo-area-message (user-login-name)
+;;         initial-scratch-message nil
+;;         inhibit-default-init t
+;;         initial-major-mode 'fundamental-mode))
+
+;; startup
+(defun display-startup-echo-area-message ())
+(setq inhibit-startup-screen t
+      inhibit-startup-echo-area-message (user-login-name)
+      initial-scratch-message nil
+      inhibit-default-init t
+      initial-major-mode 'fundamental-mode)
 
 ;; Start server
 (use-package server
-  :ensure nil
-  :hook (after-init . (lambda ()
+  :hook (after-init-hook . (lambda ()
                         (require 'server)
                         (unless (server-running-p)
                           (server-start))))
@@ -21,21 +31,17 @@
                                   (format-time-string "%Y%m%d-%H%M%S")
                                   (emacs-pid))))
 
-;;display line number
-(use-package display-line-numbers
-  :disabled
-  :ensure nil
-  :hook (prog-mode . display-line-numbers-mode)
-  :init (setq-default display-line-numbers-type 'relative))
+;; display line number
+;; (use-package display-line-numbers
+;;   :hook (prog-mode-hook . display-line-numbers-mode)
+;;   :init (setq-default display-line-numbers-type 'relative))
 
 (use-package saveplace
-  :ensure nil
-  :hook (after-init . save-place-mode))
+  :hook (after-init-hook . save-place-mode))
 
-;;recentf
+;; recentf
 (use-package recentf
-  :ensure nil
-  :hook (after-init . recentf-mode)
+  :hook (after-init-hook . recentf-mode)
   :init
   (setq recentf-max-menu-items 20
         recentf-max-saved-items 1000
@@ -58,8 +64,7 @@
 
 ;; Savehist
 (use-package savehist
-  :ensure nil
-  :hook (after-init . savehist-mode)
+  :hook (after-init-hook . savehist-mode)
   :init
   (setq enable-recursive-minibuffers t
         history-length 1000
@@ -73,8 +78,7 @@
                                         extended-command-history)))
 
 (use-package simple
-  :ensure nil
-  :hook (after-init . (lambda ()
+  :hook (after-init-hook . (lambda ()
                         (size-indication-mode)
                         (transient-mark-mode)
                         (line-number-mode)
@@ -84,7 +88,6 @@
               set-mark-command-repeat-pop t))
 
 (use-package files
-  :ensure nil
   :init
   (setq make-backup-files nil
         enable-local-variables :all
@@ -96,20 +99,17 @@
         find-file-suppress-same-file-warnings t))
 
 (use-package uniquify
-  :ensure nil
   :init
   (setq uniquify-buffer-name-style 'forward
         uniquify-separator "/"))
 
 ;; Delete selection if you insert
 (use-package delsel
-  :ensure nil
-  :hook (after-init . delete-selection-mode))
+  :hook (after-init-hook . delete-selection-mode))
 
 ;; Automatically reload files was modified by external program
 (use-package autorevert
-  :ensure nil
-  :hook (after-init . global-auto-revert-mode)
+  :hook (after-init-hook . global-auto-revert-mode)
   :init
   (setq auto-revert-interval 0.01
         auto-revert-use-notify nil
@@ -117,19 +117,16 @@
 
 ;; Automatic parenthesis pairing
 (use-package elec-pair
-  :ensure nil
-  :hook (after-init . electric-pair-mode)
+  :hook (after-init-hook . electric-pair-mode)
   :init (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
 
 ;; Handling capitalized subwords in a nomenclature
 (use-package subword
-  :ensure nil
-  :hook ((prog-mode . subword-mode)
-         (minibuffer-setup . subword-mode)))
+  :hook ((prog-mode-hook . subword-mode)
+         (minibuffer-setup-hook . subword-mode)))
 
 ;; Pass a URL to a WWW browser
 (use-package browse-url
-  :ensure nil
   :defines dired-mode-map
   :init
   (with-eval-after-load 'dired
@@ -137,19 +134,17 @@
 
 ;; Click to browse URL or to send to e-mail address
 (use-package goto-addr
-  :ensure nil
-  :hook ((text-mode . goto-address-mode)
+  :hook ((text-mode-hook . goto-address-mode)
          ;; An all-in-one comment command to rule them all
-         (prog-mode . goto-address-prog-mode)))
+         (prog-mode-hook . goto-address-prog-mode)))
 
 ;; A comprehensive visual interface to diff & patch
 (use-package ediff
   ;; :commands outline-show-all
-  :ensure nil
   :hook(;; show org ediffs unfolded
         ;; (ediff-prepare-buffer . outline-show-all)
         ;; restore window layout when done
-        (ediff-quit . winner-undo))
+        (ediff-quit-hook . winner-undo))
   :init
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
   (setq ediff-split-window-function 'split-window-horizontally)
@@ -157,9 +152,7 @@
 
 ;; Resolve diff3 conflicts
 (use-package smerge-mode
-  :ensure nil
-  :blackout
-  :hook ((find-file . (lambda ()
+  :hook ((find-file-hook . (lambda ()
                         (save-excursion
                           (goto-char (point-min))
                           (when (re-search-forward "^<<<<<<< " nil t)
@@ -168,7 +161,6 @@
 
 ;; Whitespace-mode
 (use-package whitespace
-  :ensure nil
   :commands whitespace-cleanup
   :init
   (setq whitespace-style '(face empty trailing))
@@ -179,13 +171,11 @@
                     :background "#FF6C6B"))))
 
 (use-package mwheel
-  :ensure nil
   :config
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
 
 (use-package tooltip
-  :ensure nil
   :config
   (tooltip-mode 1)
   (setq tooltip-resize-echo-area t))
@@ -258,3 +248,4 @@
   (global-unset-key key))
 
 (provide 'init-default)
+;;; init-default.el ends here

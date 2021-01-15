@@ -1,7 +1,11 @@
+;;; init-format.el --- format setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;; ;; Format HTML, CSS and JavaScript/JSON
 ;; ;; Install: npm -g install prettier
 (use-package prettier-js
-  :blackout
+  :straight t
   :commands prettier-js
   ;; :hook ((js-mode js2-mode json-mode web-mode css-mode sgml-mode html-mode)
   ;; . prettier-js-mode)
@@ -23,10 +27,11 @@
 
 ;; format
 (use-package format-all
+  :straight t
   :commands format-all-buffer)
 
 (defun my-format ()
-  "formating files"
+  "Formating files."
   (interactive)
   (whitespace-cleanup)
   (cond
@@ -38,10 +43,13 @@
                          json-mode
                          sgml-mode
                          yaml-mode)) (prettier-js))
+   ((member major-mode '(elisp-mode)) (elisp-format))
    (t (format-all-buffer))))
 
 (use-package editorconfig
-  :blackout
-  :hook (after-init . editorconfig-mode))
+  :straight t
+  :delight
+  :hook (after-init-hook . editorconfig-mode))
 
 (provide 'init-format)
+;;; init-format.el ends here

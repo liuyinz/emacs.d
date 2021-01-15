@@ -1,7 +1,12 @@
+;;; init-flycheck.el --- flycheck setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;; flycheck
 (use-package flycheck
-  :blackout
-  :hook (after-init . global-flycheck-mode)
+  :straight t
+  :delight
+  :hook (after-init-hook . global-flycheck-mode)
   :init
   (setq flycheck-stylelintrc "~/.stylelintrc.json"
         flycheck-tidyrc "~/.tidyrc"
@@ -18,3 +23,4 @@
       [16 48 112 240 112 48 16] nil nil 'center)))
 
 (provide 'init-flycheck)
+;;; init-flycheck.el ends here

@@ -1,14 +1,19 @@
+;;; init-company.el --- company setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (require 'init-const)
 
 ;; yasnippet
 (use-package yasnippet
-  :blackout yas-minor-mode
+  :straight t
+  :delight yas-minor-mode
   :bind (:map yas-minor-mode-map
          ("C-t" . my-yasnippet-switch))
   :hook (after-init . yas-global-mode)
   :init
   ;; silent yas message
-  ; (advice-add 'yas--load-snippet-dirs :around #'silent-message-advice)
+  ;; (advice-add 'yas--load-snippet-dirs :around #'silent-message-advice)
   (setq yas-triggers-in-field t
         ;; yas-also-indent-empty-lines t
         ;; yas-indent-line 'auto
@@ -37,8 +42,7 @@ $0`(yas-escape-text yas-selected-text)`")
   )
 
 (use-package company
-  ;; :disabled
-  :blackout
+  :straight t
   :defines (company-dabbrev-ignore-case company-dabbrev-downcase)
   :functions (company-search-words-in-any-order-regexp)
   :commands company-cancel
@@ -135,3 +139,4 @@ $0`(yas-escape-text yas-selected-text)`")
       (advice-add #'company-yasnippet :around #'my-company-yasnippet-disable-inline))))
 
 (provide 'init-company)
+;;; init-company.el ends here

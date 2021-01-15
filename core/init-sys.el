@@ -1,6 +1,10 @@
+;;; init-sys.el --- system setting  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 ;; Environment
 (use-package exec-path-from-shell
+  :straight t
   :if (memq window-system '(mac ns))
   :demand
   :defines exec-path-from-shell-check-startup-files
@@ -20,11 +24,12 @@
 
 ;; keep ~/.emacs.d clean
 (use-package no-littering
+  :straight t
   :demand
   :defines recentf-exclude
   :functions (no-littering-expand-etc-file-name no-littering-expand-var-file-name)
   :init
- (setq no-littering-etc-directory (expand-file-name "etc/" my-dir-cache)
+  (setq no-littering-etc-directory (expand-file-name "etc/" my-dir-cache)
         no-littering-var-directory (expand-file-name "var/" my-dir-cache))
   :config
   ;; exclude these in recentf
@@ -39,4 +44,5 @@
 ;;   :init
 ;;   (setq with-proxy-http-server "127.0.0.1:7890"))
 
-(provide 'init-sys) 
+(provide 'init-sys)
+;;; init-sys.el ends here

@@ -1,18 +1,23 @@
-(use-package hl-line
-  :ensure nil
-  :blackout
-  :hook (((evil-normal-state-entry
-           evil-emacs-state-exit) . hl-line-mode)
-         ((evil-insert-state-entry
-           evil-emacs-state-entry) . (lambda () (hl-line-mode -1)))))
+;;; init-highlight.el --- highlight setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
+; (use-package hl-line
+;   :delight
+;   :hook (((evil-normal-state-entry
+;            evil-emacs-state-exit) . hl-line-mode)
+;          ((evil-insert-state-entry
+;            evil-emacs-state-entry) . (lambda () (hl-line-mode -1)))))
 
 ;; Highlight brackets according to their depth
 (use-package rainbow-delimiters
-  :blackout
-  :hook (prog-mode . rainbow-delimiters-mode))
+  :straight t
+  :delight
+  :hook (prog-mode-hook . rainbow-delimiters-mode))
 
 (use-package highlight-parentheses
-  :hook (after-init . global-highlight-parentheses-mode)
+  :straight t
+  :hook (after-init-hook . global-highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
         highlight-parentheses-background-colors '("#5d7281")
@@ -20,10 +25,11 @@
 
 ;;Highlight uncommitted changes using VC
 (use-package diff-hl
-  :blackout
+  :straight t
+  :delight
   ;; :if (memq window-system '(mac ns))
-  :hook ((after-init . global-diff-hl-mode)
-         (dired-mode . diff-hl-dired-mode))
+  :hook ((after-init-hook . global-diff-hl-mode)
+         (dired-mode-hook . diff-hl-dired-mode))
   :init
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
@@ -58,8 +64,9 @@
 
 ;; Colorize color names in buffers
 (use-package rainbow-mode
-  :blackout
-  :hook ((html-mode php-mode css-mode) . rainbow-mode)
+  :straight t
+  :delight
+  :hook ((html-mode-hook php-mode-hook css-mode-hook) . rainbow-mode)
   :config
   (with-no-warnings
     ;; HACK: Use overlay instead of text properties to override `hl-line' faces.
@@ -80,11 +87,13 @@
 
 ;;indent-guide
 (use-package indent-guide
-  :blackout
-  :hook (prog-mode . indent-guide-mode)
+  :straight t
+  :delight
+  :hook (prog-mode-hook . indent-guide-mode)
   :config
   (setq indent-guide-char "¦")
   (set-face-background 'indent-guide-face (face-background 'default))
   (set-face-foreground 'indent-guide-face (face-foreground 'font-lock-comment-face)))
 
 (provide 'init-highlight)
+;;; init-highlight.el ends here

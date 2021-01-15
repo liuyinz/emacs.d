@@ -1,5 +1,10 @@
+;;; init-shell.el --- shell setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;; beautiful term mode & friends
 (use-package vterm
+  :straight t
   :init
   (setq vterm-always-compile-module t
         vterm-kill-buffer-on-exit t
@@ -10,6 +15,7 @@
   )
 
 (use-package vterm-toggle
+  :straight t
   :commands vterm-toggle
   :config
   (setq vterm-toggle-fullscreen-p nil)
@@ -28,3 +34,4 @@
                  (window-height . 0.4))))
 
 (provide 'init-shell)
+;;; init-shell.el ends here

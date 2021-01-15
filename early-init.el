@@ -1,31 +1,23 @@
+;;; early-init.el --- settings before frame initialize -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;; Defer garbage collection further back in the startup process
-; (setq gc-cons-threshold most-positive-fixnum)
-
-(add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
-
-;; benchmark
-(require 'init-benchmark)
+;; (setq gc-cons-threshold most-positive-fixnum)
 
 ;; for native-comp branch
-; (setq comp-speed 2)
-
-;; Ignore X resources; its settings would be redundant with the other settings
-;; in this file and can conflict with later config (particularly where the
-;; cursor color is concerned).
-(advice-add #'x-apply-session-resources :override #'ignore)
+;; (setq comp-speed 2)
 
 ;; don't load sitestart.el
 (setq site-run-file nil)
 
-;; Disable package initialize
+;; Do not initialise installed packages (I use `straight.el')
 (setq package-enable-at-startup nil)
-;; Don't add (package-initialize) to .emacs.
-(setq package--init-file-ensured t
-      package-quickstart t)
 
-;; Resizing the Emacs frame can be a terribly expensive part of changing the
-;; font. By inhibiting this, we easily halve startup times with fonts that are
-;; larger than the system default.
+;; Do not allow loading from the package cache (same reason).
+(setq package-quickstart nil)
+
+;; Do not resize the frame at this early stage.
 (setq frame-inhibit-implied-resize t)
 
 (setq default-frame-alist '((menu-bar-lines . 1)
@@ -42,3 +34,4 @@
                             (ns-use-native-fullscreen . nil)))
 
 (provide 'early-init)
+;;; early-init.el ends here

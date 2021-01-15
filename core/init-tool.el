@@ -1,14 +1,27 @@
-; (use-package easy-hugo
-;   :custom ((easy-hugo-basedir  "~/gh/jiacai2050.github.io/")
-;        (easy-hugo-url  "https://liujiacai.net")
-;            (easy-hugo-default-ext ".org")
-;            (easy-hugo-bloglist '(((easy-hugo-basedir . "~/gh/en-blog/")
-;                                   (easy-hugo-default-ext ".org")
-;                               (easy-hugo-url . "https://en.liujiacai.net"))))))
+;;; init-tool.el --- other tools -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
+;; (use-package easy-hugo
+;;   :custom ((easy-hugo-basedir  "~/gh/jiacai2050.github.io/")
+;;        (easy-hugo-url  "https://liujiacai.net")
+;;            (easy-hugo-default-ext ".org")
+;;            (easy-hugo-bloglist '(((easy-hugo-basedir . "~/gh/en-blog/")
+;;                                   (easy-hugo-default-ext ".org")
+;;                               (easy-hugo-url . "https://en.liujiacai.net"))))))
+
+(use-package dash-at-point :straight t)
+
+; (use-package leetcode
+;   :commands leetcode
+;   :init
+;   (setq leetcode-prefer-language "javascript"
+;         leetcode-prefer-sql "mysql"
+;         leetcode-save-solutions t
+;         leetcode-directory "~/Documents/repo/leetcode"))
 
 ;; IRC
 (use-package erc
-  :ensure nil
   :defines erc-autojoin-channels-alist
   :init (setq erc-rename-buffers t
               erc-interpret-mirc-color t
@@ -16,9 +29,10 @@
               erc-autojoin-channels-alist '(("freenode.net" "#emacs"))))
 
 (use-package keyfreq
-  :hook (after-init . (lambda ()
-                        (keyfreq-mode)
-                        (keyfreq-autosave-mode)))
+  :straight t
+  :hook (after-init-hook . (lambda ()
+                             (keyfreq-mode)
+                             (keyfreq-autosave-mode)))
   :init
   (defun toggle-keyfreq ()
     (interactive)
@@ -47,88 +61,13 @@
           delete-other-windows
           delete-backward-char
           describe-variable
-          dired ; nothing to optimize in dired
+          dired ;; nothing to optimize in dired
           dired-do-async-shell-command
           dired-find-file
           diredp-next-line
           diredp-previous-line
           electric-pair-delete-pair
           erase-message-buffer
-          eval-buffer
-          eval-print-last-sexp
-          evil-a-WORD
-          evil-append
-          evil-backward-char
-          evil-backward-word-begin
-          evil-change
-          evil-change-line
-          evil-complete-next
-          evil-complete-previous
-          evil-delete
-          evil-delete-backward-char-and-join
-          evil-delete-char
-          evil-delete-line
-          evil-emacs-state
-          evil-end-of-line
-          evil-escape-emacs-state
-          evil-escape-insert-state
-          evil-escape-isearch
-          evil-escape-minibuffer
-          evil-escape-motion-state
-          evil-escape-visual-state
-          evil-ex
-          evil-ex-command
-          evil-ex-completion
-          evil-ex-delete-backward-char
-          evil-exit-emacs-state
-          evil-exit-visual-state
-          evil-filepath-inner-text-object
-          evil-filepath-outer-text-object
-          evil-find-char
-          evil-find-char-to
-          evil-first-non-blank
-          evil-force-normal-state
-          evil-forward-char
-          evil-forward-word-begin
-          evil-forward-word-end
-          evil-goto-definition
-          evil-goto-first-line
-          evil-goto-line
-          evil-goto-mark-line
-          evil-indent
-          evil-inner-WORD
-          evil-inner-double-quote
-          evil-inner-single-quote
-          evil-inner-word
-          evil-insert
-          evil-join
-          evil-jump-backward
-          evil-jump-forward
-          evil-mc-make-and-goto-next-match
-          evil-mouse-drag-region
-          evil-next-line
-          evil-next-visual-line
-          evil-normal-state
-          evil-open-below
-          evil-paste-after
-          evil-paste-before
-          evil-previous-line
-          evil-previous-visual-line
-          evil-record-macro
-          evil-repeat
-          evil-replace
-          evil-ret
-          evil-scroll-page-down
-          evil-scroll-page-up
-          evil-search-forward
-          evil-search-next
-          evil-search-word-forward
-          evil-set-marker
-          evil-substitute
-          evil-visual-block
-          evil-visual-char
-          evil-visual-line
-          evil-yank
           exit-minibuffer
           ffip
           forward-char
@@ -270,3 +209,4 @@
           )))
 
 (provide 'init-tool)
+;;; init-tool.el ends here

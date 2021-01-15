@@ -1,9 +1,14 @@
+;;; init-ivy.el --- ivy settings -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;; ivy core
 (use-package counsel
+  :straight t
   :functions ivy-set-actions
-  :blackout (ivy-mode counsel-mode)
-  :hook ((after-init . ivy-mode)
-         (ivy-mode . counsel-mode))
+  :delight (ivy-mode counsel-mode)
+  :hook ((after-init-hook . ivy-mode)
+         (ivy-mode-hook . counsel-mode))
   :bind (
          ("C-s" . swiper-isearch)
          :map ivy-minibuffer-map
@@ -91,10 +96,12 @@
 
   ;; Integrate yasnippet
   (use-package ivy-yasnippet
+    :straight t
     :bind ("C-c C-y" . ivy-yasnippet))
 
   ;; Select from xref candidates with Ivy
   (use-package ivy-xref
+    :straight t
     :init
     (when (boundp 'xref-show-definitions-function)
       (setq xref-show-definitions-function #'ivy-xref-show-defs))
@@ -102,6 +109,7 @@
 
 
   (use-package counsel-osx-app
+    :straight t
     :bind (:map counsel-mode-map
            ("s-<f6>" . counsel-osx-app))))
 
@@ -112,8 +120,9 @@
 
 ;; More friendly display transformer for Ivy
 (use-package ivy-rich
-  :hook ((counsel-mode . ivy-rich-mode)
-         (ivy-rich-mode . (lambda ()
+  :straight t
+  :hook ((counsel-mode-hook . ivy-rich-mode)
+         (ivy-rich-mode-hook . (lambda ()
                             "Use abbreviate in `ivy-rich-mode'."
                             (setq ivy-virtual-abbreviate
                                   (or (and ivy-rich-mode 'abbreviate) 'name)))))
@@ -122,3 +131,4 @@
   (setq ivy-rich-parse-remote-buffer nil))
 
 (provide 'init-ivy)
+;;; init-ivy.el ends here

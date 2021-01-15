@@ -1,6 +1,9 @@
+;;; init-dired.el --- dired setting -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (use-package dired
-  :ensure nil
-  :hook (dired-mode . dired-hide-details-mode)
+  :hook (dired-mode-hook . dired-hide-details-mode)
   :bind (:map dired-mode-map
               ("C-c C-p" . wdired-change-to-wdired-mode))
   :config
@@ -33,22 +36,24 @@
 
   ;; Show git info in dired
   (use-package dired-git-info
+    :straight t
     :bind (:map dired-mode-map
                 (")" . dired-git-info-mode)))
 
   ;; Allow rsync from dired buffers
   (use-package dired-rsync
+    :straight t
     :bind (:map dired-mode-map
                 ("C-c C-r" . dired-rsync)))
 
   ;; Colourful dired
   (use-package diredfl
+    :straight t
     :init (diredfl-global-mode 1))
 
   ;; Extra Dired functionality
-  (use-package dired-aux :ensure nil)
+  (use-package dired-aux)
   (use-package dired-x
-    :ensure nil
     ;; :demand
     :config
     (let ((cmd "open"))
@@ -71,6 +76,7 @@
 
 ;; `find-dired' alternative using `fd'
 (when (executable-find "fd")
-  (use-package fd-dired))
+  (use-package fd-dired :straight t))
 
 (provide 'init-dired)
+;;; init-dired.el ends here

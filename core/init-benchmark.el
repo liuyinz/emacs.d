@@ -1,6 +1,7 @@
-;;; init-benchmarking.el --- Measure startup and require times -*- lexical-binding: t -*-
+;;; init-benchmarking.el --- Measure startup times -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+
 (require 'cl-lib)
 
 (defun benchmark-time-subtract-millis (b a)
@@ -73,4 +74,4 @@ LOAD-DURATION is the time taken in milliseconds to load FEATURE.")
 
 
 (provide 'init-benchmark)
-;;; init-benchmarking.el ends here
+;;; init-benchmark.el ends here

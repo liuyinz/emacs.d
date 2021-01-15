@@ -4,7 +4,8 @@ transient/
 /history
 /recentf
 /.last-package-update-day
-
+straight/
+.nvimlog
 ### Emacs ###
 # -*- mode: gitignore; -*-
 *~
