@@ -6,21 +6,19 @@
          (ivy-mode . counsel-mode))
   :bind (
          ("C-s" . swiper-isearch)
-         :map swiper-isearch-map
-         ("C-t" . swiper-isearch-toggle)
-         ("C-q" . swiper-query-replace)
-         ;; ("C-t" . isearch-toggle-color-rg)
-         :map isearch-mode-map
-         ("C-t" . swiper-isearch-toggle)
-         :map counsel-mode-map
-         ([remap swiper] . counsel-grep-or-swiper)
-         :map counsel-find-file-map
-         ("C-h" . counsel-up-directory)
          :map ivy-minibuffer-map
          ("C-j" . ivy-next-line-and-call)
          ("C-k" . ivy-previous-line-and-call)
          ("C-l" . ivy-dispatching-done)
-         ("C-u" . ivy-dispatching-call))
+         ("C-u" . ivy-dispatching-call)
+         :map swiper-isearch-map
+         ("C-q" . swiper-query-replace)
+         ("C-t" . isearch-toggle-color-rg)
+         :map counsel-mode-map
+         ([remap swiper] . counsel-grep-or-swiper)
+         :map counsel-find-file-map
+         ("C-h" . counsel-up-directory)
+         )
   :init
   (setq enable-recursive-minibuffers t
         ivy-more-chars-alist '((t . 2))
@@ -28,7 +26,7 @@
         ivy-count-format "%d/%d "
         ivy-on-del-error-function nil
         ivy-height 10
-        ivy-fixed-height-minibuffer t
+        ivy-fixed-height-minibuffer nil
         ivy-use-selectable-prompt t
         ivy-wrap t
         ivy-initial-inputs-alist nil

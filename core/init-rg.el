@@ -1,5 +1,6 @@
 (use-package color-rg
-  :quelpa (color-rg :fetcher github :repo "manateelazycat/color-rg"))
+  :quelpa (color-rg :fetcher github :repo "manateelazycat/color-rg")
+  :commands color-rg-search-project color-rg-search-input)
 
 ;; ;; Fast search tool `ripgrep'
 ;; (use-package rg

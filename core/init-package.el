@@ -28,7 +28,7 @@
 
 (use-package blackout)
 
-;; (setq package-check-signature nil)
+(setq package-check-signature nil)
 (use-package gnu-elpa-keyring-update :demand)
 
 (use-package quelpa
