@@ -94,6 +94,6 @@
   (require 'init-elisp)
   (require 'init-web)
   (require 'init-js)
-  (require 'init-meow)
+  (require 'init-evil)
   )
 ;;; init.el ends here

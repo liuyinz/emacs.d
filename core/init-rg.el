@@ -4,7 +4,10 @@
 
 (use-package color-rg
   :straight (:type git :host github :repo "manateelazycat/color-rg")
-  :commands (color-rg-search-project color-rg-search-input)
+  :commands (color-rg-search-project-with-type
+             color-rg-search-input
+             color-rg-search-input-in-project
+             color-rg-search-input-in-current-file)
   :init
   (setq color-rg-mac-load-path-from-shell nil))
 

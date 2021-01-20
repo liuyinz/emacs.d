@@ -12,13 +12,13 @@
 
 (use-package dash-at-point :straight t)
 
-; (use-package leetcode
-;   :commands leetcode
-;   :init
-;   (setq leetcode-prefer-language "javascript"
-;         leetcode-prefer-sql "mysql"
-;         leetcode-save-solutions t
-;         leetcode-directory "~/Documents/repo/leetcode"))
+;; (use-package leetcode
+;;   :commands leetcode
+;;   :init
+;;   (setq leetcode-prefer-language "javascript"
+;;         leetcode-prefer-sql "mysql"
+;;         leetcode-save-solutions t
+;;         leetcode-directory "~/Documents/repo/leetcode"))
 
 ;; IRC
 (use-package erc

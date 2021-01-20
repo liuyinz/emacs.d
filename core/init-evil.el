@@ -1,13 +1,18 @@
-; (declare-function projectile-project-p 'projectile)
+;;; init-evil.el --- evil setting  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-; (defun my-search-all ()
-;   "Search with Rg in project or directory"
-;   (interactive)
-;   (if (projectile-project-p)
-;       (counsel-projectile-rg)
-;     (counsel-rg)))
+;; (declare-function projectile-project-p 'projectile)
+
+;; (defun my-search-all ()
+;;   "Search with Rg in project or directory"
+;;   (interactive)
+;;   (if (projectile-project-p)
+;;       (counsel-projectile-rg)
+;;     (counsel-rg)))
 
 (use-package general
+  :straight t
   :demand
   :config
   (general-evil-setup t)
@@ -83,10 +88,11 @@
     ))
 
 (use-package evil
+  :straight t
   :functions (evil-define-key*
-              evil-delay
-              evil-set-initial-state)
-  :hook (after-init . evil-mode)
+               evil-delay
+               evil-set-initial-state)
+  :hook (after-init-hook . evil-mode)
   ;; :init (setq evil-want-keybinding nil)
   :config
   (setq evil-want-Y-yank-to-eol t
@@ -304,3 +310,4 @@
 ;;   (evilnc-default-hotkeys nil t))
 
 (provide 'init-evil)
+;;; init-evil.el ends here

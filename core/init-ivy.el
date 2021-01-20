@@ -111,24 +111,33 @@
   (use-package counsel-osx-app
     :straight t
     :bind (:map counsel-mode-map
-           ("s-<f6>" . counsel-osx-app))))
+                ("s-<f6>" . counsel-osx-app)))
 
-;; ;; Tramp ivy interface
-;; (use-package counsel-tramp
-;;   :bind (:map counsel-mode-map
-;;          ("C-c c T" . counsel-tramp))))
+  ;; ;; Tramp ivy interface
+  ;; (use-package counsel-tramp
+  ;;   :bind (:map counsel-mode-map
+  ;;          ("C-c c T" . counsel-tramp))))
+  )
+
+;; Better sorting and filtering
+(use-package prescient
+  :straight t
+  :commands prescient-persist-mode
+  :init (prescient-persist-mode 1))
+
+(use-package ivy-prescient
+  :straight t
+  :hook (ivy-mode-hook . ivy-prescient-mode))
 
 ;; More friendly display transformer for Ivy
 (use-package ivy-rich
   :straight t
-  :hook ((counsel-mode-hook . ivy-rich-mode)
-         (ivy-rich-mode-hook . (lambda ()
-                            "Use abbreviate in `ivy-rich-mode'."
-                            (setq ivy-virtual-abbreviate
-                                  (or (and ivy-rich-mode 'abbreviate) 'name)))))
+  :hook ((ivy-mode-hook . ivy-rich-mode))
   :init
+  (setq ivy-rich-path-style 'abbrev)
   ;; For better performance
-  (setq ivy-rich-parse-remote-buffer nil))
+  (setq ivy-rich-parse-remote-buffer nil)
+  (setq ivy-rich-parse-remote-file-path nil))
 
 (provide 'init-ivy)
 ;;; init-ivy.el ends here

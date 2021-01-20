@@ -50,9 +50,9 @@
     ;; show visualizer diff display
     (setq undo-tree-visualizer-diff t)
     (let ((buff (with-current-buffer undo-tree-visualizer-parent-buffer
-		          (undo-tree-diff node)))
-	      (display-buffer-mark-dedicated 'soft)
-	      win)
+                  (undo-tree-diff node)))
+          (display-buffer-mark-dedicated 'soft)
+          win)
       (setq win (split-window nil nil 'right nil))
       (set-window-buffer win buff)
       (shrink-window-if-larger-than-buffer win)))
