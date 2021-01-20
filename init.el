@@ -81,7 +81,6 @@
   (require 'init-edit)
   (require 'init-shell)
   (require 'init-tool)
-  (require 'init-rg)
   ;; programing
   (require 'init-vcs)
   (require 'init-project)

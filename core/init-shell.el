@@ -10,6 +10,7 @@
         vterm-kill-buffer-on-exit t
         vterm-clear-scrollback-when-clearing nil
         vterm-max-scrollback 10000)
+  (setenv "COLORTERM" "truecolor")
   ;; :config
   ;; (add-to-list 'vterm-keymap-exceptions "M-p")
   )

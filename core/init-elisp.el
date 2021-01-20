@@ -34,7 +34,7 @@
   (defun my-elisp-mode-setup()
     "Setting for elisp."
     (elisp-format))
-  
+
   ;; (when (boundp 'elisp-flymake-byte-compile-load-path)
   ;; (add-to-list 'elisp-flymake-byte-compile-load-path load-path))
 

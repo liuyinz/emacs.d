@@ -11,81 +11,81 @@
 ;;       (counsel-projectile-rg)
 ;;     (counsel-rg)))
 
-(use-package general
-  :straight t
-  :demand
-  :config
-  (general-evil-setup t)
+;; (use-package general
+;;   :straight t
+;;   :demand
+;;   :config
+;;   (general-evil-setup t)
 
-  (general-create-definer my-semicolon-leader-def
-    :prefix ";"
-    :states 'normal)
+;;   (general-create-definer my-semicolon-leader-def
+;;     :prefix ";"
+;;     :states 'normal)
 
-  (my-semicolon-leader-def
-    ;; misc
-    ";" 'counsel-M-x
-    "c" 'counsel-counsel
-    "i" 'counsel-imenu
-    "f" 'counsel-find-file
-    "y" 'counsel-yank-pop
-    ;; yasnippet
-    "ss" 'yas-visit-snippet-file
-    "sn" 'yas-new-snippet
-    ;; search and replace
-    "sa" 'my-search-all
-    "rr" 'color-rg-search-input-in-current-file
-    "ra" 'color-rg-search-input-in-project
-    ;; "rt" 'color-rg-search-project-with-type
-    ;; "fg" 'counsel-git
-    "d" 'dired-jump-other-window
-    ;; buffer
-    "b" 'ibuffer-other-window
-    "w" 'ivy-switch-buffer
-    "u" 'ivy-resume
-    ;; magit
-    "gg" 'magit-status
-    "gl" 'magit-log-all-branches
-    )
+;;   (my-semicolon-leader-def
+;;     ;; misc
+;;     ";" 'counsel-M-x
+;;     "c" 'counsel-counsel
+;;     "i" 'counsel-imenu
+;;     "f" 'counsel-find-file
+;;     "y" 'counsel-yank-pop
+;;     ;; yasnippet
+;;     "ss" 'yas-visit-snippet-file
+;;     "sn" 'yas-new-snippet
+;;     ;; search and replace
+;;     "sa" 'my-search-all
+;;     "rr" 'color-rg-search-input-in-current-file
+;;     "ra" 'color-rg-search-input-in-project
+;;     ;; "rt" 'color-rg-search-project-with-type
+;;     ;; "fg" 'counsel-git
+;;     "d" 'dired-jump-other-window
+;;     ;; buffer
+;;     "b" 'ibuffer-other-window
+;;     "w" 'ivy-switch-buffer
+;;     "u" 'ivy-resume
+;;     ;; magit
+;;     "gg" 'magit-status
+;;     "gl" 'magit-log-all-branches
+;;     )
 
-  (general-create-definer my-comma-leader-def
-    :prefix ","
-    :states '(normal visual))
+;;   (general-create-definer my-comma-leader-def
+;;     :prefix ","
+;;     :states '(normal visual))
 
-  (my-comma-leader-def
-    "c" 'comment-dwim-2
-    "r" 'my-run
-    "i" 'my-repl
-    "f" 'my-format
-    )
+;;   (my-comma-leader-def
+;;     "c" 'comment-dwim-2
+;;     "r" 'my-run
+;;     "i" 'my-repl
+;;     "f" 'my-format
+;;     )
 
-  ;; Define for general
-  (general-create-definer my-space-leader-def
-    :prefix "SPC"
-    :states '(normal visual))
+;;   ;; Define for general
+;;   (general-create-definer my-space-leader-def
+;;     :prefix "SPC"
+;;     :states '(normal visual))
 
-  (my-space-leader-def
-    ;;jump
-    "c" 'avy-goto-char
-    "w" 'avy-goto-word-0
-    "l" 'avy-goto-line
-    "r" 'avy-resume
-    ;; "f" 'avy-goto-paren
-    ;;window
-    "x" 'delete-window
-    "o" 'delete-other-windows
-    "h" 'split-window-horizontally
-    "v" 'split-window-vertically
-    "q" 'delete-frame
-    ;;buffer
-    "s" 'save-buffer
-    "k" 'kill-this-buffer
-    "a" 'evil-write-all
-    ;;toggle
-    "tu" 'undo-tree-visualize
-    "tf" 'flycheck-list-errors
-    "tq" 'toggle-keyfreq
-    "td" 'toggle-debug-on-error
-    ))
+;;   (my-space-leader-def
+;;     ;;jump
+;;     "c" 'avy-goto-char
+;;     "w" 'avy-goto-word-0
+;;     "l" 'avy-goto-line
+;;     "r" 'avy-resume
+;;     ;; "f" 'avy-goto-paren
+;;     ;;window
+;;     "x" 'delete-window
+;;     "o" 'delete-other-windows
+;;     "h" 'split-window-horizontally
+;;     "v" 'split-window-vertically
+;;     "q" 'delete-frame
+;;     ;;buffer
+;;     "s" 'save-buffer
+;;     "k" 'kill-this-buffer
+;;     "a" 'evil-write-all
+;;     ;;toggle
+;;     "tu" 'undo-tree-visualize
+;;     "tf" 'flycheck-list-errors
+;;     "tq" 'toggle-keyfreq
+;;     "td" 'toggle-debug-on-error
+;;     ))
 
 (use-package evil
   :straight t
@@ -94,35 +94,77 @@
                evil-set-initial-state)
   :hook (after-init-hook . evil-mode)
   ;; :init (setq evil-want-keybinding nil)
-  :config
-  (setq evil-want-Y-yank-to-eol t
-        evil-cross-lines t
+  :init
+  ;; (setq evil-want-keybinding nil)
+  (setq evil-disable-insert-state-bindings t
+        evil-want-C-i-jump nil
+        evil-want-Y-yank-to-eol t
+        evil-move-cursor-back nil
         evil-move-beyond-eol t
-        evil-echo-state nil)
+        evil-cross-lines t
+        evil-undo-system 'undo-tree
+        evil-echo-state nil
+        evil-want-integration t
+        )
+  :config
+  ;; set leader and localleader
+  (evil-define-key 'motion 'global "," nil ";" nil)
+  (evil-set-leader '(normal visual) ",")
+  (evil-set-leader '(normal visual) ";" t)
 
   (with-eval-after-load 'evil-maps
-    ;; replace C-r with U for undo-tree map
-    (define-key evil-normal-state-map "\C-r" nil)
-    (define-key evil-normal-state-map "U" 'redo)
     ;; unbind n and N
-    (define-key evil-motion-state-map "n" nil)
-    (define-key evil-motion-state-map "N" nil)
-    (define-key evil-motion-state-map ";" nil)
+    ;; (define-key evil-motion-state-map "n" nil)
+    ;; (define-key evil-motion-state-map "N" nil)
     (define-key evil-insert-state-map "\C-t" nil)
     (define-key evil-insert-state-map "\C-n" 'evil-open-below)
     (define-key evil-insert-state-map "\C-p" 'evil-open-above)
     )
 
   ;;evil binding
+  (evil-define-key '(normal emacs insert replace) 'global
+    "\M-p" 'vterm-toggle
+    "\C-l" 'ace-window)
+
+
   (evil-define-key 'normal 'global
+    ;; replace redo with U
+    "\C-r" nil
+    "U" 'evil-redo
     ;; select the previously pasted text
     "gp" "`[v`]"
     ;; run the macro in the q register
     "Q" "@q"
     ;; enable jump to (
-    "n" "f("
-    "N" "F("
+    ;; "n" "f("
+    ;; "N" "F("
     "gs" 'dash-at-point
+    (kbd "<leader>xf") 'counsel-find-file
+    ;; color-rg
+    (kbd "<leader>ss") 'color-rg-search-input-in-current-file
+    (kbd "<leader>sd") 'color-rg-search-input
+    (kbd "<leader>sp") 'color-rg-search-input-in-project
+    (kbd "<leader>st") 'color-rg-search-project-with-type
+    )
+
+  (evil-define-key '(normal visual) 'global
+    ;; replace redo with U
+    (kbd "\C-r") nil
+    "U" 'evil-redo
+    ;; select the previously pasted text
+    "gp" "`[v`]"
+    ;; run the macro in the q register
+    "Q" "@q"
+    ;; enable jump to (
+    ;; "n" "f("
+    ;; "N" "F("
+    "gs" 'dash-at-point
+    (kbd "<leader>xf") 'counsel-find-file
+    ;; color-rg
+    (kbd "<leader>ss") 'color-rg-search-input-in-current-file
+    (kbd "<leader>sd") 'color-rg-search-input
+    (kbd "<leader>sp") 'color-rg-search-input-in-project
+    (kbd "<leader>st") 'color-rg-search-project-with-type
     )
 
   (evil-define-key 'normal origami-mode-map
@@ -158,8 +200,6 @@
   (evil-define-key 'emacs vterm-mode-map
     "\M-n" 'vterm-toggle-insert-cd)
 
-  (evil-define-key '(normal emacs insert) 'global
-    "\M-p" 'vterm-toggle)
 
   (evil-define-key 'normal smerge-mode-map
     ;; move
@@ -248,21 +288,6 @@
 ;;   (setq evil-collection-mode-list '(flycheck))
 ;;   :config
 ;;   (evil-collection-init))
-
-(use-package evil-terminal-cursor-changer
-  ;; :demand
-  :after evil
-  ;; :unless (window-system)
-  ;; :disabled
-  :init
-  (setq evil-motion-state-cursor 'box)
-  (setq evil-visual-state-cursor 'box)
-  (setq evil-normal-state-cursor 'box)
-  (setq evil-insert-state-cursor 'bar)
-  (setq evil-emacs-state-cursor  'box)
-  :config
-  (etcc-on))
-
 
 ;; (use-package evil-magit
 ;;   :after evil magit)

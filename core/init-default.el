@@ -22,9 +22,9 @@
 ;; Start server
 (use-package server
   :hook (after-init-hook . (lambda ()
-                        (require 'server)
-                        (unless (server-running-p)
-                          (server-start))))
+                             (require 'server)
+                             (unless (server-running-p)
+                               (server-start))))
   :init
   (setq server-socket-dir (format "/tmp/emacs-%d-%s-%d"
                                   (user-uid)
@@ -79,10 +79,10 @@
 
 (use-package simple
   :hook (after-init-hook . (lambda ()
-                        (size-indication-mode)
-                        (transient-mark-mode)
-                        (line-number-mode)
-                        (column-number-mode)))
+                             (size-indication-mode)
+                             (transient-mark-mode)
+                             (line-number-mode)
+                             (column-number-mode)))
   :init (setq line-move-visual t
               track-eol t
               set-mark-command-repeat-pop t))
@@ -153,11 +153,11 @@
 ;; Resolve diff3 conflicts
 (use-package smerge-mode
   :hook ((find-file-hook . (lambda ()
-                        (save-excursion
-                          (goto-char (point-min))
-                          (when (re-search-forward "^<<<<<<< " nil t)
-                            (smerge-mode 1)
-                            ))))))
+                             (save-excursion
+                               (goto-char (point-min))
+                               (when (re-search-forward "^<<<<<<< " nil t)
+                                 (smerge-mode 1)
+                                 ))))))
 
 ;; Whitespace-mode
 (use-package whitespace
@@ -180,10 +180,10 @@
   (tooltip-mode 1)
   (setq tooltip-resize-echo-area t))
 
-      ;; adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*"
-      ;; adaptive-fill-first-line-regexp "^* *$"
-      ;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
-      ;; sentence-end-double-space nil)
+;; adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*"
+;; adaptive-fill-first-line-regexp "^* *$"
+;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
+;; sentence-end-double-space nil)
 
 ;; c source
 (setq use-file-dialog nil
@@ -234,7 +234,8 @@
 (set-selection-coding-system 'utf-8)
 (modify-coding-system-alist 'process "*" 'utf-8)
 (setenv "LC_ALL" "en_CN.UTF-8")
-
+;; make vterm colorful
+(setenv "COLORTERM" "truecolor")
 ;; Don't ask me when kill process buffer
 (setq kill-buffer-query-functions
       (remq 'process-kill-buffer-query-function

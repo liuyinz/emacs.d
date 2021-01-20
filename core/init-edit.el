@@ -88,9 +88,45 @@
         command-log-mode-is-global t
         command-log-mode-window-size 40))
 
+(use-package color-rg
+  :straight (:type git :host github :repo "manateelazycat/color-rg")
+  :commands (color-rg-search-project-with-type
+             color-rg-search-input
+             color-rg-search-input-in-project
+             color-rg-search-input-in-current-file)
+  :bind (:map color-rg-mode-map
+              ("h" . color-rg-jump-prev-file)
+              ("l" . color-rg-jump-next-file)
+              )
+  :init
+  (setq color-rg-mac-load-path-from-shell nil))
+
 (use-package awesome-pair
   :straight (:type git :host github :repo "manateelazycat/awesome-pair")
   :demand
+  :bind (:map awesome-pair-mode-map
+              ("(" . awesome-pair-open-round)
+              ("[" . awesome-pair-open-bracket)
+              ("{" . awesome-pair-open-curly)
+              (")" . awesome-pair-close-round)
+              ("]" . awesome-pair-close-bracket)
+              ("}" . awesome-pair-close-curly)
+              ("=" . awesome-pair-equal)
+              ("%" . awesome-pair-match-paren)
+              ("\"" . awesome-pair-double-quote)
+              ("SPC" . awesome-pair-space)
+              ("M-o" . awesome-pair-backward-delete)
+              ("C-d" . awesome-pair-forward-delete)
+              ("C-k" . awesome-pair-kill)
+              ("M-\"" . awesome-pair-wrap-double-quote)
+              ("M-[" . awesome-pair-wrap-bracket)
+              ("M-{" . awesome-pair-wrap-curly)
+              ("M-(" . awesome-pair-wrap-round)
+              ("M-)" . awesome-pair-unwrap)
+              ("M-p" . awesome-pair-jump-right)
+              ("M-n" . awesome-pair-jump-left)
+              ("M-:" . awesome-pair-jump-out-pair-and-newline))
+
   :config
   (dolist (hook (list
                  'c-mode-common-hook
@@ -120,35 +156,7 @@
                  'swift-mode-hook
                  'minibuffer-inactive-mode-hook
                  ))
-    (add-hook hook '(lambda () (awesome-pair-mode 1))))
-
-  (define-key awesome-pair-mode-map (kbd "(") 'awesome-pair-open-round)
-  (define-key awesome-pair-mode-map (kbd "[") 'awesome-pair-open-bracket)
-  (define-key awesome-pair-mode-map (kbd "{") 'awesome-pair-open-curly)
-  (define-key awesome-pair-mode-map (kbd ")") 'awesome-pair-close-round)
-  (define-key awesome-pair-mode-map (kbd "]") 'awesome-pair-close-bracket)
-  (define-key awesome-pair-mode-map (kbd "}") 'awesome-pair-close-curly)
-  (define-key awesome-pair-mode-map (kbd "=") 'awesome-pair-equal)
-
-  (define-key awesome-pair-mode-map (kbd "%") 'awesome-pair-match-paren)
-  (define-key awesome-pair-mode-map (kbd "\"") 'awesome-pair-double-quote)
-
-  (define-key awesome-pair-mode-map (kbd "SPC") 'awesome-pair-space)
-
-  (define-key awesome-pair-mode-map (kbd "M-o") 'awesome-pair-backward-delete)
-  (define-key awesome-pair-mode-map (kbd "C-d") 'awesome-pair-forward-delete)
-  (define-key awesome-pair-mode-map (kbd "C-k") 'awesome-pair-kill)
-
-  (define-key awesome-pair-mode-map (kbd "M-\"") 'awesome-pair-wrap-double-quote)
-  (define-key awesome-pair-mode-map (kbd "M-[") 'awesome-pair-wrap-bracket)
-  (define-key awesome-pair-mode-map (kbd "M-{") 'awesome-pair-wrap-curly)
-  (define-key awesome-pair-mode-map (kbd "M-(") 'awesome-pair-wrap-round)
-  (define-key awesome-pair-mode-map (kbd "M-)") 'awesome-pair-unwrap)
-
-  (define-key awesome-pair-mode-map (kbd "M-p") 'awesome-pair-jump-right)
-  (define-key awesome-pair-mode-map (kbd "M-n") 'awesome-pair-jump-left)
-  (define-key awesome-pair-mode-map (kbd "M-:") 'awesome-pair-jump-out-pair-and-newline)
-  )
+    (add-hook hook '(lambda () (awesome-pair-mode 1)))))
 
 (provide 'init-edit)
 ;;; init-edit.el ends here

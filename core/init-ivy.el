@@ -16,6 +16,7 @@
          ("C-k" . ivy-previous-line-and-call)
          ("C-l" . ivy-dispatching-done)
          ("C-u" . ivy-dispatching-call)
+         ([escape] . minibuffer-keyboard-quit)
          :map swiper-isearch-map
          ("C-q" . swiper-query-replace)
          ("C-t" . isearch-toggle-color-rg)

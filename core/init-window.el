@@ -5,7 +5,7 @@
 (use-package ace-window
   :straight t
   :hook (after-init-hook . ace-window-display-mode)
-  :bind (("C-o" . ace-window))
+  :commands ace-window
   :init
   (setq aw-keys '(?a ?s ?d ?f ?q ?w ?r ?t)
         aw-scope 'frame

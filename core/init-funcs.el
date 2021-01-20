@@ -12,7 +12,6 @@
 (defvar socks-server)
 
 (declare-function async-inject-variables 'async)
-(declare-function upgrade-packages 'init-package)
 
 ;; time
 (defmacro time-count (&rest body)
@@ -122,55 +121,6 @@ Same as `replace-string C-q C-m RET RET'."
   "Revert a buffer with GBK and save as UTF-8."
   (interactive)
   (save-buffer-as-utf8 'gbk))
-
-(defun recompile-elpa ()
-  "Recompile packages in elpa directory. Useful if you switch Emacs versions."
-  (interactive)
-  (if (fboundp 'async-byte-recompile-directory)
-      (async-byte-recompile-directory package-user-dir)
-    (byte-recompile-directory package-user-dir 0 t)))
-
-(defun recompile-core ()
-  "Recompile packages in site-lisp directory."
-  (interactive)
-  ;; (let ((dir my-dir-core))
-  (if (fboundp 'async-byte-recompile-directory)
-      (async-byte-recompile-directory my-dir-core)
-    (byte-recompile-directory my-dir-core 0 t)))
-;; )
-
-;; (defun centaur-timemachine-buffer-p ()
-;;   "Check whether the buffer is a `git-timemachine' buffer."
-;;   (string-prefix-p "timemachine:" (buffer-name)))
-
-(defvar my--updating-packages nil)
-(defun update-packages (&optional sync)
-  "Refresh package contents and update all packages.
-If SYNC is non-nil, the updating process is synchronous."
-  (interactive)
-  (when my--updating-packages
-    (user-error "Still updating packages..."))
-
-  (message "Updating packages...")
-  (if (and (not sync)
-           (require 'async nil t))
-      (progn
-        (setq my--updating-packages t)
-        (async-start
-         `(lambda ()
-            ,(async-inject-variables "\\`\\(load-path\\)\\'")
-            (require 'init-funcs)
-            (require 'init-package)
-            (upgrade-packages)
-            (with-current-buffer auto-package-update-buffer-name
-              (buffer-string)))
-         (lambda (result)
-           (setq my--updating-packages nil)
-           (message "%s" result)
-           (message "Updating packages...done"))))
-    (progn
-      (upgrade-packages)
-      (message "Updating packages...done"))))
 
 ;; Network Proxy
 (defun proxy-http-show ()
