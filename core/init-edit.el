@@ -4,17 +4,10 @@
 
 (require 'init-const)
 
-;; Writable `grep' buffer
-(use-package wgrep
-  :straight t
-  :init
-  (setq wgrep-auto-save-buffer t
-        wgrep-change-readonly-file t))
-
 ;; Hungry deletion
 (use-package hungry-delete
   :straight t
-  :delight
+  :delight t
   :hook (after-init-hook . global-hungry-delete-mode)
   :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
@@ -27,7 +20,7 @@
         avy-all-windows-alt t
         avy-background t
         avy-style 'at-full
-        avy-keys (number-sequence ?a ?z))
+        avy-keys '(?a ?s ?d ?f ?h ?j ?k ?l ?q ?u ?w ?i ?e ?o))
   (setq avy-orders-alist
         '((avy-goto-char . avy-order-closest)
           (avy-goto-word-0 . avy-order-closest))))

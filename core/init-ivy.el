@@ -31,7 +31,7 @@
         ivy-use-virtual-buffers t
         ivy-count-format "%d/%d "
         ivy-on-del-error-function nil
-        ivy-height 10
+        ivy-height 15
         ivy-fixed-height-minibuffer nil
         ivy-use-selectable-prompt t
         ivy-wrap t

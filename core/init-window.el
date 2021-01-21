@@ -4,7 +4,7 @@
 
 (use-package ace-window
   :straight t
-  :hook (after-init-hook . ace-window-display-mode)
+  :hook (emacs-startup-hook . ace-window-display-mode)
   :commands ace-window
   :init
   (setq aw-keys '(?a ?s ?d ?f ?q ?w ?r ?t)

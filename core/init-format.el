@@ -2,8 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ;; Format HTML, CSS and JavaScript/JSON
-;; ;; Install: npm -g install prettier
+;; Install: npm -g install prettier
 (use-package prettier-js
   :straight t
   :commands prettier-js
@@ -25,7 +24,6 @@
                             "--htmlWhitespaceSensitivity" "ignore"
                             )))
 
-;; format
 (use-package format-all
   :straight t
   :commands format-all-buffer)
@@ -43,7 +41,7 @@
                          json-mode
                          sgml-mode
                          yaml-mode)) (prettier-js))
-   ((member major-mode '(elisp-mode)) (elisp-format))
+   ((equal major-mode 'emacs-lisp-mode) (elisp-format))
    (t (format-all-buffer))))
 
 (use-package editorconfig

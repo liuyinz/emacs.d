@@ -185,6 +185,8 @@
 ;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
 ;; sentence-end-double-space nil)
 
+(setq vc-follow-symlinks t)
+
 ;; c source
 (setq use-file-dialog nil
       use-dialog-box nil

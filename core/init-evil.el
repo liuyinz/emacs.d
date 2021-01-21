@@ -89,11 +89,8 @@
 
 (use-package evil
   :straight t
-  :functions (evil-define-key*
-               evil-delay
-               evil-set-initial-state)
+  :functions (evil-define-key* evil-delay evil-set-initial-state)
   :hook (after-init-hook . evil-mode)
-  ;; :init (setq evil-want-keybinding nil)
   :init
   ;; (setq evil-want-keybinding nil)
   (setq evil-disable-insert-state-bindings t
@@ -108,14 +105,11 @@
         )
   :config
   ;; set leader and localleader
-  (evil-define-key 'motion 'global "," nil ";" nil)
-  (evil-set-leader '(normal visual) ",")
-  (evil-set-leader '(normal visual) ";" t)
+  (evil-define-key 'motion 'global ";" nil "," nil)
+  (evil-set-leader '(normal visual) ";")
+  (evil-set-leader '(normal visual) "," t)
 
   (with-eval-after-load 'evil-maps
-    ;; unbind n and N
-    ;; (define-key evil-motion-state-map "n" nil)
-    ;; (define-key evil-motion-state-map "N" nil)
     (define-key evil-insert-state-map "\C-t" nil)
     (define-key evil-insert-state-map "\C-n" 'evil-open-below)
     (define-key evil-insert-state-map "\C-p" 'evil-open-above)
@@ -123,48 +117,44 @@
 
   ;;evil binding
   (evil-define-key '(normal emacs insert replace) 'global
-    "\M-p" 'vterm-toggle
-    "\C-l" 'ace-window)
-
-
-  (evil-define-key 'normal 'global
-    ;; replace redo with U
-    "\C-r" nil
-    "U" 'evil-redo
-    ;; select the previously pasted text
-    "gp" "`[v`]"
-    ;; run the macro in the q register
-    "Q" "@q"
-    ;; enable jump to (
-    ;; "n" "f("
-    ;; "N" "F("
-    "gs" 'dash-at-point
-    (kbd "<leader>xf") 'counsel-find-file
-    ;; color-rg
-    (kbd "<leader>ss") 'color-rg-search-input-in-current-file
-    (kbd "<leader>sd") 'color-rg-search-input
-    (kbd "<leader>sp") 'color-rg-search-input-in-project
-    (kbd "<leader>st") 'color-rg-search-project-with-type
+    (kbd "M-p") 'vterm-toggle
+    (kbd "C-l") 'ace-window
+    (kbd "C-; ;") 'avy-goto-word-0
+    (kbd "C-; l") 'avy-goto-line
+    (kbd "C-; f") 'avy-goto-char
+    (kbd "C-; r") 'avy-resume
+    (kbd "C-; p") 'avy-goto-paren
     )
 
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U
-    (kbd "\C-r") nil
+    "\C-r" nil
     "U" 'evil-redo
     ;; select the previously pasted text
-    "gp" "`[v`]"
+    ;; "gp" "`[v`]"
     ;; run the macro in the q register
     "Q" "@q"
-    ;; enable jump to (
-    ;; "n" "f("
-    ;; "N" "F("
-    "gs" 'dash-at-point
-    (kbd "<leader>xf") 'counsel-find-file
+    "gr" 'dash-at-point
+    ;; magit
+    "gs" 'magit-status
+
+    (kbd "<leader> f") 'counsel-find-file
+    (kbd "<leader> xs") 'save-buffer
+
+    (kbd "<leader> ;") 'counsel-counsel
     ;; color-rg
-    (kbd "<leader>ss") 'color-rg-search-input-in-current-file
-    (kbd "<leader>sd") 'color-rg-search-input
-    (kbd "<leader>sp") 'color-rg-search-input-in-project
-    (kbd "<leader>st") 'color-rg-search-project-with-type
+    (kbd "<leader> ss") 'color-rg-search-input-in-current-file
+    (kbd "<leader> sd") 'color-rg-search-input
+    (kbd "<leader> sp") 'color-rg-search-input-in-project
+    (kbd "<leader> st") 'color-rg-search-project-with-type
+    ;; nerd-commenter
+    (kbd "<leader> cc") 'evilnc-comment-or-uncomment-lines
+    (kbd "<leader> ci") 'evilnc-copy-and-comment-lines
+    ;; toggle
+    (kbd "<leader> u") 'undo-tree-visualize
+    ;; self-define
+    (kbd "<leader> mf") 'my-format
+    (kbd "<leader> mr") 'my-run
     )
 
   (evil-define-key 'normal origami-mode-map
@@ -289,25 +279,19 @@
 ;;   :config
 ;;   (evil-collection-init))
 
-;; (use-package evil-magit
-;;   :after evil magit)
-
-(use-package evil-escape
-  :hook (after-init . evil-escape-mode)
-  :config
-  (setq-default evil-escape-delay 0.3
-                evil-escape-key-sequence "kj")
-  (setq evil-escape-excluded-major-modes '(dired-mode)))
-
 ;;Evil-matchit
 (use-package evil-matchit
-  :hook (after-init . global-evil-matchit-mode)
+  :straight t
+  :after evil
+  :hook (evil-mode-hook . global-evil-matchit-mode)
   :config
   ;;use "m" rather than "%"
   (setq evilmi-shortcut "m"))
 
 (use-package evil-surround
-  :hook (after-init . global-evil-surround-mode)
+  :straight t
+  :after evil
+  :hook (evil-mode-hook . global-evil-surround-mode)
   :config
   (add-hook 'prog-mode-hook 'evil-surround-prog-mode-hook-setup)
   (defun evil-surround-prog-mode-hook-setup ()
@@ -329,10 +313,9 @@
     (push '(93 . ("[[" . "]]")) evil-surround-pairs-alist)
     (push '(?= . ("=" . "=")) evil-surround-pairs-alist)))
 
-;; (use-package evil-nerd-commenter
-;;   :after evil
-;;   :init
-;;   (evilnc-default-hotkeys nil t))
+(use-package evil-nerd-commenter
+  :straight t
+  :after evil)
 
 (provide 'init-evil)
 ;;; init-evil.el ends here
