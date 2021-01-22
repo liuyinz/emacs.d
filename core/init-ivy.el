@@ -3,27 +3,27 @@
 ;;; Code:
 
 ;; ivy core
-(use-package counsel
-  :functions ivy-set-actions
-  :delight (ivy-mode counsel-mode)
-  :hook ((after-init-hook . ivy-mode)
-         (ivy-mode-hook . counsel-mode))
-  :bind (
-         ("C-s" . swiper-isearch)
-         :map ivy-minibuffer-map
-         ("C-j" . ivy-next-line-and-call)
-         ("C-k" . ivy-previous-line-and-call)
-         ("C-l" . ivy-dispatching-done)
-         ("C-u" . ivy-dispatching-call)
-         ([escape] . minibuffer-keyboard-quit)
-         :map swiper-isearch-map
-         ("C-q" . swiper-query-replace)
-         ("C-t" . isearch-toggle-color-rg)
-         :map counsel-mode-map
-         ([remap swiper] . counsel-grep-or-swiper)
-         :map counsel-find-file-map
-         ("C-h" . counsel-up-directory)
-         )
+(leaf counsel
+  :blackout ivy-mode counsel-mode
+  :defun ivy-set-actions
+  :hook
+  (after-init-hook . ivy-mode)
+  (ivy-mode-hook . counsel-mode)
+  :bind
+  ("C-s" . swiper-isearch)
+  (:ivy-minibuffer-map
+   ("C-j" . ivy-next-line-and-call)
+   ("C-k" . ivy-previous-line-and-call)
+   ("C-l" . ivy-dispatching-done)
+   ("C-u" . ivy-dispatching-call)
+   ([escape] . minibuffer-keyboard-quit))
+  (:swiper-isearch-map
+   ("C-q" . swiper-query-replace)
+   ("C-t" . isearch-toggle-color-rg))
+  (:counsel-mode-map
+   ([remap swiper] . counsel-grep-or-swiper))
+  (:counsel-find-file-map
+   ("C-h" . counsel-up-directory))
   :init
   (setq enable-recursive-minibuffers t
         ivy-more-chars-alist '((t . 2))
@@ -37,8 +37,7 @@
         ivy-initial-inputs-alist nil
         ivy-re-builders-alist '((t . ivy--regex-ignore-order))
         ;; ivy-display-style 'fancy
-        swiper-action-recenter t
-        )
+        swiper-action-recenter t)
 
   (setq counsel-find-file-at-point t
         counsel-find-file-ignore-regexp "\\(?:\\`\\(?:\\.\\|__\\)\\|elc\\|pyc$\\)"
@@ -95,38 +94,38 @@
     (setq magit-completing-read-function 'ivy-completing-read))
 
   ;; Integrate yasnippet
-  (use-package ivy-yasnippet
+  (leaf ivy-yasnippet
     :bind ("C-c C-y" . ivy-yasnippet))
 
   ;; Select from xref candidates with Ivy
-  (use-package ivy-xref
+  (leaf ivy-xref
     :init
     (when (boundp 'xref-show-definitions-function)
       (setq xref-show-definitions-function #'ivy-xref-show-defs))
     (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 
-  (use-package counsel-osx-app
-    :bind (:map counsel-mode-map
-                ("s-<f6>" . counsel-osx-app)))
+  (leaf counsel-osx-app
+    :bind (:counsel-mode-map
+           ("s-<f6>" . counsel-osx-app)))
 
   ;; ;; Tramp ivy interface
   ;; (use-package counsel-tramp
-  ;;   :bind (:map counsel-mode-map
+  ;;   :bind (:counsel-mode-map
   ;;          ("C-c c T" . counsel-tramp))))
   )
 
 ;; Better sorting and filtering
-(use-package prescient
+(leaf prescient
   :commands prescient-persist-mode
   :init (prescient-persist-mode 1))
 
-(use-package ivy-prescient
+(leaf ivy-prescient
   :hook (ivy-mode-hook . ivy-prescient-mode))
 
 ;; More friendly display transformer for Ivy
-(use-package ivy-rich
-  :hook ((ivy-mode-hook . ivy-rich-mode))
+(leaf ivy-rich
+  :hook (ivy-mode-hook . ivy-rich-mode)
   :init
   (setq ivy-rich-path-style 'abbrev)
   ;; For better performance

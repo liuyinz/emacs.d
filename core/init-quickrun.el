@@ -2,11 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-(declare-function imp-visit-buffer 'impatient-mode)
 
 ;; Run commands quickly
-(use-package quickrun
-  :commands (quickrun quickrun-region)
+(leaf quickrun
+  :defun (imp-visit-buffer . impatient-mode)
+  :commands quickrun quickrun-region
   :init
   (setq quickrun-focus-p nil
         quickrun-timeout-seconds 20))

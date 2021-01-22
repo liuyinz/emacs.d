@@ -2,9 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package ace-window
-  :hook (emacs-startup-hook . ace-window-display-mode)
+(leaf ace-window
   :commands ace-window
+  :hook (emacs-startup-hook . ace-window-display-mode)
   :init
   (setq aw-keys '(?a ?s ?d ?f ?q ?w ?r ?t)
         aw-scope 'frame

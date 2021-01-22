@@ -16,8 +16,8 @@
       (goto-char (point-max))
       (insert ";;; " fname " ends here\n"))))
 
-(use-package elisp-mode
-  :defines (flycheck-disabled-checkers calculate-lisp-indent-last-sexp)
+(leaf elisp-mode
+  :defvar flycheck-disabled-checkers calculate-lisp-indent-last-sexp
   :hook (emacs-lisp-mode-hook . my-elisp-mode-setup)
   ;; :functions (helpful-update
   ;;             my-lisp-indent-function
@@ -26,7 +26,7 @@
   ;;             add-button-to-remove-advice
   ;;             describe-function-1@advice-remove-button
   ;;             helpful-update@advice-remove-button)
-  ;; :bind (:map emacs-lisp-mode-map
+  ;; :bind (:emacs-lisp-mode-map
   ;;        ("C-c C-x" . ielm)
   ;;        ("C-c C-c" . eval-defun)
   ;;        ("C-c C-b" . eval-buffer))
@@ -39,14 +39,13 @@
   ;; (add-to-list 'elisp-flymake-byte-compile-load-path load-path))
 
   ;; Syntax highlighting of known Elisp symbols
-  (use-package highlight-defined
+  (leaf highlight-defined
     :hook (emacs-lisp-mode . highlight-defined-mode)
     :init (setq highlight-defined-face-use-itself nil)))
 
 ;; Show function arglist or variable docstring
 ;; `global-eldoc-mode' is enabled by default.
-(use-package eldoc
-  :delight)
+(leaf eldoc :blackout)
 
 (provide 'init-elisp)
 ;;; init-elisp.el ends here

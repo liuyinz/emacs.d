@@ -2,7 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package find-file-in-project
+(leaf find-file-in-project
+  :disabled
   :init
   (setq ffip-use-rust-fd t)
   ;; (setq ffip-project-file '(".svn" ".hg" ".git")

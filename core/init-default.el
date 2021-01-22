@@ -20,7 +20,7 @@
       initial-major-mode 'fundamental-mode)
 
 ;; Start server
-(use-package server
+(leaf server
   :hook (after-init-hook . (lambda ()
                              (require 'server)
                              (unless (server-running-p)
@@ -36,11 +36,11 @@
 ;;   :hook (prog-mode-hook . display-line-numbers-mode)
 ;;   :init (setq-default display-line-numbers-type 'relative))
 
-(use-package saveplace
+(leaf saveplace
   :hook (after-init-hook . save-place-mode))
 
 ;; recentf
-(use-package recentf
+(leaf recentf
   :hook (after-init-hook . recentf-mode)
   :init
   (setq recentf-max-menu-items 20
@@ -63,7 +63,7 @@
           recentf-cleanup)))
 
 ;; Savehist
-(use-package savehist
+(leaf savehist
   :hook (after-init-hook . savehist-mode)
   :init
   (setq enable-recursive-minibuffers t
@@ -77,7 +77,7 @@
                                         regexp-search-ring
                                         extended-command-history)))
 
-(use-package simple
+(leaf simple
   :hook (after-init-hook . (lambda ()
                              (size-indication-mode)
                              (transient-mark-mode)
@@ -87,7 +87,7 @@
               track-eol t
               set-mark-command-repeat-pop t))
 
-(use-package files
+(leaf files
   :init
   (setq make-backup-files nil
         enable-local-variables :all
@@ -98,17 +98,17 @@
         confirm-kill-processes nil
         find-file-suppress-same-file-warnings t))
 
-(use-package uniquify
+(leaf uniquify
   :init
   (setq uniquify-buffer-name-style 'forward
         uniquify-separator "/"))
 
 ;; Delete selection if you insert
-(use-package delsel
+(leaf delsel
   :hook (after-init-hook . delete-selection-mode))
 
 ;; Automatically reload files was modified by external program
-(use-package autorevert
+(leaf autorevert
   :hook (after-init-hook . global-auto-revert-mode)
   :init
   (setq auto-revert-interval 0.01
@@ -116,30 +116,23 @@
         auto-revert-verbose nil))
 
 ;; Automatic parenthesis pairing
-(use-package elec-pair
+(leaf elec-pair
   :hook (after-init-hook . electric-pair-mode)
   :init (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
 
 ;; Handling capitalized subwords in a nomenclature
-(use-package subword
+(leaf subword
   :hook ((prog-mode-hook . subword-mode)
          (minibuffer-setup-hook . subword-mode)))
 
-;; Pass a URL to a WWW browser
-(use-package browse-url
-  :defines dired-mode-map
-  :init
-  (with-eval-after-load 'dired
-    (bind-key "C-c C-z f" #'browse-url-of-file dired-mode-map)))
-
 ;; Click to browse URL or to send to e-mail address
-(use-package goto-addr
+(leaf goto-addr
   :hook ((text-mode-hook . goto-address-mode)
          ;; An all-in-one comment command to rule them all
          (prog-mode-hook . goto-address-prog-mode)))
 
 ;; A comprehensive visual interface to diff & patch
-(use-package ediff
+(leaf ediff
   ;; :commands outline-show-all
   :hook(;; show org ediffs unfolded
         ;; (ediff-prepare-buffer . outline-show-all)
@@ -151,7 +144,7 @@
   (setq ediff-merge-split-window-function 'split-window-horizontally))
 
 ;; Resolve diff3 conflicts
-(use-package smerge-mode
+(leaf smerge-mode
   :hook ((find-file-hook . (lambda ()
                              (save-excursion
                                (goto-char (point-min))
@@ -160,7 +153,7 @@
                                  ))))))
 
 ;; Whitespace-mode
-(use-package whitespace
+(leaf whitespace
   :commands whitespace-cleanup
   :init
   (setq whitespace-style '(face empty trailing))
@@ -170,12 +163,12 @@
                    (t
                     :background "#FF6C6B"))))
 
-(use-package mwheel
+(leaf mwheel
   :config
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
 
-(use-package tooltip
+(leaf tooltip
   :config
   (tooltip-mode 1)
   (setq tooltip-resize-echo-area t))
@@ -190,7 +183,6 @@
 ;; c source
 (setq use-file-dialog nil
       use-dialog-box nil
-      load-prefer-newer t
       echo-keystrokes 0.1
       ad-redefinition-action 'accept
       delete-by-moving-to-trash t

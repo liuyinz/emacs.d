@@ -10,11 +10,12 @@
 ;            evil-emacs-state-entry) . (lambda () (hl-line-mode -1)))))
 
 ;; Highlight brackets according to their depth
-(use-package rainbow-delimiters
-  :delight
+(leaf rainbow-delimiters
+  :blackout
   :hook (prog-mode-hook . rainbow-delimiters-mode))
 
-(use-package highlight-parentheses
+(leaf highlight-parentheses
+  :blackout
   :hook (after-init-hook . global-highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
@@ -22,11 +23,10 @@
         highlight-parentheses-highlight-adjacent t))
 
 ;;Highlight uncommitted changes using VC
-(use-package diff-hl
-  :delight
-  ;; :if (memq window-system '(mac ns))
-  :hook ((after-init-hook . global-diff-hl-mode)
-         (dired-mode-hook . diff-hl-dired-mode))
+(leaf diff-hl
+  :blackout
+  :hook (after-init-hook . global-diff-hl-mode)
+         ; (dired-mode-hook . diff-hl-dired-mode)
   :init
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
@@ -60,8 +60,8 @@
     (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)))
 
 ;; Colorize color names in buffers
-(use-package rainbow-mode
-  :delight
+(leaf rainbow-mode
+  :blackout
   :hook ((html-mode-hook php-mode-hook css-mode-hook) . rainbow-mode)
   :config
   (with-no-warnings
@@ -82,8 +82,8 @@
     (advice-add #'rainbow-turn-off :after #'my-rainbow-clear-overlays)))
 
 ;;indent-guide
-(use-package indent-guide
-  :delight
+(leaf indent-guide
+  :blackout
   :hook (prog-mode-hook . indent-guide-mode)
   :config
   (setq indent-guide-char "¦")

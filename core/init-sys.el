@@ -1,24 +1,27 @@
 ;;; init-sys.el --- system setting  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+(require 'init-const)
 
-
-(require 'use-package)
-;; Configure `use-package' prior to loading it.
+(require 'leaf)
 (eval-and-compile
-  (setq use-package-always-ensure nil)
-  (setq use-package-always-demand nil)
-  (setq use-package-expand-minimally nil)
-  (setq use-package-compute-statistics nil)
-  (setq use-package-hook-name-suffix nil)
-  (setq use-package-always-defer t)
-  (setq use-package-enable-imenu-support t))
+  (setq leaf-expand-minimally nil)
+  (setq leaf-defaults '(:ensure nil)))
+
+(leaf leaf-keywords
+  :require t
+  :defun leaf-keywords-init
+  :config (leaf-keywords-init))
+
+(leaf blackout :require t)
 
 ;; Environment
-(use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
-  :demand
-  :defines exec-path-from-shell-check-startup-files
+(leaf exec-path-from-shell
+  :require t
+  :defvar (exec-path-from-shell-check-startup-files
+           exec-path-from-shell-variables
+           exec-path-from-shell-arguments)
+  :defun exec-path-from-shell-initialize
   :init
   (setq exec-path-from-shell-check-startup-files nil
         exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
@@ -34,10 +37,14 @@
   (exec-path-from-shell-initialize))
 
 ;; keep ~/.emacs.d clean
-(use-package no-littering
-  :demand
-  :defines recentf-exclude
-  :functions (no-littering-expand-etc-file-name no-littering-expand-var-file-name)
+(leaf no-littering
+  :require t
+  :defvar (recentf-exclude
+           my-dir-cache
+           no-littering-var-directory
+           no-littering-etc-directory)
+  :defun (no-littering-expand-etc-file-name
+          no-littering-expand-var-file-name)
   :init
   (setq no-littering-etc-directory (expand-file-name "etc/" my-dir-cache)
         no-littering-var-directory (expand-file-name "var/" my-dir-cache))

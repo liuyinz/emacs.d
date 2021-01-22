@@ -2,19 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
-;; beautiful term mode & friends
-(use-package vterm
+(leaf vterm
   :init
   (setq vterm-always-compile-module t
         vterm-kill-buffer-on-exit t
         vterm-clear-scrollback-when-clearing nil
         vterm-max-scrollback 10000)
-  (setenv "COLORTERM" "truecolor")
-  ;; :config
-  ;; (add-to-list 'vterm-keymap-exceptions "M-p")
-  )
+  (setenv "COLORTERM" "truecolor"))
 
-(use-package vterm-toggle
+(leaf vterm-toggle
   :commands vterm-toggle
   :config
   (setq vterm-toggle-fullscreen-p nil)

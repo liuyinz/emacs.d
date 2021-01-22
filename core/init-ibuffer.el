@@ -2,14 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package ibuffer
-  :defines ibuffer-show-empty-filter-groups
+(leaf ibuffer
+  :defvar ibuffer-show-empty-filter-groups
+  :commands (ibuffer ibuffer-use-other-window)
   :hook (ibuffer-mode-hook .  (lambda ()
                            (ibuffer-auto-mode)
                            (ibuffer-vc-set-filter-groups-by-vc-root)
                            (unless (eq ibuffer-sorting-mode 'alphabetic)
                              (ibuffer-do-sort-by-alphabetic))))
-  :commands (ibuffer ibuffer-use-other-window)
   :init
   ;; hide summary
   (setq ibuffer-expert t)
@@ -40,7 +40,7 @@
   ;;               " " filename-and-process
   ;;               )))
 
-  (use-package ibuffer-vc
+  (leaf ibuffer-vc
     :commands ibuffer-vc-set-filter-groups-by-vc-root
     :config
     (setq ibuffer-formats

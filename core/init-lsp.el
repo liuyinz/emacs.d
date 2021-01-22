@@ -1,6 +1,6 @@
 (require 'init-const)
 
-(use-package lsp-mode
+(leaf lsp-mode
   :blackout
   :commands (lsp-install-server
              lsp
@@ -17,7 +17,7 @@
                        ;; Format and organize imports
                        ;; (add-hook 'before-save-hook #'lsp-format-buffer t t)
                        (add-hook 'before-save-hook #'lsp-organize-imports t t))))
-  :bind (:map lsp-mode-map
+  :bind (:lsp-mode-map
          ("C-c C-d" . lsp-describe-thing-at-point)
          ([remap xref-find-definitions] . lsp-find-definition)
          ([remap xref-find-references] . lsp-find-references))
@@ -115,7 +115,7 @@
 ;;          (powershell-mode . (lambda () (require 'dap-pwsh)))))
 
 ;; Microsoft python-language-server support
-(use-package lsp-python-ms
+(leaf lsp-python-ms
   :hook (python-mode . (lambda () (require 'lsp-python-ms)))
   :init
   (when (executable-find "python3")

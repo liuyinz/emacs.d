@@ -2,13 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(declare-function yas-activate-extra-mode 'yasnippet)
-
-(use-package magit
-  :commands (magit-status magit-dispatch magit-file-popup)
-  :hook ((after-init-hook . global-auto-revert-mode)
+(leaf magit
+  :defun (yas-activateextra-mode . yasnippet)
+  :commands magit-status magit-dispatch magit-file-popup
+  :hook (after-init-hook . global-auto-revert-mode)
          (git-commit-mode-hook . (lambda ()
-                              (yas-activate-extra-mode 'git-commit-mode))))
+                              (yas-activate-extra-mode 'git-commit-mode)))
   :mode (("\\COMMIT_EDITMSG\\'" . text-mode)
          ("\\MERGE_MSG\\'" . text-mode))
   :init
@@ -19,16 +18,16 @@
         magit-auto-revert-immediately t))
 
 ;; Open github/gitlab/bitbucket page
-(use-package browse-at-remote
-  :bind (:map vc-prefix-map
+(leaf browse-at-remote
+  :bind (:vc-prefix-map
          ("B" . browse-at-remote)))
 
 ;; Git related modes
-(use-package gitattributes-mode)
-(use-package gitconfig-mode)
-(use-package gitignore-mode)
+(leaf gitattributes-mode)
+(leaf gitconfig-mode)
+(leaf gitignore-mode)
 
-(use-package gitignore-templates
+(leaf gitignore-templates
   :commands gitignore-templates-insert gitignore-templates-new-file)
 
 (provide 'init-vcs)

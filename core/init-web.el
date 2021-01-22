@@ -2,14 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package emmet-mode
+(leaf emmet-mode
   :hook ((sgml-mode-hook html-mode-hook css-mode-hook web-mode-hook) . emmet-mode)
-  :bind (
-         :map emmet-mode-keymap
+  :bind (:emmet-mode-keymap
          ;; ("C-j" . emmet-expand-line)
-         ("C-j" . emmet-expand-yas)
+         ("C-j" . emmet-expand-yas))
          ;; ("" . emmet-wrap-with-markup)
-         :map emmet-preview-keymap
+         (:emmet-preview-keymap
          ("C-j" . my-emmet-expand)
          )
   :init
@@ -58,16 +57,16 @@
 
     (advice-add #'emmet-preview :override #'my-emmet-preview)))
 
-(use-package css-mode
+(leaf css-mode
   :init
   (setq css-indent-offset 2)
   (setq css-fontify-colors nil))
 
 ;; SCSS mode
-(use-package scss-mode
+(leaf scss-mode
   :init (setq scss-compile-at-save nil))
 
-(use-package less-css-mode
+(leaf less-css-mode
   :init (setq less-css-compile-at-save nil))
 
 ;; ;; CSS eldoc
@@ -76,7 +75,7 @@
 ;;   :hook ((css-mode scss-mode less-css-mode) . turn-on-css-eldoc))
 
 ;; Major mode for editing web templates
-(use-package web-mode
+(leaf web-mode
   :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\|vue\\)$"
   :hook (web-mode-hook . my-web-mode-setup)
   :config

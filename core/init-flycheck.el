@@ -3,8 +3,8 @@
 ;;; Code:
 
 ;; flycheck
-(use-package flycheck
-  :delight
+(leaf flycheck
+  :blackout
   :hook (after-init-hook . global-flycheck-mode)
   :init
   (setq flycheck-stylelintrc "~/.stylelintrc.json"

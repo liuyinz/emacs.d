@@ -3,7 +3,8 @@
 ;;; Code:
 
 ;; Install: npm -g install prettier
-(use-package prettier-js
+(leaf prettier-js
+  :disabled
   :commands prettier-js
   ;; :hook ((js-mode js2-mode json-mode web-mode css-mode sgml-mode html-mode)
   ;; . prettier-js-mode)
@@ -23,7 +24,7 @@
                             "--htmlWhitespaceSensitivity" "ignore"
                             )))
 
-(use-package format-all
+(leaf format-all
   :commands format-all-buffer)
 
 (defun my-format ()
@@ -42,8 +43,8 @@
    ((equal major-mode 'emacs-lisp-mode) (elisp-format))
    (t (format-all-buffer))))
 
-(use-package editorconfig
-  :delight
+(leaf editorconfig
+  :blackout
   :hook (after-init-hook . editorconfig-mode))
 
 (provide 'init-format)

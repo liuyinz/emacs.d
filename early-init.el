@@ -8,15 +8,15 @@
 ;; for native-comp branch
 ;; (setq comp-speed 2)
 
-;; don't load sitestart.el
-(setq site-run-file nil)
-
 ;; Do not initialise installed packages (I use `straight.el')
 (setq package-enable-at-startup nil)
-
 ;; Do not allow loading from the package cache (same reason).
 (setq package-quickstart nil)
 
+;; don't load sitestart.el
+(setq site-run-file nil)
+;; load newst file always
+(setq load-prefer-newer t)
 ;; Do not resize the frame at this early stage.
 (setq frame-inhibit-implied-resize t)
 

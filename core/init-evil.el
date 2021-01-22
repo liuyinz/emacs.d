@@ -86,8 +86,8 @@
 ;;     "td" 'toggle-debug-on-error
 ;;     ))
 
-(use-package evil
-  :functions (evil-define-key* evil-delay evil-set-initial-state)
+(leaf evil
+  :defun evil-define-key* evil-delay evil-set-initial-state
   :hook (after-init-hook . evil-mode)
   :init
   ;; (setq evil-want-keybinding nil)
@@ -278,16 +278,19 @@
 ;;   (evil-collection-init))
 
 ;;Evil-matchit
-(use-package evil-matchit
+(leaf evil-matchit
   :after evil
+  :blackout
   :hook (evil-mode-hook . global-evil-matchit-mode)
   :config
   ;;use "m" rather than "%"
   (setq evilmi-shortcut "m"))
 
-(use-package evil-surround
+(leaf evil-surround
   :after evil
-  :hook (evil-mode-hook . global-evil-surround-mode)
+  :blackout
+  :hook
+  (evil-mode-hook . global-evil-surround-mode)
   :config
   (add-hook 'prog-mode-hook 'evil-surround-prog-mode-hook-setup)
   (defun evil-surround-prog-mode-hook-setup ()
@@ -309,8 +312,9 @@
     (push '(93 . ("[[" . "]]")) evil-surround-pairs-alist)
     (push '(?= . ("=" . "=")) evil-surround-pairs-alist)))
 
-(use-package evil-nerd-commenter
-  :after evil)
+(leaf evil-nerd-commenter
+  :after evil
+  :commands evilnc-comment-or-uncomment-lines evilnc-copy-and-comment-lines)
 
 (provide 'init-evil)
 ;;; init-evil.el ends here

@@ -5,11 +5,11 @@
 (require 'init-const)
 
 ;; yasnippet
-(use-package yasnippet
-  :delight yas-minor-mode
-  :bind (:map yas-minor-mode-map
-         ("C-t" . my-yasnippet-switch))
+(leaf yasnippet
+  :blackout yas-minor-mode
   :hook (after-init . yas-global-mode)
+  :bind (:yas-minor-mode-map
+  ("C-t" . my-yasnippet-switch))
   :init
   ;; silent yas message
   ;; (advice-add 'yas--load-snippet-dirs :around #'silent-message-advice)
@@ -40,22 +40,21 @@ $0`(yas-escape-text yas-selected-text)`")
     (evil-insert))
   )
 
-(use-package company
-  :defines (company-dabbrev-ignore-case company-dabbrev-downcase)
-  :functions (company-search-words-in-any-order-regexp)
+(leaf company
+  :defvar company-dabbrev-ignore-case company-dabbrev-downcase
+  :defun company-search-words-in-any-order-regexp
   :commands company-cancel
   :hook (after-init . global-company-mode)
-  :bind (
-         :map company-mode-map
-         ("C-;" . company-yasnippet)
-         :map company-active-map
+  :bind (:company-mode-map
+         ("C-;" . company-yasnippet))
+         (:company-active-map
          ("C-;" . my-company-yasnippet)
          ("TAB" . company-complete-common-or-cycle)
          ("C-n" . company-select-next)
          ("C-p" . company-select-previous)
          ("C-l" . company-filter-candidates)
-         ("C-s" . company-show-location)
-         :map company-search-map
+         ("C-s" . company-show-location))
+         (:company-search-map
          ("C-n" . company-select-next)
          ("C-p" . company-select-previous))
   :init

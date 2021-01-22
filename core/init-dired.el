@@ -2,10 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package dired
+(leaf dired
   :hook (dired-mode-hook . dired-hide-details-mode)
-  :bind (:map dired-mode-map
-              ("C-c C-p" . wdired-change-to-wdired-mode))
+  :bind (:dired-mode-map
+          ("C-c C-p" . wdired-change-to-wdired-mode)
+          ("C-c C-z f" . browse-url-of-file))
   :config
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
@@ -29,29 +30,12 @@
     ;; Using `insert-directory-program'
     (setq ls-lisp-use-insert-directory-program t)
     ;; Show directory first
-    (setq dired-listing-switches "-alh --group-directories-first")
-    (use-package dired-quick-sort
-      :bind (:map dired-mode-map
-                  ("S" . hydra-dired-quick-sort/body))))
-
-  ;; Show git info in dired
-  (use-package dired-git-info
-    :bind (:map dired-mode-map
-                (")" . dired-git-info-mode)))
-
-  ;; Allow rsync from dired buffers
-  (use-package dired-rsync
-    :bind (:map dired-mode-map
-                ("C-c C-r" . dired-rsync)))
-
-  ;; Colourful dired
-  (use-package diredfl
-    :init (diredfl-global-mode 1))
+    (setq dired-listing-switches "-alh --group-directories-first")))
 
   ;; Extra Dired functionality
-  (use-package dired-aux)
-  (use-package dired-x
-    ;; :demand
+  (leaf dired-aux)
+  (leaf dired-x
+    :hook (dired-mode-hook . dired-omit-mode)
     :config
     (let ((cmd "open"))
       (setq dired-guess-shell-alist-user
@@ -69,11 +53,29 @@
 
     (setq dired-omit-files
           (concat dired-omit-files
-                  "\\|^.DS_Store$\\|^.projectile$\\|^.git*\\|^.svn$\\|^.vscode$\\|\\.js\\.meta$\\|\\.meta$\\|\\.elc$\\|^.emacs.*"))))
+                  "\\|^.DS_Store$\\|^.projectile$\\|^.git*\\|^.svn$\\|^.vscode$\\|\\.js\\.meta$\\|\\.meta$\\|\\.elc$\\|^.emacs.*")))
+
+  ;; Show git info in dired
+  (leaf dired-git-info
+    :blackout
+    :after
+    :bind (:dired-mode-map
+                (")" . dired-git-info-mode)))
+
+  ;; Allow rsync from dired buffers
+  (leaf dired-rsync
+    :bind (:dired-mode-map
+                ("C-c C-r" . dired-rsync)))
+
+  ;; Colourful dired
+  (leaf diredfl
+    :blackout
+    :require t
+    :config (diredfl-global-mode 1))
 
 ;; `find-dired' alternative using `fd'
 (when (executable-find "fd")
-  (use-package fd-dired))
+  (leaf fd-dired))
 
 (provide 'init-dired)
 ;;; init-dired.el ends here

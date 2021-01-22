@@ -5,13 +5,13 @@
 (require 'init-const)
 
 ;; Hungry deletion
-(use-package hungry-delete
-  :delight t
+(leaf hungry-delete
+  :blackout
   :hook (after-init-hook . global-hungry-delete-mode)
   :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
 ;; Jump to things in Emacs tree-style
-(use-package avy
+(leaf avy
   :hook (after-init-hook . avy-setup-default)
   :config
   (setq avy-all-windows nil
@@ -24,7 +24,7 @@
           (avy-goto-word-0 . avy-order-closest))))
 
 ;; Treat undo history as a tree
-(use-package undo-tree
+(leaf undo-tree
   ;; :functions undo-tree-visualizer-selection-mode
   :hook (after-init-hook . global-undo-tree-mode)
   :init
@@ -56,40 +56,40 @@
     (make-variable-buffer-local 'undo-tree-visualizer-diff)
     (setq-default undo-tree-visualizer-diff t)))
 
-(use-package comment-dwim-2
+(leaf comment-dwim-2
   :bind ([remap comment-dwim] . comment-dwim-2))
 
 
 (setq isearch-lazy-count t)
 
 ;; Flexible text folding
-(use-package origami
+(leaf origami
   :hook (after-init-hook . global-origami-mode)
   :init (setq origami-show-fold-header t)
   :config (face-spec-reset-face 'origami-fold-header-face))
 
-(use-package command-log-mode
+(leaf command-log-mode
   :hook (after-init-hook . global-command-log-mode)
   :init
   (setq command-log-mode-open-log-turns-on-mode t
         command-log-mode-is-global t
         command-log-mode-window-size 40))
 
-(use-package color-rg
+(leaf color-rg
   :commands (color-rg-search-project-with-type
              color-rg-search-input
              color-rg-search-input-in-project
              color-rg-search-input-in-current-file)
-  :bind (:map color-rg-mode-map
+  :bind (:color-rg-mode-map
               ("h" . color-rg-jump-prev-file)
               ("l" . color-rg-jump-next-file)
               )
   :init
   (setq color-rg-mac-load-path-from-shell nil))
 
-(use-package awesome-pair
-  :demand
-  :bind (:map awesome-pair-mode-map
+(leaf awesome-pair
+  :require t
+  :bind (:awesome-pair-mode-map
               ("(" . awesome-pair-open-round)
               ("[" . awesome-pair-open-bracket)
               ("{" . awesome-pair-open-curly)
