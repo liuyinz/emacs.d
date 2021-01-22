@@ -25,9 +25,6 @@
 [submodule "magithub"]
 	path = module/magithub
 	url = https://github.com/vermiculus/magithub.git
-[submodule "use-package"]
-	path = module/use-package
-	url = https://github.com/jwiegley/use-package.git
 [submodule "emacs-doom-themes"]
 	path = module/emacs-doom-themes
 	url = https://github.com/hlissner/emacs-doom-themes.git
@@ -193,3 +190,18 @@
 [submodule "undo-tree"]
 	path = module/undo-tree
 	url = https://github.com/emacsmirror/undo-tree.git
+[submodule "fd-dired"]
+	path = module/fd-dired
+	url = https://github.com/yqrashawn/fd-dired.git
+[submodule "leaf.el"]
+	path = module/leaf
+	url = https://github.com/conao3/leaf.el.git
+[submodule "leaf-keywords.el"]
+	path = module/leaf-keywords
+	url = https://github.com/conao3/leaf-keywords.el.git
+[submodule "all-the-icons.el"]
+	path = module/all-the-icons
+	url = https://github.com/domtronn/all-the-icons.el.git
+[submodule "blackout"]
+	path = module/blackout
+	url = https://github.com/raxod502/blackout.git
