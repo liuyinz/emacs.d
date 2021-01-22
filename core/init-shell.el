@@ -4,7 +4,6 @@
 
 ;; beautiful term mode & friends
 (use-package vterm
-  :straight t
   :init
   (setq vterm-always-compile-module t
         vterm-kill-buffer-on-exit t
@@ -16,7 +15,6 @@
   )
 
 (use-package vterm-toggle
-  :straight t
   :commands vterm-toggle
   :config
   (setq vterm-toggle-fullscreen-p nil)

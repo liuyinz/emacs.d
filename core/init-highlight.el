@@ -11,12 +11,10 @@
 
 ;; Highlight brackets according to their depth
 (use-package rainbow-delimiters
-  :straight t
   :delight
   :hook (prog-mode-hook . rainbow-delimiters-mode))
 
 (use-package highlight-parentheses
-  :straight t
   :hook (after-init-hook . global-highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
@@ -25,7 +23,6 @@
 
 ;;Highlight uncommitted changes using VC
 (use-package diff-hl
-  :straight t
   :delight
   ;; :if (memq window-system '(mac ns))
   :hook ((after-init-hook . global-diff-hl-mode)
@@ -64,7 +61,6 @@
 
 ;; Colorize color names in buffers
 (use-package rainbow-mode
-  :straight t
   :delight
   :hook ((html-mode-hook php-mode-hook css-mode-hook) . rainbow-mode)
   :config
@@ -87,7 +83,6 @@
 
 ;;indent-guide
 (use-package indent-guide
-  :straight t
   :delight
   :hook (prog-mode-hook . indent-guide-mode)
   :config

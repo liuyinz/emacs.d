@@ -6,17 +6,16 @@
 (require 'use-package)
 ;; Configure `use-package' prior to loading it.
 (eval-and-compile
-  (setq use-package-always-ensure nil)  ; ESSENTIAL for `straight.el'
-  (setq use-package-always-defer t)
+  (setq use-package-always-ensure nil)
   (setq use-package-always-demand nil)
   (setq use-package-expand-minimally nil)
   (setq use-package-compute-statistics nil)
   (setq use-package-hook-name-suffix nil)
+  (setq use-package-always-defer t)
   (setq use-package-enable-imenu-support t))
 
 ;; Environment
 (use-package exec-path-from-shell
-  :straight t
   :if (memq window-system '(mac ns))
   :demand
   :defines exec-path-from-shell-check-startup-files
@@ -36,7 +35,6 @@
 
 ;; keep ~/.emacs.d clean
 (use-package no-littering
-  :straight t
   :demand
   :defines recentf-exclude
   :functions (no-littering-expand-etc-file-name no-littering-expand-var-file-name)

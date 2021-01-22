@@ -6,14 +6,12 @@
 
 ;; Hungry deletion
 (use-package hungry-delete
-  :straight t
   :delight t
   :hook (after-init-hook . global-hungry-delete-mode)
   :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
 ;; Jump to things in Emacs tree-style
 (use-package avy
-  :straight t
   :hook (after-init-hook . avy-setup-default)
   :config
   (setq avy-all-windows nil
@@ -27,7 +25,6 @@
 
 ;; Treat undo history as a tree
 (use-package undo-tree
-  :straight t
   ;; :functions undo-tree-visualizer-selection-mode
   :hook (after-init-hook . global-undo-tree-mode)
   :init
@@ -60,7 +57,6 @@
     (setq-default undo-tree-visualizer-diff t)))
 
 (use-package comment-dwim-2
-  :straight t
   :bind ([remap comment-dwim] . comment-dwim-2))
 
 
@@ -68,13 +64,11 @@
 
 ;; Flexible text folding
 (use-package origami
-  :straight t
   :hook (after-init-hook . global-origami-mode)
   :init (setq origami-show-fold-header t)
   :config (face-spec-reset-face 'origami-fold-header-face))
 
 (use-package command-log-mode
-  :straight t
   :hook (after-init-hook . global-command-log-mode)
   :init
   (setq command-log-mode-open-log-turns-on-mode t
@@ -82,7 +76,6 @@
         command-log-mode-window-size 40))
 
 (use-package color-rg
-  :straight (:type git :host github :repo "manateelazycat/color-rg")
   :commands (color-rg-search-project-with-type
              color-rg-search-input
              color-rg-search-input-in-project
@@ -95,7 +88,6 @@
   (setq color-rg-mac-load-path-from-shell nil))
 
 (use-package awesome-pair
-  :straight (:type git :host github :repo "manateelazycat/awesome-pair")
   :demand
   :bind (:map awesome-pair-mode-map
               ("(" . awesome-pair-open-round)

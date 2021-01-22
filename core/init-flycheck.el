@@ -4,7 +4,6 @@
 
 ;; flycheck
 (use-package flycheck
-  :straight t
   :delight
   :hook (after-init-hook . global-flycheck-mode)
   :init

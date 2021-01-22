@@ -4,7 +4,6 @@
 
 ;; ivy core
 (use-package counsel
-  :straight t
   :functions ivy-set-actions
   :delight (ivy-mode counsel-mode)
   :hook ((after-init-hook . ivy-mode)
@@ -97,12 +96,10 @@
 
   ;; Integrate yasnippet
   (use-package ivy-yasnippet
-    :straight t
     :bind ("C-c C-y" . ivy-yasnippet))
 
   ;; Select from xref candidates with Ivy
   (use-package ivy-xref
-    :straight t
     :init
     (when (boundp 'xref-show-definitions-function)
       (setq xref-show-definitions-function #'ivy-xref-show-defs))
@@ -110,7 +107,6 @@
 
 
   (use-package counsel-osx-app
-    :straight t
     :bind (:map counsel-mode-map
                 ("s-<f6>" . counsel-osx-app)))
 
@@ -122,17 +118,14 @@
 
 ;; Better sorting and filtering
 (use-package prescient
-  :straight t
   :commands prescient-persist-mode
   :init (prescient-persist-mode 1))
 
 (use-package ivy-prescient
-  :straight t
   :hook (ivy-mode-hook . ivy-prescient-mode))
 
 ;; More friendly display transformer for Ivy
 (use-package ivy-rich
-  :straight t
   :hook ((ivy-mode-hook . ivy-rich-mode))
   :init
   (setq ivy-rich-path-style 'abbrev)

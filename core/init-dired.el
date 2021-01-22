@@ -36,19 +36,16 @@
 
   ;; Show git info in dired
   (use-package dired-git-info
-    :straight t
     :bind (:map dired-mode-map
                 (")" . dired-git-info-mode)))
 
   ;; Allow rsync from dired buffers
   (use-package dired-rsync
-    :straight t
     :bind (:map dired-mode-map
                 ("C-c C-r" . dired-rsync)))
 
   ;; Colourful dired
   (use-package diredfl
-    :straight t
     :init (diredfl-global-mode 1))
 
   ;; Extra Dired functionality
@@ -76,7 +73,7 @@
 
 ;; `find-dired' alternative using `fd'
 (when (executable-find "fd")
-  (use-package fd-dired :straight t))
+  (use-package fd-dired))
 
 (provide 'init-dired)
 ;;; init-dired.el ends here

@@ -4,7 +4,6 @@
 
 ;; modeline
 (use-package doom-modeline
-  :straight t
   :delight t
   :hook (after-init-hook . doom-modeline-mode)
   :init
@@ -25,7 +24,6 @@
 
 ;; doom-theme
 (use-package doom-themes
-  :straight t
   :demand
   :init
   (setq doom-themes-enable-bold t
@@ -36,7 +34,6 @@
 
 (use-package which-key
   :disabled
-  :straight t
   :delight t
   :hook (after-init-hook . which-key-mode)
   :init

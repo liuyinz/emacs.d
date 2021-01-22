@@ -6,7 +6,6 @@
 
 ;; Run commands quickly
 (use-package quickrun
-  :straight t
   :commands (quickrun quickrun-region)
   :init
   (setq quickrun-focus-p nil

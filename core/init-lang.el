@@ -11,7 +11,6 @@
       (flycheck-select-checker 'sh-shellcheck))))
 
 (use-package lua-mode
-  :straight t
   :mode "\\.lua\\'"
   :interpreter "lua"
   :config
@@ -22,18 +21,18 @@
 (use-package nxml-mode
   :mode (("\\.xaml$" . xml-mode)))
 
-(use-package yaml-mode :straight t)
+(use-package yaml-mode)
 ;; (use-package cask-mode)
 ;; (use-package csharp-mode)
-(use-package csv-mode :straight t)
+(use-package csv-mode)
 ;; (use-package julia-mode)
 ;; (use-package mermaid-mode)
-(use-package plantuml-mode :straight t)
+(use-package plantuml-mode)
 ;; (use-package powershell)
 ;; (use-package rmsbolt)
 ;; (use-package scala-mode)
 ;; (use-package swift-mode)
-(use-package vimrc-mode :straight t)
+(use-package vimrc-mode)
 
 (provide 'init-lang)
 ;;; init-prog.el ends here

@@ -10,7 +10,7 @@
 ;;                                   (easy-hugo-default-ext ".org")
 ;;                               (easy-hugo-url . "https://en.liujiacai.net"))))))
 
-(use-package dash-at-point :straight t)
+(use-package dash-at-point)
 
 ;; (use-package leetcode
 ;;   :commands leetcode
@@ -29,7 +29,6 @@
               erc-autojoin-channels-alist '(("freenode.net" "#emacs"))))
 
 (use-package keyfreq
-  :straight t
   :hook (after-init-hook . (lambda ()
                              (keyfreq-mode)
                              (keyfreq-autosave-mode)))

@@ -12,7 +12,6 @@
 ;;     (counsel-rg)))
 
 ;; (use-package general
-;;   :straight t
 ;;   :demand
 ;;   :config
 ;;   (general-evil-setup t)
@@ -88,7 +87,6 @@
 ;;     ))
 
 (use-package evil
-  :straight t
   :functions (evil-define-key* evil-delay evil-set-initial-state)
   :hook (after-init-hook . evil-mode)
   :init
@@ -281,7 +279,6 @@
 
 ;;Evil-matchit
 (use-package evil-matchit
-  :straight t
   :after evil
   :hook (evil-mode-hook . global-evil-matchit-mode)
   :config
@@ -289,7 +286,6 @@
   (setq evilmi-shortcut "m"))
 
 (use-package evil-surround
-  :straight t
   :after evil
   :hook (evil-mode-hook . global-evil-surround-mode)
   :config
@@ -314,7 +310,6 @@
     (push '(?= . ("=" . "=")) evil-surround-pairs-alist)))
 
 (use-package evil-nerd-commenter
-  :straight t
   :after evil)
 
 (provide 'init-evil)

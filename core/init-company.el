@@ -6,7 +6,6 @@
 
 ;; yasnippet
 (use-package yasnippet
-  :straight t
   :delight yas-minor-mode
   :bind (:map yas-minor-mode-map
          ("C-t" . my-yasnippet-switch))
@@ -42,7 +41,6 @@ $0`(yas-escape-text yas-selected-text)`")
   )
 
 (use-package company
-  :straight t
   :defines (company-dabbrev-ignore-case company-dabbrev-downcase)
   :functions (company-search-words-in-any-order-regexp)
   :commands company-cancel

@@ -29,7 +29,7 @@
     (let ((size (buffer-size)))
       (propertize (file-size-human-readable size)
                   'size size)))
-  
+
   ;; ;; Modify the default ibuffer-formats
   ;; (setq ibuffer-formats
   ;;       '((mark " " (name 16 16 :left :elide)
@@ -41,7 +41,6 @@
   ;;               )))
 
   (use-package ibuffer-vc
-    :straight t
     :commands ibuffer-vc-set-filter-groups-by-vc-root
     :config
     (setq ibuffer-formats

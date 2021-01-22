@@ -4,7 +4,6 @@
 
 ;; Install: npm -g install prettier
 (use-package prettier-js
-  :straight t
   :commands prettier-js
   ;; :hook ((js-mode js2-mode json-mode web-mode css-mode sgml-mode html-mode)
   ;; . prettier-js-mode)
@@ -25,7 +24,6 @@
                             )))
 
 (use-package format-all
-  :straight t
   :commands format-all-buffer)
 
 (defun my-format ()
@@ -45,7 +43,6 @@
    (t (format-all-buffer))))
 
 (use-package editorconfig
-  :straight t
   :delight
   :hook (after-init-hook . editorconfig-mode))
 

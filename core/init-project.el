@@ -3,7 +3,6 @@
 ;;; Code:
 
 (use-package find-file-in-project
-  :straight t
   :init
   (setq ffip-use-rust-fd t)
   ;; (setq ffip-project-file '(".svn" ".hg" ".git")

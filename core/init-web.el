@@ -3,7 +3,6 @@
 ;;; Code:
 
 (use-package emmet-mode
-  :straight t
   :hook ((sgml-mode-hook html-mode-hook css-mode-hook web-mode-hook) . emmet-mode)
   :bind (
          :map emmet-mode-keymap
@@ -66,11 +65,9 @@
 
 ;; SCSS mode
 (use-package scss-mode
-  :straight t
   :init (setq scss-compile-at-save nil))
 
 (use-package less-css-mode
-  :straight t
   :init (setq less-css-compile-at-save nil))
 
 ;; ;; CSS eldoc
@@ -80,7 +77,6 @@
 
 ;; Major mode for editing web templates
 (use-package web-mode
-  :straight t
   :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\|vue\\)$"
   :hook (web-mode-hook . my-web-mode-setup)
   :config
@@ -117,32 +113,31 @@
   )
 
 ;; JSON mode
-(use-package json-mode :straight t)
-(use-package haml-mode :straight t)
-(use-package php-mode :straight t)
+;; (use-package json-mode)
+;; (use-package haml-mode)
+;; (use-package php-mode)
 
-(use-package impatient-mode
-  :straight t
-  :hook ((web-mode-hook html-mode-hook css-mode-hook js-mode-hook js2-mode-hook) . impatient-mode)
-  :config
-  ;; @https://github.com/skeeto/impatient-mode/issues/22
-  (defun imp-visit-buffer (&optional arg)
-    "Visit the current buffer in a browser.
-If given a prefix ARG, visit the buffer listing instead."
-    (interactive "P")
-    (unless (process-status "httpd")
-      (httpd-start))
-    (unless impatient-mode
-      (impatient-mode))
-    (unless (process-status "httpd") (httpd-start))
-    (let ((url (format "http://%s:%d/imp/live/%s/"
-		               (cl-case httpd-host
-			             ((nil) "0.0.0.0")
-			             ((local) "localhost")
-			             (otherwise httpd-host))
-		               httpd-port
-		               (url-hexify-string (buffer-name)))))
-      (browse-url url))))
+;; (use-package impatient-mode
+;;   :hook ((web-mode-hook html-mode-hook css-mode-hook js-mode-hook js2-mode-hook) . impatient-mode)
+;;   :config
+;;   ;; @https://github.com/skeeto/impatient-mode/issues/22
+;;   (defun imp-visit-buffer (&optional arg)
+;;     "Visit the current buffer in a browser.
+;; If given a prefix ARG, visit the buffer listing instead."
+;;     (interactive "P")
+;;     (unless (process-status "httpd")
+;;       (httpd-start))
+;;     (unless impatient-mode
+;;       (impatient-mode))
+;;     (unless (process-status "httpd") (httpd-start))
+;;     (let ((url (format "http://%s:%d/imp/live/%s/"
+;; 		               (cl-case httpd-host
+;; 			             ((nil) "0.0.0.0")
+;; 			             ((local) "localhost")
+;; 			             (otherwise httpd-host))
+;; 		               httpd-port
+;; 		               (url-hexify-string (buffer-name)))))
+;;       (browse-url url))))
 
 ;; ;; Live browser JavaScript, CSS, and HTML interaction
 ;; (use-package skewer-mode
@@ -159,19 +154,16 @@ If given a prefix ARG, visit the buffer listing instead."
 ;;     (blackout 'skewer-html-mode)))
 
 ;; REST
-(use-package restclient
-  :straight t
-  :mode ("\\.http\\'" . restclient-mode)
-  :config
-  (use-package restclient-test
-    :straight t
-    :hook (restclient-mode . restclient-test-mode))
-
-  (with-eval-after-load 'company
-    (use-package company-restclient
-      :straight t
-      :defines company-backends
-      :init (add-to-list 'company-backends 'company-restclient))))
-
+;; (use-package restclient
+;;   :mode ("\\.http\\'" . restclient-mode)
+;;   :config
+;;   (use-package restclient-test
+;;     :hook (restclient-mode . restclient-test-mode))
+;;
+;;   (with-eval-after-load 'company
+;;     (use-package company-restclient
+;;       :defines company-backends
+;;       :init (add-to-list 'company-backends 'company-restclient))))
+;;
 (provide 'init-web)
 ;;; init-web.el ends here

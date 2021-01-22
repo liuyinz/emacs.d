@@ -3,7 +3,6 @@
 ;;; Code:
 
 (use-package ace-window
-  :straight t
   :hook (emacs-startup-hook . ace-window-display-mode)
   :commands ace-window
   :init
