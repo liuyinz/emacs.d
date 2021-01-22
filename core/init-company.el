@@ -30,7 +30,7 @@ $0`(yas-escape-text yas-selected-text)`")
   (unbind-key "TAB" yas-minor-mode-map)
   (unbind-key "<tab>" yas-minor-mode-map)
   ;; no-littering setting changed original
-  (add-to-list 'yas-snippet-dirs 'my-dir-snippets)
+  (add-to-list 'yas-snippet-dirs 'my-dir-snippet)
 
   ;; mode-switch between lisp-interaction-mode and snippet-mode
   (defun my-yasnippet-switch ()

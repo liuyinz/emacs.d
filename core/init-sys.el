@@ -2,6 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 
+
+(require 'use-package)
+;; Configure `use-package' prior to loading it.
+(eval-and-compile
+  (setq use-package-always-ensure nil)  ; ESSENTIAL for `straight.el'
+  (setq use-package-always-defer t)
+  (setq use-package-always-demand nil)
+  (setq use-package-expand-minimally nil)
+  (setq use-package-compute-statistics nil)
+  (setq use-package-hook-name-suffix nil)
+  (setq use-package-enable-imenu-support t))
+
 ;; Environment
 (use-package exec-path-from-shell
   :straight t

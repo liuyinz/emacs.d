@@ -64,7 +64,7 @@
   (require 'init-benchmark)
   (require 'init-const)
   (require 'init-funcs)
-  (require 'init-straight)
+  (require 'init-module)
   (require 'init-sys)
   (require 'init-default)
   (require 'init-ivy)
