@@ -36,6 +36,8 @@
 (leaf dired-aux)
 (leaf dired-x
   :hook (dired-mode-hook . dired-omit-mode)
+  :bind (:dired-mode-map
+         ("(" . dired-omit-mode))
   :config
   (let ((cmd "open"))
     (setq dired-guess-shell-alist-user
@@ -58,7 +60,6 @@
 ;; Show git info in dired
 (leaf dired-git-info
   :blackout
-  :after
   :bind (:dired-mode-map
          (")" . dired-git-info-mode)))
 

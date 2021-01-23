@@ -5,9 +5,10 @@
 (leaf magit
   :defun (yas-activateextra-mode . yasnippet)
   :commands magit-status magit-dispatch magit-file-popup
-  :hook (after-init-hook . global-auto-revert-mode)
-         (git-commit-mode-hook . (lambda ()
-                              (yas-activate-extra-mode 'git-commit-mode)))
+  :hook
+  (after-init-hook . global-auto-revert-mode)
+  (git-commit-mode-hook . (lambda ()
+                            (yas-activate-extra-mode 'git-commit-mode)))
   :mode (("\\COMMIT_EDITMSG\\'" . text-mode)
          ("\\MERGE_MSG\\'" . text-mode))
   :init

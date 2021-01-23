@@ -1,6 +1,7 @@
 ;;; init-sys.el --- system setting  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+
 (require 'init-const)
 
 (require 'leaf)

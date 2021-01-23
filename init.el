@@ -70,7 +70,7 @@
   (require 'init-sys)
   (require 'init-default)
   (require 'init-ivy)
-  (require 'init-company)
+  ;; (require 'init-company)
   ;; (require 'init-test)
   ;; ui
   (require 'init-ui)

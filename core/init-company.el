@@ -7,9 +7,11 @@
 ;; yasnippet
 (leaf yasnippet
   :blackout yas-minor-mode
-  :hook (after-init . yas-global-mode)
+  :hook (after-init-hook . yas-global-mode)
   :bind (:yas-minor-mode-map
-  ("C-t" . my-yasnippet-switch))
+         ("C-t" . my-yasnippet-switch)
+         ("TAB" . nil)
+         ("<tab>" . nil))
   :init
   ;; silent yas message
   ;; (advice-add 'yas--load-snippet-dirs :around #'silent-message-advice)
@@ -26,8 +28,8 @@
 # --
 $0`(yas-escape-text yas-selected-text)`")
   :config
-  (unbind-key "TAB" yas-minor-mode-map)
-  (unbind-key "<tab>" yas-minor-mode-map)
+  ;; (unbind-key "TAB" yas-minor-mode-map)
+  ;; (unbind-key "<tab>" yas-minor-mode-map)
   ;; no-littering setting changed original
   (add-to-list 'yas-snippet-dirs 'my-dir-snippet)
 
@@ -44,19 +46,20 @@ $0`(yas-escape-text yas-selected-text)`")
   :defvar company-dabbrev-ignore-case company-dabbrev-downcase
   :defun company-search-words-in-any-order-regexp
   :commands company-cancel
-  :hook (after-init . global-company-mode)
-  :bind (:company-mode-map
-         ("C-;" . company-yasnippet))
-         (:company-active-map
-         ("C-;" . my-company-yasnippet)
-         ("TAB" . company-complete-common-or-cycle)
-         ("C-n" . company-select-next)
-         ("C-p" . company-select-previous)
-         ("C-l" . company-filter-candidates)
-         ("C-s" . company-show-location))
-         (:company-search-map
-         ("C-n" . company-select-next)
-         ("C-p" . company-select-previous))
+  :hook (after-init-hook . global-company-mode)
+  :bind
+  (:company-mode-map
+   ("C-;" . company-yasnippet))
+  (:company-active-map
+   ("C-;" . my-company-yasnippet)
+   ("TAB" . company-complete-common-or-cycle)
+   ("C-n" . company-select-next)
+   ("C-p" . company-select-previous)
+   ("C-l" . company-filter-candidates)
+   ("C-s" . company-show-location))
+  (:company-search-map
+   ("C-n" . company-select-next)
+   ("C-p" . company-select-previous))
   :init
   (setq company-tooltip-limit 12
         tab-always-indent 'complete
