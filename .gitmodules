@@ -225,6 +225,9 @@
 	path = module/nodejs-repl
 	url = https://github.com/abicky/nodejs-repl.el.git
 	branch = develop
-[submodule "magit-popup"]
-	path = module/magit-popup
-	url = https://github.com/magit/magit-popup.git
+[submodule "forge"]
+	path = module/forge
+	url = https://github.com/magit/forge.git
+[submodule "ghub"]
+	path = module/ghub
+	url = https://github.com/magit/ghub.git
