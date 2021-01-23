@@ -18,14 +18,9 @@
   (expand-file-name ".cache" user-emacs-directory)
   "User dir for recentf,places and so on.")
 
-;; (defconst my-dir-elpa
-;;   (expand-file-name (concat "elpa-" emacs-version) my-dir-cache)
-;;   "User dir for packages from melpa")
-
 ;; ensure dir exists
 (dolist (dir (mapcar #'symbol-value '(my-dir-cache
                                       my-dir-core
-                                      ;; my-dir-elpa
                                       my-dir-module
                                       my-dir-snippet)))
   (unless (file-exists-p dir)
@@ -56,7 +51,6 @@
   "The Github Page of mine.")
 
 (setq user-full-name "食無魚")
-
 (setq user-mail-address "liuyinz@gmail.com")
 
 (defvar my-proxy "127.0.0.1:4780" "Set network proxy.")

@@ -8,7 +8,7 @@
 ;; for native-comp branch
 ;; (setq comp-speed 2)
 
-;; Do not initialise installed packages (I use `straight.el')
+;; Do not initialise installed packages
 (setq package-enable-at-startup nil)
 ;; Do not allow loading from the package cache (same reason).
 (setq package-quickstart nil)

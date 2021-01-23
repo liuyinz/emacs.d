@@ -2,22 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (use-package startup
-;;   :init
-;;   (defun display-startup-echo-area-message ())
-;;   (setq inhibit-startup-screen t
-;;         inhibit-startup-echo-area-message (user-login-name)
-;;         initial-scratch-message nil
-;;         inhibit-default-init t
-;;         initial-major-mode 'fundamental-mode))
-
-;; startup
-(defun display-startup-echo-area-message ())
-(setq inhibit-startup-screen t
-      inhibit-startup-echo-area-message (user-login-name)
-      initial-scratch-message nil
-      inhibit-default-init t
-      initial-major-mode 'fundamental-mode)
+(leaf startup
+  :init
+  (defun display-startup-echo-area-message ())
+  (setq inhibit-startup-screen t
+        inhibit-startup-echo-area-message (user-login-name)
+        initial-scratch-message nil
+        inhibit-default-init t
+        initial-major-mode 'fundamental-mode))
 
 ;; Start server
 (leaf server

@@ -29,9 +29,7 @@
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
   :config
-  (load-theme 'doom-one t)
-  ;; (doom-themes-org-config)
-  )
+  (load-theme 'doom-one t))
 
 ;; (leaf which-key
 ;;   :blackout
@@ -68,4 +66,5 @@
 ;; (set-fontset-font (frame-parameter nil 'font)
 ;; charset (font-spec :family "Source Han Serif"))
 ;; (setq face-font-rescale-alist '(("Source Han Serif" . 0.95))))
+
 ;;; init-ui.el ends here

@@ -55,16 +55,18 @@
             (add-hook 'minibuffer-exit-hook
                       (lambda () (setq gc-cons-threshold (car gc-cons-default))))))
 
+;; add user config dir to load-path
 (add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
 
 ;; load core/init files
 (with-temp-message ""
 
-  ;; benchmark
-  (require 'init-benchmark)
+  ;; user define variables
   (require 'init-const)
-  (require 'init-funcs)
   (require 'init-module)
+  (require 'init-benchmark)
+
+  (require 'init-funcs)
   (require 'init-sys)
   (require 'init-default)
   (require 'init-ivy)
