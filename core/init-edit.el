@@ -6,7 +6,7 @@
 
 ;; Hungry deletion
 (leaf hungry-delete
-  :blackout
+  :blackout t
   :hook (after-init-hook . global-hungry-delete-mode)
   :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
@@ -25,7 +25,8 @@
 
 ;; Treat undo history as a tree
 (leaf undo-tree
-  ;; :functions undo-tree-visualizer-selection-mode
+  ;; :defun undo-tree-visualizer-selection-mode
+  :blackout (global-undo-tree-mode undo-tree-mode)
   :hook (after-init-hook . global-undo-tree-mode)
   :init
   (setq undo-tree-visualizer-timestamps t
@@ -56,10 +57,6 @@
     (make-variable-buffer-local 'undo-tree-visualizer-diff)
     (setq-default undo-tree-visualizer-diff t)))
 
-(leaf comment-dwim-2
-  :bind ([remap comment-dwim] . comment-dwim-2))
-
-
 (setq isearch-lazy-count t)
 
 ;; Flexible text folding
@@ -69,7 +66,8 @@
   :config (face-spec-reset-face 'origami-fold-header-face))
 
 (leaf command-log-mode
-  :hook (after-init-hook . global-command-log-mode)
+  :blackout
+  :commands (global-command-log-mode clm/toggle-command-log-buffer)
   :init
   (setq command-log-mode-open-log-turns-on-mode t
         command-log-mode-is-global t

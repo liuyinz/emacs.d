@@ -11,11 +11,11 @@
 
 ;; Highlight brackets according to their depth
 (leaf rainbow-delimiters
-  :blackout
+  :blackout t
   :hook (prog-mode-hook . rainbow-delimiters-mode))
 
 (leaf highlight-parentheses
-  :blackout
+  :blackout t
   :hook (after-init-hook . global-highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
@@ -24,7 +24,7 @@
 
 ;;Highlight uncommitted changes using VC
 (leaf diff-hl
-  :blackout
+  :blackout t
   :hook (after-init-hook . global-diff-hl-mode)
          ; (dired-mode-hook . diff-hl-dired-mode)
   :init
@@ -61,7 +61,7 @@
 
 ;; Colorize color names in buffers
 (leaf rainbow-mode
-  :blackout
+  :blackout t
   :hook ((html-mode-hook php-mode-hook css-mode-hook) . rainbow-mode)
   :config
   (with-no-warnings
@@ -83,7 +83,7 @@
 
 ;;indent-guide
 (leaf indent-guide
-  :blackout
+  :blackout t
   :hook (prog-mode-hook . indent-guide-mode)
   :config
   (setq indent-guide-char "¦")

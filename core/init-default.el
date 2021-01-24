@@ -124,7 +124,7 @@
          (prog-mode-hook . goto-address-prog-mode)))
 
 
-(leaf eldoc :blackout)
+(leaf eldoc :blackout t)
 
 ;; A comprehensive visual interface to diff & patch
 (leaf ediff
@@ -194,7 +194,6 @@
               left-margin-width 0
               right-margin-width 0
               default-directory "~")
-
 
 ;; ;; Mouse & Smooth Scroll
 ;; (setq scroll-step 0
