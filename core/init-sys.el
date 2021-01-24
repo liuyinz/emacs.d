@@ -16,6 +16,12 @@
 
 (leaf blackout :require t)
 
+(leaf auto-compile
+  :require t
+  :config
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode))
+
 ;; Environment
 (leaf exec-path-from-shell
   :require t
