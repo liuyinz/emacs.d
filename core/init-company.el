@@ -4,45 +4,8 @@
 
 (require 'init-const)
 
-;; yasnippet
-(leaf yasnippet
-  :blackout yas-minor-mode
-  :hook (after-init-hook . yas-global-mode)
-  :bind (:yas-minor-mode-map
-         ("C-t" . my-yasnippet-switch)
-         ("TAB" . nil)
-         ("<tab>" . nil))
-  :init
-  ;; silent yas message
-  ;; (advice-add 'yas--load-snippet-dirs :around #'silent-message-advice)
-  (setq yas-triggers-in-field t
-        ;; yas-also-indent-empty-lines t
-        ;; yas-indent-line 'auto
-        ;; yas-also-auto-indent-first-line t
-        yas-indent-line 'fixed)
-  (setq yas-new-snippet-default "\
-# -*- mode: snippet -*-
-# name: ${1:name}
-# contributor : ${2:`user-full-name`<`user-mail-address`>}
-# key: ${3:key}
-# --
-$0`(yas-escape-text yas-selected-text)`")
-  :config
-  ;; (unbind-key "TAB" yas-minor-mode-map)
-  ;; (unbind-key "<tab>" yas-minor-mode-map)
-  ;; no-littering setting changed original
-  (add-to-list 'yas-snippet-dirs 'my-dir-snippet)
-
-  ;; mode-switch between lisp-interaction-mode and snippet-mode
-  (defun my-yasnippet-switch ()
-    (interactive)
-    (if (equal major-mode 'snippet-mode)
-        (lisp-interaction-mode)
-      (snippet-mode))
-    (evil-insert))
-  )
-
 (leaf company
+  :blackout t
   :defvar company-dabbrev-ignore-case company-dabbrev-downcase
   :defun company-search-words-in-any-order-regexp
   :commands company-cancel
@@ -52,27 +15,33 @@ $0`(yas-escape-text yas-selected-text)`")
    ("C-;" . company-yasnippet))
   (:company-active-map
    ("C-;" . my-company-yasnippet)
-   ("TAB" . company-complete-common-or-cycle)
+   ([escape] . company-abort)
+   ([tab] . company-complete-common-or-cycle)
+   ((kbd "<backtab>") . company-select-previous)
    ("C-n" . company-select-next)
    ("C-p" . company-select-previous)
-   ("C-l" . company-filter-candidates)
-   ("C-s" . company-show-location))
+   ("C-/" . company-filter-candidates))
   (:company-search-map
+   ([tab] . company-select-next)
+   ((kbd "<backtab>") . company-select-previous)
    ("C-n" . company-select-next)
    ("C-p" . company-select-previous))
   :init
-  (setq company-tooltip-limit 12
-        tab-always-indent 'complete
-        company-tooltip-align-annotations t
-        company-idle-delay 0.0
-        company-echo-delay nil
-        company-minimum-prefix-length 1
-        company-abort-manual-when-too-short t
+  (setq tab-always-indent 'complete
+        company-tooltip-width-grow-only t
+        company-idle-delay 0
         company-require-match nil
         company-selection-wrap-around t
         company-dabbrev-ignore-case nil
         company-dabbrev-downcase nil
         company-search-regexp-function #'company-search-words-in-any-order-regexp)
+
+  (setq company-global-modes '(not erc-mode message-mode help-mode
+                                   gud-mode eshell-mode shell-mode))
+
+  (setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
+                            company-preview-common-frontend
+                            company-echo-metadata-frontend))
 
   (setq company-backends '(company-capf
                            company-semantic
@@ -81,14 +50,7 @@ $0`(yas-escape-text yas-selected-text)`")
                             company-etags
                             company-keywords)
                            company-files
-                           company-dabbrev
-                           ))
-
-  (setq company-frontends '(company-pseudo-tooltip-frontend
-                            company-echo-metadata-frontend))
-
-  (setq company-global-modes '(not erc-mode message-mode help-mode
-                                   gud-mode eshell-mode shell-mode))
+                           company-dabbrev))
 
   ;; @https://emacs-china.org/t/company-yasnippet/12232/13?u=cheunghsu
   (defun my-company-yasnippet ()
@@ -137,6 +99,43 @@ $0`(yas-escape-text yas-selected-text)`")
                 (put-text-property 0 len 'yas-annotation-patch t arg)))
             (funcall fun command arg))))
       (advice-add #'company-yasnippet :around #'my-company-yasnippet-disable-inline))))
+
+;; yasnippet
+(leaf yasnippet
+  :blackout t
+  :hook (after-init-hook . yas-global-mode)
+  :bind (:yas-minor-mode-map
+         ("C-t" . my-yasnippet-switch)
+         ("TAB" . nil)
+         ([tab] . nil))
+  :init
+  ;; silent yas message
+  ;; (advice-add 'yas--load-snippet-dirs :around #'silent-message-advice)
+  (setq yas-triggers-in-field t
+        ;; yas-also-indent-empty-lines t
+        ;; yas-indent-line 'auto
+        ;; yas-also-auto-indent-first-line t
+        yas-indent-line 'fixed)
+  (setq yas-new-snippet-default "\
+# -*- mode: snippet -*-
+# name: ${1:name}
+# contributor : ${2:`user-full-name`<`user-mail-address`>}
+# key: ${3:key}
+# --
+$0`(yas-escape-text yas-selected-text)`")
+  :config
+  ;; (unbind-key "TAB" yas-minor-mode-map)
+  ;; (unbind-key "<tab>" yas-minor-mode-map)
+  ;; no-littering setting changed original
+  (add-to-list 'yas-snippet-dirs 'my-dir-snippet)
+
+  ;; mode-switch between lisp-interaction-mode and snippet-mode
+  (defun my-yasnippet-switch ()
+    (interactive)
+    (if (equal major-mode 'snippet-mode)
+        (lisp-interaction-mode)
+      (snippet-mode))
+    (evil-insert)))
 
 (provide 'init-company)
 ;;; init-company.el ends here
