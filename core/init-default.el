@@ -74,9 +74,10 @@
                              (transient-mark-mode)
                              (line-number-mode)
                              (column-number-mode)))
-  :init (setq line-move-visual t
-              track-eol t
-              set-mark-command-repeat-pop t))
+  :init
+  (setq line-move-visual t
+        track-eol t
+        set-mark-command-repeat-pop t))
 
 (leaf files
   :init
@@ -109,18 +110,21 @@
 ;; Automatic parenthesis pairing
 (leaf elec-pair
   :hook (after-init-hook . electric-pair-mode)
-  :init (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
+  :init
+  (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
 
 ;; Handling capitalized subwords in a nomenclature
 (leaf subword
-  :hook ((prog-mode-hook . subword-mode)
-         (minibuffer-setup-hook . subword-mode)))
+  :hook
+  (prog-mode-hook . subword-mode)
+  (minibuffer-setup-hook . subword-mode))
 
 ;; Click to browse URL or to send to e-mail address
 (leaf goto-addr
-  :hook ((text-mode-hook . goto-address-mode)
-         ;; An all-in-one comment command to rule them all
-         (prog-mode-hook . goto-address-prog-mode)))
+  :hook
+  (text-mode-hook . goto-address-mode)
+  ;; An all-in-one comment command to rule them all
+  (prog-mode-hook . goto-address-prog-mode))
 
 
 (leaf eldoc :blackout t)
@@ -128,10 +132,10 @@
 ;; A comprehensive visual interface to diff & patch
 (leaf ediff
   ;; :commands outline-show-all
-  :hook(;; show org ediffs unfolded
-        ;; (ediff-prepare-buffer . outline-show-all)
-        ;; restore window layout when done
-        (ediff-quit-hook . winner-undo))
+  :hook (;; show org ediffs unfolded
+         ;; (ediff-prepare-buffer . outline-show-all)
+         ;; restore window layout when done
+         (ediff-quit-hook . winner-undo))
   :init
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
   (setq ediff-split-window-function 'split-window-horizontally)
@@ -139,12 +143,12 @@
 
 ;; Resolve diff3 conflicts
 (leaf smerge-mode
-  :hook ((find-file-hook . (lambda ()
-                             (save-excursion
-                               (goto-char (point-min))
-                               (when (re-search-forward "^<<<<<<< " nil t)
-                                 (smerge-mode 1)
-                                 ))))))
+  :hook (find-file-hook . (lambda ()
+                            (save-excursion
+                              (goto-char (point-min))
+                              (when (re-search-forward "^<<<<<<< " nil t)
+                                (smerge-mode 1)
+                                )))))
 
 ;; Whitespace-mode
 (leaf whitespace

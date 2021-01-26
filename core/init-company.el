@@ -18,6 +18,8 @@
    ([escape] . company-abort)
    ([tab] . company-complete-common-or-cycle)
    ((kbd "<backtab>") . company-select-previous)
+   ("M-n" . nil)
+   ("M-p" . nil)
    ("C-n" . company-select-next)
    ("C-p" . company-select-previous)
    ("C-/" . company-filter-candidates))
