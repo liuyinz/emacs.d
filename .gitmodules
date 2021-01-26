@@ -237,3 +237,12 @@
 [submodule "anzu"]
 	path = module/anzu
 	url = https://github.com/emacsorphanage/anzu.git
+[submodule "writeroom-mode"]
+	path = module/writeroom-mode
+	url = https://github.com/joostkremers/writeroom-mode.git
+[submodule "emacs-easy-hugo"]
+	path = module/emacs-easy-hugo
+	url = https://github.com/masasam/emacs-easy-hugo.git
+[submodule "ox-hugo"]
+	path = module/ox-hugo
+	url = https://github.com/kaushalmodi/ox-hugo.git
