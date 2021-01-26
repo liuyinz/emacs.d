@@ -87,6 +87,7 @@
 ;;     ))
 
 (leaf evil
+  :doc "goto-chg"
   :defun evil-define-key* evil-delay evil-set-initial-state
   :hook (after-init-hook . evil-mode)
   :init

@@ -4,7 +4,8 @@
 
 ;; modeline
 (leaf doom-modeline
-  :blackout
+  :doc "all-the-icons"
+  :blackout t
   :hook (after-init-hook . doom-modeline-mode)
   :init
   (setq doom-modeline-icon nil

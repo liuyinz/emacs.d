@@ -30,8 +30,9 @@
 
 (leaf keyfreq
   :blackout (keyfreq-mode keyfreq-autosave-mode)
-  :hook (after-init-hook . keyfreq-mode)
-        (keyfreq-mode-hook . keyfreq-autosave-mode)
+  :hook
+  (after-init-hook . keyfreq-mode)
+  (keyfreq-mode-hook . keyfreq-autosave-mode)
   :config
   (defun toggle-keyfreq ()
     (interactive)
