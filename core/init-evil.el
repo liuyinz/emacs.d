@@ -100,8 +100,16 @@
         evil-undo-system 'undo-tree
         evil-echo-state nil
         evil-want-integration t
+        evil-ex-substitute-global t
         )
   :config
+  (defun my-replace ()
+    "Self defined replace for evil"
+    (interactive)
+    (if (evil-normal-state-p)
+        (evil-ex "%s/")
+      (evil-ex "'<,'>s/")))
+
   ;; set leader and localleader
   (evil-define-key 'motion 'global ";" nil "," nil)
   (evil-set-leader '(normal visual) ";")
@@ -128,6 +136,8 @@
     ;; replace redo with U
     "\C-r" nil
     "U" 'evil-redo
+    ;; ? to replace
+    "?" 'my-replace
     ;; select the previously pasted text
     ;; "gp" "`[v`]"
     ;; run the macro in the q register
@@ -315,6 +325,12 @@
 (leaf evil-nerd-commenter
   :after evil
   :commands evilnc-comment-or-uncomment-lines evilnc-copy-and-comment-lines)
+
+(leaf anzu
+  :blackout t
+  :hook (evil-mode-hook . global-anzu-mode)
+  :config
+  (leaf evil-anzu :require t))
 
 (provide 'init-evil)
 ;;; init-evil.el ends here

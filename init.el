@@ -12,11 +12,13 @@
 (when (version< emacs-version "27")
   (error "Please upgrade your emacs-version above 27 !"))
 
-;; user define variables
-(load (expand-file-name "core/init-const.el" user-emacs-directory) nil t)
-
 ;; add user config dir to load-path
-(add-to-list 'load-path my-dir-core)
+(add-to-list 'load-path (expand-file-name "core/" user-emacs-directory))
+
+;; user define variables
+(require 'init-const)
+;; gc magic hack
+(require 'init-gcmh)
 
 ;; add submodules to load-path
 (defun add-subdirs-to-load-path (dir)
@@ -33,14 +35,12 @@
 
 ;; load core/init files
 (with-temp-message ""
-  (require 'init-gcmh)
-
   (require 'init-benchmark)
   (require 'init-funcs)
   (require 'init-sys)
   (require 'init-default)
   (require 'init-ivy)
-  ;; (require 'init-company)
+  (require 'init-company)
   ;; (require 'init-test)
   ;; ui
   (require 'init-ui)

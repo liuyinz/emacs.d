@@ -18,6 +18,7 @@
 
 (leaf auto-compile
   :require t
+  :defun (auto-compile-on-load-mode auto-compile-on-save-mode)
   :config
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
