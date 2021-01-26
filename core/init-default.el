@@ -13,6 +13,7 @@
 
 ;; Start server
 (leaf server
+  :defvar server-socket-dir
   :hook (after-init-hook . (lambda ()
                              (require 'server)
                              (unless (server-running-p)
@@ -43,10 +44,8 @@
           "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
           "\\.?ido\\.last$" "\\.revive$" "/G?TAGS$" "/.elfeed/"
           "^/tmp/" "^/var/folders/.+$" ; "^/ssh:"
-          (lambda (file) (file-in-directory-p file package-user-dir))))
+          (lambda (file) (file-in-directory-p file my-dir-module))))
   :config
-  (push (expand-file-name recentf-save-file) recentf-exclude)
-
   ;; silent message
   (mapc (lambda (cmd)
           (advice-add cmd :around #'silent-message-advice))
