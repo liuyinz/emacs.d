@@ -98,7 +98,7 @@
         evil-move-cursor-back nil
         evil-move-beyond-eol t
         evil-cross-lines t
-        evil-undo-system 'undo-tree
+        evil-undo-system 'undo-fu
         evil-echo-state nil
         evil-want-integration t
         evil-ex-substitute-global t

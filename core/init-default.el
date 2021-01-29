@@ -176,6 +176,7 @@
 ;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
 ;; sentence-end-double-space nil)
 
+(setq isearch-lazy-count t)
 (setq vc-follow-symlinks t)
 
 ;; c source

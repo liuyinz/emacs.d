@@ -23,41 +23,11 @@
         '((avy-goto-char . avy-order-closest)
           (avy-goto-word-0 . avy-order-closest))))
 
-;; Treat undo history as a tree
-(leaf undo-tree
-  ;; :defun undo-tree-visualizer-selection-mode
-  :blackout (global-undo-tree-mode undo-tree-mode)
-  :hook (after-init-hook . global-undo-tree-mode)
-  :init
-  (setq undo-tree-visualizer-timestamps t
-        undo-tree-enable-undo-in-region nil
-        undo-tree-auto-save-history t
-        undo-tree-incompatible-major-modes '(term-mode
-                                             vterm-mode))
-  :config
-
-  ;; fix diff window position
-  (defun my-undo-tree-visualizer-show-diff (&optional node)
-    ;; show visualizer diff display
-    (setq undo-tree-visualizer-diff t)
-    (let ((buff (with-current-buffer undo-tree-visualizer-parent-buffer
-                  (undo-tree-diff node)))
-          (display-buffer-mark-dedicated 'soft)
-          win)
-      (setq win (split-window nil nil 'right nil))
-      (set-window-buffer win buff)
-      (shrink-window-if-larger-than-buffer win)))
-  (advice-add #'undo-tree-visualizer-show-diff :override #'my-undo-tree-visualizer-show-diff)
-
-  (add-hook 'undo-tree-visualizer-mode-hook (lambda ()
-                                              (undo-tree-visualizer-selection-mode)
-                                              (display-line-numbers-mode 0)))
-  ;; HACK: keep the diff window
-  (with-no-warnings
-    (make-variable-buffer-local 'undo-tree-visualizer-diff)
-    (setq-default undo-tree-visualizer-diff t)))
-
-(setq isearch-lazy-count t)
+;; undo-redo
+(leaf undo-fu :require t)
+(leaf undo-fu-session
+  :after undo-fu
+  :hook (after-init-hook . global-undo-fu-session-mode))
 
 ;; Flexible text folding
 (leaf origami
@@ -79,36 +49,35 @@
              color-rg-search-input-in-project
              color-rg-search-input-in-current-file)
   :bind (:color-rg-mode-map
-              ("h" . color-rg-jump-prev-file)
-              ("l" . color-rg-jump-next-file)
-              )
+         ("h" . color-rg-jump-prev-file)
+         ("l" . color-rg-jump-next-file))
   :init
   (setq color-rg-mac-load-path-from-shell nil))
 
 (leaf awesome-pair
   :require t
   :bind (:awesome-pair-mode-map
-              ("(" . awesome-pair-open-round)
-              ("[" . awesome-pair-open-bracket)
-              ("{" . awesome-pair-open-curly)
-              (")" . awesome-pair-close-round)
-              ("]" . awesome-pair-close-bracket)
-              ("}" . awesome-pair-close-curly)
-              ("=" . awesome-pair-equal)
-              ("%" . awesome-pair-match-paren)
-              ("\"" . awesome-pair-double-quote)
-              ("SPC" . awesome-pair-space)
-              ("M-o" . awesome-pair-backward-delete)
-              ("C-d" . awesome-pair-forward-delete)
-              ("C-k" . awesome-pair-kill)
-              ("M-\"" . awesome-pair-wrap-double-quote)
-              ("M-[" . awesome-pair-wrap-bracket)
-              ("M-{" . awesome-pair-wrap-curly)
-              ("M-(" . awesome-pair-wrap-round)
-              ("M-)" . awesome-pair-unwrap)
-              ("M-p" . awesome-pair-jump-right)
-              ("M-n" . awesome-pair-jump-left)
-              ("M-:" . awesome-pair-jump-out-pair-and-newline))
+         ("(" . awesome-pair-open-round)
+         ("[" . awesome-pair-open-bracket)
+         ("{" . awesome-pair-open-curly)
+         (")" . awesome-pair-close-round)
+         ("]" . awesome-pair-close-bracket)
+         ("}" . awesome-pair-close-curly)
+         ("=" . awesome-pair-equal)
+         ("%" . awesome-pair-match-paren)
+         ("\"" . awesome-pair-double-quote)
+         ("SPC" . awesome-pair-space)
+         ("M-o" . awesome-pair-backward-delete)
+         ("C-d" . awesome-pair-forward-delete)
+         ("C-k" . awesome-pair-kill)
+         ("M-\"" . awesome-pair-wrap-double-quote)
+         ("M-[" . awesome-pair-wrap-bracket)
+         ("M-{" . awesome-pair-wrap-curly)
+         ("M-(" . awesome-pair-wrap-round)
+         ("M-)" . awesome-pair-unwrap)
+         ("M-p" . awesome-pair-jump-right)
+         ("M-n" . awesome-pair-jump-left)
+         ("M-:" . awesome-pair-jump-out-pair-and-newline))
 
   :config
   (dolist (hook (list
