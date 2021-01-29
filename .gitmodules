@@ -181,9 +181,6 @@
 [submodule "yaml-mode"]
 	path = module/yaml-mode
 	url = https://github.com/yoshiki/yaml-mode.git
-[submodule "undo-tree"]
-	path = module/undo-tree
-	url = https://github.com/emacsmirror/undo-tree.git
 [submodule "fd-dired"]
 	path = module/fd-dired
 	url = https://github.com/yqrashawn/fd-dired.git
