@@ -4,6 +4,7 @@
 
 (leaf orderless
   :require t
+  ;; :commands orderless-filter orderless-highlight-matches
   :init (setq completion-styles '(orderless)))
 
 (leaf selectrum
@@ -15,7 +16,7 @@
    ([escape] . minibuffer-keyboard-quit))
   :init
   (setq selectrum-max-window-height 15
-        selectrum-extend-current-candidate-highlight t
+        selectrum-extend-current-candidate-highlight nil
         selectrum-count-style 'current/matches
         selectrum-complete-in-buffer nil)
   :config
@@ -33,11 +34,40 @@
 
 (leaf consult
   :bind
-  ( [remap switch-to-buffer] . consult-buffer)
-  ( [remap switch-to-buffer-other-window] . consult-buffer-other-window)
-  ( [remap switch-to-buffer-other-frame] . consult-buffer-other-frame))
-;; (when (executable-find "rg")
-;;   (global-set-key (kbd "M-?") 'consult-ripgrep))
+  ("C-c h" . consult-history)
+  ("C-c m" . consult-mode-command)
+  ("C-c b" . consult-bookmark)
+  ("C-c k" . consult-kmacro)
+  ;; C-x bindings (ctl-x-map)
+  ("C-x M-:" . consult-complex-command)    
+  ("C-x b" . consult-buffer)               
+  ("C-x 4 b" . consult-buffer-other-window)
+  ("C-x 5 b" . consult-buffer-other-frame) 
+  ;; Custom M-# bindings for fast register access
+  ("M-#" . consult-register-load)
+  ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (UNRELATED!)
+  ("C-M-#" . consult-register)
+  ;; Other custom bindings
+  ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+  ("<help> a" . consult-apropos)            ;; orig. apropos-command
+  ;; M-g bindings (goto-map)
+  ("M-g o" . consult-outline)
+  ("M-g m" . consult-mark)
+  ("M-g k" . consult-global-mark)
+  ("M-g i" . consult-project-imenu) ;; Alternative: consult-imenu
+  ("M-g e" . consult-error)
+  ;; M-s bindings (search-map)
+  ("M-s g" . consult-git-grep)              ;; alt. consult-grep, consult-ripgrep
+  ("M-s f" . consult-find)                  ;; alt. consult-locate, find-fd
+  ("M-s l" . consult-line)
+  ("M-s m" . consult-multi-occur)
+  ("M-s k" . consult-keep-lines)
+  ("M-s u" . consult-focus-lines)
+  ;; Replacement for isearch-edit-string
+  ("M-s e" . consult-isearch)
+  (:isearch-mode-map
+   ("M-e" . consult-isearch)                 ;; orig. isearch-edit-string
+   ("M-s e" . consult-isearch)))
 
 (leaf embark
   :require t
