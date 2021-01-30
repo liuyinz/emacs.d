@@ -43,7 +43,7 @@
         '("\\.?cache" ".cask" "url" "COMMIT_EDITMSG\\'" "bookmarks"
           "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
           "\\.?ido\\.last$" "\\.revive$" "/G?TAGS$" "/.elfeed/"
-          "^/tmp/" "^/var/folders/.+$" ; "^/ssh:"
+          "^/tmp/" "^/var/folders/.+$" "/share/emacs/.+$" ; "^/ssh:"
           (lambda (file) (file-in-directory-p file my-dir-module))))
   :config
   ;; silent message
