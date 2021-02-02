@@ -12,21 +12,21 @@
   :bind
   ("C-s" . swiper-isearch)
   (:ivy-minibuffer-map
+   ([escape] . minibuffer-keyboard-quit)
    ("C-j" . ivy-next-line-and-call)
    ("C-k" . ivy-previous-line-and-call)
    ("C-l" . ivy-dispatching-done)
-   ("C-u" . ivy-dispatching-call)
-   ([escape] . minibuffer-keyboard-quit))
+   ;; ("C-u" . ivy-dispatching-call)
+   )
   (:swiper-isearch-map
-   ("C-q" . swiper-query-replace)
+   ("M-q" . swiper-query-replace)
    ("C-t" . isearch-toggle-color-rg))
   (:counsel-mode-map
    ([remap swiper] . counsel-grep-or-swiper))
   (:counsel-find-file-map
    ("C-h" . counsel-up-directory))
   :init
-  (setq enable-recursive-minibuffers t
-        ivy-more-chars-alist '((t . 2))
+  (setq enable-recursive-minibuffers nil
         ivy-use-virtual-buffers t
         ivy-count-format "%d/%d "
         ivy-on-del-error-function nil
@@ -35,6 +35,7 @@
         ivy-use-selectable-prompt t
         ivy-wrap t
         ivy-initial-inputs-alist nil
+        ivy-more-chars-alist '((t . 2))
         ivy-re-builders-alist '((t . ivy--regex-ignore-order))
         ;; ivy-display-style 'fancy
         swiper-action-recenter t)
@@ -93,44 +94,46 @@
   (with-eval-after-load 'magit
     (setq magit-completing-read-function 'ivy-completing-read))
 
+  ;; More friendly display transformer for Ivy
+  (leaf ivy-rich
+    :hook (ivy-mode-hook . ivy-rich-mode)
+    :init
+    (setq ivy-rich-path-style 'abbrev)
+    ;; For better performance
+    (setq ivy-rich-parse-remote-buffer nil)
+    (setq ivy-rich-parse-remote-file-path nil))
+
   ;; Integrate yasnippet
   (leaf ivy-yasnippet
     :bind ("C-c C-y" . ivy-yasnippet))
 
-  ;; Select from xref candidates with Ivy
-  (leaf ivy-xref
-    :init
-    (when (boundp 'xref-show-definitions-function)
-      (setq xref-show-definitions-function #'ivy-xref-show-defs))
-    (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+  (leaf ivy-prescient
+    :require t
+    :blackout ivy-prescient-mode
+    :hook (ivy-mode-hook . ivy-prescient-mode)))
 
 
-  (leaf counsel-osx-app
-    :bind (:counsel-mode-map
-           ("s-<f6>" . counsel-osx-app)))
-
-  ;; ;; Tramp ivy interface
-  ;; (use-package counsel-tramp
-  ;;   :bind (:counsel-mode-map
-  ;;          ("C-c c T" . counsel-tramp))))
-  )
-
-;; Better sorting and filtering
 (leaf prescient
-  :commands prescient-persist-mode
-  :init (prescient-persist-mode 1))
+  :blackout prescient-persisit-mode
+  :hook (after-init-hook . prescient-persist-mode)
+  :init (setq prescient-history-length 300))
 
-(leaf ivy-prescient
-  :hook (ivy-mode-hook . ivy-prescient-mode))
-
-;; More friendly display transformer for Ivy
-(leaf ivy-rich
-  :hook (ivy-mode-hook . ivy-rich-mode)
+;; Select from xref candidates with Ivy
+(leaf ivy-xref
   :init
-  (setq ivy-rich-path-style 'abbrev)
-  ;; For better performance
-  (setq ivy-rich-parse-remote-buffer nil)
-  (setq ivy-rich-parse-remote-file-path nil))
+  (when (boundp 'xref-show-definitions-function)
+    (setq xref-show-definitions-function #'ivy-xref-show-defs))
+  (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+
+
+(leaf counsel-osx-app
+  :bind (:counsel-mode-map
+         ("s-<f6>" . counsel-osx-app)))
+
+;; ;; Tramp ivy interface
+;; (use-package counsel-tramp
+;;   :bind (:counsel-mode-map
+;;          ("C-c c T" . counsel-tramp))))
 
 (provide 'init-ivy)
 ;;; init-ivy.el ends here

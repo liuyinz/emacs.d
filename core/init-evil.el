@@ -147,10 +147,11 @@
     ;; magit
     "gs" 'magit-status
 
-    (kbd "<leader> f") 'counsel-find-file
+    (kbd "<leader> xf") 'counsel-find-file
     (kbd "<leader> xs") 'save-buffer
-
+    (kbd "<leader> xk") 'kill-buffer
     (kbd "<leader> ;") 'counsel-counsel
+
     ;; color-rg
     (kbd "<leader> ss") 'color-rg-search-input-in-current-file
     (kbd "<leader> sd") 'color-rg-search-input
@@ -159,8 +160,6 @@
     ;; nerd-commenter
     (kbd "<leader> cc") 'evilnc-comment-or-uncomment-lines
     (kbd "<leader> ci") 'evilnc-copy-and-comment-lines
-    ;; toggle
-    (kbd "<leader> u") 'undo-tree-visualize
     ;; self-define
     (kbd "<leader> mf") 'my-format
     (kbd "<leader> mr") 'my-run

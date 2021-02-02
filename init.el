@@ -39,8 +39,8 @@
   (require 'init-funcs)
   (require 'init-sys)
   (require 'init-default)
-  ;; (require 'init-ivy)
-  (require 'init-selectrum)
+  (require 'init-ivy)
+  ;; (require 'init-selectrum)
   (require 'init-company)
   ;; (require 'init-test)
   ;; ui
