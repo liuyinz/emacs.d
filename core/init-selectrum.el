@@ -33,16 +33,16 @@
   :init (setq prescient-history-length 300))
 
 (leaf consult
+  :init
+  (setq consult-async-min-input 1)
   :bind
-  ("C-c h" . consult-history)
+  ;; ("C-c h" . consult-history)
   ("C-c m" . consult-mode-command)
-  ("C-c b" . consult-bookmark)
+  ;; ("C-c b" . consult-bookmark)
   ("C-c k" . consult-kmacro)
   ;; C-x bindings (ctl-x-map)
-  ("C-x M-:" . consult-complex-command)    
-  ("C-x b" . consult-buffer)               
-  ("C-x 4 b" . consult-buffer-other-window)
-  ("C-x 5 b" . consult-buffer-other-frame) 
+  ("C-x M-:" . consult-complex-command)
+  ("C-x b" . consult-buffer)
   ;; Custom M-# bindings for fast register access
   ("M-#" . consult-register-load)
   ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (UNRELATED!)
@@ -55,7 +55,7 @@
   ("M-g m" . consult-mark)
   ("M-g k" . consult-global-mark)
   ("M-g i" . consult-project-imenu) ;; Alternative: consult-imenu
-  ("M-g e" . consult-error)
+  ;; ("M-g e" . consult-error)
   ;; M-s bindings (search-map)
   ("M-s g" . consult-git-grep)              ;; alt. consult-grep, consult-ripgrep
   ("M-s f" . consult-find)                  ;; alt. consult-locate, find-fd

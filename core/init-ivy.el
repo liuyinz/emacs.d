@@ -93,44 +93,42 @@
   (with-eval-after-load 'magit
     (setq magit-completing-read-function 'ivy-completing-read))
 
+  ;; More friendly display transformer for Ivy
+  (leaf ivy-rich
+    :hook (ivy-mode-hook . ivy-rich-mode)
+    :init
+    (setq ivy-rich-path-style 'abbrev)
+    ;; For better performance
+    (setq ivy-rich-parse-remote-buffer nil)
+    (setq ivy-rich-parse-remote-file-path nil))
+
   ;; Integrate yasnippet
   (leaf ivy-yasnippet
     :bind ("C-c C-y" . ivy-yasnippet))
 
-  ;; Select from xref candidates with Ivy
-  (leaf ivy-xref
-    :init
-    (when (boundp 'xref-show-definitions-function)
-      (setq xref-show-definitions-function #'ivy-xref-show-defs))
-    (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+  (leaf ivy-prescient
+    :blackout (ivy-prescient-mode prescient-persist-mode)
+    :hook (ivy-mode-hook . (lambda()
+                             (prescient-persist-mode)
+                             (ivy-prescient-mode)))
+    :init (setq prescient-history-length 300)))
 
-
-  (leaf counsel-osx-app
-    :bind (:counsel-mode-map
-           ("s-<f6>" . counsel-osx-app)))
-
-  ;; ;; Tramp ivy interface
-  ;; (use-package counsel-tramp
-  ;;   :bind (:counsel-mode-map
-  ;;          ("C-c c T" . counsel-tramp))))
-  )
-
-;; Better sorting and filtering
-(leaf prescient
-  :commands prescient-persist-mode
-  :init (prescient-persist-mode 1))
-
-(leaf ivy-prescient
-  :hook (ivy-mode-hook . ivy-prescient-mode))
-
-;; More friendly display transformer for Ivy
-(leaf ivy-rich
-  :hook (ivy-mode-hook . ivy-rich-mode)
+;; Select from xref candidates with Ivy
+(leaf ivy-xref
   :init
-  (setq ivy-rich-path-style 'abbrev)
-  ;; For better performance
-  (setq ivy-rich-parse-remote-buffer nil)
-  (setq ivy-rich-parse-remote-file-path nil))
+  (when (boundp 'xref-show-definitions-function)
+    (setq xref-show-definitions-function #'ivy-xref-show-defs))
+  (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+
+
+(leaf counsel-osx-app
+  :bind (:counsel-mode-map
+         ("s-<f6>" . counsel-osx-app)))
+
+;; ;; Tramp ivy interface
+;; (use-package counsel-tramp
+;;   :bind (:counsel-mode-map
+;;          ("C-c c T" . counsel-tramp))))
 
 (provide 'init-ivy)
 ;;; init-ivy.el ends here

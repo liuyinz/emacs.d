@@ -4,6 +4,7 @@
 
 (require 'init-const)
 
+(leaf wgrep)
 ;; Hungry deletion
 (leaf hungry-delete
   :blackout t
