@@ -243,24 +243,12 @@
 [submodule "ox-hugo"]
 	path = module/ox-hugo
 	url = https://github.com/kaushalmodi/ox-hugo.git
-[submodule "selectrum"]
-	path = module/selectrum
-	url = https://github.com/raxod502/selectrum.git
-[submodule "orderless"]
-	path = module/orderless
-	url = https://github.com/oantolin/orderless.git
-[submodule "embark"]
-	path = module/embark
-	url = https://github.com/oantolin/embark.git
-[submodule "marginalia"]
-	path = module/marginalia
-	url = https://github.com/minad/marginalia.git
-[submodule "consult"]
-	path = module/consult
-	url = https://github.com/minad/consult.git
 [submodule "undo-fu"]
 	path = module/undo-fu
 	url = https://github.com/emacsmirror/undo-fu.git
 [submodule "undo-fu-session"]
 	path = module/emacs-undo-fu-session
 	url = https://gitlab.com/ideasman42/emacs-undo-fu-session.git
+[submodule "emacs-wgrep"]
+	path = module/Emacs-wgrep
+	url = https://github.com/mhayashi1120/Emacs-wgrep.git
