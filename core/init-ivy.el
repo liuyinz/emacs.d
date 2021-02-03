@@ -112,7 +112,6 @@
     :blackout ivy-prescient-mode
     :hook (ivy-mode-hook . ivy-prescient-mode)))
 
-
 (leaf prescient
   :blackout prescient-persisit-mode
   :hook (after-init-hook . prescient-persist-mode)
