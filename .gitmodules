@@ -249,6 +249,3 @@
 [submodule "awesome-tray"]
 	path = module/awesome-tray
 	url = https://github.com/manateelazycat/awesome-tray.git
-[submodule "awesome-tab"]
-	path = module/awesome-tab
-	url = https://github.com/manateelazycat/awesome-tab.git
