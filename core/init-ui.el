@@ -21,14 +21,16 @@
         awesome-tray-file-path-show-filename t
         awesome-tray-buffer-read-only-style "[RO]"
         awesome-tray-input-method-en-style ""
-        awesome-tray-active-modules '("evil"
-                                      "location"
+        awesome-tray-file-path-full-dirname-levels 1
+        awesome-tray-active-modules '("location"
                                       "input-method"
                                       "rvm"
                                       "buffer-read-only"
                                       "file-path"
                                       "git"
-                                      "mode-name")))
+                                      "mode-name"
+                                      "evil"
+                                      )))
 
 (provide 'init-ui)
 
