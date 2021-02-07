@@ -2,26 +2,26 @@
 ;;; Commentary:
 ;;; Code:
 
-;; modeline
-(leaf doom-modeline
-  :doc "deps: all-the-icons"
+(leaf awesome-tray
   :blackout t
-  :hook (after-init-hook . doom-modeline-mode)
+  :hook (after-init-hook . awesome-tray-mode)
   :init
-  (setq doom-modeline-icon nil
-        doom-modeline-persp-name nil
-        doom-modeline-irc nil
-        doom-modeline-project-detection 'ffip
-        doom-modeline-minor-modes nil
-        doom-modeline-enable-word-count nil
-        doom-modeline-buffer-encoding nil
-        doom-modeline-checker-simple-format nil
-        doom-modeline-indent-info nil
-        doom-modeline-env-load-string "..."
-        doom-modeline-vcs-max-length 20
-        doom-modeline-window-width-limit (+ fill-column 20)
-        doom-modeline-buffer-file-name-style 'truncate-with-project
-        doom-modeline-env-python-executable "/usr/local/bin/python3"))
+  (setq awesome-tray-mode-line-active-color "#8f60a2"
+        awesome-tray-buffer-name-buffer-changed nil
+        awesome-tray-file-path-show-filename t
+        awesome-tray-buffer-read-only-style "[RO]"
+        awesome-tray-input-method-en-style ""
+        awesome-tray-file-path-full-dirname-levels 1
+        awesome-tray-file-path-truncate-dirname-levels 4
+        awesome-tray-active-modules '("evil"
+                                      "location"
+                                      "buffer-read-only"
+                                      "file-path"
+                                      "input-method"
+                                      "rvm"
+                                      "git"
+                                      "mode-name"
+                                      )))
 
 ;; doom-theme
 (leaf doom-themes

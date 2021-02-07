@@ -19,9 +19,6 @@
 [submodule "evil-nerd-commenter"]
 	path = module/evil-nerd-commenter
 	url = https://github.com/redguardtoo/evil-nerd-commenter.git
-[submodule "doom-modeline"]
-	path = module/doom-modeline
-	url = https://github.com/seagle0128/doom-modeline.git
 [submodule "magithub"]
 	path = module/magithub
 	url = https://github.com/vermiculus/magithub.git
@@ -190,9 +187,6 @@
 [submodule "leaf-keywords.el"]
 	path = module/leaf-keywords
 	url = https://github.com/conao3/leaf-keywords.el.git
-[submodule "all-the-icons.el"]
-	path = module/all-the-icons
-	url = https://github.com/domtronn/all-the-icons.el.git
 [submodule "blackout"]
 	path = module/blackout
 	url = https://github.com/raxod502/blackout.git
@@ -252,3 +246,6 @@
 [submodule "emacs-wgrep"]
 	path = module/Emacs-wgrep
 	url = https://github.com/mhayashi1120/Emacs-wgrep.git
+[submodule "awesome-tray"]
+	path = module/awesome-tray
+	url = https://github.com/manateelazycat/awesome-tray.git
