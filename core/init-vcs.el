@@ -16,7 +16,12 @@
         magit-save-repository-buffers 'dontask
         ;; vc-handled-backends (delq 'Git vc-handled-backends)
         ;; magit-auto-revert-mode t
-        magit-auto-revert-immediately t))
+        magit-auto-revert-immediately t)
+  :config
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules
+                          'magit-insert-stashes
+                          'append))
 
 ;; Git related modes
 (leaf git-modes :require t)

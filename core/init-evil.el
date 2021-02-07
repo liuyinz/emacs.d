@@ -87,7 +87,7 @@
 ;;     ))
 
 (leaf evil
-  :doc "goto-chg"
+  :doc "deps: goto-chg"
   :defun evil-define-key* evil-delay evil-set-initial-state
   :hook (after-init-hook . evil-mode)
   :init
@@ -101,8 +101,7 @@
         evil-undo-system 'undo-fu
         evil-echo-state nil
         evil-want-integration t
-        evil-ex-substitute-global t
-        )
+        evil-ex-substitute-global t)
   :config
   (defun my-replace ()
     "Self defined replace for evil"
@@ -148,6 +147,7 @@
     "gs" 'magit-status
 
     (kbd "<leader> xf") 'counsel-find-file
+    (kbd "<leader> xb") 'counsel-switch-buffer
     (kbd "<leader> xs") 'save-buffer
     (kbd "<leader> xk") 'kill-buffer
     (kbd "<leader> ;") 'counsel-counsel

@@ -4,7 +4,7 @@
 
 ;; modeline
 (leaf doom-modeline
-  :doc "all-the-icons"
+  :doc "deps: all-the-icons"
   :blackout t
   :hook (after-init-hook . doom-modeline-mode)
   :init
@@ -26,46 +26,14 @@
 ;; doom-theme
 (leaf doom-themes
   :require t
-  :init
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
   :config
-  (load-theme 'doom-one t))
+  (load-theme 'doom-one t)
+  (doom-themes-set-faces nil
+    '(evil-ex-search :foreground "#282c34" :background "#8f60a2" :bold t)
+    '(evil-ex-lazy-highlight :foreground "#282c34" :background "#98c379" :bold t))
+  )
 
-;; (leaf which-key
-;;   :blackout
-;;   :hook (after-init-hook . which-key-mode)
-;;   :init
-;;   (setq which-key-dont-use-unicode t
-;;         which-key-compute-remaps t
-;;         which-key-show-remaining-keys t
-;;         which-key-use-C-h-commands nil
-;;         max-mini-window-height 0.3
-;;         which-key-max-description-length 30
-;;         which-key-add-column-padding 3
-;;         which-key-popup-type 'minibuffer
-;;         which-key-show-prefix 'left
-;;         )
-;;   (setq which-key-paging-prefixes '("C-x"))
-;;   (setq which-key-paging-key "<f5>")
-;;   :config
-;;   (dolist (p '(("C-x a" . "abbrev")
-;;                ("C-x t" . "tab")
-;;                ("C-x n" . "narrow")
-;;                ("C-x p" . "project")
-;;                ("C-x 8" . "unicode")
-;;                ("C-x @" . "modifior")
-;;                ("C-x X" . "edebug")
-;;                ("C-c !" . "flycheck")
-;;                ("<leader> c" . "evil-nerd-commenter")
-;;                ("<leader> s" . "color-rg")))
-;;     (which-key-add-key-based-replacements (car p) (cdr p))))
 ;;
 (provide 'init-ui)
-
-;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
-;; (set-fontset-font (frame-parameter nil 'font)
-;; charset (font-spec :family "Source Han Serif"))
-;; (setq face-font-rescale-alist '(("Source Han Serif" . 0.95))))
 
 ;;; init-ui.el ends here

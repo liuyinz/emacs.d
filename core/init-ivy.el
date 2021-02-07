@@ -13,18 +13,17 @@
   ("C-s" . swiper-isearch)
   (:ivy-minibuffer-map
    ([escape] . minibuffer-keyboard-quit)
-   ("C-j" . ivy-next-line-and-call)
-   ("C-k" . ivy-previous-line-and-call)
+   ;; ("C-j" . ivy-next-line-and-call)
+   ;; ("C-k" . ivy-previous-line-and-call)
    ("C-l" . ivy-dispatching-done)
    ;; ("C-u" . ivy-dispatching-call)
    )
+  (:counsel-find-file-map
+   ("C-h" . counsel-up-directory)
+   ([backspace] . counsel-up-directory))
   (:swiper-isearch-map
    ("M-q" . swiper-query-replace)
    ("C-t" . isearch-toggle-color-rg))
-  (:counsel-mode-map
-   ([remap swiper] . counsel-grep-or-swiper))
-  (:counsel-find-file-map
-   ("C-h" . counsel-up-directory))
   :init
   (setq enable-recursive-minibuffers nil
         ivy-use-virtual-buffers t
