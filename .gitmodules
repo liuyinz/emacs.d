@@ -249,6 +249,3 @@
 [submodule "awesome-tray"]
 	path = module/awesome-tray
 	url = https://github.com/manateelazycat/awesome-tray.git
-[submodule "emacs-vibrant-theme"]
-	path = module/emacs-vibrant-theme
-	url = https://github.com/liuyinz/emacs-vibrant-theme.git
