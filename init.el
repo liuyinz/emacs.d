@@ -20,6 +20,10 @@
 ;; gc magic hack
 (require 'init-gcmh)
 
+;; for native-comp branch
+;; (setq comp-speed 2)
+;; (setq comp-eln-load-path (expand-file-name "eln-cache/" my-dir-cache))
+
 ;; add submodules to load-path
 (defun add-subdirs-to-load-path (dir)
   "Recursive add directories to `load-path'."
