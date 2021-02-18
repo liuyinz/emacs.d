@@ -6,27 +6,54 @@
 (leaf doom-themes
   :require t
   :config
-  (load-theme 'doom-one t)
-  (doom-themes-set-faces nil
-    '(evil-ex-search :foreground "#282c34" :background "#8f60a2" :bold t)
-    '(evil-ex-lazy-highlight :foreground "#282c34" :background "#98c379" :bold t))
+  (load-theme 'doom-vibrant t)
+  (with-eval-after-load 'evil
+    (set-face-attribute 'evil-ex-search nil
+                        :inherit nil
+                        :foreground "#282c34"
+                        :background "#8f60a2"
+                        :weight 'bold)
+    (set-face-attribute 'evil-ex-lazy-highlight nil
+                        :inherit nil
+                        :foreground "#282c34"
+                        :background "#98c379"
+                        :weight 'bold))
+  (with-eval-after-load 'awesome-tray
+    (set-face-attribute 'awesome-tray-module-git-face nil
+                        :foreground "#f76582"
+                        :weight 'bold)
+    (set-face-attribute 'awesome-tray-module-mode-name-face nil
+                        :foreground "#7bc275"
+                        :weight 'bold)
+    (set-face-attribute 'awesome-tray-module-buffer-name-face nil
+                        :foreground "#fcce7b"
+                        :weight 'bold)
+    (set-face-attribute 'awesome-tray-module-location-face nil
+                        :foreground "#51afef"
+                        :weight 'bold)
+    (set-face-attribute 'awesome-tray-module-evil-face nil
+                        :foreground "#bbc2cf"
+                        :weight 'bold))
   )
 
 (leaf awesome-tray
   :blackout t
-  :hook (after-init-hook . awesome-tray-mode)
+  :hook
+  (after-init-hook . awesome-tray-mode)
+  ;; (load-theme-after-hook . awesome-tray-enable)
   :init
-  (setq awesome-tray-mode-line-active-color "#8f60a2"
+  (setq awesome-tray-mode-line-active-color "#bbc2cf"
+        awesome-tray-mode-line-inactive-color "#62686e"
         awesome-tray-buffer-name-buffer-changed nil
-        awesome-tray-file-path-show-filename t
+        ;; awesome-tray-file-path-show-filename t
         awesome-tray-buffer-read-only-style "[RO]"
         awesome-tray-input-method-en-style ""
-        awesome-tray-file-path-full-dirname-levels 1
+        ;; awesome-tray-file-path-full-dirname-levels 1
         awesome-tray-active-modules '("location"
                                       "input-method"
                                       "rvm"
                                       "buffer-read-only"
-                                      "file-path"
+                                      "buffer-name"
                                       "git"
                                       "mode-name"
                                       "evil"
