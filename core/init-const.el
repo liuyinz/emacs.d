@@ -26,26 +26,6 @@
   (unless (file-exists-p dir)
     (make-directory dir t)))
 
-;; (defconst elpa-tsinghua '(("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-;;                           ("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-;;                           ("org"   . "https://mirrors.tuna.tsinghua.edu.cn/elpa/org/"))
-;;   "elpa source from tsinghua")
-;;
-;; (defconst elpa-tencent '(("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/")
-;;                          ("gnu"   . "http://mirrors.cloud.tencent.com/elpa/gnu/")
-;;                          ("org" . "http://mirrors.coud.tencent.com/elpa/org/"))
-;;   "elpa source from tencent")
-;;
-;; (defconst elpa-emacs-china '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-;;                              ("melpa" . "http://elpa.emacs-china.org/melpa/")
-;;                              ("org" . "http://elpa.emacs-china.org/org/"))
-;;   "elpa source from emacs-china")
-;;
-;; (defconst elpa-ustc '(("gnu" . "http://mirrors.ustc.edu.cn/elpa/gnu/")
-;;                       ("melpa" . "http://mirrors.ustc.edu.cn/elpa/melpa/")
-;;                       ("org" . "http://mirrors.ustc.edu.cn/elpa/org/"))
-;;   "elpa source from ustc")
-
 (defconst my-homepage
   "https://github.com/liuyinz/.emacs.d"
   "The Github Page of mine.")
