@@ -2,11 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
+(leaf editorconfig
+  :blackout t
+  :hook (prog-mode-hook . editorconfig-mode))
+
 (leaf prettier
   :commands (prettier-info prettier-prettify prettier-prettify-region))
 
 (leaf format-all
-  :commands format-all-buffer)
+  :doc "deps: inheritenv language-id"
+  :commands format-all-buffer format-all-ensure-formatter)
 
 (defun my-format ()
   "Formating files."
@@ -22,10 +27,10 @@
                          sgml-mode
                          yaml-mode)) (prettier-prettify))
    ((equal major-mode 'emacs-lisp-mode) (elisp-format))
-   (t (format-all-buffer))))
+   (t (lambda ()
+        (format-all-ensure-formatter)
+        (format-all-buffer)))))
 
-(leaf editorconfig :blackout)
-;; :hook (after-init-hook . editorconfig-mode))
 
 (provide 'init-format)
 ;;; init-format.el ends here
