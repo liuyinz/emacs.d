@@ -31,6 +31,7 @@
          ("C-c C-f" . nodejs-repl-load-file)))
 
 (leaf js2-refactor
+  :doc "deps: multiple-cursors"
   :hook (js2-mode-hook . js2-refactor-mode)
   :config (js2r-add-keybindings-with-prefix "C-c C-m"))
 

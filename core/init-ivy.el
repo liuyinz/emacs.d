@@ -4,6 +4,7 @@
 
 ;; ivy core
 (leaf counsel
+  :doc "deps: multiple-cursors"
   :blackout ivy-mode counsel-mode
   :defun ivy-set-actions
   :hook
