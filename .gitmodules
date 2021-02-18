@@ -208,10 +208,6 @@
 [submodule "nvm.el"]
 	path = module/nvm
 	url = https://github.com/rejeep/nvm.el.git
-[submodule "prettier"]
-	path = module/prettier
-	url = https://github.com/jscheid/prettier.el.git
-	branch = release
 [submodule "nodejs-repl"]
 	path = module/nodejs-repl
 	url = https://github.com/abicky/nodejs-repl.el.git

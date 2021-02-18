@@ -26,7 +26,6 @@
    ("C-p" . company-select-previous))
   :init
   (setq company-tooltip-width-grow-only t
-        company-minimum-prefix-length 1
         company-idle-delay 0
         company-require-match nil
         company-selection-wrap-around t
