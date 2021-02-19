@@ -3,6 +3,7 @@
 ;;; Code:
 
 (leaf magit
+  :doc "deps: with-editor forge transient git-modes ghub"
   :defun (yas-activate-extra-mode . yasnippet)
   :commands (magit-status magit-dispatch magit-submodule)
   :hook
