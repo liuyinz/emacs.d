@@ -6,10 +6,8 @@
 
 (leaf company
   :blackout t
-  :defvar company-dabbrev-ignore-case company-dabbrev-downcase
-  :defun company-search-words-in-any-order-regexp
   :commands company-cancel
-  :hook (after-init-hook . global-company-mode)
+  :hook ((prog-mode-hook conf-mode-hook eshell-mode-hook) . company-mode)
   :bind
   (:company-active-map
    ([escape] . company-abort)
@@ -20,8 +18,6 @@
    ("C-p" . company-select-previous)
    ("C-/" . company-filter-candidates))
   (:company-search-map
-   ;; ([tab] . company-select-next)
-   ;; ((kbd "<backtab>") . company-select-previous)
    ("C-n" . company-select-next)
    ("C-p" . company-select-previous))
   :init
@@ -58,7 +54,7 @@
 ;; yasnippet
 (leaf yasnippet
   :blackout t
-  :hook (after-init-hook . yas-global-mode)
+  :hook (prog-mode-hook . yas-minor-mode)
   :bind (:yas-minor-mode-map
          ("C-t" . my-yasnippet-switch))
   :init
@@ -85,7 +81,8 @@ $0`(yas-escape-text yas-selected-text)`")
 
   :config
   ;; no-littering setting changed original
-  (add-to-list 'yas-snippet-dirs 'my-dir-snippet))
+  (add-to-list 'yas-snippet-dirs 'my-dir-snippet)
+  (yas-reload-all))
 
 (provide 'init-company)
 ;;; init-company.el ends here
