@@ -1,4 +1,4 @@
-;;; early-init.el --- settings before frame initialize -*- lexical-binding: t -*-
+;;; early-init.el --- settings before frame initialize -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

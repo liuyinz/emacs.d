@@ -1,4 +1,4 @@
-;;; init-sys.el --- system setting  -*- lexical-binding: t -*-
+;;; init-sys.el --- system setting  -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -20,8 +20,7 @@
   :require t
   :defun (auto-compile-on-load-mode auto-compile-on-save-mode)
   :config
-  (auto-compile-on-load-mode)
-  (auto-compile-on-save-mode))
+  (auto-compile-on-load-mode))
 
 ;; Environment
 (leaf exec-path-from-shell

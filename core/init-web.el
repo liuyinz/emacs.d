@@ -1,4 +1,4 @@
-;;; init-web.el --- web setting -*- lexical-binding: t -*-
+;;; init-web.el --- web setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; init-ibuffer.el --- ibuffer setting -*- lexical-binding: t -*-
+;;; init-ibuffer.el --- ibuffer setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; init.el ---  -*- lexical-binding: t -*-
+;;; init.el --- init startup  -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; init-project.el --- project setting -*- lexical-binding: t -*-
+;;; init-project.el --- project setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

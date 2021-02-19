@@ -1,4 +1,4 @@
-;;; init-company.el --- company setting -*- lexical-binding: t -*-
+;;; init-company.el --- company setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

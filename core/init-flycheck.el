@@ -1,4 +1,4 @@
-;;; init-flycheck.el --- flycheck setting -*- lexical-binding: t -*-
+;;; init-flycheck.el --- flycheck setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

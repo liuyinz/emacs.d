@@ -1,4 +1,4 @@
-;;; init-edit.el --- edit setting -*- lexical-binding: t -*-
+;;; init-edit.el --- edit setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

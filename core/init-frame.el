@@ -1,3 +1,7 @@
+;;; init-frame.el --- setting for frame  -*- lexical-binding: t no-byte-compile: t -*- 
+;;; Commentary:
+;;; Code:
+
 ;; @https://stackoverflow.com/a/7623566/13194984
 ;; (window-system) (display-graphic-p) focus on the current frame,need to select
 ;; the new frame with (select-frame)
@@ -40,3 +44,4 @@ Selectively runs either `after-make-console-frame-hooks' or
               (run-after-make-frame-hooks my-initial-frame))))
 
 (provide 'init-frame)
+;;; init-frame.el ends here

@@ -1,4 +1,4 @@
-;;; init-highlight.el --- highlight setting -*- lexical-binding: t -*-
+;;; init-highlight.el --- highlight setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

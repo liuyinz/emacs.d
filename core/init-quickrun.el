@@ -1,4 +1,4 @@
-;;; init-quickrun.el --- Run code -*- lexical-binding: t -*-
+;;; init-quickrun.el --- Run code -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

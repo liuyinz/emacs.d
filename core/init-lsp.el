@@ -1,3 +1,7 @@
+;;; init-lsp.el --- setting for lsp  -*- lexical-binding: t no-byte-compile: t -*-
+;;; Commentary:
+;;; Code:
+
 (require 'init-const)
 
 (leaf lsp-mode
@@ -122,3 +126,4 @@
     (setq lsp-python-ms-python-executable-cmd "python3")))
 
 (provide 'init-lsp)
+;;; init-lsp.el ends here

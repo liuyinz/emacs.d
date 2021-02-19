@@ -1,4 +1,4 @@
-;;; init-shell.el --- shell setting -*- lexical-binding: t -*-
+;;; init-shell.el --- shell setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

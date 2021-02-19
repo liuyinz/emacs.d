@@ -1,4 +1,4 @@
-;;; init-format.el --- format setting -*- lexical-binding: t -*-
+;;; init-format.el --- format setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

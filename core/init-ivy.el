@@ -1,4 +1,4 @@
-;;; init-ivy.el --- ivy settings -*- lexical-binding: t -*-
+;;; init-ivy.el --- ivy settings -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

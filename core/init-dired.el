@@ -1,4 +1,4 @@
-;;; init-dired.el --- dired setting -*- lexical-binding: t -*-
+;;; init-dired.el --- dired setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

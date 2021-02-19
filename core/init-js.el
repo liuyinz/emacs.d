@@ -1,4 +1,4 @@
-;;; init-js.el --- js setting -*- lexical-binding: t -*-
+;;; init-js.el --- js setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

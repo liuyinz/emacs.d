@@ -1,4 +1,4 @@
-;;; init-vcs.el --- version control system -*- lexical-binding: t -*-
+;;; init-vcs.el --- version control system -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

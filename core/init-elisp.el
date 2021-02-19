@@ -1,4 +1,4 @@
-;;; init-elisp.el --- Emacs lisp settings -*- lexical-binding: t -*-
+;;; init-elisp.el --- Emacs lisp settings -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

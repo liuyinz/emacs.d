@@ -1,4 +1,4 @@
-;;; init-default.el --- setting for builtin package  -*- lexical-binding: t -*-
+;;; init-default.el --- setting for builtin package  -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; init-funcs.el --- functions defined by user -*- lexical-binding: t -*-
+;;; init-funcs.el --- functions defined by user -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

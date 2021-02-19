@@ -1,4 +1,4 @@
-;;; init-evil.el --- evil setting  -*- lexical-binding: t -*-
+;;; init-evil.el --- evil setting  -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; init-tool.el --- other tools -*- lexical-binding: t -*-
+;;; init-tool.el --- other tools -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; init-prog.el --- language setting -*- lexical-binding: t -*-
+;;; init-lang.el --- language setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -35,4 +35,4 @@
 (leaf vimrc-mode)
 
 (provide 'init-lang)
-;;; init-prog.el ends here
+;;; init-lang.el ends here

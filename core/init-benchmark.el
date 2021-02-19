@@ -1,4 +1,4 @@
-;;; init-benchmark.el --- Measure startup time -*- lexical-binding: t -*-
+;;; init-benchmark.el --- Measure startup time -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 
