@@ -60,7 +60,7 @@
 
 ;; Show git info in dired
 (leaf dired-git-info
-  :blackout
+  :blackout t
   :bind (:dired-mode-map
          (")" . dired-git-info-mode)))
 
@@ -71,10 +71,8 @@
 
 ;; Colourful dired
 (leaf diredfl
-  :blackout
-  :hook (after-init-hook . diredfl-global-mode)
-  ;; :config (diredfl-global-mode 1)
-  )
+  :blackout t
+  :hook (dired-mode-hook . diredfl-mode))
 
 ;; `find-dired' alternative using `fd'
 (when (executable-find "fd")

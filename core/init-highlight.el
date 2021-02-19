@@ -16,7 +16,7 @@
 
 (leaf highlight-parentheses
   :blackout t
-  :hook (after-init-hook . global-highlight-parentheses-mode)
+  :hook (prog-mode-hook . highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
         highlight-parentheses-background-colors '("#5d7281")
