@@ -2,13 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-; (use-package hl-line
-;   :delight
-;   :hook (((evil-normal-state-entry
-;            evil-emacs-state-exit) . hl-line-mode)
-;          ((evil-insert-state-entry
-;            evil-emacs-state-entry) . (lambda () (hl-line-mode -1)))))
-
 ;; Highlight brackets according to their depth
 (leaf rainbow-delimiters
   :blackout t
@@ -25,8 +18,9 @@
 ;;Highlight uncommitted changes using VC
 (leaf diff-hl
   :blackout t
-  :hook (after-init-hook . global-diff-hl-mode)
-         ; (dired-mode-hook . diff-hl-dired-mode)
+  :hook
+  (after-init-hook . global-diff-hl-mode)
+  ;; (dired-mode-hook . diff-hl-dired-mode)
   :init
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
