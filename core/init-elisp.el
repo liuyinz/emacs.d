@@ -10,7 +10,7 @@
                  (error "This buffer is not visiting a file"))))
     (save-excursion
       (goto-char (point-min))
-      (insert ";;; " fname " ---  -*- lexical-binding: t -*-\n"
+      (insert ";;; " fname " ---  -*- lexical-binding: t no-byte-compile: t -*- \n"
               ";;; Commentary:\n"
               ";;; Code:\n\n")
       (goto-char (point-max))
