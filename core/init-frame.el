@@ -1,4 +1,4 @@
-;;; init-frame.el --- setting for frame  -*- lexical-binding: t no-byte-compile: t -*- 
+;;; init-frame.el --- setting for frame  -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

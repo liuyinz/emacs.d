@@ -1,4 +1,4 @@
-;;; init-gcmh.el --- garbadge collection magic hack  -*- lexical-binding: t -*-
+;;; init-gcmh.el --- garbadge collection magic hack  -*- lexical-binding: t no-byte-compile: t *-
 ;;; Commentary:
 ;;; Code:
 

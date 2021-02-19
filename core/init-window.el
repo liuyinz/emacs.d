@@ -1,4 +1,4 @@
-;;; init-window.el --- window setting -*- lexical-binding: t -*-
+;;; init-window.el --- window setting -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 
