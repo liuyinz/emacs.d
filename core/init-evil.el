@@ -103,6 +103,13 @@
         evil-want-integration t
         evil-ex-substitute-global t)
   :config
+
+  ;; hl-line
+  (add-hook 'evil-normal-state-entry-hook #'hl-line-mode)
+  (add-hook 'evil-emacs-state-exit-hook #'hl-line-mode)
+  (add-hook 'evil-insert-state-entry-hook (lambda () (hl-line-mode -1)))
+  (add-hook 'evil-emacs-state-entry-hook (lambda () (hl-line-mode -1)))
+
   (defun my-replace ()
     "Self defined replace for evil"
     (interactive)

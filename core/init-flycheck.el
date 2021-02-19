@@ -5,16 +5,17 @@
 ;; flycheck
 (leaf flycheck
   :blackout
-  :hook (after-init-hook . global-flycheck-mode)
+  :hook (prog-mode-hook . flycheck-mode)
   :init
   (setq flycheck-stylelintrc "~/.stylelintrc.json"
         flycheck-tidyrc "~/.tidyrc"
         flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save mode-enabled)
         flycheck-indication-mode 'right-fringe
-        flycheck-global-modes
-        '(not text-mode outline-mode fundamental-mode org-mode
-              diff-mode shell-mode eshell-mode term-mode vterm-mode))
+        ;; flycheck-global-modes
+        ;; '(not text-mode outline-mode fundamental-mode org-mode
+        ;;       diff-mode shell-mode eshell-mode term-mode vterm-mode)
+        )
   :config
   ;; Prettify fringe style
   (when (fboundp 'define-fringe-bitmap)
