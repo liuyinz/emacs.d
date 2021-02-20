@@ -19,11 +19,17 @@
     (kbd "C-;") 'ace-window
     (kbd "C-s") 'swiper-isearch
     (kbd "C-c C-y") 'ivy-yasnippet
+    ;; (kbd "M-j") nil
+    ;; (kbd "M-k") nil
+    ;; (kbd "M-u") nil
+    ;; (kbd "M-l") nil
+    (kbd "C-l") nil
     (kbd "C-l l") 'avy-goto-line
     (kbd "C-l w") 'avy-goto-word-0
     (kbd "C-l f") 'avy-goto-char
+    (kbd "C-l p") 'avy-goto-paren
     (kbd "C-l r") 'avy-resume
-    (kbd "C-l p") 'avy-goto-paren)
+    )
 
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U
