@@ -12,7 +12,7 @@
   :hook (prog-mode-hook . highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
-        highlight-parentheses-background-colors '("#5d7281")
+        highlight-parentheses-background-colors '("#5d656b")
         highlight-parentheses-highlight-adjacent t))
 
 ;;Highlight uncommitted changes using VC
@@ -20,7 +20,6 @@
   :blackout t
   :hook
   (after-init-hook . global-diff-hl-mode)
-  ;; (dired-mode-hook . diff-hl-dired-mode)
   :init
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
@@ -28,8 +27,12 @@
   ;; Set fringe style
   (setq-default fringes-outside-margins t)
   :config
-  ;; conflicts with company-active-map keybindings
-  ;; (diff-hl-flydiff-mode 1)
+
+  (leaf diff-hl-dired
+    :hook (dired-mode-hook . diff-hl-dired-mode))
+
+  (leaf diff-hl-flydiff
+    :hook (diff-hl-mode-hook . diff-hl-flydiff-mode))
 
   ;; UI
   (set-face-attribute 'diff-hl-change nil
@@ -44,9 +47,6 @@
       (define-fringe-bitmap 'my-diff-hl-bmp
         (vector #b11100000) 1 8 '(center t)))
     (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function))
-
-  ;; (unless (display-graphic-p)
-  ;;   (diff-hl-margin-mode))
 
   ;; Integration with magit
   (with-eval-after-load 'magit
