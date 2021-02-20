@@ -7,7 +7,7 @@
 (leaf company
   :blackout t
   :commands company-cancel
-  :hook ((prog-mode-hook conf-mode-hook eshell-mode-hook) . company-mode)
+  :hook (after-init-hook . global-company-mode)
   :init
   (setq company-tooltip-width-grow-only t
         company-idle-delay 0
@@ -16,6 +16,8 @@
         company-dabbrev-ignore-case nil
         company-dabbrev-downcase nil
         company-search-regexp-function #'company-search-words-in-any-order-regexp)
+  (setq-default company-dabbrev-other-buffers 'all
+                company-tooltip-align-annotations t)
 
   (setq company-global-modes '(not erc-mode message-mode help-mode
                                    gud-mode eshell-mode shell-mode))

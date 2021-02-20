@@ -19,11 +19,17 @@
     (kbd "C-;") 'ace-window
     (kbd "C-s") 'swiper-isearch
     (kbd "C-c C-y") 'ivy-yasnippet
+    ;; (kbd "M-j") nil
+    ;; (kbd "M-k") nil
+    ;; (kbd "M-u") nil
+    ;; (kbd "M-l") nil
+    (kbd "C-l") nil
     (kbd "C-l l") 'avy-goto-line
     (kbd "C-l w") 'avy-goto-word-0
     (kbd "C-l f") 'avy-goto-char
+    (kbd "C-l p") 'avy-goto-paren
     (kbd "C-l r") 'avy-resume
-    (kbd "C-l p") 'avy-goto-paren)
+    )
 
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U
@@ -97,13 +103,15 @@
     (kbd "C-n") 'company-complete-common-or-cycle
     (kbd "C-p") 'company-select-previous
     (kbd "C-/") 'company-filter-candidates
-    (kbd "<escape>") 'company-abort
+    (kbd "C-h") 'company-show-doc-buffer
+    (kbd "C-d") 'company-show-location
+    ;; (kbd "<escape>") 'company-abort
     (kbd "<tab>") 'company-yas)
 
   (evil-define-key nil company-search-map
+    ;; (kbd "<escape>") 'company-search-abort
     (kbd "C-n") 'company-select-next
-    (kbd "C-p") 'company-select-previous
-    (kbd "<escape>") 'company-search-abort)
+    (kbd "C-p") 'company-select-previous)
 
   ;; yasnippet
   (evil-define-key nil yas-minor-mode-map
