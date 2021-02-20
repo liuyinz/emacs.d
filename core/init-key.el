@@ -14,16 +14,16 @@
   ;;   )
 
   ;;evil binding
-  (evil-define-key '(normal emacs insert replace) 'global
+  (evil-define-key nil 'global
     (kbd "M-p") 'vterm-toggle
-    (kbd "C-l") 'ace-window
+    (kbd "C-;") 'ace-window
     (kbd "C-s") 'swiper-isearch
     (kbd "C-c C-y") 'ivy-yasnippet
-    (kbd "C-; ;") 'avy-goto-word-0
-    (kbd "C-; l") 'avy-goto-line
-    (kbd "C-; f") 'avy-goto-char
-    (kbd "C-; r") 'avy-resume
-    (kbd "C-; p") 'avy-goto-paren)
+    (kbd "C-l l") 'avy-goto-line
+    (kbd "C-l w") 'avy-goto-word-0
+    (kbd "C-l f") 'avy-goto-char
+    (kbd "C-l r") 'avy-resume
+    (kbd "C-l p") 'avy-goto-paren)
 
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U
