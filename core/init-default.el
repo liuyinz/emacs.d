@@ -278,9 +278,5 @@
 (if (get-buffer "*scratch*")
     (setq default-directory "~/"))
 
-;;unbind keys
-(dolist (key '("\M-j" "\M-k" "\M-u" "\M-l"))
-  (global-unset-key key))
-
 (provide 'init-default)
 ;;; init-default.el ends here

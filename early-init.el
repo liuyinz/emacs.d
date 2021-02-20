@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Defer garbage collection further back in the startup process
-;; (setq gc-cons-threshold most-positive-fixnum)
-
 ;; Do not initialise installed packages
 (setq package-enable-at-startup nil)
 ;; Do not allow loading from the package cache (same reason).
