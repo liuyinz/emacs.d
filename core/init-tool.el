@@ -20,6 +20,14 @@
 ;;         leetcode-save-solutions t
 ;;         leetcode-directory "~/Documents/repo/leetcode"))
 
+;; google-translate
+(leaf go-translate
+  :commands go-traslate go-translate-kill-ring-save go-translate-echo-area
+  :init
+  (setq go-translate-base-url "https://translate.google.cn"
+        go-translate-local-language "zh-CN"
+        go-translate-token-current (cons 430675 2721866130)))
+
 ;; IRC
 (leaf erc
   :defvar erc-autojoin-channels-alist
