@@ -257,3 +257,6 @@
 [submodule "browse-at-remote"]
 	path = module/browse-at-remote
 	url = https://github.com/rmuslimov/browse-at-remote.git
+[submodule "go-translate"]
+	path = module/go-translate
+	url = https://github.com/lorniu/go-translate.git
