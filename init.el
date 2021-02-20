@@ -39,16 +39,17 @@
 (when (file-exists-p custom-file)
   (load custom-file nil :no-message))
 
-;; load core/init files
+;; load core config
 (with-temp-message ""
   (require 'init-benchmark)
   (require 'init-funcs)
   (require 'init-sys)
+
+  ;; (require 'init-test)
   (require 'init-default)
   (require 'init-ivy)
   ;; (require 'init-selectrum)
   (require 'init-company)
-  ;; (require 'init-test)
   ;; ui
   (require 'init-ui)
   (require 'init-highlight)
