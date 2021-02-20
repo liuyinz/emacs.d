@@ -4,20 +4,12 @@
 
 (leaf emmet-mode
   :hook ((sgml-mode-hook html-mode-hook css-mode-hook web-mode-hook) . emmet-mode)
-  :bind (:emmet-mode-keymap
-         ;; ("C-j" . emmet-expand-line)
-         ("C-j" . emmet-expand-yas))
-         ;; ("" . emmet-wrap-with-markup)
-         (:emmet-preview-keymap
-         ("C-j" . my-emmet-expand)
-         )
   :init
   (setq emmet-indentation 2
         emmet-preview-default nil
         emmet-self-closing-tag-style " /"
         ;; emmet-indent-after-insert nil
-        emmet-move-cursor-between-quotes nil
-        )
+        emmet-move-cursor-between-quotes nil)
 
   (defun my-emmet-expand ()
     (interactive)

@@ -8,18 +8,6 @@
   :blackout t
   :commands company-cancel
   :hook ((prog-mode-hook conf-mode-hook eshell-mode-hook) . company-mode)
-  :bind
-  (:company-active-map
-   ([escape] . company-abort)
-   ([tab] . company-yas)
-   ("M-n" . nil)
-   ("M-p" . nil)
-   ("C-n" . company-complete-common-or-cycle)
-   ("C-p" . company-select-previous)
-   ("C-/" . company-filter-candidates))
-  (:company-search-map
-   ("C-n" . company-select-next)
-   ("C-p" . company-select-previous))
   :init
   (setq company-tooltip-width-grow-only t
         company-idle-delay 0
@@ -55,8 +43,6 @@
 (leaf yasnippet
   :blackout t
   :hook (prog-mode-hook . yas-minor-mode)
-  :bind (:yas-minor-mode-map
-         ("C-t" . my-yasnippet-switch))
   :init
   (setq yas-triggers-in-field t
         ;; yas-also-indent-empty-lines t

@@ -10,21 +10,6 @@
   :hook
   (after-init-hook . ivy-mode)
   (ivy-mode-hook . counsel-mode)
-  :bind
-  ("C-s" . swiper-isearch)
-  (:ivy-minibuffer-map
-   ([escape] . minibuffer-keyboard-quit)
-   ;; ("C-j" . ivy-next-line-and-call)
-   ;; ("C-k" . ivy-previous-line-and-call)
-   ("C-l" . ivy-dispatching-done)
-   ;; ("C-u" . ivy-dispatching-call)
-   )
-  (:counsel-find-file-map
-   ("C-h" . counsel-up-directory)
-   ([backspace] . counsel-up-directory))
-  (:swiper-isearch-map
-   ("M-q" . swiper-query-replace)
-   ("C-t" . isearch-toggle-color-rg))
   :init
   (setq enable-recursive-minibuffers nil
         ivy-use-virtual-buffers t
@@ -104,8 +89,7 @@
     (setq ivy-rich-parse-remote-file-path nil))
 
   ;; Integrate yasnippet
-  (leaf ivy-yasnippet
-    :bind ("C-c C-y" . ivy-yasnippet))
+  (leaf ivy-yasnippet :commands ivy-yasnippet)
 
   (leaf ivy-prescient
     :require t
@@ -125,9 +109,7 @@
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 
-(leaf counsel-osx-app
-  :bind (:counsel-mode-map
-         ("s-<f6>" . counsel-osx-app)))
+(leaf counsel-osx-app :commands counsel-osx-app)
 
 ;; ;; Tramp ivy interface
 ;; (use-package counsel-tramp

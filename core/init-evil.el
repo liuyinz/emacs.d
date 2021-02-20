@@ -104,133 +104,15 @@
         evil-ex-substitute-global t)
   :config
 
+  ;; set leader and localleader
+  (evil-set-leader '(normal visual) ";")
+  (evil-set-leader '(normal visual) "," t)
+
   ;; hl-line
   (add-hook 'evil-normal-state-entry-hook #'hl-line-mode)
   (add-hook 'evil-emacs-state-exit-hook #'hl-line-mode)
   (add-hook 'evil-insert-state-entry-hook (lambda () (hl-line-mode -1)))
   (add-hook 'evil-emacs-state-entry-hook (lambda () (hl-line-mode -1)))
-
-  (defun my-replace ()
-    "Self defined replace for evil"
-    (interactive)
-    (if (evil-normal-state-p)
-        (evil-ex "%s/")
-      (evil-ex "'<,'>s/")))
-
-  ;; set leader and localleader
-  (evil-define-key 'motion 'global ";" nil "," nil)
-  (evil-set-leader '(normal visual) ";")
-  (evil-set-leader '(normal visual) "," t)
-
-  (with-eval-after-load 'evil-maps
-    (define-key evil-insert-state-map "\C-t" nil)
-    (define-key evil-insert-state-map "\C-n" 'evil-open-below)
-    (define-key evil-insert-state-map "\C-p" 'evil-open-above)
-    )
-
-  ;;evil binding
-  (evil-define-key '(normal emacs insert replace) 'global
-    (kbd "M-p") 'vterm-toggle
-    (kbd "C-l") 'ace-window
-    (kbd "C-; ;") 'avy-goto-word-0
-    (kbd "C-; l") 'avy-goto-line
-    (kbd "C-; f") 'avy-goto-char
-    (kbd "C-; r") 'avy-resume
-    (kbd "C-; p") 'avy-goto-paren
-    )
-
-  (evil-define-key '(normal visual) 'global
-    ;; replace redo with U
-    "\C-r" nil
-    "U" 'evil-redo
-    ;; ? to replace
-    "?" 'my-replace
-    ;; select the previously pasted text
-    ;; "gp" "`[v`]"
-    ;; run the macro in the q register
-    "Q" "@q"
-    "gr" 'dash-at-point
-    ;; magit
-    "gs" 'magit-status
-
-    (kbd "<leader> xf") 'counsel-find-file
-    (kbd "<leader> xb") 'counsel-switch-buffer
-    (kbd "<leader> xs") 'save-buffer
-    (kbd "<leader> xk") 'kill-buffer
-    (kbd "<leader> ;") 'counsel-counsel
-
-    ;; color-rg
-    (kbd "<leader> ss") 'color-rg-search-input-in-current-file
-    (kbd "<leader> sd") 'color-rg-search-input
-    (kbd "<leader> sp") 'color-rg-search-input-in-project
-    (kbd "<leader> st") 'color-rg-search-project-with-type
-    ;; nerd-commenter
-    (kbd "<leader> cc") 'evilnc-comment-or-uncomment-lines
-    (kbd "<leader> ci") 'evilnc-copy-and-comment-lines
-    ;; self-define
-    (kbd "<leader> mf") 'my-format
-    (kbd "<leader> mr") 'my-run
-    )
-
-  (evil-define-key 'normal origami-mode-map
-    ;; "za" 'origami-forward-toggle-node
-    "zm" 'origami-toggle-all-nodes
-    ;; "zp" 'origami-previous-fold
-    ;; "zn" 'origami-forward-fold
-    ;; "zc" 'origami-recursively-toggle-node
-    ;; "zo" 'origami-show-node
-    ;; "zr" 'origami-redo
-    ;; "zu" 'origami-undo
-    )
-
-  (evil-define-key 'normal flycheck-mode-map
-    "]f" 'flycheck-next-error
-    "[f" 'flycheck-previous-error)
-
-  (evil-define-key 'emacs flycheck-error-list-mode-map
-    "n" 'flycheck-error-list-next-error
-    "p" 'flycheck-error-list-previous-error
-    "c" 'flycheck-error-list-check-source
-    "s" 'flycheck-error-list-set-filter
-    "S" 'flycheck-error-list-reset-filter
-    "x" 'flycheck-error-list-explain-error
-    (kbd "RET") 'flycheck-error-list-goto-error
-    "q" 'quit-window)
-
-  (evil-define-key 'normal diff-hl-mode-map
-    "[g" 'diff-hl-previous-hunk
-    "]g" 'diff-hl-next-hunk
-    "gh" 'diff-hl-revert-hunk)
-
-  (evil-define-key 'emacs vterm-mode-map
-    "\M-n" 'vterm-toggle-insert-cd)
-
-
-  (evil-define-key 'normal smerge-mode-map
-    ;; move
-    "n" 'smerge-next
-    "p" 'smerge-prev
-    ;; keep
-    "a" 'smerge-keep-all
-    "b" 'smerge-keep-base
-    "l" 'smerge-keep-lower
-    "u" 'smerge-keep-upper
-    "\C-m" 'smerge-keep-current
-    "RET" 'smerge-keep-current
-    ;; diff
-    "<" 'smerge-diff-base-upper
-    "=" 'smerge-diff-upper-lower
-    ">" 'smerge-diff-base-lower
-    "R" 'smerge-refine
-    "E" 'smerge-ediff
-    ;; other
-    "C" 'smerge-combine-with-next
-    "r" 'smerge-resolve
-    "k" 'smerge-kill-current
-    "ZZ" (lambda ()
-           (interactive)
-           (save-buffer)
-           (bury-buffer)))
 
   ;;set evil initial state
   (dolist (p '((anaconda-nav-mode . emacs)

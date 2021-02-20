@@ -7,9 +7,9 @@
 (leaf js2-mode
   :defun (flycheck-select-checker . flycheck)
   :mode ("\\.js\\'" . js2-mode)
-         ("\\.jsx\\'" . js2-jsx-mode)
+  ("\\.jsx\\'" . js2-jsx-mode)
   :interpreter ("node" . js2-mode)
-                ("node" . js2-jsx-mode)
+  ("node" . js2-jsx-mode)
   :hook (js2-mode-hook . my-js2-mode-setup)
   :init
   (setq js-indent-level 2)
@@ -24,11 +24,10 @@
       (flycheck-select-checker 'javascript-eslint))))
 
 (leaf nodejs-repl
-  :bind (:js2-mode-map
-         ("C-x C-e" . nodejs-repl-send-last-expression)
-         ("C-c C-l" . nodejs-repl-send-line)
-         ("C-c C-r" . nodejs-repl-send-region)
-         ("C-c C-f" . nodejs-repl-load-file)))
+  :commands (nodejs-repl-send-last-expression
+             nodejs-repl-send-line
+             nodejs-repl-send-region
+             nodejs-repl-load-file))
 
 (leaf js2-refactor
   :doc "deps: multiple-cursors"

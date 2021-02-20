@@ -16,12 +16,6 @@
       (goto-char (point-max))
       (insert ";;; " fname " ends here\n"))))
 
-(leaf elisp-mode
-  :bind (:emacs-lisp-mode-map
-         ("C-c C-x" . ielm)
-         ("C-c C-c" . eval-defun)
-         ("C-c C-b" . eval-buffer)))
-
 ;; (when (boundp 'elisp-flymake-byte-compile-load-path)
 ;; (add-to-list 'elisp-flymake-byte-compile-load-path load-path))
 

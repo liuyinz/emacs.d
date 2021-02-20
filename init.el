@@ -71,5 +71,6 @@
   (require 'init-web)
   (require 'init-js)
   (require 'init-evil)
+  (require 'init-key)
   )
 ;;; init.el ends here

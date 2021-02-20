@@ -6,9 +6,7 @@
   :doc "deps: with-editor forge transient git-modes ghub"
   :defun (yas-activate-extra-mode . yasnippet)
   :commands (magit-status magit-dispatch magit-submodule)
-  :hook
-  (after-init-hook . global-auto-revert-mode)
-  (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
+  :hook (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
   :mode
   ("\\COMMIT_EDITMSG\\'" . text-mode)
   ("\\MERGE_MSG\\'" . text-mode)
@@ -24,16 +22,15 @@
                           'magit-insert-stashes
                           'append))
 
-;; Git related modes
-(leaf git-modes :require t)
+;; ;; Git related modes
+;; (leaf git-modes :require t)
 
 (leaf gitignore-templates
   :commands gitignore-templates-insert gitignore-templates-new-file
   :init (setq gitignore-templates-api 'github))
 
 ;; Open github/gitlab/bitbucket page
-(leaf browse-at-remote
-  :bind (:vc-prefix-map ("B" . browse-at-remote)))
+(leaf browse-at-remote :commands browse-at-remote)
 
 (provide 'init-vcs)
 ;;; init-vcs.el ends here

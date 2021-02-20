@@ -4,9 +4,6 @@
 
 (leaf dired
   :hook (dired-mode-hook . dired-hide-details-mode)
-  :bind (:dired-mode-map
-         ("C-c C-p" . wdired-change-to-wdired-mode)
-         ("C-c C-z f" . browse-url-of-file))
   :init
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
@@ -36,8 +33,6 @@
   ;; (leaf dired-aux)
   (leaf dired-x
     :hook (dired-mode-hook . dired-omit-mode)
-    :bind (:dired-mode-map
-           ("(" . dired-omit-mode))
     :config
     (let ((cmd "open"))
       (setq dired-guess-shell-alist-user
@@ -61,13 +56,11 @@
 ;; Show git info in dired
 (leaf dired-git-info
   :blackout t
-  :bind (:dired-mode-map
-         (")" . dired-git-info-mode)))
+  :commands dired-git-info-mode)
 
 ;; Allow rsync from dired buffers
 (leaf dired-rsync
-  :bind (:dired-mode-map
-         ("C-c C-r" . dired-rsync)))
+  :commands dired-rsync)
 
 ;; Colourful dired
 (leaf diredfl
