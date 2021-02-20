@@ -22,7 +22,9 @@
 
 ;; for native-comp branch
 ;; (setq comp-speed 2)
-;; (setq comp-eln-load-path (expand-file-name "eln-cache/" my-dir-cache))
+;; (setq comp-deferred-compilation nil)
+;; (when (boundp 'comp-eln-load-path)
+;;   (setq comp-eln-load-path (expand-file-name "eln-cache/" my-dir-cache)))
 
 ;; add submodules to load-path
 (defun add-subdirs-to-load-path (dir)

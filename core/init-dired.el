@@ -52,6 +52,10 @@
           (concat dired-omit-files
                   "\\|^.DS_Store$\\|^.projectile$\\|^.git*\\|^.svn$\\|^.vscode$\\|\\.js\\.meta$\\|\\.meta$\\|\\.elc$\\|^.emacs.*"))))
 
+;; Colourful dired
+(leaf diredfl
+  :blackout t
+  :hook (dired-mode-hook . diredfl-mode))
 
 ;; Show git info in dired
 (leaf dired-git-info
@@ -61,11 +65,6 @@
 ;; Allow rsync from dired buffers
 (leaf dired-rsync
   :commands dired-rsync)
-
-;; Colourful dired
-(leaf diredfl
-  :blackout t
-  :hook (dired-mode-hook . diredfl-mode))
 
 ;; `find-dired' alternative using `fd'
 (when (executable-find "fd")

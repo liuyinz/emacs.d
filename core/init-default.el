@@ -4,12 +4,13 @@
 
 (leaf startup
   :init
-  (defun display-startup-echo-area-message ())
   (setq inhibit-startup-screen t
         inhibit-startup-echo-area-message (user-login-name)
         initial-scratch-message nil
         inhibit-default-init t
-        initial-major-mode 'fundamental-mode))
+        initial-major-mode 'fundamental-mode)
+  ;; Get rid of "For information about GNU Emacs..." message at startup
+  (advice-add #'display-startup-echo-area-message :override #'ignore))
 
 ;; Start server
 (leaf server
@@ -86,6 +87,7 @@
         create-lockfiles nil
         auto-save-default nil
         auto-save-list-file-prefix nil
+        auto-mode-case-fold nil
         save-silently t
         confirm-kill-processes nil
         find-file-suppress-same-file-warnings t))
@@ -199,23 +201,64 @@
               right-margin-width 0
               default-directory "~")
 
-;; ;; Mouse & Smooth Scroll
-;; (setq scroll-step 0
-;;       scroll-margin 0
-;;       scroll-conservatively 100000)
+;; Disable bidirectional text rendering for a modest performance boost. I've set
+;; this to `nil' in the past, but the `bidi-display-reordering's docs say that
+;; is an undefined state and suggest this to be just as good:
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
+
+;; Disabling the BPA makes redisplay faster, but might produce incorrect display
+;; reordering of bidirectional text with embedded parentheses and other bracket
+;; characters whose 'paired-bracket' Unicode property is non-nil.
+(setq bidi-inhibit-bpa t)  ; Emacs 27 only
+
+;; Reduce rendering/line scan work for Emacs by not rendering cursors or regions
+;; in non-focused windows.
+(setq-default cursor-in-non-selected-windows nil)
+(setq highlight-nonselected-windows nil)
+
+;; More performant rapid scrolling over unfontified regions. May cause brief
+;; spells of inaccurate syntax highlighting right after scrolling, which should
+;; quickly self-correct.
+(setq fast-but-imprecise-scrolling t)
+
+;; Don't ping things that look like domain names.
+(setq ffap-machine-p-known 'reject)
+
+;; Emacs "updates" its ui more often than it needs to, so we slow it down
+;; slightly from 0.5s:
+(setq idle-update-delay 1.0)
+
+;; Font compacting can be terribly expensive, especially for rendering icon
+;; fonts on Windows. Whether disabling it has a notable affect on Linux and Mac
+;; hasn't been determined, but we inhibit it there anyway. This increases memory
+;; usage, however!
+(setq inhibit-compacting-font-caces t)
+
+;; Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
+;; receiving input, which should help with performance while scrolling.
+(setq redisplay-skip-fontification-on-input t)
+
+;; Remove command line options that aren't relevant to our current OS
+(setq command-line-x-option-alist nil)
+
+;; This file stores usernames, passwords, and other such treasures for the aspiring malicious third party.
+(setq auth-sources '((expand-file-name ("authinfo.gpg") my-dir-cache)))
 
 ;; Misc
 (defalias 'yes-or-no-p 'y-or-n-p)
-;; Alias the UTF-8
-(define-coding-system-alias 'UTF-8 'utf-8)
 
 ;; Encoding
+;; Alias the UTF-8
+(define-coding-system-alias 'UTF-8 'utf-8)
 ;; UTF-8 as the default coding system
 (when (fboundp 'set-charset-priority)
   (set-charset-priority 'unicode))
 
 (prefer-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+
 (set-language-environment 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
@@ -223,12 +266,11 @@
 (set-file-name-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
 (modify-coding-system-alist 'process "*" 'utf-8)
 (setenv "LC_ALL" "en_CN.UTF-8")
+
 ;; make vterm colorful
-(setenv "COLORTERM" "truecolor")
-;; Don't ask me when kill process buffer
+(setenv "COLORTERM" "truecolor");; Don't ask me when kill process buffer
 (setq kill-buffer-query-functions
       (remq 'process-kill-buffer-query-function
             kill-buffer-query-functions))
