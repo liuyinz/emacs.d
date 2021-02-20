@@ -32,7 +32,7 @@
 
 ;; Flexible text folding
 (leaf origami
-  :hook (after-init-hook . global-origami-mode)
+  :hook (prog-mode-hook . origami-mode)
   :init (setq origami-show-fold-header t)
   :config (face-spec-reset-face 'origami-fold-header-face))
 

@@ -11,24 +11,17 @@
 
 (leaf leaf-keywords
   :require t
-  :defun leaf-keywords-init
-  :config (leaf-keywords-init))
-
-(leaf blackout :require t)
+  :config
+  (leaf-keywords-init)
+  (leaf blackout :require t))
 
 (leaf auto-compile
-  :require t
-  :defun (auto-compile-on-load-mode auto-compile-on-save-mode)
-  :config
-  (auto-compile-on-load-mode))
+  :blackout t
+  :hook (after-init-hook . auto-compile-on-load-mode))
 
 ;; Environment
 (leaf exec-path-from-shell
   :require t
-  :defvar (exec-path-from-shell-check-startup-files
-           exec-path-from-shell-variables
-           exec-path-from-shell-arguments)
-  :defun exec-path-from-shell-initialize
   :init
   (setq exec-path-from-shell-check-startup-files nil
         exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
@@ -46,12 +39,6 @@
 ;; keep ~/.emacs.d clean
 (leaf no-littering
   :require t
-  :defvar (recentf-exclude
-           my-dir-cache
-           no-littering-var-directory
-           no-littering-etc-directory)
-  :defun (no-littering-expand-etc-file-name
-          no-littering-expand-var-file-name)
   :init
   (setq no-littering-etc-directory (expand-file-name "etc/" my-dir-cache)
         no-littering-var-directory (expand-file-name "var/" my-dir-cache))
@@ -64,7 +51,7 @@
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
-;; (use-package with-proxy
+;; (leaf with-proxy
 ;;   :init
 ;;   (setq with-proxy-http-server "127.0.0.1:7890"))
 
