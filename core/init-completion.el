@@ -88,8 +88,6 @@ $0`(yas-escape-text yas-selected-text)`")
     (evil-insert))
 
   :config
-  ;; no-littering setting changed original
-  (add-to-list 'yas-snippet-dirs 'my-dir-snippet)
   (yas-reload-all))
 
 (provide 'init-completion)

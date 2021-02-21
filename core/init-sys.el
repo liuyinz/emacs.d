@@ -47,9 +47,14 @@
   (with-eval-after-load 'recentf
     (add-to-list 'recentf-exclude no-littering-var-directory)
     (add-to-list 'recentf-exclude no-littering-etc-directory))
+
   ;; save auto-save file if needed
   (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+  ;; restore yasnippet settings
+  (with-eval-after-load 'yasnippet
+    (setq yas-snippet-dirs '(my-dir-snippet))))
 
 ;; (leaf with-proxy
 ;;   :init
