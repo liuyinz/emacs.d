@@ -47,9 +47,9 @@
 
   ;; (require 'init-test)
   (require 'init-default)
+  (require 'init-completion)
   (require 'init-ivy)
   ;; (require 'init-selectrum)
-  (require 'init-company)
   ;; ui
   (require 'init-ui)
   (require 'init-highlight)

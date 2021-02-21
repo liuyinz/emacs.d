@@ -100,13 +100,13 @@
   (evil-define-key nil company-active-map
     (kbd "M-n") nil
     (kbd "M-p") nil
+    ;; (kbd "<escape>") 'company-abort
     (kbd "C-n") 'company-complete-common-or-cycle
     (kbd "C-p") 'company-select-previous
     (kbd "C-/") 'company-filter-candidates
     (kbd "C-h") 'company-show-doc-buffer
     (kbd "C-d") 'company-show-location
-    ;; (kbd "<escape>") 'company-abort
-    (kbd "<tab>") 'company-yas)
+    (kbd "<tab>") 'my-company-yasnippet)
 
   (evil-define-key nil company-search-map
     ;; (kbd "<escape>") 'company-search-abort
@@ -115,7 +115,8 @@
 
   ;; yasnippet
   (evil-define-key nil yas-minor-mode-map
-    (kbd "C-c C-t") 'my-yasnippet-switch)
+    (kbd "C-c C-t") 'my-yasnippet-switch
+    (kbd "<tab>") 'my-company-yasnippet)
 
   ;; color-rg
   (evil-define-key nil color-rg-mode-map

@@ -6,7 +6,6 @@
 (leaf counsel
   :doc "deps: multiple-cursors"
   :blackout ivy-mode counsel-mode
-  :defun ivy-set-actions
   :hook
   (after-init-hook . ivy-mode)
   (ivy-mode-hook . counsel-mode)
@@ -22,7 +21,6 @@
         ivy-initial-inputs-alist nil
         ivy-more-chars-alist '((t . 2))
         ivy-re-builders-alist '((t . ivy--regex-ignore-order))
-        ;; ivy-display-style 'fancy
         swiper-action-recenter t)
 
   (setq counsel-find-file-at-point t
@@ -77,29 +75,13 @@
 
   ;; Integration with `magit'
   (with-eval-after-load 'magit
-    (setq magit-completing-read-function 'ivy-completing-read))
+    (setq magit-completing-read-function 'ivy-completing-read)))
 
-  ;; More friendly display transformer for Ivy
-  (leaf ivy-rich
-    :hook (ivy-mode-hook . ivy-rich-mode)
-    :init
-    (setq ivy-rich-path-style 'abbrev)
-    ;; For better performance
-    (setq ivy-rich-parse-remote-buffer nil)
-    (setq ivy-rich-parse-remote-file-path nil))
-
-  ;; Integrate yasnippet
-  (leaf ivy-yasnippet :commands ivy-yasnippet)
-
-  (leaf ivy-prescient
-    :require t
-    :blackout ivy-prescient-mode
-    :hook (ivy-mode-hook . ivy-prescient-mode)))
-
-(leaf prescient
-  :blackout prescient-persisit-mode
-  :hook (after-init-hook . prescient-persist-mode)
-  :init (setq prescient-history-length 300))
+(leaf ivy-prescient
+  :blackout ivy-prescient-mode
+  ;; must load counsel.el before ivy-prescient.el
+  ;; @https://github.com/raxod502/prescient.el
+  :hook (counsel-mode-hook . ivy-prescient-mode))
 
 ;; Select from xref candidates with Ivy
 (leaf ivy-xref
@@ -108,6 +90,14 @@
     (setq xref-show-definitions-function #'ivy-xref-show-defs))
   (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
+;; More friendly display transformer for Ivy
+(leaf ivy-rich
+  :hook (ivy-mode-hook . ivy-rich-mode)
+  :init
+  (setq ivy-rich-path-style 'abbrev)
+  ;; For better performance
+  (setq ivy-rich-parse-remote-buffer nil)
+  (setq ivy-rich-parse-remote-file-path nil))
 
 (leaf counsel-osx-app :commands counsel-osx-app)
 
