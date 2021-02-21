@@ -100,9 +100,6 @@
 [submodule "indent-guide"]
 	path = module/indent-guide
 	url = https://github.com/zk-phi/indent-guide.git
-[submodule "ivy-yasnippet"]
-	path = module/ivy-yasnippet
-	url = https://github.com/mkcms/ivy-yasnippet.git
 [submodule "ivy-rich"]
 	path = module/ivy-rich
 	url = https://github.com/Yevgnen/ivy-rich.git
