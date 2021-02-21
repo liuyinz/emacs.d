@@ -2,6 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+(leaf prescient
+  :blackout prescient-persisit-mode
+  :hook (after-init-hook . prescient-persist-mode)
+  :init (setq prescient-history-length 300))
+
 (leaf orderless
   :require t
   ;; :commands orderless-filter orderless-highlight-matches
@@ -16,21 +21,20 @@
    ([escape] . minibuffer-keyboard-quit))
   :init
   (setq selectrum-max-window-height 15
-        selectrum-extend-current-candidate-highlight nil
+        selectrum-fix-vertical-window-height t
+        selectrum-right-margin-padding 0
+        selectrum-extend-current-candidate-highlight t
         selectrum-count-style 'current/matches
-        selectrum-complete-in-buffer nil)
+        ;; selectrum-complete-in-buffer nil
+        )
   :config
   (with-eval-after-load 'orderless
     (setq selectrum-refine-candidates-function #'orderless-filter)
     (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)))
 
 (leaf selectrum-prescient
-  :require t
-  :blackout (selectrum-prescient-mode prescient-persist-mode)
-  :hook (selectrum-mode-hook . (lambda()
-                                 (selectrum-prescient-mode)
-                                 (prescient-persist-mode)))
-  :init (setq prescient-history-length 300))
+  :blackout selectrum-prescient-mode
+  :hook (selectrum-mode-hook . selectrum-prescient-mode))
 
 (leaf consult
   :init

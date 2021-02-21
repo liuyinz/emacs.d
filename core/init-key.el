@@ -50,11 +50,11 @@
     ;; magit
     "gs" 'magit-status
 
-    (kbd "<leader> xf") 'counsel-find-file
-    (kbd "<leader> xb") 'ivy-switch-buffer
+    ;; (kbd "<leader> xf") 'counsel-find-file
+    ;; (kbd "<leader> xb") 'ivy-switch-buffer
     (kbd "<leader> xs") 'save-buffer
     (kbd "<leader> xk") 'kill-buffer
-    (kbd "<leader> ;") 'counsel-counsel
+    ;; (kbd "<leader> ;") 'counsel-counsel
 
     ;; color-rg
     (kbd "<leader> ss") 'color-rg-search-input-in-current-file
@@ -68,24 +68,24 @@
     (kbd "<leader> mf") 'my-format
     (kbd "<leader> mr") 'my-run)
 
-  ;;ivy
-  (evil-define-key nil ivy-minibuffer-map
-    (kbd "<escape>") 'minibuffer-keyboard-quit
-    ;; (kbd "C-j") 'ivy-next-line-and-call
-    ;; (kbd "C-k") 'ivy-previous-line-and-call
-    ;; (kbd "C-u") 'ivy-dispatching-call
-    (kbd "C-l") 'ivy-dispatching-done)
+  ;; ;;ivy
+  ;; (evil-define-key nil ivy-minibuffer-map
+  ;;   (kbd "<escape>") 'minibuffer-keyboard-quit
+  ;;   ;; (kbd "C-j") 'ivy-next-line-and-call
+  ;;   ;; (kbd "C-k") 'ivy-previous-line-and-call
+  ;;   ;; (kbd "C-u") 'ivy-dispatching-call
+  ;;   (kbd "C-l") 'ivy-dispatching-done)
 
-  (evil-define-key nil swiper-isearch-map
-    (kbd "M-q") 'swiper-query-replace
-    (kbd "C-t") 'isearch-toggle-color-rg)
+  ;; (evil-define-key nil swiper-isearch-map
+  ;;   (kbd "M-q") 'swiper-query-replace
+  ;;   (kbd "C-t") 'isearch-toggle-color-rg)
 
-  (evil-define-key nil counsel-mode-map
-    (kbd "s-<f6>") 'counsel-osx-app)
+  ;; (evil-define-key nil counsel-mode-map
+  ;;   (kbd "s-<f6>") 'counsel-osx-app)
 
-  (evil-define-key nil counsel-find-file-map
-    (kbd "C-h") 'counsel-up-directory
-    (kbd "<backspace>") 'counsel-up-directory)
+  ;; (evil-define-key nil counsel-find-file-map
+  ;;   (kbd "C-h") 'counsel-up-directory
+  ;;   (kbd "<backspace>") 'counsel-up-directory)
 
   ;; dired
   (evil-define-key nil dired-mode-map
@@ -95,7 +95,6 @@
     ")" 'dired-git-info-mode
     "(" 'dired-omit-mode)
 
-  
   ;; Company
   (evil-define-key nil company-active-map
     (kbd "M-n") nil

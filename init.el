@@ -48,8 +48,8 @@
   ;; (require 'init-test)
   (require 'init-default)
   (require 'init-completion)
-  (require 'init-ivy)
-  ;; (require 'init-selectrum)
+  ;; (require 'init-ivy)
+  (require 'init-selectrum)
   ;; ui
   (require 'init-ui)
   (require 'init-highlight)
