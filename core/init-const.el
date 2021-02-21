@@ -11,7 +11,7 @@
   "User dir for submodules.")
 
 (defconst my-dir-snippet
-  (expand-file-name "snippet" user-emacs-directory)
+  (expand-file-name "snippets" user-emacs-directory)
   "User dir for code snippets.")
 
 (defconst my-dir-cache

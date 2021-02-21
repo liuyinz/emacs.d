@@ -1,4 +1,4 @@
-;;; init-company.el --- company setting -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-completion.el --- setting for completion -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -6,16 +6,19 @@
 
 (leaf company
   :blackout t
-  :commands company-cancel
-  :hook ((prog-mode-hook conf-mode-hook eshell-mode-hook) . company-mode)
+  :hook (after-init-hook . global-company-mode)
   :init
   (setq company-tooltip-width-grow-only t
+        company-tooltip-align-annotations t
+        company-tooltip-limit 15
         company-idle-delay 0
         company-require-match nil
         company-selection-wrap-around t
         company-dabbrev-ignore-case nil
         company-dabbrev-downcase nil
         company-search-regexp-function #'company-search-words-in-any-order-regexp)
+  (setq-default company-dabbrev-other-buffers 'all
+                company-tooltip-align-annotations t)
 
   (setq company-global-modes '(not erc-mode message-mode help-mode
                                    gud-mode eshell-mode shell-mode))
@@ -25,19 +28,38 @@
                             company-echo-metadata-frontend))
 
   (setq company-backends '(company-capf
-                           company-semantic
-                           (company-dabbrev-code
-                            company-gtags
-                            company-etags
-                            company-keywords)
-                           company-files
-                           company-dabbrev))
+                           (company-dabbrev-code company-keywords company-files)
+                           company-dabbrev company-gtags company-etags))
 
-  (defun company-yas ()
-    "Hide the current completeions and insert snippets."
-    (interactive)
-    (company-cancel)
-    (yas-expand)))
+  :config
+  (with-no-warnings
+    (with-eval-after-load 'yasnippet
+      (require 'company-yasnippet)
+
+      (defun my-company-yasnippet ()
+        "Hide the current completeions and show snippets."
+        (interactive)
+        (company-cancel)
+        (call-interactively 'company-yasnippet)))))
+
+(leaf prescient
+  :blackout prescient-persisit-mode
+  :hook (after-init-hook . prescient-persist-mode)
+  :init (setq prescient-history-length 300))
+
+;; Better sorting and filtering
+(leaf company-prescient
+  :blackout company-prescient-mode
+  :hook (company-mode-hook . company-prescient-mode))
+
+(leaf company-box
+  :doc "deps : frame-local"
+  :hook (company-mode-hook . company-box-mode)
+  :init
+  (setq company-box-enable-icon t
+        company-box-max-candidates 20
+        company-box-scrollbar nil
+        company-box-show-single-candidate 'never))
 
 ;; yasnippet
 (leaf yasnippet
@@ -70,5 +92,5 @@ $0`(yas-escape-text yas-selected-text)`")
   (add-to-list 'yas-snippet-dirs 'my-dir-snippet)
   (yas-reload-all))
 
-(provide 'init-company)
-;;; init-company.el ends here
+(provide 'init-completion)
+;;; init-completion.el ends here
