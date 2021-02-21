@@ -18,7 +18,6 @@
     (kbd "M-p") 'vterm-toggle
     (kbd "C-;") 'ace-window
     (kbd "C-s") 'swiper-isearch
-    (kbd "C-c C-y") 'ivy-yasnippet
     ;; (kbd "M-j") nil
     ;; (kbd "M-k") nil
     ;; (kbd "M-u") nil
@@ -52,7 +51,7 @@
     "gs" 'magit-status
 
     (kbd "<leader> xf") 'counsel-find-file
-    (kbd "<leader> xb") 'counsel-switch-buffer
+    (kbd "<leader> xb") 'ivy-switch-buffer
     (kbd "<leader> xs") 'save-buffer
     (kbd "<leader> xk") 'kill-buffer
     (kbd "<leader> ;") 'counsel-counsel
@@ -96,6 +95,7 @@
     ")" 'dired-git-info-mode
     "(" 'dired-omit-mode)
 
+  
   ;; Company
   (evil-define-key nil company-active-map
     (kbd "M-n") nil

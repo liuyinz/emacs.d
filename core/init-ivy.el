@@ -77,6 +77,11 @@
   (with-eval-after-load 'magit
     (setq magit-completing-read-function 'ivy-completing-read)))
 
+(leaf prescient
+  :blackout prescient-persisit-mode
+  :hook (after-init-hook . prescient-persist-mode)
+  :init (setq prescient-history-length 300))
+
 (leaf ivy-prescient
   :blackout ivy-prescient-mode
   ;; must load counsel.el before ivy-prescient.el

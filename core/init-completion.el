@@ -24,7 +24,7 @@
                                    gud-mode eshell-mode shell-mode))
 
   (setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
-                            company-preview-common-frontend
+                            company-preview-frontend
                             company-echo-metadata-frontend))
 
   (setq company-backends '(company-capf
@@ -41,25 +41,6 @@
         (interactive)
         (company-cancel)
         (call-interactively 'company-yasnippet)))))
-
-(leaf prescient
-  :blackout prescient-persisit-mode
-  :hook (after-init-hook . prescient-persist-mode)
-  :init (setq prescient-history-length 300))
-
-;; Better sorting and filtering
-(leaf company-prescient
-  :blackout company-prescient-mode
-  :hook (company-mode-hook . company-prescient-mode))
-
-(leaf company-box
-  :doc "deps : frame-local"
-  :hook (company-mode-hook . company-box-mode)
-  :init
-  (setq company-box-enable-icon t
-        company-box-max-candidates 20
-        company-box-scrollbar nil
-        company-box-show-single-candidate 'never))
 
 ;; yasnippet
 (leaf yasnippet
