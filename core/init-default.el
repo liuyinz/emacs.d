@@ -39,7 +39,7 @@
   :init
   (setq recentf-max-menu-items 20
         recentf-max-saved-items 1000
-        recentf-auto-cleanup 60
+        recentf-auto-cleanup 30
         recentf-exclude
         '("\\.?cache" ".cask" "url" "COMMIT_EDITMSG\\'" "bookmarks"
           "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
@@ -70,11 +70,6 @@
                                         extended-command-history)))
 
 (leaf simple
-  :hook (after-init-hook . (lambda ()
-                             (size-indication-mode)
-                             (transient-mark-mode)
-                             (line-number-mode)
-                             (column-number-mode)))
   :init
   (setq line-move-visual t
         track-eol t
@@ -259,14 +254,14 @@
 (setq locale-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 
-(set-language-environment 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-buffer-file-coding-system 'utf-8)
-(set-clipboard-coding-system 'utf-8)
-(set-file-name-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(modify-coding-system-alist 'process "*" 'utf-8)
+;; (set-language-environment 'utf-8)
+;; (set-default-coding-systems 'utf-8)
+;; (set-buffer-file-coding-system 'utf-8)
+;; (set-clipboard-coding-system 'utf-8)
+;; (set-file-name-coding-system 'utf-8)
+;; (set-keyboard-coding-system 'utf-8)
+;; (set-terminal-coding-system 'utf-8)
+;; (modify-coding-system-alist 'process "*" 'utf-8)
 (setenv "LC_ALL" "en_CN.UTF-8")
 
 ;; make vterm colorful
