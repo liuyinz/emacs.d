@@ -55,7 +55,7 @@
   (require 'init-highlight)
   ;; (require 'init-frame)
   (require 'init-window)
-  (require 'init-ibuffer)
+  ;; (require 'init-ibuffer)
   (require 'init-dired)
   ;; (require 'init-org)
   (require 'init-edit)

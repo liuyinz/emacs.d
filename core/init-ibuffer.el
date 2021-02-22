@@ -6,10 +6,10 @@
   :defvar ibuffer-show-empty-filter-groups
   :commands (ibuffer ibuffer-use-other-window)
   :hook (ibuffer-mode-hook .  (lambda ()
-                           (ibuffer-auto-mode)
-                           (ibuffer-vc-set-filter-groups-by-vc-root)
-                           (unless (eq ibuffer-sorting-mode 'alphabetic)
-                             (ibuffer-do-sort-by-alphabetic))))
+                                (ibuffer-auto-mode)
+                                (ibuffer-vc-set-filter-groups-by-vc-root)
+                                (unless (eq ibuffer-sorting-mode 'alphabetic)
+                                  (ibuffer-do-sort-by-alphabetic))))
   :init
   ;; hide summary
   (setq ibuffer-expert t)
@@ -19,13 +19,13 @@
   ;; Use human readable Size column instead of original one
   (define-ibuffer-column size-h
     (:name "Size"
-     :inline t
-     :header-mouse-map ibuffer-size-header-map
-     :summarizer
-     (lambda (column-strings)
-       (cl-loop for s in column-strings
-                sum (get-text-property (1- (length s)) 'size s) into total
-                finally return (file-size-human-readable total))))
+           :inline t
+           :header-mouse-map ibuffer-size-header-map
+           :summarizer
+           (lambda (column-strings)
+             (cl-loop for s in column-strings
+                      sum (get-text-property (1- (length s)) 'size s) into total
+                      finally return (file-size-human-readable total))))
     (let ((size (buffer-size)))
       (propertize (file-size-human-readable size)
                   'size size)))
@@ -40,17 +40,18 @@
   ;;               " " filename-and-process
   ;;               )))
 
-  (leaf ibuffer-vc
-    :commands ibuffer-vc-set-filter-groups-by-vc-root
-    :config
-    (setq ibuffer-formats
-          '((mark " " modified read-only vc-status-mini
-                  " " (name 18 18 :left :elide)
-                  " " (size-h 7 -1 :right)
-                  " " (mode 16 16 :left :elide)
-                  " " (vc-status 16 16 :center)
-                  " " vc-relative-file))))
   )
+
+(leaf ibuffer-vc
+  :commands ibuffer-vc-set-filter-groups-by-vc-root
+  :config
+  (setq ibuffer-formats
+        '((mark " " modified read-only vc-status-mini
+                " " (name 18 18 :left :elide)
+                " " (size-h 7 -1 :right)
+                " " (mode 16 16 :left :elide)
+                " " (vc-status 16 16 :center)
+                " " vc-relative-file))))
 
 ;; ;; defined groups
 ;; (setq ibuffer-saved-filter-groups
