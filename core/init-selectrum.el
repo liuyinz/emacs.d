@@ -2,11 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf prescient
-  :blackout prescient-persisit-mode
-  :hook (after-init-hook . prescient-persist-mode)
-  :init (setq prescient-history-length 300))
-
 (leaf selectrum
   :blackout t
   :hook (after-init-hook . selectrum-mode)
@@ -17,27 +12,32 @@
         selectrum-extend-current-candidate-highlight t
         selectrum-count-style 'current/matches)
   :config
-
-  (leaf orderless
+  ;; sorting
+  (leaf selectrum-prescient
     :require t
-    ;; :commands orderless-filter orderless-highlight-matches
-    :init (setq completion-styles '(orderless)))
+    :blackout t
+    :init
+    (setq prescient-history-length 300)
+    :config
+    (prescient-persist-mode)
+    (selectrum-prescient-mode))
 
-  (with-eval-after-load 'orderless
+  ;; filtering
+  (leaf orderless
+    :after selectrum-prescient
+    :require t
+    :config
+    (setq completion-styles '(orderless))
     (setq selectrum-refine-candidates-function #'orderless-filter)
-    (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)))
-
-(leaf selectrum-prescient
-  :blackout selectrum-prescient-mode
-  :hook (selectrum-mode-hook . selectrum-prescient-mode)
-  :config
-  (global-set-key [remap execute-extended-command] 'execute-extended-command))
+    (setq selectrum-highlight-candidates-function #'orderless-highlight-matches))
+  )
 
 (leaf consult
   :require t
   :init
   (setq consult-async-min-input 1)
-
+  ;; (setq consult-project-root-function 'project-roots)
+  :config
   ;; @https://emacs.stackexchange.com/a/36253
   (defun consult-consult ()
     "call command related to consult"
@@ -64,13 +64,13 @@
 
 (leaf marginalia
   :hook (selectrum-mode-hook . marginalia-mode)
-  :bind
-  (:minibuffer-local-map
-   ("C-M-a" . marginalia-cycle))
-  (:embark-general-map
-   ("A" . marginalia-cycle))
+  ;; :bind
+  ;; (:minibuffer-local-map
+  ;;  ("C-M-a" . marginalia-cycle))
+  ;; (:embark-general-map
+  ;;  ("A" . marginalia-cycle))
   :config
-  (setq-default marginalia-annotators '(marginalia-annotators-heavy))
+  (setq-default marginalia-annotators '(marginalia-annotators-heavy nil))
   (advice-add #'marginalia-cycle :after
               (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
 

@@ -27,7 +27,7 @@
     (kbd "C-l p") 'avy-goto-paren
     (kbd "C-l r") 'avy-resume
     ;; selectrum
-    ;; (kbd "C-r") 'selectrum-repeat
+    (kbd "C-x C-z") 'selectrum-repeat
     ;; consult
     [remap switch-to-buffer] 'consult-buffer
     [remap switch-to-buffer-other-window] 'consult-buffer-other-window

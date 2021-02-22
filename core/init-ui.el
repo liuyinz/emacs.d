@@ -34,6 +34,26 @@
     (set-face-attribute 'awesome-tray-module-evil-face nil
                         :foreground "#bbc2cf"
                         :weight 'bold))
+  (with-eval-after-load 'selectrum
+    (set-face-attribute 'selectrum-current-candidate nil
+                        :foreground "white"
+                        :weight 'bold)
+    (set-face-attribute 'selectrum-primary-highlight nil
+                        :foreground "#7bc257"
+                        :weight 'bold))
+  (with-eval-after-load 'marginalia
+    (set-face-attribute 'marginalia-type nil
+                        :inherit font-lock-constant-face)
+    (set-face-attribute 'marginalia-key nil
+                        :inherit font-lock-keyword-face
+                        :weight 'bold)
+    (set-face-attribute 'marginalia-modified nil
+                        :inherit font-lock-string-face)
+    (set-face-attribute 'marginalia-date nil
+                        :inherit font-lock-keyword-face))
+  (with-eval-after-load 'consult
+    (set-face-attribute 'consult-file nil
+                        :inherit font-lock-doc-face))
   )
 
 (leaf awesome-tray
