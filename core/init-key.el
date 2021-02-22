@@ -15,30 +15,64 @@
 
   ;;evil binding
   (evil-define-key nil 'global
-    (kbd "M-p") 'vterm-toggle
+    ;; jump between two buffer
+    (kbd "C-r") 'mode-line-other-buffer
+    ;; window
     (kbd "C-;") 'ace-window
-    (kbd "C-s") 'swiper-isearch
-    ;; (kbd "M-j") nil
-    ;; (kbd "M-k") nil
-    ;; (kbd "M-u") nil
-    ;; (kbd "M-l") nil
+    ;; (kbd "M-p") 'vterm-toggle
+    ;; (kbd "C-s") 'swiper-isearch
+    ;; avy
     (kbd "C-l") nil
-    (kbd "C-l l") 'avy-goto-line
+    (kbd "C-l C-l") 'avy-goto-line
     (kbd "C-l w") 'avy-goto-word-0
     (kbd "C-l f") 'avy-goto-char
     (kbd "C-l p") 'avy-goto-paren
     (kbd "C-l r") 'avy-resume
+    ;; selectrum
+    ;; (kbd "C-r") 'selectrum-repeat
+    ;; consult
     [remap switch-to-buffer] 'consult-buffer
     [remap switch-to-buffer-other-window] 'consult-buffer-other-window
     [remap switch-to-buffer-other-frame] 'consult-buffer-other-frame
+    ;; ("C-c h" . consult-history)
+    ;; ("C-c m" . consult-mode-command)
+    ;; ("C-c b" . consult-bookmark)
+    ;; ("C-c k" . consult-kmacro)
+    ;; ;; C-x bindings (ctl-x-map)
+    ;; ("C-x M-:" . consult-complex-command)
+    ;; ("C-x b" . consult-buffer)
+    ;; ;; Custom M-# bindings for fast register access
+    ;; ("M-#" . consult-register-load)
+    ;; ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (UNRELATED!)
+    ;; ("C-M-#" . consult-register)
+    ;; ;; Other custom bindings
+    ;; ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+    ;; ("<help> a" . consult-apropos)            ;; orig. apropos-command
+    ;; ;; M-g bindings (goto-map)
+    ;; ("M-g o" . consult-outline)
+    ;; ("M-g m" . consult-mark)
+    ;; ("M-g k" . consult-global-mark)
+    ;; ("M-g i" . consult-project-imenu) ;; Alternative: consult-imenu
+    ;; ;; ("M-g e" . consult-error)
+    ;; ;; M-s bindings (search-map)
+    ;; ("M-s g" . consult-git-grep)              ;; alt. consult-grep, consult-ripgrep
+    ;; ("M-s f" . consult-find)                  ;; alt. consult-locate, find-fd
+    ;; ("M-s l" . consult-line)
+    ;; ("M-s m" . consult-multi-occur)
+    ;; ("M-s k" . consult-keep-lines)
+    ;; ("M-s u" . consult-focus-lines)
+    ;; ;; Replacement for isearch-edit-string
+    ;; ("M-s e" . consult-isearch)
+    ;; ;; (:isearch-mode-map
+    ;; ;;  ("M-e" . consult-isearch)                 ;; orig. isearch-edit-string
+    ;; ;;  ("M-s e" . consult-isearch)))
     )
 
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U
-    "\C-r" nil
+    (kbd "C-r") nil
     "U" 'evil-redo
     ;; ? to replace
-    ;; "?" 'my-replace
     "?" (lambda ()
           (interactive)
           (if (evil-normal-state-p)
@@ -57,7 +91,6 @@
     (kbd "<leader> xb") 'consult-buffer
     (kbd "<leader> xs") 'save-buffer
     (kbd "<leader> xk") 'kill-buffer
-    ;; (kbd "<leader> ;") 'counsel-counsel
     (kbd "<leader> ;") 'consult-consult
 
     ;; color-rg
@@ -66,11 +99,17 @@
     (kbd "<leader> sp") 'color-rg-search-input-in-project
     (kbd "<leader> st") 'color-rg-search-project-with-type
     ;; nerd-commenter
-    (kbd "<leader> cc") 'evilnc-comment-or-uncomment-lines
-    (kbd "<leader> ci") 'evilnc-copy-and-comment-lines
+    (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
     ;; self-define
-    (kbd "<leader> mf") 'my-format
-    (kbd "<leader> mr") 'my-run)
+    (kbd "<leader> f") 'my-format
+    (kbd "<leader> r") 'my-run)
+
+  ;; selectrum
+  (evil-define-key nil selectrum-minibuffer-map
+    (kbd "<escape>") 'minibuffer-keyboard-quit
+    ;; embark
+    (kbd "C-c C-o") 'embark-export
+    (kbd "C-c C-c") 'embark-act)
 
   ;; ;;ivy
   ;; (evil-define-key nil ivy-minibuffer-map
@@ -101,8 +140,6 @@
 
   ;; Company
   (evil-define-key nil company-active-map
-    (kbd "M-n") nil
-    (kbd "M-p") nil
     ;; (kbd "<escape>") 'company-abort
     (kbd "C-n") 'company-complete-common-or-cycle
     (kbd "C-p") 'company-select-previous
@@ -138,17 +175,17 @@
     "%" 'awesome-pair-match-paren
     "\"" 'awesome-pair-double-quote
     "SPC" 'awesome-pair-space
-    "M-o" 'awesome-pair-backward-delete
-    "C-d" 'awesome-pair-forward-delete
-    "C-k" 'awesome-pair-kill
-    "M-\"" 'awesome-pair-wrap-double-quote
-    "M-[" 'awesome-pair-wrap-bracket
-    "M-{" 'awesome-pair-wrap-curly
-    "M-(" 'awesome-pair-wrap-round
-    "M-)" 'awesome-pair-unwrap
-    "M-p" 'awesome-pair-jump-right
-    "M-n" 'awesome-pair-jump-left
-    "M-:" 'awesome-pair-jump-out-pair-and-newline)
+    (kbd "M-o") 'awesome-pair-backward-delete
+    (kbd "C-d") 'awesome-pair-forward-delete
+    (kbd "C-k") 'awesome-pair-kill
+    (kbd "M-\"") 'awesome-pair-wrap-double-quote
+    (kbd "M-[") 'awesome-pair-wrap-bracket
+    (kbd "M-{") 'awesome-pair-wrap-curly
+    (kbd "M-(") 'awesome-pair-wrap-round
+    (kbd "M-)") 'awesome-pair-unwrap
+    (kbd "M-p") 'awesome-pair-jump-right
+    (kbd "M-n") 'awesome-pair-jump-left
+    (kbd "M-:") 'awesome-pair-jump-out-pair-and-newline)
 
   ;; emmet-mode
   (evil-define-key nil emmet-mode-keymap
@@ -199,7 +236,7 @@
     "s" 'flycheck-error-list-set-filter
     "S" 'flycheck-error-list-reset-filter
     "x" 'flycheck-error-list-explain-error
-    (kbd "RET") 'flycheck-error-list-goto-error
+    ;; (kbd "RET") 'flycheck-error-list-goto-error
     "q" 'quit-window)
 
   (evil-define-key 'normal diff-hl-mode-map
@@ -207,8 +244,8 @@
     "]g" 'diff-hl-next-hunk
     "gh" 'diff-hl-revert-hunk)
 
-  (evil-define-key 'emacs vterm-mode-map
-    "\M-n" 'vterm-toggle-insert-cd)
+  ;; (evil-define-key 'emacs vterm-mode-map
+  ;;   "\M-n" 'vterm-toggle-insert-cd)
 
 
   (evil-define-key 'normal smerge-mode-map
@@ -220,8 +257,8 @@
     "b" 'smerge-keep-base
     "l" 'smerge-keep-lower
     "u" 'smerge-keep-upper
-    "\C-m" 'smerge-keep-current
-    "RET" 'smerge-keep-current
+    (kbd "C-m") 'smerge-keep-current
+    (kbd "<return>") 'smerge-keep-current
     ;; diff
     "<" 'smerge-diff-base-upper
     "=" 'smerge-diff-upper-lower

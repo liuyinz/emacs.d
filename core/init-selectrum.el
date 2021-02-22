@@ -10,10 +10,6 @@
 (leaf selectrum
   :blackout t
   :hook (after-init-hook . selectrum-mode)
-  :bind
-  ("C-x C-z" . selectrum-repeat)
-  (:selectrum-minibuffer-map
-   ([escape] . minibuffer-keyboard-quit))
   :init
   (setq selectrum-max-window-height 15
         selectrum-fix-vertical-window-height t
@@ -38,7 +34,9 @@
   (global-set-key [remap execute-extended-command] 'execute-extended-command))
 
 (leaf consult
+  :require t
   :init
+  :after selectrum
   (setq consult-async-min-input 1)
 
   ;; @https://emacs.stackexchange.com/a/36253
@@ -48,48 +46,11 @@
     (setq unread-command-events (nconc
                                  (listify-key-sequence "consult- ")
                                  unread-command-events))
-    (call-interactively #'execute-extended-command))
-
-  :bind
-  ;; ("C-c h" . consult-history)
-  ("C-c m" . consult-mode-command)
-  ;; ("C-c b" . consult-bookmark)
-  ("C-c k" . consult-kmacro)
-  ;; C-x bindings (ctl-x-map)
-  ("C-x M-:" . consult-complex-command)
-  ("C-x b" . consult-buffer)
-  ;; Custom M-# bindings for fast register access
-  ("M-#" . consult-register-load)
-  ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (UNRELATED!)
-  ("C-M-#" . consult-register)
-  ;; Other custom bindings
-  ("M-y" . consult-yank-pop)                ;; orig. yank-pop
-  ("<help> a" . consult-apropos)            ;; orig. apropos-command
-  ;; M-g bindings (goto-map)
-  ("M-g o" . consult-outline)
-  ("M-g m" . consult-mark)
-  ("M-g k" . consult-global-mark)
-  ("M-g i" . consult-project-imenu) ;; Alternative: consult-imenu
-  ;; ("M-g e" . consult-error)
-  ;; M-s bindings (search-map)
-  ("M-s g" . consult-git-grep)              ;; alt. consult-grep, consult-ripgrep
-  ("M-s f" . consult-find)                  ;; alt. consult-locate, find-fd
-  ("M-s l" . consult-line)
-  ("M-s m" . consult-multi-occur)
-  ("M-s k" . consult-keep-lines)
-  ("M-s u" . consult-focus-lines)
-  ;; Replacement for isearch-edit-string
-  ("M-s e" . consult-isearch)
-  (:isearch-mode-map
-   ("M-e" . consult-isearch)                 ;; orig. isearch-edit-string
-   ("M-s e" . consult-isearch)))
+    (call-interactively #'execute-extended-command)))
 
 (leaf embark
   :require t
   :after selectrum
-  :bind(:selectrum-minibuffer-map
-        ("C-c C-o" . embark-export)
-        ("C-c C-c" . embark-act))
   :config
   (leaf embark-consult
     :blackout t
