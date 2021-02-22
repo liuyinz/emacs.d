@@ -89,13 +89,6 @@
 ;;               (set-face-background 'lsp-ui-doc-background
 ;;                                    (face-background 'tooltip)))))
 
-;; ;; Ivy integration
-;; (use-package lsp-ivy
-;;   :after lsp-mode
-;;   :bind (:map lsp-mode-map
-;;               ([remap xref-find-apropos] . lsp-ivy-workspace-symbol)
-;;               ("C-s-." . lsp-ivy-global-workspace-symbol)))
-
 ;; (use-package dap-mode
 ;;   :functions dap-hydra/nil
 ;;   :blackout

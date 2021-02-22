@@ -36,7 +36,6 @@
 (leaf consult
   :require t
   :init
-  :after selectrum
   (setq consult-async-min-input 1)
 
   ;; @https://emacs.stackexchange.com/a/36253

@@ -18,9 +18,7 @@
     ;; jump between two buffer
     (kbd "C-r") 'mode-line-other-buffer
     ;; window
-    (kbd "C-;") 'ace-window
     ;; (kbd "M-p") 'vterm-toggle
-    ;; (kbd "C-s") 'swiper-isearch
     ;; avy
     (kbd "C-l") nil
     (kbd "C-l C-l") 'avy-goto-line
@@ -83,9 +81,12 @@
     ;; "gp" "`[v`]"
     ;; run the macro in the q register
     "Q" "@q"
-    "gr" 'dash-at-point
+    ;; dash
+    "gp" 'dash-at-point
     ;; magit
     "gs" 'magit-status
+    "gz" 'magit-dispatch
+    "gla" 'magit-log-all-branches
 
     (kbd "<leader> xf") 'find-file
     (kbd "<leader> xb") 'consult-buffer
@@ -111,25 +112,6 @@
     (kbd "C-c C-o") 'embark-export
     (kbd "C-c C-c") 'embark-act)
 
-  ;; ;;ivy
-  ;; (evil-define-key nil ivy-minibuffer-map
-  ;;   (kbd "<escape>") 'minibuffer-keyboard-quit
-  ;;   ;; (kbd "C-j") 'ivy-next-line-and-call
-  ;;   ;; (kbd "C-k") 'ivy-previous-line-and-call
-  ;;   ;; (kbd "C-u") 'ivy-dispatching-call
-  ;;   (kbd "C-l") 'ivy-dispatching-done)
-
-  ;; (evil-define-key nil swiper-isearch-map
-  ;;   (kbd "M-q") 'swiper-query-replace
-  ;;   (kbd "C-t") 'isearch-toggle-color-rg)
-
-  ;; (evil-define-key nil counsel-mode-map
-  ;;   (kbd "s-<f6>") 'counsel-osx-app)
-
-  ;; (evil-define-key nil counsel-find-file-map
-  ;;   (kbd "C-h") 'counsel-up-directory
-  ;;   (kbd "<backspace>") 'counsel-up-directory)
-
   ;; dired
   (evil-define-key nil dired-mode-map
     (kbd "C-c C-p") 'wdired-change-to-wdired-mode
@@ -138,7 +120,7 @@
     ")" 'dired-git-info-mode
     "(" 'dired-omit-mode)
 
-  ;; Company
+  ;; company
   (evil-define-key nil company-active-map
     ;; (kbd "<escape>") 'company-abort
     (kbd "C-n") 'company-complete-common-or-cycle
@@ -242,7 +224,7 @@
   (evil-define-key 'normal diff-hl-mode-map
     "[g" 'diff-hl-previous-hunk
     "]g" 'diff-hl-next-hunk
-    "gh" 'diff-hl-revert-hunk)
+    "gr" 'diff-hl-revert-hunk)
 
   ;; (evil-define-key 'emacs vterm-mode-map
   ;;   "\M-n" 'vterm-toggle-insert-cd)

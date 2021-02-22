@@ -5,7 +5,7 @@
 (leaf magit
   :doc "deps: with-editor forge transient git-modes ghub"
   :defun (yas-activate-extra-mode . yasnippet)
-  :commands (magit-status magit-dispatch magit-submodule)
+  :commands (magit-status magit-dispatch magit-submodule magit-log-all-branches)
   :hook (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
   :mode
   ("\\COMMIT_EDITMSG\\'" . text-mode)
@@ -21,9 +21,6 @@
                           'magit-insert-modules
                           'magit-insert-stashes
                           'append))
-
-;; ;; Git related modes
-;; (leaf git-modes :require t)
 
 (leaf gitignore-templates
   :commands gitignore-templates-insert gitignore-templates-new-file

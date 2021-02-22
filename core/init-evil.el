@@ -11,15 +11,6 @@
 ;;       (counsel-projectile-rg)
 ;;     (counsel-rg)))
 
-;; (use-package general
-;;   :demand
-;;   :config
-;;   (general-evil-setup t)
-
-;;   (general-create-definer my-semicolon-leader-def
-;;     :prefix ";"
-;;     :states 'normal)
-
 ;;   (my-semicolon-leader-def
 ;;     ;; misc
 ;;     ";" 'counsel-M-x
@@ -32,29 +23,13 @@
 ;;     "sn" 'yas-new-snippet
 ;;     ;; search and replace
 ;;     "sa" 'my-search-all
-;;     "rr" 'color-rg-search-input-in-current-file
-;;     "ra" 'color-rg-search-input-in-project
-;;     ;; "rt" 'color-rg-search-project-with-type
 ;;     ;; "fg" 'counsel-git
 ;;     "d" 'dired-jump-other-window
 ;;     ;; buffer
 ;;     "b" 'ibuffer-other-window
-;;     "w" 'ivy-switch-buffer
-;;     "u" 'ivy-resume
 ;;     ;; magit
 ;;     "gg" 'magit-status
 ;;     "gl" 'magit-log-all-branches
-;;     )
-
-;;   (general-create-definer my-comma-leader-def
-;;     :prefix ","
-;;     :states '(normal visual))
-
-;;   (my-comma-leader-def
-;;     "c" 'comment-dwim-2
-;;     "r" 'my-run
-;;     "i" 'my-repl
-;;     "f" 'my-format
 ;;     )
 
 ;;   ;; Define for general
@@ -63,12 +38,6 @@
 ;;     :states '(normal visual))
 
 ;;   (my-space-leader-def
-;;     ;;jump
-;;     "c" 'avy-goto-char
-;;     "w" 'avy-goto-word-0
-;;     "l" 'avy-goto-line
-;;     "r" 'avy-resume
-;;     ;; "f" 'avy-goto-paren
 ;;     ;;window
 ;;     "x" 'delete-window
 ;;     "o" 'delete-other-windows
