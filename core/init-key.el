@@ -28,6 +28,9 @@
     (kbd "C-l f") 'avy-goto-char
     (kbd "C-l p") 'avy-goto-paren
     (kbd "C-l r") 'avy-resume
+    [remap switch-to-buffer] 'consult-buffer
+    [remap switch-to-buffer-other-window] 'consult-buffer-other-window
+    [remap switch-to-buffer-other-frame] 'consult-buffer-other-frame
     )
 
   (evil-define-key '(normal visual) 'global
@@ -50,11 +53,12 @@
     ;; magit
     "gs" 'magit-status
 
-    ;; (kbd "<leader> xf") 'counsel-find-file
-    ;; (kbd "<leader> xb") 'ivy-switch-buffer
+    (kbd "<leader> xf") 'find-file
+    (kbd "<leader> xb") 'consult-buffer
     (kbd "<leader> xs") 'save-buffer
     (kbd "<leader> xk") 'kill-buffer
     ;; (kbd "<leader> ;") 'counsel-counsel
+    (kbd "<leader> ;") 'consult-consult
 
     ;; color-rg
     (kbd "<leader> ss") 'color-rg-search-input-in-current-file

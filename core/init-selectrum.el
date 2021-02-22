@@ -7,11 +7,6 @@
   :hook (after-init-hook . prescient-persist-mode)
   :init (setq prescient-history-length 300))
 
-(leaf orderless
-  :require t
-  ;; :commands orderless-filter orderless-highlight-matches
-  :init (setq completion-styles '(orderless)))
-
 (leaf selectrum
   :blackout t
   :hook (after-init-hook . selectrum-mode)
@@ -24,21 +19,37 @@
         selectrum-fix-vertical-window-height t
         selectrum-right-margin-padding 0
         selectrum-extend-current-candidate-highlight t
-        selectrum-count-style 'current/matches
-        ;; selectrum-complete-in-buffer nil
-        )
+        selectrum-count-style 'current/matches)
   :config
+
+  (leaf orderless
+    :require t
+    ;; :commands orderless-filter orderless-highlight-matches
+    :init (setq completion-styles '(orderless)))
+
   (with-eval-after-load 'orderless
     (setq selectrum-refine-candidates-function #'orderless-filter)
     (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)))
 
 (leaf selectrum-prescient
   :blackout selectrum-prescient-mode
-  :hook (selectrum-mode-hook . selectrum-prescient-mode))
+  :hook (selectrum-mode-hook . selectrum-prescient-mode)
+  :config
+  (global-set-key [remap execute-extended-command] 'execute-extended-command))
 
 (leaf consult
   :init
   (setq consult-async-min-input 1)
+
+  ;; @https://emacs.stackexchange.com/a/36253
+  (defun consult-consult ()
+    "call command related to consult"
+    (interactive)
+    (setq unread-command-events (nconc
+                                 (listify-key-sequence "consult- ")
+                                 unread-command-events))
+    (call-interactively #'execute-extended-command))
+
   :bind
   ;; ("C-c h" . consult-history)
   ("C-c m" . consult-mode-command)
