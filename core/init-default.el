@@ -35,7 +35,9 @@
 
 ;; recentf
 (leaf recentf
-  :hook (after-init-hook . recentf-mode)
+  :hook (after-init-hook . (lambda ()
+                             (recentf-mode)
+                             (recentf-cleanup)))
   :init
   (setq recentf-max-menu-items 20
         recentf-max-saved-items 1000
