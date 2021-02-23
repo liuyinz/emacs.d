@@ -27,10 +27,28 @@
     :after selectrum-prescient
     :require t
     :config
-    (setq completion-styles '(orderless))
+    ;; (setq completion-styles '(orderless))
+    (setq orderless-matching-styles '(orderless-regexp orderless-flex))
+    (setq orderless-component-separator #'orderless-escapable-split-on-space)
+
+    ;; @https://github.com/oantolin/orderless/blob/master/README.org#style-dispatchers
+    ;; dispatchers
+    (defun without-if-bang (pattern _index _total)
+      "!pattern : exclude pattern."
+      (when (string-prefix-p "!" pattern)
+        `(orderless-without-literal . ,(substring pattern 1))))
+
+    (defun initialism-if-at (pattern _index _total)
+      "@pattern : first letter of word in order."
+      (when (string-prefix-p "@" pattern)
+        `(orderless-initialism . ,(substring pattern 1))))
+
+    (setq orderless-style-dispatchers '(initialism-if-at without-if-bang))
+
+    ;; selectrum setting
+    ;; @https://github.com/oantolin/orderless/blob/master/README.org#selectrum
     (setq selectrum-refine-candidates-function #'orderless-filter)
-    (setq selectrum-highlight-candidates-function #'orderless-highlight-matches))
-  )
+    (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)))
 
 (leaf consult
   :require t
