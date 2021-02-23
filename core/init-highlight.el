@@ -24,7 +24,6 @@
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
         diff-hl-side 'left)
-  ;; Set fringe style
   (setq-default fringes-outside-margins t)
   :config
 
@@ -33,13 +32,6 @@
 
   (leaf diff-hl-flydiff
     :hook (diff-hl-mode-hook . diff-hl-flydiff-mode))
-
-  ;; UI
-  (set-face-attribute 'diff-hl-change nil
-                      :foreground (face-background 'highlight)
-                      :background nil)
-  (set-face-attribute 'diff-hl-insert nil :background nil)
-  (set-face-attribute 'diff-hl-delete nil :background nil)
 
   (with-no-warnings
     (defun my-diff-hl-fringe-bmp-function (_type _pos)
@@ -79,10 +71,7 @@
 (leaf indent-guide
   :blackout t
   :hook (prog-mode-hook . indent-guide-mode)
-  :config
-  (setq indent-guide-char "¦")
-  (set-face-background 'indent-guide-face (face-background 'default))
-  (set-face-foreground 'indent-guide-face (face-foreground 'font-lock-comment-face)))
+  :init (setq indent-guide-char "¦"))
 
 (provide 'init-highlight)
 ;;; init-highlight.el ends here

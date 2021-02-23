@@ -54,6 +54,16 @@
   (with-eval-after-load 'consult
     (set-face-attribute 'consult-file nil
                         :inherit font-lock-doc-face))
+  (with-eval-after-load 'diff-hl
+    (set-face-attribute 'diff-hl-change nil
+                        :foreground (face-background 'highlight)
+                        :background nil)
+    (set-face-attribute 'diff-hl-insert nil :background nil)
+    (set-face-attribute 'diff-hl-delete nil :background nil))
+  (with-eval-after-load 'indent-guide
+    (set-face-attribute 'indent-guide-face nil
+                        :foreground (face-foreground 'font-lock-comment-face)
+                        :background (face-background 'default)))
   )
 
 (leaf awesome-tray
