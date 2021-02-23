@@ -29,9 +29,6 @@
     :after selectrum-prescient
     :require t
     :config
-    ;; (setq completion-styles '(orderless))
-    (setq orderless-matching-styles '(orderless-regexp orderless-flex))
-    (setq orderless-component-separator #'orderless-escapable-split-on-space)
 
     ;; @https://github.com/oantolin/orderless/blob/master/README.org#style-dispatchers
     ;; dispatchers
@@ -46,6 +43,7 @@
         `(orderless-initialism . ,(substring pattern 1))))
 
     (setq orderless-style-dispatchers '(initialism-if-at without-if-bang))
+    (setq orderless-component-separator #'orderless-escapable-split-on-space)
 
     ;; selectrum setting
     ;; @https://github.com/oantolin/orderless/blob/master/README.org#selectrum
