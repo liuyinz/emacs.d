@@ -37,8 +37,9 @@
   (with-eval-after-load 'selectrum
     (set-face-attribute 'selectrum-current-candidate nil
                         :foreground "white"
-                        :weight 'bold)
-    (set-face-attribute 'selectrum-primary-highlight nil
+                        :weight 'bold))
+  (with-eval-after-load 'selectrum-prescient
+    (set-face-attribute 'selectrum-prescient-primary-highlight nil
                         :foreground "#7bc257"
                         :weight 'bold))
   (with-eval-after-load 'marginalia
