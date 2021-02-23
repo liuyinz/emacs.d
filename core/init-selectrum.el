@@ -17,7 +17,9 @@
     :require t
     :blackout t
     :init
-    (setq prescient-history-length 300)
+    (setq prescient-history-length 300
+          prescient-aggressive-file-save t
+          prescient-sort-full-matches-first t)
     :config
     (prescient-persist-mode)
     (selectrum-prescient-mode))
