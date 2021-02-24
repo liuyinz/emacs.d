@@ -48,7 +48,6 @@
   ;; (require 'init-test)
   (require 'init-default)
   (require 'init-completion)
-  ;; (require 'init-ivy)
   (require 'init-selectrum)
   ;; ui
   (require 'init-ui)
@@ -63,10 +62,8 @@
   (require 'init-tool)
   ;; programing
   (require 'init-vcs)
+  (require 'init-ide)
   (require 'init-project)
-  (require 'init-flycheck)
-  (require 'init-format)
-  (require 'init-quickrun)
   ;; (require 'init-lsp)
   ;; language
   (require 'init-lang)
