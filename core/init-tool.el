@@ -41,12 +41,7 @@
   :hook
   (after-init-hook . keyfreq-mode)
   (keyfreq-mode-hook . keyfreq-autosave-mode)
-  :config
-  (defun toggle-keyfreq ()
-    (interactive)
-    (keyfreq-mode)
-    (keyfreq-autosave-mode))
-
+  :init
   (setq keyfreq-excluded-commands
         '(self-insert-command
           abort-recursive-edit
@@ -62,10 +57,13 @@
           comint-previous-input
           comint-send-input
           company-complete-common
+          company-complete-common-or-cycle
           company-complete-number
           company-complete-selection
           company-ignore
           company-search-printing-char
+          company-select-next
+          company-select-previous
           counsel-describe-variable
           delete-other-windows
           delete-backward-char
@@ -77,6 +75,7 @@
           diredp-previous-line
           electric-pair-delete-pair
           erase-message-buffer
+          execute-extended-command
           exit-minibuffer
           evil-a-WORD
           evil-append
@@ -137,6 +136,7 @@
           evil-previous-line
           evil-previous-visual-line
           evil-record-macro
+          evil-redo
           evil-repeat
           evil-replace
           evil-ret
@@ -149,6 +149,7 @@
           evil-send-localleader
           evil-set-marker
           evil-substitute
+          evil-undo
           evil-visual-block
           evil-visual-char
           evil-visual-line
@@ -217,6 +218,7 @@
           move-beginning-of-line
           move-end-of-line
           mwheel-scroll
+          my-company-yasnippet
           my-setup-develop-environment
           newline
           newline-and-indent
@@ -263,6 +265,9 @@
           select-window-7
           select-window-8
           select-window-9
+          selectrum-next-candidate
+          selectrum-previous-candidate
+          selectrum-select-current-candidate
           self-insert-command
           smarter-move-beginning-of-line
           suspend-frame
@@ -291,6 +296,9 @@
           yas-compile-directory
           yas-expand
           yas-next-field-or-maybe-expand
+          y-or-n-p-insert-y
+          y-or-n-p-insert-n
+          y-or-n-p-insert-other
           )))
 
 (provide 'init-tool)
