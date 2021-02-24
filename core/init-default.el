@@ -19,11 +19,12 @@
                              (require 'server)
                              (unless (server-running-p)
                                (server-start))))
-  :init
-  (setq server-socket-dir (format "/tmp/emacs-%d-%s-%d"
-                                  (user-uid)
-                                  (format-time-string "%Y%m%d-%H%M%S")
-                                  (emacs-pid))))
+  ;; :init
+  ;; (setq server-socket-dir (format "/tmp/emacs-%d-%s-%d"
+  ;;                                 (user-uid)
+  ;;                                 (format-time-string "%Y%m%d-%H%M%S")
+  ;;                                 (emacs-pid)))
+  )
 
 ;; display line number
 ;; (use-package display-line-numbers

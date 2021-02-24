@@ -63,7 +63,10 @@
     (setq unread-command-events (nconc
                                  (listify-key-sequence "consult- ")
                                  unread-command-events))
-    (call-interactively #'execute-extended-command)))
+    (call-interactively #'execute-extended-command))
+
+  (leaf consult-flycheck
+    :commands consult-flycheck))
 
 (leaf embark
   :require t
