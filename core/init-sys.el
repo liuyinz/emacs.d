@@ -27,7 +27,8 @@
         exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
         exec-path-from-shell-arguments '("-l"))
   :config
-  ;; Cache $PATH once for all, inspired by @https://github.com/manateelazycat/cache-path-from-shell/blob/master/cache-path-from-shell.el
+  ;; HACK , Cache $PATH once for all,
+  ;; inspired by @https://github.com/manateelazycat/cache-path-from-shell/blob/master/cache-path-from-shell.el
   (defvar cache-path-from-shell-loaded-p nil)
   (defun cache-path-from-shell-advice (fn &rest _)
     (when (not cache-path-from-shell-loaded-p)
