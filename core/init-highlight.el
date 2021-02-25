@@ -24,14 +24,9 @@
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
         diff-hl-side 'left)
-  (setq-default fringes-outside-margins t)
   :config
-
-  (leaf diff-hl-dired
-    :hook (dired-mode-hook . diff-hl-dired-mode))
-
-  (leaf diff-hl-flydiff
-    :hook (diff-hl-mode-hook . diff-hl-flydiff-mode))
+  ;; set fringe style
+  (setq-default fringes-outside-margins t)
 
   (with-no-warnings
     (defun my-diff-hl-fringe-bmp-function (_type _pos)
@@ -39,6 +34,12 @@
       (define-fringe-bitmap 'my-diff-hl-bmp
         (vector #b11100000) 1 8 '(center t)))
     (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function))
+
+  (leaf diff-hl-dired
+    :hook (dired-mode-hook . diff-hl-dired-mode))
+
+  (leaf diff-hl-flydiff
+    :hook (diff-hl-mode-hook . diff-hl-flydiff-mode))
 
   ;; Integration with magit
   (with-eval-after-load 'magit
