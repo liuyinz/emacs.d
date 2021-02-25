@@ -61,9 +61,9 @@
   :hook (after-init-hook . evil-mode)
   :init
   ;; (setq evil-want-keybinding nil)
-  (setq evil-disable-insert-state-bindings t
+  (setq evil-want-Y-yank-to-eol t
         evil-want-C-i-jump nil
-        evil-want-Y-yank-to-eol t
+        ;; evil-disable-insert-state-bindings nil
         evil-move-cursor-back nil
         evil-move-beyond-eol t
         evil-cross-lines t
