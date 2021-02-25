@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: advice-add
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: ada
+# --
+
+(advice-add '${1:symbol} :${2:around} #'${3:function}$4)
+$0
+
+
