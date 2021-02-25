@@ -15,6 +15,15 @@
         highlight-parentheses-background-colors '("#5d656b")
         highlight-parentheses-highlight-adjacent t))
 
+;; Highlight TODO and similar keywords in comments and strings
+(leaf hl-todo
+  :hook (after-init-hook . global-hl-todo-mode)
+  :config
+  (dolist (keyword '("BUG" "DEFECT" "ISSUE"))
+    (cl-pushnew `(,keyword . ,(face-foreground 'error)) hl-todo-keyword-faces))
+  (dolist (keyword '("WORKAROUND" "HACK" "TRICK"))
+    (cl-pushnew `(,keyword . ,(face-foreground 'warning)) hl-todo-keyword-faces)))
+
 ;;Highlight uncommitted changes using VC
 (leaf diff-hl
   :blackout t

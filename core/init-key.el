@@ -223,6 +223,12 @@
     ;; (kbd "RET") 'flycheck-error-list-goto-error
     "q" 'quit-window)
 
+  (evil-define-key 'normal hl-todo-mode-map
+    "[h" 'hl-todo-previous
+    "]h" 'hl-todo-next
+    "gh" 'hl-todo-occur
+    (kbd "<leader> hi") 'hl-todo-insert)
+
   (evil-define-key 'normal diff-hl-mode-map
     "[g" 'diff-hl-previous-hunk
     "]g" 'diff-hl-next-hunk

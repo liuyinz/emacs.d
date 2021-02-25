@@ -257,3 +257,6 @@
 [submodule "marginalia"]
 	path = module/marginalia
 	url = https://github.com/minad/marginalia.git
+[submodule "hl-todo"]
+	path = module/hl-todo
+	url = https://github.com/tarsius/hl-todo.git
