@@ -67,6 +67,8 @@
         evil-move-cursor-back nil
         evil-move-beyond-eol t
         evil-cross-lines t
+        evil-track-eol nil
+        evil-respect-visual-line-mode t
         evil-undo-system 'undo-fu
         evil-echo-state nil
         evil-want-integration t
