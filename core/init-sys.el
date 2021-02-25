@@ -27,14 +27,16 @@
         exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
         exec-path-from-shell-arguments '("-l"))
   :config
-  ;; Cache $PATH once for all, refer @https://github.com/manateelazycat/cache-path-from-shell/blob/master/cache-path-from-shell.el
+  ;; Cache $PATH once for all, inspired by @https://github.com/manateelazycat/cache-path-from-shell/blob/master/cache-path-from-shell.el
   (defvar cache-path-from-shell-loaded-p nil)
-  (defadvice exec-path-from-shell-initialize (around cache-path-from-shell-advice activate)
-    (if cache-path-from-shell-loaded-p
-        (message "All shell environment variables has loaded in Emacs, yow!")
-      (setq cache-path-from-shell-loaded-p t)
-      ad-do-it))
+  (defun cache-path-from-shell-advice (fn &rest _)
+    (when (not cache-path-from-shell-loaded-p)
+      (funcall fn)
+      (setq cache-path-from-shell-loaded-p t)))
+  (advice-add 'exec-path-from-shell-initialize :around #'cache-path-from-shell-advice)
+
   (exec-path-from-shell-initialize))
+
 
 ;; keep ~/.emacs.d clean
 (leaf no-littering
