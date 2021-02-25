@@ -17,8 +17,6 @@
   (evil-define-key nil 'global
     ;; jump between two buffer
     (kbd "C-r") 'mode-line-other-buffer
-    ;; window
-    ;; (kbd "M-p") 'vterm-toggle
     ;; avy
     (kbd "C-l") nil
     (kbd "C-l C-l") 'avy-goto-line
@@ -26,6 +24,10 @@
     (kbd "C-l f") 'avy-goto-char
     (kbd "C-l p") 'avy-goto-paren
     (kbd "C-l r") 'avy-resume
+    ;; vterm-toggle
+    (kbd "C-,") 'vterm-toggle
+    ;; window
+
     ;; selectrum
     (kbd "C-x C-z") 'selectrum-repeat
     ;; consult
