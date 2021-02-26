@@ -260,3 +260,6 @@
 [submodule "hl-todo"]
 	path = module/hl-todo
 	url = https://github.com/tarsius/hl-todo.git
+[submodule "projectile"]
+	path = module/projectile
+	url = https://github.com/bbatsov/projectile.git

@@ -54,7 +54,7 @@
   :require t
   :init
   (setq consult-async-min-input 1)
-  ;; (setq consult-project-root-function 'project-roots)
+  (setq consult-project-root-function #'projectile-project-root)
   :config
   ;; @https://emacs.stackexchange.com/a/36253
   (defun consult-consult ()
