@@ -7,11 +7,9 @@
   ;; set leader
   (evil-define-key 'motion 'global ";" nil "," nil)
 
-  ;; (with-eval-after-load 'evil-maps
-  ;;   (define-key evil-insert-state-map "\C-t" nil)
-  ;;   (define-key evil-insert-state-map "\C-j" 'evil-open-below)
-  ;;   (define-key evil-insert-state-map "\C-k" 'evil-open-above)
-  ;;   )
+  ;; enable parts of keybinding
+  (evil-define-key 'insert 'global
+    (kbd "C-o") 'evil-execute-in-normal-state)
 
   ;;evil binding
   (evil-define-key nil 'global
@@ -126,7 +124,7 @@
 
   ;; company
   (evil-define-key nil company-active-map
-    ;; (kbd "<escape>") 'company-abort
+    (kbd "<escape>") 'company-abort
     (kbd "C-n") 'company-complete-common-or-cycle
     (kbd "C-p") 'company-select-previous
     (kbd "C-/") 'company-filter-candidates
@@ -135,7 +133,7 @@
     (kbd "<tab>") 'my-company-yasnippet)
 
   (evil-define-key nil company-search-map
-    ;; (kbd "<escape>") 'company-search-abort
+    (kbd "<escape>") 'company-search-abort
     (kbd "C-n") 'company-select-next
     (kbd "C-p") 'company-select-previous)
 

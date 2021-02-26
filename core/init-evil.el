@@ -44,6 +44,7 @@
 ;;     "h" 'split-window-horizontally
 ;;     "v" 'split-window-vertically
 ;;     "q" 'delete-frame
+
 ;;     ;;buffer
 ;;     "s" 'save-buffer
 ;;     "k" 'kill-this-buffer
@@ -63,7 +64,7 @@
   ;; (setq evil-want-keybinding nil)
   (setq evil-want-Y-yank-to-eol t
         evil-want-C-i-jump nil
-        ;; evil-disable-insert-state-bindings nil
+        evil-disable-insert-state-bindings t
         evil-move-cursor-back nil
         evil-move-beyond-eol t
         evil-cross-lines t
