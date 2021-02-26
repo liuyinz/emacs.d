@@ -61,7 +61,6 @@
   :defun evil-define-key* evil-delay evil-set-initial-state
   :hook (after-init-hook . evil-mode)
   :init
-  ;; (setq evil-want-keybinding nil)
   (setq evil-want-Y-yank-to-eol t
         evil-want-C-i-jump nil
         evil-disable-insert-state-bindings t
