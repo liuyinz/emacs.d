@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'subr-x)
+
 ;; doom-theme
 (leaf doom-themes
   :require t
@@ -86,7 +88,24 @@
                                       "git"
                                       "mode-name"
                                       "evil"
-                                      )))
+                                      ))
+  :config
+  ;; HACK change git info string
+  (defun module-git-info-advice (str)
+    "reformat string"
+    (if (not (string-empty-p str))
+        (substring str 4 nil)
+      ""))
+  (advice-add 'awesome-tray-module-git-info :filter-return #'module-git-info-advice)
+
+  ;; HACK change location info
+  (defun module-location-info-advice ()
+    "reformat location string"
+    (format "%s:%s,%s"
+            (format-mode-line "%l")
+            (format-mode-line "%c")
+            (substring (format-mode-line "%p") 0 3)))
+  (advice-add 'awesome-tray-module-location-info :override #'module-location-info-advice))
 
 (provide 'init-ui)
 
