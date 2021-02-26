@@ -193,5 +193,10 @@
   :config
   (leaf evil-anzu :require t))
 
+(leaf sis
+  :doc "deps : brew install macism"
+  :blackout t
+  :hook (evil-mode-hook . sis-global-respect-mode))
+
 (provide 'init-evil)
 ;;; init-evil.el ends here

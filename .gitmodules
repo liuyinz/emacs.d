@@ -263,3 +263,6 @@
 [submodule "projectile"]
 	path = module/projectile
 	url = https://github.com/bbatsov/projectile.git
+[submodule "emacs-smart-input-source"]
+	path = module/emacs-smart-input-source
+	url = https://github.com/laishulu/emacs-smart-input-source.git
