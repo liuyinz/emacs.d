@@ -12,8 +12,8 @@
   :hook (prog-mode-hook . highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
-        highlight-parentheses-background-colors '("#5d656b")
-        highlight-parentheses-highlight-adjacent t))
+        ;; highlight-parentheses-highlight-adjacent t
+        highlight-parentheses-attributes '((:inverse-video t :weight bold))))
 
 ;; Highlight TODO and similar keywords in comments and strings
 (leaf hl-todo
