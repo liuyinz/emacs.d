@@ -76,12 +76,9 @@
   (setq awesome-tray-mode-line-active-color "#bbc2cf"
         awesome-tray-mode-line-inactive-color "#62686e"
         awesome-tray-buffer-name-buffer-changed t
-        ;; awesome-tray-file-path-show-filename t
         awesome-tray-buffer-read-only-style "[RO]"
         awesome-tray-input-method-en-style ""
-        ;; awesome-tray-file-path-full-dirname-levels 1
         awesome-tray-active-modules '("location"
-                                      "input-method"
                                       "rvm"
                                       "buffer-read-only"
                                       "buffer-name"
