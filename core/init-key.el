@@ -17,6 +17,8 @@
   (evil-define-key nil 'global
     ;; jump between two buffer
     (kbd "C-r") 'mode-line-other-buffer
+    ;; up-directory
+    (kbd "C-<backspace>") 'backward-kill-sexp
     ;; avy
     (kbd "C-l") nil
     (kbd "C-l C-l") 'avy-goto-line
