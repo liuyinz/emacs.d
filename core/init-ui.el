@@ -37,11 +37,8 @@
    '(orderless-match-face-0 ((t (:inherit font-lock-type-face :weight bold))))
    '(orderless-match-face-1 ((t (:inherit error :weight bold))))
    '(orderless-match-face-2 ((t (:inherit font-lock-string-face :weight bold))))
-   '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face :weight bold)))))
-   ;; evil
-   ;; '(evil-ex-search ((t (:inherit 'unspecified :foreground "#2e2730" :background "#8f60a2" :weight bold))))
-   ;; '(evil-ex-lazy-highlight ((t (:inherit 'unspecified :foreground "#2e2730" :background "#98c379" :weight bold))))
-  )
+   '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face :weight bold))))
+   ))
 
 (leaf awesome-tray
   :blackout t
