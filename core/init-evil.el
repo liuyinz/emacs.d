@@ -59,7 +59,14 @@
 (leaf evil
   :doc "deps: goto-chg"
   :defun evil-define-key* evil-delay evil-set-initial-state
-  :hook (after-init-hook . evil-mode)
+  :hook
+  (after-init-hook . evil-mode)
+  ;; hl-line
+  ((evil-normal-state-entry-hook
+    evil-emacs-state-exit-hook) . hl-line-mode)
+  ((evil-insert-state-entry-hook
+    evil-emacs-state-entry-hook
+    evil-visual-state-entry-hook) . (lambda () (hl-line-mode -1)))
   :init
   (setq evil-want-Y-yank-to-eol t
         evil-want-C-i-jump nil
@@ -78,12 +85,6 @@
   ;; set leader and localleader
   (evil-set-leader '(normal visual) ";")
   (evil-set-leader '(normal visual) "," t)
-
-  ;; hl-line
-  (add-hook 'evil-normal-state-entry-hook #'hl-line-mode)
-  (add-hook 'evil-emacs-state-exit-hook #'hl-line-mode)
-  (add-hook 'evil-insert-state-entry-hook (lambda () (hl-line-mode -1)))
-  (add-hook 'evil-emacs-state-entry-hook (lambda () (hl-line-mode -1)))
 
   ;;set evil initial state
   (dolist (p '((anaconda-nav-mode . emacs)
@@ -128,15 +129,7 @@
                (woman-mode . emacs)
                (xref--xref-buffer-mode . emacs)
                ))
-    (evil-set-initial-state (car p) (cdr p)))
-
-  ;; ;;input-switch
-  ;; (use-package fcitx
-  ;;   :demand
-  ;;   :config
-  ;;   (when (executable-find "fcitx-remote")
-  ;;     (fcitx-aggressive-setup)))
-  )
+    (evil-set-initial-state (car p) (cdr p))))
 
 ;; (use-package evil-collection
 ;;   :after evil
@@ -149,16 +142,14 @@
 
 ;;Evil-matchit
 (leaf evil-matchit
-  :after evil
-  :blackout
+  :blackout t
   :hook (evil-mode-hook . global-evil-matchit-mode)
   :config
   ;;use "m" rather than "%"
   (setq evilmi-shortcut "m"))
 
 (leaf evil-surround
-  :after evil
-  :blackout
+  :blackout t
   :hook
   (evil-mode-hook . global-evil-surround-mode)
   :config
