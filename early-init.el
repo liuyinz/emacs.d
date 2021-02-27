@@ -18,18 +18,20 @@
 
 ;; disable icon and text in frame title
 (setq ns-use-proxy-icon nil)
-(setq frame-title-format nil)
 
-;; ;; set tile to filepath
-;; (setq frame-title-format
-;;       '((:eval (if (buffer-file-name)
-;;                    (abbreviate-file-name (buffer-file-name))
-;;                  "%b"))
-;;         (:eval (if (buffer-modified-p)
-;;                    " *"))))
+;; set tile to filepath
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))
+        (:eval (if (buffer-modified-p)
+                   " *"))))
 
 ;; disable tooltip-mode
 (tooltip-mode -1)
+
+; with awesome-tray , hide mode-line as early as possible
+(set-face-attribute 'mode-line nil :height 0.1)
 
 (setq default-frame-alist '((menu-bar-lines . 1)
                             (tool-bar-lines . 0)
