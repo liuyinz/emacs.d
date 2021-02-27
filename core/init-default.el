@@ -151,10 +151,6 @@
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
 
-;; move cursor to top-right corner automatically
-(leaf avoid
-  :hook (after-init-hook . (lambda () (mouse-avoidance-mode 1))))
-
 ;; adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*"
 ;; adaptive-fill-first-line-regexp "^* *$"
 ;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
