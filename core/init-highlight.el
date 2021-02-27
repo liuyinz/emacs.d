@@ -5,14 +5,16 @@
 ;; Highlight brackets according to their depth
 (leaf rainbow-delimiters
   :blackout t
-  :hook (prog-mode-hook . rainbow-delimiters-mode))
+  :hook (prog-mode-hook . rainbow-delimiters-mode)
+  :init
+  (setq rainbow-delimiters-max-face-count 5))
 
 (leaf highlight-parentheses
   :blackout t
   :hook (prog-mode-hook . highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
-        ;; highlight-parentheses-highlight-adjacent t
+        highlight-parentheses-highlight-adjacent t
         highlight-parentheses-attributes '((:inverse-video t :weight bold))))
 
 ;; Highlight TODO and similar keywords in comments and strings
