@@ -49,6 +49,8 @@
           ace-jump-move
           ace-window
           avy-goto-line
+          awesome-pair-open-round
+          awesome-pair-close-round
           backward-char
           backward-delete-char-untabify
           backward-kill-word
@@ -153,6 +155,7 @@
           evil-visual-block
           evil-visual-char
           evil-visual-line
+          evil-visual-screen-line
           evil-yank
           ffip
           forward-char
@@ -169,6 +172,7 @@
           ido-delete-backward-updir
           ido-exit-minibuffer
           ido-switch-buffer
+          ignore
           indent-new-comment-line
           isearch-abort
           isearch-backward-regexp
@@ -269,6 +273,7 @@
           selectrum-previous-candidate
           selectrum-select-current-candidate
           self-insert-command
+          sis-get-english
           smarter-move-beginning-of-line
           suspend-frame
           term-send-raw
@@ -276,6 +281,8 @@
           undefined ;; lambda function
           undo-tree-redo
           undo-tree-undo
+          vterm-clear
+          vterm-self-insert
           w3m-goto-url
           w3m-next-anchor
           w3m-view-this-url
