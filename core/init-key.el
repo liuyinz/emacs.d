@@ -91,7 +91,7 @@
     "gla" 'magit-log-all-branches
 
     (kbd "<leader> xf") 'find-file
-    (kbd "<leader> xb") 'consult-buffer
+    (kbd "<leader> b") 'consult-buffer
     (kbd "<leader> xs") 'save-buffer
     (kbd "<leader> xk") 'kill-buffer
     (kbd "<leader> ;") 'consult-consult

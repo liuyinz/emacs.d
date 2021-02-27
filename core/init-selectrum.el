@@ -51,10 +51,12 @@
     (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)))
 
 (leaf consult
-  :require t
+  ;; :require t
+  :commands consult-buffer
   :init
   (setq consult-async-min-input 1)
   (setq consult-project-root-function #'projectile-project-root)
+  (setq consult-find-command "fd --color=never --full-path ARG OPTS")
   :config
   ;; @https://emacs.stackexchange.com/a/36253
   (defun consult-consult ()
@@ -64,6 +66,11 @@
                                  (listify-key-sequence "consult- ")
                                  unread-command-events))
     (call-interactively #'execute-extended-command))
+
+  ;; @https://github.com/minad/consult/wiki#hide-all-sources-except-normal-buffers-in-consult-buffer-by-default
+  (dolist (src consult-buffer-sources)
+    (unless (eq src 'consult--source-buffer)
+      (set src (plist-put (symbol-value src) :hidden t))))
 
   (leaf consult-flycheck
     :commands consult-flycheck))
