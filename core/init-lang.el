@@ -21,7 +21,11 @@
 (leaf nxml-mode
   :mode ("\\.xaml$" . xml-mode))
 
-(leaf yaml-mode)
+(leaf yaml-mode
+  :mode "\\.yaml\\'" "\\.yml\\'"
+  :init
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
+
 ;; (use-package cask-mode)
 ;; (use-package csharp-mode)
 ;; (use-package csv-mode)
