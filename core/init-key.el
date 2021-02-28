@@ -239,8 +239,10 @@
     "]g" 'diff-hl-next-hunk
     "gr" 'diff-hl-revert-hunk)
 
-  ;; (evil-define-key 'emacs vterm-mode-map
-  ;;   "\M-n" 'vterm-toggle-insert-cd)
+  (evil-define-key 'emacs vterm-mode-map
+    ;; "\M-n" 'vterm-toggle-insert-cd
+    (kbd "C-c C-o") 'vterm-send-C-o
+    )
 
 
   (evil-define-key 'normal smerge-mode-map

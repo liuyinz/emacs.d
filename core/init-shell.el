@@ -4,11 +4,13 @@
 
 (leaf vterm
   :init
+  (setenv "COLORTERM" "truecolor")
   (setq vterm-always-compile-module t
         vterm-kill-buffer-on-exit t
         vterm-clear-scrollback-when-clearing nil
         vterm-max-scrollback 10000)
-  (setenv "COLORTERM" "truecolor"))
+  (setq vterm-keymap-exceptions
+        '("C-o" "C-c" "C-x" "C-u" "C-g" "C-h" "C-l" "M-x" "M-o" "C-v" "M-v" "C-y" "M-y")))
 
 (leaf vterm-toggle
   :commands vterm-toggle
