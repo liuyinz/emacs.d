@@ -67,10 +67,15 @@
                                  unread-command-events))
     (call-interactively #'execute-extended-command))
 
-  ;; ;; @https://github.com/minad/consult/wiki#hide-all-sources-except-normal-buffers-in-consult-buffer-by-default
-  ;; (dolist (src consult-buffer-sources)
-  ;;   (unless (eq src 'consult--source-buffer)
-  ;;     (set src (plist-put (symbol-value src) :hidden t))))
+
+  ;; add org source, @https://github.com/minad/consult/wiki#org-buffers
+  (autoload 'org-buffer-list "org")
+  (defvar org-buffer-source
+    `(:name     "Org"
+                :narrow   ?o
+                :category buffer
+                :items    ,(lambda () (mapcar #'buffer-name (org-buffer-list)))))
+  (add-to-list 'consult-buffer-sources 'org-buffer-source 'append)
 
   (leaf consult-flycheck
     :commands consult-flycheck))
