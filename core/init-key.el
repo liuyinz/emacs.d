@@ -22,6 +22,13 @@
     ;; cancel repoeat
     (kbd "C-x <escape> <escape>") nil
     (kbd "C-/") nil
+    ;; jump between two buffer
+    (kbd "C-r") (lambda ()
+                  (interactive)
+                  (switch-to-buffer nil))
+    ;; up-directory
+    (kbd "C-<backspace>") 'backward-kill-sexp
+
 
     ;; window
     (kbd "C-y") nil
@@ -40,18 +47,17 @@
     (kbd "C-l p") 'avy-goto-paren
     (kbd "C-l r") 'avy-resume
 
-    ;; toggle
+    ;; ;; toggle
+    ;; vterm
     (kbd "C-; C-;") 'vterm-toggle
+    ;; profiler
     (kbd "C-; p") 'toggle-profiler
+    ;; debug
     (kbd "C-; d e") 'toggle-debug-on-error
     (kbd "C-; d q") 'toggle-debug-on-quit
-
-    ;; jump between two buffer
-    (kbd "C-r") (lambda ()
-                  (interactive)
-                  (switch-to-buffer nil))
-    ;; up-directory
-    (kbd "C-<backspace>") 'backward-kill-sexp
+    ;; proxy
+    (kbd "C-; p h") 'proxy-http-toggle
+    (kbd "C-; p s") 'proxy-socks-toggle
 
     ;; embark
     (kbd "C-,") 'embark-act
