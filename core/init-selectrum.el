@@ -52,6 +52,17 @@
     (setq selectrum-refine-candidates-function #'orderless-filter)
     (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)))
 
+(leaf marginalia
+  :hook (selectrum-mode-hook . marginalia-mode)
+  ;; :bind
+  ;; (:minibuffer-local-map
+  ;;  ("C-M-a" . marginalia-cycle))
+  ;; (:embark-general-map
+  ;;  ("A" . marginalia-cycle))
+  :config
+  (setq-default marginalia-annotators '(marginalia-annotators-heavy nil))
+  (advice-add #'marginalia-cycle :after
+              (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
 (leaf consult
   ;; :require t
   :commands consult-buffer
@@ -85,29 +96,28 @@
 (leaf embark
   :require t
   :after selectrum
+  :init
+  ;; (setq embark-prompter 'embark-completing-read-prompter)
   :config
+  ;; HACK @https://github.com/oantolin/embark/issues/74#issuecomment-753233512
+  ;; set virtual-buffer with file actions correctly
+  (defun virtual-buffer-dispatch (pair)
+    (pcase pair
+      (`(virtual-buffer . ,cand)
+       (cons (pcase (- (elt cand 0) #x100000)
+               ((or ?b ?p) 'buffer)
+               ((or ?f ?q) 'file)
+               (?m 'bookmark)
+               (_ 'general))
+             (substring cand 1)))))
+
+  (advice-add 'embark-target-top-minibuffer-completion
+              :filter-return 'virtual-buffer-dispatch)
+
   (leaf embark-consult
     :blackout t
-    :hook (embark-collect-mode-hook . embarkconsult-preview-minor-mode)))
-
-;; (leaf embark-consult
-;;   :blackout t
-;;   :after (embark consult)
-;;   :hook (embark-collect-mode-hook . embarkconsult-preview-minor-mode))
-
-;; (leaf consult-flycheck)
-
-(leaf marginalia
-  :hook (selectrum-mode-hook . marginalia-mode)
-  ;; :bind
-  ;; (:minibuffer-local-map
-  ;;  ("C-M-a" . marginalia-cycle))
-  ;; (:embark-general-map
-  ;;  ("A" . marginalia-cycle))
-  :config
-  (setq-default marginalia-annotators '(marginalia-annotators-heavy nil))
-  (advice-add #'marginalia-cycle :after
-              (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
+    :after embark consult
+    :hook (embark-collect-mode-hook . embark-consult-preview-minor-mode)))
 
 (provide 'init-selectrum)
 ;;; init-selectrum.el ends here
