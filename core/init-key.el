@@ -5,14 +5,20 @@
 (with-eval-after-load 'evil
 
   ;; set leader
-  (evil-define-key 'motion 'global ";" nil "," nil)
+  (evil-define-key 'motion 'global
+    ";" nil
+    "," nil
+    (kbd "C-o") nil)
 
   ;; enable parts of keybinding
   (evil-define-key 'insert 'global
-    (kbd "C-o") 'evil-execute-in-normal-state)
+    (kbd "C-y") 'evil-execute-in-normal-state)
 
   ;;evil binding
   (evil-define-key nil 'global
+    (kbd "C-y") nil
+    ;; other window
+    (kbd "C-o") 'other-window
     ;; jump between two buffer
     (kbd "C-r") 'mode-line-other-buffer
     ;; up-directory
@@ -26,7 +32,6 @@
     (kbd "C-l r") 'avy-resume
     ;; vterm-toggle
     (kbd "C-,") 'vterm-toggle
-    ;; window
 
     ;; selectrum
     (kbd "C-x C-z") 'selectrum-repeat
