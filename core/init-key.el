@@ -163,7 +163,7 @@
     "=" 'awesome-pair-equal
     "%" 'awesome-pair-match-paren
     "\"" 'awesome-pair-double-quote
-    "SPC" 'awesome-pair-space
+    (kbd "SPC") 'awesome-pair-space
     (kbd "M-o") 'awesome-pair-backward-delete
     (kbd "C-d") 'awesome-pair-forward-delete
     (kbd "C-k") 'awesome-pair-kill
