@@ -49,7 +49,6 @@
    ))
 
 (leaf awesome-tray
-  :blackout t
   :hook (after-init-hook . awesome-tray-mode)
   :init
   (setq awesome-tray-mode-line-active-color "#bbc2cf"

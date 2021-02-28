@@ -5,7 +5,6 @@
 ;;; Code:
 
 (leaf selectrum
-  :blackout t
   :hook (after-init-hook . selectrum-mode)
   :init
   (setq selectrum-max-window-height 15
@@ -17,7 +16,6 @@
   ;; sorting
   (leaf selectrum-prescient
     :require t
-    :blackout t
     :init
     (setq prescient-history-length 300
           prescient-aggressive-file-save t

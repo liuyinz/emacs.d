@@ -6,7 +6,6 @@
 
 ;; Hungry deletion
 (leaf hungry-delete
-  :blackout t
   :hook (after-init-hook . global-hungry-delete-mode)
   :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
@@ -16,7 +15,7 @@
   :config
   (setq avy-all-windows t
         avy-all-windows-alt t
-        avy-background t
+        avy-background nil
         avy-style 'at-full
         avy-keys '(?a ?s ?d ?f ?h ?j ?k ?l ?q ?u ?w ?i ?e ?o))
   (setq avy-orders-alist
@@ -36,7 +35,6 @@
   :config (face-spec-reset-face 'origami-fold-header-face))
 
 (leaf command-log-mode
-  :blackout
   :commands (global-command-log-mode clm/toggle-command-log-buffer)
   :init
   (setq command-log-mode-open-log-turns-on-mode t

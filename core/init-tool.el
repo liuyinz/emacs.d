@@ -43,7 +43,6 @@
               erc-autojoin-channels-alist '(("freenode.net" "#emacs"))))
 
 (leaf keyfreq
-  :blackout (keyfreq-mode keyfreq-autosave-mode)
   :hook
   (after-init-hook . keyfreq-mode)
   (keyfreq-mode-hook . keyfreq-autosave-mode)

@@ -11,12 +11,9 @@
 
 (leaf leaf-keywords
   :require t
-  :config
-  (leaf-keywords-init)
-  (leaf blackout :require t))
+  :config (leaf-keywords-init))
 
 (leaf auto-compile
-  :blackout t
   :hook (after-init-hook . auto-compile-on-load-mode))
 
 ;; Environment

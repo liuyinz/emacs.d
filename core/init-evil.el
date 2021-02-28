@@ -116,14 +116,12 @@
 
 ;;Evil-matchit
 (leaf evil-matchit
-  :blackout t
   :hook (evil-mode-hook . global-evil-matchit-mode)
   :config
   ;;use "m" rather than "%"
   (setq evilmi-shortcut "m"))
 
 (leaf evil-surround
-  :blackout t
   :hook
   (evil-mode-hook . global-evil-surround-mode)
   :config
@@ -152,14 +150,12 @@
   :commands evilnc-comment-or-uncomment-lines evilnc-copy-and-comment-lines)
 
 (leaf anzu
-  :blackout t
   :hook (evil-mode-hook . global-anzu-mode)
   :config
   (leaf evil-anzu :require t))
 
 (leaf sis
   :doc "deps : brew install macism"
-  :blackout t
   :hook (evil-mode-hook . sis-global-respect-mode))
 
 (provide 'init-evil)

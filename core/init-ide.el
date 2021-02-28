@@ -5,7 +5,6 @@
 ;; Code Check
 ;; @https://www.flycheck.org/en/latest/
 (leaf flycheck
-  :blackout
   :hook (prog-mode-hook . flycheck-mode)
   :init
   (setq flycheck-stylelintrc "~/.stylelintrc.json"
@@ -62,7 +61,6 @@
 
 ;; Code Formating
 (leaf editorconfig
-  :blackout t
   :hook (prog-mode-hook . editorconfig-mode))
 
 (leaf format-all

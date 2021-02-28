@@ -132,17 +132,11 @@
 
 ;; ;; Live browser JavaScript, CSS, and HTML interaction
 ;; (use-package skewer-mode
-;;   :blackout
 ;;   :hook (((js-mode js2-mode). skewer-mode)
 ;;          (css-mode . skewer-css-mode)
 ;;          (web-mode . skewer-html-mode)
 ;;          (html-mode . skewer-html-mode))
 ;;   :init
-;;   ;; blackout
-;;   (with-eval-after-load 'skewer-css
-;;     (blackout 'skewer-css-mode))
-;;   (with-eval-after-load 'skewer-html
-;;     (blackout 'skewer-html-mode)))
 
 ;; REST
 ;; (use-package restclient

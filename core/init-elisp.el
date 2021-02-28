@@ -21,7 +21,6 @@
 
 ;; Syntax highlighting of known Elisp symbols
 (leaf highlight-defined
-  :blackout
   :hook (emacs-lisp-mode . highlight-defined-mode)
   :init (setq highlight-defined-face-use-itself nil))
 

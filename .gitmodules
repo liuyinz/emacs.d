@@ -169,9 +169,6 @@
 [submodule "leaf-keywords.el"]
 	path = module/leaf-keywords
 	url = https://github.com/conao3/leaf-keywords.el.git
-[submodule "blackout"]
-	path = module/blackout
-	url = https://github.com/raxod502/blackout.git
 [submodule "packed"]
 	path = module/packed
 	url = https://github.com/emacscollective/packed.git

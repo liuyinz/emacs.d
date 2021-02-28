@@ -54,12 +54,10 @@
 
 ;; Colourful dired
 (leaf diredfl
-  :blackout t
   :hook (dired-mode-hook . diredfl-mode))
 
 ;; Show git info in dired
 (leaf dired-git-info
-  :blackout t
   :commands dired-git-info-mode)
 
 ;; Allow rsync from dired buffers

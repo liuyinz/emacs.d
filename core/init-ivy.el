@@ -5,7 +5,6 @@
 ;; ivy core
 (leaf counsel
   :doc "deps: multiple-cursors"
-  :blackout ivy-mode counsel-mode
   :hook
   (after-init-hook . ivy-mode)
   (ivy-mode-hook . counsel-mode)
@@ -78,12 +77,10 @@
     (setq magit-completing-read-function 'ivy-completing-read)))
 
 (leaf prescient
-  :blackout prescient-persisit-mode
   :hook (after-init-hook . prescient-persist-mode)
   :init (setq prescient-history-length 300))
 
 (leaf ivy-prescient
-  :blackout ivy-prescient-mode
   ;; must load counsel.el before ivy-prescient.el
   ;; @https://github.com/raxod502/prescient.el
   :hook (counsel-mode-hook . ivy-prescient-mode))

@@ -5,7 +5,6 @@
 (require 'init-const)
 
 (leaf company
-  :blackout t
   :hook (after-init-hook . global-company-mode)
   :init
   (setq company-tooltip-width-grow-only t
@@ -44,7 +43,6 @@
 
 ;; yasnippet
 (leaf yasnippet
-  :blackout t
   :hook (prog-mode-hook . yas-minor-mode)
   :init
   (setq yas-triggers-in-field t

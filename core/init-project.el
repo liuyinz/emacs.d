@@ -3,7 +3,6 @@
 ;;; Code:
 
 (leaf projectile
-  :blackout t
   :hook (after-init-hook . projectile-mode)
   :init
   (setq projectile-mode-line-prefix ""

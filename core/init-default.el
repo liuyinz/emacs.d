@@ -111,8 +111,7 @@
   ;; An all-in-one comment command to rule them all
   (prog-mode-hook . goto-address-prog-mode))
 
-
-(leaf eldoc :blackout t)
+(leaf eldoc)
 
 ;; A comprehensive visual interface to diff & patch
 (leaf ediff
