@@ -59,9 +59,5 @@
   (with-eval-after-load 'yasnippet
     (setq yas-snippet-dirs '(my-dir-snippet))))
 
-;; (leaf with-proxy
-;;   :init
-;;   (setq with-proxy-http-server "127.0.0.1:7890"))
-
 (provide 'init-sys)
 ;;; init-sys.el ends here

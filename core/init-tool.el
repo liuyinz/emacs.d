@@ -2,6 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
+(leaf with-proxy
+  :require t
+  :init
+  ;; TODO set embark with proxy
+  (setq with-proxy-http-server my-proxy))
+
 ;; (use-package easy-hugo
 ;;   :custom ((easy-hugo-basedir  "~/gh/jiacai2050.github.io/")
 ;;        (easy-hugo-url  "https://liujiacai.net")

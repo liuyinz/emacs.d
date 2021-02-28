@@ -266,3 +266,6 @@
 [submodule "emacs-smart-input-source"]
 	path = module/emacs-smart-input-source
 	url = https://github.com/laishulu/emacs-smart-input-source.git
+[submodule "with-proxy.el"]
+	path = module/with-proxy
+	url = https://github.com/twlz0ne/with-proxy.el.git
