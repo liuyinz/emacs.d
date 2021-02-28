@@ -25,7 +25,7 @@
     (kbd "C-y C-t") 'transpose-frame
     (kbd "C-y k") 'delete-window
     (kbd "C-y o") 'delete-other-windows
-    (kbd "C-y h") 'split-window-below
+    (kbd "C-y h") 'split-window-horizontally
     (kbd "C-y v") 'split-window-vertically
 
     ;; avy

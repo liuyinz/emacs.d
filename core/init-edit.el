@@ -14,7 +14,7 @@
 (leaf avy
   :hook (after-init-hook . avy-setup-default)
   :config
-  (setq avy-all-windows nil
+  (setq avy-all-windows t
         avy-all-windows-alt t
         avy-background t
         avy-style 'at-full
