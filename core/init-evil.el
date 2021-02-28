@@ -71,7 +71,7 @@
                (epa-key-list-mode . emacs)
                (ffip-file-mode . emacs)
                ;; (flycheck-error-list-mode . normal)
-               (grep-mode . emacs)
+               (grep-mode . normal)
                (git-commit-mode . insert)
                (gud-mode . emacs)
                (help-mode . emacs)

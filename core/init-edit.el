@@ -41,6 +41,12 @@
         command-log-mode-is-global t
         command-log-mode-window-size 40))
 
+(leaf wgrep
+  :hook (grep-mode-hook . wgrep-change-to-wgrep-mode)
+  :init
+  (setq wgrep-change-readonly-file t)
+  (setq wgrep-auto-save-buffer t))
+
 (leaf color-rg
   :commands (color-rg-search-project-with-type
              color-rg-search-input

@@ -161,6 +161,13 @@
     (kbd "C-n") 'company-select-next
     (kbd "C-p") 'company-select-previous)
 
+  ;;wgrep
+  (evil-define-key 'normal wgrep-mode-map
+    ;; "" 'wgrep-mark-deletion
+    "ZQ" 'wgrep-abort-changes
+    "ZZ" 'wgrep-finish-edit
+    (kbd "<escape>") 'wgrep-exit)
+
   ;; yasnippet
   (evil-define-key nil yas-minor-mode-map
     (kbd "C-c C-t") 'my-yasnippet-switch
