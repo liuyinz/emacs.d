@@ -62,8 +62,8 @@
   (advice-add #'marginalia-cycle :after
               (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
 (leaf consult
-  ;; :require t
-  :commands consult-buffer
+  :after selectrum
+  :require t
   :init
   (setq consult-async-min-input 1)
   (setq consult-project-root-function #'projectile-project-root)
@@ -77,7 +77,6 @@
                                  (listify-key-sequence "consult- ")
                                  unread-command-events))
     (call-interactively #'execute-extended-command))
-
 
   ;; add org source, @https://github.com/minad/consult/wiki#org-buffers
   (autoload 'org-buffer-list "org")
@@ -93,11 +92,11 @@
 
 (leaf embark
   :require t
-  :after selectrum
+  :after selectrum consult
   :init
   ;; (setq embark-prompter 'embark-completing-read-prompter)
   :config
-  (leaf embark-consult :require t)
+  (leaf embark-consult :require t))
 
 (provide 'init-selectrum)
 ;;; init-selectrum.el ends here
