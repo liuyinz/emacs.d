@@ -14,6 +14,7 @@
   :hook (prog-mode-hook . highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
+        highlight-parentheses-delay 0.05
         highlight-parentheses-highlight-adjacent t
         highlight-parentheses-attributes '((:inverse-video t :weight bold))))
 

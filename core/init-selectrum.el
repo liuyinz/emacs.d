@@ -1,5 +1,7 @@
-;;; init-selectrum.el --- Config for selectrum  -*- lexical-binding: t; -*-
+;;; init-selectrum.el --- selectrum suits -*- lexical-binding: t no-byte-compile: t -*-
+
 ;;; Commentary:
+
 ;;; Code:
 
 (leaf selectrum
@@ -106,7 +108,6 @@
   (setq-default marginalia-annotators '(marginalia-annotators-heavy nil))
   (advice-add #'marginalia-cycle :after
               (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
-
 
 (provide 'init-selectrum)
 ;;; init-selectrum.el ends here

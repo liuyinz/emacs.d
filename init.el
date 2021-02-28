@@ -28,7 +28,7 @@
 
 ;; add submodules to load-path
 (defun add-subdirs-to-load-path (dir)
-  "Recursive add directories to `load-path'."
+  "Recursive add `DIR` to `load-path'."
   (let ((default-directory (file-name-as-directory dir)))
     (add-to-list 'load-path dir)
     (normal-top-level-add-subdirs-to-load-path)))

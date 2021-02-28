@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+;; key repeat speed on macOS, @https://stackoverflow.com/a/1052296/13194984
+
 (with-eval-after-load 'evil
 
   ;; set leader
