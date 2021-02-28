@@ -269,3 +269,6 @@
 [submodule "with-proxy.el"]
 	path = module/with-proxy
 	url = https://github.com/twlz0ne/with-proxy.el.git
+[submodule "transpose-frame"]
+	path = module/transpose-frame
+	url = https://github.com/emacsorphanage/transpose-frame.git

@@ -25,34 +25,8 @@
 ;;     "sa" 'my-search-all
 ;;     ;; "fg" 'counsel-git
 ;;     "d" 'dired-jump-other-window
-;;     ;; buffer
-;;     "b" 'ibuffer-other-window
-;;     ;; magit
-;;     "gg" 'magit-status
-;;     "gl" 'magit-log-all-branches
 ;;     )
 
-;;   ;; Define for general
-;;   (general-create-definer my-space-leader-def
-;;     :prefix "SPC"
-;;     :states '(normal visual))
-
-;;   (my-space-leader-def
-;;     ;;window
-;;     "x" 'delete-window
-;;     "o" 'delete-other-windows
-;;     "h" 'split-window-horizontally
-;;     "v" 'split-window-vertically
-;;     "q" 'delete-frame
-
-;;     ;;buffer
-;;     "s" 'save-buffer
-;;     "k" 'kill-this-buffer
-;;     "a" 'evil-write-all
-;;     ;;toggle
-;;     "tu" 'undo-tree-visualize
-;;     "tf" 'flycheck-list-errors
-;;     "tq" 'toggle-keyfreq
 ;;     "td" 'toggle-debug-on-error
 ;;     ))
 

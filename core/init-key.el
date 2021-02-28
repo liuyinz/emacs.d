@@ -8,21 +8,26 @@
   (evil-define-key 'motion 'global
     ";" nil
     "," nil
-    (kbd "C-o") nil)
+    (kbd "C-y") nil)
 
   ;; enable parts of keybinding
   (evil-define-key 'insert 'global
-    (kbd "C-y") 'evil-execute-in-normal-state)
+    (kbd "C-o") 'evil-execute-in-normal-state)
 
   ;;evil binding
   (evil-define-key nil 'global
+    ;; cancel repoeat
+    (kbd "C-x <escape> <escape>") nil
+
+    ;; window
     (kbd "C-y") nil
-    ;; other window
-    (kbd "C-o") 'other-window
-    ;; jump between two buffer
-    (kbd "C-r") 'mode-line-other-buffer
-    ;; up-directory
-    (kbd "C-<backspace>") 'backward-kill-sexp
+    (kbd "C-y C-y") 'other-window
+    (kbd "C-y C-t") 'transpose-frame
+    (kbd "C-y k") 'delete-window
+    (kbd "C-y o") 'delete-other-windows
+    (kbd "C-y h") 'split-window-below
+    (kbd "C-y v") 'split-window-vertically
+
     ;; avy
     (kbd "C-l") nil
     (kbd "C-l C-l") 'avy-goto-line
@@ -30,6 +35,12 @@
     (kbd "C-l f") 'avy-goto-char
     (kbd "C-l p") 'avy-goto-paren
     (kbd "C-l r") 'avy-resume
+    ;; jump between two buffer
+    (kbd "C-r") (lambda ()
+                  (interactive)
+                  (switch-to-buffer nil))
+    ;; up-directory
+    (kbd "C-<backspace>") 'backward-kill-sexp
     ;; vterm-toggle
     (kbd "C-,") 'vterm-toggle
 

@@ -53,7 +53,7 @@
   (require 'init-ui)
   (require 'init-highlight)
   ;; (require 'init-frame)
-  ;; (require 'init-window)
+  (require 'init-window)
   ;; (require 'init-ibuffer)
   (require 'init-dired)
   ;; (require 'init-org)
