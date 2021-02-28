@@ -138,6 +138,10 @@
     (kbd "C-c C-o") 'embark-export
     )
 
+  ;; embark-consult
+  (evil-define-key nil embark-collect-mode-map
+    (kbd "C-j") 'embark-consult-preview-at-point)
+
   ;; dired
   (evil-define-key nil dired-mode-map
     (kbd "C-c C-p") 'wdired-change-to-wdired-mode

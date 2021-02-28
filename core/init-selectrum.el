@@ -97,9 +97,7 @@
   :init
   ;; (setq embark-prompter 'embark-completing-read-prompter)
   :config
-  (leaf embark-consult
-    :require t
-    :hook (embark-collect-mode-hook . embark-consult-preview-minor-mode)))
+  (leaf embark-consult :require t)
 
 (provide 'init-selectrum)
 ;;; init-selectrum.el ends here
