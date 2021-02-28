@@ -43,6 +43,8 @@
     ;; toggle
     (kbd "C-; C-;") 'vterm-toggle
     (kbd "C-; p") 'toggle-profiler
+    (kbd "C-; d e") 'toggle-debug-on-error
+    (kbd "C-; d q") 'toggle-debug-on-quit
 
     ;; jump between two buffer
     (kbd "C-r") (lambda ()
