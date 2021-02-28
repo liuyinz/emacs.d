@@ -1,4 +1,4 @@
-;;; init-sys.el --- system setting  -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-sys.el --- leaf,compile,shell,littering  -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 

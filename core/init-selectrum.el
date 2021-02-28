@@ -97,24 +97,8 @@
   :init
   ;; (setq embark-prompter 'embark-completing-read-prompter)
   :config
-  ;; HACK @https://github.com/oantolin/embark/issues/74#issuecomment-753233512
-  ;; set virtual-buffer with file actions correctly
-  (defun virtual-buffer-dispatch (pair)
-    (pcase pair
-      (`(virtual-buffer . ,cand)
-       (cons (pcase (- (elt cand 0) #x100000)
-               ((or ?b ?p) 'buffer)
-               ((or ?f ?q) 'file)
-               (?m 'bookmark)
-               (_ 'general))
-             (substring cand 1)))))
-
-  (advice-add 'embark-target-top-minibuffer-completion
-              :filter-return 'virtual-buffer-dispatch)
-
   (leaf embark-consult
-    :blackout t
-    :after embark consult
+    :require t
     :hook (embark-collect-mode-hook . embark-consult-preview-minor-mode)))
 
 (provide 'init-selectrum)

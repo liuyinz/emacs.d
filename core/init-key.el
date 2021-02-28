@@ -20,6 +20,7 @@
   (evil-define-key nil 'global
     ;; cancel repoeat
     (kbd "C-x <escape> <escape>") nil
+    (kbd "C-/") nil
 
     ;; window
     (kbd "C-y") nil
@@ -44,7 +45,9 @@
     ;; up-directory
     (kbd "C-<backspace>") 'backward-kill-sexp
     ;; vterm-toggle
-    (kbd "C-,") 'vterm-toggle
+    (kbd "C-;") 'vterm-toggle
+    ;; embark
+    (kbd "C-,") 'embark-act
 
     ;; selectrum
     (kbd "C-x C-z") 'selectrum-repeat
@@ -129,8 +132,9 @@
   (evil-define-key nil selectrum-minibuffer-map
     (kbd "<escape>") 'minibuffer-keyboard-quit
     ;; embark
+    (kbd "C-,") 'embark-act
     (kbd "C-c C-o") 'embark-export
-    (kbd "C-c C-c") 'embark-act)
+    )
 
   ;; dired
   (evil-define-key nil dired-mode-map
