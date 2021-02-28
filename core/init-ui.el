@@ -38,6 +38,14 @@
    '(orderless-match-face-1 ((t (:inherit error :weight bold))))
    '(orderless-match-face-2 ((t (:inherit font-lock-string-face :weight bold))))
    '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face :weight bold))))
+   ;; color-rg
+   '(color-rg-font-lock-header-line-text ((t (:foreground "#8f60a2" :bold t))))
+   '(color-rg-font-lock-header-line-keyword ((t (:foreground "#98c379" :bold t))))
+   '(color-rg-font-lock-header-line-edit-mode ((t (:foreground "#56b6c2" :bold t))))
+   '(color-rg-font-lock-header-line-directory ((t (:foreground "#61afef" :bold t :underline t))))
+   '(color-rg-font-lock-file ((t (:foreground "#61afef" :bold t :underline t))))
+   '(color-rg-font-lock-match ((t (:foreground "#98c379" :bold t))))
+   '(color-rg-font-lock-command ((t (:foreground "#8f60a2" :bold t))))
    ))
 
 (leaf awesome-tray

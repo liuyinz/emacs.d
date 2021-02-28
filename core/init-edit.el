@@ -48,14 +48,6 @@
              color-rg-search-input
              color-rg-search-input-in-project
              color-rg-search-input-in-current-file)
-  :custom-face
-  (color-rg-font-lock-header-line-text . '((t (:foreground "#8f60a2" :bold t))))
-  (color-rg-font-lock-header-line-keyword . '((t (:foreground "#98c379" :bold t))))
-  (color-rg-font-lock-header-line-edit-mode . '((t (:foreground "#56b6c2" :bold t))))
-  (color-rg-font-lock-header-line-directory . '((t (:foreground "#61afef" :bold t :underline t))))
-  (color-rg-font-lock-file . '((t (:foreground "#61afef" :bold t :underline t))))
-  (color-rg-font-lock-match . '((t (:foreground "#98c379" :bold t))))
-  (color-rg-font-lock-command . '((t (:foreground "#8f60a2" :bold t))))
   :init
   (setq color-rg-mac-load-path-from-shell nil
         color-rg-max-column 6000))
