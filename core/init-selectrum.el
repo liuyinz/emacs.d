@@ -67,10 +67,10 @@
                                  unread-command-events))
     (call-interactively #'execute-extended-command))
 
-  ;; @https://github.com/minad/consult/wiki#hide-all-sources-except-normal-buffers-in-consult-buffer-by-default
-  (dolist (src consult-buffer-sources)
-    (unless (eq src 'consult--source-buffer)
-      (set src (plist-put (symbol-value src) :hidden t))))
+  ;; ;; @https://github.com/minad/consult/wiki#hide-all-sources-except-normal-buffers-in-consult-buffer-by-default
+  ;; (dolist (src consult-buffer-sources)
+  ;;   (unless (eq src 'consult--source-buffer)
+  ;;     (set src (plist-put (symbol-value src) :hidden t))))
 
   (leaf consult-flycheck
     :commands consult-flycheck))
