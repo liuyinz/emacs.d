@@ -155,6 +155,21 @@
 ;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
 ;; sentence-end-double-space nil)
 
+(leaf profiler
+  :init
+  (setq profiler-report-leaf-mark  ">")
+
+  ;; HACK , reformat memory size
+  (defun profiler-bytes-h (str)
+    "reformat with human-readeable size"
+    (let ((s (cl-count ?, str)))
+      (cond
+       ((= s 1) (concat (substring str 0 -4) " K"))
+       ((= s 2) (concat (substring str 0 -8) " M"))
+       ((>= s 3) (concat (substring str 0 -12) " G"))
+       (t str))))
+  (advice-add 'profiler-format-number :filter-return #'profiler-bytes-h))
+
 (setq isearch-lazy-count t)
 (setq vc-follow-symlinks t)
 

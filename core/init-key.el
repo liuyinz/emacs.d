@@ -10,7 +10,8 @@
   (evil-define-key 'motion 'global
     ";" nil
     "," nil
-    (kbd "C-y") nil)
+    (kbd "C-y") nil
+    (kbd "C-o") nil)
 
   ;; enable parts of keybinding
   (evil-define-key 'insert 'global
@@ -25,7 +26,7 @@
     ;; window
     (kbd "C-y") nil
     (kbd "C-y C-y") 'other-window
-    (kbd "C-y C-t") 'transpose-frame
+    (kbd "C-y t") 'transpose-frame
     (kbd "C-y k") 'delete-window
     (kbd "C-y o") 'delete-other-windows
     (kbd "C-y h") 'split-window-horizontally
@@ -38,14 +39,18 @@
     (kbd "C-l f") 'avy-goto-char
     (kbd "C-l p") 'avy-goto-paren
     (kbd "C-l r") 'avy-resume
+
+    ;; toggle
+    (kbd "C-; C-;") 'vterm-toggle
+    (kbd "C-; p") 'toggle-profiler
+
     ;; jump between two buffer
     (kbd "C-r") (lambda ()
                   (interactive)
                   (switch-to-buffer nil))
     ;; up-directory
     (kbd "C-<backspace>") 'backward-kill-sexp
-    ;; vterm-toggle
-    (kbd "C-;") 'vterm-toggle
+
     ;; embark
     (kbd "C-,") 'embark-act
 
@@ -55,13 +60,8 @@
     [remap switch-to-buffer] 'consult-buffer
     [remap switch-to-buffer-other-window] 'consult-buffer-other-window
     [remap switch-to-buffer-other-frame] 'consult-buffer-other-frame
-    ;; ("C-c h" . consult-history)
-    ;; ("C-c m" . consult-mode-command)
-    ;; ("C-c b" . consult-bookmark)
-    ;; ("C-c k" . consult-kmacro)
     ;; ;; C-x bindings (ctl-x-map)
     ;; ("C-x M-:" . consult-complex-command)
-    ;; ("C-x b" . consult-buffer)
     ;; ;; Custom M-# bindings for fast register access
     ;; ("M-#" . consult-register-load)
     ;; ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (UNRELATED!)

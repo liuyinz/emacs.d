@@ -182,5 +182,13 @@ Same as `replace-string C-q C-m RET RET'."
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-(provide 'init-funcs)
+(defun toggle-profiler ()
+  "Start,stop or report in one command"
+  (interactive)
+  (if (not (or (profiler-cpu-running-p) (profiler-memory-running-p)))
+      (profiler-start 'cpu+mem)
+    (profiler-stop)
+    (profiler-report)))
+
+  (provide 'init-funcs)
 ;;; init-funcs.el ends here
