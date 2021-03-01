@@ -138,11 +138,10 @@ If this is a daemon session, load them all immediately instead."
   (require 'init-vcs)
   (require 'init-ide)
   (require 'init-project)
-  ;; (require 'init-lsp)
+  (require 'init-lsp)
   ;; language
   (require 'init-lang)
   (require 'init-elisp)
-  (require 'init-web)
   (require 'init-js)
   (require 'init-evil)
   (require 'init-key)

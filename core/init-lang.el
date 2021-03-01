@@ -2,6 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 
+(leaf css-mode
+  :init
+  (setq css-indent-offset 2)
+  (setq css-fontify-colors nil))
+
+;; ;; SCSS mode
+;; (leaf scss-mode
+;;   :init (setq scss-compile-at-save nil))
+
+;; (leaf less-css-mode
+;;   :init (setq less-css-compile-at-save nil))
+
 (leaf sh-script
   :hook (sh-mode-hook . my-sh-mode-setup)
   :config

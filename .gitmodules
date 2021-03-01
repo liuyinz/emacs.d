@@ -1,6 +1,3 @@
-[submodule "web-mode"]
-	path = module/web-mode
-	url = https://github.com/fxbois/web-mode.git
 [submodule "magit"]
 	path = module/magit
 	url = https://github.com/magit/magit.git
@@ -46,9 +43,6 @@
 [submodule "emacs-format-all-the-code"]
 	path = module/emacs-format-all-the-code
 	url = https://github.com/lassik/emacs-format-all-the-code.git
-[submodule "emmet-mode"]
-	path = module/emmet-mode
-	url = https://github.com/smihica/emmet-mode.git
 [submodule "evil-matchit"]
 	path = module/evil-matchit
 	url = https://github.com/redguardtoo/evil-matchit.git
@@ -85,18 +79,12 @@
 [submodule "indent-guide"]
 	path = module/indent-guide
 	url = https://github.com/zk-phi/indent-guide.git
-[submodule "js2-refactor.el"]
-	path = module/js2-refactor
-	url = https://github.com/magnars/js2-refactor.el.git
 [submodule "js2-mode"]
 	path = module/js2-mode
 	url = https://github.com/mooz/js2-mode.git
 [submodule "keyfreq"]
 	path = module/keyfreq
 	url = https://github.com/dacap/keyfreq.git
-[submodule "less-css-mode"]
-	path = module/less-css-mode
-	url = https://github.com/purcell/less-css-mode.git
 [submodule "lua-mode"]
 	path = module/lua-mode
 	url = https://github.com/immerrr/lua-mode.git
@@ -124,12 +112,6 @@
 [submodule "plantuml-mode"]
 	path = module/plantuml-mode
 	url = https://github.com/skuro/plantuml-mode.git
-[submodule "restclient.el"]
-	path = module/restclient
-	url = https://github.com/pashky/restclient.el.git
-[submodule "scss-mode"]
-	path = module/scss-mode
-	url = https://github.com/antonj/scss-mode.git
 [submodule "shrink-path.el"]
 	path = module/shrink-path
 	url = https://gitlab.com/bennya/shrink-path.el.git
@@ -260,3 +242,9 @@
 [submodule "emacs-async"]
 	path = module/emacs-async
 	url = https://github.com/jwiegley/emacs-async.git
+[submodule "ht.el"]
+	path = module/ht
+	url = https://github.com/Wilfred/ht.el.git
+[submodule "markdown-mode"]
+	path = module/markdown-mode
+	url = https://github.com/jrblevin/markdown-mode.git
