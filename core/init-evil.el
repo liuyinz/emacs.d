@@ -122,8 +122,7 @@
   (setq evilmi-shortcut "m"))
 
 (leaf evil-surround
-  :hook
-  (evil-mode-hook . global-evil-surround-mode)
+  :hook (evil-mode-hook . global-evil-surround-mode)
   :config
   (add-hook 'prog-mode-hook 'evil-surround-prog-mode-hook-setup)
   (defun evil-surround-prog-mode-hook-setup ()
@@ -148,11 +147,6 @@
 (leaf evil-nerd-commenter
   :after evil
   :commands evilnc-comment-or-uncomment-lines evilnc-copy-and-comment-lines)
-
-(leaf anzu
-  :hook (evil-mode-hook . global-anzu-mode)
-  :config
-  (leaf evil-anzu :require t))
 
 (leaf sis
   :doc "deps : brew install macism"
