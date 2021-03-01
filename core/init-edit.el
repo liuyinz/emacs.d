@@ -20,7 +20,17 @@
         avy-keys '(?a ?s ?d ?f ?h ?j ?k ?l ?q ?u ?w ?i ?e ?o))
   (setq avy-orders-alist
         '((avy-goto-char . avy-order-closest)
-          (avy-goto-word-0 . avy-order-closest))))
+          (avy-goto-word-0 . avy-order-closest)
+          (avy-goto-parens . avy-order-closest)))
+
+  ;; HACK go-to paren
+  ;; @https://github.com/abo-abo/avy/wiki/custom-commands#jumping-to-an-open-paren
+  ;; @https://stackoverflow.com/a/50063226/13194984
+  (defun avy-goto-paren ()
+    (interactive)
+    (let ((avy-command this-command))   ; for look up in avy-orders-alist
+      (avy-jump "[]\[(){}]")))
+  )
 
 ;; undo-redo
 (leaf undo-fu :require t)
@@ -55,34 +65,6 @@
   :init
   (setq color-rg-mac-load-path-from-shell nil
         color-rg-max-column 6000))
-
-(leaf awesome-pair
-  :hook ((c-mode-common-hook
-          c-mode-hook
-          c++-mode-hook
-          java-mode-hook
-          haskell-mode-hook
-          emacs-lisp-mode-hook
-          lisp-interaction-mode-hook
-          lisp-mode-hook
-          maxima-mode-hook
-          ielm-mode-hook
-          sh-mode-hook
-          makefile-gmake-mode-hook
-          php-mode-hook
-          python-mode-hook
-          js-mode-hook
-          go-mode-hook
-          qml-mode-hook
-          jade-mode-hook
-          css-mode-hook
-          ruby-mode-hook
-          coffee-mode-hook
-          rust-mode-hook
-          qmake-mode-hook
-          lua-mode-hook
-          swift-mode-hook
-          minibuffer-inactive-mode-hook) . awesome-pair-mode))
 
 (provide 'init-edit)
 ;;; init-edit.el ends here

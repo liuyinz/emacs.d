@@ -1,6 +1,3 @@
-[submodule "awesome-pair"]
-	path = module/awesome-pair
-	url = https://github.com/manateelazycat/awesome-pair.git
 [submodule "web-mode"]
 	path = module/web-mode
 	url = https://github.com/fxbois/web-mode.git

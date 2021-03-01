@@ -111,7 +111,7 @@ If this is a daemon session, load them all immediately instead."
 (add-hook 'emacs-startup-hook #'doom-load-packages-incrementally-h)
 
 (doom-load-packages-incrementally '(
-                                    magit
+                                    magit-status
                                     ))
 
 ;; load core config

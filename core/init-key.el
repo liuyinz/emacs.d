@@ -21,6 +21,7 @@
   (evil-define-key nil 'global
     ;; cancel repoeat
     (kbd "C-x <escape> <escape>") nil
+    (kbd "s-m") nil
     (kbd "C-/") nil
     (kbd "M-c") nil
     ;; jump between two buffer
@@ -29,7 +30,7 @@
                   (switch-to-buffer nil))
     ;; up-directory
     (kbd "C-<backspace>") 'backward-kill-sexp
-
+    (kbd "M-p") 'evilmi-jump-items
 
     ;; window
     (kbd "C-y") nil
@@ -53,6 +54,8 @@
     (kbd "C-; C-;") 'vterm-toggle
     ;; profiler
     (kbd "C-; p p") 'toggle-profiler
+    ;; command-logmode
+    (kbd "C-; c l") 'clm/toggle-command-log-buffer
     ;; debug
     (kbd "C-; d e") 'toggle-debug-on-error
     (kbd "C-; d q") 'toggle-debug-on-quit
@@ -152,6 +155,10 @@
   (evil-define-key nil embark-collect-mode-map
     (kbd "C-j") 'embark-consult-preview-at-point)
 
+  ;;transient
+  (evil-define-key nil transient-map
+    (kbd "<escape>") 'transient-quit-one)
+
   ;; dired
   (evil-define-key nil dired-mode-map
     (kbd "C-c C-p") 'wdired-change-to-wdired-mode
@@ -191,30 +198,6 @@
   (evil-define-key nil color-rg-mode-map
     "h" 'color-rg-jump-prev-file
     "l" 'color-rg-jump-next-file)
-
-  ;; awesome-pair
-  (evil-define-key nil awesome-pair-mode-map
-    "(" 'awesome-pair-open-round
-    "[" 'awesome-pair-open-bracket
-    "{" 'awesome-pair-open-curly
-    ")" 'awesome-pair-close-round
-    "]" 'awesome-pair-close-bracket
-    "}" 'awesome-pair-close-curly
-    "=" 'awesome-pair-equal
-    "%" 'awesome-pair-match-paren
-    "\"" 'awesome-pair-double-quote
-    (kbd "SPC") 'awesome-pair-space
-    (kbd "M-o") 'awesome-pair-backward-delete
-    (kbd "C-d") 'awesome-pair-forward-delete
-    (kbd "C-k") 'awesome-pair-kill
-    (kbd "M-\"") 'awesome-pair-wrap-double-quote
-    (kbd "M-[") 'awesome-pair-wrap-bracket
-    (kbd "M-{") 'awesome-pair-wrap-curly
-    (kbd "M-(") 'awesome-pair-wrap-round
-    (kbd "M-)") 'awesome-pair-unwrap
-    (kbd "M-p") 'awesome-pair-jump-right
-    (kbd "M-n") 'awesome-pair-jump-left
-    (kbd "M-:") 'awesome-pair-jump-out-pair-and-newline)
 
   ;; emmet-mode
   (evil-define-key nil emmet-mode-keymap

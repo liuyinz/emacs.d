@@ -119,7 +119,7 @@
   :hook (evil-mode-hook . global-evil-matchit-mode)
   :config
   ;;use "m" rather than "%"
-  (setq evilmi-shortcut "m"))
+  (setq evilmi-shortcut "\M-p"))
 
 (leaf evil-surround
   :hook (evil-mode-hook . global-evil-surround-mode)
