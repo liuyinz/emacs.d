@@ -142,7 +142,6 @@ If this is a daemon session, load them all immediately instead."
   ;; language
   (require 'init-lang)
   (require 'init-elisp)
-  (require 'init-js)
   (require 'init-evil)
   (require 'init-key)
   )

@@ -2,6 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
+(leaf js-mode
+  :defun (flycheck-select-checker . flycheck)
+  :interpreter ("node" . js2-mode)
+  :config
+  (leaf nodejs-repl :require t)
+  (when (executable-find "eslint")
+    (flycheck-select-checker 'javascript-eslint)))
+
+(leaf typescript-mode :mode "\\.ts[x]\\'")
+
 (leaf css-mode
   :init
   (setq css-indent-offset 2)
@@ -30,24 +40,9 @@
   (setq lua-indent-string-contents t)
   (setq lua-prefix-key nil))
 
-(leaf nxml-mode
-  :mode ("\\.xaml$" . xml-mode))
+(leaf yaml-mode :mode "\\.yaml\\'" "\\.yml\\'")
 
-(leaf yaml-mode
-  :mode "\\.yaml\\'" "\\.yml\\'"
-  :init
-  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
-
-;; (use-package cask-mode)
-;; (use-package csharp-mode)
-;; (use-package csv-mode)
-;; (use-package julia-mode)
-;; (use-package mermaid-mode)
 (leaf plantuml-mode)
-;; (use-package powershell)
-;; (use-package rmsbolt)
-;; (use-package scala-mode)
-;; (use-package swift-mode)
 (leaf vimrc-mode)
 
 (provide 'init-lang)
