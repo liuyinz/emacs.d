@@ -24,13 +24,13 @@
     (kbd "s-m") nil
     (kbd "C-/") nil
     (kbd "M-c") nil
+    (kbd "C-o") nil
     ;; jump between two buffer
     (kbd "C-r") (lambda ()
                   (interactive)
                   (switch-to-buffer nil))
     ;; up-directory
     (kbd "C-<backspace>") 'backward-kill-sexp
-    (kbd "M-p") 'evilmi-jump-items
 
     ;; window
     (kbd "C-y") nil
@@ -72,33 +72,6 @@
     [remap switch-to-buffer] 'consult-buffer
     [remap switch-to-buffer-other-window] 'consult-buffer-other-window
     [remap switch-to-buffer-other-frame] 'consult-buffer-other-frame
-    ;; ;; C-x bindings (ctl-x-map)
-    ;; ("C-x M-:" . consult-complex-command)
-    ;; ;; Custom M-# bindings for fast register access
-    ;; ("M-#" . consult-register-load)
-    ;; ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (UNRELATED!)
-    ;; ("C-M-#" . consult-register)
-    ;; ;; Other custom bindings
-    ;; ("M-y" . consult-yank-pop)                ;; orig. yank-pop
-    ;; ("<help> a" . consult-apropos)            ;; orig. apropos-command
-    ;; ;; M-g bindings (goto-map)
-    ;; ("M-g o" . consult-outline)
-    ;; ("M-g m" . consult-mark)
-    ;; ("M-g k" . consult-global-mark)
-    ;; ("M-g i" . consult-project-imenu) ;; Alternative: consult-imenu
-    ;; ;; ("M-g e" . consult-error)
-    ;; ;; M-s bindings (search-map)
-    ;; ("M-s g" . consult-git-grep)              ;; alt. consult-grep, consult-ripgrep
-    ;; ("M-s f" . consult-find)                  ;; alt. consult-locate, find-fd
-    ;; ("M-s l" . consult-line)
-    ;; ("M-s m" . consult-multi-occur)
-    ;; ("M-s k" . consult-keep-lines)
-    ;; ("M-s u" . consult-focus-lines)
-    ;; ;; Replacement for isearch-edit-string
-    ;; ("M-s e" . consult-isearch)
-    ;; ;; (:isearch-mode-map
-    ;; ;;  ("M-e" . consult-isearch)                 ;; orig. isearch-edit-string
-    ;; ;;  ("M-s e" . consult-isearch)))
     )
 
   (evil-define-key '(normal visual) 'global
