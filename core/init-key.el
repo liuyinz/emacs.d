@@ -25,6 +25,7 @@
     (kbd "C-/") nil
     (kbd "M-c") nil
     (kbd "C-o") nil
+    (kbd "C-j") nil
     ;; jump between two buffer
     (kbd "C-r") (lambda ()
                   (interactive)
