@@ -4,17 +4,11 @@
 
 (leaf magit
   :doc "deps: with-editor forge transient git-modes ghub"
-  :defun (yas-activate-extra-mode . yasnippet)
-  :commands (magit-status magit-dispatch magit-submodule magit-log-all-branches)
-  :hook (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
-  :mode
-  ("\\COMMIT_EDITMSG\\'" . text-mode)
-  ("\\MERGE_MSG\\'" . text-mode)
   :init
   (setq magit-no-confirm t
         magit-save-repository-buffers 'dontask
         magit-auto-revert-immediately t)
-  :config
+  :defer-config
   (magit-add-section-hook 'magit-status-sections-hook
                           'magit-insert-modules
                           'magit-insert-stashes

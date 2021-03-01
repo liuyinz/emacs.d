@@ -44,6 +44,7 @@
 ;; yasnippet
 (leaf yasnippet
   :hook (prog-mode-hook . yas-minor-mode)
+  :hook (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
   :init
   (setq yas-triggers-in-field t
         ;; yas-also-indent-empty-lines t

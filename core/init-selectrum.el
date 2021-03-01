@@ -61,14 +61,13 @@
   (setq-default marginalia-annotators '(marginalia-annotators-heavy nil))
   (advice-add #'marginalia-cycle :after
               (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
+
 (leaf consult
-  :after selectrum
-  :require t
   :init
   (setq consult-async-min-input 1)
   (setq consult-project-root-function #'projectile-project-root)
   (setq consult-find-command "fd --color=never --full-path ARG OPTS")
-  :config
+  :defer-config
   ;; @https://emacs.stackexchange.com/a/36253
   (defun consult-consult ()
     "call command related to consult"
@@ -87,16 +86,13 @@
                 :items    ,(lambda () (mapcar #'buffer-name (org-buffer-list)))))
   (add-to-list 'consult-buffer-sources 'org-buffer-source 'append)
 
-  (leaf consult-flycheck
-    :commands consult-flycheck))
+  (leaf consult-flycheck :commands consult-flycheck)
 
-(leaf embark
-  :require t
-  :after selectrum consult
-  :init
-  ;; (setq embark-prompter 'embark-completing-read-prompter)
-  :config
-  (leaf embark-consult :require t))
+  (leaf embark
+    :require t
+    ;; :init (setq embark-prompter 'embark-completing-read-prompter)
+    :config
+    (leaf embark-consult :require t)))
 
 (provide 'init-selectrum)
 ;;; init-selectrum.el ends here
