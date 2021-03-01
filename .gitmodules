@@ -79,9 +79,6 @@
 [submodule "indent-guide"]
 	path = module/indent-guide
 	url = https://github.com/zk-phi/indent-guide.git
-[submodule "js2-mode"]
-	path = module/js2-mode
-	url = https://github.com/mooz/js2-mode.git
 [submodule "keyfreq"]
 	path = module/keyfreq
 	url = https://github.com/dacap/keyfreq.git

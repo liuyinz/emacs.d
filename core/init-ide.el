@@ -11,16 +11,13 @@
         flycheck-tidyrc "~/.tidyrc"
         flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save mode-enabled)
-        flycheck-indication-mode 'right-fringe
-        ;; flycheck-global-modes
-        ;; '(not text-mode outline-mode fundamental-mode org-mode
-        ;;       diff-mode shell-mode eshell-mode term-mode vterm-mode)
-        )
+        flycheck-indication-mode 'right-fringe)
   :config
   ;; Prettify fringe style
   (when (fboundp 'define-fringe-bitmap)
     (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
-      [16 48 112 240 112 48 16] nil nil 'center)))
+      [16 48 112 240 112 48 16] nil nil 'center))
+  )
 
 
 ;; Code Running
@@ -36,7 +33,7 @@
   "Running for whole or parts."
   (interactive "r")
   (cond
-   ((member major-mode '(html-mode web-mode)) (imp-visit-buffer))
+   ((member major-mode '(html-mode)) (imp-visit-buffer))
    (t (if (evil-visual-state-p)
           (quickrun-region start end)
         (quickrun)))))
