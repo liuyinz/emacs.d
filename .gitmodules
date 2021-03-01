@@ -266,3 +266,6 @@
 [submodule "transpose-frame"]
 	path = module/transpose-frame
 	url = https://github.com/emacsorphanage/transpose-frame.git
+[submodule "emacs-async"]
+	path = module/emacs-async
+	url = https://github.com/jwiegley/emacs-async.git
