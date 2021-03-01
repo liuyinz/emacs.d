@@ -61,7 +61,7 @@
 
 ;; Code Formating
 (leaf editorconfig
-  :hook (prog-mode-hook . editorconfig-mode))
+  :hook (shell-mode-hook . editorconfig-mode))
 
 (leaf format-all
   :doc "deps: inheritenv language-id"
