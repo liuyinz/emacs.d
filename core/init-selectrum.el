@@ -19,6 +19,7 @@
     :init
     (setq prescient-history-length 300
           prescient-aggressive-file-save t
+          prescient-sort-length-enable nil
           prescient-sort-full-matches-first t)
     :config
     (prescient-persist-mode)
@@ -52,22 +53,19 @@
 
 (leaf marginalia
   :hook (selectrum-mode-hook . marginalia-mode)
-  ;; :bind
-  ;; (:minibuffer-local-map
-  ;;  ("C-M-a" . marginalia-cycle))
-  ;; (:embark-general-map
-  ;;  ("A" . marginalia-cycle))
   :config
   (setq-default marginalia-annotators '(marginalia-annotators-heavy nil))
   (advice-add #'marginalia-cycle :after
               (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
 
 (leaf consult
+  :require t
+  :after selectrum
   :init
   (setq consult-async-min-input 1)
   (setq consult-project-root-function #'projectile-project-root)
   (setq consult-find-command "fd --color=never --full-path ARG OPTS")
-  :defer-config
+  :config
   ;; @https://emacs.stackexchange.com/a/36253
   (defun consult-consult ()
     "call command related to consult"
@@ -77,22 +75,22 @@
                                  unread-command-events))
     (call-interactively #'execute-extended-command))
 
-  ;; add org source, @https://github.com/minad/consult/wiki#org-buffers
-  (autoload 'org-buffer-list "org")
-  (defvar org-buffer-source
-    `(:name     "Org"
-                :narrow   ?o
-                :category buffer
-                :items    ,(lambda () (mapcar #'buffer-name (org-buffer-list)))))
-  (add-to-list 'consult-buffer-sources 'org-buffer-source 'append)
+  ;; ;; add org source, @https://github.com/minad/consult/wiki#org-buffers
+  ;; (autoload 'org-buffer-list "org")
+  ;; (defvar org-buffer-source
+  ;;   `(:name     "Org"
+  ;;               :narrow   ?o
+  ;;               :category buffer
+  ;;               :items    ,(lambda () (mapcar #'buffer-name (org-buffer-list)))))
+  ;; (add-to-list 'consult-buffer-sources 'org-buffer-source 'append)
 
-  (leaf consult-flycheck :commands consult-flycheck)
+  (leaf consult-flycheck :commands consult-flycheck))
 
-  (leaf embark
-    :require t
-    ;; :init (setq embark-prompter 'embark-completing-read-prompter)
-    :config
-    (leaf embark-consult :require t)))
-
+(leaf embark
+  :require t
+  :after consult
+  ;; :init (setq embark-prompter 'embark-completing-read-prompter)
+  :config
+  (leaf embark-consult :require t))
 (provide 'init-selectrum)
 ;;; init-selectrum.el ends here

@@ -22,6 +22,7 @@
     ;; cancel repoeat
     (kbd "C-x <escape> <escape>") nil
     (kbd "C-/") nil
+    (kbd "M-c") nil
     ;; jump between two buffer
     (kbd "C-r") (lambda ()
                   (interactive)
@@ -142,8 +143,11 @@
     ;; embark
     (kbd "C-,") 'embark-act
     (kbd "C-c C-o") 'embark-export
-    )
+    (kbd "M-c") 'marginalia-cycle)
 
+  ;; embark
+  (evil-define-key nil embark-general-map
+    (kbd "M-c") 'marginalia-cycle)
   ;; embark-consult
   (evil-define-key nil embark-collect-mode-map
     (kbd "C-j") 'embark-consult-preview-at-point)
