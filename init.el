@@ -15,10 +15,11 @@
 ;; add user config dir to load-path
 (add-to-list 'load-path (expand-file-name "core/" user-emacs-directory))
 
-;; user define variables
-(require 'init-const)
 ;; gc magic hack
 (require 'init-gcmh)
+
+(require 'init-const)
+(require 'init-lib)
 
 ;; for native-comp branch
 ;; (setq comp-speed 2)
@@ -65,15 +66,6 @@ Set this to nil to disable incremental loading.")
 
 (defvar doom-incremental-load-immediately (daemonp)
   "If non-nil, load all incrementally deferred packages immediately at startup.")
-
-;;; Mutation
-(defmacro appendq! (sym &rest lists)
-  "Append LISTS to SYM in place."
-  `(setq ,sym (append ,sym ,@lists)))
-
-(defmacro prependq! (sym &rest lists)
-  "Prepend LISTS to SYM in place."
-  `(setq ,sym (append ,@lists ,sym)))
 
 (defun doom-load-packages-incrementally (packages &optional now)
   "Registers PACKAGES to be loaded incrementally.
@@ -125,7 +117,6 @@ If this is a daemon session, load them all immediately instead."
 ;; load core config
 (with-temp-message ""
   (require 'init-benchmark)
-  (require 'init-funcs)
   (require 'init-sys)
 
   ;; (require 'init-test)

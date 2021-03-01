@@ -1,4 +1,4 @@
-;;; init-funcs.el --- functions defined by user -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-lib.el --- Macro and Function defined by user -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -11,8 +11,7 @@
 (defvar socks-noproxy)
 (defvar socks-server)
 
-(declare-function async-inject-variables 'async)
-
+;;; -------------------------- Macro ----------------------------------
 ;; time
 (defmacro time-count (&rest body)
   "Measure and return the time it takes evaluating BODY."
@@ -20,6 +19,17 @@
      ,@body
      (float-time (time-since time))))
 
+;; Mutation
+(defmacro appendq! (sym &rest lists)
+  "Append LISTS to SYM in place."
+  `(setq ,sym (append ,sym ,@lists)))
+
+(defmacro prependq! (sym &rest lists)
+  "Prepend LISTS to SYM in place."
+  `(setq ,sym (append ,@lists ,sym)))
+
+
+;;; -------------------------- Functions ----------------------------------
 ;; Dos2Unix/Unix2Dos
 (defun dos2unix ()
   "Convert the current buffer to UNIX file format."
@@ -190,5 +200,5 @@ Same as `replace-string C-q C-m RET RET'."
     (profiler-stop)
     (profiler-report)))
 
-(provide 'init-funcs)
-;;; init-funcs.el ends here
+(provide 'init-lib)
+;;; init-lib.el ends here
