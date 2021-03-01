@@ -16,9 +16,6 @@
 [submodule "evil-nerd-commenter"]
 	path = module/evil-nerd-commenter
 	url = https://github.com/redguardtoo/evil-nerd-commenter.git
-[submodule "magithub"]
-	path = module/magithub
-	url = https://github.com/vermiculus/magithub.git
 [submodule "emacs-doom-themes"]
 	path = module/emacs-doom-themes
 	url = https://github.com/hlissner/emacs-doom-themes.git
