@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;; JavaScript
 (leaf js2-mode
   :defun (flycheck-select-checker . flycheck)
@@ -29,21 +28,8 @@
              nodejs-repl-send-region
              nodejs-repl-load-file))
 
-(leaf js2-refactor
-  :doc "deps: multiple-cursors"
-  :hook (js2-mode-hook . js2-refactor-mode)
-  :config (js2r-add-keybindings-with-prefix "C-c C-m"))
-
 (leaf typescript-mode
   :mode ("\\.ts[x]\\'" . typescript-mode))
-
-;; Run Mocha or Jasmine tests
-;; (use-package mocha
-;;   :config (use-package mocha-snippets))
-
-;; Major mode for CoffeeScript code
-;; (use-package coffee-mode
-;;   :config (setq coffee-tab-width 2))
 
 (provide 'init-js)
 ;;; init-js.el ends here

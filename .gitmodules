@@ -248,3 +248,9 @@
 [submodule "markdown-mode"]
 	path = module/markdown-mode
 	url = https://github.com/jrblevin/markdown-mode.git
+[submodule "nox"]
+	path = module/nox
+	url = https://github.com/manateelazycat/nox.git
+[submodule "posframe"]
+	path = module/posframe
+	url = https://github.com/tumashu/posframe.git

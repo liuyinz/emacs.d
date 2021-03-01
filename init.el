@@ -138,7 +138,7 @@ If this is a daemon session, load them all immediately instead."
   (require 'init-vcs)
   (require 'init-ide)
   (require 'init-project)
-  (require 'init-lsp)
+  (require 'init-nox)
   ;; language
   (require 'init-lang)
   (require 'init-elisp)
