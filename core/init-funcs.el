@@ -163,14 +163,14 @@ Same as `replace-string C-q C-m RET RET'."
   (proxy-socks-show))
 
 (defun capitalize-first (s)
-  "Capitalize the first char of string"
+  "Capitalize the first char of string S."
   (if (> (length s) 0)
       (concat (upcase (substring s 0 1)) (downcase (substring s 1)))
     nil))
 
 ;; silently message
 (defun silent-message-advice (original &rest args)
-  "Silent recentf message."
+  "Silent function ORIGINAL message."
   (let ((inhibit-message t)
         (message-log-max nil))
     (apply original args)))
@@ -183,12 +183,12 @@ Same as `replace-string C-q C-m RET RET'."
   (untabify (point-min) (point-max)))
 
 (defun toggle-profiler ()
-  "Start,stop or report in one command"
+  "Start,stop or report in one command."
   (interactive)
   (if (not (or (profiler-cpu-running-p) (profiler-memory-running-p)))
       (profiler-start 'cpu+mem)
     (profiler-stop)
     (profiler-report)))
 
-  (provide 'init-funcs)
+(provide 'init-funcs)
 ;;; init-funcs.el ends here

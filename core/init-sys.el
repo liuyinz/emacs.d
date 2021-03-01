@@ -13,29 +13,6 @@
   :require t
   :config (leaf-keywords-init))
 
-(leaf auto-compile
-  :hook (after-init-hook . auto-compile-on-load-mode))
-
-;; Environment
-(leaf exec-path-from-shell
-  :require t
-  :init
-  (setq exec-path-from-shell-check-startup-files nil
-        exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
-        exec-path-from-shell-arguments '("-l"))
-  :config
-  ;; HACK , Cache $PATH once for all,
-  ;; inspired by @https://github.com/manateelazycat/cache-path-from-shell/blob/master/cache-path-from-shell.el
-  (defvar cache-path-from-shell-loaded-p nil)
-  (defun cache-path-from-shell-advice (fn &rest _)
-    (when (not cache-path-from-shell-loaded-p)
-      (funcall fn)
-      (setq cache-path-from-shell-loaded-p t)))
-  (advice-add 'exec-path-from-shell-initialize :around #'cache-path-from-shell-advice)
-
-  (exec-path-from-shell-initialize))
-
-
 ;; keep ~/.emacs.d clean
 (leaf no-littering
   :require t
@@ -55,6 +32,29 @@
   ;; restore yasnippet settings
   (with-eval-after-load 'yasnippet
     (setq yas-snippet-dirs '(my-dir-snippet))))
+
+(leaf auto-compile
+  :doc "deps: packed"
+  :hook (after-init-hook . auto-compile-on-load-mode))
+
+;; Environment
+(leaf exec-path-from-shell
+  :require t
+  :init
+  (setq exec-path-from-shell-check-startup-files nil
+        exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
+        exec-path-from-shell-arguments '("-l"))
+  :config
+  ;; HACK , Cache $PATH once for all
+  ;; @https://github.com/manateelazycat/cache-path-from-shell/blob/master/cache-path-from-shell.el
+  (defvar cache-path-from-shell-loaded-p nil)
+  (defun cache-path-from-shell-advice (fn &rest _)
+    (when (not cache-path-from-shell-loaded-p)
+      (funcall fn)
+      (setq cache-path-from-shell-loaded-p t)))
+  (advice-add 'exec-path-from-shell-initialize :around #'cache-path-from-shell-advice)
+
+  (exec-path-from-shell-initialize))
 
 (provide 'init-sys)
 ;;; init-sys.el ends here
