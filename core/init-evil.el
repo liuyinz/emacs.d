@@ -2,34 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (declare-function projectile-project-p 'projectile)
-
-;; (defun my-search-all ()
-;;   "Search with Rg in project or directory"
-;;   (interactive)
-;;   (if (projectile-project-p)
-;;       (counsel-projectile-rg)
-;;     (counsel-rg)))
-
-;;   (my-semicolon-leader-def
-;;     ;; misc
-;;     ";" 'counsel-M-x
-;;     "c" 'counsel-counsel
-;;     "i" 'counsel-imenu
-;;     "f" 'counsel-find-file
-;;     "y" 'counsel-yank-pop
-;;     ;; yasnippet
-;;     "ss" 'yas-visit-snippet-file
-;;     "sn" 'yas-new-snippet
-;;     ;; search and replace
-;;     "sa" 'my-search-all
-;;     ;; "fg" 'counsel-git
-;;     "d" 'dired-jump-other-window
-;;     )
-
-;;     "td" 'toggle-debug-on-error
-;;     ))
-
 (leaf evil
   :doc "deps: goto-chg"
   :defun evil-define-key* evil-delay evil-set-initial-state
@@ -55,7 +27,6 @@
         evil-want-integration t
         evil-ex-substitute-global t)
   :config
-
   ;; set leader and localleader
   (evil-set-leader '(normal visual) ";")
   (evil-set-leader '(normal visual) "," t)
