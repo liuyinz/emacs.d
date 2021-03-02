@@ -57,7 +57,7 @@ If you want to disable incremental loading altogether, either remove
 `doom-incremental-first-idle-timer' to nil. Incremental loading does not occur
 in daemon sessions (they are loaded immediately at startup).")
 
-(defvar doom-incremental-first-idle-timer 0.5
+(defvar doom-incremental-first-idle-timer 3
   "How long (in idle seconds) until incremental loading starts.
 Set this to nil to disable incremental loading.")
 

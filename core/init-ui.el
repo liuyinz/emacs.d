@@ -18,8 +18,6 @@
    '(awesome-tray-module-buffer-name-face ((t (:inherit font-lock-type-face :weight bold))))
    '(awesome-tray-module-location-face ((t (:inherit font-lock-keyword-face :weight bold))))
    '(awesome-tray-module-evil-face ((t (:inherit default :weight bold))))
-   ;; ;;selectrum
-   ;; '(selectrum-current-candidate ((t (:foreground "white" :weight bold))))
    ;;marginalia
    '(marginalia-type ((t (:inherit font-lock-constant-face))))
    '(marginalia-key ((t (:inherit font-lock-keyword-face :weight bold))))
@@ -56,6 +54,8 @@
         awesome-tray-buffer-name-buffer-changed t
         awesome-tray-buffer-read-only-style "[RO]"
         awesome-tray-input-method-en-style ""
+        awesome-tray-refresh-idle-delay 0.01
+        awesome-tray-git-update-duration 2
         awesome-tray-active-modules '("location"
                                       "rvm"
                                       "buffer-read-only"
@@ -65,6 +65,12 @@
                                       "evil"
                                       ))
   :config
+  ;; HACK respect default-frame-alist width and fullscrren settings
+  (defun awesome-tray-width-patch ()
+    (with-selected-frame (selected-frame)
+      (frame-width)))
+  (advice-add 'awesome-tray-get-frame-width :override #'awesome-tray-width-patch)
+
   ;; HACK change git info string
   (defun module-git-info-advice (str)
     "reformat string"

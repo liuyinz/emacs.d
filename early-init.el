@@ -30,8 +30,7 @@
 ;; disable tooltip-mode
 (tooltip-mode -1)
 
-; with awesome-tray , hide mode-line as early as possible
-(set-face-attribute 'mode-line nil :height 0.1)
+(setq mode-line-format nil)
 
 (setq default-frame-alist '((menu-bar-lines . 1)
                             (tool-bar-lines . 0)
