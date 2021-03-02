@@ -150,7 +150,8 @@
 
 (leaf sis
   :doc "deps : brew install macism"
-  :hook (evil-mode-hook . sis-global-respect-mode))
+  ;; TODO conflict with emacs --daemon when add-hook evil-mode
+  :hook (server-after-make-frame-hook . sis-global-respect-mode))
 
 (provide 'init-evil)
 ;;; init-evil.el ends here
