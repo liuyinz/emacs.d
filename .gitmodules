@@ -251,3 +251,6 @@
 [submodule "posframe"]
 	path = module/posframe
 	url = https://github.com/tumashu/posframe.git
+[submodule "visual-fill-column"]
+	path = module/visual-fill-column
+	url = https://github.com/joostkremers/visual-fill-column.git

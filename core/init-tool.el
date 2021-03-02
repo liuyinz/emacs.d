@@ -17,6 +17,7 @@
 ;;                               (easy-hugo-url . "https://en.liujiacai.net"))))))
 
 (leaf dash-at-point)
+(leaf writeroom :commands writeroom-mode)
 
 ;; (use-package leetcode
 ;;   :commands leetcode
