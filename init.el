@@ -67,6 +67,5 @@
   (require 'init-lang)
   (require 'init-elisp)
   (require 'init-evil)
-  (require 'init-key)
-  )
+  (require 'init-key))
 ;;; init.el ends here
