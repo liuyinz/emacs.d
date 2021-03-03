@@ -4,6 +4,14 @@
 
 ;; key repeat speed on macOS, @https://stackoverflow.com/a/1052296/13194984
 
+(defun back-to-user-buffer ()
+  "Switch back to text buffer,exclude `vterm-mode'."
+  (interactive)
+  (switch-to-buffer nil)
+  (when (eq major-mode 'vterm-mode)
+    (vterm-toggle)
+    (switch-to-buffer nil)))
+
 (with-eval-after-load 'evil
 
   ;; set leader
@@ -27,9 +35,7 @@
     (kbd "C-o") nil
     (kbd "C-j") nil
     ;; jump between two buffer
-    (kbd "C-r") (lambda ()
-                  (interactive)
-                  (switch-to-buffer nil))
+    (kbd "C-r") 'back-to-user-buffer
     ;; up-directory
     (kbd "C-<backspace>") 'backward-kill-sexp
 
@@ -227,7 +233,6 @@
     "gr" 'diff-hl-revert-hunk)
 
   (evil-define-key 'emacs vterm-mode-map
-    ;; "\M-n" 'vterm-toggle-insert-cd
     (kbd "C-c C-o") 'vterm-send-C-o
     )
 
