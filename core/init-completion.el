@@ -44,7 +44,7 @@
 ;; yasnippet
 (leaf yasnippet
   :hook
-  (after-init-hook . yas-global-mode)
+  (prog-mode-hook . yas-minor-mode)
   (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
   :init
   (setq yas-triggers-in-field t

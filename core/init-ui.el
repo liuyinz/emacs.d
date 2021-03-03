@@ -4,6 +4,28 @@
 
 (require 'subr-x)
 
+(leaf doom-modeline
+  :doc "deps: all-the-icons"
+  :hook (after-init-hook . doom-modeline-mode)
+  :init
+  (line-number-mode)
+  (column-number-mode)
+  (setq doom-modeline-icon nil
+        doom-modeline-height 15
+        doom-modeline-persp-name nil
+        doom-modeline-irc nil
+        doom-modeline-project-detection 'projectile
+        doom-modeline-minor-modes nil
+        doom-modeline-enable-word-count nil
+        doom-modeline-buffer-encoding nil
+        doom-modeline-checker-simple-format nil
+        doom-modeline-indent-info nil
+        doom-modeline-env-load-string "..."
+        doom-modeline-vcs-max-length 20
+        doom-modeline-window-width-limit (+ fill-column 20)
+        doom-modeline-buffer-file-name-style 'truncate-with-project
+        doom-modeline-env-python-executable "/usr/local/bin/python3"))
+
 ;; doom-theme
 (leaf doom-themes
   :require t
@@ -45,48 +67,6 @@
    '(color-rg-font-lock-match ((t (:foreground "#98c379" :bold t))))
    '(color-rg-font-lock-command ((t (:foreground "#8f60a2" :bold t))))
    ))
-
-(leaf awesome-tray
-  :hook (after-init-hook . awesome-tray-mode)
-  :init
-  (setq awesome-tray-mode-line-active-color "#bbc2cf"
-        awesome-tray-mode-line-inactive-color "#62686e"
-        awesome-tray-buffer-name-buffer-changed t
-        awesome-tray-buffer-read-only-style "[RO]"
-        awesome-tray-input-method-en-style ""
-        awesome-tray-refresh-idle-delay 0.01
-        awesome-tray-git-update-duration 2
-        awesome-tray-active-modules '("location"
-                                      "rvm"
-                                      "buffer-read-only"
-                                      "buffer-name"
-                                      "git"
-                                      "mode-name"
-                                      "evil"
-                                      ))
-  :config
-  ;; HACK respect default-frame-alist width and fullscrren settings
-  (defun awesome-tray-width-patch ()
-    (with-selected-frame (selected-frame)
-      (frame-width)))
-  (advice-add 'awesome-tray-get-frame-width :override #'awesome-tray-width-patch)
-
-  ;; HACK change git info string
-  (defun module-git-info-advice (str)
-    "reformat string"
-    (if (not (string-empty-p str))
-        (substring str 4 nil)
-      ""))
-  (advice-add 'awesome-tray-module-git-info :filter-return #'module-git-info-advice)
-
-  ;; HACK change location info
-  (defun module-location-info-advice ()
-    "reformat location string"
-    (format "%s:%s,%s"
-            (format-mode-line "%l")
-            (format-mode-line "%c")
-            (substring (format-mode-line "%p") 0 3)))
-  (advice-add 'awesome-tray-module-location-info :override #'module-location-info-advice))
 
 (provide 'init-ui)
 

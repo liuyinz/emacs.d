@@ -30,12 +30,11 @@
 ;; disable tooltip-mode
 (tooltip-mode -1)
 
-(setq mode-line-format nil)
-
 (setq default-frame-alist '((menu-bar-lines . 1)
                             (tool-bar-lines . 0)
                             (vertical-scroll-bars . nil)
                             (horizontal-scroll-bars . nil)
+                            (minibuffer . t)
                             (background-mode . dark)
                             (font . "Sarasa Mono SC 16")
                             (background-color . "#242730")
