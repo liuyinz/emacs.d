@@ -1,12 +1,12 @@
 ;;; init-tool.el --- other tools -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
+
 (leaf markdown-mode
   :doc "deps : edit-indirect"
   :mode
-  ("README\\.md\\'" .gfm-mode)
-  ("\\.md\\'" . markdown-mode)
-  ("\\.markdown\\'" . markdown-mode)
+  ("README\\.md\\'" . gfm-mode)
+  (("\\.md\\'" "\\.markdown\\'") . markdown-mode)
   :init
   (setq markdown-command "pandoc"))
 

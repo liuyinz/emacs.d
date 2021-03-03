@@ -40,14 +40,7 @@
     ;; up-directory
     (kbd "C-<backspace>") 'backward-kill-sexp
 
-    ;; window
-    (kbd "C-y") nil
-    (kbd "C-y C-y") 'other-window
-    (kbd "C-y t") 'transpose-frame
-    (kbd "C-y k") 'delete-window
-    (kbd "C-y o") 'delete-other-windows
-    (kbd "C-y h") 'split-window-horizontally
-    (kbd "C-y v") 'split-window-vertically
+    (kbd "C-x j") 'transpose-frame
 
     ;; avy
     (kbd "C-l") nil
