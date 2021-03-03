@@ -43,8 +43,9 @@
 
 ;; yasnippet
 (leaf yasnippet
+  :require t
   :hook
-  (prog-mode-hook . yas-minor-mode)
+  ((prog-mode-hook markdown-mode-hook) . yas-minor-mode)
   (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
   :init
   (setq yas-triggers-in-field t
@@ -60,6 +61,7 @@
 # --
 $0`(yas-escape-text yas-selected-text)`")
 
+  :config
   ;; mode-switch between lisp-interaction-mode and snippet-mode
   (defun my-yasnippet-switch ()
     (interactive)
@@ -67,7 +69,8 @@ $0`(yas-escape-text yas-selected-text)`")
         (lisp-interaction-mode)
       (snippet-mode))
     (evil-insert))
-  )
+
+  (yas-reload-all))
 
 (provide 'init-completion)
 ;;; init-completion.el ends here
