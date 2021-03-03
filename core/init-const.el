@@ -14,6 +14,10 @@
   (expand-file-name "snippets" user-emacs-directory)
   "User dir for code snippets.")
 
+(defconst my-dir-ext
+  (expand-file-name "ext" user-emacs-directory)
+  "User dir for external tools.")
+
 (defconst my-dir-cache
   (expand-file-name ".cache" user-emacs-directory)
   "User dir for recentf,places and so on.")
@@ -21,6 +25,7 @@
 ;; ensure dir exists
 (dolist (dir (mapcar #'symbol-value '(my-dir-cache
                                       my-dir-core
+                                      my-dir-ext
                                       my-dir-module
                                       my-dir-snippet)))
   (unless (file-exists-p dir)
