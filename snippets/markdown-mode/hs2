@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Header2(-)
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: hs2
+# --
+
+${1:Header 2}
+${1:$(make-string (string-width yas-text) ?\-)}
+
+$0
