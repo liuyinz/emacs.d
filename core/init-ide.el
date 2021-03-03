@@ -83,6 +83,7 @@
         vterm-kill-buffer-on-exit t
         vterm-clear-scrollback-when-clearing nil
         vterm-max-scrollback 10000)
+  :config
   (add-to-list 'vterm-keymap-exceptions "C-o"))
 
 (leaf vterm-toggle

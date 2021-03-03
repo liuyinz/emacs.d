@@ -72,8 +72,7 @@
     ;; consult
     [remap switch-to-buffer] 'consult-buffer
     [remap switch-to-buffer-other-window] 'consult-buffer-other-window
-    [remap switch-to-buffer-other-frame] 'consult-buffer-other-frame
-    )
+    [remap switch-to-buffer-other-frame] 'consult-buffer-other-frame)
 
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U
@@ -138,13 +137,13 @@
 
   ;; company
   (evil-define-key nil company-active-map
-    (kbd "C-j") 'company-complete-selection
     (kbd "<escape>") 'company-abort
     (kbd "C-n") 'company-complete-common-or-cycle
     (kbd "C-p") 'company-select-previous
     (kbd "C-/") 'company-filter-candidates
     (kbd "C-h") 'company-show-doc-buffer
-    (kbd "C-d") 'company-show-location)
+    (kbd "C-d") 'company-show-location
+    (kbd "C-j") 'my-company-yasnippet)
 
   (evil-define-key nil company-search-map
     (kbd "<escape>") 'company-search-abort
