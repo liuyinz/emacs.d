@@ -251,9 +251,15 @@
 [submodule "doom-modeline"]
 	path = module/doom-modeline
 	url = https://github.com/seagle0128/doom-modeline.git
-[submodule "moduele/edit-indirect"]
-	path = moduele/edit-indirect
-	url = https://github.com/Fanael/edit-indirect.git
 [submodule "highlight-indent-guides"]
 	path = module/highlight-indent-guides
 	url = https://github.com/DarthFennec/highlight-indent-guides.git
+[submodule "emacs-request"]
+	path = module/emacs-request
+	url = https://github.com/tkf/emacs-request.git
+[submodule "popup-el"]
+	path = module/popup-el
+	url = https://github.com/auto-complete/popup-el.git
+[submodule "edit-indirect"]
+	path = module/edit-indirect
+	url = https://github.com/Fanael/edit-indirect.git
