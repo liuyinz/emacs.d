@@ -73,9 +73,6 @@
 [submodule "ibuffer-vc"]
 	path = module/ibuffer-vc
 	url = https://github.com/purcell/ibuffer-vc.git
-[submodule "indent-guide"]
-	path = module/indent-guide
-	url = https://github.com/zk-phi/indent-guide.git
 [submodule "keyfreq"]
 	path = module/keyfreq
 	url = https://github.com/dacap/keyfreq.git
@@ -257,3 +254,6 @@
 [submodule "moduele/edit-indirect"]
 	path = moduele/edit-indirect
 	url = https://github.com/Fanael/edit-indirect.git
+[submodule "highlight-indent-guides"]
+	path = module/highlight-indent-guides
+	url = https://github.com/DarthFennec/highlight-indent-guides.git
