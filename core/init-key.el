@@ -28,6 +28,7 @@
   ;;evil binding
   (evil-define-key nil 'global
     ;; cancel repoeat
+    (kbd "C-s-f") 'toggle-frame-fullscreen
     (kbd "C-x <escape> <escape>") nil
     (kbd "s-m") nil
     (kbd "C-/") nil
