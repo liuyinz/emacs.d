@@ -158,7 +158,7 @@
     (kbd "<escape>") 'wgrep-exit)
 
   ;; yasnippet
-  (evil-define-key 'nil yas-minor-mode-map
+  (evil-define-key nil yas-minor-mode-map
     (kbd "<tab>") nil)
   (evil-define-key 'insert yas-minor-mode-map
     (kbd "C-j") 'my-company-yasnippet)

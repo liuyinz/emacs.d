@@ -12,7 +12,11 @@
   ("README\\.md\\'" . gfm-mode)
   (("\\.md\\'" "\\.markdown\\'") . markdown-mode)
   :init
-  (setq markdown-command "pandoc"))
+  (setq markdown-command "pandoc"
+        markdown-enable-wiki-links t
+        markdown-enable-math t
+        markdown-use-pandoc-style-yaml-metadata t
+        markdown-css-paths `(,(expand-file-name "github-markdown.css" my-dir-ext))))
 
 (leaf writeroom :commands writeroom-mode)
 
