@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Image
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: im
+# --
+
+!${1:Text}(${2:Url}$3) $0

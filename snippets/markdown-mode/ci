@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Code Inline
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: ci
+# --
+
+\`${1:Code Inline}` $0

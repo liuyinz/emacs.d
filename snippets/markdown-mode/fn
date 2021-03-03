@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: FootNote
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: fn
+# --
+
+[^${1:footnote}] $0
+

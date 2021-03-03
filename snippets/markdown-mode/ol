@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Ordered List
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: ol
+# --
+
+${1:Num}. ${2:Item}
+$0

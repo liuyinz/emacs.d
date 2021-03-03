@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Header1
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: h1
+# --
+
+# ${1:Header1} #
+
+$0
