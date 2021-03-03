@@ -39,7 +39,8 @@
                             (font . "Sarasa Mono SC 16")
                             (background-color . "#242730")
                             (foreground-color . "#bbc2cf")
-                            (fullscreen . maximized)
+                            (fullscreen . fullheight)
+                            (width . 88)   ; half 88,full 177
                             (ns-appearance . dark)
                             (ns-transparent-titlebar . t)
                             (ns-use-native-fullscreen . nil)))
