@@ -16,9 +16,7 @@
   ;; Prettify fringe style
   (when (fboundp 'define-fringe-bitmap)
     (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
-      [16 48 112 240 112 48 16] nil nil 'center))
-  )
-
+      [16 48 112 240 112 48 16] nil nil 'center)))
 
 ;; Code Running
 ;; @https://github.com/emacsorphanage/quickrun#customize
@@ -30,7 +28,7 @@
         quickrun-timeout-seconds 20))
 
 (defun my-run (&optional start end)
-  "Running for whole or parts."
+  "Running for whole or parts (START . END)."
   (interactive "r")
   (cond
    ((member major-mode '(html-mode)) (imp-visit-buffer))
@@ -77,5 +75,30 @@
   (whitespace-cleanup)
   (format-all-buffer))
 
+;; Terminal
+(leaf vterm
+  :init
+  (setenv "COLORTERM" "truecolor")
+  (setq vterm-always-compile-module t
+        vterm-kill-buffer-on-exit t
+        vterm-clear-scrollback-when-clearing nil
+        vterm-max-scrollback 10000)
+  (add-to-list 'vterm-keymap-exceptions "C-o"))
+
+(leaf vterm-toggle
+  :commands vterm-toggle
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (add-to-list 'display-buffer-alist
+               '("^v?term.*"
+                 ;;display-buffer-in-direction/direction/dedicated added in emacs27
+                 (display-buffer-reuse-window display-buffer-in-direction)
+                 ;; (direction . right)
+                 (direction . bottom)
+                 (dedicated . t)
+                 (reusable-frames . visible)
+                 (window-height . 0.5))))
+
 (provide 'init-ide)
+
 ;;; init-ide.el ends here

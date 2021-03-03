@@ -16,9 +16,6 @@
       (goto-char (point-max))
       (insert ";;; " fname " ends here\n"))))
 
-;; (when (boundp 'elisp-flymake-byte-compile-load-path)
-;; (add-to-list 'elisp-flymake-byte-compile-load-path load-path))
-
 ;; Syntax highlighting of known Elisp symbols
 (leaf highlight-defined
   :hook (emacs-lisp-mode . highlight-defined-mode)

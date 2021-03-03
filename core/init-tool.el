@@ -2,30 +2,33 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf markdown-mode
-  :doc "deps : edit-indirect"
-  :mode
-  ("README\\.md\\'" . gfm-mode)
-  (("\\.md\\'" "\\.markdown\\'") . markdown-mode)
-  :init
-  (setq markdown-command "pandoc"))
-
 (leaf with-proxy
   :require t
   :init
   ;; TODO set embark with proxy
   (setq with-proxy-http-server my-proxy))
 
-;; (use-package easy-hugo
-;;   :custom ((easy-hugo-basedir  "~/gh/jiacai2050.github.io/")
-;;        (easy-hugo-url  "https://liujiacai.net")
-;;            (easy-hugo-default-ext ".org")
-;;            (easy-hugo-bloglist '(((easy-hugo-basedir . "~/gh/en-blog/")
-;;                                   (easy-hugo-default-ext ".org")
-;;                               (easy-hugo-url . "https://en.liujiacai.net"))))))
+(leaf easy-hugo
+  :commands easy-hugo
+  :init
+  (setq easy-hugo-basedir  "~/Code/blog/"
+        easy-hugo-url  "https://liuyinz.github.io/"
+        easy-hugo-preview-url ""
+        easy-hugo-postdir "content/posts")
+  :config
+  ;; HACK search with consult-ripgrep
+  (defun easy-hugo-consult ()
+    "Search for blog article with `consult-ripgrep'or `consult-grep'"
+    (interactive)
+    (easy-hugo-with-env
+     (let ((dir (expand-file-name easy-hugo-postdir easy-hugo-basedir)))
+       (if (featurep 'consult)
+           (if (executable-find "rg")
+               (consult-ripgrep dir nil)
+             (consult-grep dir nil))
+         (error "Module 'consult' is not loaded"))))))
 
 (leaf dash-at-point)
-(leaf writeroom :commands writeroom-mode)
 
 ;; (use-package leetcode
 ;;   :commands leetcode
