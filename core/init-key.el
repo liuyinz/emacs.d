@@ -138,13 +138,13 @@
 
   ;; company
   (evil-define-key nil company-active-map
+    (kbd "C-j") 'company-complete-selection
     (kbd "<escape>") 'company-abort
     (kbd "C-n") 'company-complete-common-or-cycle
     (kbd "C-p") 'company-select-previous
     (kbd "C-/") 'company-filter-candidates
     (kbd "C-h") 'company-show-doc-buffer
-    (kbd "C-d") 'company-show-location
-    (kbd "<tab>") 'my-company-yasnippet)
+    (kbd "C-d") 'company-show-location)
 
   (evil-define-key nil company-search-map
     (kbd "<escape>") 'company-search-abort
@@ -159,24 +159,10 @@
     (kbd "<escape>") 'wgrep-exit)
 
   ;; yasnippet
-  (evil-define-key nil yas-minor-mode-map
-    (kbd "C-c C-t") 'my-yasnippet-switch
-    (kbd "<tab>") 'my-company-yasnippet)
-
-  ;; emmet-mode
-  (evil-define-key nil emmet-mode-keymap
-    (kbd "C-j") 'emmet-expand-yas)
-
-  (evil-define-key nil emmet-preview-keymap
-    (kbd "C-j") 'my-expand-yas)
-
-  ;; js2-mode
-  (evil-define-key nil js2-mode-map
-    ;; nodejs-repl
-    (kbd "C-x C-e") 'nodejs-repl-send-last-expression1
-    (kbd "C-c C-l") 'nodejs-repl-send-line
-    (kbd "C-c C-r") 'nodejs-repl-send-region
-    (kbd "C-c C-f") 'nodejs-repl-load-file)
+  (evil-define-key 'nil yas-minor-mode-map
+    (kbd "<tab>") nil)
+  (evil-define-key 'insert yas-minor-mode-map
+    (kbd "C-j") 'my-company-yasnippet)
 
   ;;elisp-mode
   (evil-define-key nil emacs-lisp-mode-map
@@ -219,7 +205,7 @@
     "[h" 'hl-todo-previous
     "]h" 'hl-todo-next
     "gh" 'hl-todo-occur
-    (kbd "<leader> hi") 'hl-todo-insert)
+    (kbd "<leader> i") 'hl-todo-insert)
 
   (evil-define-key 'normal diff-hl-mode-map
     "[g" 'diff-hl-previous-hunk
