@@ -103,11 +103,6 @@
     (kbd "<leader> xk") 'kill-buffer
     (kbd "<leader> ;") 'consult-consult
 
-    ;; color-rg
-    (kbd "<leader> ss") 'color-rg-search-input-in-current-file
-    (kbd "<leader> sd") 'color-rg-search-input
-    (kbd "<leader> sp") 'color-rg-search-input-in-project
-    (kbd "<leader> st") 'color-rg-search-project-with-type
     ;; nerd-commenter
     (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
     ;; self-define
@@ -167,11 +162,6 @@
   (evil-define-key nil yas-minor-mode-map
     (kbd "C-c C-t") 'my-yasnippet-switch
     (kbd "<tab>") 'my-company-yasnippet)
-
-  ;; color-rg
-  (evil-define-key nil color-rg-mode-map
-    "h" 'color-rg-jump-prev-file
-    "l" 'color-rg-jump-next-file)
 
   ;; emmet-mode
   (evil-define-key nil emmet-mode-keymap

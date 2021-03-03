@@ -1,9 +1,6 @@
 [submodule "magit"]
 	path = module/magit
 	url = https://github.com/magit/magit.git
-[submodule "color-rg"]
-	path = module/color-rg
-	url = https://github.com/manateelazycat/color-rg.git
 [submodule "evil"]
 	path = module/evil
 	url = https://github.com/emacs-evil/evil.git

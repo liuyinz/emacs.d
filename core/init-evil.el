@@ -35,7 +35,6 @@
   (dolist (p '((anaconda-nav-mode . emacs)
                (calendar-mode . emacs)
                (compilation-mode . emacs)
-               (color-rg-mode . emacs)
                (dired-mode . emacs)
                (erc-mode . emacs)
                (eshell-mode . emacs)

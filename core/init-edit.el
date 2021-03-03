@@ -57,14 +57,5 @@
   (setq wgrep-change-readonly-file t)
   (setq wgrep-auto-save-buffer t))
 
-(leaf color-rg
-  :commands (color-rg-search-project-with-type
-             color-rg-search-input
-             color-rg-search-input-in-project
-             color-rg-search-input-in-current-file)
-  :init
-  (setq color-rg-mac-load-path-from-shell nil
-        color-rg-max-column 6000))
-
 (provide 'init-edit)
 ;;; init-edit.el ends here
