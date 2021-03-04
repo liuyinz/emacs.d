@@ -263,3 +263,6 @@
 [submodule "edit-indirect"]
 	path = module/edit-indirect
 	url = https://github.com/Fanael/edit-indirect.git
+[submodule "rg.el"]
+	path = module/rg
+	url = https://github.com/dajva/rg.el.git

@@ -2,6 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
+(leaf rg
+  :doc "deps : transient wgrep"
+  :commands rg-menu
+  :init
+  (setq rg-ignore-case 'smart)
+  :config
+  (rg-enable-menu)
+  ;; (rg-enable-default-bindings)
+  )
+
 (leaf with-proxy
   :require t
   :init
