@@ -7,11 +7,9 @@
 
 ;;; Commentary:
 
-;; ${3:commentary}
-
 ;;; Code:
 
-${4}
+$0
 
 (provide '$1)
 
