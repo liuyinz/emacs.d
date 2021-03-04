@@ -2,9 +2,10 @@
 
 ;;; Commentary:
 
+;; TRICK ,@https://github.com/seagle0128/.emacs.d/blob/master/lisp/init-markdown.el
+
 ;;; Code:
 
-;; TRICK ,@https://github.com/seagle0128/.emacs.d/blob/master/lisp/init-markdown.el
 (leaf markdown-mode
   :doc "deps : edit-indirect; brew install multimarkdown"
   :mode
@@ -15,16 +16,17 @@
   (when (executable-find "multimarkdown")
     (setq markdown-command "multimarkdown"))
 
-  (setq markdown-command "pandoc"
-        markdown-enable-wiki-links t
-        markdown-enable-math t
+  (setq markdown-enable-wiki-links t
+        ;; markdown-enable-math t
+        markdown-asymmetric-header t
         markdown-make-gfm-checkboxes-buttons t
+        markdown-gfm-uppercase-checkbox t
         markdown-fontify-code-blocks-natively t
-        markdown-use-pandoc-style-yaml-metadata t
-        markdown-gfm-additional-languages "Mermaid"
+        markdown-content-type "application/xhtml+xml"
         markdown-css-paths '("https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"
-                             "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css"))
-  (setq markdown-xhtml-header-content "
+                             "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css")
+        markdown-gfm-additional-languages "Mermaid"
+        markdown-xhtml-header-content "
 <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
 <style>
 body {
@@ -56,6 +58,7 @@ mermaid.initialize({
 </script>
 ")
   :config
+  (add-to-list 'markdown-code-lang-modes '("mermaid" . mermaid-mode))
   ;; HACK Preview with built-in webkit
   (with-no-warnings
     (defun my-markdown-export-and-preview (fn)
@@ -73,7 +76,7 @@ mermaid.initialize({
 ;; Markdown Preview
 (leaf grip-mode
   :doc " pip install grip"
-  :commands grip-mode
+  :commands grip-restart-preview grip-start-preview grip-stop-preview
   :init
   (setq grip-preview-use-webkit t
         grip-update-after-change t))

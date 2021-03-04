@@ -45,5 +45,7 @@
 (leaf plantuml-mode)
 (leaf vimrc-mode)
 
+(leaf mermaid-mode :require t)
+
 (provide 'init-lang)
 ;;; init-lang.el ends here

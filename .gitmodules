@@ -73,6 +73,9 @@
 [submodule "ibuffer-vc"]
 	path = module/ibuffer-vc
 	url = https://github.com/purcell/ibuffer-vc.git
+[submodule "indent-guide"]
+	path = module/indent-guide
+	url = https://github.com/zk-phi/indent-guide.git
 [submodule "keyfreq"]
 	path = module/keyfreq
 	url = https://github.com/dacap/keyfreq.git
@@ -251,9 +254,6 @@
 [submodule "doom-modeline"]
 	path = module/doom-modeline
 	url = https://github.com/seagle0128/doom-modeline.git
-[submodule "highlight-indent-guides"]
-	path = module/highlight-indent-guides
-	url = https://github.com/DarthFennec/highlight-indent-guides.git
 [submodule "emacs-request"]
 	path = module/emacs-request
 	url = https://github.com/tkf/emacs-request.git
@@ -272,3 +272,9 @@
 [submodule "markdown-toc"]
 	path = module/markdown-toc
 	url = https://github.com/ardumont/markdown-toc.git
+[submodule "edit-indirect"]
+	path = module/edit-indirect
+	url = https://github.com/Fanael/edit-indirect.git
+[submodule "mermaid-mode"]
+	path = module/mermaid-mode
+	url = https://github.com/abrochard/mermaid-mode.git

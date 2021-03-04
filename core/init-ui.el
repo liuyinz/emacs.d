@@ -50,11 +50,10 @@
    '(orderless-match-face-1 ((t (:inherit error :weight bold))))
    '(orderless-match-face-2 ((t (:inherit font-lock-string-face :weight bold))))
    '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face :weight bold))))
-   ;; highlight-indent-guides
-   '(highlight-indent-guides-character-face ((t (:foreground "#242730"))))
-   '(highlight-indent-guides-top-character-face ((t (:inherit font-lock-comment-face))))
    ;; markdown-mode
    '(markdown-code-face ((t (:background "#323642" :extend t))))
+   ;; indent-guide
+   '(indent-guide-face ((t (:inherit font-lock-comment-face))))
    ))
 
 (provide 'init-ui)

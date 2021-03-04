@@ -21,21 +21,25 @@
 ;; Code Running
 ;; @https://github.com/emacsorphanage/quickrun#customize
 (leaf quickrun
-  :defun (imp-visit-buffer . impatient-mode)
   :commands quickrun quickrun-region
   :init
   (setq quickrun-focus-p nil
         quickrun-timeout-seconds 20))
 
-(defun my-run (&optional start end)
-  "Running for whole or parts (START . END)."
-  (interactive "r")
+;; HACK , one single command
+(defun quickrun-general ()
+  "Run in whole buffer or region."
+  (interactive)
+  (if (region-active-p)
+      (quickrun-region)
+    (quickrun)))
+
+(defun my-run ()
+  "Running Current Buffer."
+  (interactive)
   (cond
-   ;; ((member major-mode '(html-mode)) (imp-visit-buffer))
-   ((member major-mode '(markdown-mode gfm-mode)) (grip-mode))
-   (t (if (evil-visual-state-p)
-          (quickrun-region start end)
-        (quickrun)))))
+   ((member major-mode '(markdown-mode gfm-mode)) (grip-start-preview))
+   (t (quickrun-general))))
 
 (defun my-repl ()
   "Runinig for interactive."
