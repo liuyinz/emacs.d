@@ -266,3 +266,9 @@
 [submodule "rg.el"]
 	path = module/rg
 	url = https://github.com/dajva/rg.el.git
+[submodule "grip-mode"]
+	path = module/grip-mode
+	url = https://github.com/seagle0128/grip-mode.git
+[submodule "markdown-toc"]
+	path = module/markdown-toc
+	url = https://github.com/ardumont/markdown-toc.git

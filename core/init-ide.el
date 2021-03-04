@@ -31,7 +31,8 @@
   "Running for whole or parts (START . END)."
   (interactive "r")
   (cond
-   ((member major-mode '(html-mode)) (imp-visit-buffer))
+   ;; ((member major-mode '(html-mode)) (imp-visit-buffer))
+   ((member major-mode '(markdown-mode gfm-mode)) (grip-mode))
    (t (if (evil-visual-state-p)
           (quickrun-region start end)
         (quickrun)))))

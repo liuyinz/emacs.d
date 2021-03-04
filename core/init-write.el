@@ -2,22 +2,7 @@
 
 ;;; Commentary:
 
-;; commentary
-
 ;;; Code:
-
-(leaf markdown-mode
-  :doc "deps : edit-indirect"
-  :mode
-  ("README\\.md\\'" . gfm-mode)
-  (("\\.md\\'" "\\.markdown\\'") . markdown-mode)
-  :init
-  (setq markdown-command "pandoc"
-        markdown-enable-wiki-links t
-        markdown-enable-math t
-        markdown-use-pandoc-style-yaml-metadata t
-        markdown-open-command "open"
-        markdown-css-paths `(,(expand-file-name "github-markdown.css" my-dir-ext))))
 
 (leaf writeroom :commands writeroom-mode)
 

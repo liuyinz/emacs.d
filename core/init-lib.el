@@ -90,6 +90,25 @@ Same as `replace-string C-q C-m RET RET'."
         (error "Cannot open tramp file")
       (browse-url (concat "file://" file-name)))))
 
+;; TRICK @https://github.com/seagle0128/.emacs.d/blob/0d96e2c1acfd5f34110b567cc2f3ecfead8b96f5/lisp/init-funcs.el#L129
+(defun webkit-browse-url (url &optional pop-buffer new-session)
+  "Browse URL with webkit and switch or pop to the buffer.
+POP-BUFFER specifies whether to pop to the buffer.
+NEW-SESSION specifies whether to create a new xwidget-webkit session."
+  (interactive (progn
+                 (require 'browse-url)
+                 (browse-url-interactive-arg "xwidget-webkit URL: ")))
+  (when (and (featurep 'xwidget-internal)
+             (fboundp 'xwidget-buffer)
+             (fboundp 'xwidget-webkit-current-session))
+    (xwidget-webkit-browse-url url new-session)
+    (let ((buf (xwidget-buffer (xwidget-webkit-current-session))))
+      (when (buffer-live-p buf)
+        (and (eq buf (current-buffer)) (quit-window))
+        (if pop-buffer
+            (pop-to-buffer buf)
+          (switch-to-buffer buf))))))
+
 (defun copy-file-name ()
   "Copy the current buffer file name to the clipboard."
   (interactive)
