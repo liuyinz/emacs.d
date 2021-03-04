@@ -33,13 +33,7 @@
   (load-theme 'doom-vibrant t)
   ;; modify faces
   (custom-set-faces
-   '(cursor ((t (:inherit 'unspecified :background "#fcce7b" :foreground "#2e2730"))))
-   ;; awesome-tray
-   '(awesome-tray-module-git-face ((t (:inherit error :weight bold))))
-   '(awesome-tray-module-mode-name-face ((t (:inherit font-lock-string-face :weight bold))))
-   '(awesome-tray-module-buffer-name-face ((t (:inherit font-lock-type-face :weight bold))))
-   '(awesome-tray-module-location-face ((t (:inherit font-lock-keyword-face :weight bold))))
-   '(awesome-tray-module-evil-face ((t (:inherit default :weight bold))))
+   '(cursor ((t (:inherit 'unspecified :background "#fcce7b" :foreground "#242730"))))
    ;;marginalia
    '(marginalia-type ((t (:inherit font-lock-constant-face))))
    '(marginalia-key ((t (:inherit font-lock-keyword-face :weight bold))))
@@ -51,16 +45,16 @@
    '(diff-hl-change ((t (:background nil))))
    '(diff-hl-insert ((t (:background nil))))
    '(diff-hl-delete ((t (:background nil))))
-   ;;indent-guide
-   '(indent-guide-face ((t (:inherit font-lock-comment-face))))
    ;; orderless
    '(orderless-match-face-0 ((t (:inherit font-lock-type-face :weight bold))))
    '(orderless-match-face-1 ((t (:inherit error :weight bold))))
    '(orderless-match-face-2 ((t (:inherit font-lock-string-face :weight bold))))
    '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face :weight bold))))
-   ;; indent highlight
-   '(highlight-indent-guides-character-face ((t (:foreground "#2e2730"))))
+   ;; highlight-indent-guides
+   '(highlight-indent-guides-character-face ((t (:foreground "#242730"))))
    '(highlight-indent-guides-top-character-face ((t (:inherit font-lock-comment-face))))
+   ;; markdown-mode
+   '(markdown-code-face ((t (:background "#323642" :extend t))))
    ))
 
 (provide 'init-ui)
