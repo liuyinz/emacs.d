@@ -13,6 +13,9 @@
     (switch-to-buffer nil)))
 
 (with-eval-after-load 'evil
+  ;; enable parts of keybinding
+  (evil-define-key 'insert 'global
+    (kbd "C-o") 'evil-execute-in-normal-state)
 
   ;; set leader
   (evil-define-key 'motion 'global
@@ -21,13 +24,8 @@
     (kbd "C-y") nil
     (kbd "C-o") nil)
 
-  ;; enable parts of keybinding
-  (evil-define-key 'insert 'global
-    (kbd "C-o") 'evil-execute-in-normal-state)
-
   ;;evil binding
   (evil-define-key nil 'global
-    ;; cancel repoeat
     (kbd "C-s-f") 'toggle-frame-fullscreen
     (kbd "C-x <escape> <escape>") nil
     (kbd "s-m") nil
@@ -37,9 +35,8 @@
     (kbd "C-j") nil
     ;; jump between two buffer
     (kbd "C-r") 'back-to-user-buffer
-    ;; up-directory
-    (kbd "C-<backspace>") 'backward-kill-sexp
 
+    ;; window
     (kbd "C-x j") 'transpose-frame
 
     ;; avy
@@ -51,11 +48,8 @@
     (kbd "C-l r") 'avy-resume
 
     ;; ;; toggle
-    ;; vterm
     (kbd "C-; C-;") 'vterm-toggle
-    ;; profiler
     (kbd "C-; p p") 'toggle-profiler
-    ;; command-logmode
     (kbd "C-; c l") 'clm/toggle-command-log-buffer
     ;; debug
     (kbd "C-; d e") 'toggle-debug-on-error
@@ -91,6 +85,8 @@
     "Q" "@q"
     ;; dash
     "gp" 'dash-at-point
+    ;; go-translate
+    "gt" 'go-translate-echo-area
     ;; magit
     "gs" 'magit-status
     "gz" 'magit-dispatch
@@ -212,8 +208,7 @@
     "gr" 'diff-hl-revert-hunk)
 
   (evil-define-key 'emacs vterm-mode-map
-    (kbd "C-c C-o") 'vterm-send-C-o
-    )
+    (kbd "C-c C-o") 'vterm-send-C-o)
 
 
   (evil-define-key 'normal smerge-mode-map

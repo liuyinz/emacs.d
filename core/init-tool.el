@@ -1,5 +1,7 @@
 ;;; init-tool.el --- other tools -*- lexical-binding: t no-byte-compile: t -*-
+
 ;;; Commentary:
+
 ;;; Code:
 
 (leaf rg
@@ -8,19 +10,17 @@
   :init
   (setq rg-ignore-case 'smart)
   :config
-  (rg-enable-menu)
-  ;; (rg-enable-default-bindings)
-  )
+  (rg-enable-menu))
 
+;; proxy wrapper
 (leaf with-proxy
   :require t
   :init
   ;; TODO set embark with proxy
   (setq with-proxy-http-server my-proxy))
 
-(leaf dash-at-point)
-
 ;; (use-package leetcode
+;;   :doc "pip3 install my-cookies"
 ;;   :commands leetcode
 ;;   :init
 ;;   (setq leetcode-prefer-language "javascript"
@@ -316,4 +316,5 @@
           )))
 
 (provide 'init-tool)
+
 ;;; init-tool.el ends here

@@ -1,5 +1,7 @@
 ;;; init-ui.el --- ui settings -*- lexical-binding: t no-byte-compile: t -*-
+
 ;;; Commentary:
+
 ;;; Code:
 
 (require 'subr-x)
@@ -46,14 +48,15 @@
    '(diff-hl-insert ((t (:background nil))))
    '(diff-hl-delete ((t (:background nil))))
    ;; orderless
-   '(orderless-match-face-0 ((t (:inherit font-lock-type-face :weight bold))))
+   '(orderless-match-face-0 ((t (:inherit font-lock-string-face :weight bold))))
    '(orderless-match-face-1 ((t (:inherit error :weight bold))))
-   '(orderless-match-face-2 ((t (:inherit font-lock-string-face :weight bold))))
+   '(orderless-match-face-2 ((t (:inherit font-lock-type-face :weight bold))))
    '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face :weight bold))))
    ;; markdown-mode
    '(markdown-code-face ((t (:background "#323642" :extend t))))
    ;; indent-guide
    '(indent-guide-face ((t (:inherit font-lock-comment-face))))
+   ;; rg.el
    ))
 
 (provide 'init-ui)

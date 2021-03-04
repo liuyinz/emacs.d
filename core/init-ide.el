@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Doc Help
+(leaf dash-at-point
+  :commads dash-at-point)
+
 ;; Code Check
 ;; @https://www.flycheck.org/en/latest/
 (leaf flycheck
@@ -51,13 +55,13 @@
    ((member major-mode '(js-mode js2-mode)) (nodejs-repl))
    (t (message "no repl for selected mode"))))
 
-(defun quickrun-vterm ()
-  "Quickrun command in vterm."
-  (interactive)
-  (let ((buffer buffer-file-name))
-    (vterm-toggle-cd-show)
-    (vterm-send-string (format "node %s" buffer))
-    (vterm-send-return)))
+;; (defun quickrun-vterm ()
+;;   "Quickrun command in vterm."
+;;   (interactive)
+;;   (let ((buffer buffer-file-name))
+;;     (vterm-toggle-cd-show)
+;;     (vterm-send-string (format "node %s" buffer))
+;;     (vterm-send-return)))
 
 ;; Code Formating
 (leaf editorconfig
