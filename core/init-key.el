@@ -27,6 +27,7 @@
   ;;evil binding
   (evil-define-key nil 'global
     (kbd "C-s-f") 'toggle-frame-fullscreen
+    (kbd "s-f") 'consult-line
     (kbd "C-x <escape> <escape>") nil
     (kbd "s-m") nil
     (kbd "C-/") nil

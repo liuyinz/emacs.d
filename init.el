@@ -60,7 +60,7 @@
   ;; programing
   (require 'init-ide)
   (require 'init-vcs)
-  (require 'init-project)
+  ;; (require 'init-project)
   ;; language
   (require 'init-nox)
   (require 'init-lang)
