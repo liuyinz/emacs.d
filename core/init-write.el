@@ -9,11 +9,11 @@
 (leaf easy-hugo
   :commands easy-hugo
   :init
-  ;; TODO Impletion needed
   (setq easy-hugo-basedir  "~/Code/blog/"
+        easy-hugo-postdir "content/posts/"
         easy-hugo-url  "https://liuyinz.github.io/"
-        easy-hugo-preview-url ""
-        easy-hugo-postdir "content/posts")
+        easy-hugo-preview-url "http://localhost:1313/"
+        easy-hugo-server-flags "-D")
   :config
   ;; HACK search with consult-ripgrep
   (defun easy-hugo-consult ()

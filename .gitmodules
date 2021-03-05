@@ -173,9 +173,6 @@
 [submodule "emacs-easy-hugo"]
 	path = module/emacs-easy-hugo
 	url = https://github.com/masasam/emacs-easy-hugo.git
-[submodule "ox-hugo"]
-	path = module/ox-hugo
-	url = https://github.com/kaushalmodi/ox-hugo.git
 [submodule "undo-fu"]
 	path = module/undo-fu
 	url = https://github.com/emacsmirror/undo-fu.git

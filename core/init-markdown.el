@@ -10,6 +10,7 @@
   :doc "deps : edit-indirect; brew install multimarkdown"
   :mode
   ("README\\.md\\'" . gfm-mode)
+  ("\\.md\\'" . markdown-mode)
   :init
   ;; `multimarkdown' is necessary for `highlight.js' and `mermaid.js'
   (when (executable-find "multimarkdown")
@@ -70,6 +71,10 @@ mermaid.initialize({
 ;; Table of contents
 (leaf markdown-toc
   :doc "deps : markdown-mode"
+  :init
+  (setq markdown-toc-header-toc-title "**目录**"
+        markdown-toc-header-toc-start "<!-- markdown-toc start -->"
+        markdown-toc-indentation-space 2)
   :commands markdown-toc-generate-or-refresh-toc markdown-toc-delete-toc)
 
 ;; Markdown Preview
