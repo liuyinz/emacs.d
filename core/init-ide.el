@@ -4,7 +4,7 @@
 
 ;; Doc Help
 (leaf dash-at-point
-  :commads dash-at-point)
+  :commands dash-at-point)
 
 ;; Code Check
 ;; @https://www.flycheck.org/en/latest/
@@ -51,7 +51,6 @@
   (cond
    ((eq major-mode 'emacs-lisp-mode) (ielm))
    ((eq major-mode 'python-mode) (run-python))
-   ;; ((eq major-mode 'lua-mode) (run-lua))
    ((member major-mode '(js-mode js2-mode)) (nodejs-repl))
    (t (message "no repl for selected mode"))))
 

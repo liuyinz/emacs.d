@@ -10,7 +10,6 @@
   :doc "deps : edit-indirect; brew install multimarkdown"
   :mode
   ("README\\.md\\'" . gfm-mode)
-  (("\\.md\\'" "\\.markdown\\'") . markdown-mode)
   :init
   ;; `multimarkdown' is necessary for `highlight.js' and `mermaid.js'
   (when (executable-find "multimarkdown")
