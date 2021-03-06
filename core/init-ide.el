@@ -25,7 +25,7 @@
 ;; Code Running
 ;; @https://github.com/emacsorphanage/quickrun#customize
 (leaf quickrun
-  :commands quickrun-general
+  :commands quickrun quickrun-region
   :init
   (setq quickrun-focus-p nil
         quickrun-timeout-seconds 20)
@@ -38,16 +38,16 @@
   (interactive)
   (cond
    ((member major-mode '(markdown-mode gfm-mode)) (grip-start-preview))
-   (t (run-general quickrun-region quickrun))))
+   (t (run-general! quickrun-region quickrun))))
 
 (defun my-repl ()
   "Runinig for interactive."
   (interactive)
   (cond
    ((member major-mode '(emacs-lisp-mode lisp-interaction-mode))
-    (run-general eval-region eval-buffer))
+    (run-general! eval-region eval-buffer))
    ((member major-mode '(js-mode js2-mode))
-    (run-general nodejs-repl-send-region nodejs-repl-send-buffer))
+    (run-general! nodejs-repl-send-region nodejs-repl-send-buffer))
    ((eq major-mode 'python-mode) (run-python))
    (t (message "no repl for selected mode"))))
 
