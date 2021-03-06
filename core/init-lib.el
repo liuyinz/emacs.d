@@ -28,6 +28,12 @@
   "Prepend LISTS to SYM in place."
   `(setq ,sym (append ,@lists ,sym)))
 
+(defmacro run-general! (fn-r fn)
+  "Expand as one command to rule all.
+FN-R : region function, FN: default function"
+  `(if (region-active-p)
+       (funcall ',fn-r (region-beginning) (region-end))
+     (funcall ',fn)))
 
 ;;; -------------------------- Functions ----------------------------------
 ;; Dos2Unix/Unix2Dos

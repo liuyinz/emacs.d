@@ -31,30 +31,24 @@
         quickrun-timeout-seconds 20)
   :config
   ;; add lisp-interactive-mode to default
-  (add-to-list 'quickrun--major-mode-alist '(lisp-interaction-mode . "emacs"))
-  ;; HACK , one command to rule all
-  (defun quickrun-general ()
-    "One command to rule all."
-    (interactive)
-    (if (region-active-p)
-        (quickrun-region (region-beginning) (region-end))
-      (quickrun)))
-  )
+  (add-to-list 'quickrun--major-mode-alist '(lisp-interaction-mode . "emacs")))
 
 (defun my-run ()
   "Running Current Buffer."
   (interactive)
   (cond
    ((member major-mode '(markdown-mode gfm-mode)) (grip-start-preview))
-   (t (quickrun-general))))
+   (t (run-general quickrun-region quickrun))))
 
 (defun my-repl ()
   "Runinig for interactive."
   (interactive)
   (cond
-   ((eq major-mode 'emacs-lisp-mode) (ielm))
+   ((member major-mode '(emacs-lisp-mode lisp-interaction-mode))
+    (run-general eval-region eval-buffer))
+   ((member major-mode '(js-mode js2-mode))
+    (run-general nodejs-repl-send-region nodejs-repl-send-buffer))
    ((eq major-mode 'python-mode) (run-python))
-   ((member major-mode '(js-mode js2-mode)) (nodejs-repl))
    (t (message "no repl for selected mode"))))
 
 ;; (defun quickrun-vterm ()
