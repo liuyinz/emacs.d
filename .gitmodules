@@ -157,10 +157,6 @@
 [submodule "nvm.el"]
 	path = module/nvm
 	url = https://github.com/rejeep/nvm.el.git
-[submodule "nodejs-repl"]
-	path = nodejs-repl
-	url = https://github.com/abicky/nodejs-repl.el.git
-	branch = develop
 [submodule "forge"]
 	path = module/forge
 	url = https://github.com/magit/forge.git
@@ -275,3 +271,7 @@
 [submodule "mermaid-mode"]
 	path = module/mermaid-mode
 	url = https://github.com/abrochard/mermaid-mode.git
+[submodule "nodejs-repl.el"]
+	path = module/nodejs-repl
+	url = https://github.com/abicky/nodejs-repl.el.git
+	branch = develop
