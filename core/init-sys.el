@@ -35,7 +35,9 @@
 
 (leaf auto-compile
   :doc "deps: packed"
-  :hook (after-init-hook . auto-compile-on-load-mode))
+  :require t
+  :config
+  (auto-compile-on-load-mode))
 
 ;; Environment
 (leaf exec-path-from-shell
