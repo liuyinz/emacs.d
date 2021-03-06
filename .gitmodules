@@ -158,7 +158,7 @@
 	path = module/nvm
 	url = https://github.com/rejeep/nvm.el.git
 [submodule "nodejs-repl"]
-	path = module/nodejs-repl
+	path = nodejs-repl
 	url = https://github.com/abicky/nodejs-repl.el.git
 	branch = develop
 [submodule "forge"]
