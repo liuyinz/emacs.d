@@ -25,18 +25,21 @@
 ;; Code Running
 ;; @https://github.com/emacsorphanage/quickrun#customize
 (leaf quickrun
-  :commands quickrun quickrun-region
+  :commands quickrun-general
   :init
   (setq quickrun-focus-p nil
-        quickrun-timeout-seconds 20))
-
-;; HACK , one single command
-(defun quickrun-general ()
-  "Run in whole buffer or region."
-  (interactive)
-  (if (region-active-p)
-      (quickrun-region)
-    (quickrun)))
+        quickrun-timeout-seconds 20)
+  :config
+  ;; add lisp-interactive-mode to default
+  (add-to-list 'quickrun--major-mode-alist '(lisp-interaction-mode . "emacs"))
+  ;; HACK , one command to rule all
+  (defun quickrun-general ()
+    "One command to rule all."
+    (interactive)
+    (if (region-active-p)
+        (quickrun-region (region-beginning) (region-end))
+      (quickrun)))
+  )
 
 (defun my-run ()
   "Running Current Buffer."

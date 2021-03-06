@@ -13,7 +13,7 @@
 
 ;;; -------------------------- Macro ----------------------------------
 ;; time
-(defmacro time-count (&rest body)
+(defmacro time-count! (&rest body)
   "Measure and return the time it takes evaluating BODY."
   `(let ((time (current-time)))
      ,@body
