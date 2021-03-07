@@ -35,27 +35,34 @@
   (load-theme 'doom-vibrant t)
   ;; modify faces
   (custom-set-faces
-   '(cursor ((t (:inherit 'unspecified :background "#fcce7b" :foreground "#242730"))))
+   '(cursor ((t (:inherit unspecified :background "#fcce7b" :foreground "#242730"))))
+   ;; selectrum
+   '(selectrum-current-candidate ((t (:foreground "white" :weight bold))))
+   ;;consult
+   '(consult-file ((t (:inherit font-lock-doc-face))))
    ;;marginalia
    '(marginalia-type ((t (:inherit font-lock-constant-face))))
    '(marginalia-key ((t (:inherit font-lock-keyword-face :weight bold))))
    '(marginalia-modified ((t (:inherit font-lock-string-face))))
    '(marginalia-date ((t (:inherit font-lock-keyword-face))))
-   ;;consult
-   '(consult-file ((t (:inherit font-lock-doc-face))))
    ;;diff-hl
    '(diff-hl-change ((t (:background nil))))
    '(diff-hl-insert ((t (:background nil))))
    '(diff-hl-delete ((t (:background nil))))
    ;; orderless
    '(orderless-match-face-0 ((t (:inherit font-lock-string-face :weight bold))))
-   '(orderless-match-face-1 ((t (:inherit error :weight bold))))
    '(orderless-match-face-2 ((t (:inherit font-lock-type-face :weight bold))))
+   '(orderless-match-face-1 ((t (:inherit error :weight bold))))
    '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face :weight bold))))
    ;; markdown-mode
    '(markdown-code-face ((t (:background "#323642" :extend t))))
    ;; indent-guide
    '(indent-guide-face ((t (:inherit font-lock-comment-face))))
+   ;; evil
+   '(isearch ((t (:foreground "#242730" :background "#fcce7b" :weight bold))))
+   '(lazy-highlight ((t (:foreground "#242730" :background "#7bc257" :weight bold))))
+   '(evil-ex-substitute-matches ((t (:foreground "#242730" :background "#ff665c" :weight bold))))
+   '(evil-ex-substitute-replacement ((t (:foreground "#242730" :background "#7bc257" ::weight bold))))
    ;; rg.el
    ))
 

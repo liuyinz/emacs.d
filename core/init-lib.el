@@ -179,7 +179,7 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
 (defun proxy-socks-show ()
   "Show SOCKS proxy."
   (interactive)
-  (when (fboundp 'cadddr)                ; defined 25.2+
+  (when (fboundp 'cadddr)
     (if socks-noproxy
         (message "Current SOCKS%d proxy is %s:%d"
                  (cadddr socks-server) (cadr socks-server) (caddr socks-server))
