@@ -55,8 +55,9 @@
   :hook (selectrum-mode-hook . marginalia-mode)
   :config
   (setq-default marginalia-annotators '(marginalia-annotators-heavy nil))
-  (advice-add #'marginalia-cycle :after
-              (lambda () (when (bound-and-true-p selectrum-mode) (selectrum-exhibit)))))
+  (advice-add #'marginalia-cycle :after (lambda ()
+                                          (when (bound-and-true-p selectrum-mode)
+                                            (selectrum-exhibit 'keep-selected)))))
 
 (leaf consult
   :require t

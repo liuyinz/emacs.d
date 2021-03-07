@@ -11,6 +11,7 @@
         company-tooltip-align-annotations t
         company-tooltip-limit 15
         company-idle-delay 0
+        company-minimum-prefix-length 4
         company-require-match nil
         company-selection-wrap-around t
         company-dabbrev-ignore-case nil
@@ -22,8 +23,7 @@
   (setq company-global-modes '(not erc-mode message-mode help-mode
                                    gud-mode eshell-mode shell-mode))
 
-  (setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend
-                            company-preview-frontend
+  (setq company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend))
 
   (setq company-backends '(company-capf

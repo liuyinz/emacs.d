@@ -60,9 +60,6 @@
     (kbd "C-; p h") 'proxy-http-toggle
     (kbd "C-; p s") 'proxy-socks-toggle
 
-    ;; embark
-    (kbd "C-,") 'embark-act
-
     ;; selectrum
     (kbd "C-x C-z") 'selectrum-repeat
     ;; consult
@@ -137,13 +134,21 @@
 
   ;; company
   (evil-define-key nil company-active-map
+    (kbd "<tab>") nil
+    (kbd "TAB") nil
     (kbd "<escape>") 'company-abort
     (kbd "C-n") 'company-complete-common-or-cycle
     (kbd "C-p") 'company-select-previous
-    (kbd "C-/") 'company-filter-candidates
+    (kbd "C-s") 'company-filter-candidates
     (kbd "C-h") 'company-show-doc-buffer
     (kbd "C-d") 'company-show-location
-    (kbd "C-j") 'my-company-yasnippet)
+    (kbd "C-,") 'my-company-yasnippet)
+
+  ;; yasnippet
+  (evil-define-key nil yas-minor-mode-map
+    (kbd "<tab>") nil
+    (kbd "TAB") nil
+    (kbd "C-,") 'my-company-yasnippet)
 
   (evil-define-key nil company-search-map
     (kbd "<escape>") 'company-search-abort
@@ -156,12 +161,6 @@
     "ZQ" 'wgrep-abort-changes
     "ZZ" 'wgrep-finish-edit
     (kbd "<escape>") 'wgrep-exit)
-
-  ;; yasnippet
-  (evil-define-key nil yas-minor-mode-map
-    (kbd "<tab>") nil)
-  (evil-define-key 'insert yas-minor-mode-map
-    (kbd "C-j") 'my-company-yasnippet)
 
   ;;elisp-mode
   (evil-define-key nil emacs-lisp-mode-map
