@@ -61,7 +61,46 @@
                                         extended-command-history)))
 
 (leaf simple
-  :hook (after-init-hook . global-visual-line-mode))
+  :hook (after-init-hook . (lambda ()
+                             (global-visual-line-mode)
+                             (line-number-mode)
+                             (column-number-mode)
+                             (size-indication-mode))))
+
+(leaf webjump
+  :init
+  (setq webjump-sites '(
+                        ;; Internet search engines.
+                        ("Google" .
+                         [simple-query "www.google.com"
+                                       "www.google.com/search?q=" ""])
+                        ("Github" .
+                         [simple-query "www.github.com"
+                                       "www.github.com/search?q=" ""])
+                        ("Melpa" .
+                         [simple-query "melpa.org"
+                                       "melpa.org/#/?q=" ""])
+                        ("Baidu" .
+                         [simple-query "www.baidu.com"
+                                       "www.baidu.com/s?wd=" ""])
+                        ("Zhihu" .
+                         [simple-query "www.zhihu.com"
+                                       "www.zhihu.com/search?type=content&q=" ""])
+                        ("V2ex" .
+                         [simple-query "www.sov2ex.com"
+                                       "www.sov2ex.com/?q=" ""])
+                        ("Wikipedia" .
+                         [simple-query "wikipedia.org" "wikipedia.org/wiki/" ""])))
+  :config
+  ;; HACK support visual selection texts in webjump()
+  (defun webjump-visual-patch (prompt)
+    "Patch for visual selection avaible"
+    (let* ((region-text (if (region-active-p)
+                            (buffer-substring-no-properties (region-beginning) (region-end)) nil))
+           (input (read-string (concat prompt ": ") region-text)))
+      (if (webjump-null-or-blank-string-p input) nil input)))
+  (advice-add 'webjump-read-string :override #'webjump-visual-patch)
+  )
 
 (leaf files
   :init

@@ -89,6 +89,8 @@
     "gp" 'dash-at-point
     ;; go-translate
     "gt" 'go-translate-echo-area
+    ;; webjump
+    "gw" 'webjump
     ;; magit
     "gs" 'magit-status
     "gz" 'magit-dispatch

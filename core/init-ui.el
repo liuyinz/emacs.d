@@ -10,8 +10,6 @@
   :doc "deps: all-the-icons"
   :hook (after-init-hook . doom-modeline-mode)
   :init
-  (line-number-mode)
-  (column-number-mode)
   (setq doom-modeline-icon nil
         doom-modeline-height 15
         doom-modeline-persp-name nil
