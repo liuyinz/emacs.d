@@ -77,10 +77,5 @@
       (remove-overlays (point-min) (point-max) 'ovrainbow t))
     (advice-add #'rainbow-turn-off :after #'my-rainbow-clear-overlays)))
 
-;;indent-guide
-(leaf indent-guide
-  :hook (prog-mode-hook . indent-guide-mode)
-  :init (setq indent-guide-char "¦"))
-
 (provide 'init-highlight)
 ;;; init-highlight.el ends here
