@@ -12,6 +12,13 @@
     (vterm-toggle)
     (switch-to-buffer nil)))
 
+(defun save-and-kill ()
+  "Save and kill current buffer."
+  (interactive)
+  (let ((kill-buffer-query-functions nil))
+    (save-buffer)
+    (kill-buffer nil)))
+
 (with-eval-after-load 'evil
   ;; enable parts of keybinding
   (evil-define-key 'insert 'global
@@ -30,6 +37,7 @@
     (kbd "s-s") 'consult-git-grep
     (kbd "s-f") 'consult-line
     (kbd "C-x <escape> <escape>") nil
+    (kbd "C-x s") nil
     (kbd "s-m") nil
     (kbd "C-/") nil
     (kbd "M-c") nil
@@ -172,18 +180,6 @@
   (evil-define-key nil vc-prefix-map
     "B" 'browse-at-remote)
 
-  ;; origami
-  (evil-define-key 'normal origami-mode-map
-    ;; "za" 'origami-forward-toggle-node
-    "zm" 'origami-toggle-all-nodes
-    ;; "zp" 'origami-previous-fold
-    ;; "zn" 'origami-forward-fold
-    ;; "zc" 'origami-recursively-toggle-node
-    ;; "zo" 'origami-show-node
-    ;; "zr" 'origami-redo
-    ;; "zu" 'origami-undo
-    )
-
   ;; flycheck
   (evil-define-key 'normal flycheck-mode-map
     "]f" 'flycheck-next-error
@@ -213,32 +209,30 @@
   (evil-define-key 'emacs vterm-mode-map
     (kbd "C-c C-o") 'vterm-send-C-o)
 
-
-  (evil-define-key 'normal smerge-mode-map
+  (evil-define-key 'emacs smerge-mode-map
     ;; move
     "n" 'smerge-next
+    "N" 'smerge-prev
     "p" 'smerge-prev
     ;; keep
     "a" 'smerge-keep-all
     "b" 'smerge-keep-base
-    "l" 'smerge-keep-lower
-    "u" 'smerge-keep-upper
-    (kbd "C-m") 'smerge-keep-current
-    (kbd "<return>") 'smerge-keep-current
+    "o" 'smerge-keep-lower
+    "m" 'smerge-keep-upper
+    "c" 'smerge-keep-current
+    "d" 'smerge-kill-current
     ;; diff
     "<" 'smerge-diff-base-upper
     "=" 'smerge-diff-upper-lower
     ">" 'smerge-diff-base-lower
-    "R" 'smerge-refine
-    "E" 'smerge-ediff
+    "r" 'smerge-refine
+    "e" 'smerge-ediff
     ;; other
+    "u" 'undo
     "C" 'smerge-combine-with-next
     "r" 'smerge-resolve
-    "k" 'smerge-kill-current
-    "ZZ" (lambda ()
-           (interactive)
-           (save-buffer)
-           (bury-buffer))))
+    (kbd "C-x s") 'save-and-kill
+    ))
 
 (provide 'init-key)
 ;;; init-key.el ends here
