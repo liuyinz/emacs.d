@@ -20,6 +20,8 @@
   :commands gitignore-templates-insert gitignore-templates-new-file
   :init (setq gitignore-templates-api 'github))
 
+(leaf git-modes :require t)
+
 ;; Open github/gitlab/bitbucket page
 (leaf browse-at-remote :commands browse-at-remote)
 
