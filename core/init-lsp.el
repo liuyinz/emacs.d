@@ -5,7 +5,11 @@
 ;; lsp-mode
 (leaf lsp-mode
   :doc "deps: ht lv spinner dash f"
-  :hook (prog-mode-hook . lsp-deferred)
+  :commands lsp-deferred lsp
+  :hook ((js-mode-hook
+          css-mode-hook
+          yaml-mode-hook
+          html-mode-hook) . lsp-deferred)
   ;; :bind (:map lsp-mode-map
   ;;        ("C-c f" . lsp-format-region)
   ;;        ("C-c d" . lsp-describe-thing-at-point)
@@ -28,6 +32,19 @@
   (setq lsp-auto-guess-root t)                ;; auto guess root
   (setq lsp-keep-workspace-alive nil)         ;; auto kill lsp server
   (setq lsp-eldoc-enable-hover nil))          ;; disable eldoc hover
+
+(leaf lsp-pyright
+  :doc "deps: ht dash"
+  :hook (python-mode-hook . (lambda ()
+                              (require 'lsp-pyright)
+                              (lsp-deferred))))
+
+(leaf ccls
+  :doc "deps : ccls"
+  :hook ((c-mode-hook
+          c++-mode-hook
+          objc-mode-hook
+          cuda-mode-hook) . (lambda () (require 'ccls) (lsp-deferred))))
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here
