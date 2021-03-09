@@ -229,12 +229,6 @@
 [submodule "markdown-mode"]
 	path = module/markdown-mode
 	url = https://github.com/jrblevin/markdown-mode.git
-[submodule "nox"]
-	path = module/nox
-	url = https://github.com/manateelazycat/nox.git
-[submodule "posframe"]
-	path = module/posframe
-	url = https://github.com/tumashu/posframe.git
 [submodule "visual-fill-column"]
 	path = module/visual-fill-column
 	url = https://github.com/joostkremers/visual-fill-column.git
@@ -272,3 +266,12 @@
 	path = module/nodejs-repl
 	url = https://github.com/abicky/nodejs-repl.el.git
 	branch = develop
+[submodule "lsp-mode"]
+	path = module/lsp-mode
+	url = https://github.com/emacs-lsp/lsp-mode.git
+[submodule "spinner.el"]
+	path = module/spinner
+	url = https://github.com/Malabarba/spinner.el.git
+[submodule "hydra"]
+	path = module/hydra
+	url = https://github.com/abo-abo/hydra.git

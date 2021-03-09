@@ -62,7 +62,7 @@
   (require 'init-vcs)
   (require 'init-project)
   ;; language
-  (require 'init-nox)
+  (require 'init-lsp)
   (require 'init-lang)
   (require 'init-elisp)
   (require 'init-markdown)
