@@ -31,7 +31,9 @@
   (setq lsp-log-io nil)                       ;; debug only
   (setq lsp-auto-guess-root t)                ;; auto guess root
   (setq lsp-keep-workspace-alive nil)         ;; auto kill lsp server
-  (setq lsp-eldoc-enable-hover nil))          ;; disable eldoc hover
+  (setq lsp-eldoc-enable-hover nil)           ;; disable eldoc hover
+  :config
+  (leaf lsp-modeline :require t))
 
 (leaf lsp-pyright
   :doc "deps: ht dash"
