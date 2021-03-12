@@ -4,7 +4,10 @@
 
 ;; Doc Help
 (leaf dash-at-point
-  :commands dash-at-point)
+  :commands dash-at-point
+  :config
+  (add-to-list 'dash-at-point-mode-alist '(js-mode . "javascript,backbone,angularjs"))
+  (add-to-list 'dash-at-point-mode-alist '(lisp-interaction-mode . "elisp")))
 
 ;; Code Check
 ;; @https://www.flycheck.org/en/latest/
