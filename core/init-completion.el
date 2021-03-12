@@ -48,11 +48,10 @@
   ((prog-mode-hook markdown-mode-hook) . yas-minor-mode)
   (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
   :init
-  (setq yas-triggers-in-field t
+  (setq yas-indent-line 'fixed)
         ;; yas-also-indent-empty-lines t
         ;; yas-indent-line 'auto
         ;; yas-also-auto-indent-first-line t
-        yas-indent-line 'fixed)
   (setq yas-new-snippet-default "\
 # -*- mode: snippet -*-
 # name: ${1:name}
