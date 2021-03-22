@@ -214,7 +214,9 @@
 (setq vc-follow-symlinks t)
 
 ;; c source
-(setq use-file-dialog nil
+;; Misc
+(setq use-short-answers t
+      use-file-dialog nil
       use-dialog-box nil
       echo-keystrokes 0.1
       ad-redefinition-action 'accept
@@ -276,9 +278,6 @@
 
 ;; This file stores usernames, passwords, and other such treasures for the aspiring malicious third party.
 (setq auth-sources '((expand-file-name ("authinfo.gpg") my-dir-cache)))
-
-;; Misc
-(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Encoding
 ;; Alias the UTF-8
