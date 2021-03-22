@@ -33,10 +33,11 @@
   )
 
 ;; undo-redo
-(leaf undo-fu :require t)
-(leaf undo-fu-session
-  :after undo-fu
-  :hook (after-init-hook . global-undo-fu-session-mode))
+(leaf undo-fu
+  :require t
+  :config
+  (leaf undo-fu-session
+    :hook (after-init-hook . global-undo-fu-session-mode)))
 
 ;; Flexible text folding
 (leaf origami
