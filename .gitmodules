@@ -181,9 +181,6 @@
 [submodule "inheritenv"]
 	path = module/inheritenv
 	url = https://github.com/purcell/inheritenv.git
-[submodule "multiple-cursors.el"]
-	path = module/multiple-cursors
-	url = https://github.com/magnars/multiple-cursors.el.git
 [submodule "browse-at-remote"]
 	path = module/browse-at-remote
 	url = https://github.com/rmuslimov/browse-at-remote.git
