@@ -4,7 +4,16 @@
 
 ;;; Code:
 
-(leaf writeroom :commands writeroom-mode)
+(leaf writeroom-mode
+  :commands writeroom-mode
+  ;; :hook (writeroom-mode-hook . toggle-chinese-font)
+  ;; :init
+  ;; (defun toggle-chinese-font ()
+  ;;   "Set font in current buffer"
+  ;;   (interactive)
+  ;;   (setq buffer-face-mode-face '(:family "Noto Serif CJK SC"))
+  ;;   (buffer-face-mode))
+  )
 
 (leaf easy-hugo
   :commands easy-hugo
