@@ -43,6 +43,7 @@
     (kbd "M-c") nil
     (kbd "C-o") nil
     (kbd "C-j") nil
+    (kbd "M-j") 'emmet-expand-yas
     ;; jump between two buffer
     (kbd "C-r") 'back-to-user-buffer
 

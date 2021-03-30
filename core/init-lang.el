@@ -17,6 +17,14 @@
   (setq css-indent-offset 2)
   (setq css-fontify-colors nil))
 
+(leaf emmet-mode
+  :hook ((css-mode-hook html-mode-hook sgml-mode-hook) . emmet-mode)
+  :init
+  (setq emmet-indentation 2
+        emmet-indent-after-insert nil
+        emmet-move-cursor-between-quotes t
+        emmet-postwrap-goto-edit-point t))
+
 ;; ;; SCSS mode
 ;; (leaf scss-mode
 ;;   :init (setq scss-compile-at-save nil))

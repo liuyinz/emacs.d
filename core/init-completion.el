@@ -11,7 +11,7 @@
         company-tooltip-align-annotations t
         company-tooltip-limit 15
         company-idle-delay 0
-        company-minimum-prefix-length 4
+        company-minimum-prefix-length 2
         company-require-match nil
         company-selection-wrap-around t
         company-dabbrev-ignore-case nil

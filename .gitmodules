@@ -278,3 +278,6 @@
 [submodule "emacs-ccls"]
 	path = module/emacs-ccls
 	url = https://github.com/MaskRay/emacs-ccls.git
+[submodule "emmet-mode"]
+	path = module/emmet-mode
+	url = https://github.com/smihica/emmet-mode.git
