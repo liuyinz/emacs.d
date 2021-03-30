@@ -7,7 +7,8 @@
   :commands dash-at-point
   :config
   (add-to-list 'dash-at-point-mode-alist '(js-mode . "javascript,backbone,angularjs"))
-  (add-to-list 'dash-at-point-mode-alist '(lisp-interaction-mode . "elisp")))
+  (add-to-list 'dash-at-point-mode-alist '(lisp-interaction-mode . "elisp"))
+  (add-to-list 'dash-at-point-mode-alist '(css-mode . "css,bootstrap,foundation,less,awesome,emmet")))
 
 ;; Code Check
 ;; @https://www.flycheck.org/en/latest/
