@@ -21,7 +21,7 @@
   (setq avy-orders-alist
         '((avy-goto-char . avy-order-closest)
           (avy-goto-word-0 . avy-order-closest)
-          (avy-goto-parens . avy-order-closest)))
+          (avy-goto-paren . avy-order-closest)))
 
   ;; HACK go-to paren
   ;; @https://github.com/abo-abo/avy/wiki/custom-commands#jumping-to-an-open-paren
