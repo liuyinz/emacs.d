@@ -70,9 +70,6 @@
 [submodule "hungry-delete"]
 	path = module/hungry-delete
 	url = https://github.com/nflath/hungry-delete.git
-[submodule "ibuffer-vc"]
-	path = module/ibuffer-vc
-	url = https://github.com/purcell/ibuffer-vc.git
 [submodule "keyfreq"]
 	path = module/keyfreq
 	url = https://github.com/dacap/keyfreq.git
@@ -100,9 +97,6 @@
 [submodule "origami.el"]
 	path = module/origami
 	url = https://github.com/gregsexton/origami.el.git
-[submodule "plantuml-mode"]
-	path = module/plantuml-mode
-	url = https://github.com/skuro/plantuml-mode.git
 [submodule "shrink-path.el"]
 	path = module/shrink-path
 	url = https://gitlab.com/bennya/shrink-path.el.git
