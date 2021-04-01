@@ -7,7 +7,7 @@
 (require 'subr-x)
 
 (leaf doom-modeline
-  :doc "deps: all-the-icons"
+  :doc "deps: all-the-icons emacs-async"
   :hook (after-init-hook . doom-modeline-mode)
   :init
   (setq doom-modeline-icon nil
