@@ -27,7 +27,7 @@
   (setq company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend))
 
-  (setq company-backends '(company-capf
+  (setq company-backends '((company-capf :with company-yasnippet)
                            (company-dabbrev-code company-keywords company-files)
                            company-dabbrev company-gtags company-etags))
 
@@ -50,9 +50,9 @@
   (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
   :init
   (setq yas-indent-line 'fixed)
-        ;; yas-also-indent-empty-lines t
-        ;; yas-indent-line 'auto
-        ;; yas-also-auto-indent-first-line t
+  ;; yas-also-indent-empty-lines t
+  ;; yas-indent-line 'auto
+  ;; yas-also-auto-indent-first-line t
   (setq yas-new-snippet-default "\
 # -*- mode: snippet -*-
 # name: ${1:name}
