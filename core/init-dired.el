@@ -8,65 +8,53 @@
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
         dired-recursive-copies 'always)
-  ;; Suppress the warning: `ls does not support --dired'.
-  (setq dired-use-ls-dired nil)
-  (when (executable-find "gls")
-    ;; Use GNU ls as `gls' from `coreutils' if available.
-    (setq insert-directory-program "gls")
-    ;; Using `insert-directory-program'
-    (setq ls-lisp-use-insert-directory-program t)
-    ;; Show directory first
-    (setq dired-listing-switches "-alh --group-directories-first"))
-
+  ;;   ;; Suppress the warning: `ls does not support --dired'.
+  ;; (setq dired-use-ls-dired nil)
   ;; Don't complain about this command being disabled when we use it
   (put 'dired-find-alternate-file 'disabled nil)
 
+  (when (executable-find "gls")
+    ;; Use GNU ls as `gls' from `coreutils' if available.
+    (setq insert-directory-program "gls")
+    ;; Show directory first
+    (setq dired-listing-switches "-alh --group-directories-first")))
+
+;; Extra Dired functionality
+;; (leaf dired-aux)
+(leaf dired-x
+  :hook (dired-mode-hook . dired-omit-mode)
   :config
-  ;; (defadvice dired-find-file (around dired-find-file-single-buffer activate)
-  ;;   "Replace current buffer if file is a directory."
-  ;;   (interactive)
-  ;;   (let ((orig (current-buffer))
-  ;;         (filename (dired-get-file-for-visit)))
-  ;;     (when (and (file-directory-p filename) (not (eq (current-buffer) orig))) (kill-buffer orig))))
+  (let ((cmd "open"))
+    (setq dired-guess-shell-alist-user
+          '(("\\.pdf\\'" ,cmd)
+            ("\\.docx\\'" ,cmd)
+            ("\\.\\(?:djvu\\|eps\\)\\'" ,cmd)
+            ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" ,cmd)
+            ("\\.\\(?:xcf\\)\\'" ,cmd)
+            ("\\.csv\\'" ,cmd)
+            ("\\.tex\\'" ,cmd)
+            ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|rm\\|rmvb\\|ogv\\)\\(?:\\.part\\)?\\'" ,cmd)
+            ("\\.\\(?:mp3\\|flac\\)\\'" ,cmd)
+            ("\\.html?\\'" ,cmd)
+            ("\\.md\\'" ,cmd))))
 
-  ;; Extra Dired functionality
-  ;; (leaf dired-aux)
-  (leaf dired-x
-    :hook (dired-mode-hook . dired-omit-mode)
-    :config
-    (let ((cmd "open"))
-      (setq dired-guess-shell-alist-user
-            '(("\\.pdf\\'" ,cmd)
-              ("\\.docx\\'" ,cmd)
-              ("\\.\\(?:djvu\\|eps\\)\\'" ,cmd)
-              ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" ,cmd)
-              ("\\.\\(?:xcf\\)\\'" ,cmd)
-              ("\\.csv\\'" ,cmd)
-              ("\\.tex\\'" ,cmd)
-              ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|rm\\|rmvb\\|ogv\\)\\(?:\\.part\\)?\\'" ,cmd)
-              ("\\.\\(?:mp3\\|flac\\)\\'" ,cmd)
-              ("\\.html?\\'" ,cmd)
-              ("\\.md\\'" ,cmd))))
-
-    (setq dired-omit-files
-          (concat dired-omit-files
-                  "\\|^.DS_Store$\\|^.projectile$\\|^.git*\\|^.svn$\\|^.vscode$\\|\\.js\\.meta$\\|\\.meta$\\|\\.elc$\\|^.emacs.*"))))
+  (setq dired-omit-files
+        (concat dired-omit-files
+                "\\|^.DS_Store$\\|^.projectile$\\|^.git*\\|^.cache*\\|^.svn$\\|^.vscode$\\|\\.js\\.meta$\\|\\.meta$\\|\\.elc$\\|^.emacs.*")))
 
 ;; Colourful dired
 (leaf diredfl
-  :hook (dired-mode-hook . diredfl-mode))
+  :hook (after-init-hook . diredfl-global-mode))
 
 ;; Show git info in dired
 (leaf dired-git-info
-  :commands dired-git-info-mode)
+  :commands dired-git-info-mode
+  :hook (dired-after-readin-hook . dired-git-info-auto-enable))
 
-;; Allow rsync from dired buffers
-(leaf dired-rsync
-  :commands dired-rsync)
-
-;; `find-dired' alternative using `fd'
-(when (executable-find "fd")
-  (leaf fd-dired))
+;; ;; `find-dired' alternative using `fd'
+(leaf fd-dired
+  :when (executable-find "fd")
+  :commands fd-dired)
 
 (provide 'init-dired)
 ;;; init-dired.el ends here

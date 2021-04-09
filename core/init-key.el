@@ -137,9 +137,10 @@
   (evil-define-key nil dired-mode-map
     (kbd "C-c C-p") 'wdired-change-to-wdired-mode
     (kbd "C-c C-z f") 'browse-url-of-file
-    "[" 'dired-hide-details-mode
-    ")" 'dired-git-info-mode
-    "(" 'dired-omit-mode)
+    "[" 'dired-omit-mode
+    "]" 'dired-hide-details-mode
+    "{" 'dired-git-info-mode
+    )
 
   ;; company
   (evil-define-key nil company-active-map
