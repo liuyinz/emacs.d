@@ -42,6 +42,8 @@
         (concat dired-omit-files
                 "\\|^.DS_Store$\\|^.projectile$\\|^.git*\\|^.cache*\\|^.svn$\\|^.vscode$\\|\\.js\\.meta$\\|\\.meta$\\|\\.elc$\\|^.emacs.*")))
 
+(leaf dired-single :require t)
+
 ;; Colourful dired
 (leaf diredfl
   :hook (after-init-hook . diredfl-global-mode))

@@ -135,12 +135,14 @@
 
   ;; dired
   (evil-define-key nil dired-mode-map
+    [remap dired-find-file] 'dired-single-buffer
+    [remap dired-mouse-find-file-other-window] 'dired-single-buffer-mouse
+    [remap dired-up-directory] 'dired-single-up-directory
     (kbd "C-c C-p") 'wdired-change-to-wdired-mode
     (kbd "C-c C-z f") 'browse-url-of-file
     "[" 'dired-omit-mode
     "]" 'dired-hide-details-mode
-    "{" 'dired-git-info-mode
-    )
+    "{" 'dired-git-info-mode)
 
   ;; company
   (evil-define-key nil company-active-map

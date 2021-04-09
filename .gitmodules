@@ -278,3 +278,6 @@
 [submodule "dired-hacks"]
 	path = module/dired-hacks
 	url = https://github.com/Fuco1/dired-hacks.git
+[submodule "dired-single"]
+	path = module/dired-single
+	url = https://github.com/crocket/dired-single.git
