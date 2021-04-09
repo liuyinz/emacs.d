@@ -48,8 +48,7 @@
 
 ;; Show git info in dired
 (leaf dired-git-info
-  :commands dired-git-info-mode
-  :hook (dired-after-readin-hook . dired-git-info-auto-enable))
+  :commands dired-git-info-mode)
 
 ;; ;; `find-dired' alternative using `fd'
 (leaf fd-dired
