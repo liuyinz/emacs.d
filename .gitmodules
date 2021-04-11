@@ -145,9 +145,6 @@
 [submodule "iter2"]
 	path = module/iter2
 	url = https://github.com/doublep/iter2.git
-[submodule "nvm.el"]
-	path = module/nvm
-	url = https://github.com/rejeep/nvm.el.git
 [submodule "forge"]
 	path = module/forge
 	url = https://github.com/magit/forge.git
