@@ -99,15 +99,16 @@
   :commands vterm-toggle
   :config
   (setq vterm-toggle-fullscreen-p nil)
-  (add-to-list 'display-buffer-alist
-               '("^v?term.*"
-                 ;;display-buffer-in-direction/direction/dedicated added in emacs27
-                 (display-buffer-reuse-window display-buffer-in-direction)
-                 ;; (direction . right)
-                 (direction . bottom)
-                 (dedicated . t)
-                 (reusable-frames . visible)
-                 (window-height . 0.5))))
+  ;; (add-to-list 'display-buffer-alist
+  ;;              '("^v?term.*"
+  ;;                ;;display-buffer-in-direction/direction/dedicated added in emacs27
+  ;;                (display-buffer-reuse-window display-buffer-in-direction)
+  ;;                ;; (direction . right)
+  ;;                (direction . bottom)
+  ;;                (dedicated . t)
+  ;;                (reusable-frames . visible)
+  ;;                (window-height . 0.5)))
+  )
 
 (provide 'init-ide)
 

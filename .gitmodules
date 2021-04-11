@@ -281,3 +281,6 @@
 [submodule "dired-single"]
 	path = module/dired-single
 	url = https://github.com/crocket/dired-single.git
+[submodule "shackle"]
+	path = module/shackle
+	url = https://depp.brause.cc/shackle.git
