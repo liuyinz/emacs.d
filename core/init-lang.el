@@ -50,8 +50,9 @@
 
 (leaf yaml-mode :mode "\\.yaml\\'" "\\.yml\\'")
 
+(leaf vimrc-mode :mode "\\.vim\\'" "\\vimrc\\'")
+
 (leaf plantuml-mode)
-(leaf vimrc-mode)
 
 (leaf mermaid-mode :require t)
 
