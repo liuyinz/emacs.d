@@ -142,9 +142,6 @@
 [submodule "emacs-noflet"]
 	path = module/emacs-noflet
 	url = https://github.com/nicferrier/emacs-noflet.git
-[submodule "iter2"]
-	path = module/iter2
-	url = https://github.com/doublep/iter2.git
 [submodule "forge"]
 	path = module/forge
 	url = https://github.com/magit/forge.git
