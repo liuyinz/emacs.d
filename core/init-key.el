@@ -129,6 +129,12 @@
   (evil-define-key nil embark-collect-mode-map
     (kbd "C-j") 'embark-consult-preview-at-point)
 
+  ;; flyspell
+  (evil-define-key nil flyspell-mode-map
+    (kbd "C-;") nil
+    (kbd "C-,") nil
+    (kbd "C-.") nil)
+
   ;;transient
   (evil-define-key nil transient-map
     (kbd "<escape>") 'transient-quit-one)
