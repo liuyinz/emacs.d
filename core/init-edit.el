@@ -9,19 +9,16 @@
   :hook (after-init-hook . global-hungry-delete-mode)
   :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
-;; On-the-fly spell checker
-(leaf flyspell
-  :if (executable-find "aspell")
-  :hook (((text-mode-hook outline-mode-hook) . flyspell-mode)
-         (prog-mode-hook . flyspell-prog-mode)
-         ;; (flyspell-mode-hook . (lambda ()
-         ;;                         (dolist (key '("C-;" "C-," "C-."))
-         ;;                           (unbind-key key flyspell-mode-map))))
-         )
-  :init (setq flyspell-issue-message-flag nil
-              flyspell-doublon-as-error-flag nil
-              ispell-program-name "aspell"
-              ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
+;; ;; On-the-fly spell checker
+;; (leaf flyspell
+;;   :if (executable-find "aspell")
+;;   :hook (((text-mode-hook outline-mode-hook) . flyspell-mode)
+;;          (prog-mode-hook . flyspell-prog-mode)
+;;          )
+;;   :init (setq flyspell-issue-message-flag nil
+;;               flyspell-doublon-as-error-flag nil
+;;               ispell-program-name "aspell"
+;;               ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
 
 ;; Jump to things in Emacs tree-style
 (leaf avy
