@@ -29,9 +29,11 @@
 (leaf diff-hl
   :hook
   (after-init-hook . global-diff-hl-mode)
+  (writeroom-mode-hook . (lambda () (diff-hl-mode -1)))
   :init
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
+
         diff-hl-side 'left)
   :config
   ;; set fringe style
