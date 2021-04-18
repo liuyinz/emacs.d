@@ -6,14 +6,14 @@
 
 (leaf writeroom-mode
   :commands writeroom-mode
-  ;; :hook (writeroom-mode-hook . toggle-chinese-font)
-  ;; :init
-  ;; (defun toggle-chinese-font ()
-  ;;   "Set font in current buffer"
-  ;;   (interactive)
-  ;;   (setq buffer-face-mode-face '(:family "Noto Serif CJK SC"))
-  ;;   (buffer-face-mode))
-  )
+  :hook (writeroom-mode-hook . toggle-cjk-writeroom)
+  :init
+  (defun toggle-cjk-writeroom ()
+    (interactive)
+    (if (bound-and-true-p writeroom-mode)
+        (cjk-font-setting "Source Han Serif" 1.24)
+      (cjk-font-setting "Sarasa Mono SC" 1))))
+
 
 (leaf easy-hugo
   :commands easy-hugo

@@ -205,7 +205,7 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
 
 ;; silently message
 (defun silent-message-advice (original &rest args)
-  "Silent function ORIGINAL message."
+  "Silent function `ORIGINAL' message."
   (let ((inhibit-message t)
         (message-log-max nil))
     (apply original args)))
@@ -224,6 +224,13 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
       (profiler-start 'cpu+mem)
     (profiler-stop)
     (profiler-report)))
+
+(defun cjk-font-setting (font scale)
+  "Set cjk `FONT' with `SCALE'."
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font)
+                      charset (font-spec :family font))
+    (setq face-font-rescale-alist '((font . scale)))))
 
 (provide 'init-lib)
 ;;; init-lib.el ends here
