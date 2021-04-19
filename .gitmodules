@@ -284,3 +284,6 @@
 [submodule "valign"]
 	path = module/valign
 	url = https://github.com/casouri/valign.git
+[submodule "csv-mode"]
+	path = module/csv-mode
+	url = https://github.com/emacsmirror/csv-mode.git

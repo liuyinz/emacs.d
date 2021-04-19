@@ -56,5 +56,8 @@
 
 (leaf mermaid-mode :require t)
 
+(leaf csv-mode
+  :mode "\\.[Cc][Ss][Vv]\\'")
+
 (provide 'init-lang)
 ;;; init-lang.el ends here
