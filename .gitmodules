@@ -281,3 +281,6 @@
 [submodule "emacs-opencc"]
 	path = module/emacs-opencc
 	url = https://github.com/xuchunyang/emacs-opencc.git
+[submodule "valign"]
+	path = module/valign
+	url = https://github.com/casouri/valign.git

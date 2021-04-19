@@ -75,5 +75,8 @@
   (setq wgrep-change-readonly-file t)
   (setq wgrep-auto-save-buffer t))
 
+(leaf valign
+  :hook ((org-mode-hook markdown-mode-hook) . valign-mode))
+
 (provide 'init-edit)
 ;;; init-edit.el ends here
