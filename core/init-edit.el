@@ -43,6 +43,12 @@
       (avy-jump "[]\[(){}]")))
   )
 
+(leaf vundo
+  :commands vundo
+  :init
+  (setq vundo--window-max-height 5))
+
+;; undo history
 (leaf undohist
   :require t
   :init

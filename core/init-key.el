@@ -79,7 +79,21 @@
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U
     (kbd "C-r") nil
-    "U" 'evil-redo
+    "u" (lambda ()
+          (interactive)
+          (if (not (fboundp 'vundo))
+              (evil-undo 1)
+            (vundo)
+            (vundo-backward 1)))
+
+    ;; "U" 'evil-redo
+    "U" (lambda ()
+          (interactive)
+          (if (not (fboundp 'vundo))
+              (evil-redo 1)
+            (vundo)
+            (vundo-forward 1)))
+
     ;; ? to replace
     "?" (lambda ()
           (interactive)
@@ -204,6 +218,15 @@
     "x" 'flycheck-error-list-explain-error
     ;; (kbd "RET") 'flycheck-error-list-goto-error
     "q" 'quit-window)
+
+  (evil-define-key nil vundo--mode-map
+    "U" 'vundo-forward
+    "u" 'vundo-backward
+    "l" 'vundo-forward
+    "h" 'vundo-backward
+    "j" 'vundo-next
+    "k" 'vundo-previous
+    (kbd "<escape>") 'vundo-quit)
 
   (evil-define-key 'normal hl-todo-mode-map
     "[h" 'hl-todo-previous
