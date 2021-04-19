@@ -7,7 +7,7 @@
 ;; (debug-on-entry 'load-file)
 
 ;; avoid cl depreciated warning
-(setq byte-compile-warnings '(cl-function))
+(setq byte-compile-warnings '(not docstrings free-vars obsolete))
 
 (when (version< emacs-version "27")
   (error "Please upgrade your emacs-version above 27 !"))

@@ -27,7 +27,7 @@
   (setq company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend))
 
-  (setq company-backends '((company-capf :with company-yasnippet)
+  (setq company-backends '(company-capf
                            (company-dabbrev-code company-keywords company-files)
                            company-dabbrev company-gtags company-etags))
 
