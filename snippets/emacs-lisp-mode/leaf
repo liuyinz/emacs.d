@@ -1,8 +1,8 @@
 # -*- mode: snippet -*-
-# name: when
+# name: leaf
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: w
+# key: leaf
 # --
 
-(when (${1:cond})
-  (${2:then}))$0
+(leaf ${1:package-name}
+  :${2:option} $0)

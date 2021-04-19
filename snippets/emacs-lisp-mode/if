@@ -1,8 +1,9 @@
 # -*- mode: snippet -*-
-# name: when
+# name: if
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: w
+# key: if
 # --
 
-(when (${1:cond})
-  (${2:then}))$0
+(if (${1:cond})
+    (${2:then})
+  (${3:else})$4)$0

@@ -4,4 +4,4 @@
 # key: up
 # --
 (use-package ${1:package-name}
-:ensure t$0)
+  :ensure t$0)

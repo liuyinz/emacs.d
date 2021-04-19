@@ -1,8 +1,8 @@
 # -*- mode: snippet -*-
-# name: when
+# name: unless
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: w
+# key: u
 # --
 
-(when (${1:cond})
+(unless (${1:cond})
   (${2:then}))$0
