@@ -154,12 +154,6 @@
 [submodule "emacs-easy-hugo"]
 	path = module/emacs-easy-hugo
 	url = https://github.com/masasam/emacs-easy-hugo.git
-[submodule "undo-fu"]
-	path = module/undo-fu
-	url = https://github.com/emacsmirror/undo-fu.git
-[submodule "undo-fu-session"]
-	path = module/emacs-undo-fu-session
-	url = https://gitlab.com/ideasman42/emacs-undo-fu-session.git
 [submodule "emacs-wgrep"]
 	path = module/Emacs-wgrep
 	url = https://github.com/mhayashi1120/Emacs-wgrep.git
@@ -278,3 +272,6 @@
 [submodule "shackle"]
 	path = module/shackle
 	url = https://depp.brause.cc/shackle.git
+[submodule "undohist"]
+	path = module/undohist
+	url = https://github.com/emacsorphanage/undohist.git

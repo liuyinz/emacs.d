@@ -43,12 +43,12 @@
       (avy-jump "[]\[(){}]")))
   )
 
-;; undo-redo
-(leaf undo-fu
+(leaf undohist
   :require t
+  :init
+  (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$"))
   :config
-  (leaf undo-fu-session
-    :hook (after-init-hook . global-undo-fu-session-mode)))
+  (undohist-initialize))
 
 ;; Flexible text folding
 (leaf origami

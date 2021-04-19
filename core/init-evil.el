@@ -22,7 +22,7 @@
         evil-cross-lines t
         evil-track-eol nil
         evil-respect-visual-line-mode t
-        evil-undo-system 'undo-fu
+        evil-undo-system 'undo-redo
         evil-echo-state nil
         evil-want-integration t
         evil-ex-substitute-global t)
