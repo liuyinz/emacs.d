@@ -9,7 +9,8 @@
   :init
   (setq magit-no-confirm t
         magit-save-repository-buffers 'dontask
-        magit-auto-revert-immediately t)
+        magit-auto-revert-immediately t
+        magit-submodule-remove-trash-gitdirs t)
   :defer-config
   (magit-add-section-hook 'magit-status-sections-hook
                           'magit-insert-modules
