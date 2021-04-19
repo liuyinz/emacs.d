@@ -14,6 +14,8 @@
 
 ;; Start server
 (leaf server
+  :init
+  (setq server-client-instructions nil)
   :hook (after-init-hook . (lambda ()
                              (require 'server)
                              (unless (server-running-p)
