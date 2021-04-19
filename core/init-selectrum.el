@@ -83,6 +83,10 @@
   :after consult
   ;; :init (setq embark-prompter 'embark-completing-read-prompter)
   :config
-  (leaf embark-consult :require t))
+  (leaf embark-consult :require t)
+
+  ;; HACK Open source code of `symbol' in other window
+  (advice-add 'embark-find-definition :before #'open-in-other-window))
+
 (provide 'init-selectrum)
 ;;; init-selectrum.el ends here

@@ -232,5 +232,9 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
                       charset (font-spec :family font))
     (setq face-font-rescale-alist '((font . scale)))))
 
+(defun open-in-other-window (&rest _)
+  "Open in other window."
+  (switch-to-buffer-other-window (current-buffer)))
+
 (provide 'init-lib)
 ;;; init-lib.el ends here
