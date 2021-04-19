@@ -278,3 +278,6 @@
 [submodule "vundo"]
 	path = module/vundo
 	url = https://github.com/casouri/vundo.git
+[submodule "emacs-opencc"]
+	path = module/emacs-opencc
+	url = https://github.com/xuchunyang/emacs-opencc.git

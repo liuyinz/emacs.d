@@ -36,6 +36,11 @@
         go-translate-local-language "zh-CN"
         go-translate-token-current (cons 430675 2721866130)))
 
+;; 简繁转换
+(leaf opencc
+  :commands opencc-replace-at-point opencc-print-buffer
+  :doc "deps: brew install opencc")
+
 ;; IRC
 (leaf erc
   :defvar erc-autojoin-channels-alist
