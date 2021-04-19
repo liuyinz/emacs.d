@@ -27,6 +27,9 @@
         evil-want-integration t
         evil-ex-substitute-global t)
   :config
+
+  (leaf goto-chg :require t)
+
   ;; set leader and localleader
   (evil-set-leader '(normal visual) ";")
   (evil-set-leader '(normal visual) "," t)
