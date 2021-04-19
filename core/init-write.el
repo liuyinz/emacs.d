@@ -8,12 +8,12 @@
   :commands writeroom-mode
   :hook (writeroom-mode-hook . toggle-cjk-writeroom)
   :init
+  (setq writeroom-width 120)
   (defun toggle-cjk-writeroom ()
     (interactive)
     (if (bound-and-true-p writeroom-mode)
-        (cjk-font-setting "Source Han Serif" 1.24)
+        (cjk-font-setting "Source Han Serif" 1.4)
       (cjk-font-setting "Sarasa Mono SC" 1))))
-
 
 (leaf easy-hugo
   :commands easy-hugo
