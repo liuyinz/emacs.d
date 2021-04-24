@@ -48,16 +48,15 @@
   (setq lua-indent-string-contents t)
   (setq lua-prefix-key nil))
 
+(leaf csv-mode :mode "\\.[Cc][Ss][Vv]\\'")
+
 (leaf yaml-mode :mode "\\.yaml\\'" "\\.yml\\'")
 
 (leaf vimrc-mode :mode "\\.vim\\'" "\\vimrc\\'")
 
-(leaf plantuml-mode)
+(leaf plantuml-mode :mode "\\.plantuml\\'")
 
 (leaf mermaid-mode :require t)
-
-(leaf csv-mode
-  :mode "\\.[Cc][Ss][Vv]\\'")
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

@@ -287,3 +287,6 @@
 [submodule "csv-mode"]
 	path = module/csv-mode
 	url = https://github.com/emacsmirror/csv-mode.git
+[submodule "plantuml-mode"]
+	path = module/plantuml-mode
+	url = https://github.com/skuro/plantuml-mode.git
