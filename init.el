@@ -23,9 +23,13 @@
 
 ;; for native-comp branch
 ;; (setq comp-speed 2)
-;; (setq comp-deferred-compilation nil)
+;; (setq comp-asyncjobs-number 7
+;;       comp-deferred-compilation nil
+;;       comp-async-report-warnings-errors nil)
+
 ;; (when (boundp 'comp-eln-load-path)
-;;   (setq comp-eln-load-path (expand-file-name "var/eln-cache/" my-dir-cache)))
+;;   (setcar comp-eln-load-path
+;;           (expand-file-name ".cache/var/eln-cache/" user-emacs-directory)))
 
 ;; add submodules to load-path
 (defun add-subdirs-to-load-path (dir)
