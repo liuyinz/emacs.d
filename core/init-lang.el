@@ -56,6 +56,8 @@
 
 (leaf plantuml-mode :mode "\\.plantuml\\'")
 
+(leaf python-mode :mode "\\.pythonrc\\'")
+
 (leaf mermaid-mode :require t)
 
 (provide 'init-lang)
