@@ -279,7 +279,7 @@
 (setq command-line-x-option-alist nil)
 
 ;; This file stores usernames, passwords, and other such treasures for the aspiring malicious third party.
-(setq auth-sources '((expand-file-name ("authinfo.gpg") my-dir-cache)))
+(setq auth-sources '(macos-keychain-internet))
 
 ;; Encoding
 ;; Alias the UTF-8

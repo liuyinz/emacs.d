@@ -71,17 +71,22 @@ mermaid.initialize({
 ;; Table of contents
 (leaf markdown-toc
   :doc "deps : markdown-mode"
+  :commands markdown-toc-generate-or-refresh-toc markdown-toc-delete-toc
   :init
   (setq markdown-toc-header-toc-title "**目录**"
         markdown-toc-header-toc-start "<!-- markdown-toc start -->"
-        markdown-toc-indentation-space 2)
-  :commands markdown-toc-generate-or-refresh-toc markdown-toc-delete-toc)
+        markdown-toc-indentation-space 2))
 
 ;; Markdown Preview
 (leaf grip-mode
   :doc " pip install grip"
   :commands grip-restart-preview grip-start-preview grip-stop-preview
   :init
+  ;; use macos-keychain
+  (let ((credential (auth-source-user-and-password "github.com")))
+    (setq grip-github-user (car credential)
+          grip-github-password (cadr credential)))
+
   (setq grip-preview-use-webkit t
         grip-update-after-change t))
 
