@@ -109,9 +109,6 @@
 [submodule "emacs-noflet"]
 	path = module/emacs-noflet
 	url = https://github.com/nicferrier/emacs-noflet.git
-[submodule "forge"]
-	path = module/forge
-	url = https://github.com/magit/forge.git
 [submodule "ghub"]
 	path = module/ghub
 	url = https://github.com/magit/ghub.git
@@ -130,6 +127,7 @@
 [submodule "inheritenv"]
 	path = module/inheritenv
 	url = https://github.com/purcell/inheritenv.git
+	branch = main
 [submodule "browse-at-remote"]
 	path = module/browse-at-remote
 	url = https://github.com/rmuslimov/browse-at-remote.git
@@ -145,12 +143,14 @@
 [submodule "consult"]
 	path = module/consult
 	url = https://github.com/minad/consult.git
+	branch = main
 [submodule "embark"]
 	path = module/embark
 	url = https://github.com/oantolin/embark.git
 [submodule "marginalia"]
 	path = module/marginalia
 	url = https://github.com/minad/marginalia.git
+	branch = main
 [submodule "hl-todo"]
 	path = module/hl-todo
 	url = https://github.com/tarsius/hl-todo.git
@@ -238,6 +238,7 @@
 [submodule "plantuml-mode"]
 	path = module/plantuml-mode
 	url = https://github.com/skuro/plantuml-mode.git
+	branch = develop
 [submodule "rg"]
 	path = module/rg
 	url = https://github.com/dajva/rg.el.git
@@ -293,3 +294,6 @@
 [submodule "gh"]
 	path = module/gh
 	url = https://github.com/sigma/gh.el.git
+[submodule "forge"]
+	path = module/forge
+	url = https://github.com/magit/forge.git
