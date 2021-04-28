@@ -290,3 +290,6 @@
 [submodule "plantuml-mode"]
 	path = module/plantuml-mode
 	url = https://github.com/skuro/plantuml-mode.git
+[submodule "gh.el"]
+	path = module/gh
+	url = https://github.com/sigma/gh.el.git
