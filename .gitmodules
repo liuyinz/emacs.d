@@ -22,9 +22,6 @@
 [submodule "dash-at-point"]
 	path = module/dash-at-point
 	url = https://github.com/stanaka/dash-at-point.git
-[submodule "dash.el"]
-	path = module/dash
-	url = https://github.com/magnars/dash.el.git
 [submodule "diff-hl"]
 	path = module/diff-hl
 	url = https://github.com/dgutov/diff-hl.git
@@ -52,21 +49,12 @@
 [submodule "flycheck"]
 	path = module/flycheck
 	url = https://github.com/flycheck/flycheck.git
-[submodule "f.el"]
-	path = module/f
-	url = https://github.com/rejeep/f.el.git
 [submodule "git-modes"]
 	path = module/git-modes
 	url = https://github.com/magit/git-modes.git
-[submodule "gitignore-templates.el"]
-	path = module/gitignore-templates
-	url = https://github.com/xuchunyang/gitignore-templates.el.git
 [submodule "goto-chg"]
 	path = module/goto-chg
 	url = https://github.com/emacs-evil/goto-chg.git
-[submodule "highlight-parentheses.el"]
-	path = module/highlight-parenthese
-	url = https://github.com/tsdh/highlight-parentheses.el.git
 [submodule "hungry-delete"]
 	path = module/hungry-delete
 	url = https://github.com/nflath/hungry-delete.git
@@ -79,9 +67,6 @@
 [submodule "no-littering"]
 	path = module/no-littering
 	url = https://github.com/emacscollective/no-littering.git
-[submodule "prescient.el"]
-	path = module/prescient
-	url = https://github.com/raxod502/prescient.el.git
 [submodule "quickrun"]
 	path = module/quickrun
 	url = https://github.com/emacsorphanage/quickrun.git
@@ -91,18 +76,6 @@
 [submodule "rainbow-mode"]
 	path = module/rainbow-mode
 	url = https://github.com/emacsmirror/rainbow-mode.git
-[submodule "s.el"]
-	path = module/s
-	url = https://github.com/magnars/s.el.git
-[submodule "origami.el"]
-	path = module/origami
-	url = https://github.com/gregsexton/origami.el.git
-[submodule "shrink-path.el"]
-	path = module/shrink-path
-	url = https://gitlab.com/bennya/shrink-path.el.git
-[submodule "typescript.el"]
-	path = module/typescript
-	url = https://github.com/emacs-typescript/typescript.el.git
 [submodule "vimrc-mode"]
 	path = module/vimrc-mode
 	url = https://github.com/mcandre/vimrc-mode.git
@@ -124,12 +97,6 @@
 [submodule "fd-dired"]
 	path = module/fd-dired
 	url = https://github.com/yqrashawn/fd-dired.git
-[submodule "leaf.el"]
-	path = module/leaf
-	url = https://github.com/conao3/leaf.el.git
-[submodule "leaf-keywords.el"]
-	path = module/leaf-keywords
-	url = https://github.com/conao3/leaf-keywords.el.git
 [submodule "packed"]
 	path = module/packed
 	url = https://github.com/emacscollective/packed.git
@@ -193,27 +160,18 @@
 [submodule "emacs-smart-input-source"]
 	path = module/emacs-smart-input-source
 	url = https://github.com/laishulu/emacs-smart-input-source.git
-[submodule "with-proxy.el"]
-	path = module/with-proxy
-	url = https://github.com/twlz0ne/with-proxy.el.git
 [submodule "transpose-frame"]
 	path = module/transpose-frame
 	url = https://github.com/emacsorphanage/transpose-frame.git
 [submodule "emacs-async"]
 	path = module/emacs-async
 	url = https://github.com/jwiegley/emacs-async.git
-[submodule "ht.el"]
-	path = module/ht
-	url = https://github.com/Wilfred/ht.el.git
 [submodule "markdown-mode"]
 	path = module/markdown-mode
 	url = https://github.com/jrblevin/markdown-mode.git
 [submodule "visual-fill-column"]
 	path = module/visual-fill-column
 	url = https://github.com/joostkremers/visual-fill-column.git
-[submodule "all-the-icons.el"]
-	path = module/all-the-icons
-	url = https://github.com/domtronn/all-the-icons.el.git
 [submodule "doom-modeline"]
 	path = module/doom-modeline
 	url = https://github.com/seagle0128/doom-modeline.git
@@ -226,9 +184,6 @@
 [submodule "edit-indirect"]
 	path = module/edit-indirect
 	url = https://github.com/Fanael/edit-indirect.git
-[submodule "rg.el"]
-	path = module/rg
-	url = https://github.com/dajva/rg.el.git
 [submodule "grip-mode"]
 	path = module/grip-mode
 	url = https://github.com/seagle0128/grip-mode.git
@@ -241,16 +196,9 @@
 [submodule "mermaid-mode"]
 	path = module/mermaid-mode
 	url = https://github.com/abrochard/mermaid-mode.git
-[submodule "nodejs-repl.el"]
-	path = module/nodejs-repl
-	url = https://github.com/abicky/nodejs-repl.el.git
-	branch = develop
 [submodule "lsp-mode"]
 	path = module/lsp-mode
 	url = https://github.com/emacs-lsp/lsp-mode.git
-[submodule "spinner.el"]
-	path = module/spinner
-	url = https://github.com/Malabarba/spinner.el.git
 [submodule "hydra"]
 	path = module/hydra
 	url = https://github.com/abo-abo/hydra.git
@@ -290,6 +238,58 @@
 [submodule "plantuml-mode"]
 	path = module/plantuml-mode
 	url = https://github.com/skuro/plantuml-mode.git
-[submodule "gh.el"]
+[submodule "rg"]
+	path = module/rg
+	url = https://github.com/dajva/rg.el.git
+[submodule "f"]
+	path = module/f
+	url = https://github.com/rejeep/f.el.git
+[submodule "s"]
+	path = module/s
+	url = https://github.com/magnars/s.el.git
+[submodule "dash"]
+	path = module/dash
+	url = https://github.com/magnars/dash.el.git
+[submodule "gitignore-templates"]
+	path = module/gitignore-templates
+	url = https://github.com/xuchunyang/gitignore-templates.el.git
+[submodule "prescient"]
+	path = module/prescient
+	url = https://github.com/raxod502/prescient.el.git
+[submodule "shrink-path"]
+	path = module/shrink-path
+	url = https://gitlab.com/bennya/shrink-path.el.git
+[submodule "origami"]
+	path = module/origami
+	url = https://github.com/gregsexton/origami.el.git
+[submodule "leaf"]
+	path = module/leaf
+	url = https://github.com/conao3/leaf.el.git
+[submodule "leaf-keywords"]
+	path = module/leaf-keywords
+	url = https://github.com/conao3/leaf-keywords.el.git
+[submodule "typescript"]
+	path = module/typescript
+	url = https://github.com/emacs-typescript/typescript.el.git
+[submodule "ht"]
+	path = module/ht
+	url = https://github.com/Wilfred/ht.el.git
+[submodule "highlight-parentheses"]
+	path = module/highlight-parenthese
+	url = https://github.com/tsdh/highlight-parentheses.el.git
+[submodule "with-proxy"]
+	path = module/with-proxy
+	url = https://github.com/twlz0ne/with-proxy.el.git
+[submodule "all-the-icons"]
+	path = module/all-the-icons
+	url = https://github.com/domtronn/all-the-icons.el.git
+[submodule "nodejs-repl"]
+	path = module/nodejs-repl
+	url = https://github.com/abicky/nodejs-repl.el.git
+	branch = develop
+[submodule "spinner"]
+	path = module/spinner
+	url = https://github.com/Malabarba/spinner.el.git
+[submodule "gh"]
 	path = module/gh
 	url = https://github.com/sigma/gh.el.git
