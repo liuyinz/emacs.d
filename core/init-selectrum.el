@@ -67,6 +67,11 @@
   (setq consult-project-root-function #'projectile-project-root)
   (setq consult-find-command "fd --color=never --full-path ARG OPTS")
   :config
+  (leaf consult-imenu :require t)
+  (leaf consult-flycheck :require t)
+  (leaf consult-compile :require t)
+  (leaf consult-register :require t)
+
   ;; @https://emacs.stackexchange.com/a/36253
   (defun consult-consult ()
     "call command related to consult"
@@ -74,9 +79,7 @@
     (setq unread-command-events (nconc
                                  (listify-key-sequence "consult- ")
                                  unread-command-events))
-    (call-interactively #'execute-extended-command))
-
-  (leaf consult-flycheck :commands consult-flycheck))
+    (call-interactively #'execute-extended-command)))
 
 (leaf embark
   :require t
