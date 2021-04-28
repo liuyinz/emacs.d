@@ -17,6 +17,7 @@
         highlight-parentheses-attributes '((:inverse-video t :weight bold))))
 
 ;; Highlight TODO and similar keywords in comments and strings
+;; TODO consutl-todo implements
 (leaf hl-todo
   :hook (after-init-hook . global-hl-todo-mode)
   :config
