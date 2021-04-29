@@ -17,9 +17,12 @@
           (" *Flycheck checkers*" :select t :size 0.3 :align 'below)
           ((flycheck-error-list-mode flymake-diagnostics-buffer-mode)
            :select t :size 0.25 :align 'below)
+          (" *command-log*" :size 0.4 :align 'left)
           )))
 
 (leaf transpose-frame :require t)
+
+(leaf zoom :require t)
 
 (provide 'init-window)
 ;;; init-window.el ends here

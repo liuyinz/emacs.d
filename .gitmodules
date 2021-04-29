@@ -303,3 +303,6 @@
 [submodule "elisp-refs"]
 	path = module/elisp-refs
 	url = https://github.com/Wilfred/elisp-refs.git
+[submodule "zoom"]
+	path = module/zoom
+	url = https://github.com/cyrus-and/zoom.git
