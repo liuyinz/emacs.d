@@ -21,5 +21,10 @@
   :hook (emacs-lisp-mode . highlight-defined-mode)
   :init (setq highlight-defined-face-use-itself nil))
 
+;; A better *Help* buffer
+(leaf helpful
+  :doc "deps: f s dash elisp-refs"
+  :require t)
+
 (provide 'init-elisp)
 ;;; init-elisp.el ends here

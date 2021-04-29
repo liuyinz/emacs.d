@@ -74,7 +74,14 @@
     ;; consult
     [remap switch-to-buffer] 'consult-buffer
     [remap switch-to-buffer-other-window] 'consult-buffer-other-window
-    [remap switch-to-buffer-other-frame] 'consult-buffer-other-frame)
+    [remap switch-to-buffer-other-frame] 'consult-buffer-other-frame
+
+    ;; helpful
+    [remap describe-key] 'helpful-key
+    [remap describe-variable] 'helpful-variable
+    [remap describe-function] 'helpful-callable
+    [remap describe-symbol] 'helpful-at-point
+    (kbd "C-h C") 'helpful-command)
 
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U

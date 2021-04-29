@@ -297,3 +297,9 @@
 [submodule "forge"]
 	path = module/forge
 	url = https://github.com/magit/forge.git
+[submodule "helpful"]
+	path = module/helpful
+	url = https://github.com/Wilfred/helpful.git
+[submodule "elisp-refs"]
+	path = module/elisp-refs
+	url = https://github.com/Wilfred/elisp-refs.git
