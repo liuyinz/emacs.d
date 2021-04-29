@@ -39,6 +39,7 @@
                             (font . "Sarasa Mono SC 16")
                             (background-color . "#242730")
                             (foreground-color . "#bbc2cf")
+                            ;; (alpha . (98 . 100))
                             (fullscreen . fullheight)
                             (width . 88)   ; half 88,full 177
                             (ns-appearance . dark)

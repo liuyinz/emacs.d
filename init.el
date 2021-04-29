@@ -9,8 +9,8 @@
 ;; avoid cl depreciated warning
 (setq byte-compile-warnings '(not docstrings free-vars obsolete))
 
-(when (version< emacs-version "27")
-  (error "Please upgrade your emacs-version above 27 !"))
+(when (version< emacs-version "28")
+  (error "Please upgrade your emacs-version above 28 !"))
 
 ;; add user config dir to load-path
 (add-to-list 'load-path (expand-file-name "core/" user-emacs-directory))
