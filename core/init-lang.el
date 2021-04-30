@@ -3,12 +3,9 @@
 ;;; Code:
 
 (leaf js-mode
-  :defun (flycheck-select-checker . flycheck)
   :interpreter ("node" . js2-mode)
   :config
-  (leaf nodejs-repl :require t)
-  (when (executable-find "eslint")
-    (flycheck-select-checker 'javascript-eslint)))
+  (leaf nodejs-repl :require t))
 
 (leaf typescript-mode :mode "\\.ts[x]\\'")
 
@@ -33,12 +30,7 @@
 ;;   :init (setq less-css-compile-at-save nil))
 
 (leaf sh-script
-  :hook (sh-mode-hook . my-sh-mode-setup)
-  :config
-  (defun my-sh-mode-setup ()
-    (when (and (string-match "\\.sh$" buffer-file-name)
-               (executable-find "shellcheck"))
-      (flycheck-select-checker 'sh-shellcheck))))
+  :init (setq sh-basic-offset 2))
 
 (leaf lua-mode
   :mode "\\.lua\\'"

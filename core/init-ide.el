@@ -8,26 +8,48 @@
   :config
   (add-to-list 'dash-at-point-mode-alist '(js-mode . "javascript,backbone,angularjs"))
   (add-to-list 'dash-at-point-mode-alist '(lisp-interaction-mode . "elisp"))
-  (add-to-list 'dash-at-point-mode-alist '(css-mode . "css,bootstrap,foundation,less,awesome,emmet")))
+  (add-to-list 'dash-at-point-mode-alist
+               '(css-mode . "css,bootstrap,foundation,less,awesome,emmet")))
 
-;; Code Check
-;; @https://www.flycheck.org/en/latest/
+;; Code Check , @https://www.flycheck.org/en/latest/
 (leaf flycheck
-  :hook (prog-mode-hook . flycheck-mode)
+  :doc "deps: pkg-info dash"
+  :hook (prog-mode-hook . my/flycheck-setup)
   :init
+  ;; may needed by some command
+  (leaf pkg-info
+    :doc "deps: epl"
+    :require t)
+
   (setq flycheck-stylelintrc "~/.stylelintrc.json"
         flycheck-tidyrc "~/.tidyrc"
         flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save mode-enabled)
         flycheck-indication-mode 'right-fringe)
-  :config
+
   ;; Prettify fringe style
   (when (fboundp 'define-fringe-bitmap)
     (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
-      [16 48 112 240 112 48 16] nil nil 'center)))
+      [16 48 112 240 112 48 16] nil nil 'center))
 
-;; Code Running
-;; @https://github.com/emacsorphanage/quickrun#customize
+  (defun my/flycheck-setup ()
+    "set checker for different buffer"
+    (flycheck-mode)
+    (cond
+     ((eq major-mode 'sh-mode) (when (and (string-match "\\.sh$" buffer-file-name)
+                                          (executable-find "shellcheck"))
+                                 (flycheck-select-checker 'sh-shellcheck)))
+
+     ;; pip3 install pylint rather than brew.
+     ((eq major-mode 'python-mode) (when (executable-find "pylint")
+                                     (flycheck-select-checker 'python-pylint)))
+
+     ((member major-mode '(js-mode js2-mode)) (when (executable-find "eslint")
+                                                (flycheck-select-checker 'javascript-eslint)))
+
+     (t nil))))
+
+;; Code Running, @https://github.com/emacsorphanage/quickrun#customize
 (leaf quickrun
   :commands quickrun quickrun-region
   :init
@@ -97,18 +119,8 @@
 
 (leaf vterm-toggle
   :commands vterm-toggle
-  :config
-  (setq vterm-toggle-fullscreen-p nil)
-  ;; (add-to-list 'display-buffer-alist
-  ;;              '("^v?term.*"
-  ;;                ;;display-buffer-in-direction/direction/dedicated added in emacs27
-  ;;                (display-buffer-reuse-window display-buffer-in-direction)
-  ;;                ;; (direction . right)
-  ;;                (direction . bottom)
-  ;;                (dedicated . t)
-  ;;                (reusable-frames . visible)
-  ;;                (window-height . 0.5)))
-  )
+  :init
+  (setq vterm-toggle-fullscreen-p nil))
 
 (provide 'init-ide)
 

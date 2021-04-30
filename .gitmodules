@@ -306,3 +306,9 @@
 [submodule "zoom"]
 	path = module/zoom
 	url = https://github.com/cyrus-and/zoom.git
+[submodule "pkg-info"]
+	path = module/pkg-info
+	url = https://github.com/emacsorphanage/pkg-info.git
+[submodule "epl"]
+	path = module/epl
+	url = https://github.com/cask/epl.git
