@@ -2,6 +2,6 @@
 # name: until loop
 # key: until
 # --
-until ${1:cond}; do
-    $0
+until ${1:COND}; do
+  $0
 done

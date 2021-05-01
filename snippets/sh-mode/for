@@ -1,9 +1,9 @@
 # -*- mode: snippet -*-
-# name: function
+# name: for
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: f
+# key: for
 # --
 
-${1:function ${2:NAME}} {
+for ${1:VAR} in ${2:ARRAY}; do
   $0
-}
+done

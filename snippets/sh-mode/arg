@@ -1,9 +1,9 @@
 # -*- mode: snippet -*-
-# name: function
+# name: arg
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: f
+# key: arg
 # --
 
-${1:function ${2:NAME}} {
+if [ $# -lt ${1:2} ]; then
   $0
-}
+fi

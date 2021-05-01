@@ -1,12 +1,10 @@
 # -*- mode: snippet -*-
-# name: ife
+# name: case-branch
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: ife
+# key: caseb
 # --
 
-if ${1:COND}; then
+${1:PATTERN} )
   ${2:THEN}
-else
-  ${3:OTHER}
-fi
+  ;;
 $0

@@ -2,5 +2,7 @@
 # name: bang
 # key: !
 # --
-#!/usr/bin/env bash
+
+#!/usr/bin/env ${1:$$(yas-choose-value '("bash" "zsh" "sh" "ksh" "csh"))}
+
 $0

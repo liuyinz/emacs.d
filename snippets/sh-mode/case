@@ -1,10 +1,11 @@
 # -*- mode: snippet -*-
-# name : case
+# name: case
+# contributor : 食無魚<liuyinz@gmail.com>
 # key: case
 # --
-case ${1:cond} in
-    ${2:pattern} )
-        ${3:stuff}
-        ;;
-    $0
+case ${1:VAR} in
+${2:PATTERN} )
+  ${3:THEN}
+  ;;
+$0
 esac
