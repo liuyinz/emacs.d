@@ -1,314 +1,311 @@
 [submodule "magit"]
-	path = module/magit
+	path = lib/magit
 	url = https://github.com/magit/magit.git
 [submodule "evil"]
-	path = module/evil
+	path = lib/evil
 	url = https://github.com/emacs-evil/evil.git
 [submodule "evil-nerd-commenter"]
-	path = module/evil-nerd-commenter
+	path = lib/evil-nerd-commenter
 	url = https://github.com/redguardtoo/evil-nerd-commenter.git
 [submodule "emacs-doom-themes"]
-	path = module/emacs-doom-themes
+	path = lib/emacs-doom-themes
 	url = https://github.com/hlissner/emacs-doom-themes.git
 [submodule "avy"]
-	path = module/avy
+	path = lib/avy
 	url = https://github.com/abo-abo/avy.git
 [submodule "command-log-mode"]
-	path = module/command-log-mode
+	path = lib/command-log-mode
 	url = https://github.com/lewang/command-log-mode.git
 [submodule "company-mode"]
-	path = module/company-mode
+	path = lib/company-mode
 	url = https://github.com/company-mode/company-mode.git
 [submodule "dash-at-point"]
-	path = module/dash-at-point
+	path = lib/dash-at-point
 	url = https://github.com/stanaka/dash-at-point.git
 [submodule "diff-hl"]
-	path = module/diff-hl
+	path = lib/diff-hl
 	url = https://github.com/dgutov/diff-hl.git
 [submodule "diredfl"]
-	path = module/diredfl
+	path = lib/diredfl
 	url = https://github.com/purcell/diredfl.git
 [submodule "dired-git-info"]
-	path = module/dired-git-info
+	path = lib/dired-git-info
 	url = https://github.com/clemera/dired-git-info.git
 [submodule "editorconfig-emacs"]
-	path = module/editorconfig-emacs
+	path = lib/editorconfig-emacs
 	url = https://github.com/editorconfig/editorconfig-emacs.git
 [submodule "emacs-format-all-the-code"]
-	path = module/emacs-format-all-the-code
+	path = lib/emacs-format-all-the-code
 	url = https://github.com/lassik/emacs-format-all-the-code.git
 [submodule "evil-matchit"]
-	path = module/evil-matchit
+	path = lib/evil-matchit
 	url = https://github.com/redguardtoo/evil-matchit.git
 [submodule "evil-surround"]
-	path = module/evil-surround
+	path = lib/evil-surround
 	url = https://github.com/emacs-evil/evil-surround.git
 [submodule "exec-path-from-shell"]
-	path = module/exec-path-from-shell
+	path = lib/exec-path-from-shell
 	url = https://github.com/purcell/exec-path-from-shell.git
 [submodule "flycheck"]
-	path = module/flycheck
+	path = lib/flycheck
 	url = https://github.com/flycheck/flycheck.git
 [submodule "git-modes"]
-	path = module/git-modes
+	path = lib/git-modes
 	url = https://github.com/magit/git-modes.git
 [submodule "goto-chg"]
-	path = module/goto-chg
+	path = lib/goto-chg
 	url = https://github.com/emacs-evil/goto-chg.git
 [submodule "hungry-delete"]
-	path = module/hungry-delete
+	path = lib/hungry-delete
 	url = https://github.com/nflath/hungry-delete.git
 [submodule "keyfreq"]
-	path = module/keyfreq
+	path = lib/keyfreq
 	url = https://github.com/dacap/keyfreq.git
 [submodule "lua-mode"]
-	path = module/lua-mode
+	path = lib/lua-mode
 	url = https://github.com/immerrr/lua-mode.git
 [submodule "no-littering"]
-	path = module/no-littering
+	path = lib/no-littering
 	url = https://github.com/emacscollective/no-littering.git
 [submodule "quickrun"]
-	path = module/quickrun
+	path = lib/quickrun
 	url = https://github.com/emacsorphanage/quickrun.git
 [submodule "rainbow-delimiters"]
-	path = module/rainbow-delimiters
+	path = lib/rainbow-delimiters
 	url = https://github.com/Fanael/rainbow-delimiters.git
 [submodule "rainbow-mode"]
-	path = module/rainbow-mode
+	path = lib/rainbow-mode
 	url = https://github.com/emacsmirror/rainbow-mode.git
 [submodule "vimrc-mode"]
-	path = module/vimrc-mode
+	path = lib/vimrc-mode
 	url = https://github.com/mcandre/vimrc-mode.git
 [submodule "vterm-toggle"]
-	path = module/vterm-toggle
+	path = lib/vterm-toggle
 	url = https://github.com/jixiuf/vterm-toggle.git
 [submodule "emacs-libvterm"]
-	path = module/emacs-libvterm
+	path = lib/emacs-libvterm
 	url = https://github.com/akermu/emacs-libvterm.git
 [submodule "with-editor"]
-	path = module/with-editor
+	path = lib/with-editor
 	url = https://github.com/magit/with-editor.git
 [submodule "yasnippet"]
-	path = module/yasnippet
+	path = lib/yasnippet
 	url = https://github.com/joaotavora/yasnippet.git
 [submodule "yaml-mode"]
-	path = module/yaml-mode
+	path = lib/yaml-mode
 	url = https://github.com/yoshiki/yaml-mode.git
 [submodule "fd-dired"]
-	path = module/fd-dired
+	path = lib/fd-dired
 	url = https://github.com/yqrashawn/fd-dired.git
 [submodule "packed"]
-	path = module/packed
+	path = lib/packed
 	url = https://github.com/emacscollective/packed.git
 [submodule "auto-compile"]
-	path = module/auto-compile
+	path = lib/auto-compile
 	url = https://github.com/emacscollective/auto-compile.git
 [submodule "benchmark-init-el"]
-	path = module/benchmark-init-el
+	path = lib/benchmark-init-el
 	url = https://github.com/dholm/benchmark-init-el.git
 [submodule "emacs-noflet"]
-	path = module/emacs-noflet
+	path = lib/emacs-noflet
 	url = https://github.com/nicferrier/emacs-noflet.git
 [submodule "ghub"]
-	path = module/ghub
+	path = lib/ghub
 	url = https://github.com/magit/ghub.git
 [submodule "writeroom-mode"]
-	path = module/writeroom-mode
+	path = lib/writeroom-mode
 	url = https://github.com/joostkremers/writeroom-mode.git
 [submodule "emacs-easy-hugo"]
-	path = module/emacs-easy-hugo
+	path = lib/emacs-easy-hugo
 	url = https://github.com/masasam/emacs-easy-hugo.git
 [submodule "emacs-wgrep"]
-	path = module/Emacs-wgrep
+	path = lib/Emacs-wgrep
 	url = https://github.com/mhayashi1120/Emacs-wgrep.git
 [submodule "emacs-language-id"]
-	path = module/emacs-language-id
+	path = lib/emacs-language-id
 	url = https://github.com/lassik/emacs-language-id.git
 [submodule "inheritenv"]
-	path = module/inheritenv
+	path = lib/inheritenv
 	url = https://github.com/purcell/inheritenv.git
 	branch = main
 [submodule "browse-at-remote"]
-	path = module/browse-at-remote
+	path = lib/browse-at-remote
 	url = https://github.com/rmuslimov/browse-at-remote.git
 [submodule "go-translate"]
-	path = module/go-translate
+	path = lib/go-translate
 	url = https://github.com/lorniu/go-translate.git
 [submodule "orderless"]
-	path = module/orderless
+	path = lib/orderless
 	url = https://github.com/oantolin/orderless.git
 [submodule "selectrum"]
-	path = module/selectrum
+	path = lib/selectrum
 	url = https://github.com/raxod502/selectrum.git
 [submodule "consult"]
-	path = module/consult
+	path = lib/consult
 	url = https://github.com/minad/consult.git
 	branch = main
 [submodule "embark"]
-	path = module/embark
+	path = lib/embark
 	url = https://github.com/oantolin/embark.git
 [submodule "marginalia"]
-	path = module/marginalia
+	path = lib/marginalia
 	url = https://github.com/minad/marginalia.git
 	branch = main
 [submodule "hl-todo"]
-	path = module/hl-todo
+	path = lib/hl-todo
 	url = https://github.com/tarsius/hl-todo.git
 [submodule "projectile"]
-	path = module/projectile
+	path = lib/projectile
 	url = https://github.com/bbatsov/projectile.git
 [submodule "emacs-smart-input-source"]
-	path = module/emacs-smart-input-source
+	path = lib/emacs-smart-input-source
 	url = https://github.com/laishulu/emacs-smart-input-source.git
 [submodule "transpose-frame"]
-	path = module/transpose-frame
+	path = lib/transpose-frame
 	url = https://github.com/emacsorphanage/transpose-frame.git
 [submodule "emacs-async"]
-	path = module/emacs-async
+	path = lib/emacs-async
 	url = https://github.com/jwiegley/emacs-async.git
 [submodule "markdown-mode"]
-	path = module/markdown-mode
+	path = lib/markdown-mode
 	url = https://github.com/jrblevin/markdown-mode.git
 [submodule "visual-fill-column"]
-	path = module/visual-fill-column
+	path = lib/visual-fill-column
 	url = https://github.com/joostkremers/visual-fill-column.git
 [submodule "doom-modeline"]
-	path = module/doom-modeline
+	path = lib/doom-modeline
 	url = https://github.com/seagle0128/doom-modeline.git
 [submodule "emacs-request"]
-	path = module/emacs-request
+	path = lib/emacs-request
 	url = https://github.com/tkf/emacs-request.git
 [submodule "popup-el"]
-	path = module/popup-el
+	path = lib/popup-el
 	url = https://github.com/auto-complete/popup-el.git
 [submodule "edit-indirect"]
-	path = module/edit-indirect
+	path = lib/edit-indirect
 	url = https://github.com/Fanael/edit-indirect.git
 [submodule "grip-mode"]
-	path = module/grip-mode
+	path = lib/grip-mode
 	url = https://github.com/seagle0128/grip-mode.git
 [submodule "markdown-toc"]
-	path = module/markdown-toc
+	path = lib/markdown-toc
 	url = https://github.com/ardumont/markdown-toc.git
-[submodule "edit-indirect"]
-	path = module/edit-indirect
-	url = https://github.com/Fanael/edit-indirect.git
 [submodule "mermaid-mode"]
-	path = module/mermaid-mode
+	path = lib/mermaid-mode
 	url = https://github.com/abrochard/mermaid-mode.git
 [submodule "lsp-mode"]
-	path = module/lsp-mode
+	path = lib/lsp-mode
 	url = https://github.com/emacs-lsp/lsp-mode.git
 [submodule "hydra"]
-	path = module/hydra
+	path = lib/hydra
 	url = https://github.com/abo-abo/hydra.git
 [submodule "lsp-pyright"]
-	path = module/lsp-pyright
+	path = lib/lsp-pyright
 	url = https://github.com/emacs-lsp/lsp-pyright.git
 [submodule "emacs-ccls"]
-	path = module/emacs-ccls
+	path = lib/emacs-ccls
 	url = https://github.com/MaskRay/emacs-ccls.git
 [submodule "emmet-mode"]
-	path = module/emmet-mode
+	path = lib/emmet-mode
 	url = https://github.com/smihica/emmet-mode.git
 [submodule "dired-hacks"]
-	path = module/dired-hacks
+	path = lib/dired-hacks
 	url = https://github.com/Fuco1/dired-hacks.git
 [submodule "dired-single"]
-	path = module/dired-single
+	path = lib/dired-single
 	url = https://github.com/crocket/dired-single.git
 [submodule "shackle"]
-	path = module/shackle
+	path = lib/shackle
 	url = https://depp.brause.cc/shackle.git
 [submodule "undohist"]
-	path = module/undohist
+	path = lib/undohist
 	url = https://github.com/emacsorphanage/undohist.git
 [submodule "vundo"]
-	path = module/vundo
+	path = lib/vundo
 	url = https://github.com/casouri/vundo.git
 [submodule "emacs-opencc"]
-	path = module/emacs-opencc
+	path = lib/emacs-opencc
 	url = https://github.com/xuchunyang/emacs-opencc.git
 [submodule "valign"]
-	path = module/valign
+	path = lib/valign
 	url = https://github.com/casouri/valign.git
 [submodule "csv-mode"]
-	path = module/csv-mode
+	path = lib/csv-mode
 	url = https://github.com/emacsmirror/csv-mode.git
 [submodule "plantuml-mode"]
-	path = module/plantuml-mode
+	path = lib/plantuml-mode
 	url = https://github.com/skuro/plantuml-mode.git
 	branch = develop
 [submodule "rg"]
-	path = module/rg
+	path = lib/rg
 	url = https://github.com/dajva/rg.el.git
 [submodule "f"]
-	path = module/f
+	path = lib/f
 	url = https://github.com/rejeep/f.el.git
 [submodule "s"]
-	path = module/s
+	path = lib/s
 	url = https://github.com/magnars/s.el.git
 [submodule "dash"]
-	path = module/dash
+	path = lib/dash
 	url = https://github.com/magnars/dash.el.git
 [submodule "gitignore-templates"]
-	path = module/gitignore-templates
+	path = lib/gitignore-templates
 	url = https://github.com/xuchunyang/gitignore-templates.el.git
 [submodule "prescient"]
-	path = module/prescient
+	path = lib/prescient
 	url = https://github.com/raxod502/prescient.el.git
 [submodule "shrink-path"]
-	path = module/shrink-path
+	path = lib/shrink-path
 	url = https://gitlab.com/bennya/shrink-path.el.git
 [submodule "origami"]
-	path = module/origami
+	path = lib/origami
 	url = https://github.com/gregsexton/origami.el.git
 [submodule "leaf"]
-	path = module/leaf
+	path = lib/leaf
 	url = https://github.com/conao3/leaf.el.git
 [submodule "leaf-keywords"]
-	path = module/leaf-keywords
+	path = lib/leaf-keywords
 	url = https://github.com/conao3/leaf-keywords.el.git
 [submodule "typescript"]
-	path = module/typescript
+	path = lib/typescript
 	url = https://github.com/emacs-typescript/typescript.el.git
 [submodule "ht"]
-	path = module/ht
+	path = lib/ht
 	url = https://github.com/Wilfred/ht.el.git
 [submodule "highlight-parentheses"]
-	path = module/highlight-parenthese
+	path = lib/highlight-parenthese
 	url = https://github.com/tsdh/highlight-parentheses.el.git
 [submodule "with-proxy"]
-	path = module/with-proxy
+	path = lib/with-proxy
 	url = https://github.com/twlz0ne/with-proxy.el.git
 [submodule "all-the-icons"]
-	path = module/all-the-icons
+	path = lib/all-the-icons
 	url = https://github.com/domtronn/all-the-icons.el.git
 [submodule "nodejs-repl"]
-	path = module/nodejs-repl
+	path = lib/nodejs-repl
 	url = https://github.com/abicky/nodejs-repl.el.git
 	branch = develop
 [submodule "spinner"]
-	path = module/spinner
+	path = lib/spinner
 	url = https://github.com/Malabarba/spinner.el.git
 [submodule "gh"]
-	path = module/gh
+	path = lib/gh
 	url = https://github.com/sigma/gh.el.git
 [submodule "forge"]
-	path = module/forge
+	path = lib/forge
 	url = https://github.com/magit/forge.git
 [submodule "helpful"]
-	path = module/helpful
+	path = lib/helpful
 	url = https://github.com/Wilfred/helpful.git
 [submodule "elisp-refs"]
-	path = module/elisp-refs
+	path = lib/elisp-refs
 	url = https://github.com/Wilfred/elisp-refs.git
 [submodule "zoom"]
-	path = module/zoom
+	path = lib/zoom
 	url = https://github.com/cyrus-and/zoom.git
 [submodule "pkg-info"]
-	path = module/pkg-info
+	path = lib/pkg-info
 	url = https://github.com/emacsorphanage/pkg-info.git
 [submodule "epl"]
-	path = module/epl
+	path = lib/epl
 	url = https://github.com/cask/epl.git
