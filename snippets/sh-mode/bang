@@ -3,6 +3,6 @@
 # key: !
 # --
 
-#!/usr/bin/env ${1:$$(yas-choose-value '("bash" "zsh" "sh" "ksh" "csh"))}
+#!/usr/bin/env ${1:$$(yas-choose-value '("bash" "zsh" "sh"))}
 
 $0

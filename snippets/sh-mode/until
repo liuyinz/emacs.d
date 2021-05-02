@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: until loop
+# name: until
 # key: until
 # --
 until ${1:COND}; do
