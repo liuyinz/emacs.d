@@ -37,7 +37,7 @@
   (let ((default-directory (file-name-as-directory dir)))
     (add-to-list 'load-path dir)
     (normal-top-level-add-subdirs-to-load-path)))
-(add-subdirs-to-load-path my-dir-module)
+(add-subdirs-to-load-path my-dir-lib)
 
 ;; load custom.el if exists.
 (setq custom-file (expand-file-name "etc/custom.el" my-dir-cache))

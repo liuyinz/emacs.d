@@ -6,8 +6,8 @@
   (expand-file-name "core" user-emacs-directory)
   "User dir for Emacs configs.")
 
-(defconst my-dir-module
-  (expand-file-name "module" user-emacs-directory)
+(defconst my-dir-lib
+  (expand-file-name "lib" user-emacs-directory)
   "User dir for submodules.")
 
 (defconst my-dir-snippet
@@ -26,7 +26,7 @@
 (dolist (dir (mapcar #'symbol-value '(my-dir-cache
                                       my-dir-core
                                       my-dir-ext
-                                      my-dir-module
+                                      my-dir-lib
                                       my-dir-snippet)))
   (unless (file-exists-p dir)
     (make-directory dir t)))

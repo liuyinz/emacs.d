@@ -38,7 +38,7 @@
           "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
           "\\.?ido\\.last$" "\\.revive$" "/G?TAGS$" "/.elfeed/"
           "^/tmp/" "^/var/folders/.+$" "/share/emacs/.+$" ; "^/ssh:"
-          (lambda (file) (file-in-directory-p file my-dir-module))))
+          (lambda (file) (file-in-directory-p file my-dir-lib))))
   :config
   ;; silent message
   (mapc (lambda (cmd)
