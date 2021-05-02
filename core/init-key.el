@@ -79,9 +79,10 @@
     ;; helpful
     [remap describe-key] 'helpful-key
     [remap describe-variable] 'helpful-variable
+    [remap describe-command] 'helpful-command
     [remap describe-function] 'helpful-callable
     [remap describe-symbol] 'helpful-at-point
-    (kbd "C-h C") 'helpful-command)
+    )
 
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U
