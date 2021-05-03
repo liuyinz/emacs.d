@@ -10,7 +10,8 @@
   (setq company-tooltip-width-grow-only t
         company-tooltip-align-annotations t
         company-tooltip-limit 15
-        ;; company-format-margin-function #'company-text-icons-margin
+        company-format-margin-function #'company-text-icons-margin
+        company-text-icons-format "%s "
         company-idle-delay 0
         company-minimum-prefix-length 2
         company-require-match nil
