@@ -77,15 +77,16 @@ mermaid.initialize({
         markdown-toc-header-toc-start "<!-- markdown-toc start -->"
         markdown-toc-indentation-space 2)
   :config
-  ;; HACK update on save
-  (defun my-markdown-toc-refresh ()
-    "Refresh markdown TOC if present in the document."
-    (interactive)
-    (when (memq major-mode '(markdown-mode gfm-mode))
-      (require 'markdown-toc)
-      (when (markdown-toc--toc-already-present-p)
-        (markdown-toc-generate-toc t))))
-  (add-hook 'before-save-hook #'my-markdown-toc-refresh))
+  ;; ;; HACK update on save
+  ;; (defun my-markdown-toc-refresh ()
+  ;;   "Refresh markdown TOC if present in the document."
+  ;;   (interactive)
+  ;;   (when (memq major-mode '(markdown-mode gfm-mode))
+  ;;     (require 'markdown-toc)
+  ;;     (when (markdown-toc--toc-already-present-p)
+  ;;       (markdown-toc-generate-toc t))))
+  ;; (add-hook 'before-save-hook #'my-markdown-toc-refresh)
+  )
 
 ;; Markdown Preview
 (leaf grip-mode
