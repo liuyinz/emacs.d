@@ -4,6 +4,14 @@
 
 (leaf js-mode
   :interpreter ("node" . js2-mode)
+  :init
+  (setq js-indent-level 2
+        js-chain-indent t
+        ; js-js-tmpdir
+        js-jsx-syntax t
+        js-jsx-indent-level 2
+        )
+
   :config
   (leaf nodejs-repl :require t))
 
