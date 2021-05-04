@@ -28,8 +28,7 @@
                                       my-dir-ext
                                       my-dir-lib
                                       my-dir-snippet)))
-  (unless (file-exists-p dir)
-    (make-directory dir t)))
+    (make-directory dir t))
 
 (defconst my-homepage
   "https://github.com/liuyinz/.emacs.d"
