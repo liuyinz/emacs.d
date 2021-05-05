@@ -15,6 +15,7 @@
         (cjk-font-setting "Source Han Serif" 1.4)
       (cjk-font-setting "Sarasa Mono SC" 1))))
 
+;; TODO rewrite with transient
 (leaf easy-hugo
   :commands easy-hugo
   :init

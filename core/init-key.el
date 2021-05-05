@@ -35,7 +35,6 @@
 
   ;;evil binding
   (evil-define-key nil 'global
-    (kbd "C-s-f") 'toggle-frame-fullscreen
     (kbd "s-s") 'consult-git-grep
     (kbd "s-f") 'consult-line
     (kbd "C-x <escape> <escape>") nil
@@ -62,14 +61,6 @@
 
     ;; ;; toggle
     (kbd "C-; C-;") 'vterm-toggle
-    (kbd "C-; p p") 'toggle-profiler
-    (kbd "C-; c l") 'clm/toggle-command-log-buffer
-    ;; debug
-    (kbd "C-; d e") 'toggle-debug-on-error
-    (kbd "C-; d q") 'toggle-debug-on-quit
-    ;; proxy
-    (kbd "C-; p h") 'proxy-http-toggle
-    (kbd "C-; p s") 'proxy-socks-toggle
     ;; selectrum
     (kbd "C-x C-z") 'selectrum-repeat
     ;; consult
@@ -133,6 +124,11 @@
     (kbd "<leader> xk") 'kill-buffer
     (kbd "<leader> ;") 'consult-consult
     (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
+
+    (kbd "<leader> t") 'my/toggle-transient
+    ;; "[" 'my/bracket-left-transient
+    ;; "]" 'my/bracket-right-transient
+    (kbd "<localleader> ,") 'my/point-transient
 
     ;; self-define
     (kbd "<leader> f") 'my-format
@@ -237,13 +233,13 @@
     "k" 'vundo-previous
     (kbd "<escape>") 'vundo-quit)
 
-  (evil-define-key 'nil hl-todo-mode-map
+  (evil-define-key 'normal hl-todo-mode-map
     "[h" 'hl-todo-previous
     "]h" 'hl-todo-next
     "gh" 'hl-todo-occur
     (kbd "<leader> i") 'hl-todo-insert)
 
-  (evil-define-key 'nil diff-hl-mode-map
+  (evil-define-key 'normal diff-hl-mode-map
     "[g" 'diff-hl-previous-hunk
     "]g" 'diff-hl-next-hunk
     "gr" 'diff-hl-revert-hunk)
