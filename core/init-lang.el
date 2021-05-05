@@ -7,11 +7,10 @@
   :init
   (setq js-indent-level 2
         js-chain-indent t
-        ; js-js-tmpdir
-        js-jsx-syntax t
         js-jsx-indent-level 2
+        ;; js-js-tmpdir
+        ;; js-jsx-syntax t
         )
-
   :config
   (leaf nodejs-repl :require t))
 
