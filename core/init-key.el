@@ -29,7 +29,9 @@
     ";" nil
     "," nil
     (kbd "C-y") nil
-    (kbd "C-o") nil)
+    (kbd "C-o") nil
+    "'" 'evil-goto-mark
+    "`" 'evil-goto-mark-line)
 
   ;;evil binding
   (evil-define-key nil 'global
@@ -68,7 +70,6 @@
     ;; proxy
     (kbd "C-; p h") 'proxy-http-toggle
     (kbd "C-; p s") 'proxy-socks-toggle
-
     ;; selectrum
     (kbd "C-x C-z") 'selectrum-repeat
     ;; consult
@@ -114,24 +115,25 @@
     ;; run the macro in the q register
     "Q" "@q"
     ;; dash
-    "gp" 'dash-at-point
+    "gz" 'dash-at-point
     ;; go-translate
     "gt" 'go-translate-echo-area
     ;; webjump
     "gw" 'webjump
     ;; magit
     "gs" 'magit-status
-    "gz" 'magit-dispatch
+    ;; "gz" 'magit-dispatch
     "gla" 'magit-log-all-branches
+
+    ;; nerd-commenter
 
     (kbd "<leader> xf") 'find-file
     (kbd "<leader> b") 'consult-buffer
     (kbd "<leader> xs") 'save-buffer
     (kbd "<leader> xk") 'kill-buffer
     (kbd "<leader> ;") 'consult-consult
-
-    ;; nerd-commenter
     (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
+
     ;; self-define
     (kbd "<leader> f") 'my-format
     (kbd "<leader> r") 'my-run)
@@ -216,7 +218,6 @@
   (evil-define-key 'normal flycheck-mode-map
     "]f" 'flycheck-next-error
     "[f" 'flycheck-previous-error)
-
   (evil-define-key 'emacs flycheck-error-list-mode-map
     "n" 'flycheck-error-list-next-error
     "p" 'flycheck-error-list-previous-error
@@ -224,7 +225,7 @@
     "s" 'flycheck-error-list-set-filter
     "S" 'flycheck-error-list-reset-filter
     "x" 'flycheck-error-list-explain-error
-    ;; (kbd "RET") 'flycheck-error-list-goto-error
+    (kbd "RET") 'flycheck-error-list-goto-error
     "q" 'quit-window)
 
   (evil-define-key nil vundo--mode-map
@@ -236,13 +237,13 @@
     "k" 'vundo-previous
     (kbd "<escape>") 'vundo-quit)
 
-  (evil-define-key 'normal hl-todo-mode-map
+  (evil-define-key 'nil hl-todo-mode-map
     "[h" 'hl-todo-previous
     "]h" 'hl-todo-next
     "gh" 'hl-todo-occur
     (kbd "<leader> i") 'hl-todo-insert)
 
-  (evil-define-key 'normal diff-hl-mode-map
+  (evil-define-key 'nil diff-hl-mode-map
     "[g" 'diff-hl-previous-hunk
     "]g" 'diff-hl-next-hunk
     "gr" 'diff-hl-revert-hunk)

@@ -24,9 +24,21 @@
         evil-respect-visual-line-mode t
         evil-undo-system 'undo-redo
         evil-echo-state nil
-        evil-want-integration t
-        evil-ex-substitute-global t)
+        evil-ex-substitute-global t
+        ;; ;; with evil-collection
+        ;; evil-want-integration t
+        ;; evil-want-keybinding nil
+        )
   :config
+
+  ;; (leaf evil-collection
+  ;;   :doc "deps : annalist evil"
+  ;;   :after evil
+  ;;   :require t
+  ;;   :init
+  ;;   ;; (setq evil-collection-mode-list '(magit))
+  ;;   :config
+  ;;   (evil-collection-init 'flycheck))
 
   (leaf goto-chg :require t)
 
@@ -78,21 +90,9 @@
                ))
     (evil-set-initial-state (car p) (cdr p))))
 
-;; (use-package evil-collection
-;;   :after evil
-;;   :defines evil-collection-mode-list
-;;   :demand
-;;   :init
-;;   (setq evil-collection-mode-list '(flycheck))
-;;   :config
-;;   (evil-collection-init))
-
 ;;Evil-matchit
 (leaf evil-matchit
-  :hook (evil-mode-hook . global-evil-matchit-mode)
-  :config
-  ;;use "m" rather than "%"
-  (setq evilmi-shortcut "m"))
+  :hook (evil-mode-hook . global-evil-matchit-mode))
 
 (leaf evil-surround
   :hook (evil-mode-hook . global-evil-surround-mode)
