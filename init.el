@@ -6,6 +6,14 @@
 ;; (setq debug-on-error t)
 ;; (debug-on-entry 'load-file)
 
+;; HACK ,@https://emacs.stackexchange.com/a/64560
+(defun my/advice-silence-messages (func &rest args)
+  "Invoke FUNC with ARGS, silencing all messages.  This is an `:around' advice for many different functions."
+  (cl-letf (((symbol-function #'message) #'ignore))
+    (apply func args)))
+(dolist (func '(define-minor-mode))
+  (advice-add func :around #'my/advice-silence-messages))
+
 ;; avoid cl depreciated warning
 (setq byte-compile-warnings '(not docstrings free-vars obsolete))
 
