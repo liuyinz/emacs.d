@@ -286,6 +286,7 @@
           selectrum-select-current-candidate
           self-insert-command
           sis-get-english
+          sis-set-english
           smarter-move-beginning-of-line
           suspend-frame
           term-send-raw
