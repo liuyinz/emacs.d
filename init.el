@@ -30,13 +30,13 @@
 (require 'init-lib)
 
 ;; for native-comp branch
-;; (setq comp-speed 2)
-;; (setq comp-asyncjobs-number 7
-;;       comp-deferred-compilation nil
-;;       comp-async-report-warnings-errors nil)
+;; (setq native-comp-speed 2)
+;; (setq native-comp-asyncjobs-number 7
+;;       native-comp-deferred-compilation nil
+;;       native-comp-async-report-warnings-errors nil)
 
-;; (when (boundp 'comp-eln-load-path)
-;;   (setcar comp-eln-load-path
+;; (when (boundp 'native-comp-eln-load-path)
+;;   (setcar native-comp-eln-load-path
 ;;           (expand-file-name ".cache/var/eln-cache/" user-emacs-directory)))
 
 ;; add submodules to load-path
