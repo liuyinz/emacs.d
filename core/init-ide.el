@@ -98,7 +98,9 @@
   ;; silent ensure message
   (advice-add #'format-all-ensure-formatter :around #'silent-message-advice)
   :config
-  (add-to-list 'format-all-default-formatters '("HTML" prettier)))
+  (add-to-list 'format-all-default-formatters '("HTML" prettier))
+  (add-to-list 'format-all-default-formatters '("Shell" (shfmt "-i" "2")))
+  )
 
 (defun my-format ()
   "Formating files."
