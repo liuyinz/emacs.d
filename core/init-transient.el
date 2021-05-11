@@ -8,20 +8,21 @@
 
 (define-transient-command my/buffer-transient ()
   "Buffer Operation"
-  ["Copy"
-   ("A" "absolute path")
-   ("R" "relative path")
-   ("N" "base name")
+  ["Info"
+   ("N" "base name" buffer-base-name)
+   ("A" "absolute path" file-absolute-path)
+   ;; ("R" "relative path")
    ]
   ["Edit"
    ("b" "rename buffer" rename-buffer)
-   ("f" "rename file" rename-file)
-   ("B" "rename both" rename-this-file)
+   ("f" "rename file" rename-this-file)
+   ("B" "rename both" rename-both)
+   ("d" "delete both" delete-both)
    ]
   ["Content"
-   ("u" "change utf")
+   ;; ("u" "change utf")
    ("u" "dos2unix" dos2unix)
-   ("u" "unix2dos" unix2dos)
+   ("U" "unix2dos" unix2dos)
    ])
 
 ;; toggle-transient

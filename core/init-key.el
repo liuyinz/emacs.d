@@ -125,7 +125,8 @@
     (kbd "<leader> ;") 'consult-consult
     (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
 
-    (kbd "<leader> t") 'my/toggle-transient
+    (kbd "<localleader> t") 'my/toggle-transient
+    (kbd "<localleader> f") 'my/buffer-transient
     ;; "[" 'my/bracket-left-transient
     ;; "]" 'my/bracket-right-transient
     (kbd "<localleader> ,") 'my/point-transient
