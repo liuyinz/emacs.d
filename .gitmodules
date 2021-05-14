@@ -97,12 +97,6 @@
 [submodule "fd-dired"]
 	path = lib/fd-dired
 	url = https://github.com/yqrashawn/fd-dired.git
-[submodule "packed"]
-	path = lib/packed
-	url = https://github.com/emacscollective/packed.git
-[submodule "auto-compile"]
-	path = lib/auto-compile
-	url = https://github.com/emacscollective/auto-compile.git
 [submodule "benchmark-init-el"]
 	path = lib/benchmark-init-el
 	url = https://github.com/dholm/benchmark-init-el.git
