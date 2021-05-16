@@ -303,3 +303,9 @@
 [submodule "epl"]
 	path = lib/epl
 	url = https://github.com/cask/epl.git
+[submodule "lib/packed"]
+	path = lib/packed
+	url = https://github.com/emacscollective/packed.git
+[submodule "lib/auto-compile"]
+	path = lib/auto-compile
+	url = https://github.com/emacscollective/auto-compile.git

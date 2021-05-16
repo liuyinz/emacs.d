@@ -33,11 +33,11 @@
   (with-eval-after-load 'yasnippet
     (setq yas-snippet-dirs '(my-dir-snippet))))
 
-; (leaf auto-compile
-;   :doc "deps: packed"
-;   :require t
-;   :config
-;   (auto-compile-on-load-mode))
+(leaf auto-compile
+  :doc "deps: packed"
+  :require t
+  :config
+  (auto-compile-on-load-mode))
 
 ;; Environment
 (leaf exec-path-from-shell
