@@ -133,6 +133,7 @@
 
     ;; self-define
     (kbd "<leader> f") 'my-format
+    (kbd "<leader> p") 'my-repl
     (kbd "<leader> r") 'my-run)
 
   ;; selectrum
