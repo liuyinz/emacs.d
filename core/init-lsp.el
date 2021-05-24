@@ -10,11 +10,6 @@
           css-mode-hook
           yaml-mode-hook
           html-mode-hook) . lsp-deferred)
-  ;; :bind (:map lsp-mode-map
-  ;;        ("C-c f" . lsp-format-region)
-  ;;        ("C-c d" . lsp-describe-thing-at-point)
-  ;;        ("C-c a" . lsp-execute-code-action)
-  ;;        ("C-c r" . lsp-rename))
   :init
   (setq lsp-keymap-prefix "C-c l")
   (setq lsp-enable-links nil)                 ;; no clickable linkscondy, 10 months ago: • Refine cc-mode
@@ -36,12 +31,14 @@
   (leaf lsp-modeline :require t))
 
 (leaf lsp-pyright
+  :require t
   :doc "deps: ht dash"
   :hook (python-mode-hook . (lambda ()
                               (require 'lsp-pyright)
                               (lsp-deferred))))
 
 (leaf ccls
+  :require t
   :doc "deps : ccls"
   :hook ((c-mode-hook
           c++-mode-hook

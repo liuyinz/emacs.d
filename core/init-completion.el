@@ -45,9 +45,8 @@
 
 ;; yasnippet
 (leaf yasnippet
-  :require t
   :hook
-  ((prog-mode-hook markdown-mode-hook) . yas-minor-mode)
+  (after-init-hook . yas-global-mode)
   (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
   :init
   (setq yas-indent-line 'fixed)
@@ -69,9 +68,7 @@ $0`(yas-escape-text yas-selected-text)`")
     (if (equal major-mode 'snippet-mode)
         (lisp-interaction-mode)
       (snippet-mode))
-    (evil-insert))
-
-  (yas-reload-all))
+    (evil-insert)))
 
 (provide 'init-completion)
 ;;; init-completion.el ends here
