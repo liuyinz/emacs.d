@@ -66,20 +66,34 @@
   (setq consult-async-min-input 1)
   (setq consult-project-root-function #'projectile-project-root)
   (setq consult-find-command "fd --color=never --full-path ARG OPTS")
+
+  ;; disable preview
+  (setq consult-preview-key nil)
+
+  ;; ;; Optionally configure the register formatting.
+  ;; (setq register-preview-delay 0
+  ;;       register-preview-function #'consult-register-format)
+
+  ;; ;; Use Consult to select xref locations with preview
+  ;; (setq xref-show-xrefs-function #'consult-xref
+  ;;       xref-show-definitions-function #'consult-xref)
+
   :config
   (leaf consult-imenu :require t)
   (leaf consult-flycheck :require t)
   (leaf consult-compile :require t)
   (leaf consult-register :require t)
 
-  ;; @https://emacs.stackexchange.com/a/36253
-  (defun consult-consult ()
-    "call command related to consult"
-    (interactive)
-    (setq unread-command-events (nconc
-                                 (listify-key-sequence "consult- ")
-                                 unread-command-events))
-    (call-interactively #'execute-extended-command)))
+  ;; ;; @https://emacs.stackexchange.com/a/36253
+  ;; (defun consult-consult ()
+  ;;   "call command related to consult"
+  ;;   (interactive)
+  ;;   (setq unread-command-events (nconc
+  ;;                                (listify-key-sequence "consult- ")
+  ;;                                unread-command-events))
+  ;;   (call-interactively #'execute-extended-command))
+
+  )
 
 (leaf embark
   :require t

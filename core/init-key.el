@@ -122,7 +122,6 @@
     (kbd "<leader> b") 'consult-buffer
     (kbd "<leader> xs") 'save-buffer
     (kbd "<leader> xk") 'kill-buffer
-    (kbd "<leader> ;") 'consult-consult
     (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
 
     (kbd "<localleader> t") 'my/toggle-transient
