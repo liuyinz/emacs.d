@@ -15,6 +15,7 @@
           ("*evil-marks*" :align 'below :size 0.4)
           ("*vterm*" :align 'below :size 0.4)
           ("*quickrun*" :select t :size 0.3 :align 'below)
+          ("*Python*" :select t :size 0.4 :align 'below)
           ("*format-all-errors*" :size 0.3 :align 'below)
           (" *Flycheck checkers*" :select t :size 0.3 :align 'below)
           ((flycheck-error-list-mode flymake-diagnostics-buffer-mode)
