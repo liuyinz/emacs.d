@@ -79,10 +79,11 @@
   ;;       xref-show-definitions-function #'consult-xref)
 
   :config
-  (leaf consult-imenu :require t)
+  (require 'consult-imenu)
+  (require 'consult-compile)
+  (require 'consult-register)
+
   (leaf consult-flycheck :require t)
-  (leaf consult-compile :require t)
-  (leaf consult-register :require t)
 
   ;; ;; @https://emacs.stackexchange.com/a/36253
   ;; (defun consult-consult ()
