@@ -51,16 +51,13 @@
 (leaf savehist
   :hook (after-init-hook . savehist-mode)
   :init
-  (setq enable-recursive-minibuffers t
-        history-length 1000
-        savehist-save-minibuffer-history 1
-        history-delete-duplicates t
-        savehist-autosave-interval 300
-        savehist-additional-variables '(mark-ring
-                                        global-mark-ring
-                                        search-ring
-                                        regexp-search-ring
-                                        extended-command-history)))
+  (setq
+   savehist-autosave-interval 300
+   savehist-additional-variables '(mark-ring
+                                   global-mark-ring
+                                   search-ring
+                                   regexp-search-ring
+                                   extended-command-history)))
 
 (leaf simple
   :hook (after-init-hook . (lambda ()
@@ -227,7 +224,9 @@
       inhibit-compacting-font-caches t
       window-resize-pixelwise t
       frame-resize-pixelwise t
-      ring-bell-function 'ignore)
+      ring-bell-function 'ignore
+      history-length 1000
+      history-delete-duplicates t)
 
 (setq-default fill-column 80
               tab-width 4
@@ -308,6 +307,23 @@
 ;; HACK move cursor to corner when minibuffer is set up
 (require 'avoid)
 (add-hook 'minibuffer-setup-hook #'mouse-avoidance-banish)
+
+;; minibuffer
+;; Grow and shrink minibuffer
+(setq resize-mini-windows t)
+;; Enable recursive minibuffers
+(setq enable-recursive-minibuffers t)
+
+;; HACK Do not allow the cursor in the minibuffer prompt
+(setq minibuffer-prompt-properties
+      '(read-only t cursor-intangible t face minibuffer-prompt))
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+;; Add prompt indicator to `completing-read-multiple'.
+(defun crm-indicator (args)
+  "Set indicater ARGS for multiple read."
+  (cons (concat "[*] " (car args)) (cdr args)))
+(advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
 (provide 'init-default)
 ;;; init-default.el ends here

@@ -1,67 +1,53 @@
 ;;; init-minibuffer.el --- minibuffer sets -*- lexical-binding: t no-byte-compile: t -*-
-
 ;;; Commentary:
-
 ;;; Code:
 
-(leaf selectrum
-  :hook (after-init-hook . selectrum-mode)
+;; @https://github.com/purcell/emacs.d/blob/master/lisp/init-minibuffer.el
+(leaf vertico
+  :hook (after-init-hook . vertico-mode)
   :init
-  (setq selectrum-max-window-height 15
-        selectrum-fix-vertical-window-height t
-        selectrum-right-margin-padding 0
-        selectrum-extend-current-candidate-highlight t
-        selectrum-count-style 'current/matches)
-  :config
-  ;; sorting
-  (leaf selectrum-prescient
-    :require t
-    :init
-    (setq prescient-history-length 300
-          prescient-aggressive-file-save t
-          prescient-sort-length-enable nil
-          prescient-sort-full-matches-first t)
-    :config
-    (prescient-persist-mode)
-    (selectrum-prescient-mode))
-
-  ;; filtering
-  (leaf orderless
-    :after selectrum-prescient
-    :require t
-    :config
-
-    ;; @https://github.com/oantolin/orderless/blob/master/README.org#style-dispatchers
-    ;; dispatchers
-    (defun without-if-bang (pattern _index _total)
-      "!pattern : exclude pattern."
-      (when (string-prefix-p "!" pattern)
-        `(orderless-without-literal . ,(substring pattern 1))))
-
-    (defun initialism-if-at (pattern _index _total)
-      "@pattern : first letter of word in order."
-      (when (string-prefix-p "@" pattern)
-        `(orderless-initialism . ,(substring pattern 1))))
-
-    (setq orderless-style-dispatchers '(initialism-if-at without-if-bang))
-    (setq orderless-component-separator #'orderless-escapable-split-on-space)
-
-    ;; selectrum setting
-    ;; @https://github.com/oantolin/orderless/blob/master/README.org#selectrum
-    (setq selectrum-refine-candidates-function #'orderless-filter)
-    (setq selectrum-highlight-candidates-function #'orderless-highlight-matches)))
+  (setq vertico-cycle t
+        vertico-count 15))
 
 (leaf marginalia
-  :hook (selectrum-mode-hook . marginalia-mode)
+  :hook (vertico-mode-hook . marginalia-mode)
   :config
-  (setq-default marginalia-annotators '(marginalia-annotators-heavy nil))
-  (advice-add #'marginalia-cycle :after (lambda ()
-                                          (when (bound-and-true-p selectrum-mode)
-                                            (selectrum-exhibit 'keep-selected)))))
+  (setq-default marginalia-annotators '(marginalia-annotators-heavy nil)))
+
+;; filtering
+(leaf orderless
+  :require t
+  :config
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion)))))
+
+  (setq orderless-matching-styles '(orderless-literal
+                                    orderless-regexp
+                                    orderless-strict-initialism)
+        orderless-component-separator #'orderless-escapable-split-on-space
+        orderless-style-dispatchers '(initialism-if-at without-if-bang))
+
+  ;; @https://github.com/oantolin/orderless/blob/master/README.org#style-dispatchers
+  ;; dispatchers
+  (defun without-if-bang (pattern _index _total)
+    "!pattern : exclude pattern."
+    (cond
+     ((equal "!" pattern)
+      '(orderless-literal . ""))
+     ((string-prefix-p "!" pattern)
+      `(orderless-without-literal . ,(substring pattern 1)))))
+
+  (defun initialism-if-at (pattern _index _total)
+    "@pattern : first letter of word in order."
+    (cond
+     ((equal "@" pattern)
+      '(orderless-literal . ""))
+     ((string-prefix-p "@" pattern)
+      `(orderless-initialism . ,(substring pattern 1))))))
 
 (leaf consult
   :require t
-  :after selectrum
   :init
   (setq consult-async-min-input 1)
   (setq consult-project-root-function #'projectile-project-root)
@@ -69,36 +55,23 @@
 
   ;; disable preview
   (setq consult-preview-key nil)
-
-  ;; ;; Optionally configure the register formatting.
-  ;; (setq register-preview-delay 0
-  ;;       register-preview-function #'consult-register-format)
-
-  ;; ;; Use Consult to select xref locations with preview
-  ;; (setq xref-show-xrefs-function #'consult-xref
-  ;;       xref-show-definitions-function #'consult-xref)
+  ;; Optionally configure the register formatting.
+  (setq register-preview-delay 0
+        register-preview-function #'consult-register-format)
+  ;; Use Consult to select xref locations with preview
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
 
   :config
   (require 'consult-imenu)
   (require 'consult-compile)
   (require 'consult-register)
 
-  (leaf consult-flycheck :require t)
-
-  ;; ;; @https://emacs.stackexchange.com/a/36253
-  ;; (defun consult-consult ()
-  ;;   "call command related to consult"
-  ;;   (interactive)
-  ;;   (setq unread-command-events (nconc
-  ;;                                (listify-key-sequence "consult- ")
-  ;;                                unread-command-events))
-  ;;   (call-interactively #'execute-extended-command))
-
-  )
+  (leaf consult-flycheck :require t))
 
 (leaf embark
-  :require t
   :after consult
+  :require t
   ;; :init (setq embark-prompter 'embark-completing-read-prompter)
   :config
   (leaf embark-consult :require t)

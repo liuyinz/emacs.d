@@ -262,5 +262,14 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   "Open in other window."
   (switch-to-buffer-other-window (current-buffer)))
 
+;; ;; @https://emacs.stackexchange.com/a/36253
+;; (defun consult-consult ()
+;;   "call command related to consult"
+;;   (interactive)
+;;   (setq unread-command-events (nconc
+;;                                (listify-key-sequence "consult- ")
+;;                                unread-command-events))
+;;   (call-interactively #'execute-extended-command))
+
 (provide 'init-lib)
 ;;; init-lib.el ends here

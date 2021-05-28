@@ -36,6 +36,8 @@
    '(cursor ((t (:inherit unspecified :background "#fcce7b" :foreground "#242730"))))
    ;; selectrum
    '(selectrum-current-candidate ((t (:foreground "white" :weight bold))))
+   ;; vertico
+   '(vertico-current ((t (:foreground "white" :background "#323642" :extend t :weight bold))))
    ;;consult
    '(consult-file ((t (:inherit font-lock-doc-face))))
    ;;marginalia

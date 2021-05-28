@@ -61,8 +61,6 @@
 
     ;; ;; toggle
     (kbd "C-; C-;") 'vterm-toggle
-    ;; selectrum
-    (kbd "C-x C-z") 'selectrum-repeat
     ;; consult
     [remap switch-to-buffer] 'consult-buffer
     [remap switch-to-buffer-other-window] 'consult-buffer-other-window
@@ -116,8 +114,6 @@
     ;; "gz" 'magit-dispatch
     "gla" 'magit-log-all-branches
 
-    ;; nerd-commenter
-
     (kbd "<leader> xf") 'find-file
     (kbd "<leader> b") 'consult-buffer
     (kbd "<leader> xs") 'save-buffer
@@ -135,8 +131,8 @@
     (kbd "<leader> p") 'my-repl
     (kbd "<leader> r") 'my-run)
 
-  ;; selectrum
-  (evil-define-key nil selectrum-minibuffer-map
+  ;; vertico
+  (evil-define-key nil vertico-map
     (kbd "<escape>") 'minibuffer-keyboard-quit
     ;; embark
     (kbd "C-,") 'embark-act
