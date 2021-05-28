@@ -1,4 +1,4 @@
-;;; init-selectrum.el --- selectrum suits -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-minibuffer.el --- minibuffer sets -*- lexical-binding: t no-byte-compile: t -*-
 
 ;;; Commentary:
 
@@ -106,5 +106,5 @@
   ;; HACK Open source code of `symbol' in other window
   (advice-add 'embark-find-definition :before #'open-in-other-window))
 
-(provide 'init-selectrum)
-;;; init-selectrum.el ends here
+(provide 'init-minibuffer)
+;;; init-minibuffer.el ends here
