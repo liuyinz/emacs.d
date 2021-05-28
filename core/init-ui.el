@@ -64,6 +64,11 @@
    '(evil-ex-substitute-matches ((t (:foreground "#242730" :background "#ff665c" :weight bold))))
    '(evil-ex-substitute-replacement ((t (:foreground "#242730" :background "#7bc257" ::weight bold))))
    ;; rg.el
+   ;; avy
+   '(avy-lead-face ((t (:foreground "#7bc257" :background nil))))
+   ;; '(avy-lead-face-0 ((t (:foreground "#9dd282" :background nil))))
+   '(avy-lead-face-0 ((t (:foreground "#bfe1ad" :background nil))))
+   '(avy-lead-face-2 ((t (:foreground "#e1f1d9" :background nil))))
    ))
 
 (provide 'init-ui)
