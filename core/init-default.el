@@ -304,6 +304,8 @@
 (if (get-buffer "*scratch*")
     (setq default-directory "~/"))
 
+;; cursor
+(setq blink-cursor-blinks 0)
 ;; HACK move cursor to corner when minibuffer is set up
 (require 'avoid)
 (add-hook 'minibuffer-setup-hook #'mouse-avoidance-banish)
