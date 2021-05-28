@@ -59,7 +59,7 @@
   (require 'init-default)
   (require 'init-evil)
   (require 'init-completion)
-  (require 'init-selectrum)
+  (require 'init-minibuffer)
   ;; ui
   (require 'init-ui)
   (require 'init-highlight)
