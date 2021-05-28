@@ -26,7 +26,7 @@
   :config
   (setq avy-all-windows t
         avy-all-windows-alt t
-        avy-background nil
+        avy-background t
         avy-style 'at-full
         avy-keys '(?a ?s ?d ?f ?h ?j ?k ?l ?q ?u ?w ?i ?e ?o))
   (setq avy-orders-alist
