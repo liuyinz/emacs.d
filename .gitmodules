@@ -131,9 +131,6 @@
 [submodule "orderless"]
 	path = lib/orderless
 	url = https://github.com/oantolin/orderless.git
-[submodule "selectrum"]
-	path = lib/selectrum
-	url = https://github.com/raxod502/selectrum.git
 [submodule "consult"]
 	path = lib/consult
 	url = https://github.com/minad/consult.git
@@ -245,9 +242,6 @@
 [submodule "gitignore-templates"]
 	path = lib/gitignore-templates
 	url = https://github.com/xuchunyang/gitignore-templates.el.git
-[submodule "prescient"]
-	path = lib/prescient
-	url = https://github.com/raxod502/prescient.el.git
 [submodule "shrink-path"]
 	path = lib/shrink-path
 	url = https://gitlab.com/bennya/shrink-path.el.git
@@ -312,3 +306,6 @@
 [submodule "consult-flycheck"]
 	path = lib/consult-flycheck
 	url = https://github.com/minad/consult-flycheck.git
+[submodule "vertico"]
+	path = lib/vertico
+	url = https://github.com/minad/vertico.git
