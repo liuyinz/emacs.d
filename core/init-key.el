@@ -139,6 +139,9 @@
     (kbd "C-c C-o") 'embark-export
     (kbd "M-c") 'marginalia-cycle)
 
+  (evil-define-key nil consult-narrow-map
+    (vconcat consult-narrow-key "?") 'consult-narrow-help)
+
   ;; embark
   (evil-define-key nil embark-general-map
     (kbd "M-c") 'marginalia-cycle)

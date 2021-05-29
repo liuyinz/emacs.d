@@ -50,8 +50,11 @@
   :require t
   :init
   (setq consult-async-min-input 1)
-  (setq consult-project-root-function #'projectile-project-root)
   (setq consult-find-command "fd --color=never --full-path ARG OPTS")
+  (setq consult-project-root-function #'projectile-project-root)
+
+  ;; Optionally configure the narrowing key.
+  (setq consult-narrow-key "<")
 
   ;; disable preview
   (setq consult-preview-key nil)
