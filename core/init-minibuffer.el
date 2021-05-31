@@ -67,6 +67,7 @@
 
   :config
   (require 'consult-imenu)
+  (require 'consult-xref)
   (require 'consult-compile)
   (require 'consult-register)
 
