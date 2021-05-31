@@ -7,8 +7,7 @@
 (leaf company
   :hook (after-init-hook . global-company-mode)
   :init
-  (setq company-tooltip-width-grow-only t
-        company-tooltip-align-annotations t
+  (setq company-tooltip-align-annotations t
         company-tooltip-limit 15
         company-format-margin-function #'company-text-icons-margin
         company-text-icons-format "%s "
