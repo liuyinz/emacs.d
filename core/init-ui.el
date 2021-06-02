@@ -36,10 +36,8 @@
    '(cursor ((t (:inherit unspecified :background "#fcce7b" :foreground "#242730"))))
    '(isearch ((t (:foreground "#242730" :background "#fcce7b" :weight bold))))
    '(lazy-highlight ((t (:foreground "#242730" :background "#7bc257" :weight bold))))
-   ;; selectrum
-   '(selectrum-current-candidate ((t (:foreground "white"))))
    ;; vertico
-   '(vertico-current ((t (:foreground "white" :background "#323642" :extend t))))
+   '(vertico-current ((t (:foreground "white" :background "#484e5f" :weight bold :extend t))))
    ;; orderless
    '(orderless-match-face-0 ((t (:inherit font-lock-string-face :weight bold :inverse-video t))))
    '(orderless-match-face-1 ((t (:inherit error :weight bold :inverse-video t))))
