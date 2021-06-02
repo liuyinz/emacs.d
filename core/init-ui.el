@@ -37,12 +37,20 @@
    '(isearch ((t (:foreground "#242730" :background "#fcce7b" :weight bold))))
    '(lazy-highlight ((t (:foreground "#242730" :background "#7bc257" :weight bold))))
    ;; vertico
-   '(vertico-current ((t (:foreground "white" :background "#484e5f" :weight bold :extend t))))
+   '(vertico-current ((t (:foreground "white"
+                          :background "#484e5f"
+                          :weight bold :extend t))))
    ;; orderless
-   '(orderless-match-face-0 ((t (:inherit font-lock-string-face :weight bold :inverse-video t))))
+   '(orderless-match-face-0 ((t (:inherit font-lock-string-face
+                                 :weight bold
+                                 :inverse-video t))))
    '(orderless-match-face-1 ((t (:inherit error :weight bold :inverse-video t))))
-   '(orderless-match-face-2 ((t (:inherit font-lock-type-face :weight bold :inverse-video t))))
-   '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face :weight bold :inverse-video t))))
+   '(orderless-match-face-2 ((t (:inherit font-lock-type-face
+                                 :weight bold
+                                 :inverse-video t))))
+   '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face
+                                 :weight bold
+                                 :inverse-video t))))
    ;;consult
    '(consult-file ((t (:inherit font-lock-doc-face))))
    ;;marginalia
@@ -56,11 +64,11 @@
    '(diff-hl-delete ((t (:background nil))))
    ;; markdown-mode
    '(markdown-code-face ((t (:background "#323642" :extend t))))
-   ;; indent-guide
-   '(indent-guide-face ((t (:inherit font-lock-comment-face))))
    ;; evil
    '(evil-ex-substitute-matches ((t (:inherit error :weight bold :inverse-video t))))
-   '(evil-ex-substitute-replacement ((t (:inherit font-lock-string-face :weight bold :inverse-video t))))
+   '(evil-ex-substitute-replacement ((t (:inherit font-lock-string-face
+                                         :weight bold
+                                         :inverse-video t))))
    ;; avy
    '(avy-lead-face ((t (:foreground "#51afef" :background nil))))
    '(avy-lead-face-0 ((t (:foreground "#99d0f6" :background nil))))
