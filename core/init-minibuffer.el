@@ -56,8 +56,16 @@
   ;; Optionally configure the narrowing key.
   (setq consult-narrow-key "<")
 
-  ;; disable preview
-  (setq consult-preview-key nil)
+  :config
+  (require 'consult-imenu)
+  (require 'consult-xref)
+  (require 'consult-compile)
+  (require 'consult-register)
+  (leaf consult-flycheck :require t)
+
+  ;; ;; disable preview
+  ;; (setq consult-preview-key nil)
+
   ;; Optionally configure the register formatting.
   (setq register-preview-delay 0
         register-preview-function #'consult-register-format)
@@ -65,13 +73,14 @@
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
 
-  :config
-  (require 'consult-imenu)
-  (require 'consult-xref)
-  (require 'consult-compile)
-  (require 'consult-register)
-
-  (leaf consult-flycheck :require t))
+  ;; preview setting
+  (consult-customize
+   consult-recent-file consult-bookmark consult--source-file
+   consult--source-project-file consult--source-bookmark
+   :preview-key nil
+   ;; consult-ripgrep consult-git-grep consult-grep
+   ;; consult-theme :preview-key 'any
+   ))
 
 (leaf embark
   :after consult
