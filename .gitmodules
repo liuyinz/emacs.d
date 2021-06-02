@@ -309,3 +309,6 @@
 [submodule "vertico"]
 	path = lib/vertico
 	url = https://github.com/minad/vertico.git
+[submodule "lib/highlight-defined"]
+	path = lib/highlight-defined
+	url = https://github.com/Fanael/highlight-defined.git
