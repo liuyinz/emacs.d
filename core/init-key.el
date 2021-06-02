@@ -180,13 +180,15 @@
     (kbd "C-s") 'company-filter-candidates
     (kbd "C-h") 'company-show-doc-buffer
     (kbd "C-d") 'company-show-location
-    (kbd "C-,") 'my-company-yasnippet)
+    ;; (kbd "C-,") 'my-company-yasnippet
+    )
 
   ;; yasnippet
   (evil-define-key nil yas-minor-mode-map
     (kbd "<tab>") nil
     (kbd "TAB") nil
-    (kbd "C-,") 'my-company-yasnippet)
+    ;; (kbd "C-,") 'my-company-yasnippet
+    )
 
   (evil-define-key nil company-search-map
     (kbd "<escape>") 'company-search-abort

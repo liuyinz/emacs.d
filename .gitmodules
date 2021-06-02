@@ -312,3 +312,6 @@
 [submodule "lib/highlight-defined"]
 	path = lib/highlight-defined
 	url = https://github.com/Fanael/highlight-defined.git
+[submodule "prescient"]
+	path = lib/prescient
+	url = https://github.com/raxod502/prescient.el.git

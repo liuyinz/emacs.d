@@ -77,8 +77,8 @@
   (consult-customize
    consult-recent-file consult-bookmark consult--source-file
    consult--source-project-file consult--source-bookmark
+   consult-ripgrep consult-git-grep consult-grep
    :preview-key nil
-   ;; consult-ripgrep consult-git-grep consult-grep
    ;; consult-theme :preview-key 'any
    ))
 
