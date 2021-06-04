@@ -37,6 +37,7 @@
   (evil-define-key nil 'global
     (kbd "s-s") 'consult-git-grep
     (kbd "s-f") 'consult-line
+    (kbd "C-,") 'emmet-expand-yas
     (kbd "C-x <escape> <escape>") nil
     (kbd "C-x s") nil
     (kbd "s-m") nil
@@ -44,7 +45,7 @@
     (kbd "M-c") nil
     (kbd "C-o") nil
     (kbd "C-j") nil
-    (kbd "M-j") 'emmet-expand-yas
+
     ;; jump between two buffer
     (kbd "C-r") 'back-to-user-buffer
 
@@ -180,14 +181,12 @@
     (kbd "C-s") 'company-filter-candidates
     (kbd "C-h") 'company-show-doc-buffer
     (kbd "C-d") 'company-show-location
-    ;; (kbd "C-,") 'my-company-yasnippet
     )
 
   ;; yasnippet
   (evil-define-key nil yas-minor-mode-map
     (kbd "<tab>") nil
     (kbd "TAB") nil
-    ;; (kbd "C-,") 'my-company-yasnippet
     )
 
   (evil-define-key nil company-search-map

@@ -25,8 +25,9 @@
   :hook ((css-mode-hook html-mode-hook sgml-mode-hook) . emmet-mode)
   :init
   (setq emmet-indentation 2
-        emmet-indent-after-insert nil
-        emmet-move-cursor-between-quotes t
+        emmet-insert-flash-time -1
+        ;; emmet-indent-after-insert t
+        ;; emmet-move-cursor-between-quotes nil
         emmet-postwrap-goto-edit-point t))
 
 ;; ;; SCSS mode
