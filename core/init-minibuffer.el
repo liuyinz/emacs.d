@@ -49,12 +49,21 @@
   (setq orderless-component-separator #'orderless-escapable-split-on-space
         orderless-style-dispatchers '(initialism-if-at without-if-bang))
 
-  ;; ;; @https://github.com/oantolin/orderless#company
-  ;; (defun just-one-face (fn &rest args)
-  ;;   (let ((orderless-match-faces [completions-common-part]))
-  ;;     (apply fn args)))
-  ;; (advice-add 'company-capf--candidates :around #'just-one-face)
+  ;; @https://github.com/oantolin/orderless#company
+  (defun just-one-face (fn &rest args)
+    (let ((orderless-match-faces [completions-common-part]))
+      (apply fn args)))
+  (advice-add 'company-capf--candidates :around #'just-one-face)
 
+  ;; ;; HACK  don't use orderless in company
+  ;; ;; @https://www.reddit.com/r/emacs/comments/nichkl/how_to_use_different_completion_styles_in_the/
+  ;; (defun fix-company-completion-style ()
+  ;;   "Set different style in company"
+  ;;   (if (member 'basic completion-styles)
+  ;;       (setq-local completion-styles '(orderless))
+  ;;     (setq-local completion-styles '(basic partial-completion orderless))))
+  ;; (add-hook 'company-completion-started-hook #'fix-company-completion-style)
+  ;; (add-hook 'company-after-completion-hook #'fix-company-completion-style)
   )
 
 (leaf consult
