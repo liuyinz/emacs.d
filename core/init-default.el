@@ -312,7 +312,7 @@
 
 ;; minibuffer
 ;; Grow and shrink minibuffer
-(setq resize-mini-windows t)
+;; (setq resize-mini-windows t)
 ;; Enable recursive minibuffers
 (setq enable-recursive-minibuffers t)
 
