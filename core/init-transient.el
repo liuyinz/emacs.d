@@ -37,6 +37,7 @@
    ("h" "http-proxy" proxy-http-toggle)
    ("s" "socks-proxy" proxy-socks-toggle)
    ("w" "writeroom-mode" writeroom-mode)
+   ("p" "Profiler" toggle-profiler)
    ])
 
 (define-transient-command my/point-transient ()
