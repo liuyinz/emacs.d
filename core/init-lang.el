@@ -58,7 +58,7 @@
 
 (leaf python-mode :mode "\\.pythonrc\\'")
 
-(leaf mermaid-mode :require t)
+;; (leaf mermaid-mode :require t)
 
 (provide 'init-lang)
 ;;; init-lang.el ends here
