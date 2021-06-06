@@ -17,16 +17,16 @@
 ;; filtering
 (leaf orderless
   :require t
-  :config
-  (setq completion-styles '(orderless)
+  :init
+  (setq completion-styles '(basic partial-completion orderless)
         completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion)))))
 
   (setq orderless-matching-styles '(orderless-literal
                                     orderless-regexp
-                                    orderless-strict-initialism)
-        orderless-component-separator #'orderless-escapable-split-on-space
-        orderless-style-dispatchers '(initialism-if-at without-if-bang))
+                                    orderless-strict-initialism))
+
+  :config
 
   ;; @https://github.com/oantolin/orderless/blob/master/README.org#style-dispatchers
   ;; dispatchers
@@ -44,7 +44,18 @@
      ((equal "@" pattern)
       '(orderless-literal . ""))
      ((string-prefix-p "@" pattern)
-      `(orderless-initialism . ,(substring pattern 1))))))
+      `(orderless-initialism . ,(substring pattern 1)))))
+
+  (setq orderless-component-separator #'orderless-escapable-split-on-space
+        orderless-style-dispatchers '(initialism-if-at without-if-bang))
+
+  ;; ;; @https://github.com/oantolin/orderless#company
+  ;; (defun just-one-face (fn &rest args)
+  ;;   (let ((orderless-match-faces [completions-common-part]))
+  ;;     (apply fn args)))
+  ;; (advice-add 'company-capf--candidates :around #'just-one-face)
+
+  )
 
 (leaf consult
   :require t

@@ -14,7 +14,7 @@
         company-text-icons-format "%s "
         company-selection-wrap-around t
         company-idle-delay 0
-        company-echo-delay 0
+        company-tooltip-idle-delay 0
         company-minimum-prefix-length 1
         company-require-match nil
         company-dabbrev-ignore-case nil
