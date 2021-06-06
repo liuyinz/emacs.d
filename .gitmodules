@@ -315,3 +315,6 @@
 [submodule "prescient"]
 	path = lib/prescient
 	url = https://github.com/raxod502/prescient.el.git
+[submodule "ns-auto-titlebar"]
+	path = lib/ns-auto-titlebar
+	url = https://github.com/purcell/ns-auto-titlebar.git

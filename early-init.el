@@ -30,21 +30,23 @@
 ;; disable tooltip-mode
 (tooltip-mode -1)
 
-(setq default-frame-alist '((menu-bar-lines . 1)
-                            (tool-bar-lines . 0)
-                            (vertical-scroll-bars . nil)
-                            (horizontal-scroll-bars . nil)
-                            (minibuffer . t)
-                            (background-mode . dark)
-                            (font . "Sarasa Mono SC 16")
-                            (background-color . "#242730")
-                            (foreground-color . "#bbc2cf")
-                            ;; (alpha . (98 . 100))
-                            (fullscreen . fullheight)
-                            (width . 88)   ; half 88,full 177
-                            (ns-appearance . dark)
-                            (ns-transparent-titlebar . t)
-                            (ns-use-native-fullscreen . nil)))
+(setq default-frame-alist
+      '((menu-bar-lines . 1)
+        (tool-bar-lines . 0)
+        (vertical-scroll-bars . nil)
+        (horizontal-scroll-bars . nil)
+        (minibuffer . t)
+        (font . "Sarasa Mono SC 16")
+        (alpha . (98 . 100))
+        (fullscreen . fullheight)
+        (width . 88)   ; half 88,full 177
+        ;; (background-mode . dark)
+        ;; (background-color . "#242730")
+        ;; (foreground-color . "#bbc2cf")
+        ;; (ns-appearance . dark)
+        ;; (ns-transparent-titlebar . t)
+        (ns-use-native-fullscreen . nil)
+        ))
 
 (provide 'early-init)
 ;;; early-init.el ends here

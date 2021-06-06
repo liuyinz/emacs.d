@@ -26,6 +26,11 @@
         doom-modeline-buffer-file-name-style 'truncate-with-project
         doom-modeline-env-python-executable "/usr/local/bin/python3"))
 
+(leaf ns-auto-titlebar
+  :require t
+  :config
+  (ns-auto-titlebar-mode))
+
 ;; doom-theme
 (leaf doom-themes
   :require t
