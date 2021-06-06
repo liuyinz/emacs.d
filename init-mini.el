@@ -24,13 +24,7 @@
     (normal-top-level-add-subdirs-to-load-path)))
 (add-subdirs-to-load-path my-dir-lib)
 
-;; Environment
-(require 'exec-path-from-shell)
-(setq exec-path-from-shell-check-startup-files nil
-      exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
-      exec-path-from-shell-arguments '("-l"))
-(exec-path-from-shell-initialize)
-
+(require 'init-sys)
 ;; ---------------------- Test module ------------------------------
 
 (provide 'init-mini)
