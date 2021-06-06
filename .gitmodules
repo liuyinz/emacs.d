@@ -297,12 +297,6 @@
 [submodule "epl"]
 	path = lib/epl
 	url = https://github.com/cask/epl.git
-[submodule "lib/packed"]
-	path = lib/packed
-	url = https://github.com/emacscollective/packed.git
-[submodule "lib/auto-compile"]
-	path = lib/auto-compile
-	url = https://github.com/emacscollective/auto-compile.git
 [submodule "consult-flycheck"]
 	path = lib/consult-flycheck
 	url = https://github.com/minad/consult-flycheck.git
@@ -318,3 +312,9 @@
 [submodule "ns-auto-titlebar"]
 	path = lib/ns-auto-titlebar
 	url = https://github.com/purcell/ns-auto-titlebar.git
+[submodule "auto-compile"]
+	path = lib/auto-compile
+	url = https://github.com/emacscollective/auto-compile.git
+[submodule "packed"]
+	path = lib/packed
+	url = https://github.com/emacscollective/packed.git
