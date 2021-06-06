@@ -74,6 +74,8 @@
    '(avy-lead-face-0 ((t (:foreground "#99d0f6" :background nil))))
    '(avy-lead-face-1 ((t (:foreground "#cfe9fb" :background nil))))
    '(avy-lead-face-2 ((t (:foreground "#f3f9fe" :background nil))))
+   ;; highlight-defined
+   '(highlight-defined-function-name-face ((t (:inherit font-lock-variable-name-face))))
    ;; rg.el
    ))
 
