@@ -3,16 +3,16 @@
 ;;; Code:
 
 (leaf js-mode
-  :interpreter ("node" . js2-mode)
+  :interpreter ("node" . js-mode)
   :init
   (setq js-indent-level 2
         js-chain-indent t
         js-jsx-indent-level 2
         ;; js-js-tmpdir
         ;; js-jsx-syntax t
-        )
-  :config
-  (leaf nodejs-repl :require t))
+        ))
+
+(leaf nodejs-repl :require t)
 
 (leaf typescript-mode :mode "\\.ts[x]\\'")
 
