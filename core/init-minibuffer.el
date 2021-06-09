@@ -83,6 +83,9 @@
   (require 'consult-register)
   (leaf consult-flycheck :require t)
 
+  ;; add "*..*" buffer to hidden source
+  (add-to-list 'consult-buffer-filter "\\`\\*.*\\*\\'")
+
   ;; ;; disable preview
   ;; (setq consult-preview-key nil)
 
