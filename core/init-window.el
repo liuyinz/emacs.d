@@ -2,13 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq display-buffer-alist
-      '(("^\\*quickrun"
-	     (display-buffer-reuse-window
-	      display-buffer-in-side-window)
-	     (reusable-frames . visible)
-	     (side            . bottom)
-	     (window-height   . 0.4))))
+(add-to-list 'display-buffer-alist
+             '("^\\*quickrun"
+               (display-buffer-reuse-window
+	            display-buffer-in-side-window)
+               (reusable-frames . visible)
+               (side            . bottom)
+               (window-height   . 0.4)))
 
 (leaf shackle
   :hook (after-init-hook . shackle-mode)
