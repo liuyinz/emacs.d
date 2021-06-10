@@ -58,6 +58,12 @@
                                  :inverse-video t))))
    ;; completions
    '(completions-common-part ((t (:inherit orderless-match-face-0))))
+   ;; company
+   '(company-tooltip-mouse ((t (:inherit company-tooltip :background nil))))
+   '(company-tooltip-selection ((t (:inherit vertico-current :background nil))))
+   '(company-tooltip-search ((t (:inherit font-lock-string-face
+                                 :background nil
+                                 :foreground nil))))
    ;;consult
    '(consult-file ((t (:inherit font-lock-doc-face))))
    ;;marginalia
@@ -69,6 +75,10 @@
    '(diff-hl-change ((t (:background nil))))
    '(diff-hl-insert ((t (:background nil))))
    '(diff-hl-delete ((t (:background nil))))
+   ;; yasnippet
+   '(yas-field-highlight-face ((t (:inherit font-lock-string-face
+                                   :bold t
+                                   :underline t ))))
    ;; markdown-mode
    '(markdown-code-face ((t (:background "#323642" :extend t))))
    ;; evil
