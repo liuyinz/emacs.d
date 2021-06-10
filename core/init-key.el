@@ -173,18 +173,18 @@
 
   ;; company
   (evil-define-key nil company-active-map
-    (kbd "<tab>") nil
-    (kbd "TAB") nil
     (kbd "<escape>") 'company-abort
     (kbd "C-n") 'company-complete-common-or-cycle
     (kbd "C-s") 'company-filter-candidates
-    )
+    (kbd "<tab>") 'yas-next-field
+    (kbd "TAB") 'yas-next-field
+    (kbd "<backtab>") 'yas-prev-field
+    (kbd "S-TAB") 'yas-prev-field)
 
   ;; yasnippet
   (evil-define-key nil yas-minor-mode-map
     (kbd "<tab>") nil
-    (kbd "TAB") nil
-    )
+    (kbd "TAB") nil)
 
   (evil-define-key nil company-search-map
     (kbd "<escape>") 'company-search-abort
