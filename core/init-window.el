@@ -15,10 +15,12 @@
   :init
   (setq shackle-default-rule nil)
   (setq shackle-rules
+        ;; see @https://github.com/seagle0128/.emacs.d/blob/320ae719a1acb84c047e94bb6ee3f33e426f7b47/lisp/init-window.el#L204
         '(
           ;; builtin
-          (("*Warnings*" "*Messages*") :size 0.3)
-          (("*shell*" "*eshell*" "*ielm*") :popup t :size 0.3)
+          (("*Warnings*" "*Messages*") :size 0.3 :align 'below)
+          (("*shell*" "*eshell*" "*ielm*") :popup t :size 0.3 :align 'below)
+          ("\\*[Wo]*Man.*\\*" :regexp t :popup t :select t :size 0.5 :align 'below)
 
           ;; third-party
           ;; ("*evil-marks*" :align 'below :size 0.4)
