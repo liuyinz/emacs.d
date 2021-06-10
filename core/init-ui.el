@@ -56,6 +56,8 @@
    '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face
                                  :weight bold
                                  :inverse-video t))))
+   ;; completions
+   '(completions-common-part ((t (:inherit orderless-match-face-0))))
    ;;consult
    '(consult-file ((t (:inherit font-lock-doc-face))))
    ;;marginalia
