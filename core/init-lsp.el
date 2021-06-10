@@ -11,22 +11,22 @@
           yaml-mode-hook
           html-mode-hook) . lsp-deferred)
   :init
-  (setq lsp-keymap-prefix "C-c l")
-  (setq lsp-enable-links nil)                 ;; no clickable linkscondy, 10 months ago: • Refine cc-mode
-  (setq lsp-enable-folding nil)               ;; use `hideshow' instead
-  (setq lsp-enable-snippet nil)               ;; no snippets, it requires `yasnippet'
+  (setq lsp-keymap-prefix "s-l")
+  (setq lsp-enable-snippet t)
+  (setq lsp-enable-links nil)
+  (setq lsp-enable-folding nil)
   (setq lsp-enable-file-watchers nil)         ;; performance matters
   (setq lsp-enable-text-document-color nil)   ;; as above
   (setq lsp-enable-symbol-highlighting nil)   ;; as above
   (setq lsp-enable-on-type-formatting nil)    ;; as above
-  (setq lsp-enable-indentation nil)           ;; don't change my code without my permission
+  (setq lsp-enable-indentation nil)
   (setq lsp-headerline-breadcrumb-enable nil) ;; keep headline clean
   (setq lsp-modeline-code-actions-enable nil) ;; keep modeline clean
   (setq lsp-modeline-diagnostics-enable nil)  ;; as above
-  (setq lsp-log-io nil)                       ;; debug only
-  (setq lsp-auto-guess-root t)                ;; auto guess root
   (setq lsp-keep-workspace-alive nil)         ;; auto kill lsp server
   (setq lsp-eldoc-enable-hover nil)           ;; disable eldoc hover
+  (setq lsp-log-io nil)                       ;; debug only
+  (setq lsp-auto-guess-root t)                ;; auto guess root
   :config
   (leaf lsp-modeline :require t))
 
