@@ -85,6 +85,8 @@
 
   ;; add "*..*" buffer to hidden source
   (add-to-list 'consult-buffer-filter "\\`\\*.*\\*\\'")
+  ;; add "*.el.gz" buffer to hidden source
+  (add-to-list 'consult-buffer-filter "\\`.*\\.el\\.gz\\'")
 
   ;; ;; disable preview
   ;; (setq consult-preview-key nil)
