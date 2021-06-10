@@ -177,10 +177,7 @@
     (kbd "TAB") nil
     (kbd "<escape>") 'company-abort
     (kbd "C-n") 'company-complete-common-or-cycle
-    (kbd "C-p") 'company-select-previous
     (kbd "C-s") 'company-filter-candidates
-    (kbd "C-h") 'company-show-doc-buffer
-    (kbd "C-d") 'company-show-location
     )
 
   ;; yasnippet
