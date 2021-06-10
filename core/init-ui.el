@@ -88,7 +88,7 @@
    ;; yasnippet
    '(yas-field-highlight-face ((t (:inherit font-lock-string-face
                                    :bold t
-                                   :underline t ))))
+                                   :background "#484e5f"))))
    ;; markdown-mode
    '(markdown-code-face ((t (:background "#323642" :extend t))))
    ;; avy
