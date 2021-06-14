@@ -318,3 +318,6 @@
 [submodule "packed"]
 	path = lib/packed
 	url = https://github.com/emacscollective/packed.git
+[submodule "session"]
+	path = lib/session
+	url = https://github.com/emacsorphanage/session.git
