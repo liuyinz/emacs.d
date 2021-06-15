@@ -60,6 +60,7 @@
   (require 'init-evil)
   (require 'init-completion)
   (require 'init-minibuffer)
+  (require 'init-session)
   ;; ui
   (require 'init-ui)
   (require 'init-highlight)
