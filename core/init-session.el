@@ -4,6 +4,10 @@
 
 ;;; Code:
 
+;; TODO multiple desktop settings,see
+;; @https://www.emacswiki.org/emacs/DesktopMultipleSaveFiles
+;; @https://stackoverflow.com/a/849180/13194984
+
 ;; save a list of open files in ~/.emacs.d/.emacs.desktop
 (leaf desktop
   ;; :hook (after-init-hook . desktop-save-mode)
