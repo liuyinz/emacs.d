@@ -14,10 +14,10 @@
 ;;; -------------------------- Macro ----------------------------------
 ;; time
 (defmacro time-count! (&rest body)
-  "Measure and return the time it takes evaluating BODY."
+  "Measure the time (ms) it takes evaluating BODY."
   `(let ((time (current-time)))
      ,@body
-     (float-time (time-since time))))
+     (* 1000.0 (float-time (time-since time)))))
 
 ;; Mutation
 (defmacro appendq! (sym &rest lists)
