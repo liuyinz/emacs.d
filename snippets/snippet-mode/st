@@ -5,7 +5,7 @@
 # --
 # -*- mode: snippet -*-
 # name: ${1:name}
-# contributor : ${2:`user-full-name`<`user-mail-address`>}
+# contributor : ${2:`user-full-name` <`user-mail-address`>}
 # key: ${3:key}
 # --
 

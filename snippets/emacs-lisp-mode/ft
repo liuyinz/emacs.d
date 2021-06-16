@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# name: full template
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: ft
+# --
+;;; ${1:name}.el --- ${2:summary} -*- lexical-binding: t -*-
+
+;; Copyright (C) ${3:year}  ${4:`user-full-name`}
+
+;; Author: ${4:`user-full-name` <`user-mail-address`>}
+;; Keywords: ${5:keywords}
+;; Homepage: ${6:homepage}
+;; Version: ${7:version}
+;; Package-Requires: ((emacs "${8:version}")$9)
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+;;; Commentary:
+$9
+;; Usage:
+$10
+;;; Code:
+
+$0
