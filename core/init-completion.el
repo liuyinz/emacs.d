@@ -25,16 +25,22 @@
   (setq company-global-modes '(not erc-mode message-mode help-mode
                                    gud-mode eshell-mode shell-mode))
 
-  ;; (setq company-frontends '(company-pseudo-tooltip-frontend
-  ;;                           company-echo-metadata-frontend))
-
-  (setq company-backends '((company-capf :with company-yasnippet)
+  (setq company-backends '(company-capf
                            (company-dabbrev-code company-keywords company-files)
                            company-dabbrev company-gtags company-etags))
 
   :config
 
+  ;; HACK ,see @https://github.com/seagle0128/.emacs.d/blob/master/lisp/init-company.el
   (with-no-warnings
+    ;; fix lsp setting
+    (defun my-lsp-fix-company-capf ()
+      "Remove redundant `comapny-capf'."
+      (setq company-backends
+            (remove 'company-backends (remq 'company-capf company-backends))))
+    (advice-add #'lsp-completion--enable :after #'my-lsp-fix-company-capf)
+
+    ;; yasnippet
     (with-eval-after-load 'yasnippet
       (require 'company-yasnippet)
 
@@ -44,40 +50,32 @@
         (company-cancel)
         (call-interactively 'company-yasnippet))
 
+      ;; Add `yasnippet' to company backend
       (defun company-backend-with-yas (backend)
         "Add `yasnippet' to company backend."
         (if (and (listp backend) (member 'company-yasnippet backend))
             backend
           (append (if (consp backend) backend (list backend))
                   '(:with company-yasnippet))))
+      (setq company-backends (mapcar #'company-backend-with-yas company-backends)))
 
-      (defun my-company-enbale-yas (&rest _)
-        "Enable `yasnippet' in `company'."
-        (setq company-backends (mapcar #'company-backend-with-yas company-backends)))
-
-      (defun my-lsp-fix-company-capf ()
-        "Remove redundant `comapny-capf'."
-        (setq company-backends
-              (remove 'company-backends (remq 'company-capf company-backends))))
-      (advice-add #'lsp-completion--enable :after #'my-lsp-fix-company-capf)
-
-      (defun my-company-yasnippet-disable-inline (fun command &optional arg &rest _ignore)
-        "Enable yasnippet but disable it inline."
-        (if (eq command 'prefix)
-            (when-let ((prefix (funcall fun 'prefix)))
-              (unless (memq (char-before (- (point) (length prefix)))
-                            '(?. ?< ?> ?\( ?\) ?\[ ?{ ?} ?\" ?' ?`))
-                prefix))
-          (progn
-            (when (and (bound-and-true-p lsp-mode)
-                       arg (not (get-text-property 0 'yas-annotation-patch arg)))
-              (let* ((name (get-text-property 0 'yas-annotation arg))
-                     (snip (format "%s (Snippet)" name))
-                     (len (length arg)))
-                (put-text-property 0 len 'yas-annotation snip arg)
-                (put-text-property 0 len 'yas-annotation-patch t arg)))
-            (funcall fun command arg))))
-      (advice-add #'company-yasnippet :around #'my-company-yasnippet-disable-inline))))
+    (defun my-company-yasnippet-disable-inline (fn cmd &optional arg &rest _ignore)
+      "Enable yasnippet but disable it inline."
+      (if (eq cmd  'prefix)
+          (when-let ((prefix (funcall fn 'prefix)))
+            (unless (memq (char-before (- (point) (length prefix)))
+                          '(?. ?< ?> ?\( ?\) ?\[ ?{ ?} ?\" ?' ?`))
+              prefix))
+        (progn
+          (when (and (bound-and-true-p lsp-mode)
+                     arg (not (get-text-property 0 'yas-annotation-patch arg)))
+            (let* ((name (get-text-property 0 'yas-annotation arg))
+                   (snip (format "%s (Snippet)" name))
+                   (len (length arg)))
+              (put-text-property 0 len 'yas-annotation snip arg)
+              (put-text-property 0 len 'yas-annotation-patch t arg)))
+          (funcall fn cmd  arg))))
+    (advice-add #'company-yasnippet :around #'my-company-yasnippet-disable-inline)))
 
 ;; Better sorting and filtering
 (leaf company-prescient

@@ -19,6 +19,13 @@
     (save-buffer)
     (kill-buffer nil)))
 
+(defun yas-emmet-switch ()
+  "Call `my-company-yasnippet' or `emmet-expand-yas' when needed."
+  (interactive)
+  (if (bound-and-true-p emmet-mode)
+      (emmet-expand-yas)
+    (my-company-yasnippet)))
+
 (with-eval-after-load 'evil
   ;; enable parts of keybinding
   (evil-define-key 'insert 'global
@@ -37,7 +44,7 @@
   (evil-define-key nil 'global
     (kbd "s-s") 'consult-git-grep
     (kbd "s-f") 'consult-line
-    (kbd "C-,") 'emmet-expand-yas
+    (kbd "C-,") 'yas-emmet-switch
     (kbd "C-x <escape> <escape>") nil
     (kbd "C-x s") nil
     (kbd "s-m") nil
