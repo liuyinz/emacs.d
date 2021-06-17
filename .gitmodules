@@ -324,3 +324,6 @@
 [submodule "el2org"]
 	path = lib/el2org
 	url = https://github.com/tumashu/el2org.git
+[submodule "separedit"]
+	path = lib/separedit
+	url = https://github.com/twlz0ne/separedit.el.git
