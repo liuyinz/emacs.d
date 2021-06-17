@@ -321,3 +321,6 @@
 [submodule "osx-plist"]
 	path = lib/osx-plist
 	url = https://github.com/gonewest818/osx-plist.git
+[submodule "el2org"]
+	path = lib/el2org
+	url = https://github.com/tumashu/el2org.git
