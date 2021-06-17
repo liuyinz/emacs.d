@@ -318,3 +318,6 @@
 [submodule "packed"]
 	path = lib/packed
 	url = https://github.com/emacscollective/packed.git
+[submodule "osx-plist"]
+	path = lib/osx-plist
+	url = https://github.com/gonewest818/osx-plist.git

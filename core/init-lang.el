@@ -29,7 +29,6 @@
         ;; emmet-indent-after-insert t
         ;; emmet-move-cursor-between-quotes nil
         emmet-postwrap-goto-edit-point t))
-
 ;; ;; SCSS mode
 ;; (leaf scss-mode
 ;;   :init (setq scss-compile-at-save nil))
@@ -57,6 +56,8 @@
 (leaf plantuml-mode :mode "\\.plantuml\\'")
 
 (leaf python-mode :mode "\\.pythonrc\\'")
+
+(leaf osx-plist :require t)
 
 ;; (leaf mermaid-mode :require t)
 
