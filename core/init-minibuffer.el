@@ -83,13 +83,10 @@
   (require 'consult-register)
   (leaf consult-flycheck :require t)
 
-  ;; add "*..*" buffer to hidden source
-  (add-to-list 'consult-buffer-filter "\\`\\*.*\\*\\'")
-  ;; add "*.el.gz" buffer to hidden source
-  (add-to-list 'consult-buffer-filter "\\`.*\\.el\\.gz\\'")
-  ;; add magit
-  (add-to-list 'consult-buffer-filter "\\`magit: .*\\'")
-
+  ;; ;; add morek buffer to hidden source
+  (appendq! consult-buffer-filter '("\\`\\*.*\\*\\'"
+                                    "\\`.*\\.el\\.gz\\'"
+                                    "\\`magit: .*\\'"))
   ;; ;; disable preview
   ;; (setq consult-preview-key nil)
 
