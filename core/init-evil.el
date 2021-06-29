@@ -47,6 +47,8 @@
   (evil-set-leader '(normal visual) "," t)
 
   ;;set evil initial state
+  (appendq! evil-buffer-regexps '(("\\`\\*Emacs Log\\*\\'" . emacs)))
+
   (dolist (p '((anaconda-nav-mode . emacs)
                (calendar-mode . emacs)
                (compilation-mode . emacs)

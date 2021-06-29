@@ -31,7 +31,7 @@
   ["Toggle"
    ("v" "Vterm" vterm-toggle)
    ("f" "Fullscreen" toggle-frame-fullscreen)
-   ("l" "Command-log" clm/toggle-command-log-buffer)
+   ("l" "Keylog" toggle-keylog)
    ("e" "debug-on-error" toggle-debug-on-error)
    ("q" "debug-on-quit" toggle-debug-on-quit)
    ("h" "http-proxy" proxy-http-toggle)

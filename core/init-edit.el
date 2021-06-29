@@ -62,12 +62,30 @@
   :init (setq origami-show-fold-header t)
   :config (face-spec-reset-face 'origami-fold-header-face))
 
-(leaf command-log-mode
-  :commands (global-command-log-mode clm/toggle-command-log-buffer)
+(leaf interaction-log
+  :require t
   :init
-  (setq command-log-mode-open-log-turns-on-mode t
-        command-log-mode-is-global t
-        command-log-mode-window-size 40))
+  (setq ilog-log-max nil
+        ilog-print-lambdas 'not-compiled
+        ilog-display-state 'commands)
+  :config
+  (defun toggle-keylog ()
+    "Toggle keybinds log."
+    (interactive)
+    (unless (bufferp ilog-buffer-name)
+      (interaction-log-mode))
+    (with-current-buffer ilog-buffer-name
+      (let ((win (get-buffer-window (current-buffer))))
+        (if (not (windowp win))
+            (progn
+              (unless interaction-log-mode
+                (interaction-log-mode))
+              (display-buffer (current-buffer)))
+          (if interaction-log-mode
+              (progn
+                (interaction-log-mode -1)
+                (delete-window win))
+            (interaction-log-mode)))))))
 
 (leaf wgrep
   :hook (grep-mode-hook . wgrep-change-to-wgrep-mode)

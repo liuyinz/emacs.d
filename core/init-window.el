@@ -10,6 +10,13 @@
                (side            . bottom)
                (window-height   . 0.4)))
 
+(add-to-list 'display-buffer-alist
+             '("^\\*Emacs Log*"
+               (display-buffer-reuse-window
+	            display-buffer-in-side-window)
+               (reusable-frames . visible)
+               (side            . right)
+               (window-height   . 0.35)))
 (leaf shackle
   :hook (after-init-hook . shackle-mode)
   :init
@@ -36,7 +43,7 @@
           ((flycheck-error-list-mode flymake-diagnostics-buffer-mode)
            :select t :size 0.25 :align 'below)
 
-          (" *command-log*" :size 0.4 :align 'left)
+          ;; ("*Emacs Log*" :size 0.3 :align 'right)
           )))
 
 (leaf transpose-frame :require t)

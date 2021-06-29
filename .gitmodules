@@ -13,9 +13,6 @@
 [submodule "avy"]
 	path = lib/avy
 	url = https://github.com/abo-abo/avy.git
-[submodule "command-log-mode"]
-	path = lib/command-log-mode
-	url = https://github.com/lewang/command-log-mode.git
 [submodule "company-mode"]
 	path = lib/company-mode
 	url = https://github.com/company-mode/company-mode.git
@@ -327,3 +324,6 @@
 [submodule "separedit"]
 	path = lib/separedit
 	url = https://github.com/twlz0ne/separedit.el.git
+[submodule "interaction-log"]
+	path = lib/interaction-log
+	url = https://github.com/michael-heerdegen/interaction-log.el.git
