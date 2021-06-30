@@ -16,7 +16,8 @@
 	            display-buffer-in-side-window)
                (reusable-frames . visible)
                (side            . right)
-               (window-height   . 0.35)))
+               (window-width    . 0.25)))
+
 (leaf shackle
   :hook (after-init-hook . shackle-mode)
   :init

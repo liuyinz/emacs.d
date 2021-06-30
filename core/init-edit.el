@@ -64,11 +64,14 @@
 
 (leaf interaction-log
   :require t
+  :hook (ilog-log-buffer-mode-hook . (lambda ()
+                                       (setq ilog-display-state 'messages)
+                                       (ilog-toggle-view)))
   :init
   (setq ilog-log-max nil
-        ilog-print-lambdas 'not-compiled
-        ilog-display-state 'commands)
+        ilog-print-lambdas 'not-compiled)
   :config
+
   (defun toggle-keylog ()
     "Toggle keybinds log."
     (interactive)
