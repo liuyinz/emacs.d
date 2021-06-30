@@ -56,12 +56,13 @@
   :init
   (setq keyfreq-excluded-regexp
         '(;; built-in
-          "\\`(mouse|scroll|keyboard|clipboard|minibuffer|backward|forward|move)-.*\\'"
-          "\\`(package|isearch|describe|eval|exit|delete|kill|quit|save|abort)-.*\\'"
-          "\\`(self|term|xterm|pcomplete|y-or-n-p|previous|next)-.*\\'"
+          "\\`\\(mouse\\|scroll\\|keyboard\\|clipboard\\|minibuffer\\|package\\)-.*\\'"
+          "\\`\\(backward\\|forward\\|move\\|isearch\\|describe\\|eval\\|exit\\)-.*\\'"
+          "\\`\\(delete\\|kill\\|quit\\|save\\|abort\\|self\\|term\\|xterm\\)-.*\\'"
+          "\\`\\(pcomplete\\|y-or-n-p\\|previous\\|next\\|right\\|left\\)-.*\\'"
           ;; third-party
-          "\\`(keyfreq|vertico|evil|company|vundo|yas|vterm|web-mode)-.*\\'"
-          "\\`(magit-section|helpful)-.*\\'"
+          "\\`\\(keyfreq\\|vertico\\|evil\\|company\\|vundo\\|yas\\|vterm\\)-.*\\'"
+          "\\`\\(magit-section\\|helpful\\|web-mode\\)-.*\\'"
           ))
 
   (setq keyfreq-excluded-commands
