@@ -60,7 +60,7 @@
           "\\`(package|isearch|describe|eval|exit|delete|kill|quit|save|abort)-.*\\'"
           "\\`(self|term|xterm|pcomplete|y-or-n-p|previous|next)-.*\\'"
           ;; third-party
-          "\\`(keyfreq|vertico|evil|sis|company|vundo|yas|vterm|web-mode)-.*\\'"
+          "\\`(keyfreq|vertico|evil|company|vundo|yas|vterm|web-mode)-.*\\'"
           "\\`(magit-section|helpful)-.*\\'"
           ))
 

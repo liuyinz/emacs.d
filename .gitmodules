@@ -142,9 +142,6 @@
 [submodule "projectile"]
 	path = lib/projectile
 	url = https://github.com/bbatsov/projectile.git
-[submodule "emacs-smart-input-source"]
-	path = lib/emacs-smart-input-source
-	url = https://github.com/laishulu/emacs-smart-input-source.git
 [submodule "transpose-frame"]
 	path = lib/transpose-frame
 	url = https://github.com/emacsorphanage/transpose-frame.git

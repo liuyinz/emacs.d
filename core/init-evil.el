@@ -123,10 +123,5 @@
   :after evil
   :commands evilnc-comment-or-uncomment-lines evilnc-copy-and-comment-lines)
 
-(leaf sis
-  :doc "deps : brew install macism"
-  ;; TODO conflict with emacs --daemon when add-hook evil-mode
-  :hook (server-after-make-frame-hook . sis-global-respect-mode))
-
 (provide 'init-evil)
 ;;; init-evil.el ends here
