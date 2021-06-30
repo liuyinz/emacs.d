@@ -55,9 +55,6 @@
 [submodule "hungry-delete"]
 	path = lib/hungry-delete
 	url = https://github.com/nflath/hungry-delete.git
-[submodule "keyfreq"]
-	path = lib/keyfreq
-	url = https://github.com/dacap/keyfreq.git
 [submodule "lua-mode"]
 	path = lib/lua-mode
 	url = https://github.com/immerrr/lua-mode.git
@@ -327,3 +324,6 @@
 [submodule "interaction-log"]
 	path = lib/interaction-log
 	url = https://github.com/michael-heerdegen/interaction-log.el.git
+[submodule "keyfreq"]
+	path = lib/keyfreq
+	url = https://github.com/dacap/keyfreq.git
