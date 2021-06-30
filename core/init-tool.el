@@ -54,43 +54,25 @@
   (after-init-hook . keyfreq-mode)
   (keyfreq-mode-hook . keyfreq-autosave-mode)
   :init
-  (setq keyfreq-excluded-regexp '(
-                                  ;; built-in
-                                  "\\`mouse-.*\\'"
-                                  "\\`clipboard-.*\\'"
-                                  "\\`keyboard-.*\\'"
-                                  "\\`scroll-.*\\'"
-                                  "\\`y-or-n-p-.*\\'"
-                                  "\\`minibuffer-.*\\'"
-                                  "\\`backward-.*\\'"
-                                  "\\`forward-.*\\'"
-                                  "\\`move-.*\\'"
-                                  "\\`isearch-.*\\'"
-                                  "\\`describe-.*\\'"
-                                  ;; third-party
-                                  "\\`keyfreq-.*\\'"
-                                  "\\`vertico-.*\\'"
-                                  "\\`evil-.*\\'"
-                                  "\\`company-.*\\'"
-                                  "\\`vundo-.*\\'"
-                                  "\\`yas-.*\\'"
-                                  "\\`web-mode-.*\\'"
-                                  ))
+  (setq keyfreq-excluded-regexp
+        '(;; built-in
+          "\\`(mouse|scroll|keyboard|clipboard|minibuffer|backward|forward|move)-.*\\'"
+          "\\`(package|isearch|describe|eval|exit|delete|kill|quit|save|abort)-.*\\'"
+          "\\`(self|term|xterm|pcomplete|y-or-n-p|previous|next)-.*\\'"
+          ;; third-party
+          "\\`(keyfreq|vertico|evil|sis|company|vundo|yas|vterm|web-mode)-.*\\'"
+          "\\`(magit-section|helpful)-.*\\'"
+          ))
 
   (setq keyfreq-excluded-commands
-        '(self-insert-command
-          abort-recursive-edit
-          comint-previous-input
+        '(comint-previous-input
           comint-send-input
-          delete-other-windows
-          delete-backward-char
           dired ;; nothing to optimize in dired
           dired-do-async-shell-command
           dired-find-file
           electric-pair-delete-pair
           erase-message-buffer
           execute-extended-command
-          exit-minibuffer
           ffip
           goto-line
           hippie-expand
@@ -99,21 +81,13 @@
           indent-new-comment-line
           ispell-minor-check
           js-mode
-          kill-sentence
-          left-char
           magit-mode-bury-buffer
-          magit-section-toggle
-          magit-section-forward
-          magit-section-backward
-          markdown-exdent-or-delete
           markdown-outdent-or-delete
           mwheel-scroll
           my-company-yasnippet
           my-setup-develop-environment
           newline
           newline-and-indent
-          next-history-element
-          next-line
           org-beginning-of-line
           org-ctrl-c-ctrl-c
           org-cycle
@@ -124,36 +98,16 @@
           org-self-insert-command
           org-todo
           orgtbl-self-insert-command
-          package-menu-execute
-          pcomplete
-          previous-history-element
-          previous-line
           push-button
           pwd
-          quit-window
-          right-char
-          rjsx-electric-gt
-          rjsx-electric-lt
-          save-buffer
-          save-buffers-kill-terminal
-          sis-get-english
-          sis-set-english
           smarter-move-beginning-of-line
           suspend-frame
-          term-send-raw
           turnon-keyfreq-mode
           undefined ;; lambda function
-          vterm-clear
-          vterm-self-insert
-          w3m-goto-url
-          w3m-next-anchor
-          w3m-view-this-url
           wgrep-finish-edit
-          xterm-paste
           yaml-electric-backspace
           yank
-          ))
-  )
+          )))
 
 (provide 'init-tool)
 
