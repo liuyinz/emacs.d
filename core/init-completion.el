@@ -20,6 +20,7 @@
         company-dabbrev-ignore-case nil
         company-dabbrev-downcase nil
         company-search-regexp-function #'company-search-words-in-any-order-regexp)
+
   (setq-default company-dabbrev-other-buffers 'all)
 
   (setq company-global-modes '(not erc-mode message-mode help-mode
@@ -30,6 +31,9 @@
                            company-dabbrev company-gtags company-etags))
 
   :config
+
+  ;; Remove duplicate candidate.
+  (add-to-list 'company-transformers #'delete-dups)
 
   ;; HACK ,see @https://github.com/seagle0128/.emacs.d/blob/master/lisp/init-company.el
   (with-no-warnings
@@ -50,15 +54,18 @@
         (company-cancel)
         (call-interactively 'company-yasnippet))
 
-      ;; Add `yasnippet' to company backend
+      ;; Add `yasnippet' support for all company backends.
+      (defvar company-mode/enable-yas t "Enable yasnippet for all backends.")
       (defun company-backend-with-yas (backend)
         "Add `yasnippet' to company backend."
-        (if (and (listp backend) (member 'company-yasnippet backend))
+        (if (or (not company-mode/enable-yas)
+                (and (listp backend) (member 'company-yasnippet backend)))
             backend
           (append (if (consp backend) backend (list backend))
                   '(:with company-yasnippet))))
       (setq company-backends (mapcar #'company-backend-with-yas company-backends)))
 
+    ;; fix inline with company-yasnippet
     (defun my-company-yasnippet-disable-inline (fn cmd &optional arg &rest _ignore)
       "Enable yasnippet but disable it inline."
       (if (eq cmd  'prefix)
