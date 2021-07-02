@@ -1,4 +1,4 @@
-;;; init-mini.el --- mini config for test -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-test.el --- config for test -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -27,5 +27,5 @@
 (require 'init-sys)
 ;; ---------------------- Test module ------------------------------
 
-(provide 'init-mini)
-;;; init-mini.el ends here
+(provide 'init-test)
+;;; init-test.el ends here
