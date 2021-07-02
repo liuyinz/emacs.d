@@ -59,36 +59,34 @@
           "\\`\\(mouse\\|scroll\\|keyboard\\|clipboard\\|minibuffer\\|package\\)-.*\\'"
           "\\`\\(backward\\|forward\\|move\\|isearch\\|describe\\|eval\\|exit\\)-.*\\'"
           "\\`\\(delete\\|kill\\|quit\\|save\\|abort\\|self\\|term\\|xterm\\)-.*\\'"
-          "\\`\\(pcomplete\\|y-or-n-p\\|previous\\|next\\|right\\|left\\)-.*\\'"
+          "\\`\\(pcomplete\\|y-or-n-p\\|previous\\|next\\|right\\|left\\|zap\\)-.*\\'"
+          "\\`\\(suspend\\|execute-extended\\|transient\\|indent\\electric\\)-.*\\'"
           ;; third-party
           "\\`\\(keyfreq\\|vertico\\|evil\\|company\\|vundo\\|yas\\|vterm\\)-.*\\'"
-          "\\`\\(magit-section\\|helpful\\|web-mode\\)-.*\\'"
+          "\\`\\(magit-section\\|helpful\\|web-mode\\|ilog\\|hungry-delete\\)-.*\\'"
+          "\\`\\(markdown-insert\\|markdown-table\\|my/toggle\\)-.*\\'"
           ))
 
   (setq keyfreq-excluded-commands
-        '(comint-previous-input
+        '(undefined
+          ignore
+          mwheel-scroll
+          hippie-expand
+          newline
+          newline-and-indent
+          yank
+          choose-completion
+          comint-previous-input
           comint-send-input
           dired ;; nothing to optimize in dired
           dired-do-async-shell-command
           dired-find-file
-          electric-pair-delete-pair
-          erase-message-buffer
-          execute-extended-command
-          ffip
           goto-line
-          hippie-expand
-          hungry-delete-backward
-          ignore
-          indent-new-comment-line
           ispell-minor-check
           js-mode
           magit-mode-bury-buffer
           markdown-outdent-or-delete
-          mwheel-scroll
           my-company-yasnippet
-          my-setup-develop-environment
-          newline
-          newline-and-indent
           org-beginning-of-line
           org-ctrl-c-ctrl-c
           org-cycle
@@ -99,15 +97,6 @@
           org-self-insert-command
           org-todo
           orgtbl-self-insert-command
-          push-button
-          pwd
-          smarter-move-beginning-of-line
-          suspend-frame
-          turnon-keyfreq-mode
-          undefined ;; lambda function
-          wgrep-finish-edit
-          yaml-electric-backspace
-          yank
           )))
 
 (provide 'init-tool)
