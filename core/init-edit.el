@@ -68,8 +68,7 @@
                                        (setq ilog-display-state 'messages)
                                        (ilog-toggle-view)))
   :init
-  (setq ilog-log-max nil
-        ilog-print-lambdas 'not-compiled)
+  (setq ilog-log-max nil)
   :config
 
   (defun toggle-keylog ()

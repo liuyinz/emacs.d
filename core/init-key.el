@@ -4,6 +4,29 @@
 
 ;; key repeat speed on macOS, @https://stackoverflow.com/a/1052296/13194984
 
+(defun evil-vundo-undo ()
+  "Hybrid evil and vundo."
+  (interactive)
+  (if (not (fboundp 'vundo))
+      (evil-undo 1)
+    (vundo)
+    (vundo-backward 1)))
+
+(defun evil-vundo-redo ()
+  "Hybrid evil and vundo."
+  (interactive)
+  (if (not (fboundp 'vundo))
+      (evil-redo 1)
+    (vundo)
+    (vundo-forward 1)))
+
+(defun evil-substitute-normal ()
+  "Call evil-ex-substitute in normal-state."
+  (interactive)
+  (if (evil-normal-state-p)
+      (evil-ex "%s/")
+    (evil-ex "'<,'>s/")))
+
 (defun back-to-user-buffer ()
   "Switch back to text buffer,exclude `vterm-mode'."
   (interactive)
@@ -75,27 +98,9 @@
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U
     (kbd "C-r") nil
-    "u" (lambda ()
-          (interactive)
-          (if (not (fboundp 'vundo))
-              (evil-undo 1)
-            (vundo)
-            (vundo-backward 1)))
-
-    ;; "U" 'evil-redo
-    "U" (lambda ()
-          (interactive)
-          (if (not (fboundp 'vundo))
-              (evil-redo 1)
-            (vundo)
-            (vundo-forward 1)))
-
-    ;; ? to replace
-    "?" (lambda ()
-          (interactive)
-          (if (evil-normal-state-p)
-              (evil-ex "%s/")
-            (evil-ex "'<,'>s/")))
+    "u" 'evil-vundo-undo
+    "U" 'evil-vundo-redo
+    "?" 'evil-substitute-normal
 
     ;; run the macro in the q register
     "Q" "@q"
@@ -107,15 +112,13 @@
     "gz" 'magit-dispatch
     "gla" 'magit-log-all-branches
 
-    (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
-
     (kbd "<localleader> t") 'my/transient-toggle
     (kbd "<localleader> f") 'my/transient-buffer
     (kbd "<localleader> ,") 'my/transient-point
     ;; "[" 'my/transient-bracket-left
     ;; "]" 'my/transient-bracket-right
 
-    ;; self-define
+    (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
     (kbd "<leader> f") 'my-format
     (kbd "<leader> p") 'my-repl
     (kbd "<leader> r") 'my-run)
