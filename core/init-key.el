@@ -57,17 +57,7 @@
     (kbd "C-r") 'back-to-user-buffer
 
     ;; window
-    (kbd "C-x j") 'transpose-frame
-
-    ;; avy
-    (kbd "C-l") nil
-    (kbd "C-l C-l") 'avy-goto-line
-    (kbd "C-l w") 'avy-goto-word-0
-    (kbd "C-l f") 'avy-goto-char
-    (kbd "C-l p") 'avy-goto-paren
-    (kbd "C-l r") 'avy-resume
-
-    ;; ;; toggle
+    (kbd "C-x j") 'transpose-frame;; ;; toggle
     (kbd "C-; C-;") 'vterm-toggle
     ;; consult
     [remap switch-to-buffer] 'consult-buffer
@@ -107,32 +97,23 @@
               (evil-ex "%s/")
             (evil-ex "'<,'>s/")))
 
-    ;; select the previously pasted text
-    ;; "gp" "`[v`]"
     ;; run the macro in the q register
     "Q" "@q"
-    ;; dash
-    "gz" 'dash-at-point
-    ;; go-translate
-    "gt" 'go-translate-echo-area
-    ;; webjump
-    "gw" 'webjump
+    ;; select the previously pasted text
+    ;; "gp" "`[v`]"
+
     ;; magit
     "gs" 'magit-status
-    ;; "gz" 'magit-dispatch
+    "gz" 'magit-dispatch
     "gla" 'magit-log-all-branches
 
-    (kbd "<leader> xf") 'find-file
-    (kbd "<leader> b") 'consult-buffer
-    (kbd "<leader> xs") 'save-buffer
-    (kbd "<leader> xk") 'kill-buffer
     (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
 
     (kbd "<localleader> t") 'my/transient-toggle
     (kbd "<localleader> f") 'my/transient-buffer
+    (kbd "<localleader> ,") 'my/transient-point
     ;; "[" 'my/transient-bracket-left
     ;; "]" 'my/transient-bracket-right
-    (kbd "<localleader> ,") 'my/transient-point
 
     ;; self-define
     (kbd "<leader> f") 'my-format

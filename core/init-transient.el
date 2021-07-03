@@ -31,9 +31,9 @@
   ["Toggle"
    ("v" "Vterm" vterm-toggle)
    ("f" "Fullscreen" toggle-frame-fullscreen)
-   ("l" "Keylog" toggle-keylog)
+   ("k" "Keylog" toggle-keylog)
    ("e" "debug-on-error" toggle-debug-on-error)
-   ("q" "debug-on-quit" toggle-debug-on-quit)
+   ("t" "debug-on-quit" toggle-debug-on-quit)
    ("h" "http-proxy" proxy-http-toggle)
    ("s" "socks-proxy" proxy-socks-toggle)
    ("w" "writeroom-mode" writeroom-mode)
@@ -41,8 +41,10 @@
    ])
 
 (define-transient-command my/transient-point ()
-  ["point"
-   ("d" "dash" dash-at-point)
+  ["Action at Point"
+   ("d" "dash-at-point" dash-at-point)
+   ("t" "go-translate" go-translate-echo-area)
+   ("w" "webjump" webjump)
    ("x" "flycheck-explain" flycheck-explain-error-at-point)
    ])
 
@@ -51,8 +53,7 @@
    ("f" "flycheck-error" flycheck-previous-error)
    ("g" "diff-hl" diff-hl-previous-hunk)
    ("h" "hl-todo" hl-todo-previous)
-   ]
-  )
+   ])
 
 (define-transient-command my/transient-bracket-right ()
   ["Next jump"

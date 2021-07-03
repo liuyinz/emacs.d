@@ -78,6 +78,7 @@
           choose-completion
           comint-previous-input
           comint-send-input
+          embark-act
           dired ;; nothing to optimize in dired
           dired-do-async-shell-command
           dired-find-file
