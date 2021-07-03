@@ -83,6 +83,9 @@
   (require 'consult-register)
   (leaf consult-flycheck :require t)
 
+  (when (bound-and-true-p vertico-mode)
+    (setq completion-in-region-function #'consult-completion-in-region))
+
   ;; ;; add morek buffer to hidden source
   (appendq! consult-buffer-filter '("\\`\\*.*\\*\\'"
                                     "\\`.*\\.el\\.gz\\'"
