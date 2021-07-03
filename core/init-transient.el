@@ -6,7 +6,7 @@
 
 (leaf transient :require t)
 
-(define-transient-command my/buffer-transient ()
+(define-transient-command my/transient-buffer ()
   "Buffer Operation"
   ["Info"
    ("N" "base name" buffer-base-name)
@@ -26,7 +26,7 @@
    ])
 
 ;; toggle-transient
-(define-transient-command my/toggle-transient ()
+(define-transient-command my/transient-toggle ()
   "Toogle system setting"
   ["Toggle"
    ("v" "Vterm" vterm-toggle)
@@ -40,13 +40,13 @@
    ("p" "Profiler" toggle-profiler)
    ])
 
-(define-transient-command my/point-transient ()
+(define-transient-command my/transient-point ()
   ["point"
    ("d" "dash" dash-at-point)
    ("x" "flycheck-explain" flycheck-explain-error-at-point)
    ])
 
-(define-transient-command my/bracket-left-transient ()
+(define-transient-command my/transient-bracket-left ()
   ["Previous jump"
    ("f" "flycheck-error" flycheck-previous-error)
    ("g" "diff-hl" diff-hl-previous-hunk)
@@ -54,7 +54,7 @@
    ]
   )
 
-(define-transient-command my/bracket-right-transient ()
+(define-transient-command my/transient-bracket-right ()
   ["Next jump"
    ("f" "flycheck-error" flycheck-next-error)
    ("g" "diff-hl" diff-hl-next-hunk)

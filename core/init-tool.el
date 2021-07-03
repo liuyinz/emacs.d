@@ -64,7 +64,7 @@
           ;; third-party
           "\\`\\(keyfreq\\|vertico\\|evil\\|company\\|vundo\\|yas\\|vterm\\)-.*\\'"
           "\\`\\(magit-section\\|helpful\\|web-mode\\|ilog\\|hungry-delete\\)-.*\\'"
-          "\\`\\(markdown-insert\\|markdown-table\\|my/toggle\\)-.*\\'"
+          "\\`\\(markdown-insert\\|markdown-table\\|my/transient\\)-.*\\'"
           ))
 
   (setq keyfreq-excluded-commands

@@ -128,11 +128,11 @@
     (kbd "<leader> xk") 'kill-buffer
     (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
 
-    (kbd "<localleader> t") 'my/toggle-transient
-    (kbd "<localleader> f") 'my/buffer-transient
-    ;; "[" 'my/bracket-left-transient
-    ;; "]" 'my/bracket-right-transient
-    (kbd "<localleader> ,") 'my/point-transient
+    (kbd "<localleader> t") 'my/transient-toggle
+    (kbd "<localleader> f") 'my/transient-buffer
+    ;; "[" 'my/transient-bracket-left
+    ;; "]" 'my/transient-bracket-right
+    (kbd "<localleader> ,") 'my/transient-point
 
     ;; self-define
     (kbd "<leader> f") 'my-format
