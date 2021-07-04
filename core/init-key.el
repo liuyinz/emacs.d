@@ -232,7 +232,7 @@
   (evil-define-key 'normal diff-hl-mode-map
     "[g" 'diff-hl-previous-hunk
     "]g" 'diff-hl-next-hunk
-    "gr" 'diff-hl-revert-hunk)
+    )
 
   (evil-define-key 'emacs vterm-mode-map
     (kbd "C-c C-o") 'vterm-send-C-o)

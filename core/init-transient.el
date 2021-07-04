@@ -45,6 +45,7 @@
    ("d" "dash-at-point" dash-at-point)
    ("t" "go-translate" go-translate-echo-area)
    ("w" "webjump" webjump)
+   ("r" "revert-hunk" diff-hl-revert-hunk)
    ("x" "flycheck-explain" flycheck-explain-error-at-point)
    ("h" "hl-todo-insert" hl-todo-insert)
    ])
