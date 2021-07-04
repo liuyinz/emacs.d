@@ -108,8 +108,8 @@
     "u" 'evil-vundo-undo
     "U" 'evil-vundo-redo
     "?" 'evil-substitute-normal
-    "zz" 'recenter-top-bottom
-    "zm" 'hs-toggle-all
+    "zt" 'recenter-top-bottom
+    "zz" 'hs-toggle-all
 
     ;; run the macro in the q register
     "Q" "@q"

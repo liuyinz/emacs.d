@@ -221,7 +221,7 @@
     (when (eq 'code (overlay-get ov 'hs))
       (overlay-put ov 'display
                    (propertize
-                    (format " ...%d folding..."
+                    (format "...%d folding..."
                             (- (count-lines (overlay-start ov) (overlay-end ov)) 1))
                     'face 'orderless-match-face-3))))
   (setq hs-set-up-overlay #'display-code-line-counts)
@@ -229,16 +229,16 @@
   :config
   ;; HACK hs-toggle-all
   (defvar hs-all-hide-p nil)
+  (advice-add 'hs-show-all :after (lambda () (setq hs-all-hide-p nil)))
+  (advice-add 'hs-hide-all :after (lambda () (setq hs-all-hide-p t)))
+
   (defun hs-toggle-all ()
     "Toggle all folds"
     (interactive)
     (hs-life-goes-on
      (if hs-all-hide-p
-         (progn
-           (hs-show-all)
-           (setq hs-all-hide-p nil))
-       (hs-hide-all)
-       (setq hs-all-hide-p t))))
+         (hs-show-all)
+       (hs-hide-all))))
   )
 
 (setq isearch-lazy-count t)
