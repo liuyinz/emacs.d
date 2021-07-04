@@ -50,21 +50,6 @@
    ("h" "hl-todo-insert" hl-todo-insert)
    ])
 
-(define-transient-command my/transient-bracket-left ()
-  ["Previous jump"
-   ("f" "flycheck-error" flycheck-previous-error)
-   ("g" "diff-hl" diff-hl-previous-hunk)
-   ("h" "hl-todo" hl-todo-previous)
-   ])
-
-(define-transient-command my/transient-bracket-right ()
-  ["Next jump"
-   ("f" "flycheck-error" flycheck-next-error)
-   ("g" "diff-hl" diff-hl-next-hunk)
-   ("h" "hl-todo" hl-todo-next)
-   ]
-  )
-
 ;; (define-transient-command my/help-transient ()
 ;;   "Help commands that I use. A subset of C-h with others thrown in."
 ;;   ["Help Commands"

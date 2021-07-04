@@ -116,8 +116,6 @@
     (kbd "<localleader> t") 'my/transient-toggle
     (kbd "<localleader> f") 'my/transient-buffer
     (kbd "<localleader> ,") 'my/transient-point
-    ;; "[" 'my/transient-bracket-left
-    ;; "]" 'my/transient-bracket-right
 
     (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
     (kbd "<leader> f") 'my-format
