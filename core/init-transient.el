@@ -46,6 +46,7 @@
    ("t" "go-translate" go-translate-echo-area)
    ("w" "webjump" webjump)
    ("x" "flycheck-explain" flycheck-explain-error-at-point)
+   ("h" "hl-todo-insert" hl-todo-insert)
    ])
 
 (define-transient-command my/transient-bracket-left ()

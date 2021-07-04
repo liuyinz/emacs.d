@@ -80,8 +80,9 @@
     (kbd "C-r") 'back-to-user-buffer
 
     ;; window
-    (kbd "C-x j") 'transpose-frame;; ;; toggle
+    (kbd "C-x j") 'transpose-frame
     (kbd "C-; C-;") 'vterm-toggle
+
     ;; consult
     [remap switch-to-buffer] 'consult-buffer
     [remap switch-to-buffer-other-window] 'consult-buffer-other-window
@@ -226,7 +227,7 @@
     "[h" 'hl-todo-previous
     "]h" 'hl-todo-next
     "gh" 'hl-todo-occur
-    (kbd "<leader> i") 'hl-todo-insert)
+    )
 
   (evil-define-key 'normal diff-hl-mode-map
     "[g" 'diff-hl-previous-hunk
