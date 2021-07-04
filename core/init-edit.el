@@ -56,12 +56,6 @@
   :config
   (undohist-initialize))
 
-;; Flexible text folding
-(leaf origami
-  :hook (prog-mode-hook . origami-mode)
-  :init (setq origami-show-fold-header t)
-  :config (face-spec-reset-face 'origami-fold-header-face))
-
 (leaf interaction-log
   :require t
   :hook (ilog-log-buffer-mode-hook . (lambda ()

@@ -95,11 +95,11 @@
   (defun webjump-visual-patch (prompt)
     "Patch for visual selection avaible"
     (let* ((region-text (if (region-active-p)
-                            (buffer-substring-no-properties (region-beginning) (region-end)) nil))
+                            (buffer-substring-no-properties (region-beginning)
+                                                            (region-end)) nil))
            (input (read-string (concat prompt ": ") region-text)))
       (if (webjump-null-or-blank-string-p input) nil input)))
-  (advice-add 'webjump-read-string :override #'webjump-visual-patch)
-  )
+  (advice-add 'webjump-read-string :override #'webjump-visual-patch))
 
 (leaf files
   :init
@@ -209,6 +209,37 @@
        ((>= s 3) (concat (substring str 0 -12) " G"))
        (t str))))
   (advice-add 'profiler-format-number :filter-return #'profiler-bytes-h))
+
+(leaf hideshow
+  :hook (prog-mode-hook . hs-minor-mode)
+  :init
+  (setq hs-isearch-open t
+        hs-hide-comments-when-hiding-all nil)
+
+  ;; display more information
+  (defun display-code-line-counts (ov)
+    (when (eq 'code (overlay-get ov 'hs))
+      (overlay-put ov 'display
+                   (propertize
+                    (format " ...%d folding..."
+                            (- (count-lines (overlay-start ov) (overlay-end ov)) 1))
+                    'face 'orderless-match-face-3))))
+  (setq hs-set-up-overlay #'display-code-line-counts)
+
+  :config
+  ;; HACK hs-toggle-all
+  (defvar hs-all-hide-p nil)
+  (defun hs-toggle-all ()
+    "Toggle all folds"
+    (interactive)
+    (hs-life-goes-on
+     (if hs-all-hide-p
+         (progn
+           (hs-show-all)
+           (setq hs-all-hide-p nil))
+       (hs-hide-all)
+       (setq hs-all-hide-p t))))
+  )
 
 (setq isearch-lazy-count t)
 (setq vc-follow-symlinks t)

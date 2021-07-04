@@ -236,9 +236,6 @@
 [submodule "shrink-path"]
 	path = lib/shrink-path
 	url = https://gitlab.com/bennya/shrink-path.el.git
-[submodule "origami"]
-	path = lib/origami
-	url = https://github.com/gregsexton/origami.el.git
 [submodule "leaf"]
 	path = lib/leaf
 	url = https://github.com/conao3/leaf.el.git

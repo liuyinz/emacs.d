@@ -76,6 +76,12 @@
     (kbd "C-o") nil
     (kbd "C-j") nil
 
+    (kbd "C-l") nil
+    (kbd "C-l C-l") 'avy-goto-line
+    (kbd "C-l c") 'avy-goto-char
+    (kbd "C-l w") 'avy-goto-word-0
+    (kbd "C-l p") 'avy-goto-paren
+
     ;; jump between two buffer
     (kbd "C-r") 'back-to-user-buffer
 
@@ -102,6 +108,8 @@
     "u" 'evil-vundo-undo
     "U" 'evil-vundo-redo
     "?" 'evil-substitute-normal
+    "zz" 'recenter-top-bottom
+    "zm" 'hs-toggle-all
 
     ;; run the macro in the q register
     "Q" "@q"
