@@ -271,5 +271,13 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
 ;;                                unread-command-events))
 ;;   (call-interactively #'execute-extended-command))
 
+;; UI
+(defvar after-load-theme-hook nil
+  "Hook run after a color theme is loaded using `load-theme'.")
+(defun run-after-load-theme-hook (&rest _)
+  "Run `after-load-theme-hook'."
+  (run-hooks 'after-load-theme-hook))
+(advice-add #'load-theme :after #'run-after-load-theme-hook)
+
 (provide 'init-lib)
 ;;; init-lib.el ends here

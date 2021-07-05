@@ -36,71 +36,73 @@
   :require t
   :config
   (load-theme 'doom-vibrant t)
-  ;; modify faces
-  (custom-set-faces
-   ;; vertico
-   '(vertico-current ((t (:foreground "white"
-                          :background "#484e5f"
-                          :weight bold
-                          :extend t))))
-   ;; orderless
-   '(orderless-match-face-0 ((t (:inherit font-lock-string-face
-                                 :weight bold
-                                 :inverse-video t))))
-   '(orderless-match-face-1 ((t (:inherit error
-                                 :weight bold
-                                 :inverse-video t))))
-   '(orderless-match-face-2 ((t (:inherit font-lock-type-face
-                                 :weight bold
-                                 :inverse-video t))))
-   '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face
-                                 :weight bold
-                                 :inverse-video t))))
-   ;; evil
-   '(cursor ((t (:inherit unspecified
-                 :background "#fcce7b"
-                 :foreground "#242730"))))
-   '(isearch ((t (:inherit orderless-match-face-2))))
-   '(lazy-highlight ((t (:inherit orderless-match-face-0
-                         :foreground nil
-                         :background nil))))
-   '(evil-ex-substitute-matches ((t (:inherit orderless-match-face-1))))
-   '(evil-ex-substitute-replacement ((t (:inherit orderless-match-face-0))))
-   ;; completions
-   '(completions-common-part ((t (:inherit orderless-match-face-0))))
-   ;; company
-   '(company-tooltip-mouse ((t (:inherit company-tooltip :background nil))))
-   '(company-tooltip-selection ((t (:inherit vertico-current :background nil))))
-   '(company-tooltip-search ((t (:inherit font-lock-string-face
-                                 :background nil
-                                 :foreground nil))))
-   ;;consult
-   '(consult-file ((t (:inherit font-lock-doc-face))))
-   ;;marginalia
-   '(marginalia-type ((t (:inherit font-lock-constant-face))))
-   '(marginalia-key ((t (:inherit font-lock-keyword-face :weight bold))))
-   '(marginalia-modified ((t (:inherit font-lock-string-face))))
-   '(marginalia-date ((t (:inherit font-lock-keyword-face))))
-   ;;diff-hl
-   '(diff-hl-change ((t (:background nil))))
-   '(diff-hl-insert ((t (:background nil))))
-   '(diff-hl-delete ((t (:background nil))))
-   ;; yasnippet
-   '(yas-field-highlight-face ((t (:inherit font-lock-string-face
-                                   :bold t
-                                   :background "#484e5f"))))
-   ;; markdown-mode
-   '(markdown-code-face ((t (:background "#323642" :extend t))))
-   ;; avy
-   '(avy-lead-face ((t (:foreground "#51afef" :background nil))))
-   '(avy-lead-face-0 ((t (:foreground "#99d0f6" :background nil))))
-   '(avy-lead-face-1 ((t (:foreground "#cfe9fb" :background nil))))
-   '(avy-lead-face-2 ((t (:foreground "#f3f9fe" :background nil))))
-   ;; highlight-defined
-   '(highlight-defined-function-name-face ((t (:inherit font-lock-variable-name-face))))
-   ;; rg.el
-   ))
+  :init
+  (add-hook 'after-load-theme-hook #'my/doom-theme-adjust)
+  (defun my/doom-theme-adjust ()
+    (custom-set-faces
+     ;; vertico
+     '(vertico-current ((t (:foreground "white"
+                            :background "#484e5f"
+                            :weight bold
+                            :extend t))))
+     ;; orderless
+     '(orderless-match-face-0 ((t (:inherit font-lock-string-face
+                                   :weight bold
+                                   :inverse-video t))))
+     '(orderless-match-face-1 ((t (:inherit error
+                                   :weight bold
+                                   :inverse-video t))))
+     '(orderless-match-face-2 ((t (:inherit font-lock-type-face
+                                   :weight bold
+                                   :inverse-video t))))
+     '(orderless-match-face-3 ((t (:inherit font-lock-keyword-face
+                                   :weight bold
+                                   :inverse-video t))))
+     ;; evil
+     '(cursor ((t (:inherit unspecified
+                   :background "#fcce7b"
+                   :foreground "#242730"))))
+     '(isearch ((t (:inherit orderless-match-face-2))))
+     '(lazy-highlight ((t (:inherit orderless-match-face-0
+                           :foreground nil
+                           :background nil))))
+     '(evil-ex-substitute-matches ((t (:inherit orderless-match-face-1))))
+     '(evil-ex-substitute-replacement ((t (:inherit orderless-match-face-0))))
+     ;; completions
+     '(completions-common-part ((t (:inherit orderless-match-face-0))))
+     ;; company
+     '(company-tooltip-mouse ((t (:inherit company-tooltip :background nil))))
+     '(company-tooltip-selection ((t (:inherit vertico-current :background nil))))
+     '(company-tooltip-search ((t (:inherit font-lock-string-face
+                                   :background nil
+                                   :foreground nil))))
+     ;;consult
+     '(consult-file ((t (:inherit font-lock-doc-face))))
+     ;;marginalia
+     '(marginalia-type ((t (:inherit font-lock-constant-face))))
+     '(marginalia-key ((t (:inherit font-lock-keyword-face :weight bold))))
+     '(marginalia-modified ((t (:inherit font-lock-string-face))))
+     '(marginalia-date ((t (:inherit font-lock-keyword-face))))
+     ;;diff-hl
+     '(diff-hl-change ((t (:background nil :weight bold))))
+     '(diff-hl-insert ((t (:background nil :weight bold))))
+     '(diff-hl-delete ((t (:background nil :weight bold))))
+     ;; yasnippet
+     '(yas-field-highlight-face ((t (:inherit font-lock-string-face
+                                     :weight bold
+                                     :background "#484e5f"))))
+     ;; markdown-mode
+     '(markdown-code-face ((t (:background "#323642" :extend t))))
+     ;; avy
+     '(avy-lead-face ((t (:foreground "#51afef" :background nil))))
+     '(avy-lead-face-0 ((t (:foreground "#99d0f6" :background nil))))
+     '(avy-lead-face-1 ((t (:foreground "#cfe9fb" :background nil))))
+     '(avy-lead-face-2 ((t (:foreground "#f3f9fe" :background nil))))
+     ;; highlight-defined
+     '(highlight-defined-function-name-face
+       ((t (:inherit font-lock-variable-name-face))))
+     ;; rg.el
+     )))
 
 (provide 'init-ui)
-
 ;;; init-ui.el ends here
