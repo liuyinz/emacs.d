@@ -123,5 +123,10 @@
   :after evil
   :commands evilnc-comment-or-uncomment-lines evilnc-copy-and-comment-lines)
 
+;; Pinyin support
+(leaf evil-find-char-pinyin
+  :doc "deps: evil pinyinlib"
+  :hook (evil-mode-hook . evil-find-char-pinyin-mode))
+
 (provide 'init-evil)
 ;;; init-evil.el ends here

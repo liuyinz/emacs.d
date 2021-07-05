@@ -321,3 +321,12 @@
 [submodule "keyfreq"]
 	path = lib/keyfreq
 	url = https://github.com/dacap/keyfreq.git
+[submodule "pinyinlib"]
+	path = lib/pinyinlib
+	url = https://github.com/cute-jumper/pinyinlib.el.git
+[submodule "ace-pinyin"]
+	path = lib/ace-pinyin
+	url = https://github.com/cute-jumper/ace-pinyin.git
+[submodule "evil-find-char-pinyin"]
+	path = lib/evil-find-char-pinyin
+	url = https://github.com/cute-jumper/evil-find-char-pinyin.git

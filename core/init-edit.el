@@ -22,8 +22,9 @@
 
 ;; Jump to things in Emacs tree-style
 (leaf avy
-  :hook (after-init-hook . avy-setup-default)
+  :require t
   :config
+  (avy-setup-default)
   (setq avy-all-windows t
         avy-all-windows-alt t
         avy-background t
@@ -41,6 +42,13 @@
     (interactive)
     (let ((avy-command this-command))   ; for look up in avy-orders-alist
       (avy-jump "[]\[(){}]")))
+
+  ;; Pinyin support
+  (leaf ace-pinyin
+    :doc "deps: avy pinyinlib"
+    :require t
+    :init (setq ace-pinyin-simplified-chinese-only-p nil)
+    :config (ace-pinyin-global-mode +1))
   )
 
 (leaf vundo
