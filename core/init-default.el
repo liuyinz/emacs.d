@@ -226,19 +226,19 @@
   (setq hs-set-up-overlay #'display-code-line-counts)
 
   :config
-  ;; HACK hs-toggle-all
 
+  ;; HACK add command `hs-toggle-all'
   (defvar-local hs-all-hide-p nil)
-  (advice-add 'hs-show-all :after (lambda () (setq hs-all-hide-p nil)))
-  (advice-add 'hs-hide-all :after (lambda () (setq hs-all-hide-p t)))
-
   (defun hs-toggle-all ()
-    "Toggle all folds"
+    "Toggle all folds at once."
     (interactive)
     (hs-life-goes-on
      (if (bound-and-true-p hs-all-hide-p)
          (hs-show-all)
-       (hs-hide-all)))))
+       (hs-hide-all))))
+  (advice-add 'hs-show-all :after (lambda () (setq hs-all-hide-p nil)))
+  (advice-add 'hs-hide-all :after (lambda () (setq hs-all-hide-p t)))
+  )
 
 (setq isearch-lazy-count t)
 (setq vc-follow-symlinks t)
