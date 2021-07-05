@@ -213,8 +213,7 @@
 (leaf hideshow
   :hook (prog-mode-hook . hs-minor-mode)
   :init
-  (setq hs-isearch-open t
-        hs-hide-comments-when-hiding-all nil)
+  (setq hs-isearch-open t)
 
   ;; display more information
   (defun display-code-line-counts (ov)
@@ -228,7 +227,8 @@
 
   :config
   ;; HACK hs-toggle-all
-  (defvar hs-all-hide-p nil)
+
+  (defvar-local hs-all-hide-p nil)
   (advice-add 'hs-show-all :after (lambda () (setq hs-all-hide-p nil)))
   (advice-add 'hs-hide-all :after (lambda () (setq hs-all-hide-p t)))
 
@@ -236,10 +236,9 @@
     "Toggle all folds"
     (interactive)
     (hs-life-goes-on
-     (if hs-all-hide-p
+     (if (bound-and-true-p hs-all-hide-p)
          (hs-show-all)
-       (hs-hide-all))))
-  )
+       (hs-hide-all)))))
 
 (setq isearch-lazy-count t)
 (setq vc-follow-symlinks t)
