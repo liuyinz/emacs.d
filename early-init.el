@@ -31,7 +31,7 @@
 (tooltip-mode -1)
 
 (setq default-frame-alist
-      '((menu-bar-lines . 1)
+      '((menu-bar-lines . 0)
         (tool-bar-lines . 0)
         (vertical-scroll-bars . nil)
         (horizontal-scroll-bars . nil)

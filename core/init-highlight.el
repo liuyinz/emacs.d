@@ -34,7 +34,6 @@
   :init
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
-
         diff-hl-side 'left)
   :config
   ;; set fringe style
