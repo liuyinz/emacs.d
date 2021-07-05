@@ -44,7 +44,19 @@
       "Fringe bitmap function for use as `diff-hl-fringe-bmp-function'."
       (define-fringe-bitmap 'my-diff-hl-bmp
         (vector #b11100000) 1 8 '(center t)))
-    (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function))
+    (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function)
+
+    (unless (display-graphic-p)
+      (require 'diff-hl-margin)
+      (setq diff-hl-margin-symbols-alist
+            '((insert . "|") (delete . "|") (change . "|")
+              (unknown . "|") (ignored . "|")))
+      ;; Fall back to the display margin since the fringe is unavailable in tty
+      (diff-hl-margin-mode 1)
+      ;; Avoid restoring `diff-hl-margin-mode'
+      (with-eval-after-load 'desktop
+        (add-to-list 'desktop-minor-mode-table
+                     '(diff-hl-margin-mode nil)))))
 
   (leaf diff-hl-dired
     :hook (dired-mode-hook . diff-hl-dired-mode))
