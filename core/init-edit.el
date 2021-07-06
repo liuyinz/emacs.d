@@ -51,9 +51,8 @@
   )
 
 (leaf vundo
-  :commands vundo
-  :init
-  (setq vundo--window-max-height 5))
+  :hook (after-init-hook . vundo-ascii-mode)
+  :init (setq vundo--window-max-height 5))
 
 ;; undo history
 (leaf undohist
