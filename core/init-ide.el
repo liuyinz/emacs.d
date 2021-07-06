@@ -6,10 +6,10 @@
 (leaf dash-at-point
   :commands dash-at-point
   :config
-  (add-to-list 'dash-at-point-mode-alist '(js-mode . "javascript,backbone,angularjs"))
-  (add-to-list 'dash-at-point-mode-alist '(lisp-interaction-mode . "elisp"))
-  (add-to-list 'dash-at-point-mode-alist
-               '(css-mode . "css,bootstrap,foundation,less,awesome,emmet")))
+  (appendq! dash-at-point-mode-alist
+            '((js-mode . "javascript,backbone,angularjs")
+              (lisp-interaction-mode . "elisp")
+              (css-mode . "css,bootstrap,foundation,less,awesome,emmet"))))
 
 ;; Code Check , @https://www.flycheck.org/en/latest/
 (leaf flycheck
@@ -44,8 +44,9 @@
      ((eq major-mode 'python-mode) (when (executable-find "pylint")
                                      (flycheck-select-checker 'python-pylint)))
 
-     ((member major-mode '(js-mode js2-mode)) (when (executable-find "eslint")
-                                                (flycheck-select-checker 'javascript-eslint)))
+     ((member major-mode '(js-mode js2-mode))
+      (when (executable-find "eslint")
+        (flycheck-select-checker 'javascript-eslint)))
 
      (t nil))))
 
@@ -98,17 +99,15 @@
   ;; silent ensure message
   (advice-add #'format-all-ensure-formatter :around #'silent-message-advice)
   :config
-  (add-to-list 'format-all-default-formatters '("HTML" prettier))
-  (add-to-list 'format-all-default-formatters '("Shell" (shfmt "-i" "2")))
+  (appendq! format-all-default-formatters '(("HTML" prettier)
+                                            ("Shell" (shfmt "-i" "2"))))
+  (defun my-format ()
+    "Formating files."
+    (interactive)
+    (whitespace-cleanup)
+    (format-all-buffer))
   )
 
-(defun my-format ()
-  "Formating files."
-  (interactive)
-  (whitespace-cleanup)
-  (format-all-buffer))
-
-;; Terminal
 (leaf vterm
   :init
   (setenv "COLORTERM" "truecolor")
