@@ -11,6 +11,7 @@
   :hook (after-init-hook . doom-modeline-mode)
   :init
   (setq doom-modeline-icon nil
+        doom-modeline-bar-width 0
         doom-modeline-height 15
         doom-modeline-persp-name nil
         doom-modeline-irc nil
@@ -28,14 +29,16 @@
 
 (leaf ns-auto-titlebar
   :require t
-  :config
-  (ns-auto-titlebar-mode))
+  :config (ns-auto-titlebar-mode))
 
 ;; doom-theme
 (leaf doom-themes
-  :require t
-  :config
-  (load-theme 'doom-vibrant t)
+  :hook (after-init-hook . (lambda ()
+                             (require 'doom-themes)
+                             (load-theme 'doom-vibrant t)))
+  ;; :require t
+  ;; :config
+  ;; (load-theme 'doom-vibrant t)
   :init
   (add-hook 'after-load-theme-hook #'my/doom-theme-adjust)
   (defun my/doom-theme-adjust ()

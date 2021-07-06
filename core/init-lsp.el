@@ -31,14 +31,12 @@
   (leaf lsp-modeline :require t))
 
 (leaf lsp-pyright
-  :require t
   :doc "deps: ht dash"
   :hook (python-mode-hook . (lambda ()
                               (require 'lsp-pyright)
                               (lsp-deferred))))
 
 (leaf ccls
-  :require t
   :doc "deps : ccls"
   :hook ((c-mode-hook
           c++-mode-hook

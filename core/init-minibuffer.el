@@ -16,8 +16,8 @@
 
 ;; filtering
 (leaf orderless
-  :after vertico
   :require t
+  :after vertico
   :init
   (setq completion-styles '(basic partial-completion orderless)
         completion-category-defaults nil
@@ -68,8 +68,8 @@
   )
 
 (leaf consult
-  :after vertico
   :require t
+  :after vertico
   :init
   (setq consult-async-min-input 1)
   (setq consult-find-command "fd --color=never --full-path ARG OPTS")
@@ -114,8 +114,8 @@
    ))
 
 (leaf embark
-  :after consult
   :require t
+  :after consult
   ;; :init (setq embark-prompter 'embark-completing-read-prompter)
   :config
   (leaf embark-consult :require t)

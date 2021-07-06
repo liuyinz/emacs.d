@@ -28,7 +28,9 @@
 
   (setq company-backends '(company-capf
                            (company-dabbrev-code company-keywords company-files)
-                           company-dabbrev company-gtags company-etags))
+                           company-dabbrev
+                           ;; company-gtags company-etags
+                           ))
 
   :config
 

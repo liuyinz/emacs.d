@@ -11,44 +11,44 @@
               (lisp-interaction-mode . "elisp")
               (css-mode . "css,bootstrap,foundation,less,awesome,emmet"))))
 
-;; Code Check , @https://www.flycheck.org/en/latest/
+;; Code Check , see@https://www.flycheck.org/en/latest/
 (leaf flycheck
   :doc "deps: pkg-info dash"
-  :hook (prog-mode-hook . my/flycheck-setup)
+  :hook
+  (prog-mode-hook . flycheck-mode)
+  (flycheck-mode-hook . my/flycheck-setup)
   :init
-  ;; may needed by some command
-  (leaf pkg-info
-    :doc "deps: epl"
-    :require t)
-
   (setq flycheck-stylelintrc "~/.stylelintrc.json"
         flycheck-tidyrc "~/.tidyrc"
         flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save mode-enabled)
         flycheck-indication-mode 'right-margin)
 
+  (defun my/flycheck-setup ()
+    "set checker for different buffer"
+    (cond
+     ((eq major-mode 'sh-mode) (when (and (string-match "\\.sh$" buffer-file-name)
+                                          (executable-find "shellcheck"))
+                                 (flycheck-select-checker 'sh-shellcheck)))
+     ;; pip3 install pylint rather than brew.
+     ((eq major-mode 'python-mode) (when (executable-find "pylint")
+                                     (flycheck-select-checker 'python-pylint)))
+     ((member major-mode '(js-mode js2-mode))
+      (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint)))
+     (t nil)))
+
+  ;; ;; may needed by some command
+  ;; (leaf pkg-info
+  ;;   :doc "deps: epl"
+  ;;   :require t)
+
   ;; ;; Prettify fringe style
   ;; (when (fboundp 'define-fringe-bitmap)
   ;;   (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
   ;;     [16 48 112 240 112 48 16] nil nil 'center))
 
-  (defun my/flycheck-setup ()
-    "set checker for different buffer"
-    (flycheck-mode)
-    (cond
-     ((eq major-mode 'sh-mode) (when (and (string-match "\\.sh$" buffer-file-name)
-                                          (executable-find "shellcheck"))
-                                 (flycheck-select-checker 'sh-shellcheck)))
+  )
 
-     ;; pip3 install pylint rather than brew.
-     ((eq major-mode 'python-mode) (when (executable-find "pylint")
-                                     (flycheck-select-checker 'python-pylint)))
-
-     ((member major-mode '(js-mode js2-mode))
-      (when (executable-find "eslint")
-        (flycheck-select-checker 'javascript-eslint)))
-
-     (t nil))))
 
 ;; Code Running, @https://github.com/emacsorphanage/quickrun#customize
 (leaf quickrun

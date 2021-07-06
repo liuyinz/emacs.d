@@ -9,9 +9,10 @@
   (setq leaf-expand-minimally nil)
   (setq leaf-defaults '(:ensure nil)))
 
-(leaf leaf-keywords
-  :require t
-  :config (leaf-keywords-init))
+;; (leaf leaf-keywords
+;;   :require t
+;;   :init (setq leaf-keywords-packages-list nil)
+;;   :config (leaf-keywords-init))
 
 ;; keep ~/.emacs.d clean
 (leaf no-littering
@@ -33,11 +34,11 @@
   (with-eval-after-load 'yasnippet
     (setq yas-snippet-dirs '(my-dir-snippet))))
 
-(leaf auto-compile
-  :doc "deps: packed"
-  :require t
-  :config
-  (auto-compile-on-load-mode))
+;; (leaf auto-compile
+;;   :doc "deps: packed"
+;;   :require t
+;;   :config
+;;   (auto-compile-on-load-mode))
 
 ;; Environment
 (leaf exec-path-from-shell

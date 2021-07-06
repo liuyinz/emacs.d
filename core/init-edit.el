@@ -22,9 +22,8 @@
 
 ;; Jump to things in Emacs tree-style
 (leaf avy
-  :require t
+  :hook (after-init-hook . avy-setup-default)
   :config
-  (avy-setup-default)
   (setq avy-all-windows t
         avy-all-windows-alt t
         avy-background t
