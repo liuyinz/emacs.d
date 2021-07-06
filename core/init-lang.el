@@ -12,7 +12,11 @@
         ;; js-jsx-syntax t
         ))
 
-(leaf nodejs-repl :require t)
+(leaf nodejs-repl
+  :commands (nodejs-repl
+             nodejs-repl-send-line
+             nodejs-repl-send-region
+             nodejs-repl-send-last-expression))
 
 (leaf typescript-mode :mode "\\.ts[x]\\'")
 
@@ -57,7 +61,7 @@
 
 (leaf python-mode :mode "\\.pythonrc\\'")
 
-(leaf osx-plist :require t)
+(leaf osx-plist :mode "\\.plist\\'")
 
 ;; (leaf mermaid-mode :require t)
 

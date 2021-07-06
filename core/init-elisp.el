@@ -103,7 +103,14 @@ Lisp function does not specify a special indentation."
 ;; A better *Help* buffer
 (leaf helpful
   :doc "deps: f s dash elisp-refs"
-  :require t)
+  :commands (helpful-macro
+             helpful-symbol
+             helpful-key
+             helpful-callable
+             helpful-command
+             helpful-at-point
+             helpful-variable
+             helpful-function))
 
 (provide 'init-elisp)
 ;;; init-elisp.el ends here

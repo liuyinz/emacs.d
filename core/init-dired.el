@@ -17,7 +17,9 @@
     ;; Use GNU ls as `gls' from `coreutils' if available.
     (setq insert-directory-program "gls")
     ;; Show directory first
-    (setq dired-listing-switches "-alh --group-directories-first")))
+    (setq dired-listing-switches "-alh --group-directories-first"))
+  :config
+  (leaf dired-single :require t))
 
 ;; Extra Dired functionality
 ;; (leaf dired-aux)
@@ -41,8 +43,6 @@
   (setq dired-omit-files
         (concat dired-omit-files
                 "\\|^.DS_Store$\\|^.projectile$\\|^.git*\\|^.cache*\\|^.svn$\\|^.vscode$\\|\\.js\\.meta$\\|\\.meta$\\|\\.elc$\\|^.emacs.*")))
-
-(leaf dired-single :require t)
 
 ;; Colourful dired
 (leaf diredfl

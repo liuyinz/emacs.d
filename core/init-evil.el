@@ -50,6 +50,8 @@
   (appendq! evil-buffer-regexps '(("\\`\\*Emacs Log\\*\\'" . emacs)))
 
   (dolist (p '((anaconda-nav-mode . emacs)
+               (benchmark-init/tabulated-mode . normal)
+               (benchmark-init/tree-mode . normal)
                (calendar-mode . emacs)
                (compilation-mode . emacs)
                (dired-mode . emacs)

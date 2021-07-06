@@ -16,6 +16,7 @@
 
 ;; filtering
 (leaf orderless
+  :after vertico
   :require t
   :init
   (setq completion-styles '(basic partial-completion orderless)
@@ -67,6 +68,7 @@
   )
 
 (leaf consult
+  :after vertico
   :require t
   :init
   (setq consult-async-min-input 1)
@@ -81,7 +83,9 @@
   (require 'consult-xref)
   (require 'consult-compile)
   (require 'consult-register)
-  (leaf consult-flycheck :require t)
+
+  (with-eval-after-load 'flycheck
+    (leaf consult-flycheck :require t))
 
   (when (bound-and-true-p vertico-mode)
     (setq completion-in-region-function #'consult-completion-in-region))
