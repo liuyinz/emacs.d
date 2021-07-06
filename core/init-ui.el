@@ -104,6 +104,8 @@
      ;; highlight-defined
      '(highlight-defined-function-name-face
        ((t (:inherit font-lock-variable-name-face))))
+     ;; window
+     '(vertical-border ((t (:background nil))))
      ;; rg.el
      )))
 

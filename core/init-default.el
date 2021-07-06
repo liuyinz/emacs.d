@@ -288,6 +288,24 @@
   (advice-add 'hs-hide-all :after (lambda () (setq hs-all-hide-p t)))
   )
 
+(leaf frame
+  :init
+  ;; cursor
+  (setq blink-cursor-blinks 0)
+  ;; HACK set vertical split bar to "│"
+  ;; see @https://www.reddit.com/r/emacs/comments/5tm9zy/vertical_split_bar/ddnw72f?utm_source=share&utm_medium=web2x&context=3
+  (set-display-table-slot standard-display-table 'vertical-border ?│))
+
+(leaf xt-mouse
+  :config
+  (xterm-mouse-mode)
+  (global-set-key [mouse-4] (lambda ()
+                              (interactive)
+                              (scroll-down 1)))
+  (global-set-key [mouse-5] (lambda ()
+                              (interactive)
+                              (scroll-up 1))))
+
 (setq isearch-lazy-count t)
 (setq vc-follow-symlinks t)
 
@@ -384,8 +402,6 @@
 (if (get-buffer "*scratch*")
     (setq default-directory "~/"))
 
-;; cursor
-(setq blink-cursor-blinks 0)
 ;; HACK move cursor to corner when minibuffer is set up
 (require 'avoid)
 (add-hook 'minibuffer-setup-hook #'mouse-avoidance-banish)

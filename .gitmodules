@@ -330,3 +330,6 @@
 [submodule "evil-find-char-pinyin"]
 	path = lib/evil-find-char-pinyin
 	url = https://github.com/cute-jumper/evil-find-char-pinyin.git
+[submodule "xclip"]
+	path = lib/xclip
+	url = https://github.com/emacsmirror/xclip.git
