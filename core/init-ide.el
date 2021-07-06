@@ -25,12 +25,12 @@
         flycheck-tidyrc "~/.tidyrc"
         flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save mode-enabled)
-        flycheck-indication-mode 'right-fringe)
+        flycheck-indication-mode 'right-margin)
 
-  ;; Prettify fringe style
-  (when (fboundp 'define-fringe-bitmap)
-    (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
-      [16 48 112 240 112 48 16] nil nil 'center))
+  ;; ;; Prettify fringe style
+  ;; (when (fboundp 'define-fringe-bitmap)
+  ;;   (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
+  ;;     [16 48 112 240 112 48 16] nil nil 'center))
 
   (defun my/flycheck-setup ()
     "set checker for different buffer"

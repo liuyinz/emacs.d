@@ -311,8 +311,10 @@
               fringes-outside-margins t
               fringe-indicator-alist nil
               indent-tabs-mode nil
-              left-margin-width 0
-              right-margin-width 0
+              left-margin-width 1
+              right-margin-width 1
+              left-fringe-width 0
+              right-fringe-width 0
               default-directory "~")
 
 ;; Disable bidirectional text rendering for a modest performance boost. I've set

@@ -36,27 +36,20 @@
         diff-hl-ask-before-revert-hunk nil
         diff-hl-side 'left)
   :config
-  ;; set fringe style
-  (setq-default fringes-outside-margins t)
+  ;; (with-no-warnings
+  ;;   (defun my-diff-hl-fringe-bmp-function (_type _pos)
+  ;;     "Fringe bitmap function for use as `diff-hl-fringe-bmp-function'."
+  ;;     (define-fringe-bitmap 'my-diff-hl-bmp
+  ;;       (vector #b11100000) 1 8 '(center t)))
+  ;;   (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function)
 
-  (with-no-warnings
-    (defun my-diff-hl-fringe-bmp-function (_type _pos)
-      "Fringe bitmap function for use as `diff-hl-fringe-bmp-function'."
-      (define-fringe-bitmap 'my-diff-hl-bmp
-        (vector #b11100000) 1 8 '(center t)))
-    (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function)
-
-    (unless (display-graphic-p)
-      (require 'diff-hl-margin)
-      (setq diff-hl-margin-symbols-alist
-            '((insert . "|") (delete . "|") (change . "|")
-              (unknown . "|") (ignored . "|")))
-      ;; Fall back to the display margin since the fringe is unavailable in tty
-      (diff-hl-margin-mode 1)
-      ;; Avoid restoring `diff-hl-margin-mode'
-      (with-eval-after-load 'desktop
-        (add-to-list 'desktop-minor-mode-table
-                     '(diff-hl-margin-mode nil)))))
+  (leaf diff-hl-margin
+    :hook (diff-hl-mode-hook . diff-hl-margin-mode)
+    :init
+    ;; HACK (char-to-string ?\x2502) => "│"
+    (setq diff-hl-margin-symbols-alist '((insert  . "\x2502") (delete  . "\x2502")
+                                         (change  . "\x2502") (unknown . "\x2502")
+                                         (ignored . "\x2502"))))
 
   (leaf diff-hl-dired
     :hook (dired-mode-hook . diff-hl-dired-mode))
