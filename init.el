@@ -54,7 +54,7 @@
 
 ;; load core config
 (with-temp-message ""
-  ;; (require 'init-benchmark)
+  (require 'init-benchmark)
   (require 'init-sys)
   (require 'init-default)
   (require 'init-evil)

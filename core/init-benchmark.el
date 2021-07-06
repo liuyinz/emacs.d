@@ -2,6 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
+;; HACK see@https://github.com/dholm/benchmark-init-el/issues/15#issuecomment-766083560
+(define-advice define-obsolete-function-alias (:filter-args (ll) fix-obsolete)
+  (let ((obsolete-name (pop ll))
+        (current-name (pop ll))
+        (when (if ll (pop ll) "1"))
+        (docstring (if ll (pop ll) nil)))
+    (list obsolete-name current-name when docstring)))
+
 (require 'benchmark-init-modes)
 (require 'benchmark-init)
 (benchmark-init/activate)
