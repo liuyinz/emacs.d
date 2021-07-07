@@ -111,7 +111,10 @@
   :init
   (defun my/vterm-setup ()
     (require 'vterm)
+    ;; make vterm colorful
     (setenv "COLORTERM" "truecolor")
+    (setenv "LC_ALL" "en_US.UTF-8")
+
     (setq vterm-always-compile-module t
           vterm-kill-buffer-on-exit t
           vterm-clear-scrollback-when-clearing nil

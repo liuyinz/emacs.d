@@ -395,10 +395,6 @@
 (setq locale-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 
-(setenv "LC_ALL" "en_US.UTF-8")
-;; make vterm colorful
-(setenv "COLORTERM" "truecolor")
-
 ;; Don't ask me when kill process buffer
 (setq kill-buffer-query-functions
       (remq 'process-kill-buffer-query-function
