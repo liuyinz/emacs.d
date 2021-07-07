@@ -42,7 +42,6 @@
      ;; vertico
      '(vertico-current ((t (:foreground "white"
                             :background "#484e5f"
-                            :weight bold
                             :extend t))))
      ;; orderless
      '(orderless-match-face-0 ((t (:inherit font-lock-string-face
