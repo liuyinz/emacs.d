@@ -34,11 +34,26 @@
   (with-eval-after-load 'yasnippet
     (setq yas-snippet-dirs '(my-dir-snippet))))
 
-;; (leaf auto-compile
-;;   :doc "deps: packed"
-;;   :require t
-;;   :config
-;;   (auto-compile-on-load-mode))
+(leaf packed
+  :config
+  (defun packed-ignore-directory-p-patch (directory)
+    (or (string-prefix-p "." (file-name-nondirectory
+                              (directory-file-name directory)))
+        (file-exists-p (expand-file-name ".nosearch" directory))
+        (string-match-p "\\b\\(test\\|TEST\\)[sS]?\\b"
+                        (file-name-nondirectory
+                         (directory-file-name directory)))))
+  (advice-add 'packed-ignore-directory-p :override #'packed-ignore-directory-p-patch)
+  )
+
+(leaf auto-compile
+  :doc "deps: packed"
+  :commands toggle-auto-compile
+  :init
+  (setq auto-compile-visit-failed nil
+        auto-compile-ding nil
+        auto-compile-update-autoloads t
+        auto-compile-toggle-recompiles nil))
 
 ;; Environment
 (leaf exec-path-from-shell
