@@ -36,15 +36,14 @@
 
 (leaf packed
   :config
+  (defvar packed-ignore-directory-regexp
+    "\\(?:^\\.\\|CVS\\|RCS\\|^t$\\|^tests?$\\|^vendor$\\|^script$\\)")
   (defun packed-ignore-directory-p-patch (directory)
-    (or (string-prefix-p "." (file-name-nondirectory
-                              (directory-file-name directory)))
-        (file-exists-p (expand-file-name ".nosearch" directory))
-        (string-match-p "\\b\\(test\\|TEST\\)[sS]?\\b"
-                        (file-name-nondirectory
-                         (directory-file-name directory)))))
-  (advice-add 'packed-ignore-directory-p :override #'packed-ignore-directory-p-patch)
-  )
+    (or (string-match packed-ignore-directory-regexp
+                      (file-name-nondirectory
+                       (directory-file-name directory)))
+        (file-exists-p (expand-file-name ".nosearch" directory))))
+  (advice-add 'packed-ignore-directory-p :override #'packed-ignore-directory-p-patch))
 
 (leaf auto-compile
   :doc "deps: packed"
