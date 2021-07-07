@@ -92,7 +92,7 @@ mermaid.initialize({
 (leaf grip-mode
   :doc " pip install grip"
   :commands grip-restart-preview grip-start-preview grip-stop-preview
-  :init
+  :config
   ;; use macos-keychain
   (let ((credential (auth-source-user-and-password "github.com")))
     (setq grip-github-user (car credential)
