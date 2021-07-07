@@ -315,12 +315,11 @@
 (setq isearch-lazy-count t)
 (setq vc-follow-symlinks t)
 
-;; c source
 ;; Misc
 (setq use-short-answers t
       use-file-dialog nil
       use-dialog-box nil
-      echo-keystrokes 0.1
+      echo-keystrokes 0.02
       ad-redefinition-action 'accept
       delete-by-moving-to-trash t
       inhibit-compacting-font-caches t
