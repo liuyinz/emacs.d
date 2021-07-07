@@ -406,8 +406,8 @@
     (setq default-directory "~/"))
 
 ;; HACK move cursor to corner when minibuffer is set up
-(require 'avoid)
-(add-hook 'minibuffer-setup-hook #'mouse-avoidance-banish)
+(leaf avoid
+  :hook (after-make-window-system-frame-hook . mouse-avoidance-mode))
 
 ;; minibuffer
 ;; Grow and shrink minibuffer
