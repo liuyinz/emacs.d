@@ -47,9 +47,9 @@
           ;; ("*Emacs Log*" :size 0.3 :align 'right)
           )))
 
-(leaf transpose-frame :require t)
+(leaf transpose-frame :commands transpose-frame)
 
-(leaf zoom :require t)
+(leaf zoom :commands zoom)
 
 (provide 'init-window)
 ;;; init-window.el ends here

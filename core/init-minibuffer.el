@@ -114,8 +114,7 @@
    ))
 
 (leaf embark
-  :require t
-  :after consult
+  :commands embark-act embark-become
   ;; :init (setq embark-prompter 'embark-completing-read-prompter)
   :config
   (leaf embark-consult :require t)
