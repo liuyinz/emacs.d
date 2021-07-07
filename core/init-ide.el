@@ -25,15 +25,27 @@
   (defun my/flycheck-setup ()
     "set checker for different buffer"
     (cond
-     ((eq major-mode 'sh-mode) (when (and (string-match "\\.sh$" buffer-file-name)
-                                          (executable-find "shellcheck"))
-                                 (flycheck-select-checker 'sh-shellcheck)))
-     ;; pip3 install pylint rather than brew.
-     ((eq major-mode 'python-mode) (when (executable-find "pylint")
-                                     (flycheck-select-checker 'python-pylint)))
+     ((member major-mode '(emacs-lisp-mode lisp-interaction-mode))
+      (leaf flycheck-relint
+        :require t
+        :config (flycheck-relint-setup)))
+
+     ((eq major-mode 'sh-mode)
+      (when (and (string-match "\\.sh$" buffer-file-name)
+                 (executable-find "shellcheck"))
+        (flycheck-select-checker 'sh-shellcheck)))
+
+     ;; NOTE pip3 install pylint rather than brew.
+     ((eq major-mode 'python-mode)
+      (when (executable-find "pylint")
+        (flycheck-select-checker 'python-pylint)))
+
      ((member major-mode '(js-mode js2-mode))
-      (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint)))
+      (when (executable-find "eslint")
+        (flycheck-select-checker 'javascript-eslint)))
+
      (t nil)))
+
   (add-hook 'flycheck-mode-hook #'my/flycheck-setup)
 
   ;; ;; may needed by some command

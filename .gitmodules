@@ -339,3 +339,9 @@
 [submodule "xr"]
 	path = lib/xr
 	url = https://github.com/mattiase/xr.git
+[submodule "relint"]
+	path = lib/relint
+	url = https://github.com/mattiase/relint.git
+[submodule "flycheck-relint"]
+	path = lib/flycheck-relint
+	url = https://github.com/purcell/flycheck-relint.git
