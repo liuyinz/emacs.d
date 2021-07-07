@@ -291,8 +291,10 @@
 
 (leaf frame
   :init
-  ;; cursor
   (setq blink-cursor-blinks 0)
+  ;; HACK menu-bar-mode would called forced before gui-frame in Macos
+  (add-hook 'after-make-window-system-frame-hook (lambda () (menu-bar-mode -1)))
+
   ;; HACK set vertical split bar to "│"
   ;; see @https://www.reddit.com/r/emacs/comments/5tm9zy/vertical_split_bar/ddnw72f?utm_source=share&utm_medium=web2x&context=3
   (set-display-table-slot standard-display-table 'vertical-border ?│))
