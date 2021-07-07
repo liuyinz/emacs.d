@@ -407,10 +407,6 @@
 (if (get-buffer "*scratch*")
     (setq default-directory "~/"))
 
-;; HACK move cursor to corner when minibuffer is set up
-(leaf avoid
-  :hook (after-make-window-system-frame-hook . mouse-avoidance-mode))
-
 ;; minibuffer
 ;; Grow and shrink minibuffer
 ;; (setq resize-mini-windows t)
