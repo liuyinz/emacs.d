@@ -47,9 +47,12 @@
     :hook (diff-hl-mode-hook . diff-hl-margin-mode)
     :init
     ;; HACK (char-to-string ?\x2502) => "│"
-    (setq diff-hl-margin-symbols-alist '((insert  . "\x2502") (delete  . "\x2502")
-                                         (change  . "\x2502") (unknown . "\x2502")
-                                         (ignored . "\x2502"))))
+    (setq diff-hl-margin-symbols-alist
+          '((insert  . "\x2502")
+            (delete  . "\x2502")
+            (change  . "\x2502")
+            (unknown . "\x2502")
+            (ignored . "\x2502"))))
 
   (leaf diff-hl-dired
     :hook (dired-mode-hook . diff-hl-dired-mode))

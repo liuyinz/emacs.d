@@ -6,6 +6,9 @@
 
 (require 'subr-x)
 
+(leaf ns-auto-titlebar
+  :hook (after-make-window-system-frame-hook . ns-auto-titlebar-mode))
+
 (leaf doom-modeline
   :doc "deps: all-the-icons emacs-async"
   :hook (after-init-hook . doom-modeline-mode)
@@ -27,10 +30,6 @@
         doom-modeline-buffer-file-name-style 'truncate-with-project
         doom-modeline-env-python-executable "/usr/local/bin/python3"))
 
-(leaf ns-auto-titlebar
-  :hook (after-make-window-system-frame-hook . ns-auto-titlebar-mode))
-
-;; doom-theme
 (leaf doom-themes
   :hook (after-init-hook . (lambda ()
                              (require 'doom-themes)

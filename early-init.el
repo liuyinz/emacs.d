@@ -27,9 +27,6 @@
         (:eval (if (buffer-modified-p)
                    " *"))))
 
-;; disable tooltip-mode
-(tooltip-mode -1)
-
 (setq default-frame-alist
       '((menu-bar-lines . 0)
         (tool-bar-lines . 0)
@@ -40,7 +37,7 @@
         (alpha . (98 . 100))
         (fullscreen . fullheight)
         (width . 88)   ; half 88,full 177
-        ;; (background-mode . dark)
+        (background-mode . dark)
         ;; (background-color . "#242730")
         ;; (foreground-color . "#bbc2cf")
         ;; (ns-appearance . dark)
