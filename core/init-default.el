@@ -18,7 +18,8 @@
   (setq server-client-instructions nil)
   :hook (after-init-hook . (lambda ()
                              (require 'server)
-                             (unless (server-running-p)
+                             ;; (unless (server-running-p)
+                             (unless (daemonp)
                                (server-start)))))
 
 (leaf saveplace
