@@ -279,32 +279,5 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   (run-hooks 'after-load-theme-hook))
 (advice-add #'load-theme :after #'run-after-load-theme-hook)
 
-;; frame
-;; HACK see@https://www.reddit.com/r/emacs/comments/lelbr5/how_to_start_emacsclient_such_that_it_respects_my/gmhbyv7?utm_source=share&utm_medium=web2x&context=3
-(defvar after-make-console-frame-hook '()
-  "Hooks to run after creating a new TTY frame.")
-
-(defvar after-make-window-system-frame-hook '()
-  "Hooks to run after creating a new `window-system' frame.")
-
-(defun run-after-make-frame-hooks (frame)
-  "Run configured hooks in response to the newly-created FRAME.
-Selectively runs either `after-make-console-frame-hooks' or
-`after-make-window-system-frame-hooks'"
-  (with-selected-frame frame
-    (run-hooks (unless (daemonp)
-                 (if (display-graphic-p)
-                     'after-make-window-system-frame-hook
-                   'after-make-console-frame-hook)))))
-
-(add-hook 'after-make-frame-functions 'run-after-make-frame-hooks)
-
-(defconst my/initial-frame (selected-frame)
-  "The frame (if any) active during Emacs initialization.")
-
-(add-hook 'after-init-hook
-          (lambda () (when my/initial-frame
-                       (run-after-make-frame-hooks my/initial-frame))))
-
 (provide 'init-lib)
 ;;; init-lib.el ends here

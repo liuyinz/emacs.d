@@ -57,6 +57,7 @@
   (require 'init-benchmark)
   (require 'init-sys)
   (require 'init-default)
+  (require 'init-frame)
   (require 'init-evil)
   (require 'init-completion)
   (require 'init-minibuffer)
