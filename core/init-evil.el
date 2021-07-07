@@ -122,7 +122,6 @@
     (push '(?= . ("=" . "=")) evil-surround-pairs-alist)))
 
 (leaf evil-nerd-commenter
-  :after evil
   :commands evilnc-comment-or-uncomment-lines evilnc-copy-and-comment-lines)
 
 ;; Pinyin support
@@ -131,9 +130,7 @@
   :hook (evil-mode-hook . evil-find-char-pinyin-mode))
 
 (leaf evil-terminal-cursor-changer
-  :hook (after-make-console-frame-hook . etcc-mode)
-  :init
-  (setq etcc-use-color t))
+  :hook (after-make-console-frame-hook . etcc-mode))
 
 (provide 'init-evil)
 ;;; init-evil.el ends here

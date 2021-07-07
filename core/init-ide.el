@@ -14,9 +14,7 @@
 ;; Code Check , see@https://www.flycheck.org/en/latest/
 (leaf flycheck
   :doc "deps: pkg-info dash"
-  :hook
-  (prog-mode-hook . flycheck-mode)
-  (flycheck-mode-hook . my/flycheck-setup)
+  :hook (prog-mode-hook . flycheck-mode)
   :init
   (setq flycheck-stylelintrc "~/.stylelintrc.json"
         flycheck-tidyrc "~/.tidyrc"
@@ -36,6 +34,7 @@
      ((member major-mode '(js-mode js2-mode))
       (when (executable-find "eslint") (flycheck-select-checker 'javascript-eslint)))
      (t nil)))
+  (add-hook 'flycheck-mode-hook #'my/flycheck-setup)
 
   ;; ;; may needed by some command
   ;; (leaf pkg-info
@@ -108,20 +107,20 @@
     (format-all-buffer))
   )
 
-(leaf vterm
-  :init
-  (setenv "COLORTERM" "truecolor")
-  (setq vterm-always-compile-module t
-        vterm-kill-buffer-on-exit t
-        vterm-clear-scrollback-when-clearing nil
-        vterm-max-scrollback 10000)
-  :defer-config
-  (add-to-list 'vterm-keymap-exceptions "C-o"))
-
 (leaf vterm-toggle
-  :commands vterm-toggle
   :init
-  (setq vterm-toggle-fullscreen-p nil))
+  (defun my/vterm-setup ()
+    (require 'vterm)
+    (setenv "COLORTERM" "truecolor")
+    (setq vterm-always-compile-module t
+          vterm-kill-buffer-on-exit t
+          vterm-clear-scrollback-when-clearing nil
+          vterm-max-scrollback 10000)
+    (add-to-list 'vterm-keymap-exceptions "C-o")
+    (require 'vterm-toggle)
+    (setq vterm-toggle-fullscreen-p nil))
+  (add-hook 'after-make-window-system-frame-hook #'my/vterm-setup)
+  )
 
 (provide 'init-ide)
 

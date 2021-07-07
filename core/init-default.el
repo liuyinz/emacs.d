@@ -297,14 +297,17 @@
   (set-display-table-slot standard-display-table 'vertical-border ?│))
 
 (leaf xt-mouse
-  :config
-  (xterm-mouse-mode)
-  (global-set-key [mouse-4] (lambda ()
-                              (interactive)
-                              (scroll-down 1)))
-  (global-set-key [mouse-5] (lambda ()
-                              (interactive)
-                              (scroll-up 1))))
+  :init
+  (defun my/mouse-setup ()
+    "enable mouse and keybindings in eamcs -nw"
+    (xterm-mouse-mode)
+    (global-set-key [mouse-4] (lambda ()
+                                (interactive)
+                                (scroll-down 1)))
+    (global-set-key [mouse-5] (lambda ()
+                                (interactive)
+                                (scroll-up 1))))
+  (add-hook 'after-make-console-frame-hook #'my/mouse-setup))
 
 (setq isearch-lazy-count t)
 (setq vc-follow-symlinks t)

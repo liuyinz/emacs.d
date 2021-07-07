@@ -28,8 +28,7 @@
         doom-modeline-env-python-executable "/usr/local/bin/python3"))
 
 (leaf ns-auto-titlebar
-  :require t
-  :config (ns-auto-titlebar-mode))
+  :hook (after-make-window-system-frame-hook . ns-auto-titlebar-mode))
 
 ;; doom-theme
 (leaf doom-themes

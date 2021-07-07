@@ -42,7 +42,7 @@
 
 ;; Environment
 (leaf exec-path-from-shell
-  :require t
+  :hook (after-make-console-frame-hook . exec-path-from-shell-initialize)
   :init
   (setq exec-path-from-shell-check-startup-files nil
         exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
@@ -55,9 +55,7 @@
     (when (not cache-path-from-shell-loaded-p)
       (funcall fn)
       (setq cache-path-from-shell-loaded-p t)))
-  (advice-add 'exec-path-from-shell-initialize :around #'cache-path-from-shell-advice)
-
-  (exec-path-from-shell-initialize))
+  (advice-add 'exec-path-from-shell-initialize :around #'cache-path-from-shell-advice))
 
 (provide 'init-sys)
 ;;; init-sys.el ends here
