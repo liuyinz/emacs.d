@@ -333,3 +333,6 @@
 [submodule "xclip"]
 	path = lib/xclip
 	url = https://github.com/emacsmirror/xclip.git
+[submodule "evil-terminal-cursor-changer"]
+	path = lib/evil-terminal-cursor-changer
+	url = https://github.com/7696122/evil-terminal-cursor-changer.git
