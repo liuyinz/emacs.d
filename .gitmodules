@@ -336,3 +336,6 @@
 [submodule "evil-terminal-cursor-changer"]
 	path = lib/evil-terminal-cursor-changer
 	url = https://github.com/7696122/evil-terminal-cursor-changer.git
+[submodule "xr"]
+	path = lib/xr
+	url = https://github.com/mattiase/xr.git
