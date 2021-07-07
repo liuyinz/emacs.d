@@ -36,9 +36,6 @@
   :hook (after-init-hook . (lambda ()
                              (require 'doom-themes)
                              (load-theme 'doom-vibrant t)))
-  ;; :require t
-  ;; :config
-  ;; (load-theme 'doom-vibrant t)
   :init
   (add-hook 'after-load-theme-hook #'my/doom-theme-adjust)
   (defun my/doom-theme-adjust ()
