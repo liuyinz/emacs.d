@@ -66,6 +66,9 @@
                              (column-number-mode)
                              (size-indication-mode))))
 
+(leaf so-long
+  :hook (after-init-hook . global-so-long-mode))
+
 (leaf webjump
   :init
   (setq webjump-sites '(
