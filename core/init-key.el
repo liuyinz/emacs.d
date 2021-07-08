@@ -3,6 +3,8 @@
 ;;; Code:
 
 ;; key repeat speed on macOS, @https://stackoverflow.com/a/1052296/13194984
+;; NOTE see@http://ergoemacs.org/emacs/emacs_key_notation_return_vs_RET.html
+;; see@http://ergoemacs.org/emacs/keystroke_rep.html
 
 (defun evil-vundo-undo ()
   "Hybrid evil and vundo."
@@ -133,6 +135,7 @@
 
   ;; vertico
   (evil-define-key nil vertico-map
+    (kbd "ESC") 'minibuffer-keyboard-quit
     (kbd "<escape>") 'minibuffer-keyboard-quit
     ;; embark
     (kbd "C-l") 'embark-act
@@ -157,6 +160,7 @@
 
   ;;transient
   (evil-define-key nil transient-map
+    (kbd "ESC") 'transient-quit-one
     (kbd "<escape>") 'transient-quit-one)
 
   ;; dired
@@ -172,6 +176,7 @@
 
   ;; company
   (evil-define-key nil company-active-map
+    (kbd "ESC") 'company-abort
     (kbd "<escape>") 'company-abort
     (kbd "C-n") 'company-complete-common-or-cycle
     (kbd "C-s") 'company-filter-candidates
@@ -187,6 +192,7 @@
 
   (evil-define-key nil company-search-map
     (kbd "<escape>") 'company-search-abort
+    (kbd "ESC") 'company-search-abort
     (kbd "C-n") 'company-select-next
     (kbd "C-p") 'company-select-previous)
 
@@ -195,7 +201,9 @@
     ;; "" 'wgrep-mark-deletion
     "ZQ" 'wgrep-abort-changes
     "ZZ" 'wgrep-finish-edit
-    (kbd "<escape>") 'wgrep-exit)
+    (kbd "ESC") 'wgrep-exit
+    (kbd "<escape>") 'wgrep-exit
+    )
 
   ;;elisp-mode
   (evil-define-key nil emacs-lisp-mode-map
@@ -228,7 +236,9 @@
     "h" 'vundo-backward
     "j" 'vundo-next
     "k" 'vundo-previous
-    (kbd "<escape>") 'vundo-quit)
+    (kbd "ESC") 'vundo-quit
+    (kbd "<escape>") 'vundo-quit
+    )
 
   (evil-define-key 'normal hl-todo-mode-map
     "[h" 'hl-todo-previous
