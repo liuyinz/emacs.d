@@ -5,6 +5,7 @@
 ;;; Code:
 
 ;; Regexp
+;; NOTE see@https://www.emacswiki.org/emacs/RegularExpression
 (leaf xr
   :commands xr xr-pp xr-lint
   ;; :init
