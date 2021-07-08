@@ -46,13 +46,14 @@
   (leaf diff-hl-margin
     :hook (diff-hl-mode-hook . diff-hl-margin-mode)
     :init
-    ;; HACK (char-to-string ?\x2502) => "│"
+    ;; NOTE see@https://www.htmlsymbols.xyz/box-drawing
+    ;; HACK (char-to-string ?\x258d) => "▍"
     (setq diff-hl-margin-symbols-alist
-          '((insert  . "\x2502")
-            (delete  . "\x2502")
-            (change  . "\x2502")
-            (unknown . "\x2502")
-            (ignored . "\x2502"))))
+          '((insert  . "\x258d")
+            (delete  . "\x258d")
+            (change  . "\x258d")
+            (unknown . "\x258d")
+            (ignored . "\x258d"))))
 
   (leaf diff-hl-dired
     :hook (dired-mode-hook . diff-hl-dired-mode))

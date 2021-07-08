@@ -81,9 +81,9 @@
      '(marginalia-modified ((t (:inherit font-lock-string-face))))
      '(marginalia-date ((t (:inherit font-lock-keyword-face))))
      ;;diff-hl
-     '(diff-hl-change ((t (:background nil :weight bold))))
-     '(diff-hl-insert ((t (:background nil :weight bold))))
-     '(diff-hl-delete ((t (:background nil :weight bold))))
+     '(diff-hl-change ((t (:background nil))))
+     '(diff-hl-insert ((t (:background nil))))
+     '(diff-hl-delete ((t (:background nil))))
      ;; yasnippet
      '(yas-field-highlight-face ((t (:inherit font-lock-string-face
                                      :weight bold
