@@ -19,7 +19,6 @@
                                        ,(substring (getenv "SOCKS") -4 nil)
                                        5)))
 
-;; proxy macro
 ;; TODO set embark with proxy
 (leaf with-proxy
   :commands with-proxy with-proxy-url

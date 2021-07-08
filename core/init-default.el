@@ -7,8 +7,7 @@
   (setq inhibit-startup-screen t
         inhibit-startup-echo-area-message (user-login-name)
         initial-scratch-message nil
-        inhibit-default-init t
-        initial-major-mode 'fundamental-mode)
+        inhibit-default-init t)
   ;; Get rid of "For information about GNU Emacs..." message at startup
   (advice-add #'display-startup-echo-area-message :override #'ignore))
 
