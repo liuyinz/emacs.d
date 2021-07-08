@@ -67,7 +67,7 @@
   (evil-define-key nil 'global
     (kbd "s-s") 'consult-git-grep
     (kbd "s-f") 'consult-line
-    (kbd "C-,") 'yas-emmet-switch
+    (kbd "C-l") 'yas-emmet-switch
     (kbd "C-x <escape> <escape>") nil
     (kbd "C-x s") nil
     (kbd "s-m") nil
@@ -75,12 +75,7 @@
     (kbd "M-c") nil
     (kbd "C-o") nil
     (kbd "C-j") nil
-
     (kbd "C-l") nil
-    (kbd "C-l C-l") 'avy-goto-line
-    (kbd "C-l c") 'avy-goto-char
-    (kbd "C-l w") 'avy-goto-word-0
-    (kbd "C-l p") 'avy-goto-paren
 
     ;; jump between two buffer
     (kbd "C-r") 'back-to-user-buffer
@@ -111,6 +106,12 @@
     "zt" 'recenter-top-bottom
     "zz" 'hs-toggle-all
 
+    ;; avy
+    "zl" 'avy-goto-line
+    "zc" 'avy-goto-char
+    "zw" 'avy-goto-word-0
+    "zp" 'avy-goto-paren
+
     ;; run the macro in the q register
     "Q" "@q"
     ;; select the previously pasted text
@@ -134,7 +135,7 @@
   (evil-define-key nil vertico-map
     (kbd "<escape>") 'minibuffer-keyboard-quit
     ;; embark
-    (kbd "C-,") 'embark-act
+    (kbd "C-l") 'embark-act
     (kbd "C-c C-o") 'embark-export
     (kbd "M-c") 'marginalia-cycle)
 
