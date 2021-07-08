@@ -12,12 +12,25 @@
   :config
   (rg-enable-menu))
 
-;; proxy wrapper
-(leaf with-proxy
-  :require t
+(leaf proxy-mode
+  :commands global-proxy-mode proxy-mode
   :init
-  ;; TODO set embark with proxy
-  (setq with-proxy-http-server my-proxy))
+  (setq proxy-mode-emacs-http-proxy `(("http"     . ,(getenv "HTTP"))
+                                      ("https"    . ,(getenv "HTTP"))
+                                      ("ftp"      . ,(getenv "HTTP"))
+                                      ("no_proxy" . "127.0.0.1")
+                                      ("no_proxy" . "^.*\\(baidu\\|sina)\\.com")))
+
+  (setq proxy-mode-emacs-socks-proxy `("Default server"
+                                       ,(substring (getenv "SOCKS") 0 -5)
+                                       ,(substring (getenv "SOCKS") -4 nil)
+                                       5)))
+
+;; proxy macro
+;; TODO set embark with proxy
+(leaf with-proxy
+  :commands with-proxy with-proxy-url
+  :init (setq with-proxy-http-server (getenv "HTTP")))
 
 ;; (use-package leetcode
 ;;   :doc "pip3 install my-cookies"
@@ -54,8 +67,8 @@
   :hook (ilog-log-buffer-mode-hook . (lambda ()
                                        (setq ilog-display-state 'messages)
                                        (ilog-toggle-view)))
-  :init (setq ilog-log-max nil)
-  :config
+  :init
+  (setq ilog-log-max nil)
   (defun toggle-keylog ()
     "Toggle keybinds log."
     (interactive)

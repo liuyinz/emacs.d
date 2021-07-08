@@ -28,7 +28,7 @@
                                       my-dir-ext
                                       my-dir-lib
                                       my-dir-snippet)))
-    (make-directory dir t))
+  (make-directory dir t))
 
 (defconst my-homepage
   "https://github.com/liuyinz/.emacs.d"
@@ -36,8 +36,6 @@
 
 (setq user-full-name "食無魚")
 (setq user-mail-address "liuyinz@gmail.com")
-
-(defvar my-proxy "127.0.0.1:4780" "Set network proxy.")
 
 (provide 'init-const)
 ;;; init-const.el ends here

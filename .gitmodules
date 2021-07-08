@@ -345,3 +345,6 @@
 [submodule "flycheck-relint"]
 	path = lib/flycheck-relint
 	url = https://github.com/purcell/flycheck-relint.git
+[submodule "proxy-mode"]
+	path = lib/proxy-mode
+	url = https://github.com/stardiviner/proxy-mode.git

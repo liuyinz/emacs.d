@@ -33,13 +33,12 @@
     (define-transient-command my/transient-toggle ()
       "Toogle system setting"
       ["Toggle"
-       ("v" "Vterm" vterm-toggle)
+       ;; ("v" "Vterm" vterm-toggle)
        ("f" "Fullscreen" toggle-frame-fullscreen)
        ("k" "Keylog" toggle-keylog)
        ("e" "debug-on-error" toggle-debug-on-error)
        ("t" "debug-on-quit" toggle-debug-on-quit)
-       ("h" "http-proxy" proxy-http-toggle)
-       ("s" "socks-proxy" proxy-socks-toggle)
+       ("s" "proxy-mode" global-proxy-mode)
        ("w" "writeroom-mode" writeroom-mode)
        ("p" "Profiler" toggle-profiler)
        ])
