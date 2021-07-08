@@ -140,14 +140,16 @@
     ;; embark
     (kbd "C-l") 'embark-act
     (kbd "C-c C-o") 'embark-export
-    (kbd "M-c") 'marginalia-cycle)
+    (kbd "C-c C-a") 'marginalia-cycle
+    )
 
   (evil-define-key nil consult-narrow-map
     (vconcat consult-narrow-key "?") 'consult-narrow-help)
 
   ;; embark
   (evil-define-key nil embark-general-map
-    (kbd "M-c") 'marginalia-cycle)
+    (kbd "C-c C-a") 'marginalia-cycle
+    )
   ;; embark-consult
   (evil-define-key nil embark-collect-mode-map
     (kbd "C-j") 'embark-consult-preview-at-point)
