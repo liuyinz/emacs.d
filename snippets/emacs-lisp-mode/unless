@@ -4,5 +4,5 @@
 # key: u
 # --
 
-(unless (${1:cond})
-  (${2:then}))$0
+(unless ${1:(${2:cond})}
+  ${3:(${4:then})}$5)$0
