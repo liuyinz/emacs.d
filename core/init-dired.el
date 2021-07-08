@@ -17,9 +17,10 @@
     ;; Use GNU ls as `gls' from `coreutils' if available.
     (setq insert-directory-program "gls")
     ;; Show directory first
-    (setq dired-listing-switches "-alh --group-directories-first"))
-  :config
-  (leaf dired-single :require t))
+    (setq dired-listing-switches "-alh --group-directories-first")))
+
+(leaf dired-single
+  :commands dired-single-buffer dired-single-buffer-mouse dired-single-up-directory)
 
 ;; Extra Dired functionality
 ;; (leaf dired-aux)
