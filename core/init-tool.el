@@ -63,7 +63,6 @@
               erc-autojoin-channels-alist '(("freenode.net" "#emacs"))))
 
 (leaf interaction-log
-  :require t
   :hook (ilog-log-buffer-mode-hook . (lambda ()
                                        (setq ilog-display-state 'messages)
                                        (ilog-toggle-view)))
@@ -72,6 +71,7 @@
   (defun toggle-keylog ()
     "Toggle keybinds log."
     (interactive)
+    (require 'interaction-log)
     (unless (bufferp ilog-buffer-name)
       (interaction-log-mode))
     (with-current-buffer ilog-buffer-name
