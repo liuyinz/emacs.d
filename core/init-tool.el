@@ -4,6 +4,17 @@
 
 ;;; Code:
 
+;; Regexp
+(leaf xr
+  :commands xr xr-pp xr-lint
+  ;; :init
+  ;; (display-buffer-pop-up-window)
+  )
+
+(leaf relint
+  :doc "deps: xr"
+  :commands relint-file relint-directory relint-current-buffer)
+
 ;; Proxy
 (leaf proxy-mode
   :commands global-proxy-mode proxy-mode
