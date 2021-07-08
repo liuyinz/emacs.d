@@ -4,14 +4,7 @@
 
 ;;; Code:
 
-(leaf rg
-  :doc "deps : transient wgrep"
-  :commands rg-menu
-  :init
-  (setq rg-ignore-case 'smart)
-  :config
-  (rg-enable-menu))
-
+;; Proxy
 (leaf proxy-mode
   :commands global-proxy-mode proxy-mode
   :init
@@ -54,13 +47,13 @@
   :commands opencc-replace-at-point opencc-print-buffer
   :doc "deps: brew install opencc")
 
-;; IRC
-(leaf erc
-  :defvar erc-autojoin-channels-alist
-  :init (setq erc-rename-buffers t
-              erc-interpret-mirc-color t
-              erc-lurker-hide-list '("JOIN" "PART" "QUIT")
-              erc-autojoin-channels-alist '(("freenode.net" "#emacs"))))
+(leaf rg
+  :doc "deps : transient wgrep"
+  :commands rg-menu
+  :init
+  (setq rg-ignore-case 'smart)
+  :config
+  (rg-enable-menu))
 
 (leaf interaction-log
   :hook (ilog-log-buffer-mode-hook . (lambda ()
