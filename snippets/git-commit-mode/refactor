@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: refactor
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: refactor
+# key: re
 # --
 refactor : ${1:$$(capitalize-first yas-text)}$0

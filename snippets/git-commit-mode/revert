@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: revert
+# contributor : 食無魚 <liuyinz@gmail.com>
+# key: re
+# --
+
+revert : ${1:$$(capitalize-first yas-text)}$0

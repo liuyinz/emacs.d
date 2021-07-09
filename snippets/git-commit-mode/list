@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
-# name: feature
+# name: [*]
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: feat
+# key: l
 # --
-feat : ${1:$$(capitalize-first yas-text)}$0
+* $1
+$0

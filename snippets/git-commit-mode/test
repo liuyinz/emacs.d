@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: test
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: test
+# key: te
 # --
 test : ${1:$$(capitalize-first yas-text)}$0

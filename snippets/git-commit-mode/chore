@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: chore
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: chore
+# key: ch
 # --
 chore : ${1:$$(capitalize-first yas-text)}$0

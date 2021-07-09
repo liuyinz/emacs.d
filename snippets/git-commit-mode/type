@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: type
+# contributor : 食無魚<liuyinz@gmail.com>
 # key: tp
 # --
 ${1:$$(yas-choose-value '("fix" "feat" "docs" "style" "refactor" "test" "chore" "perf"))} : ${2:$$(capitalize-first yas-text)}$0
