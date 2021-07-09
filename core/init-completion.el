@@ -108,6 +108,9 @@
 # --
 $0`(yas-escape-text yas-selected-text)`")
 
+  ;; HACK silent message in start.
+  (advice-add #'yas-reload-all :around #'silent-message-advice)
+
   :config
   ;; mode-switch between lisp-interaction-mode and snippet-mode
   (defun my-yasnippet-switch ()
