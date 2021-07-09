@@ -19,7 +19,7 @@
   :require t
   :after vertico
   :init
-  (setq completion-styles '(basic partial-completion orderless)
+  (setq completion-styles '(substring orderless)
         completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion)))))
 
