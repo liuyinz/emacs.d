@@ -93,7 +93,8 @@
   ;; ;; add morek buffer to hidden source
   (appendq! consult-buffer-filter '("\\`\\*.*\\*\\'"
                                     "\\`.*\\.el\\.gz\\'"
-                                    "\\`magit[:-].*\\'"))
+                                    "\\`magit[:-].*\\'"
+                                    "\\`COMMIT_EDITMSG\\'"))
   ;; ;; disable preview
   ;; (setq consult-preview-key nil)
 
