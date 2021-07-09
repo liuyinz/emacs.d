@@ -3,10 +3,10 @@
 ;;; Code:
 
 (leaf evil
-  :require t
   :doc "deps: goto-chg"
-  ;; :defun evil-define-key* evil-delay evil-set-initial-state
+  :defun evil-define-key* evil-delay evil-set-initial-state
   :hook
+  (after-init-hook . evil-mode)
   ;; hl-line
   ((evil-normal-state-entry-hook
     evil-emacs-state-exit-hook) . hl-line-mode)
@@ -31,7 +31,15 @@
         )
   :config
 
-  (evil-mode)
+  ;; (leaf evil-collection
+  ;;   :doc "deps : annalist evil"
+  ;;   :after evil
+  ;;   :require t
+  ;;   :init
+  ;;   ;; (setq evil-collection-mode-list '(magit))
+  ;;   :config
+  ;;   (evil-collection-init 'flycheck))
+
   (leaf goto-chg :require t)
 
   ;; set leader and localleader
@@ -85,15 +93,6 @@
                (xref--xref-buffer-mode . emacs)
                ))
     (evil-set-initial-state (car p) (cdr p))))
-
-;; (leaf evil-collection
-;;   :doc "deps : annalist evil"
-;;   :after evil
-;;   :require t
-;;   :init
-;;   ;; (setq evil-collection-mode-list '(magit))
-;;   :config
-;;   (evil-collection-init 'flycheck))
 
 ;;Evil-matchit
 (leaf evil-matchit

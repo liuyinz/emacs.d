@@ -67,7 +67,6 @@
   (rg-enable-menu))
 
 (leaf interaction-log
-  :require t
   :hook (ilog-log-buffer-mode-hook . (lambda ()
                                        (setq ilog-display-state 'messages)
                                        (ilog-toggle-view)))
@@ -76,6 +75,7 @@
   (defun toggle-keylog ()
     "Toggle keybinds log."
     (interactive)
+    (require 'interaction-log)
     (unless (bufferp ilog-buffer-name)
       (interaction-log-mode))
     (with-current-buffer ilog-buffer-name
@@ -92,9 +92,9 @@
             (interaction-log-mode)))))))
 
 (leaf keyfreq
-  :require t
-  :hook (keyfreq-mode-hook . keyfreq-autosave-mode)
-  :config (keyfreq-mode)
+  :hook
+  (after-init-hook . keyfreq-mode)
+  (keyfreq-mode-hook . keyfreq-autosave-mode)
   :init
   (setq keyfreq-excluded-regexp
         '(;; built-in

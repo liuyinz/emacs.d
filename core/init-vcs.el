@@ -4,8 +4,7 @@
 
 (leaf magit
   :doc "deps: with-editor forge transient git-modes ghub"
-  ;; :commands magit-status magit-submodule magit-dispatch magit-log
-  :require t
+  :commands magit-status magit-submodule magit-dispatch magit-log
   :init
   (setq magit-no-confirm t
         magit-save-repository-buffers 'dontask

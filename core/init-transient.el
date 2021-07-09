@@ -5,50 +5,53 @@
 ;;; Code:
 
 (leaf transient
-  :require t
-  :config
-  (define-transient-command my/transient-buffer ()
-    "Buffer Operation"
-    ["Info"
-     ("N" "base name" buffer-base-name)
-     ("A" "absolute path" file-absolute-path)
-     ;; ("R" "relative path")
-     ]
-    ["Edit"
-     ("b" "rename buffer" rename-buffer)
-     ("f" "rename file" rename-this-file)
-     ("B" "rename both" rename-both)
-     ("d" "delete both" delete-both)
-     ]
-    ["Content"
-     ;; ("u" "change utf")
-     ("u" "dos2unix" dos2unix)
-     ("U" "unix2dos" unix2dos)
-     ])
+  :init
+  (add-hook 'after-init-hook #'my/transient-setup)
+  (defun my/transient-setup ()
+    (require 'transient)
 
-  ;; toggle-transient
-  (define-transient-command my/transient-toggle ()
-    "Toogle system setting"
-    ["Toggle"
-     ;; ("v" "Vterm" vterm-toggle)
-     ("f" "Fullscreen" toggle-frame-fullscreen)
-     ("k" "Keylog" toggle-keylog)
-     ("e" "debug-on-error" toggle-debug-on-error)
-     ("t" "debug-on-quit" toggle-debug-on-quit)
-     ("s" "proxy-mode" global-proxy-mode)
-     ("w" "writeroom-mode" writeroom-mode)
-     ("p" "Profiler" toggle-profiler)
-     ])
+    (define-transient-command my/transient-buffer ()
+      "Buffer Operation"
+      ["Info"
+       ("N" "base name" buffer-base-name)
+       ("A" "absolute path" file-absolute-path)
+       ;; ("R" "relative path")
+       ]
+      ["Edit"
+       ("b" "rename buffer" rename-buffer)
+       ("f" "rename file" rename-this-file)
+       ("B" "rename both" rename-both)
+       ("d" "delete both" delete-both)
+       ]
+      ["Content"
+       ;; ("u" "change utf")
+       ("u" "dos2unix" dos2unix)
+       ("U" "unix2dos" unix2dos)
+       ])
 
-  (define-transient-command my/transient-point ()
-    ["Action at Point"
-     ("d" "dash-at-point" dash-at-point)
-     ("t" "go-translate" go-translate-echo-area)
-     ("w" "webjump" webjump)
-     ("r" "revert-hunk" diff-hl-revert-hunk)
-     ("x" "flycheck-explain" flycheck-explain-error-at-point)
-     ("h" "hl-todo-insert" hl-todo-insert)
-     ])
+    ;; toggle-transient
+    (define-transient-command my/transient-toggle ()
+      "Toogle system setting"
+      ["Toggle"
+       ;; ("v" "Vterm" vterm-toggle)
+       ("f" "Fullscreen" toggle-frame-fullscreen)
+       ("k" "Keylog" toggle-keylog)
+       ("e" "debug-on-error" toggle-debug-on-error)
+       ("t" "debug-on-quit" toggle-debug-on-quit)
+       ("s" "proxy-mode" global-proxy-mode)
+       ("w" "writeroom-mode" writeroom-mode)
+       ("p" "Profiler" toggle-profiler)
+       ])
+
+    (define-transient-command my/transient-point ()
+      ["Action at Point"
+       ("d" "dash-at-point" dash-at-point)
+       ("t" "go-translate" go-translate-echo-area)
+       ("w" "webjump" webjump)
+       ("r" "revert-hunk" diff-hl-revert-hunk)
+       ("x" "flycheck-explain" flycheck-explain-error-at-point)
+       ("h" "hl-todo-insert" hl-todo-insert)
+       ]))
 
   ;; (define-transient-command my/help-transient ()
   ;;   "Help commands that I use. A subset of C-h with others thrown in."

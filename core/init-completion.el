@@ -5,7 +5,7 @@
 (require 'init-const)
 
 (leaf company
-  :require t
+  :hook (after-init-hook . global-company-mode)
   :init
   (setq company-tooltip-align-annotations t
         company-tooltip-limit 15
@@ -33,7 +33,7 @@
                            ))
 
   :config
-  (global-company-mode)
+
   ;; Remove duplicate candidate.
   (add-to-list 'company-transformers #'delete-dups)
 
@@ -92,9 +92,9 @@
 
 ;; yasnippet
 (leaf yasnippet
-  :require t
-  :hook (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
-  :config (yas-global-mode)
+  :hook
+  (after-init-hook . yas-global-mode)
+  (git-commit-mode-hook . (lambda () (yas-activate-extra-mode 'git-commit-mode)))
   :init
   (setq yas-indent-line 'fixed)
   ;; yas-also-indent-empty-lines t
@@ -108,6 +108,7 @@
 # --
 $0`(yas-escape-text yas-selected-text)`")
 
+  :config
   ;; mode-switch between lisp-interaction-mode and snippet-mode
   (defun my-yasnippet-switch ()
     (interactive)

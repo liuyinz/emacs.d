@@ -4,18 +4,14 @@
 
 ;; @https://github.com/purcell/emacs.d/blob/master/lisp/init-minibuffer.el
 (leaf vertico
-  :require t
+  :hook (after-init-hook . vertico-mode)
   :init
   (setq vertico-cycle t
-        vertico-count 15)
-  :config
-  (vertico-mode))
+        vertico-count 15))
 
 (leaf marginalia
-  :require t
-  :after vertico
+  :hook (vertico-mode-hook . marginalia-mode)
   :config
-  (marginalia-mode)
   (setq-default marginalia-annotators '(marginalia-annotators-heavy nil)))
 
 ;; filtering
