@@ -71,5 +71,11 @@
       (setq cache-path-from-shell-loaded-p t)))
   (advice-add 'exec-path-from-shell-initialize :around #'cache-path-from-shell-advice))
 
+;; (leaf restart-emacs
+;;   :init
+;;   (setq restart-emacs-daemon-with-tty-frames-p nil
+;;         restart-emacs-restore-frames t)
+;;   :commands restart-emacs restart-emacs-start-new-emacs)
+
 (provide 'init-sys)
 ;;; init-sys.el ends here

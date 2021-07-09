@@ -348,3 +348,6 @@
 [submodule "proxy-mode"]
 	path = lib/proxy-mode
 	url = https://github.com/stardiviner/proxy-mode.git
+[submodule "restart-emacs"]
+	path = lib/restart-emacs
+	url = https://github.com/iqbalansari/restart-emacs.git
