@@ -6,12 +6,13 @@
 
 (require 'subr-x)
 
-(leaf ns-auto-titlebar
-  :hook (after-make-window-system-frame-hook . ns-auto-titlebar-mode))
+;; (leaf ns-auto-titlebar
+;;   :hook (after-make-window-system-frame-hook . ns-auto-titlebar-mode))
 
 (leaf doom-modeline
   :doc "deps: all-the-icons emacs-async"
-  :hook (after-init-hook . doom-modeline-mode)
+  :require t
+  :config (doom-modeline-mode)
   :init
   (setq doom-modeline-icon nil
         doom-modeline-bar-width 0
@@ -31,9 +32,8 @@
         doom-modeline-env-python-executable "/usr/local/bin/python3"))
 
 (leaf doom-themes
-  :hook (after-init-hook . (lambda ()
-                             (require 'doom-themes)
-                             (load-theme 'doom-vibrant t)))
+  :require t
+  :config (load-theme 'doom-vibrant t)
   :init
   (add-hook 'after-load-theme-hook #'my/doom-theme-adjust)
   (defun my/doom-theme-adjust ()

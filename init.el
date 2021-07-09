@@ -58,27 +58,33 @@
   (require 'init-sys)
   (require 'init-default)
   (require 'init-frame)
-  (require 'init-evil)
-  (require 'init-completion)
-  (require 'init-minibuffer)
   ;; ui
-  (require 'init-ui)
   (require 'init-highlight)
   (require 'init-window)
   ;; (require 'init-ibuffer)
   (require 'init-dired)
   (require 'init-edit)
-  (require 'init-tool)
-  (require 'init-write)
-  ;; programing
-  (require 'init-ide)
-  (require 'init-vcs)
-  (require 'init-project)
   ;; language
-  (require 'init-lsp)
+  ;; 可以延后加载的
   (require 'init-lang)
   (require 'init-elisp)
   (require 'init-markdown)
-  (require 'init-transient)
-  (require 'init-key))
+  (require 'init-key)
+  (run-with-idle-timer
+   0.1 nil
+   #'(lambda ()
+       (require 'init-ui)
+       (require 'init-minibuffer)
+       (require 'init-evil)
+       (require 'init-completion)
+       (require 'init-transient)
+       (require 'init-tool)
+       (require 'init-vcs)
+       (require 'init-ide)
+       ;; programing
+       (require 'init-project)
+       (require 'init-lsp)
+       (require 'init-write)
+       ))
+  )
 ;;; init.el ends here

@@ -3,7 +3,8 @@
 ;;; Code:
 
 (leaf projectile
-  :hook (after-init-hook . projectile-mode)
+  ;; :hook (after-init-hook . projectile-mode)
+  :require t
   :init
   (setq projectile-mode-line-prefix ""
         projectile-sort-order 'recentf
@@ -15,6 +16,7 @@
   (setq projectile-git-submodule-command nil)
 
   :config
+  (projectile-mode)
   ;; Use the faster searcher to handle project files: ripgrep `rg'.
   (when (and (not (executable-find "fd"))
              (executable-find "rg"))

@@ -38,10 +38,10 @@
         (fullscreen . fullheight)
         (width . 88)   ; half 88,full 177
         (background-mode . dark)
-        ;; (background-color . "#242730")
-        ;; (foreground-color . "#bbc2cf")
+        (background-color . "#242730")
+        (foreground-color . "#bbc2cf")
         ;; (ns-appearance . dark)
-        ;; (ns-transparent-titlebar . t)
+        (ns-transparent-titlebar . t)
         (ns-use-native-fullscreen . nil)
         ))
 
