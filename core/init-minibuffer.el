@@ -7,7 +7,11 @@
   :hook (after-init-hook . vertico-mode)
   :init
   (setq vertico-cycle t
-        vertico-count 15))
+        vertico-count 15)
+  :config
+  (leaf vertico-repeat :commands vertico-repeat)
+  (leaf vertico-directory
+    :commands vertico-directory-delete-char vertico-directory-enter))
 
 (leaf marginalia
   :hook (vertico-mode-hook . marginalia-mode)

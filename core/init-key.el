@@ -137,6 +137,13 @@
   (evil-define-key nil vertico-map
     (kbd "ESC") 'minibuffer-keyboard-quit
     (kbd "<escape>") 'minibuffer-keyboard-quit
+    ;; vertico-repeat
+    (kbd "C-c C-r") 'vertico-repeat
+    ;; vertico-directory
+    (kbd "RET") 'vertico-directory-enter
+    (kbd "<return>") 'vertico-directory-enter
+    (kbd "DEL") 'vertico-directory-delete-char
+    (kbd "<delete>") 'vertico-directory-delete-char
     ;; embark
     (kbd "C-l") 'embark-act
     (kbd "C-c C-o") 'embark-export
