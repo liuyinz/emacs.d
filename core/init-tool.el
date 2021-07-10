@@ -16,18 +16,20 @@
   :doc "deps: xr"
   :commands relint-file relint-directory relint-current-buffer)
 
-(leaf vlf-setup
-  :require t
+;; Disable modes below when enter `vlf-mode'
+(leaf vlf
+  :commands vlf vlf-mode
   :hook (vlf-mode-hook . (lambda ()
-                           (toggle-mode-func vlf-mode vlf-disable-modes t)))
+                           (mode-hook-toggle vlf-mode vlf-disable-modes t)))
   :init
-  (setq vlf-application 'ask
+  (setq large-file-warning-threshold (* 1024 1024))
+  (setq vlf-save-in-place t
         vlf-batch-size (* 1 1024 1024))
-
-  ;; Disable modes below when enter `vlf-mode'
   (defvar vlf-disable-modes '(flycheck-mode
                               auto-revert-mode
-                              diff-hl-flydiff-mode)))
+                              diff-hl-flydiff-mode))
+  :config
+  (leaf vlf-setup :require t :init (setq vlf-application 'ask)))
 
 ;; Proxy
 (leaf proxy-mode

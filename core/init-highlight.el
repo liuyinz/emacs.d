@@ -58,9 +58,9 @@
   (leaf diff-hl-dired
     :hook (dired-mode-hook . diff-hl-dired-mode))
 
-  ;; ;; BUG  too slow for large files
-  ;; (leaf diff-hl-flydiff
-  ;;   :hook (diff-hl-mode-hook . diff-hl-flydiff-mode))
+  ;; BUG  too slow for large files
+  (leaf diff-hl-flydiff
+    :hook (diff-hl-mode-hook . diff-hl-flydiff-mode))
 
   ;; Integration with magit
   (with-eval-after-load 'magit
