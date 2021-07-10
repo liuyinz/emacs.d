@@ -65,7 +65,9 @@
 
 (leaf logview
   :doc "deps : datetime extmap"
+  :mode (("\\.log\\(?:\\.[0-9]+\\)?\\'" . logview-mode))
   :hook (logview-mode-hook . auto-revert-tail-mode))
+
 ;; (leaf mermaid-mode :require t)
 
 (provide 'init-lang)
