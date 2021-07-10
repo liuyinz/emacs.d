@@ -129,8 +129,9 @@
   :doc "deps: evil pinyinlib"
   :hook (evil-mode-hook . evil-find-char-pinyin-mode))
 
-(leaf evil-terminal-cursor-changer
-  :hook (after-make-console-frame-hook . etcc-mode))
+;; ;; FIXME don't compatible with kitty, conflict with company-mode
+;; (leaf evil-terminal-cursor-changer
+;;   :hook (after-make-console-frame-hook . etcc-mode))
 
 (provide 'init-evil)
 ;;; init-evil.el ends here
