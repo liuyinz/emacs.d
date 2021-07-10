@@ -354,3 +354,12 @@
 [submodule "vlfi"]
 	path = lib/vlfi
 	url = https://github.com/m00natic/vlfi.git
+[submodule "logview"]
+	path = lib/logview
+	url = https://github.com/doublep/logview.git
+[submodule "datetime"]
+	path = lib/datetime
+	url = https://github.com/doublep/datetime.git
+[submodule "extmap"]
+	path = lib/extmap
+	url = https://github.com/doublep/extmap.git

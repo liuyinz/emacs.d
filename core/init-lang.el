@@ -63,6 +63,9 @@
 
 (leaf osx-plist :mode "\\.plist\\'")
 
+(leaf logview
+  :doc "deps : datetime extmap"
+  :hook (logview-mode-hook . auto-revert-tail-mode))
 ;; (leaf mermaid-mode :require t)
 
 (provide 'init-lang)
