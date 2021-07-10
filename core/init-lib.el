@@ -183,46 +183,6 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   (interactive)
   (save-buffer-as-utf8 'gbk))
 
-;; Network Proxy
-(defun proxy-http-show ()
-  "Show HTTP/HTTPS proxy."
-  (interactive)
-  (if url-proxy-services
-      (message "Current HTTP proxy is `%s'" my-proxy)
-    (message "No HTTP proxy")))
-
-(defun proxy-http-toggle ()
-  "Toggle HTTP/HTTPS proxy."
-  (interactive)
-  (if url-proxy-services
-      (setq url-proxy-services nil)
-    (setq url-proxy-services
-          `(("http" . ,my-proxy)
-            ("https" . ,my-proxy)
-            ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)"))))
-  (proxy-http-show))
-
-(defun proxy-socks-show ()
-  "Show SOCKS proxy."
-  (interactive)
-  (when (fboundp 'cadddr)
-    (if socks-noproxy
-        (message "Current SOCKS%d proxy is %s:%d"
-                 (cadddr socks-server) (cadr socks-server) (caddr socks-server))
-      (message "No SOCKS proxy"))))
-
-(defun proxy-socks-toggle ()
-  "Toggle SOCKS proxy."
-  (interactive)
-  (if (bound-and-true-p socks-noproxy)
-      (setq url-gateway-method 'native
-            socks-noproxy nil)
-    (require 'socks)
-    (setq url-gateway-method 'socks
-          socks-noproxy '("localhost")
-          socks-server '("Default server" "127.0.0.1" 4781 5)))
-  (proxy-socks-show))
-
 (defun capitalize-first (s)
   "Capitalize the first char of string S."
   (if (> (length s) 0)
