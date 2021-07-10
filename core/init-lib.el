@@ -262,6 +262,11 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   "Open in other window."
   (switch-to-buffer-other-window (current-buffer)))
 
+(defun mode-hook-toggle (mode list &optional reverse)
+  "Toggle modes in `LIST' according to `MODE' value.
+with `REVERSE' is t, diable modes instead."
+  (mapc (lambda (s) (funcall s (unless (xor mode reverse) -1))) list))
+
 ;; ;; @https://emacs.stackexchange.com/a/36253
 ;; (defun consult-consult ()
 ;;   "call command related to consult"

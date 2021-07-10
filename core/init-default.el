@@ -112,7 +112,7 @@
         auto-save-list-file-prefix nil
         auto-mode-case-fold nil
         save-silently t
-        large-file-warning-threshold nil
+        ;; large-file-warning-threshold nil
         confirm-kill-processes nil
         find-file-suppress-same-file-warnings t))
 

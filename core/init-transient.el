@@ -41,6 +41,7 @@
        ("s" "proxy-mode" global-proxy-mode)
        ("w" "writeroom-mode" writeroom-mode)
        ("p" "Profiler" toggle-profiler)
+       ("v" "Vlf-mode" vlf-mode)
        ])
 
     (define-transient-command my/transient-point ()

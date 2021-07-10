@@ -16,6 +16,19 @@
   :doc "deps: xr"
   :commands relint-file relint-directory relint-current-buffer)
 
+(leaf vlf-setup
+  :require t
+  :hook (vlf-mode-hook . (lambda ()
+                           (toggle-mode-func vlf-mode vlf-disable-modes t)))
+  :init
+  (setq vlf-application 'ask
+        vlf-batch-size (* 1 1024 1024))
+
+  ;; Disable modes below when enter `vlf-mode'
+  (defvar vlf-disable-modes '(flycheck-mode
+                              auto-revert-mode
+                              diff-hl-flydiff-mode)))
+
 ;; Proxy
 (leaf proxy-mode
   :commands global-proxy-mode proxy-mode

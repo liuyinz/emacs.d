@@ -351,3 +351,6 @@
 [submodule "restart-emacs"]
 	path = lib/restart-emacs
 	url = https://github.com/iqbalansari/restart-emacs.git
+[submodule "vlfi"]
+	path = lib/vlfi
+	url = https://github.com/m00natic/vlfi.git
