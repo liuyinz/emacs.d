@@ -239,9 +239,6 @@
 [submodule "leaf"]
 	path = lib/leaf
 	url = https://github.com/conao3/leaf.el.git
-[submodule "leaf-keywords"]
-	path = lib/leaf-keywords
-	url = https://github.com/conao3/leaf-keywords.el.git
 [submodule "typescript"]
 	path = lib/typescript
 	url = https://github.com/emacs-typescript/typescript.el.git

@@ -9,11 +9,6 @@
   (setq leaf-expand-minimally nil)
   (setq leaf-defaults '(:ensure nil)))
 
-;; (leaf leaf-keywords
-;;   :require t
-;;   :init (setq leaf-keywords-packages-list nil)
-;;   :config (leaf-keywords-init))
-
 ;; keep ~/.emacs.d clean
 (leaf no-littering
   :require t
