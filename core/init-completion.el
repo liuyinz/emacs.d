@@ -26,7 +26,8 @@
   (setq company-global-modes '(not erc-mode message-mode help-mode
                                    gud-mode eshell-mode shell-mode))
 
-  (setq company-backends  '((company-capf company-citre :separate)
+  (setq company-backends  '(company-capf
+                            ;; (company-capf company-citre :separate)
                             (company-dabbrev-code company-keywords company-files)
                             company-dabbrev))
 
