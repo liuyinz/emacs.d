@@ -28,7 +28,12 @@
   (setq lsp-log-io nil)                       ;; debug only
   (setq lsp-auto-guess-root t)                ;; auto guess root
   :config
-  (leaf lsp-modeline :require t))
+  (leaf lsp-modeline :require t)
+
+  ;; HACK disable fuzzy match
+  ;; see@https://github.com/emacs-lsp/lsp-mode/issues/2563#issuecomment-767987191
+  (advice-add #'lsp-completion--regex-fuz :override #'identity)
+  )
 
 (leaf lsp-pyright
   :doc "deps: ht dash"
