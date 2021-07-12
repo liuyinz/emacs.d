@@ -27,16 +27,27 @@
         (:eval (if (buffer-modified-p)
                    " *"))))
 
+;; Calculating width differently in terminal and window system
+;; NOTE see@https://www.gnu.org/software/emacs/manual/html_node/elisp/Frame-Layout.html
+;; see@https://www.gnu.org/software/emacs/manual/html_node/elisp/Layout-Parameters.html
+;; (frame-outer-width)
+;; = (frame-border-width) + (frame-native-width)
+;; = (frame-border-width) + (frame-internal-border-width) + (frame-inner-width)
+;; = (frame-border-width) + (frame-internal-border-width) + (frame-scroll-bar-width) + (frame-fringe-width) + (frame-text-width);;(frame-width)
 (setq default-frame-alist
       '((menu-bar-lines . 0)
         (tool-bar-lines . 0)
         (vertical-scroll-bars . nil)
         (horizontal-scroll-bars . nil)
+        ;; margin belong to buffer, fringe belong to windows frame
+        ;; see@https://www.gnu.org/software/emacs/manual/html_node/elisp/Fringe-Size_002fPos.html
+        (left-fringe . 0)
+        (right-fringe . 0)
         (minibuffer . t)
         (font . "Sarasa Mono SC 16")
         (alpha . (98 . 100))
         (fullscreen . fullheight)
-        (width . 88)   ; half 88,full 177
+        (width . 90) ; (frame-text-width) half 90,full 180
         (background-mode . dark)
         (background-color . "#242730")
         (foreground-color . "#bbc2cf")
