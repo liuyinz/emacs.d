@@ -53,11 +53,6 @@
   ;;   :doc "deps: epl"
   ;;   :require t)
 
-  ;; ;; Prettify fringe style
-  ;; (when (fboundp 'define-fringe-bitmap)
-  ;;   (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
-  ;;     [16 48 112 240 112 48 16] nil nil 'center))
-
   )
 
 

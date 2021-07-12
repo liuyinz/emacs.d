@@ -36,12 +36,6 @@
         diff-hl-ask-before-revert-hunk nil
         diff-hl-side 'left)
   :config
-  ;; (with-no-warnings
-  ;;   (defun my-diff-hl-fringe-bmp-function (_type _pos)
-  ;;     "Fringe bitmap function for use as `diff-hl-fringe-bmp-function'."
-  ;;     (define-fringe-bitmap 'my-diff-hl-bmp
-  ;;       (vector #b11100000) 1 8 '(center t)))
-  ;;   (setq diff-hl-fringe-bmp-function #'my-diff-hl-fringe-bmp-function)
 
   (leaf diff-hl-margin
     :hook (diff-hl-mode-hook . diff-hl-margin-mode)
