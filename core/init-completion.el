@@ -26,9 +26,9 @@
   (setq company-global-modes '(not erc-mode message-mode help-mode
                                    gud-mode eshell-mode shell-mode))
 
-  (setq company-backends '(company-capf
-                           (company-dabbrev-code company-keywords company-files)
-                           company-dabbrev))
+  (setq company-backends  '((company-capf company-citre :separate)
+                            (company-dabbrev-code company-keywords company-files)
+                            company-dabbrev))
 
   :config
 
@@ -82,7 +82,22 @@
               (put-text-property 0 len 'yas-annotation snip arg)
               (put-text-property 0 len 'yas-annotation-patch t arg)))
           (funcall fn cmd  arg))))
-    (advice-add #'company-yasnippet :around #'my-company-yasnippet-disable-inline)))
+    (advice-add #'company-yasnippet :around #'my-company-yasnippet-disable-inline)
+
+    ;; HACK see@https://github.com/universal-ctags/citre/wiki/Use-Citre-together-with-lsp-mode#combine-completions-from-citre-and-lsp
+    (defun company-citre (-command &optional -arg &rest _ignored)
+      "Completion backend of Citre.  Execute COMMAND with ARG and IGNORED."
+      (interactive (list 'interactive))
+      (cl-case -command
+        (interactive (company-begin-backend 'company-citre))
+        (prefix (and (bound-and-true-p citre-mode)
+                     (or (citre-get-symbol) 'stop)))
+        (meta (citre-get-property 'signature -arg))
+        (annotation (citre-capf--get-annotation -arg))
+        (candidates (all-completions -arg (citre-capf--get-collection -arg)))
+        (ignore-case (not citre-completion-case-sensitive))))
+
+    ))
 
 ;; Better sorting and filtering
 (leaf company-prescient
@@ -117,6 +132,15 @@ $0`(yas-escape-text yas-selected-text)`")
         (lisp-interaction-mode)
       (snippet-mode))
     (evil-insert)))
+
+(leaf citre
+  :init
+  (require 'citre-config)
+  (setq citre-completion-case-sensitive nil
+        citre-default-create-tags-file-location 'global-cache
+        citre-use-project-root-when-creating-tags t
+        citre-prompt-language-for-ctags-command t
+        citre-project-root-function #'projectile-project-root))
 
 (provide 'init-completion)
 ;;; init-completion.el ends here

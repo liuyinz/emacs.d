@@ -360,3 +360,6 @@
 [submodule "extmap"]
 	path = lib/extmap
 	url = https://github.com/doublep/extmap.git
+[submodule "citre"]
+	path = lib/citre
+	url = https://github.com/universal-ctags/citre.git
