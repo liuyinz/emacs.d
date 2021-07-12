@@ -97,7 +97,9 @@
      '(avy-lead-face-2 ((t (:foreground "#f3f9fe" :background nil))))
      ;; highlight-defined
      '(highlight-defined-function-name-face
-       ((t (:inherit font-lock-variable-name-face))))
+       ((t (:inherit unspecified))))
+     '(highlight-defined-variable-name-face
+       ((t (:inherit unspecified))))
      ;; window
      '(vertical-border ((t (:background nil))))
      ;; rg.el
