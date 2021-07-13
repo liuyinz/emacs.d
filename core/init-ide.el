@@ -115,21 +115,22 @@
   )
 
 (leaf vterm-toggle
+  :doc "deps: vterm"
+  :commands vterm-toggle
   :init
-  (defun my/vterm-setup ()
-    (require 'vterm)
-    ;; make vterm colorful
-    (setenv "COLORTERM" "truecolor")
-    (setenv "LC_ALL" "en_US.UTF-8")
+  (setq vterm-toggle-fullscreen-p nil)
+  ;; (require 'vterm)
+  ;; make vterm colorful
+  (setenv "COLORTERM" "truecolor")
+  (setenv "LC_ALL" "en_US.UTF-8")
 
+  (with-eval-after-load 'vterm
     (setq vterm-always-compile-module t
           vterm-kill-buffer-on-exit t
           vterm-clear-scrollback-when-clearing nil
           vterm-max-scrollback 10000)
-    (add-to-list 'vterm-keymap-exceptions "C-o")
-    (require 'vterm-toggle)
-    (setq vterm-toggle-fullscreen-p nil))
-  (add-hook 'after-make-window-system-frame-hook #'my/vterm-setup)
+    (add-to-list 'vterm-keymap-exceptions "C-o"))
+  ;; (require 'vterm-toggle)
   )
 
 (provide 'init-ide)

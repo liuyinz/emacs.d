@@ -84,7 +84,7 @@
 
     ;; window
     (kbd "C-x j") 'transpose-frame
-    (kbd "C-; C-;") 'vterm-toggle
+    (kbd "C-c n") 'vterm-toggle
 
     ;; consult
     [remap switch-to-buffer] 'consult-buffer
