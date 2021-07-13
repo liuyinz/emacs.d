@@ -10,6 +10,8 @@
   (setq company-tooltip-align-annotations t
         company-tooltip-limit 15
         company-tooltip-width-grow-only t
+        company-tooltip-minimum-width 30
+        company-tooltip-width-grow-only t
         company-format-margin-function #'company-text-icons-margin
         company-text-icons-format "%s "
         company-selection-wrap-around t
@@ -134,14 +136,14 @@ $0`(yas-escape-text yas-selected-text)`")
       (snippet-mode))
     (evil-insert)))
 
-(leaf citre
-  :init
-  (require 'citre-config)
-  (setq citre-completion-case-sensitive nil
-        citre-default-create-tags-file-location 'global-cache
-        citre-use-project-root-when-creating-tags t
-        citre-prompt-language-for-ctags-command t
-        citre-project-root-function #'projectile-project-root))
+;; (leaf citre
+;;   :init
+;;   (require 'citre-config)
+;;   (setq citre-completion-case-sensitive nil
+;;         citre-default-create-tags-file-location 'global-cache
+;;         citre-use-project-root-when-creating-tags t
+;;         citre-prompt-language-for-ctags-command t
+;;         citre-project-root-function #'projectile-project-root))
 
 (provide 'init-completion)
 ;;; init-completion.el ends here
