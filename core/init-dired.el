@@ -7,11 +7,16 @@
   :init
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
-        dired-recursive-copies 'always)
+        dired-recursive-copies 'always
+        ;; emacs 28
+        dired-kill-when-opening-new-dired-buffer t)
+
   ;;   ;; Suppress the warning: `ls does not support --dired'.
   ;; (setq dired-use-ls-dired nil)
-  ;; Don't complain about this command being disabled when we use it
-  (put 'dired-find-alternate-file 'disabled nil)
+
+  (unless (boundp dired-kill-when-opening-new-dired-buffer)
+    ;; Don't complain about this command being disabled when we use it
+    (put 'dired-find-alternate-file 'disabled nil))
 
   (when (executable-find "gls")
     ;; Use GNU ls as `gls' from `coreutils' if available.
