@@ -33,7 +33,7 @@
     (define-transient-command my/transient-toggle ()
       "Toogle system setting"
       ["Toggle"
-       ;; ("v" "Vterm" vterm-toggle)
+       ("v" "Vterm" vterm-toggle)
        ("f" "Fullscreen" toggle-frame-fullscreen)
        ("k" "Keylog" toggle-keylog)
        ("e" "debug-on-error" toggle-debug-on-error)
@@ -41,8 +41,42 @@
        ("s" "proxy-mode" global-proxy-mode)
        ("w" "writeroom-mode" writeroom-mode)
        ("p" "Profiler" toggle-profiler)
-       ("v" "Vlf-mode" vlf-mode)
+       ("V" "Vlf-mode" vlf-mode)
        ])
+
+    (define-transient-command my/transient-consult ()
+      [
+       ["Jump"
+        ("b" "buffer" consult-buffer)
+        ("B" "buffer other window" consult-buffer-other-window)
+        ("m" "bookmark" consult-bookmark)
+        ("l" "go-to-line" consult-goto-line)
+        ("o" "outline" consult-outline)
+        ("m" "mark" consult-mark)
+        ("M" "global mark" consult-global-mark)
+        ("i" "imenu" consult-imenu)
+        ("I" "imenu project" consult-project-imenu)
+        ]
+       ]
+      [
+       ["Info"
+        ("f" "flycheck" consult-flycheck)
+        ("h" "history" consult-complex-command)
+        ("c" "mode command" consult-mode-command)
+        ("q" "macro" consult-kmacro)
+        ("z" "man" consult-man)
+        ("r" "register" consult-register)
+        ("a" "apropos" consult-apropos)
+        ]
+       ]
+      [
+       ["Search"
+        ("f" "find" consult-find)
+        ("r" "ripgrep" consult-ripgrep)
+        ("g" "git grep" consult-git-grep)
+        ]
+       ]
+      )
 
     (define-transient-command my/transient-point ()
       ["Action at Point"

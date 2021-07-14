@@ -125,6 +125,7 @@
     "gla" 'magit-log-all-branches
 
     (kbd "<localleader> t") 'my/transient-toggle
+    (kbd "<localleader> c") 'my/transient-consult
     (kbd "<localleader> f") 'my/transient-buffer
     (kbd "<localleader> ,") 'my/transient-point
 
