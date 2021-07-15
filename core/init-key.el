@@ -273,6 +273,14 @@
     (kbd "ESC") 'transient-quit-one
     (kbd "<escape>") 'transient-quit-one)
 
+  (evil-define-key nil rg-mode-map
+    "n" 'compilation-next-error
+    "p" 'compilation-previous-error
+    "N" 'compilation-next-file
+    "P" 'compilation-previous-file
+    "?" 'rg-replace
+    )
+
   ;; dired
   (evil-define-key nil dired-mode-map
     [remap dired-find-file] 'dired-single-buffer

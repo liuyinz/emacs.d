@@ -59,19 +59,41 @@
   :hook (after-init-hook . undohist-initialize)
   :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
 
-;; (leaf wgrep
-;;   :hook (grep-mode-hook . wgrep-change-to-wgrep-mode)
-;;   :init
-;;   (setq wgrep-change-readonly-file t)
-;;   (setq wgrep-auto-save-buffer t))
+(leaf wgrep
+  ;; :hook (grep-mode-hook . wgrep-change-to-wgrep-mode)
+  :init
+  (setq wgrep-change-readonly-file t)
+  (setq wgrep-auto-save-buffer t))
 
 (leaf rg
   :doc "deps : transient wgrep"
   :commands rg-menu
-  :init
-  (setq rg-ignore-case 'smart)
-  ;; :config
-  ;; (rg-enable-menu)
+  :init (setq rg-ignore-case 'smart)
+  ;; :hook (rg-mode-hook . (lambda ()
+  ;;                         (setq-local comment-start "#"
+  ;;                                     comment-end "#")))
+  :config
+
+  (with-no-warnings
+    ;; Integration with evil-ex-substitute
+    (defun rg-replace ()
+      "Replace in Rg-mode."
+      (interactive)
+      (wgrep-change-to-wgrep-mode)
+      (evil-ex (concat "%s/" (cl-struct-slot-value 'rg-search 'pattern rg-cur-search)))
+      (wgrep-finish-edit))
+
+    ;; HACK restore if evil-ex failed
+    (advice-add 'abort-recursive-edit :before
+                (lambda ()
+                  (let ((name (buffer-name (window-buffer (previous-window)))))
+                    (when (string= name (concat "*" rg-buffer-name "*"))
+                      (with-current-buffer name
+                        (wgrep-abort-changes)
+                        (beginning-of-buffer)))))))
+  (rg-menu-transient-insert "Rerun" "R" "replace" #'rg-replace)
+
+  ;; (add-to-list 'hs-special-modes-alist '(rg-mode "^File:.+$" "\n" "#" nil nil))
   )
 
 (leaf valign

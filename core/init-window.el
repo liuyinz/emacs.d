@@ -44,6 +44,7 @@
           ((flycheck-error-list-mode flymake-diagnostics-buffer-mode)
            :select t :size 0.25 :align 'below)
 
+          ("*rg*" :select t)
           ;; ("*Emacs Log*" :size 0.3 :align 'right)
           )))
 
