@@ -73,14 +73,6 @@
   :commands opencc-replace-at-point opencc-print-buffer
   :doc "deps: brew install opencc")
 
-(leaf rg
-  :doc "deps : transient wgrep"
-  :commands rg-menu
-  :init
-  (setq rg-ignore-case 'smart)
-  :config
-  (rg-enable-menu))
-
 (leaf interaction-log
   :hook (ilog-log-buffer-mode-hook . (lambda ()
                                        (setq ilog-display-state 'messages)

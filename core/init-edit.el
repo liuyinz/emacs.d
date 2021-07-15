@@ -65,6 +65,15 @@
   (setq wgrep-change-readonly-file t)
   (setq wgrep-auto-save-buffer t))
 
+(leaf rg
+  :doc "deps : transient wgrep"
+  :commands rg-menu
+  :init
+  (setq rg-ignore-case 'smart)
+  ;; :config
+  ;; (rg-enable-menu)
+  )
+
 (leaf valign
   :hook ((org-mode-hook markdown-mode-hook) . valign-mode))
 

@@ -128,6 +128,7 @@
     (kbd "<localleader> c") 'my/transient-consult
     (kbd "<localleader> f") 'my/transient-buffer
     (kbd "<localleader> ,") 'my/transient-point
+    (kbd "<localleader> m") 'rg-menu
 
     (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
     (kbd "<leader> f") 'my-format
