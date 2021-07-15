@@ -6,11 +6,13 @@
 
 (leaf transient
   :init
+  (setq transient-highlight-mismatched-keys t
+        transient-detect-key-conflicts t)
   (add-hook 'after-init-hook #'my/transient-setup)
   (defun my/transient-setup ()
     (require 'transient)
 
-    (define-transient-command my/transient-buffer ()
+    (transient-define-prefix my/transient-buffer ()
       "Buffer Operation"
       ["Info"
        ("N" "base name" buffer-base-name)
@@ -30,7 +32,7 @@
        ])
 
     ;; toggle-transient
-    (define-transient-command my/transient-toggle ()
+    (transient-define-prefix my/transient-toggle ()
       "Toogle system setting"
       ["Toggle"
        ("v" "Vterm" vterm-toggle)
@@ -44,12 +46,11 @@
        ("V" "Vlf-mode" vlf-mode)
        ])
 
-    (define-transient-command my/transient-consult ()
-      [
-       ["Jump"
+    (transient-define-prefix my/transient-consult ()
+      [["Jump"
         ("b" "buffer" consult-buffer)
         ("B" "buffer other window" consult-buffer-other-window)
-        ("m" "bookmark" consult-bookmark)
+        ("j" "bookmark" consult-bookmark)
         ("l" "go-to-line" consult-goto-line)
         ("o" "outline" consult-outline)
         ("m" "mark" consult-mark)
@@ -57,28 +58,23 @@
         ("i" "imenu" consult-imenu)
         ("I" "imenu project" consult-project-imenu)
         ]
-       ]
-      [
        ["Info"
         ("f" "flycheck" consult-flycheck)
         ("h" "history" consult-complex-command)
         ("c" "mode command" consult-mode-command)
         ("q" "macro" consult-kmacro)
         ("z" "man" consult-man)
-        ("r" "register" consult-register)
+        ("R" "register" consult-register)
         ("a" "apropos" consult-apropos)
         ]
-       ]
-      [
        ["Search"
-        ("f" "find" consult-find)
+        ("F" "find" consult-find)
         ("r" "ripgrep" consult-ripgrep)
         ("g" "git grep" consult-git-grep)
-        ]
-       ]
+        ]]
       )
 
-    (define-transient-command my/transient-point ()
+    (transient-define-prefix my/transient-point ()
       ["Action at Point"
        ("d" "dash-at-point" dash-at-point)
        ("t" "go-translate" go-translate-echo-area)
@@ -88,7 +84,7 @@
        ("h" "hl-todo-insert" hl-todo-insert)
        ]))
 
-  ;; (define-transient-command my/help-transient ()
+  ;; (transient-define-prefix my/help-transient ()
   ;;   "Help commands that I use. A subset of C-h with others thrown in."
   ;;   ["Help Commands"
   ;;    ["Mode & Bindings"
