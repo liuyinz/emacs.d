@@ -79,6 +79,5 @@
   (require 'init-lang)
   (require 'init-elisp)
   (require 'init-markdown)
-  (require 'init-transient)
   (require 'init-key))
 ;;; init.el ends here

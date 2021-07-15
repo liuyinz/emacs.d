@@ -6,6 +6,12 @@
 
 (require 'subr-x)
 
+(leaf transient
+  :require t
+  :init
+  (setq transient-highlight-mismatched-keys nil
+        transient-detect-key-conflicts t))
+
 (leaf ns-auto-titlebar
   :hook (after-make-window-system-frame-hook . ns-auto-titlebar-mode))
 

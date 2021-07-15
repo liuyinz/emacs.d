@@ -59,11 +59,11 @@
   :hook (after-init-hook . undohist-initialize)
   :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
 
-(leaf wgrep
-  :hook (grep-mode-hook . wgrep-change-to-wgrep-mode)
-  :init
-  (setq wgrep-change-readonly-file t)
-  (setq wgrep-auto-save-buffer t))
+;; (leaf wgrep
+;;   :hook (grep-mode-hook . wgrep-change-to-wgrep-mode)
+;;   :init
+;;   (setq wgrep-change-readonly-file t)
+;;   (setq wgrep-auto-save-buffer t))
 
 (leaf rg
   :doc "deps : transient wgrep"
