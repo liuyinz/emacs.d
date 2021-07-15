@@ -134,7 +134,15 @@ $0`(yas-escape-text yas-selected-text)`")
     (if (equal major-mode 'snippet-mode)
         (lisp-interaction-mode)
       (snippet-mode))
-    (evil-insert)))
+    (evil-insert))
+
+  (defun yas-emmet-switch ()
+    "Call `my-company-yasnippet' or `emmet-expand-yas' when needed."
+    (interactive)
+    (if (bound-and-true-p emmet-mode)
+        (emmet-expand-yas)
+      (my-company-yasnippet)))
+  )
 
 ;; (leaf citre
 ;;   :init

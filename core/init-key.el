@@ -6,29 +6,6 @@
 ;; NOTE see@http://ergoemacs.org/emacs/emacs_key_notation_return_vs_RET.html
 ;; see@http://ergoemacs.org/emacs/keystroke_rep.html
 
-(defun evil-vundo-undo ()
-  "Hybrid evil and vundo."
-  (interactive)
-  (if (not (fboundp 'vundo))
-      (evil-undo 1)
-    (vundo)
-    (vundo-backward 1)))
-
-(defun evil-vundo-redo ()
-  "Hybrid evil and vundo."
-  (interactive)
-  (if (not (fboundp 'vundo))
-      (evil-redo 1)
-    (vundo)
-    (vundo-forward 1)))
-
-(defun evil-substitute-normal ()
-  "Call evil-ex-substitute in normal-state."
-  (interactive)
-  (if (evil-normal-state-p)
-      (evil-ex "%s/")
-    (evil-ex "'<,'>s/")))
-
 (defun back-to-user-buffer ()
   "Switch back to text buffer,exclude `vterm-mode'."
   (interactive)
@@ -36,21 +13,6 @@
   (when (eq major-mode 'vterm-mode)
     (vterm-toggle)
     (switch-to-buffer nil)))
-
-(defun save-and-kill ()
-  "Save and kill current buffer."
-  (interactive)
-  (let ((kill-buffer-query-functions nil))
-    (save-buffer)
-    (kill-buffer nil)))
-
-(defun yas-emmet-switch ()
-  "Call `my-company-yasnippet' or `emmet-expand-yas' when needed."
-  (interactive)
-  (if (bound-and-true-p emmet-mode)
-      (emmet-expand-yas)
-    (my-company-yasnippet)))
-
 
 (with-eval-after-load 'transient
   (transient-define-prefix my/transient-buffer ()

@@ -189,6 +189,13 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
       (concat (upcase (substring s 0 1)) (downcase (substring s 1)))
     nil))
 
+(defun save-and-kill ()
+  "Save and kill current buffer."
+  (interactive)
+  (let ((kill-buffer-query-functions nil))
+    (save-buffer)
+    (kill-buffer nil)))
+
 ;; silently message
 (defun silent-message-advice (original &rest args)
   "Silent function `ORIGINAL' message."

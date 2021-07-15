@@ -31,6 +31,30 @@
         )
   :config
 
+  ;; HACK integration with vundo
+  (defun evil-vundo-undo ()
+    "Hybrid evil and vundo."
+    (interactive)
+    (if (not (fboundp 'vundo))
+        (evil-undo 1)
+      (vundo)
+      (vundo-backward 1)))
+
+  (defun evil-vundo-redo ()
+    "Hybrid evil and vundo."
+    (interactive)
+    (if (not (fboundp 'vundo))
+        (evil-redo 1)
+      (vundo)
+      (vundo-forward 1)))
+
+  (defun evil-substitute-normal ()
+    "Call evil-ex-substitute in normal-state."
+    (interactive)
+    (if (evil-normal-state-p)
+        (evil-ex "%s/")
+      (evil-ex "'<,'>s/")))
+
   ;; (leaf evil-collection
   ;;   :doc "deps : annalist evil"
   ;;   :after evil
