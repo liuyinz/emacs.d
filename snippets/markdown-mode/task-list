@@ -1,8 +1,8 @@
 # -*- mode: snippet -*-
-# name: striKe Through
+# name: task-list
 # contributor : 食無魚<liuyinz@gmail.com>
-# key: kt 
+# key: tl
 # --
 
-~~${1:striKe Through}~~ $0
-
+- [${2: }] ${1:task}
+$0
