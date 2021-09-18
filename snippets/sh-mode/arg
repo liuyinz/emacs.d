@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: arg
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: arg
+# --
+
+if [ $# -lt ${1:2} ]; then
+  $0
+fi

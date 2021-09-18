@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# contributor: Jimmy Yuen Ho Wong <wyuenho@gmail.com>
+# name: bound method
+# key: mb
+# --
+
+${1:methodName} = (${2:params}) => {
+  ${0}
+}

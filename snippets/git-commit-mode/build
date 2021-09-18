@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: build
+# contributor : 食無魚 <liuyinz@gmail.com>
+# key: bu
+# --
+build${1:(${2:SCOPE})}: $0

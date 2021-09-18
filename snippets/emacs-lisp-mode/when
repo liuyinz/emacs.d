@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: when
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: w
+# --
+
+(when ${1:(${2:cond})}
+  ${3:(${4:then})}$5)$0

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: bang
+# key: !
+# --
+
+#!/usr/bin/env ${1:$$(yas-choose-value '("bash" "zsh" "sh"))}
+
+$0

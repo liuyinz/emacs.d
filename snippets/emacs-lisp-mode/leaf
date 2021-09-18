@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: leaf
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: leaf
+# --
+
+(leaf ${1:package-name}
+  :${2:option} $0)

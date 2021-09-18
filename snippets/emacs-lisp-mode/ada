@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: advice-add
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: ada
+# --
+
+(advice-add '${1:symbol} :${2:$$(yas-choose-value '("before" "after" "override" "around" "before-while" "before-until" "after-while" "after-until" "filter-args" "filter-return"))} #'${3:function}$4)
+$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ci
+# contributor : 食無魚 <liuyinz@gmail.com>
+# key: ci
+# --
+ci${1:(${2:SCOPE})}: $0

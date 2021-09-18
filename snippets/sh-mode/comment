@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: comment
+# contributor : 食無魚 <liuyinz@gmail.com>
+# key: co
+# --
+
+#######################################
+# ${1:$$(capitalize-first yas-text)}
+# Globals:
+#   ${2:None}
+# Arguments:
+#   ${3:None}
+# Outputs:
+#   ${4:$$(capitalize-first yas-text)}
+# Returns:
+#   ${5:$$(capitalize-first yas-text)}
+#######################################
+$0

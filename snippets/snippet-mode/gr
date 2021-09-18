@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: group
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: gr
+# --
+
+# group : ${1:group}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: [*]
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: ul
+# --
+* $1
+$0

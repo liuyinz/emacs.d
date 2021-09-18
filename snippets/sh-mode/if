@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: if
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: if
+# --
+
+
+if ${1:COND}; then
+  ${2:THEN}
+fi
+$0

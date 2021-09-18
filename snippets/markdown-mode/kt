@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: striKe Through
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: kt 
+# --
+
+~~${1:striKe Through}~~ $0
+

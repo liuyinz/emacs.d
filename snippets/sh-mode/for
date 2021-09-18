@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: for
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: for
+# --
+
+for ${1:VAR} in ${2:ARRAY}; do
+  $0
+done

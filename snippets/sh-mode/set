@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: set
+# contributor : 食無魚 <liuyinz@gmail.com>
+# key: set
+# --
+
+set -Eeuxo pipefail

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Bold&Italic
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: bt
+# --
+
+***${1:Bold&Italic}*** $0

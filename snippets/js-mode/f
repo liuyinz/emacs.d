@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: function
+# contributor : 食無魚 <liuyinz@gmail.com>
+# key: f
+# --
+
+function ${1:name}(${2:arg}) {
+  $3
+}
+$0

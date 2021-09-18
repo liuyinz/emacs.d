@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Italic
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: it
+# --
+
+*${1:Italic}* $0

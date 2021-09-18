@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: select
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: select
+# --
+
+select ${1:VAR} in ${2:LIST}; do
+  $0
+done

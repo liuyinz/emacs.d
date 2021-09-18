@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: uuid
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: uuid
+# --
+
+# uuid: ${1:uuid}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: expand-env
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: ee
+# --
+
+# expand-env: ${1:expand-env}

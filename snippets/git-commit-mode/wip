@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: wip
+# contributor : 食無魚 <liuyinz@gmail.com>
+# key: wi
+# --
+wip${1:(${2:FEAT})}: $0

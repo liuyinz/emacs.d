@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: template
+# key: tp
+# possibly add some smart control over the list
+# --
+all: ${1:targets}
+
+$0
+
+clean:
+        ${2:clean actions}

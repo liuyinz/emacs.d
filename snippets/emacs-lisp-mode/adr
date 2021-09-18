@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: advice-remove
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: adr
+# --
+
+(advice-remove '${1:symbol} #'${2:function})
+$0

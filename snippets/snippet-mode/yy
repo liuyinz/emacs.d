@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: yas-complete
+# contributor : 食無魚<liuyinz@gmail.com>
+# key: yy
+# --
+
+${1:$$(yas-choose-value '(
+"yas-choose-value"
+"yas-field-value"
+"yas-text"
+"yas-escape-text"
+"yas-selected-text"))} $0

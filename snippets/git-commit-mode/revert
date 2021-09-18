@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: revert
+# contributor : 食無魚 <liuyinz@gmail.com>
+# key: rv
+# --
+revert${1:(${2:COMMITS})}: $0
