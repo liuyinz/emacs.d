@@ -10,7 +10,7 @@
 ;; Author: ${3:`user-full-name`} ${4:<`user-mail-address`>}
 ;; Maintainer: $3 $4
 ;; Created: `(format-time-string "%Y-%m-%d %H:%M:%S" (current-time))`
-;; Version: ${5:0.1}
+;; Version: ${5:0.1.0}
 ;; Package-Requires: ((emacs "${6:`emacs-version`}")$7)
 ;; Homepage: ${8:`user-home-page`/$1}$9
 
