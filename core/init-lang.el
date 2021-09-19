@@ -30,6 +30,7 @@
   :mode
   ("\\.jsonc\\'" . jsonc-mode)
   ("\\.json\\'"  . json-mode)
+  ("\\.versionrc\\'" . json-mode)
   )
 
 (leaf jq-mode
