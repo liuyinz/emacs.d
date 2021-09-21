@@ -395,9 +395,9 @@
 [submodule "emmet-mode"]
 	path = lib/emmet-mode
 	url = https://github.com/smihica/emmet-mode.git
-[submodule "el-conventional-changelog"]
-	path = lib/el-conventional-changelog
-	url = https://github.com/johnlepikhin/el-conventional-changelog.git
 [submodule "ox-gfm"]
 	path = lib/ox-gfm
 	url = https://github.com/larstvei/ox-gfm.git
+[submodule "emacs-conventional-changelog"]
+	path = lib/emacs-conventional-changelog
+	url = https://github.com/liuyinz/emacs-conventional-changelog.git
