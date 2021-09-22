@@ -401,3 +401,9 @@
 [submodule "emacs-conventional-changelog"]
 	path = lib/emacs-conventional-changelog
 	url = https://github.com/liuyinz/emacs-conventional-changelog.git
+[submodule "handlebars-mode"]
+	path = lib/handlebars-mode
+	url = https://github.com/thornjad/handlebars-mode.git
+[submodule "pandoc-mdoe"]
+	path = lib/pandoc-mdoe
+	url = https://github.com/joostkremers/pandoc-mode.git

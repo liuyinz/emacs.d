@@ -29,6 +29,9 @@
   :commands opencc-replace-at-point opencc-print-buffer
   :doc "deps: brew install opencc")
 
+(leaf pandoc-mode
+  :require t)
+
 ;;; ------------------------- Network ------------------------------
 
 (leaf proxy-mode

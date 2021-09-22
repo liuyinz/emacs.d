@@ -52,6 +52,8 @@
 
 (leaf vimrc-mode :mode "\\.vim\\'" "\\vimrc\\'")
 
+(leaf handlebars-mode :mode "\\.\\(hbs\\|handlebars\\)\\'")
+
 (leaf plantuml-mode :mode "\\.plantuml\\'")
 
 (leaf logview
