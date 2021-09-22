@@ -520,9 +520,10 @@ CHAR-FUNCTION
     "Variable stores github info with (USERNAME . PASSWORD).")
   (defun github-info ()
     "Return github info with (USERNAME . PASSWORD)."
-    (unless (bound-and-true-p github-info)
+    (unless github-info
       (setq github-info
-            (seq-subseq (auth-source-user-and-password "github.com") 0 2))))
+            (seq-subseq (auth-source-user-and-password "github.com") 0 2)))
+    github-info)
 
   )
 
