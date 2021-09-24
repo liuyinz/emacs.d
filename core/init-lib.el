@@ -254,5 +254,11 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   (seq-filter (lambda (f) (frame-parameter f 'display))
               (frame-list)))
 
+(defun shell-command-exit-code-and-output (program &rest args)
+  "Run PROGRAM with ARGS and return the exit code and output in a cons."
+  (with-temp-buffer
+    (cons (apply 'call-process program nil (current-buffer) nil args)
+          (buffer-string))))
+
 (provide 'init-lib)
 ;;; init-lib.el ends here
