@@ -10,7 +10,7 @@
          ("\\.gitattributes\\'" . gitattributes-mode)))
 
 (leaf magit
-  :doc "deps: with-editor forge git-modes ghub"
+  :doc "deps: with-editor dash forge git-modes ghub"
   :commands (magit-status
              magit-submodule
              magit-dispatch
@@ -84,7 +84,10 @@
   )
 
 (leaf conventional-changelog
-  :commands conventional-changelog)
+  :init
+  (setq conventional-changelog-tmp-dir
+        (expand-file-name "var/conventional-changelog" my-dir-cache))
+  :commands conventional-changelog-menu)
 
 (provide 'init-vcs)
 ;;; init-vcs.el ends here
