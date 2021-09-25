@@ -26,7 +26,7 @@
 (require 'init-const)
 (require 'init-lib)
 
-
+;; TODO add emacs-plug to update submodules async
 ;; add submodules to load-path
 (defun add-subdirs-to-load-path (dir)
   "Recursive add `DIR` to `load-path'."

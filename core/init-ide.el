@@ -26,7 +26,6 @@
         flycheck-tidyrc "~/.tidyrc"
         flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save idle-change mode-enabled)
-        flycheck-idle-change-delay 2
         flycheck-indication-mode 'right-margin)
 
   (defun my/flycheck-setup ()
