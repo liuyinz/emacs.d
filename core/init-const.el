@@ -34,7 +34,7 @@
   "https://github.com/liuyinz"
   "The Github Page of mine.")
 
-(setq user-full-name "食無魚")
+(setq user-full-name "liuyinz")
 (setq user-mail-address "liuyinz@gmail.com")
 
 (provide 'init-const)
