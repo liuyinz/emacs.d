@@ -5,7 +5,7 @@
 # --
 ;;; ${1:`(file-name-sans-extension (buffer-name))`}.el --- ${2:summary} -*- lexical-binding: t no-byte-compile: t -*-
 
-;; Author: ${3:`user-full-name`}
+;; Author: ${3:`user-full-name`} ${4:<`user-mail-address`>}
 ;; Created: `(format-time-string "%Y-%m-%d %H:%M:%S" (current-time))`
 
 ;;; Commentary:
