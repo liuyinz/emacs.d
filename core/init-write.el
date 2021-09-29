@@ -22,7 +22,7 @@
         (cjk-font-setting "Source Han Serif" 1.4)
       (cjk-font-setting "Sarasa Mono SC" 1))))
 
-;; TODO rewrite with transient
+;; TODO customize easy-hugo-buffer, refactor easy-hugo, tag filter
 (leaf easy-hugo
   :commands easy-hugo easy-hugo-rg
   :init
@@ -30,7 +30,10 @@
         easy-hugo-postdir "content/posts/"
         easy-hugo-url  "https://liuyinz.github.io/"
         easy-hugo-preview-url "http://localhost:1313/"
-        easy-hugo-server-flags "-D"))
+        easy-hugo-server-flags "-D"
+        easy-hugo-no-help t)
+  :config
+  (easy-hugo-enable-menu))
 
   (provide 'init-write)
 
