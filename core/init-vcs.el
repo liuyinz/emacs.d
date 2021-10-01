@@ -69,10 +69,6 @@
                             ,(gh-profile-remote-regexp "github.com"))))
   )
 
-(leaf gitignore-templates
-  :commands gitignore-templates-insert gitignore-templates-new-file
-  :init (setq gitignore-templates-api 'github))
-
 ;; Open github/gitlab/bitbucket page
 (leaf browse-at-remote :commands browse-at-remote)
 
@@ -80,14 +76,28 @@
   :commands vc-msg-show
   :init
   (setq vc-msg-show-at-line-beginning-p nil
-        vc-msg-newbie-friendly-msg "")
+        vc-msg-newbie-friendly-msg ""))
+
+(leaf gitignore-templates
+  :require t
+  :init (setq gitignore-templates-api 'github)
+  :config
+  ;; Integrate with `magit-gitignore'
+  (with-eval-after-load 'magit-gitignore
+    (require 'gitignore-templates nil t)
+    (transient-append-suffix 'magit-gitignore '(0)
+      ["Template"
+       ("n" "new file" gitignore-templates-new-file)
+       ("i" "select pattern" gitignore-templates-insert)]))
   )
 
 (leaf conventional-changelog
+  :require t
   :init
   (setq conventional-changelog-tmp-dir
         (expand-file-name "var/conventional-changelog" my-dir-cache))
-  :commands conventional-changelog-menu)
+  :config
+  (conventional-changelog-integrate-magit))
 
 (provide 'init-vcs)
 ;;; init-vcs.el ends here
