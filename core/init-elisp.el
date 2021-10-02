@@ -110,5 +110,9 @@ Lisp function does not specify a special indentation."
 (leaf elisp-demos
   :commands elisp-demos-find-demo)
 
+(leaf relint
+  :doc "deps: xr"
+  :commands relint-file relint-directory relint-current-buffer)
+
 (provide 'init-elisp)
 ;;; init-elisp.el ends here

@@ -13,10 +13,6 @@
   ;; (display-buffer-pop-up-window)
   )
 
-(leaf relint
-  :doc "deps: xr"
-  :commands relint-file relint-directory relint-current-buffer)
-
 (leaf go-translate
   :commands go-traslate go-translate-kill-ring-save go-translate-echo-area
   :init
