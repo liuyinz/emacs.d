@@ -35,7 +35,7 @@
   :init
   (setq markdown-toc-header-toc-start "<!-- markdown-toc start -->"
         markdown-toc-indentation-space 2
-        markdown-toc-header-toc-title "\n**目录**")
+        markdown-toc-header-toc-title "\n**Table of Contents**")
   :config
 
   ;; ISSUE https://github.com/ardumont/markdown-toc/issues/47

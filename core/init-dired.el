@@ -12,7 +12,6 @@
   ;;   ;; Suppress the warning: `ls does not support --dired'.
   ;; (setq dired-use-ls-dired nil)
 
-  ;; WORKAROUND compatiable with `emacs-version' < 28.1
   (if emacs/>=28.1p
       (setq dired-kill-when-opening-new-dired-buffer t)
     (put 'dired-find-alternate-file 'disabled nil))
@@ -34,8 +33,6 @@ A prefix argument means to unmark them instead."
        "empty directory")))
   )
 
-(leaf dired-single
-  :commands dired-single-buffer dired-single-buffer-mouse dired-single-up-directory)
 
 ;; (leaf dired-aux)
 
