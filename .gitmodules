@@ -404,3 +404,9 @@
 [submodule "pandoc-mdoe"]
 	path = lib/pandoc-mdoe
 	url = https://github.com/joostkremers/pandoc-mode.git
+[submodule "package-lint"]
+	path = lib/package-lint
+	url = https://github.com/purcell/package-lint.git
+[submodule "flycheck-package"]
+	path = lib/flycheck-package
+	url = https://github.com/purcell/flycheck-package.git
