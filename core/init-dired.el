@@ -12,8 +12,8 @@
   ;;   ;; Suppress the warning: `ls does not support --dired'.
   ;; (setq dired-use-ls-dired nil)
 
-  ;; WORKAROUND compatiable with `emacs-version' < 28
-  (if (boundp dired-kill-when-opening-new-dired-buffer)
+  ;; WORKAROUND compatiable with `emacs-version' < 28.1
+  (if emacs/>=28.1p
       (setq dired-kill-when-opening-new-dired-buffer t)
     (put 'dired-find-alternate-file 'disabled nil))
 

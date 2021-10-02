@@ -10,8 +10,11 @@
         inhibit-startup-echo-area-message (user-login-name)
         initial-scratch-message nil
         inhibit-default-init t
-        auto-save-list-file-prefix nil
-        )
+        auto-save-list-file-prefix nil)
+
+  (setq user-full-name "liuyinz")
+  (setq user-mail-address "liuyinz@gmail.com")
+
   (advice-add #'display-startup-echo-area-message :override #'ignore))
 
 (leaf server
@@ -435,6 +438,13 @@ CHAR-FUNCTION
 
 ;;; --------------------------- Jump -------------------------------
 
+(leaf xref
+  :init
+  (when emacs/>=28.1p
+    (setq xref-search-program #'ripgrep
+          xref-show-xrefs-function 'xref-show-definitions-completing-read
+          xref-show-definitions-function 'xref-show-definitions-completing-read)))
+
 (leaf winner
   :hook (after-init-hook . winner-mode))
 
@@ -562,7 +572,8 @@ CHAR-FUNCTION
       frame-resize-pixelwise t
       ring-bell-function 'ignore
       history-length 1000
-      history-delete-duplicates t)
+      history-delete-duplicates t
+      )
 
 (setq-default fill-column 80
               tab-width 4

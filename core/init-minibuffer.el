@@ -189,10 +189,11 @@
 
   ;;; -------------------------- Extra -------------------------------
 
-  (require 'consult-xref)
-  ;; Use Consult to select xref locations with preview
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
+  (unless emacs/>=28.1p
+    (require 'consult-xref)
+    ;; Use Consult to select xref locations with preview
+    (setq xref-show-xrefs-function #'consult-xref
+          xref-show-definitions-function #'consult-xref))
 
   (require 'consult-register)
   ;; Optionally configure the register formatting.
