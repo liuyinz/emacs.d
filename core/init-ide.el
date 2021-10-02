@@ -41,10 +41,14 @@
        (when (executable-find "pylint")
          (flycheck-select-checker 'python-pylint)))
 
-      ((emacs-lisp-mode lisp-interaction-mode)
-       (leaf flycheck-relint
-         :require t
-         :config (flycheck-relint-setup)))
+      (emacs-lisp-mode
+       (progn
+         (leaf flycheck-package
+           :require t
+           :config (flycheck-package-setup)))
+         (leaf flycheck-relint
+           :require t
+           :config (flycheck-relint-setup)))
 
       ((js-mode js2-mode json-mode jsonc-mode)
        (when (executable-find "eslint")
