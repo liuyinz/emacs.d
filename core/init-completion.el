@@ -110,6 +110,9 @@ $0`(yas-escape-text yas-selected-text)`")
       ))
   )
 
+(leaf consult-yasnippet
+  :commands consult-yasnippet consult-yasnippet-visit-snippet-file)
+
 ;; (leaf citre
 ;;   :init
 ;;   (require 'citre-config)

@@ -86,8 +86,9 @@
       ("z" "Man" consult-man)
       ("R" "Register" consult-register)
       ("a" "Apropos" consult-apropos)
-      ("y" "Yank" consult-yank-from-kill-ring)
+      ("Y" "Yank" consult-yank-from-kill-ring)
       ("t" "Theme" consult-theme)
+      ("y" "Yasnippet" consult-yasnippet)
       ]
      ["Search"
       ("L" "Go-to-line" consult-goto-line)
@@ -112,7 +113,8 @@
      ["Edit"
       ("p" "Paste selection" cliphist-paste-item)
       ("i" "Edit indirect" my/edit-indirect)
-      ("t" "Todo insert" hl-todo-insert :if-non-nil hl-todo-mode)
+      ("y" "Insert yasnippet" consult-yasnippet :if-non-nil yas-minor-mode)
+      ("t" "Insert todo" hl-todo-insert :if-non-nil hl-todo-mode)
       ("r" "Revert hunk" diff-hl-revert-hunk :if-non-nil diff-hl-mode)
       ]
      ])
