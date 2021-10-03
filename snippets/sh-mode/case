@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: case
-# contributor : 食無魚<liuyinz@gmail.com>
+# contributor: liuyinz<liuyinz@gmail.com>
 # key: case
 # --
 case ${1:VAR} in

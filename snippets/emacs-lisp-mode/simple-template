@@ -1,6 +1,6 @@
 # -*- mode: snippet; -*-
 # name: simple-template
-# contributor : 食無魚<liuyinz@gmail.com>
+# contributor: liuyinz<liuyinz@gmail.com>
 # key: st
 # --
 ;;; ${1:`(file-name-sans-extension (buffer-name))`}.el --- ${2:summary} -*- lexical-binding: t no-byte-compile: t -*-

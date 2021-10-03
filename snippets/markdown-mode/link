@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Link
-# contributor : 食無魚<liuyinz@gmail.com>
-# key: lk
-# --
-
-[${1:Text}](${2:URL}$3) $0

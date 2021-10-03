@@ -1,11 +1,11 @@
 # -*- mode: snippet -*-
 # name: Simple Template
-# contributor : 食無魚<liuyinz@gmail.com>
+# contributor: liuyinz<liuyinz@gmail.com>
 # key: st
 # --
 # -*- mode: snippet -*-
 # name: ${1:`(buffer-name)`}
-# contributor : ${2:`user-full-name` <`user-mail-address`>}
+# contributor: ${2:`user-full-name`<`user-mail-address`>}
 # key: ${3:key}
 # --
 

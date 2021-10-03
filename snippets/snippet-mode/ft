@@ -1,11 +1,11 @@
 # -*- mode: snippet -*-
 # name: Full Template
-# contributor : 食無魚<liuyinz@gmail.com>
+# contributor: liuyinz<liuyinz@gmail.com>
 # key: ft
 # --
 # -*- mode: snippet -*-
 # name: $1
-# contributor : ${2:`user-full-name`<`user-mail-address`>}
+# contributor: ${2:`user-full-name`<`user-mail-address`>}
 # key: ${3:trigger-key}
 # type: ${4:snippet}
 # condition: $5

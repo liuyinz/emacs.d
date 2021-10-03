@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: type
-# contributor : 食無魚<liuyinz@gmail.com>
+# contributor: liuyinz<liuyinz@gmail.com>
 # key: ty
 # --
 ${1:$$(yas-choose-value '("fix" "feat" "docs" "style" "refactor" "test" "chore" "perf" "build" "ci" "revert"))}${2:(${3:SCOPE})}: $0

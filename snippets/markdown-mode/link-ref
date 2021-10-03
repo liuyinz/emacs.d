@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
-# name: style
+# name: link-ref
 # contributor: liuyinz<liuyinz@gmail.com>
-# key: st
+# key: lkr
 # --
-style: $0
+
+[${1:Text}][${2:$1}]$0

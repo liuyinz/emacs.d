@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: docs
-# contributor : 食無魚<liuyinz@gmail.com>
+# contributor: liuyinz<liuyinz@gmail.com>
 # key: do
 # --
 docs${1:(${2:SCOPE})}: $0
