@@ -104,7 +104,7 @@
     [["Info"
       ("d" "Dash doc" dash-at-point)
       ("h" "Elisp demos" elisp-demos-find-demo)
-      ("e" "Translate to" go-translate-echo-area)
+      ("e" "Fanyi to" fanyi-dwim2)
       ("w" "Search web" webjump)
       ("f" "Flycheck error" flycheck-explain-error-at-point :if-non-nil flycheck-mode)
       ("g" "Github browse" browse-at-remote)

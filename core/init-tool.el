@@ -13,12 +13,9 @@
   ;; (display-buffer-pop-up-window)
   )
 
-(leaf go-translate
-  :commands go-traslate go-translate-kill-ring-save go-translate-echo-area
-  :init
-  (setq go-translate-base-url "https://translate.google.cn"
-        go-translate-local-language "zh-CN"
-        go-translate-token-current (cons 430675 2721866130)))
+(leaf fanyi
+  :doc "deps: brew install mpg123"
+  :commands fanyi-dwim fanyi-dwim2)
 
 ;; "简繁转换"
 (leaf opencc
