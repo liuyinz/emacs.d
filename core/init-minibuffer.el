@@ -44,39 +44,64 @@
 
   :config
 
-  ;; SEE https://github.com/cute-jumper/pinyinlib.el#pinyinlib-build-regexp-string
-  (defun ad/orderless-regexp-pinyin (str)
-    "Patch `orderless-regexp' with pinyin surpport"
-    (setf (car str) (pinyinlib-build-regexp-string (car str)))
-    str)
-  (advice-add 'orderless-regexp :filter-args #'ad/orderless-regexp-pinyin)
-
-  ;; SEE https://github.com/oantolin/orderless/blob/master/README.org#style-dispatchers
-  (defun without-if-bang (pattern _index _total)
-    "!pattern : exclude pattern."
-    (cond
-     ((equal "!" pattern)
-      '(orderless-literal . ""))
-     ((string-prefix-p "!" pattern)
-      `(orderless-without-literal . ,(substring pattern 1)))))
-
-  (defun initialism-if-at (pattern _index _total)
-    "@pattern : first letter of word in order."
-    (cond
-     ((equal "@" pattern)
-      '(orderless-literal . ""))
-     ((string-prefix-p "@" pattern)
-      `(orderless-initialism . ,(substring pattern 1)))))
-
-  (setq orderless-component-separator #'orderless-escapable-split-on-space
-        orderless-style-dispatchers '(initialism-if-at without-if-bang))
-
   ;; SEE https://github.com/oantolin/orderless#company
   (defun ad/just-one-face (fn &rest args)
     (let ((orderless-match-faces [completions-common-part]))
       (apply fn args)))
   (advice-add 'company-capf--candidates :around #'ad/just-one-face)
 
+  ;; SEE https://github.com/cute-jumper/pinyinlib.el#pinyinlib-build-regexp-string
+  (defun ad/orderless-regexp-pinyin (args)
+    "Patch `orderless-regexp' with pinyin surpport"
+    (setf (car args) (pinyinlib-build-regexp-string (car args)))
+    args)
+  (advice-add 'orderless-regexp :filter-args #'ad/orderless-regexp-pinyin)
+
+  ;; SEE https://github.com/minad/consult/wiki#orderless-style-dispatchers-ensure-that-the--regexp-works-with-consult-buffer
+  ;; Recognizes the following patterns:
+  ;; * ~flex flex~
+  ;; * =literal literal=
+  ;; * %char-fold char-fold%
+  ;; * `initialism initialism`
+  ;; * !without-literal without-literal!
+  ;; * .ext (file extension)
+  ;; * regexp$ (regexp matching at end)
+  (defun my/orderless-dispatch (pattern index _total)
+    (cond
+     ;; Treat first component as prefix. This is useful for Corfu completion-in-region.
+     ((and completion-in-region-mode (= index 0))
+      `(orderless-regexp . ,(concat "^" (regexp-quote pattern))))
+     ;; Ensure that $ works with Consult commands, which add disambiguation suffixes
+     ((string-suffix-p "$" pattern)
+      `(orderless-regexp . ,(concat (substring pattern 0 -1) "[\x100000-\x10FFFD]*$")))
+     ;; File extensions
+     ((and
+       ;; Completing filename or eshell
+       (or minibuffer-completing-file-name
+           (derived-mode-p 'eshell-mode))
+       ;; File extension
+       (string-match-p "\\`\\.." pattern))
+      `(orderless-regexp . ,(concat "\\." (substring pattern 1) "[\x100000-\x10FFFD]*$")))
+     ;; Ignore single !
+     ((string= "!" pattern) `(orderless-literal . ""))
+     ;; Character folding
+     ((string-prefix-p "%" pattern) `(char-fold-to-regexp . ,(substring pattern 1)))
+     ((string-suffix-p "%" pattern) `(char-fold-to-regexp . ,(substring pattern 0 -1)))
+     ;; Without literal
+     ((string-prefix-p "!" pattern) `(orderless-without-literal . ,(substring pattern 1)))
+     ((string-suffix-p "!" pattern) `(orderless-without-literal . ,(substring pattern 0 -1)))
+     ;; Initialism matching
+     ((string-prefix-p "`" pattern) `(orderless-initialism . ,(substring pattern 1)))
+     ((string-suffix-p "`" pattern) `(orderless-initialism . ,(substring pattern 0 -1)))
+     ;; Literal matching
+     ((string-prefix-p "=" pattern) `(orderless-literal . ,(substring pattern 1)))
+     ((string-suffix-p "=" pattern) `(orderless-literal . ,(substring pattern 0 -1)))
+     ;; Flex matching
+     ((string-prefix-p "~" pattern) `(orderless-flex . ,(substring pattern 1)))
+     ((string-suffix-p "~" pattern) `(orderless-flex . ,(substring pattern 0 -1)))))
+
+  (setq orderless-component-separator #'orderless-escapable-split-on-space
+        orderless-style-dispatchers '(my/orderless-dispatch))
   )
 
 ;; TODO consult-browser-bookmark consult-browser-history
