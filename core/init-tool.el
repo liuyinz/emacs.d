@@ -15,7 +15,11 @@
 
 (leaf fanyi
   :doc "deps: brew install mpg123"
-  :commands fanyi-dwim fanyi-dwim2)
+  :commands fanyi-dwim fanyi-dwim2
+  :init
+  (setq fanyi-providers '(fanyi-longman-provider
+                          fanyi-youdao-thesaurus-provider
+                          fanyi-haici-provider)))
 
 ;; "简繁转换"
 (leaf opencc
