@@ -413,3 +413,9 @@
 [submodule "fanyi.el"]
 	path = lib/fanyi.el
 	url = https://github.com/condy0919/fanyi.el.git
+[submodule "consult-todo"]
+	path = lib/consult-todo
+	url = https://github.com/liuyinz/consult-todo.git
+[submodule "consult-jq"]
+	path = lib/consult-jq
+	url = https://github.com/liuyinz/consult-jq.git
