@@ -48,7 +48,7 @@
   (add-hook 'before-save-hook #'markdown-toc-refresh-before-save))
 
 (leaf grip-mode
-  :doc " pip install grip"
+  :doc "deps: pip install grip"
   :commands grip-start-preview
   :config
   (setq grip-github-user     (car (github-info))
