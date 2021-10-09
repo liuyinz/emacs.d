@@ -419,3 +419,12 @@
 [submodule "consult-jq"]
 	path = lib/consult-jq
 	url = https://github.com/liuyinz/consult-jq.git
+[submodule "git-commit-insert-issue"]
+	path = lib/git-commit-insert-issue
+	url = https://github.com/emacsmirror/git-commit-insert-issue.git
+[submodule "bitbucket.el"]
+	path = lib/bitbucket.el
+	url = https://github.com/tjaartvdwalt/bitbucket.el.git
+[submodule "treepy.el"]
+	path = lib/treepy.el
+	url = https://github.com/volrath/treepy.el.git

@@ -78,6 +78,9 @@
   (setq vc-msg-show-at-line-beginning-p nil
         vc-msg-newbie-friendly-msg ""))
 
+(leaf git-commit-insert-issue
+  :hook (git-commit-mode-hook . git-commit-insert-issue-mode))
+
 (leaf gitignore-templates
   :require t
   :init (setq gitignore-templates-api 'github)
