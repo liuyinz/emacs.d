@@ -10,7 +10,7 @@
          ("\\.gitattributes\\'" . gitattributes-mode)))
 
 (leaf magit
-  :doc "deps: with-editor dash forge git-modes ghub"
+  :doc "deps: with-editor forge git-modes ghub"
   :commands (magit-status
              magit-submodule
              magit-dispatch
