@@ -28,11 +28,43 @@
 
 ;; TODO add emacs-plug to update submodules async
 ;; add submodules to load-path
+(defvar load-path-exclude-regexp
+  "\\`\\(rcs\\|cvs\\|bin\\|tool\\|doc\\|document\\|documentation\\|test\\|demo\\|src\\|target\\|img\\|image\\|script\\|manual\\|screenshot\\|snapshot\\|git-hooks\\|data\\|travis\\|example\\|sample\\|font\\)\\(es\\|s\\)?\\'"
+  "Regex used to exclude in `load-path'.")
+
+(defun recursive-add-to-load-path ()
+  "Recursively add all subdirectories of `default-directory' to `load-path'.
+File match `load-path-exclude-regexp' would be excluded."
+  (let (dirs
+	    attrs
+	    (pending (list default-directory)))
+    (while pending
+      (push (pop pending) dirs)
+      (let* ((this-dir (car dirs))
+	         (contents (directory-files this-dir))
+	         (default-directory this-dir)
+	         (canonicalized (if (fboundp 'w32-untranslated-canonical-name)
+				                (w32-untranslated-canonical-name this-dir))))
+	    (setq attrs (or canonicalized
+			            (nthcdr 10 (file-attributes this-dir))))
+	    (unless (member attrs normal-top-level-add-subdirs-inode-list)
+	      (push attrs normal-top-level-add-subdirs-inode-list)
+	      (dolist (file contents)
+	        (and (string-match "\\`[[:alnum:]]" file)
+		         ;; The lower-case variants of RCS and CVS are for DOS/Windows.
+                 (not (string-match load-path-exclude-regexp file))
+		         (file-directory-p file)
+		         (let ((expanded (expand-file-name file)))
+		           (or (file-exists-p (expand-file-name ".nosearch" expanded))
+		               (setq pending (nconc pending (list expanded))))))))))
+    (normal-top-level-add-to-load-path (cdr (nreverse dirs)))))
+
 (defun add-subdirs-to-load-path (dir)
   "Recursive add `DIR` to `load-path'."
-  (let ((default-directory (file-name-as-directory dir)))
+  (let ((default-directory (file-name-as-directory dir))
+        (case-fold-search t))
     (add-to-list 'load-path dir)
-    (normal-top-level-add-subdirs-to-load-path)))
+    (recursive-add-to-load-path)))
 (add-subdirs-to-load-path my-dir-lib)
 
 ;; load custom.el if exists.
