@@ -100,7 +100,11 @@
   (setq conventional-changelog-tmp-dir
         (expand-file-name "var/conventional-changelog" my-dir-cache))
   :config
-  (conventional-changelog-integrate-magit))
+  ;; Integrate to `magit-tag'
+  (with-eval-after-load 'magit-tag
+    (transient-append-suffix 'magit-tag
+      '(1 0 -1)
+      '("c" "changelog" conventional-changelog-menu))))
 
 (provide 'init-vcs)
 ;;; init-vcs.el ends here

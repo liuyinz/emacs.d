@@ -51,7 +51,7 @@
   (defvar cache-path-from-shell-loaded-p nil)
   (defun ad/cache-path-from-shell (fn &rest _)
     "Cache $PATH once for all."
-    (when (not cache-path-from-shell-loaded-p)
+    (unless cache-path-from-shell-loaded-p
       (funcall fn)
       (setq cache-path-from-shell-loaded-p t)))
   (advice-add 'exec-path-from-shell-initialize

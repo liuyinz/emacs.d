@@ -17,14 +17,14 @@
 
 ;;; ------------------------- Loading ------------------------------
 
-(when (version< emacs-version "28")
-  (error "Please upgrade your emacs-version above 28 !"))
-
 ;; add user config dir to load-path
 (add-to-list 'load-path (expand-file-name "core/" user-emacs-directory))
 
 (require 'init-const)
 (require 'init-lib)
+
+(unless emacs/>=28p
+  (error "Please upgrade your emacs-version above 28 !"))
 
 ;; TODO add emacs-plug to update submodules async
 ;; add submodules to load-path
