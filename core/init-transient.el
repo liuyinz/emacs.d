@@ -4,6 +4,7 @@
 ;; Created: 2021-07-26 14:56:32
 
 ;;; Commentary:
+;; SEE https://github.com/magit/transient/wiki
 
 ;;; Code:
 
