@@ -2,13 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf git-modes
-  :require t
-  :mode (;; NOTE https://github.com/magit/git-modes/discussions/142
-         ("\\.\\(gitconfig\\|gitmodules\\)\\'" . gitconfig-mode)
-         ("\\.\\(git\\|rg\\|docker\\)ignore\\'" . gitignore-mode)
-         ("\\.gitattributes\\'" . gitattributes-mode)))
-
 (leaf magit
   :doc "deps: with-editor forge git-modes ghub"
   :commands (magit-status
@@ -46,6 +39,17 @@
         (apply orig-fn args))))
   (advice-add 'magit-diff--get-value :around #'ad/ignore-submodules-more-than-max)
   )
+
+(leaf forge
+  :doc "deps: closql dash emacsql ghub magit markdown-mode yaml transient"
+  :after magit)
+
+(leaf git-modes
+  :require t
+  :mode (;; NOTE https://github.com/magit/git-modes/discussions/142
+         ("\\.\\(gitconfig\\|gitmodules\\)\\'" . gitconfig-mode)
+         ("\\.\\(git\\|rg\\|docker\\)ignore\\'" . gitignore-mode)
+         ("\\.gitattributes\\'" . gitattributes-mode)))
 
 (leaf gist
   :doc "deps: gh"
