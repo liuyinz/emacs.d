@@ -428,3 +428,15 @@
 [submodule "treepy.el"]
 	path = lib/treepy.el
 	url = https://github.com/volrath/treepy.el.git
+[submodule "graphql-mode"]
+	path = lib/graphql-mode
+	url = https://github.com/davazp/graphql-mode.git
+[submodule "yaml.el"]
+	path = lib/yaml.el
+	url = https://github.com/zkry/yaml.el.git
+[submodule "closql"]
+	path = lib/closql
+	url = https://github.com/emacscollective/closql.git
+[submodule "emacs-htmlize"]
+	path = lib/emacs-htmlize
+	url = https://github.com/hniksic/emacs-htmlize.git
