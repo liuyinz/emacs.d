@@ -7,32 +7,24 @@
 ;;; ------------------------ Translate -----------------------------
 
 ;; SEE https://www.emacswiki.org/emacs/RegularExpression
-(leaf xr
-  :commands xr xr-pp xr-lint
-  ;; :init
-  ;; (display-buffer-pop-up-window)
+(use-package xr)
+
+;; REQUIRE  brew install mpg123
+(use-package fanyi
+  :custom
+  (fanyi-providers '(fanyi-longman-provider
+                     fanyi-youdao-thesaurus-provider
+                     fanyi-haici-provider))
   )
 
-(leaf fanyi
-  :doc "deps: brew install mpg123"
-  :commands fanyi-dwim fanyi-dwim2
-  :init
-  (setq fanyi-providers '(fanyi-longman-provider
-                          fanyi-youdao-thesaurus-provider
-                          fanyi-haici-provider)))
+;; REQUIRE brew install opencc
+(use-package opencc)
 
-;; "简繁转换"
-(leaf opencc
-  :commands opencc-replace-at-point opencc-print-buffer
-  :doc "deps: brew install opencc")
-
-(leaf pandoc-mode
-  :require t)
+(use-package pandoc-mode)
 
 ;;; ------------------------- Network ------------------------------
 
-(leaf proxy-mode
-  :commands global-proxy-mode proxy-mode
+(use-package proxy-mode
   :init
   (setq proxy-mode-emacs-http-proxy `(("http"     . ,(getenv "HTTP"))
                                       ("https"    . ,(getenv "HTTP"))
@@ -46,13 +38,13 @@
                                        5)))
 
 ;; TODO set embark with proxy
-(leaf with-proxy
-  :commands with-proxy with-proxy-url
+(use-package with-proxy
+  :demand t
   :init (setq with-proxy-http-server (getenv "HTTP")))
 
 ;;; -------------------------- Record ------------------------------
 
-(leaf interaction-log
+(use-package interaction-log
   :hook (ilog-log-buffer-mode-hook . (lambda ()
                                        (setq ilog-display-state 'messages)
                                        (ilog-toggle-view)))
@@ -78,10 +70,9 @@
                 (delete-window win))
             (interaction-log-mode)))))))
 
-(leaf keyfreq
-  :hook
-  (after-init-hook . keyfreq-mode)
-  (keyfreq-mode-hook . keyfreq-autosave-mode)
+(use-package keyfreq
+  :hook ((after-init-hook . keyfreq-mode)
+         (keyfreq-mode-hook . keyfreq-autosave-mode))
   :init
   (setq keyfreq-excluded-regexp
         '(;; built-in
@@ -94,7 +85,7 @@
           ;; third-party
           "\\`\\(keyfreq\\|vertico\\|evil\\|company\\|vundo\\|yas\\|vterm\\)-.*\\'"
           "\\`\\(magit-section\\|helpful\\|web-mode\\|ilog\\|hungry-delete\\)-.*\\'"
-          "\\`\\(markdown-insert\\|markdown-table\\|my/transient\\)-.*\\'"
+          "\\`\\(markdown-insert\\|markdown-table\\|my/transient\\|sis-set\\)-.*\\'"
           ))
 
   (setq keyfreq-excluded-commands
@@ -111,7 +102,6 @@
           embark-act
           dired ;; nothing to optimize in dired
           dired-do-async-shell-command
-          dired-find-file
           goto-line
           ispell-minor-check
           js-mode
@@ -128,11 +118,11 @@
           org-self-insert-command
           org-todo
           orgtbl-self-insert-command
+          handle-switch-frame
           )))
 
+;; ;; REQUIRE pip3 install my-cookies
 ;; (use-package leetcode
-;;   :doc "pip3 install my-cookies"
-;;   :commands leetcode
 ;;   :init
 ;;   (setq leetcode-prefer-language "javascript"
 ;;         leetcode-prefer-sql "mysql"

@@ -4,9 +4,7 @@
 
 ;;; ------------------------- Default ------------------------------
 
-(leaf lsp-mode
-  :doc "deps: ht lv spinner dash f"
-  :commands lsp-deferred lsp
+(use-package lsp-mode
   :hook ((js2-mode-hook js-mode-hook css-mode-hook bash-mode-hook) . lsp-deferred)
   :init
   (setq lsp-keymap-prefix nil)
@@ -34,7 +32,7 @@
   ;; (advice-add 'lsp :around #'ad/disable-lsp-in-md-org)
 
   :config
-  (leaf lsp-modeline :require t)
+  (use-package lsp-modeline)
 
   ;; disable fuzzy match
   ;; ISSUE https://github.com/emacs-lsp/lsp-mode/issues/2563#issuecomment-767987191
@@ -47,34 +45,34 @@
         lsp-imenu-detailed-outline nil
         lsp-imenu-index-function #'lsp-imenu-create-categorized-index)
 
-  (appendq! consult-imenu-config
-            '((js2-mode :types
-                ((?c "Classes"    font-lock-type-face)
-                 (?f "Functions"  font-lock-function-name-face)
-                 (?s "Constants"  font-lock-constant-face)
-                 (?m "Methods"    font-lock-string-face)
-                 (?p "Properties" font-lock-builtin-face)
-                 (?v "Variables"  font-lock-variable-name-face)))
-              (python-mode :types
-                ((?c "Classes"    font-lock-type-face)
-                 (?f "Functions"  font-lock-function-name-face)
-                 (?v "Variables"  font-lock-variable-name-face)))
-              (sh-mode :types
-                ((?f "Functions" font-lock-function-name-face)
-                 (?v "Variables" font-lock-variable-name-face)))
-              ))
+  (with-eval-after-load 'consult-imenu
+    (appendq! consult-imenu-config
+              '((js2-mode :types
+                  ((?c "Classes"    font-lock-type-face)
+                   (?f "Functions"  font-lock-function-name-face)
+                   (?s "Constants"  font-lock-constant-face)
+                   (?m "Methods"    font-lock-string-face)
+                   (?p "Properties" font-lock-builtin-face)
+                   (?v "Variables"  font-lock-variable-name-face)))
+                (python-mode :types
+                  ((?c "Classes"    font-lock-type-face)
+                   (?f "Functions"  font-lock-function-name-face)
+                   (?v "Variables"  font-lock-variable-name-face)))
+                (sh-mode :types
+                  ((?f "Functions" font-lock-function-name-face)
+                   (?v "Variables" font-lock-variable-name-face)))
+                )))
   )
 
 ;;; -------------------------- Server ------------------------------
 
-(leaf lsp-pyright
-  :doc "deps: ht dash"
+(use-package lsp-pyright
   :hook (python-mode-hook . (lambda ()
                               (require 'lsp-pyright)
                               (lsp-deferred))))
 
-(leaf ccls
-  :doc "deps : ccls"
+;; REQUIRE deps : ccls
+(use-package ccls
   :hook ((c-mode-hook
           c++-mode-hook
           objc-mode-hook

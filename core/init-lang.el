@@ -4,7 +4,7 @@
 
 ;;; ------------------------- Builtin ------------------------------
 
-(leaf sh-script
+(use-package sh-script
   :init
   (setq sh-basic-offset 2
         sh-shell-file (executable-find "bash"))
@@ -19,60 +19,50 @@
 
   )
 
-(leaf conf-mode :mode "\\.\\(ini\\|conf\\|.*rc\\)\\'" )
+(use-package conf-mode
+  :mode "\\.\\(ini\\|conf\\|.*rc\\)\\'" )
 
-(leaf python-mode :mode "\\.pythonrc\\'")
+(use-package python-mode
+  :mode "\\.pythonrc\\'")
 
 ;;; -------------------------- Plugin ------------------------------
 
-(leaf json-mode
-  :doc "deps : json-snatcher"
-  :mode
-  ("\\.jsonc\\'" . jsonc-mode)
-  ("\\.json\\'"  . json-mode)
-  ("\\.versionrc\\'" . json-mode)
-  )
+(use-package json-mode
+  :mode "\\.\\(json\\|versionrc\\)\\'")
 
-(leaf jq-mode
-  :doc "deps : brew install jq"
-  :commands jq-interactivly
-  :mode "\\.jq\\'")
+;; REQUIRE brew install jq
+(use-package jq-mode)
 
-(leaf lua-mode
-  :mode "\\.lua\\'"
-  :interpreter "lua"
-  :config
+(use-package lua-mode
+  :init
   (setq lua-indent-level 2)
   (setq lua-indent-string-contents t)
   (setq lua-prefix-key nil))
 
-(leaf csv-mode :mode "\\.[Cc][Ss][Vv]\\'")
+(use-package csv-mode)
 
-(leaf yaml-mode :mode "\\.yaml\\'" "\\.yml\\'")
+(use-package yaml-mode)
 
-(leaf vimrc-mode :mode "\\.vim\\'" "\\vimrc\\'")
+(use-package vimrc-mode
+  :mode "\\.vim\\(rc\\)?\\'")
 
-(leaf handlebars-mode :mode "\\.\\(hbs\\|handlebars\\)\\'")
+(use-package handlebars-mode)
 
-(leaf plantuml-mode :mode "\\.plantuml\\'")
+(use-package plantuml-mode)
 
-(leaf logview
-  :doc "deps : datetime extmap"
-  :mode (("\\.log\\(?:\\.[0-9]+\\)?\\'" . logview-mode))
+(use-package logview
   :hook (logview-mode-hook . auto-revert-tail-mode))
 
-;; (leaf mermaid-mode :require t)
+;; (use-package mermaid-mode)
 
 ;;; -------------------------- Macos -------------------------------
 
-(leaf applescript-mode
-  :mode "\\.\\(applescript\\|scpt\\)\\'"
-  :interpreter "osascript"
+(use-package applescript-mode
   :init
   ;; TODO add `indent-line-function'
   (setq as-indent-offset 2))
 
-(leaf osx-plist :mode "\\.plist\\'")
+(use-package osx-plist)
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; Colorize color names in buffers
-(leaf rainbow-mode
+(use-package rainbow-mode
   :hook ((html-mode-hook
           php-mode-hook
           css-mode-hook
@@ -29,13 +29,13 @@
     (advice-add #'rainbow-turn-off :after #'ad/rainbow-clear-overlays)))
 
 ;; Highlight brackets
-(leaf rainbow-delimiters
+(use-package rainbow-delimiters
   :hook (prog-mode-hook . rainbow-delimiters-mode)
   :init
   (setq rainbow-delimiters-max-face-count 4))
 
 ;; TODO highlight html tags, https://git.sr.ht/~tsdh/highlight-parentheses.el
-(leaf highlight-parentheses
+(use-package highlight-parentheses
   :hook (prog-mode-hook . highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
@@ -45,7 +45,7 @@
         highlight-parentheses-attributes '((:inverse-video t :weight bold))))
 
 ;; Highlight uncommitted changes using VC
-(leaf diff-hl
+(use-package diff-hl
   :hook (after-init-hook . global-diff-hl-mode)
   :init
   (setq diff-hl-draw-borders nil
@@ -53,7 +53,7 @@
         diff-hl-side 'left)
   :config
 
-  (leaf diff-hl-margin
+  (use-package diff-hl-margin
     :hook (diff-hl-mode-hook . diff-hl-margin-mode)
     :init
     ;; (char-to-string ?\x258d) => "▍" , SEE https://www.htmlsymbols.xyz/box-drawing
@@ -64,11 +64,11 @@
             (unknown . "\x258d")
             (ignored . "\x258d"))))
 
-  (leaf diff-hl-dired
+  (use-package diff-hl-dired
     :hook (dired-mode-hook . diff-hl-dired-mode))
 
   ;; ;; BUG conflict with company-mode,evil-terminal-crusor-change
-  ;; (leaf diff-hl-flydiff
+  ;; (use-package diff-hl-flydiff
   ;;   :hook (diff-hl-mode-hook . diff-hl-flydiff-mode))
 
   ;; Integration with magit

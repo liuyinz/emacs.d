@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf elisp-mode
+(use-package elisp-mode
   :config
   (defun my-headerise-elisp ()
     "Add minimal header and footer to an elisp buffer in order to placate flycheck."
@@ -95,24 +95,17 @@ Lisp function does not specify a special indentation."
                                                   #'my-lisp-indent-function)))))
 
 ;; Syntax highlighting of known Elisp symbols
-(leaf highlight-defined
-  :commands highlight-defined-mode
+(use-package highlight-defined
   :init (setq highlight-defined-face-use-itself t))
 
 ;; A better *Help* buffer
-(leaf helpful
-  :doc "deps: f s dash elisp-refs"
-  :commands
-  (helpful-key helpful-variable helpful-command helpful-callable helpful-at-point)
-  )
+(use-package helpful)
 
 ;; Add demos for help
-(leaf elisp-demos
+(use-package elisp-demos
   :commands elisp-demos-find-demo)
 
-(leaf relint
-  :doc "deps: xr"
-  :commands relint-file relint-directory relint-current-buffer)
+(use-package relint)
 
 (provide 'init-elisp)
 ;;; init-elisp.el ends here

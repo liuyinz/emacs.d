@@ -11,13 +11,13 @@
             (setq gc-cons-threshold 800000
                   gc-cons-percentage 0.1)))
 
-;; (when (boundp 'native-comp-eln-load-path)
-;;   (setq native-comp-speed 2)
-;;   (setq native-comp-asyncjobs-number 7
-;;         native-comp-deferred-compilation nil
-;;         native-comp-async-report-warnings-errors nil)
-;;   (setcar native-comp-eln-load-path
-;;           (expand-file-name ".cache/var/eln-cache/" user-emacs-directory)))
+(when (boundp 'native-comp-eln-load-path)
+  (setq native-comp-speed 2)
+  (setq native-comp-asyncjobs-number 7
+        native-comp-deferred-compilation nil
+        native-comp-async-report-warnings-errors nil)
+  (setcar native-comp-eln-load-path
+          (expand-file-name ".cache/var/eln-cache/" user-emacs-directory)))
 
 ;; Do not initialise installed packaes
 (setq package-enable-at-startup nil)
@@ -65,7 +65,7 @@
         (background-mode . dark)
 
         ;; BUG conflict with emacsclient --tty
-        ;; (background-color . "#242730")
+        (background-color . "#242730")
 
         (foreground-color . "#bbc2cf")
         ))

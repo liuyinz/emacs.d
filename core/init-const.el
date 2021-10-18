@@ -6,10 +6,6 @@
   (expand-file-name "core" user-emacs-directory)
   "User dir for Emacs configs.")
 
-(defconst my-dir-lib
-  (expand-file-name "lib" user-emacs-directory)
-  "User dir for submodules.")
-
 (defconst my-dir-snippet
   (expand-file-name "snippets" user-emacs-directory)
   "User dir for code snippets.")
@@ -26,7 +22,6 @@
 (dolist (dir `(,my-dir-cache
                ,my-dir-core
                ,my-dir-ext
-               ,my-dir-lib
                ,my-dir-snippet))
   (make-directory dir t))
 

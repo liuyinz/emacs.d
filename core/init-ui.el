@@ -13,8 +13,7 @@
   (run-hooks 'after-load-theme-hook))
 (advice-add #'load-theme :after #'run-after-load-theme-hook)
 
-(leaf doom-modeline
-  :doc "deps: all-the-icons emacs-async"
+(use-package doom-modeline
   :hook (after-init-hook . doom-modeline-mode)
   :init
   (setq doom-modeline-icon nil
@@ -34,10 +33,10 @@
         doom-modeline-buffer-file-name-style 'truncate-with-project
         doom-modeline-env-python-executable "/usr/local/bin/python3"))
 
-(leaf doom-themes
-  :hook (after-init-hook . (lambda ()
-                             (require 'doom-themes)
-                             (load-theme 'doom-city-lights t)))
+(use-package doom-themes
+  :demand t
+  :config
+  (load-theme 'doom-city-lights t)
   :init
   (add-hook 'after-load-theme-hook #'my/doom-theme-vibrant-customize)
   (defun my/doom-theme-vibrant-customize ()

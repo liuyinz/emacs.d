@@ -2,14 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf transpose-frame :require t)
+(use-package transpose-frame)
 
 ;; SEE https://github.com/cyrus-and/zoom
-(leaf zoom
-  :commands zoom
+(use-package zoom
   :init (setq zoom-size '(0.618 . 0.618)))
 
-(leaf shackle
+(use-package shackle
   :hook (after-init-hook . shackle-mode)
   :init
   (setq shackle-default-rule nil)

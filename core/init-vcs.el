@@ -2,26 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf magit
-  :doc "deps: with-editor forge git-modes ghub"
-  :commands (magit-status
-             magit-submodule
-             magit-dispatch
-             magit-file-dispatch
-             magit-log
-             magit-log-all-branches
-             magit-commit-create
-             magit-merge-abort)
-  :init
-  (setq magit-no-confirm t
-        magit-save-repository-buffers 'dontask
-        magit-auto-revert-immediately t
-        magit-submodule-remove-trash-gitdirs t
-        ;; SEE https://magit.vc/manual/magit/Diff-Options.html
-        ;; magit-diff-refine-hunk nil
-        magit-diff-paint-whitespace-lines 'all)
+(use-package magit
+  :init (setq magit-no-confirm t
+              magit-save-repository-buffers 'dontask
+              magit-auto-revert-immediately t
+              magit-submodule-remove-trash-gitdirs t
+              ;; SEE https://magit.vc/manual/magit/Diff-Options.html
+              ;; magit-diff-refine-hunk nil
+              magit-diff-paint-whitespace-lines 'all)
 
-  :defer-config
+  :config
   (prependq! magit-section-initial-visibility-alist '((untracked . hide)))
 
   ;; HACK ignore submodules in magit-status when there is too many submodules.
@@ -40,20 +30,12 @@
   (advice-add 'magit-diff--get-value :around #'ad/ignore-submodules-more-than-max)
   )
 
-(leaf forge
-  :doc "deps: closql dash emacsql ghub magit markdown-mode yaml transient"
-  :after magit)
+(use-package forge :after magit)
 
-(leaf git-modes
-  :require t
-  :mode (;; NOTE https://github.com/magit/git-modes/discussions/142
-         ("\\.\\(gitconfig\\|gitmodules\\)\\'" . gitconfig-mode)
-         ("\\.\\(git\\|rg\\|docker\\)ignore\\'" . gitignore-mode)
-         ("\\.gitattributes\\'" . gitattributes-mode)))
+(use-package git-modes
+  :mode ("\\.\\(rg\\|docker\\)ignore\\'" . gitignore-mode))
 
-(leaf gist
-  :doc "deps: gh"
-  :commands gist-list
+(use-package gist
   :config
   (setq gist-ask-for-description t)
   (setq gist-list-format '((id "Id" 7 nil identity)
@@ -74,36 +56,33 @@
   )
 
 ;; Open github/gitlab/bitbucket page
-(leaf browse-at-remote :commands browse-at-remote)
+(use-package browse-at-remote)
 
-(leaf vc-msg
-  :commands vc-msg-show
+(use-package vc-msg
   :init
   (setq vc-msg-show-at-line-beginning-p nil
         vc-msg-newbie-friendly-msg ""))
 
-(leaf git-commit-insert-issue
+(use-package git-commit-insert-issue
   :hook (git-commit-mode-hook . git-commit-insert-issue-mode))
 
-(leaf gitignore-templates
-  :require t
-  :init (setq gitignore-templates-api 'github)
-  :config
+(use-package gitignore-templates
+  :init
+  (setq gitignore-templates-api 'github)
+
   ;; Integrate with `magit-gitignore'
   (with-eval-after-load 'magit-gitignore
     (require 'gitignore-templates nil t)
     (transient-append-suffix 'magit-gitignore '(0)
       ["Template"
        ("n" "new file" gitignore-templates-new-file)
-       ("i" "select pattern" gitignore-templates-insert)]))
-  )
+       ("i" "select pattern" gitignore-templates-insert)])))
 
-(leaf conventional-changelog
-  :require t
+(use-package conventional-changelog
   :init
   (setq conventional-changelog-tmp-dir
         (expand-file-name "var/conventional-changelog" my-dir-cache))
-  :config
+
   ;; Integrate to `magit-tag'
   (with-eval-after-load 'magit-tag
     (transient-append-suffix 'magit-tag

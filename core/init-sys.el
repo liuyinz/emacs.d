@@ -1,45 +1,22 @@
-;;; init-sys.el --- leaf,compile,shell,littering  -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-sys.el --- Optimization and env-path -*- lexical-binding: t no-byte-compile: t -*-
+
+;; Author: liuyinz <liuyinz@gmail.com>
+;; Created: 2021-10-16 18:17:36
+
 ;;; Commentary:
+
 ;;; Code:
 
-(require 'init-const)
-
-(require 'leaf)
-(eval-and-compile
-  (setq leaf-expand-minimally nil)
-  (setq leaf-defaults '(:ensure nil)))
-
 ;; Garbage Collector Magic Hack
-(leaf gcmh
-  :require t
+(use-package gcmh
+  :demand t
   :init
   (setq gcmh-idle-delay 5
         gcmh-high-cons-threshold #x1000000) ; 16MB
   :config
   (gcmh-mode 1))
 
-;; keep ~/.emacs.d clean
-(leaf no-littering
-  :require t
-  :init
-  (setq no-littering-etc-directory (expand-file-name "etc/" my-dir-cache)
-        no-littering-var-directory (expand-file-name "var/" my-dir-cache))
-  :config
-  ;; exclude these in recentf
-  (with-eval-after-load 'recentf
-    (add-to-list 'recentf-exclude no-littering-var-directory)
-    (add-to-list 'recentf-exclude no-littering-etc-directory))
-
-  ;; save auto-save file if needed
-  (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-
-  ;; restore yasnippet settings
-  (with-eval-after-load 'yasnippet
-    (setq yas-snippet-dirs '(my-dir-snippet))))
-
-;; Environment
-(leaf exec-path-from-shell
+(use-package exec-path-from-shell
   :hook (after-make-window-frame-hook . exec-path-from-shell-initialize)
   :init
   (setq exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
@@ -54,9 +31,27 @@
     (unless cache-path-from-shell-loaded-p
       (funcall fn)
       (setq cache-path-from-shell-loaded-p t)))
-  (advice-add 'exec-path-from-shell-initialize
-              :around
-              #'ad/cache-path-from-shell))
+  (advice-add 'exec-path-from-shell-initialize :around #'ad/cache-path-from-shell))
+
+;; keep ~/.emacs.d clean
+(use-package no-littering
+  :demand t
+  :init
+  (setq no-littering-etc-directory (expand-file-name "etc/" my-dir-cache)
+        no-littering-var-directory (expand-file-name "var/" my-dir-cache))
+  :config
+  ;; save auto-save file if needed
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+  ;; exclude these in recentf
+  (with-eval-after-load 'recentf
+    (appendq! recentf-exclude
+              `(,no-littering-var-directory ,no-littering-etc-directory)))
+
+  ;; restore yasnippet settings
+  (with-eval-after-load 'yasnippet
+    (setq yas-snippet-dirs '(my-dir-snippet))))
 
 (provide 'init-sys)
 ;;; init-sys.el ends here

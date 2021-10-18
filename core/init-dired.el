@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf dired
+(use-package dired
   :hook (dired-mode-hook . dired-hide-details-mode)
   :config
   ;; Always delete and copy recursively
@@ -34,9 +34,9 @@ A prefix argument means to unmark them instead."
   )
 
 
-;; (leaf dired-aux)
+;; (use-package dired-aux)
 
-(leaf dired-x
+(use-package dired-x
   :hook (dired-mode-hook . dired-omit-mode)
   :config
   (let ((cmd "open"))
@@ -57,16 +57,13 @@ A prefix argument means to unmark them instead."
         (concat dired-omit-files
                 "\\|^.DS_Store$\\|^.projectile$\\|^.git*\\|^.cache*\\|^.svn$\\|^.vscode$\\|\\.js\\.meta$\\|\\.meta$\\|\\.elc$\\|^.emacs.*")))
 
-(leaf diredfl
+(use-package diredfl
   :hook (after-init-hook . diredfl-global-mode))
 
-(leaf dired-git-info
-  :commands dired-git-info-mode)
+(use-package dired-git-info)
 
 ;; `find-dired' alternative using `fd'
-(leaf fd-dired
-  :when (executable-find "fd")
-  :commands fd-dired)
+(use-package fd-dired :when (executable-find "fd"))
 
 (provide 'init-dired)
 ;;; init-dired.el ends here

@@ -2,9 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf ibuffer
-  :defvar ibuffer-show-empty-filter-groups
-  :commands (ibuffer ibuffer-use-other-window)
+(use-package ibuffer
+  :defines ibuffer-show-empty-filter-groups
   :hook (ibuffer-mode-hook .  (lambda ()
                                 (ibuffer-auto-mode)
                                 (ibuffer-vc-set-filter-groups-by-vc-root)
@@ -42,8 +41,7 @@
 
   )
 
-(leaf ibuffer-vc
-  :commands ibuffer-vc-set-filter-groups-by-vc-root
+(use-package ibuffer-vc
   :config
   (setq ibuffer-formats
         '((mark " " modified read-only vc-status-mini

@@ -6,12 +6,12 @@
 
 ;;; --------------------------- Edit -------------------------------
 
-(leaf hungry-delete
+(use-package hungry-delete
   :hook (after-init-hook . global-hungry-delete-mode)
   :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
 ;; SEE https://www.python.org/dev/peps/pep-0350/#mnemonics
-(leaf hl-todo
+(use-package hl-todo
   :hook (after-init-hook . global-hl-todo-mode)
   :config (prependq! hl-todo-include-modes '(conf-mode))
   :init
@@ -42,8 +42,8 @@
           ("WONTFIX"    . "#8c5353")
           )))
 
-(leaf edit-indirect
-  :commands edit-indirect-region edit-indirect-buffer-indirect-p
+(use-package edit-indirect
+  :commands edit-indirect-buffer-indirect-p
   :init
   (setq edit-indirect-mode-map nil)
 
@@ -56,14 +56,12 @@
       (_ nil)))
   )
 
-(leaf wgrep
+(use-package wgrep
   :init
   (setq wgrep-change-readonly-file t)
   (setq wgrep-auto-save-buffer t))
 
-(leaf rg
-  :doc "deps : wgrep"
-  :commands rg-menu
+(use-package rg
   ;; HACK jump to first error once search finished.
   :hook (rg-mode-hook . (lambda ()
                           (run-with-idle-timer 0.1 nil #'compilation-first-error)))
@@ -83,11 +81,10 @@
   )
 
 ;; FIXME s-v is ok,s-c is disable in emacs -nw still, use EVIL copy instead.
-(leaf xclip
+(use-package xclip
   :hook (after-make-console-frame-hook . xclip-mode))
 
-(leaf cliphist
-  :commands cliphist-paste-item
+(use-package cliphist
   :init
   (setq cliphist-cc-kill-ring t)
   (with-eval-after-load 'xclip
@@ -98,17 +95,17 @@
 
 ;;; --------------------------- Undo -------------------------------
 
-(leaf undohist
+(use-package undohist
   :hook (after-init-hook . undohist-initialize)
   :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
 
-(leaf vundo
+(use-package vundo
   :hook (after-init-hook . vundo-ascii-mode)
   :init (setq vundo--window-max-height 5))
 
 ;;; --------------------------- Jump -------------------------------
 
-(leaf avy
+(use-package avy
   :hook (after-init-hook . avy-setup-default)
   :config
   (setq avy-all-windows t
@@ -130,16 +127,14 @@
       (avy-jump "[][(){}]")))
 
   ;; Pinyin support
-  (leaf ace-pinyin
-    :doc "deps: avy pinyinlib"
-    :require t
+  (use-package ace-pinyin
     :init (setq ace-pinyin-simplified-chinese-only-p nil)
     :config (ace-pinyin-global-mode +1))
   )
 
 ;; Disable modes below when enter `vlf-mode'
-(leaf vlf
-  :commands vlf vlf-mode
+(use-package vlf
+  :commands vlf-mode
   :init
   (setq large-file-warning-threshold (* 1024 1024))
   (setq vlf-save-in-place t
@@ -153,9 +148,10 @@
                              (mode-hook-toggle
                               vlf-mode
                               vlf-toggle-modes)))
-
   :config
-  (leaf vlf-setup :require t :init (setq vlf-application 'ask)))
+  (use-package vlf-setup
+    :init (setq vlf-application 'ask))
+  )
 
 (provide 'init-edit)
 ;;; init-edit.el ends here

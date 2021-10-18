@@ -4,7 +4,7 @@
 
 (require 'init-const)
 
-(leaf company
+(use-package company
   :hook (after-init-hook . global-company-mode)
   :init
   (setq company-tooltip-align-annotations t
@@ -53,7 +53,7 @@
             (remove 'company-backends (remq 'company-capf company-backends))))
     (advice-add #'lsp-completion--enable :after #'ad/lsp-fix-company-capf)))
 
-(leaf yasnippet
+(use-package yasnippet
   :hook (after-init-hook . yas-global-mode)
   :init
   (setq yas-minor-mode-map nil)
@@ -110,10 +110,9 @@ $0`(yas-escape-text yas-selected-text)`")
       ))
   )
 
-(leaf consult-yasnippet
-  :commands consult-yasnippet consult-yasnippet-visit-snippet-file)
+(use-package consult-yasnippet)
 
-;; (leaf citre
+;; (use-package citre
 ;;   :init
 ;;   (require 'citre-config)
 ;;   (setq citre-completion-case-sensitive nil

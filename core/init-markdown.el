@@ -6,8 +6,7 @@
 
 ;;; Code:
 
-(leaf markdown-mode
-  :doc "deps : edit-indirect; brew install multimarkdown"
+(use-package markdown-mode
   :mode
   ("\\.md\\'" . markdown-mode)
   ("README\\.md\\'" . gfm-mode)
@@ -29,8 +28,7 @@
   (prependq! markdown-code-lang-modes '(("mermaid" . mermaid-mode)
                                         ("zsh" . sh-mode))))
 
-(leaf markdown-toc
-  :doc "deps : markdown-mode"
+(use-package markdown-toc
   :hook (markdown-mode-hook . markdown-toc-mode)
   :init
   (setq markdown-toc-header-toc-start "<!-- markdown-toc start -->"
@@ -47,8 +45,8 @@
       (markdown-toc-generate-toc t)))
   (add-hook 'before-save-hook #'markdown-toc-refresh-before-save))
 
-(leaf grip-mode
-  :doc "deps: pip install grip"
+;; REQUIRE deps: pip install grip
+(use-package grip-mode
   :commands grip-start-preview
   :config
   (setq grip-github-user     (car (github-info))

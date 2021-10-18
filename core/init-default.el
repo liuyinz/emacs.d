@@ -2,22 +2,20 @@
 ;;; Commentary:
 ;;; Code:
 
-;;; ------------------------- Startup ------------------------------
+;; ------------------------- Startup ------------------------------
 
-(leaf startup
-  :init
-  (setq inhibit-startup-screen t
-        inhibit-startup-echo-area-message (user-login-name)
-        initial-scratch-message nil
-        inhibit-default-init t
-        auto-save-list-file-prefix nil)
+(setq inhibit-startup-screen t
+      inhibit-startup-echo-area-message (user-login-name)
+      initial-scratch-message nil
+      inhibit-default-init t
+      auto-save-list-file-prefix nil)
 
-  (setq user-full-name "liuyinz")
-  (setq user-mail-address "liuyinz@gmail.com")
+(setq user-full-name "liuyinz")
+(setq user-mail-address "liuyinz@gmail.com")
 
-  (advice-add #'display-startup-echo-area-message :override #'ignore))
+(advice-add #'display-startup-echo-area-message :override #'ignore)
 
-(leaf server
+(use-package server
   :init (setq server-client-instructions nil)
   :hook (after-init-hook . (lambda ()
                              (require 'server)
@@ -26,7 +24,7 @@
 
 ;;; --------------------------- Tui --------------------------------
 
-(leaf frame
+(use-package frame
   :init
   (setq blink-cursor-blinks 0)
   ;; menu-bar-mode would called forced before gui-frame in Macos
@@ -43,13 +41,10 @@
              (eq system-type 'darwin))
         (call-process "osascript" nil t nil
                       (expand-file-name "kitty-toggle.scpt" my-dir-ext))
-      (funcall fn)
-      ))
-  (advice-add 'toggle-frame-fullscreen :around #'ad/enable-tui-fullscreen)
+      (funcall fn)))
+  (advice-add 'toggle-frame-fullscreen :around #'ad/enable-tui-fullscreen))
 
-  )
-
-(leaf xt-mouse
+(use-package xt-mouse
   :init
   (defun my/mouse-setup ()
     "enable mouse and keybindings in eamcs -nw"
@@ -62,7 +57,7 @@
                                 (scroll-up 1))))
   (add-hook 'after-make-console-frame-hook #'my/mouse-setup))
 
-(leaf mwheel
+(use-package mwheel
   :config
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
@@ -72,7 +67,7 @@
 ;; TODO multiple desktop settings,see
 ;; https://www.emacswiki.org/emacs/DesktopMultipleSaveFiles
 ;; https://stackoverflow.com/a/849180/13194984
-(leaf desktop
+(use-package desktop
   ;; :hook (after-init-hook . desktop-save-mode)
   :init
   (setq desktop-auto-save-timeout 600
@@ -116,11 +111,12 @@
                (abbreviate-file-name filename))))
   (advice-add 'desktop-create-buffer :around 'ad/desktop-time-buffer-create))
 
-(leaf simple
+(use-package simple
   :init
   (setq next-error-highlight t
         next-error-highlight-no-select t
         next-error-message-highlight t
+        read-extended-command-predicate #'command-completion-default-include-p
         ;; next-error-recenter '(4)
         )
   :config
@@ -128,13 +124,13 @@
   (column-number-mode)
   (size-indication-mode))
 
-(leaf uniquify
+(use-package uniquify
   :init
   (setq uniquify-buffer-name-style 'forward
         uniquify-separator "/"))
 
 ;; TODO add commands to jump folds with toggle automaticlly
-(leaf hideshow
+(use-package hideshow
   :hook (prog-mode-hook . hs-minor-mode)
   :init
   (setq hs-isearch-open t
@@ -165,10 +161,9 @@
   (advice-add 'hs-hide-all :after (lambda () (setq hs-all-hide-p t)))
   )
 
-
 ;;; -------------------------- Buffer ------------------------------
 
-(leaf files
+(use-package files
   :init
   (setq make-backup-files nil
         enable-local-variables :all
@@ -186,11 +181,11 @@
     (setq trash-directory "~/.Trash"))
   )
 
-(leaf saveplace
+(use-package saveplace
   :init (setq save-place-limit nil)
   :hook (after-init-hook . save-place-mode))
 
-(leaf recentf
+(use-package recentf
   :hook (after-init-hook . recentf-mode)
   :init
   (setq recentf-max-saved-items nil
@@ -200,8 +195,6 @@
           "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
           "\\.?ido\\.last$" "\\.revive$" "/G?TAGS$" "/.elfeed/"
           "^/tmp/" "^/var/folders/.+$" "/share/emacs/.+$" "\\.git/.+$"
-          ;; "^/ssh:"
-          ;; (lambda (f) (file-in-directory-p f my-dir-lib)))
           ))
 
   :config
@@ -216,22 +209,21 @@
           recentf-save-list
           recentf-cleanup)))
 
-(leaf savehist
+(use-package savehist
   :hook (after-init-hook . savehist-mode)
   :init
-  (setq
-   savehist-autosave-interval 300
-   savehist-additional-variables
-   '(mark-ring
-     global-mark-ring
-     search-ring
-     regexp-search-ring
-     extended-command-history)))
+  (setq savehist-autosave-interval 300
+        savehist-additional-variables
+        '(mark-ring
+          global-mark-ring
+          search-ring
+          regexp-search-ring
+          extended-command-history)))
 
-(leaf so-long
+(use-package so-long
   :hook (after-init-hook . global-so-long-mode))
 
-(leaf minibuffer
+(use-package minibuffer
   :init
   (setq enable-recursive-minibuffers t)
   (setq completion-category-defaults nil
@@ -244,7 +236,7 @@
 
 ;;; --------------------------- Edit -------------------------------
 
-(leaf elec-pair
+(use-package elec-pair
   :hook (after-init-hook . electric-pair-mode)
   :config
   ;; SEE https://emacs-china.org/t/html-electric-pair-mode-js/13904/11?u=cheunghsu
@@ -290,16 +282,14 @@ CHAR-FUNCTION
               (org-mode . (?<))))
   )
 
-(leaf subword
-  :hook
-  (prog-mode-hook . subword-mode)
-  (minibuffer-setup-hook . subword-mode))
+(use-package subword
+  :hook ((prog-mode-hook . subword-mode)
+         (minibuffer-setup-hook . subword-mode)))
 
-(leaf delsel
+(use-package delsel
   :hook (after-init-hook . delete-selection-mode))
 
-(leaf whitespace
-  :commands whitespace-cleanup
+(use-package whitespace
   :init
   (setq whitespace-style '(face empty trailing))
   (face-spec-set 'whitespace-empty
@@ -308,15 +298,15 @@ CHAR-FUNCTION
                    (t
                     :background "#FF6C6B"))))
 
-(leaf copyright
+(use-package copyright
   :init (setq copyright-year-ranges t))
 
-(leaf diff-mode
+(use-package diff-mode
   :init
   ;; disable smerge-refine with set `diff-refine' to nil
   (setq diff-refine 'navigation))
 
-(leaf smerge-mode
+(use-package smerge-mode
   :hook (smerge-mode-hook . my/smerge-setup)
   :init
   (setq smerge-command-prefix ""
@@ -383,7 +373,7 @@ CHAR-FUNCTION
   )
 
 ;; ;; On-the-fly spell checker
-;; (leaf flyspell
+;; (use-package flyspell
 ;;   :if (executable-find "aspell")
 ;;   :hook (((text-mode-hook outline-mode-hook) . flyspell-mode)
 ;;          (prog-mode-hook . flyspell-prog-mode)
@@ -393,11 +383,10 @@ CHAR-FUNCTION
 ;;               ispell-program-name "aspell"
 ;;               ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
 
-;; (leaf eldoc)
+;; (use-package eldoc)
 
 ;; ;; A comprehensive visual interface to diff & patch
-;; (leaf ediff
-;;   ;; :commands outline-show-all
+;; (use-package ediff
 ;;   :hook (;; show org ediffs unfolded
 ;;          ;; (ediff-prepare-buffer . outline-show-all)
 ;;          ;; restore window layout when done
@@ -429,7 +418,7 @@ CHAR-FUNCTION
 (if (get-buffer "*scratch*")
     (setq default-directory "~/"))
 
-;; (leaf autorevert
+;; (use-package autorevert
 ;;   :hook (after-init-hook . global-auto-revert-mode)
 ;;   :init
 ;;   (setq auto-revert-interval 0.01
@@ -438,22 +427,21 @@ CHAR-FUNCTION
 
 ;;; --------------------------- Jump -------------------------------
 
-(leaf xref
+(use-package xref
   :init
   (when emacs/>=28.1p
     (setq xref-search-program #'ripgrep
           xref-show-xrefs-function 'xref-show-definitions-completing-read
           xref-show-definitions-function 'xref-show-definitions-completing-read)))
 
-(leaf winner
+(use-package winner
   :hook (after-init-hook . winner-mode))
 
-(leaf goto-addr
-  :hook
-  (after-init-hook . global-goto-address-mode)
-  (prog-mode-hook . goto-address-prog-mode))
+(use-package goto-addr
+  :hook ((after-init-hook . global-goto-address-mode)
+         (prog-mode-hook . goto-address-prog-mode)))
 
-(leaf webjump
+(use-package webjump
   :init
   (setq webjump-sites
         '(;; Internet search engines.
@@ -493,7 +481,7 @@ CHAR-FUNCTION
       (if (webjump-null-or-blank-string-p input) nil input)))
   (advice-add 'webjump-read-string :override #'ad/webjump-read-string-enable-visual))
 
-(leaf compile
+(use-package compile
   :config
   (defun compilation-first-error ()
     "Move point to the first error in the compilation buffer."
@@ -521,8 +509,8 @@ CHAR-FUNCTION
 
 ;;; --------------------------- Tool -------------------------------
 
-(leaf auth-source
-  :defun auth-source-user-and-password
+(use-package auth-source
+  ;; :defun auth-source-user-and-password
   :init
   (setq auth-sources '(macos-keychain-internet))
 
@@ -537,9 +525,9 @@ CHAR-FUNCTION
 
   )
 
-(leaf profiler
+(use-package profiler
   :init
-  (setq profiler-report-leaf-mark  ">")
+  (setq profiler-report-use-package-mark  ">")
 
   (defun ad/profiler-bytes-h (str)
     "reformat with human-readeable size"

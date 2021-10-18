@@ -4,8 +4,9 @@
 
 ;; SEE https://github.com/purcell/emacs.d/blob/master/lisp/init-minibuffer.el
 
-(leaf vertico
+(use-package vertico
   :hook (after-init-hook . vertico-mode)
+  :load-path "lib/vertico/extensions/"
   :init
   (setq vertico-cycle t
         vertico-count 15)
@@ -22,18 +23,19 @@
 
   ;;; -------------------------- Eextra ------------------------------
 
-  (leaf vertico-repeat :commands vertico-repeat)
-  (leaf vertico-directory
-    :commands vertico-directory-delete-char vertico-directory-enter)
-  )
+  (use-package vertico-repeat
+               :demand t
+    )
 
-(leaf marginalia
+  (use-package vertico-directory
+               :demand t))
+
+(use-package marginalia
   :hook (vertico-mode-hook . marginalia-mode)
   :config
   (setq-default marginalia-annotators '(marginalia-annotators-heavy nil)))
 
-(leaf orderless
-  :require t
+(use-package orderless
   :after vertico
   :init
   (setq orderless-matching-styles '(orderless-literal
@@ -105,8 +107,7 @@
   )
 
 ;; TODO consult-browser-bookmark consult-browser-history
-(leaf consult
-  :require t
+(use-package consult
   :after vertico
   :init
   (setq consult-async-min-input 1)
@@ -226,17 +227,22 @@
         register-preview-function #'consult-register-format)
 
   (with-eval-after-load 'flycheck
-    (leaf consult-flycheck :require t))
+    (use-package consult-flycheck))
+
+  (with-eval-after-load 'hl-todo
+    (use-package consult-todo))
+
+  (use-package consult-jq)
 
   (require 'consult-imenu)
-  ;; Integrate with `leaf'
+  ;; Integrate with `use-package'
   (setq consult-imenu-config
         '((emacs-lisp-mode
            :toplevel "Functions"
            :types
            ((?f "Functions" font-lock-function-name-face)
             (?m "Macros"    font-lock-function-name-face)
-            (?p "Leaf"      font-lock-constant-face)
+            (?p "Use-Package"      font-lock-constant-face)
             (?t "Types"     font-lock-type-face)
             (?v "Variables" font-lock-variable-name-face)))
           (sh-mode
@@ -256,11 +262,10 @@
                                                args)))
   )
 
-(leaf embark
-  :commands embark-act embark-become
+(use-package embark
   ;; :init (setq embark-prompter 'embark-completing-read-prompter)
   :config
-  (leaf embark-consult :require t)
+  (use-package embark-consult)
 
   ;; HACK Open source code of `symbol' in other window
   (advice-add 'embark-find-definition :before #'open-in-other-window))

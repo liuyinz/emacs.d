@@ -10,10 +10,10 @@
         (docstring (if ll (pop ll) nil)))
     (list obsolete-name current-name when docstring)))
 
-(require 'benchmark-init-modes)
-(require 'benchmark-init)
-(benchmark-init/activate)
-(add-hook 'after-init-hook #'benchmark-init/deactivate)
+(use-package benchmark-init
+  :demand t
+  :config
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
 (defun benchmark-show-init-time ()
   "Show startup time."

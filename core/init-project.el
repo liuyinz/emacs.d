@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf projectile
+(use-package projectile
   :hook (after-init-hook . projectile-mode)
   :init
   (setq projectile-mode-line-prefix ""

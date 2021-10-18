@@ -214,9 +214,6 @@
 [submodule "shrink-path"]
 	path = lib/shrink-path
 	url = https://gitlab.com/bennya/shrink-path.el.git
-[submodule "leaf"]
-	path = lib/leaf
-	url = https://github.com/conao3/leaf.el.git
 [submodule "typescript"]
 	path = lib/typescript
 	url = https://github.com/emacs-typescript/typescript.el.git
@@ -383,6 +380,7 @@
 [submodule "emacsql"]
 	path = lib/emacsql
 	url = https://github.com/skeeto/emacsql.git
+	no-byte-compile = emacsql-pg.el
 [submodule "jq-mode"]
 	path = lib/jq-mode
 	url = https://github.com/ljos/jq-mode.git
@@ -440,3 +438,21 @@
 [submodule "emacs-htmlize"]
 	path = lib/emacs-htmlize
 	url = https://github.com/hniksic/emacs-htmlize.git
+[submodule "epkg"]
+	path = lib/epkg
+	url = https://github.com/emacscollective/epkg.git
+[submodule "borg"]
+	path = lib/borg
+	url = https://github.com/emacscollective/borg.git
+[submodule "use-package"]
+	path = lib/use-package
+	url = https://github.com/jwiegley/use-package.git
+[submodule "auto-compile"]
+	path = lib/auto-compile
+	url = https://github.com/emacscollective/auto-compile.git
+[submodule "packed"]
+	path = lib/packed
+	url = https://github.com/emacscollective/packed.git
+[submodule "emacs-smart-input-source"]
+	path = lib/emacs-smart-input-source
+	url = https://github.com/laishulu/emacs-smart-input-source.git

@@ -4,8 +4,7 @@
 
 ;;; Code:
 
-(leaf writeroom-mode
-  :commands writeroom-mode
+(use-package writeroom-mode
   :hook (writeroom-mode-hook . toggle-cjk-writeroom)
   :init
   (setq writeroom-width 120)
@@ -23,8 +22,7 @@
       (cjk-font-setting "Sarasa Mono SC" 1))))
 
 ;; TODO customize easy-hugo-buffer, refactor easy-hugo, tag filter
-(leaf easy-hugo
-  :commands easy-hugo easy-hugo-rg
+(use-package easy-hugo
   :init
   (setq easy-hugo-basedir  "~/Code/blog/"
         easy-hugo-postdir "content/posts/"
@@ -35,6 +33,5 @@
   :config
   (easy-hugo-enable-menu))
 
-  (provide 'init-write)
-
+(provide 'init-write)
 ;;; init-write.el ends here

@@ -4,8 +4,7 @@
 
 ;;; --------------------------- Doc --------------------------------
 
-(leaf dash-at-point
-  :commands dash-at-point
+(use-package dash-at-point
   :config
   (appendq! dash-at-point-mode-alist
             '((js-mode . "javascript,backbone,angularjs")
@@ -18,8 +17,7 @@
 
 ;; SEE https://www.flycheck.org/en/latest/
 ;; PR https://github.com/flycheck/flycheck/pull/1896
-(leaf flycheck
-  :doc "deps: pkg-info dash"
+(use-package flycheck
   :hook (prog-mode-hook . flycheck-mode)
   :init
   (setq flycheck-stylelintrc "~/.stylelintrc.json"
@@ -43,12 +41,10 @@
 
       (emacs-lisp-mode
        (progn
-         (leaf flycheck-package
-           :require t
+         (use-package flycheck-package
            :config (flycheck-package-setup)))
-         (leaf flycheck-relint
-           :require t
-           :config (flycheck-relint-setup)))
+       (use-package flycheck-relint
+         :config (flycheck-relint-setup)))
 
       ((js-mode js2-mode json-mode jsonc-mode)
        (when (executable-find "eslint")
@@ -62,19 +58,11 @@
 
       (t nil)))
 
-  (add-hook 'flycheck-mode-hook #'my/flycheck-setup)
-
-  (leaf pkg-info
-    :doc "deps: epl"
-    ;; needed by command below
-    :commands pkg-info-version-info)
-
-  )
+  (add-hook 'flycheck-mode-hook #'my/flycheck-setup))
 
 ;;; --------------------------- Run --------------------------------
 
-(leaf quickrun
-  :commands quickrun quickrun-region
+(use-package quickrun
   :init
   (setq quickrun-focus-p nil
         quickrun-timeout-seconds 20)
@@ -101,18 +89,16 @@
 
 ;;; -------------------------- Format ------------------------------
 
-(leaf editorconfig
+(use-package editorconfig
   :hook (shell-mode-hook . editorconfig-mode))
 
-(leaf format-all
-  :doc "deps: inheritenv language-id"
-  :commands format-all-buffer format-all-region
+(use-package format-all
   :init
   (setq format-all-debug t)
   (advice-add 'format-all-buffer :before #'format-all-ensure-formatter)
 
   ;; silent ensure message
-  (advice-add #'format-all-ensure-formatter :around #'ad/silent-message)
+  ;; (advice-add #'format-all-ensure-formatter :around #'ad/silent-message)
 
   (defun my/format ()
     "Formating files."

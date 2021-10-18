@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-(leaf emmet-mode
+(use-package emmet-mode
   :hook ((css-mode-hook html-mode-hook mhtml-mode-hook web-mode-hook) . emmet-mode)
   :init
   (setq emmet-indentation 2
@@ -19,24 +19,24 @@
 
 ;;; --------------------------- Css --------------------------------
 
-(leaf css-mode
+(use-package css-mode
   :init
   (setq css-indent-offset 2)
   (setq css-fontify-colors nil))
 
 ;; ;; SCSS mode
-;; (leaf scss-mode
+;; (use-package scss-mode
 ;;   :init (setq scss-compile-at-save nil))
 
-;; (leaf less-css-mode
+;; (use-package less-css-mode
 ;;   :init (setq less-css-compile-at-save nil))
 
 ;;; --------------------------- Html -------------------------------
 
-(leaf mhtml-mode)
+(use-package mhtml-mode)
 
 ;; ;; Major mode for editing web templates
-;; (leaf web-mode
+;; (use-package web-mode
 ;;   :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\|vue\\)$"
 ;;   :init
 ;;   (setq web-mode-markup-indent-offset 2
@@ -62,15 +62,13 @@
 
 ;;; ---------------------------- JS --------------------------------
 
-(leaf js-mode
-  ;; :mode ("\\.js\\'" . js-mode)
-  ;; :interpreter ("node" . js-mode)
+(use-package js
   :init
   (setq js-indent-level 2
         js-chain-indent t
         js-jsx-indent-level 2))
 
-(leaf js2-mode
+(use-package js2-mode
   :mode
   ("\\.js\\'" . js2-mode)
   ("\\.jsx\\'" . js2-minor-mode)
@@ -79,29 +77,22 @@
   (setq js2-mode-assume-strict nil)
   (setq js2-strict-missing-semi-warning nil)
   (setq js2-mode-show-strict-warnings nil)
-  (setq js2-mode-show-parse-errors nil)
-  :config
-  (leaf js2-imenu-extras
-    :hook (js2-mode-hook . js2-imenu-extras-mode))
-  )
+  (setq js2-mode-show-parse-errors nil))
+
+(use-package imenu-extra)
 
 ;;; ---------------------------- TS --------------------------------
 
-(leaf typescript-mode :mode "\\.ts[x]\\'")
+(use-package typescript-mode)
 
 ;;; --------------------------- Node -------------------------------
 
-(leaf nvm
-  :commands nvm-use nvm-use-for nvm-use-for-buffer)
+(use-package nvm)
 
-(leaf nodejs-repl
-  :commands (nodejs-repl
-             nodejs-repl-send-line
-             nodejs-repl-send-region
-             nodejs-repl-send-last-expression))
+(use-package nodejs-repl)
 
 ;; Adds node_modules/.bin directory to `exec_path'
-(leaf add-node-modules-path
+(use-package add-node-modules-path
   :hook ((web-mode-hook js-mode-hook js2-mode-hook) . add-node-modules-path))
 
 (provide 'init-web)

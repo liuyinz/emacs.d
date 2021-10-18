@@ -8,8 +8,8 @@
 
 ;;; Code:
 
-(leaf transient
-  :require t
+(use-package transient
+  :demand t
   :init
   (setq transient-highlight-mismatched-keys nil
         transient-detect-key-conflicts t))

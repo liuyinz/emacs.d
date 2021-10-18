@@ -2,17 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf evil
-  :doc "deps: goto-chg"
-  :defun evil-set-initial-state
-  :hook
-  (after-init-hook . evil-mode)
-  ;; hl-line
-  ((evil-normal-state-entry-hook
-    evil-emacs-state-exit-hook) . hl-line-mode)
-  ((evil-insert-state-entry-hook
-    evil-emacs-state-entry-hook
-    evil-visual-state-entry-hook) . (lambda () (hl-line-mode -1)))
+(use-package evil
+  :hook ((after-init-hook . evil-mode)
+         (evil-normal-state-entry-hook . hl-line-mode)
+         (evil-normal-state-exit-hook . (lambda () (hl-line-mode -1))))
   :init
   (setq evil-want-Y-yank-to-eol t
         evil-want-C-i-jump nil
@@ -53,16 +46,13 @@
         (evil-ex "%s/")
       (evil-ex "'<,'>s/")))
 
-  ;; (leaf evil-collection
-  ;;   :doc "deps : annalist evil"
+  ;; (use-package evil-collection
   ;;   :after evil
   ;;   :require t
   ;;   :init
   ;;   ;; (setq evil-collection-mode-list '(magit))
   ;;   :config
-  ;;   (evil-collection-init 'flycheck))
-
-  (leaf goto-chg :require t)
+  ;;   (evil-collection-init 'flycheck)))
 
   ;; set leader and localleader
   (evil-set-leader '(normal visual) ";")
@@ -116,11 +106,14 @@
                ))
     (evil-set-initial-state (car p) (cdr p))))
 
+(use-package sis
+  :hook (evil-mode-hook . sis-global-respect-mode))
+
 ;; SEE https://github.com/redguardtoo/evil-matchit
-(leaf evil-matchit
+(use-package evil-matchit
   :hook (evil-mode-hook . global-evil-matchit-mode))
 
-(leaf evil-surround
+(use-package evil-surround
   :hook (evil-mode-hook . global-evil-surround-mode)
   :config
 
@@ -137,15 +130,13 @@
       (appendq! evil-surround-pairs-alist extra-alist)))
   )
 
-(leaf evil-nerd-commenter
-  :commands evilnc-comment-or-uncomment-lines evilnc-copy-and-comment-lines)
+(use-package evil-nerd-commenter)
 
 ;; Pinyin support
-(leaf evil-find-char-pinyin
-  :doc "deps: evil pinyinlib"
+(use-package evil-find-char-pinyin
   :hook (evil-mode-hook . evil-find-char-pinyin-mode))
 
-(leaf evil-terminal-cursor-changer
+(use-package evil-terminal-cursor-changer
   :hook (after-make-console-frame-hook . etcc-mode))
 
 (provide 'init-evil)
