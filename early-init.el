@@ -63,10 +63,7 @@
         (fullscreen . fullheight)
         (width . 90) ; (frame-text-width) half 90,full 180
         (background-mode . dark)
-
-        ;; BUG conflict with emacsclient --tty
-        (background-color . "#242730")
-
+        (background-color . "#1d252c")
         (foreground-color . "#bbc2cf")
         ))
 
