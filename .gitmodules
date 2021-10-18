@@ -335,9 +335,6 @@
 [submodule "macrostep"]
 	path = lib/macrostep
 	url = https://github.com/joddie/macrostep.git
-[submodule "highlight-parentheses.el"]
-	path = lib/highlight-parentheses.el
-	url = https://git.sr.ht/~tsdh/highlight-parentheses.el
 [submodule "js2-mode"]
 	path = lib/js2-mode
 	url = https://github.com/mooz/js2-mode.git
@@ -405,9 +402,6 @@
 [submodule "consult-yasnippet"]
 	path = lib/consult-yasnippet
 	url = https://github.com/mohkale/consult-yasnippet.git
-[submodule "fanyi.el"]
-	path = lib/fanyi.el
-	url = https://github.com/condy0919/fanyi.el.git
 [submodule "consult-todo"]
 	path = lib/consult-todo
 	url = https://github.com/liuyinz/consult-todo.git
@@ -417,18 +411,9 @@
 [submodule "git-commit-insert-issue"]
 	path = lib/git-commit-insert-issue
 	url = https://github.com/emacsmirror/git-commit-insert-issue.git
-[submodule "bitbucket.el"]
-	path = lib/bitbucket.el
-	url = https://github.com/tjaartvdwalt/bitbucket.el.git
-[submodule "treepy.el"]
-	path = lib/treepy.el
-	url = https://github.com/volrath/treepy.el.git
 [submodule "graphql-mode"]
 	path = lib/graphql-mode
 	url = https://github.com/davazp/graphql-mode.git
-[submodule "yaml.el"]
-	path = lib/yaml.el
-	url = https://github.com/zkry/yaml.el.git
 [submodule "closql"]
 	path = lib/closql
 	url = https://github.com/emacscollective/closql.git
@@ -453,6 +438,21 @@
 [submodule "emacs-smart-input-source"]
 	path = lib/emacs-smart-input-source
 	url = https://github.com/laishulu/emacs-smart-input-source.git
-[submodule "gist.el"]
-	path = lib/gist.el
+[submodule "highlight-parentheses"]
+	path = lib/highlight-parentheses
+	url = https://github.com/emacsmirror/highlight-parentheses.git
+[submodule "fanyi"]
+	path = lib/fanyi
+	url = https://github.com/condy0919/fanyi.el.git
+[submodule "yaml"]
+	path = lib/yaml
+	url = https://github.com/zkry/yaml.el.git
+[submodule "treepy"]
+	path = lib/treepy
+	url = https://github.com/volrath/treepy.el.git
+[submodule "bitbucket"]
+	path = lib/bitbucket
+	url = https://github.com/tjaartvdwalt/bitbucket.el.git
+[submodule "gist"]
+	path = lib/gist
 	url = https://github.com/liuyinz/gist.el.git
