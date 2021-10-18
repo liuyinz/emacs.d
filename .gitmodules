@@ -359,9 +359,6 @@
 [submodule "pcache"]
 	path = lib/pcache
 	url = https://github.com/sigma/pcache.git
-[submodule "gist"]
-	path = lib/gist
-	url = https://github.com/defunkt/gist.el.git
 [submodule "cliphist"]
 	path = lib/cliphist
 	url = https://github.com/redguardtoo/cliphist.git
@@ -456,3 +453,6 @@
 [submodule "emacs-smart-input-source"]
 	path = lib/emacs-smart-input-source
 	url = https://github.com/laishulu/emacs-smart-input-source.git
+[submodule "gist.el"]
+	path = lib/gist.el
+	url = https://github.com/liuyinz/gist.el.git
