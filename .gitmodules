@@ -420,9 +420,6 @@
 [submodule "emacs-htmlize"]
 	path = lib/emacs-htmlize
 	url = https://github.com/hniksic/emacs-htmlize.git
-[submodule "epkg"]
-	path = lib/epkg
-	url = https://github.com/emacscollective/epkg.git
 [submodule "borg"]
 	path = lib/borg
 	url = https://github.com/emacscollective/borg.git
