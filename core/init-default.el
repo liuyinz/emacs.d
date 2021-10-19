@@ -191,11 +191,11 @@
   (setq recentf-max-saved-items nil
         recentf-auto-cleanup 15
         recentf-exclude
-        '("\\.?cache" ".cask" "url" "COMMIT_EDITMSG\\'" "bookmarks"
+        '("\\.?cache" "-autoloads\\.el\\'" ".cask" "url" "COMMIT_EDITMSG\\'"
           "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
           "\\.?ido\\.last$" "\\.revive$" "/G?TAGS$" "/.elfeed/"
           "^/tmp/" "^/var/folders/.+$" "/share/emacs/.+$" "\\.git/.+$"
-          ))
+          "bookmarks"))
 
   :config
   ;; auto-cleanup in save/load
