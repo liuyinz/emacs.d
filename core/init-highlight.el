@@ -28,13 +28,11 @@
       (remove-overlays (point-min) (point-max) 'ovrainbow t))
     (advice-add #'rainbow-turn-off :after #'ad/rainbow-clear-overlays)))
 
-;; Highlight brackets
 (use-package rainbow-delimiters
   :hook (prog-mode-hook . rainbow-delimiters-mode)
   :init
   (setq rainbow-delimiters-max-face-count 4))
 
-;; TODO highlight html tags, https://git.sr.ht/~tsdh/highlight-parentheses.el
 (use-package highlight-parentheses
   :hook (prog-mode-hook . highlight-parentheses-mode)
   :init

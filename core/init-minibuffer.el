@@ -240,11 +240,11 @@
         '((emacs-lisp-mode
            :toplevel "Functions"
            :types
-           ((?f "Functions" font-lock-function-name-face)
-            (?m "Macros"    font-lock-function-name-face)
-            (?p "Use-Package"      font-lock-constant-face)
-            (?t "Types"     font-lock-type-face)
-            (?v "Variables" font-lock-variable-name-face)))
+           ((?f "Functions"   font-lock-function-name-face)
+            (?m "Macros"      font-lock-function-name-face)
+            (?p "Use-Package" font-lock-constant-face)
+            (?t "Types"       font-lock-type-face)
+            (?v "Variables"   font-lock-variable-name-face)))
           (sh-mode
            :types
            ((?f "Functions" font-lock-function-name-face)
