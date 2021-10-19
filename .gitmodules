@@ -456,3 +456,6 @@
 [submodule "gist"]
 	path = lib/gist
 	url = https://github.com/liuyinz/gist.el.git
+[submodule "terminal-focus-reporting"]
+	path = lib/terminal-focus-reporting
+	url = https://github.com/veelenga/terminal-focus-reporting.el.git
