@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(require 'subr-x)
+;; (require 'subr-x)
 
 (defvar after-load-theme-hook nil
   "Hook run after a color theme is loaded using `load-theme'.")
