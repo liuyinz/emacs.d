@@ -17,7 +17,8 @@
         native-comp-deferred-compilation nil
         native-comp-async-report-warnings-errors nil)
   (setcar native-comp-eln-load-path
-          (expand-file-name ".cache/var/eln-cache/" user-emacs-directory)))
+          (expand-file-name (convert-standard-filename ".cache/var/eln-cache/")
+                            user-emacs-directory)))
 
 ;; Do not initialise installed packaes
 (setq package-enable-at-startup nil)
@@ -54,7 +55,7 @@
         (vertical-scroll-bars . nil)
         (horizontal-scroll-bars . nil)
         ;; margin belong to buffer, fringe belong to windows frame
-        ;; see@https://www.gnu.org/software/emacs/manual/html_node/elisp/Fringe-Size_002fPos.html
+        ;; SEE https://www.gnu.org/software/emacs/manual/html_node/elisp/Fringe-Size_002fPos.html
         (left-fringe . 0)
         (right-fringe . 0)
         (minibuffer . t)
@@ -75,5 +76,4 @@
   (push '(ns-appearance . dark) default-frame-alist)
   (push '(ns-use-native-fullscreen . nil) default-frame-alist))
 
-(provide 'early-init)
 ;;; early-init.el ends here
