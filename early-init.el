@@ -13,7 +13,7 @@
 
 (when (boundp 'native-comp-eln-load-path)
   (setq native-comp-speed 2)
-  (setq native-comp-asyncjobs-number 7
+  (setq native-comp-async-jobs-number 7
         native-comp-deferred-compilation nil
         native-comp-async-report-warnings-errors nil)
   (setcar native-comp-eln-load-path
