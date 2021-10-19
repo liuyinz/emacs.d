@@ -47,11 +47,7 @@
   ;; exclude these in recentf
   (with-eval-after-load 'recentf
     (appendq! recentf-exclude
-              `(,no-littering-var-directory ,no-littering-etc-directory)))
-
-  ;; restore yasnippet settings
-  (with-eval-after-load 'yasnippet
-    (setq yas-snippet-dirs '(my-dir-snippet))))
+              `(,no-littering-var-directory ,no-littering-etc-directory))))
 
 (provide 'init-sys)
 ;;; init-sys.el ends here

@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: Header2
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: h2
-# --
-
-## ${1:Header2}
-
-$0

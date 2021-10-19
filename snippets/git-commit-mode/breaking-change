@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: breaking-change
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: bc
-# --
-
-BREAKING CHANGE: $0

@@ -459,3 +459,6 @@
 [submodule "terminal-focus-reporting"]
 	path = lib/terminal-focus-reporting
 	url = https://github.com/veelenga/terminal-focus-reporting.el.git
+[submodule "yasnippet-collection"]
+	path = lib/yasnippet-collection
+	url = https://github.com/liuyinz/yasnippet-collection.git

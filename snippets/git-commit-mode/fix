@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: fix [#issue] : ...
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: fi
-# --
-fix${1:(${2:SCOPE})}: $0

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: binding
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: bd
-# --
-
-# binding: ${1:binding}

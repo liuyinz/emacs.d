@@ -74,6 +74,12 @@ $0`(yas-escape-text yas-selected-text)`")
   (advice-add #'yas-reload-all :around #'ad/silent-message)
 
   :config
+
+  (use-package yasnippet-collection
+    :demand t
+    :config
+    (yasnippet-collection-initialize))
+
   ;; enable commit snippets
   (add-hook 'git-commit-mode-hook
             (lambda () (yas-activate-extra-mode 'git-commit-mode)))

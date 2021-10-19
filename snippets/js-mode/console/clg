@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# contributor: Jimmy Yuen Ho Wong <wyuenho@gmail.com>
-# name: console.log
-# key: clg
-# group: console
-# --
-
-console.log(${1:object})

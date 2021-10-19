@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: shellcheck
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: sc
-# --
-
-# shellcheck disable=SC${1:NUM}$0

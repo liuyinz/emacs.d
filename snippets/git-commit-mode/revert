@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: revert
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: rv
-# --
-revert${1:(${2:COMMITS})}: $0

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: bold
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: bd 
-# --
-
-**${1:Bold}** $0

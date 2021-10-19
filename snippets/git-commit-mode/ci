@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: ci
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: ci
-# --
-ci${1:(${2:SCOPE})}: $0

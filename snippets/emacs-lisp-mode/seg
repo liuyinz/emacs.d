@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: segment
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: seg
-# --
-
-${1:$$(concat ";;; " (make-string (/ (- 64 (string-width yas-text)) 2) ?\-) " " yas-text " " (make-string (- 64 (/ (- 64 (string-width yas-text)) 2)) ?\-))}
-$0
-

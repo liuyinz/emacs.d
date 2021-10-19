@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: else if..
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: ef
-# --
-
-else${1: if (${2:condition}) }{
-     $3
-} $4

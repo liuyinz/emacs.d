@@ -25,12 +25,17 @@
 
 ;; ------------------------ auto-compile ---------------------------
 (use-package auto-compile
-  :hook (after-init-hook . auto-compile-on-load-mode)
+  :demand t
+  ;; :hook (after-init-hook . auto-compile-on-load-mode)
   :init
   (setq auto-compile-visit-failed nil
         auto-compile-ding nil
         auto-compile-update-autoloads t
-        auto-compile-use-mode-line nil))
+        auto-compile-use-mode-line nil)
+  :config
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode)
+  )
 
 (provide 'init-borg)
 ;;; init-borg.el ends here

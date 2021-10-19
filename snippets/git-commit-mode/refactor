@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: refactor
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: rf
-# --
-refactor${1:(${2:SCOPE})}: $0

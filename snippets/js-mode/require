@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: require
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: req
-# --
-require("$1")
-$0

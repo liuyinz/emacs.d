@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: test
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: te
-# --
-test: $0

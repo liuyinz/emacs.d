@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: chore
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: ch
-# --
-chore${1:(${2:SCOPE})}: $0

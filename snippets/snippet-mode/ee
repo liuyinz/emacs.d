@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: expand-env
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: ee
-# --
-
-# expand-env: ${1:expand-env}

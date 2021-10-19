@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: link-url
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: lku
-# --
-
-[${1:Text}](${2:URL})$0

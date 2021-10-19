@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: Reference Label
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: rl
-# --
-
-[${1:Ref}]: ${2:Url}${3: "$4"}
-$0

@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: task-list
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: tl
-# --
-
-- [${2: }] ${1:task}
-$0

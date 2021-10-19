@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: elisp
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: el
-# --
-
-\`${1:(${2:lisp})}\`$0

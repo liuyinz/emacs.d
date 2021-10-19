@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: uuid
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: uuid
-# --
-
-# uuid: ${1:uuid}

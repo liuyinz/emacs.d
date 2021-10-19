@@ -6,10 +6,6 @@
   (expand-file-name "core" user-emacs-directory)
   "User dir for Emacs configs.")
 
-(defconst my-dir-snippet
-  (expand-file-name "snippets" user-emacs-directory)
-  "User dir for code snippets.")
-
 (defconst my-dir-ext
   (expand-file-name "ext" user-emacs-directory)
   "User dir for external tools.")
@@ -21,8 +17,7 @@
 ;; ensure dir exists
 (dolist (dir `(,my-dir-cache
                ,my-dir-core
-               ,my-dir-ext
-               ,my-dir-snippet))
+               ,my-dir-ext))
   (make-directory dir t))
 
 (defconst user-home-page

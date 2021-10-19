@@ -11,7 +11,7 @@
       auto-save-list-file-prefix nil)
 
 (setq user-full-name "liuyinz")
-(setq user-mail-address "liuyinz@gmail.com")
+(setq user-mail-address "liuyinz95@gmail.com")
 
 (advice-add #'display-startup-echo-area-message :override #'ignore)
 

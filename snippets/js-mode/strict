@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: strict
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: strict
-# --
-
-"use strict";
-$0

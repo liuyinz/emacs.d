@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Bold-Italic
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: bt
-# --
-
-***${1:Bold&Italic}*** $0

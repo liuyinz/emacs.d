@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: feat
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: fe
-# --
-feat${1:(${2:SCOPE})}: $0

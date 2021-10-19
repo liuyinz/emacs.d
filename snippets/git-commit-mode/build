@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: build
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: bu
-# --
-build${1:(${2:SCOPE})}: $0

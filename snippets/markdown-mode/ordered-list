@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: Ordered List
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: ol
-# --
-
-${1:Num}. ${2:Item}
-$0

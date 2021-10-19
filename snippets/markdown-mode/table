@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: table
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: tb
-# --
-
-| ${1:Table Header} $0|
-| ${1:$(replace-regexp-in-string "[^\|]" "-" yas-text)} |

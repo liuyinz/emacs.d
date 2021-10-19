@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: while loop
-# key: while
-# --
-while ${1:COND}; do
-  ${2:THEN}
-done
-$0

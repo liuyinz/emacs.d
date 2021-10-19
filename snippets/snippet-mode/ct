@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: contributor
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: ct
-# --
-
-# contributor: ${1:contributor}

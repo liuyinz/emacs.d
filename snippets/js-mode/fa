@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: f(=>)
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: fa
-# --
-
-${1:(${2:arg})} => ${3:{$4\}}$0

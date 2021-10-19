@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: (/* ... */) comment
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: com
-# --
-
-/*
- * $0
- */

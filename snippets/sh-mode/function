@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: function
-# contributor: liuyinz<liuyinz@gmail.com>
-# key: f
-# --
-
-${1:function ${2:NAME}}${1:$(unless (string-prefix-p "function" yas-text) "()")} {
-  $0
-}
