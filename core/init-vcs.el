@@ -41,21 +41,24 @@
 (use-package gist
   :config
   (setq gist-ask-for-description t)
-  (setq gist-list-format '((id "Id" 7 nil identity)
-                           (created "Created" 15 nil "%y-%m-%d %R")
-                           (visibility "Visibility" 10 nil
-                                       (lambda (public)
-                                         (or (and public "public")
-                                             "private")))
-                           (description "Description" 0 nil identity)))
+  (setq gist-list-format
+        '((id "Id" 7 nil identity)
+          (created "Created" 15 nil "%y-%m-%d %R")
+          (visibility "Visibility" 10 nil
+                      (lambda (public)
+                        (or (and public "public")
+                            "private")))
+          (description "Description" 0 nil identity)))
 
-  (setq gh-profile-alist `(("github"
-                            :username ,(car (github-info))
-                            :password nil
-                            :token   ,(cdr (github-info))
-                            :url "https://api.github.com"
-                            :remote-regexp
-                            ,(gh-profile-remote-regexp "github.com"))))
+  (let ((info (auth-source-user-and-password "api.github.com" "liuyinz^gist")))
+    (setq gh-profile-alist
+          `(("github"
+             :username "liuyinz"
+             :password nil
+             :token   ,(cadr info)
+             :url "https://api.github.com"
+             :remote-regexp
+             ,(gh-profile-remote-regexp "github.com")))))
   )
 
 ;; Open github/gitlab/bitbucket page
