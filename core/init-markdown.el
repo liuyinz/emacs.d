@@ -49,8 +49,9 @@
 (use-package grip-mode
   :commands grip-start-preview
   :config
-  (setq grip-github-user     (car (github-info))
-        grip-github-password (cdr (github-info)))
+  (let ((info (auth-source-user-and-password "api.github.com" "liuyinz^gist")))
+    (setq grip-github-user     (car info)
+          grip-github-password (cdr info)))
 
   (setq grip-preview-use-webkit nil
         grip-update-after-change t))

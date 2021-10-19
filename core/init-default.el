@@ -510,20 +510,9 @@ CHAR-FUNCTION
 ;;; --------------------------- Tool -------------------------------
 
 (use-package auth-source
-  ;; :defun auth-source-user-and-password
+  :commands auth-source-user-and-password
   :init
-  (setq auth-sources '(macos-keychain-internet))
-
-  (defvar github-info nil
-    "Variable stores github info with (USERNAME . PASSWORD).")
-  (defun github-info ()
-    "Return github info with (USERNAME . PASSWORD)."
-    (unless github-info
-      (setq github-info
-            (seq-subseq (auth-source-user-and-password "github.com") 0 2)))
-    github-info)
-
-  )
+  (setq auth-sources '("~/.authinfo.gpg")))
 
 (use-package profiler
   :init

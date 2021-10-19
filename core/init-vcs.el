@@ -30,7 +30,10 @@
   (advice-add 'magit-diff--get-value :around #'ad/ignore-submodules-more-than-max)
   )
 
-(use-package forge :after magit)
+(use-package forge
+  :after magit
+  :init
+  (setq  forge-topic-list-limit '(100 . -10)))
 
 (use-package git-modes
   :mode ("\\.\\(rg\\|docker\\)ignore\\'" . gitignore-mode))
