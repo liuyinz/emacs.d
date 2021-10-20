@@ -108,8 +108,6 @@ $0`(yas-escape-text yas-selected-text)`")
       ))
   )
 
-(use-package consult-yasnippet)
-
 ;; (use-package citre
 ;;   :init
 ;;   (require 'citre-config)

@@ -8,7 +8,8 @@
   :hook ((js2-mode-hook js-mode-hook css-mode-hook bash-mode-hook) . lsp-deferred)
   :init
   (setq lsp-keymap-prefix nil)
-  (setq lsp-enable-snippet t)
+  (setq lsp-completion-enable t)
+  (setq lsp-enable-snippet nil)
   (setq lsp-enable-links nil)
   (setq lsp-enable-folding nil)
   (setq lsp-enable-file-watchers nil)         ;; performance matters
