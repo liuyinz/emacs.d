@@ -106,6 +106,10 @@
                ))
     (evil-set-initial-state (car p) (cdr p))))
 
+(use-package evil-goggles
+  :hook ((evil-mode-hook . evil-goggles-mode)
+         (evil-goggles-mode-hook . evil-goggles-use-diff-faces)))
+
 (use-package sis
   :hook (evil-mode-hook . sis-global-respect-mode))
 

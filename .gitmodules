@@ -464,3 +464,6 @@
 [submodule "yasnippet-collection"]
 	path = lib/yasnippet-collection
 	url = https://github.com/liuyinz/yasnippet-collection.git
+[submodule "evil-goggles"]
+	path = lib/evil-goggles
+	url = https://github.com/edkolev/evil-goggles.git
