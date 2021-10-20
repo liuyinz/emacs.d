@@ -195,7 +195,7 @@
     (kbd "<escape>") 'company-abort
     (kbd "C-s") 'company-filter-candidates
     (kbd "C-t") 'company-complete-common
-    (kbd "C-n") 'company-select-next
+    (kbd "C-n") 'company-complete-common-or-cycle
     (kbd "C-p") 'company-select-previous)
 
   (evil-define-key nil company-search-map
