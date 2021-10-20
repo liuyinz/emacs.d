@@ -169,6 +169,9 @@
 [submodule "lsp-mode"]
 	path = lib/lsp-mode
 	url = https://github.com/emacs-lsp/lsp-mode.git
+	load-path = .
+	load-path = clients
+	load-path = use-package
 [submodule "hydra"]
 	path = lib/hydra
 	url = https://github.com/abo-abo/hydra.git
@@ -260,6 +263,8 @@
 [submodule "vertico"]
 	path = lib/vertico
 	url = https://github.com/minad/vertico.git
+	load-path = .
+	load-path = extensions
 [submodule "lib/highlight-defined"]
 	path = lib/highlight-defined
 	url = https://github.com/Fanael/highlight-defined.git

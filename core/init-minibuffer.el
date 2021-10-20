@@ -6,7 +6,6 @@
 
 (use-package vertico
   :hook (after-init-hook . vertico-mode)
-  :load-path "lib/vertico/extensions/"
   :init
   (setq vertico-cycle t
         vertico-count 15)
@@ -21,14 +20,8 @@
             cand))
   (advice-add #'vertico--format-candidate :around #'ad/vertico-customize-candidate)
 
-  ;;; -------------------------- Eextra ------------------------------
-
-  (use-package vertico-repeat
-               :demand t
-    )
-
-  (use-package vertico-directory
-               :demand t))
+  ;; -------------------------- Extra ------------------------------
+  )
 
 (use-package marginalia
   :hook (vertico-mode-hook . marginalia-mode)
