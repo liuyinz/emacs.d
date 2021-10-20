@@ -33,6 +33,8 @@
                             (company-dabbrev-code company-keywords company-files)
                             company-dabbrev))
 
+  (setq company-transformers '(company-sort-prefer-same-case-prefix))
+
   ;; ISSUE https://github.com/oantolin/orderless/issues/48#issuecomment-856750410
   (defun ad/company-capf-keep-unchanged (orig-fn &rest args)
     (let ((completion-styles '(basic partial-completion)))

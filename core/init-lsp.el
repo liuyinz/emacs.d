@@ -35,9 +35,9 @@
   :config
   (use-package lsp-modeline :demand t)
 
-  ;; disable fuzzy match
-  ;; ISSUE https://github.com/emacs-lsp/lsp-mode/issues/2563#issuecomment-767987191
-  (advice-add #'lsp-completion--regex-fuz :override #'identity)
+  ;; ;; disable fuzzy match
+  ;; ;; ISSUE https://github.com/emacs-lsp/lsp-mode/issues/2563#issuecomment-767987191
+  ;; (advice-add #'lsp-completion--regex-fuz :override #'identity)
 
   ;;; -------------------------- Imenu -------------------------------
 
