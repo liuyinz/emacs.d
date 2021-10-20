@@ -43,15 +43,7 @@
 
   (require 'company-tng)
   ;; (setq company-tng-auto-configure nil)
-  (company-tng-mode)
-
-  ;; SEE https://github.com/seagle0128/.emacs.d/blob/master/lisp/init-company.el
-  (with-no-warnings
-    (defun ad/lsp-fix-company-capf ()
-      "Remove redundant `comapny-capf'."
-      (setq company-backends
-            (remove 'company-backends (remq 'company-capf company-backends))))
-    (advice-add #'lsp-completion--enable :after #'ad/lsp-fix-company-capf)))
+  (company-tng-mode))
 
 (use-package yasnippet
   :hook (after-init-hook . yas-global-mode)
