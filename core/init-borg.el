@@ -18,10 +18,10 @@
 
 ;; ------------------------ use-package ----------------------------
 
-(eval-when-compile
-  (require 'use-package))
 (setq use-package-hook-name-suffix nil
+      use-package-enable-imenu-support t
       use-package-always-defer t)
+(require 'use-package)
 
 ;; ------------------------ auto-compile ---------------------------
 (use-package auto-compile
