@@ -36,6 +36,7 @@
                   (member sh-shell '(sh bash)))
          (flycheck-select-checker 'sh-shellcheck)))
 
+      ;; REQUIRE brew install jq
       (json-mode
        (when (executable-find "jq")
          (flycheck-select-checker 'json-jq)))
@@ -50,7 +51,7 @@
          (flycheck-package-setup)
          (flycheck-relint-setup)))
 
-      ((js-mode js2-mode json-mode jsonc-mode)
+      (js2-mode
        (when (executable-find "eslint")
          (flycheck-add-mode 'javascript-eslint major-mode)
          (flycheck-select-checker 'javascript-eslint)))
@@ -61,8 +62,16 @@
          (flycheck-select-checker 'html-tidy)))
 
       (css-mode
-       (when (executable-find "stylelint")
+       ;; NOTE disable `css-stylelint' in `mhtml-mode'
+       (when (and (string= "css" (file-name-extension (buffer-name)))
+                  (executable-find "stylelint"))
          (flycheck-select-checker 'css-stylelint)))
+
+      (js-mode
+       ;; NOTE disable `javascript-eslint' in `mhtml-mode'
+       (when (and (string= "js" (file-name-extension (buffer-name)))
+                  (executable-find "eslint"))
+         (flycheck-select-checker 'javascript-eslint)))
 
       (scss-mode
        (when (executable-find "stylelint")
@@ -126,8 +135,7 @@
       (t (run-general! format-all-region format-all-buffer))))
   :config
   ;; SEE https://google.github.io/styleguide/shellguide.html
-  (prependq! format-all-default-formatters '(("HTML" prettier)
-                                             ("JSONC" prettier)
+  (prependq! format-all-default-formatters '(("JSONC" prettier)
                                              ("Shell" (shfmt "-i" "2" "-bn" "-ci"))))
   )
 
