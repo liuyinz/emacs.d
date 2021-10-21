@@ -8,14 +8,13 @@
 ;;; Code:
 
 (use-package emmet-mode
-  :hook ((css-mode-hook html-mode-hook mhtml-mode-hook web-mode-hook) . emmet-mode)
+  :hook (((css-mode-hook html-mode-hook mhtml-mode-hook web-mode-hook) . emmet-mode)
+         (emmet-mode-hook . (lambda () (yas-minor-mode -1))))
   :init
   (setq emmet-indentation 2
         emmet-insert-flash-time -1
         emmet-indent-after-insert nil
-        emmet-postwrap-goto-edit-point t
-        ;; emmet-move-cursor-between-quotes nil
-        ))
+        emmet-postwrap-goto-edit-point t))
 
 ;;; --------------------------- Css --------------------------------
 
@@ -86,10 +85,6 @@
 (use-package typescript-mode)
 
 ;;; --------------------------- Node -------------------------------
-
-(use-package nvm)
-
-(use-package nodejs-repl)
 
 ;; Adds node_modules/.bin directory to `exec_path'
 (use-package add-node-modules-path

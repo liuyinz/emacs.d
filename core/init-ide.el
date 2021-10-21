@@ -11,7 +11,9 @@
               (js2-mode . "javascript,backbone,angularjs")
               (lisp-interaction-mode . "elisp")
               (css-mode . "css,bootstrap,foundation,less,awesome,emmet")
-              (jq-mode . "jq"))))
+              (jq-mode . "jq")
+              (mhtml-mode . "html,svg,css,bootstrap,foundation,awesome,javascript,jquery,jqueryui,jquerym,angularjs,backbone,marionette,meteor,moo,prototype,ember,lodash,underscore,sencha,extjs,knockout,zepto,cordova,phonegap,yui")
+              )))
 
 ;;; --------------------------- Lint -------------------------------
 
@@ -20,8 +22,8 @@
 (use-package flycheck
   :hook (prog-mode-hook . flycheck-mode)
   :init
-  (setq flycheck-stylelintrc "~/.stylelintrc.json"
-        flycheck-tidyrc "~/.tidyrc"
+  (setq flycheck-stylelintrc ".stylelintrc.json"
+        flycheck-tidyrc ".tidyrc"
         flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save idle-change mode-enabled)
         flycheck-indication-mode 'right-margin)
@@ -34,6 +36,10 @@
                   (member sh-shell '(sh bash)))
          (flycheck-select-checker 'sh-shellcheck)))
 
+      (json-mode
+       (when (executable-find "jq")
+         (flycheck-select-checker 'json-jq)))
+
       ;; REQUIRE pip3 install pylint rather than brew.
       (python-mode
        (when (executable-find "pylint")
@@ -41,10 +47,8 @@
 
       (emacs-lisp-mode
        (progn
-         (use-package flycheck-package
-           :config (flycheck-package-setup)))
-       (use-package flycheck-relint
-         :config (flycheck-relint-setup)))
+         (flycheck-package-setup)
+         (flycheck-relint-setup)))
 
       ((js-mode js2-mode json-mode jsonc-mode)
        (when (executable-find "eslint")
@@ -56,6 +60,20 @@
          (flycheck-add-mode 'html-tidy major-mode)
          (flycheck-select-checker 'html-tidy)))
 
+      (css-mode
+       (when (executable-find "stylelint")
+         (flycheck-select-checker 'css-stylelint)))
+
+      (scss-mode
+       (when (executable-find "stylelint")
+         (flycheck-select-checker 'scss-stylelint)))
+
+      (less-mode
+       (when (executable-find "stylelint")
+         (flycheck-select-checker 'less-stylelint)))
+
+      (sass-mode
+       (flycheck-select-checker 'sass))
       (t nil)))
 
   (add-hook 'flycheck-mode-hook #'my/flycheck-setup))

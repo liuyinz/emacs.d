@@ -243,15 +243,6 @@
   (setq register-preview-delay 0
         register-preview-function #'consult-register-format)
 
-  (with-eval-after-load 'flycheck
-    (use-package consult-flycheck))
-
-  (with-eval-after-load 'hl-todo
-    (use-package consult-todo))
-
-  (use-package consult-jq)
-
-  (require 'consult-imenu)
   ;; Integrate with `use-package'
   (setq consult-imenu-config
         '((emacs-lisp-mode
@@ -282,10 +273,11 @@
 (use-package embark
   ;; :init (setq embark-prompter 'embark-completing-read-prompter)
   :config
-  (use-package embark-consult)
-
   ;; HACK Open source code of `symbol' in other window
   (advice-add 'embark-find-definition :before #'open-in-other-window))
+
+(use-package embark-consult
+  :after embark consult)
 
 (provide 'init-minibuffer)
 ;;; init-minibuffer.el ends here

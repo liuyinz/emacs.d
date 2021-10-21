@@ -5,7 +5,7 @@
 ;;; ------------------------- Default ------------------------------
 
 (use-package lsp-mode
-  :hook ((js2-mode-hook js-mode-hook css-mode-hook bash-mode-hook) . lsp-deferred)
+  :hook ((js2-mode-hook bash-mode-hook) . lsp-deferred)
   :init
   (setq lsp-keymap-prefix nil)
   (setq lsp-completion-enable t)
@@ -34,10 +34,6 @@
 
   :config
   (use-package lsp-modeline :demand t)
-
-  ;; ;; disable fuzzy match
-  ;; ;; ISSUE https://github.com/emacs-lsp/lsp-mode/issues/2563#issuecomment-767987191
-  ;; (advice-add #'lsp-completion--regex-fuz :override #'identity)
 
   ;;; -------------------------- Imenu -------------------------------
 
