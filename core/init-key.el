@@ -44,8 +44,7 @@
     "`" 'evil-goto-mark-line)
 
   (evil-define-key 'insert 'global
-    (kbd "C-o") 'evil-execute-in-normal-state
-    (kbd "C-j") 'yas-emmet-expand)
+    (kbd "C-o") 'evil-execute-in-normal-state)
 
   (evil-define-key '(normal visual) 'global
     ;; replace redo with U
@@ -127,6 +126,16 @@
   ;;; ------------------------ Minor-mode ----------------------------
   ;; Defining keybindings with `minor-mode' has higher precedence than with
   ;; `minor-mode-map'
+
+  (evil-define-key 'insert 'yas-minor-mode
+    (kbd "C-j") 'yas-expand)
+
+  (evil-define-key 'insert 'emmet-mode
+    (kbd "C-j") 'emmet-expand-line
+    (kbd "TAB") 'emmet-next-edit-point
+    (kbd "<tab>")  'emmet-next-edit-point
+    (kbd "S-TAB") 'emmet-prev-edit-point
+    (kbd "<backtab>")  'emmet-prev-edit-point)
 
   (evil-define-key 'visual 'emmet-mode
     (kbd "C-j") 'emmet-wrap-with-markup)

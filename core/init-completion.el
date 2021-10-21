@@ -78,15 +78,6 @@ $0`(yas-escape-text yas-selected-text)`")
   (add-hook 'git-commit-mode-hook
             (lambda () (yas-activate-extra-mode 'git-commit-mode)))
 
-  (defun yas-emmet-expand ()
-    "Call `yas-expand' or `emmet-expand-yas' when needed."
-    (interactive)
-    (when (company--active-p)
-      (company-cancel))
-    (if (bound-and-true-p emmet-mode)
-        (emmet-expand-yas)
-      (yas-expand)))
-
   ;; FIXME inspired by `markdown-edit-code-block', delete chars after abort?
   (defun yas-edit-elisp-indirect ()
     "Insert elisp code in `snippet-mode' with `edit-indirect'."
