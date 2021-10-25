@@ -98,14 +98,9 @@ Lisp function does not specify a special indentation."
 (use-package highlight-defined
   :init (setq highlight-defined-face-use-itself t))
 
-;; A better *Help* buffer
-(use-package helpful)
-
 ;; Add demos for help
 (use-package elisp-demos
   :commands elisp-demos-find-demo)
-
-(use-package relint)
 
 (provide 'init-elisp)
 ;;; init-elisp.el ends here
