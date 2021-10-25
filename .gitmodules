@@ -467,3 +467,15 @@
 [submodule "evil-goggles"]
 	path = lib/evil-goggles
 	url = https://github.com/edkolev/evil-goggles.git
+[submodule "eldoc-toml"]
+	path = lib/eldoc-toml
+	url = https://github.com/it-is-wednesday/eldoc-toml.git
+[submodule "consult-projectile"]
+	path = lib/consult-projectile
+	url = https://gitlab.com/OlMon/consult-projectile
+[submodule "git-timemachine"]
+	path = lib/git-timemachine
+	url = https://gitlab.com/pidu/git-timemachine.git
+[submodule "rsync-mode"]
+	path = lib/rsync-mode
+	url = https://github.com/r-zip/rsync-mode.git

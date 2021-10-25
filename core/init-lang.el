@@ -55,6 +55,9 @@
 
 ;; (use-package mermaid-mode)
 
+(use-package eldoc-toml
+  :hook (conf-toml-mode-hook . #'eldoc-toml))
+
 ;;; -------------------------- Macos -------------------------------
 
 (use-package applescript-mode
