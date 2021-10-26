@@ -479,3 +479,6 @@
 [submodule "rsync-mode"]
 	path = lib/rsync-mode
 	url = https://github.com/r-zip/rsync-mode.git
+[submodule "org-present"]
+	path = lib/org-present
+	url = https://github.com/rlister/org-present.git
