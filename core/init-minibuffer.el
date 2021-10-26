@@ -8,8 +8,20 @@
   :hook (after-init-hook . vertico-mode)
   :init
   (setq vertico-cycle t
-        vertico-count 15)
+        vertico-count 15
+        resize-mini-windows t)
   :config
+  ;; HACK inspired by vertico-reverse
+  (defun ad/vertico--display-prompt-bottom (lines)
+    "Set prompt line to bottom in `vertico-mode'."
+    (move-overlay vertico--candidates-ov (point-min) (point-min))
+    (unless (eq vertico-resize t)
+      (setq lines (nconc (make-list (max 0 (- vertico-count (length lines))) "\n") lines)))
+    (let ((string (apply #'concat lines)))
+      (add-face-text-property 0 (length string) 'default 'append string)
+      (overlay-put vertico--candidates-ov 'before-string string))
+    (vertico--resize-window (length lines)))
+  (advice-add 'vertico--display-candidates :override #'ad/vertico--display-prompt-bottom)
 
   ;; SEE https://github.com/minad/vertico/wiki#prefix-current-candidate-with-arrow
   (defun ad/vertico-customize-candidate (orig cand prefix suffix index _start)
