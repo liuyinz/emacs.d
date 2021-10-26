@@ -85,7 +85,7 @@
 (use-package conventional-changelog
   :init
   (setq conventional-changelog-tmp-dir
-        (expand-file-name "var/conventional-changelog" my-dir-cache))
+        (expand-file-name "var/conventional-changelog" my/dir-cache))
 
   ;; Integrate to `magit-tag'
   (with-eval-after-load 'magit-tag

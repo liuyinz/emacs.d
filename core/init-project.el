@@ -26,9 +26,9 @@
 
   ;; ignore some dirs
   (require 'f)
-  (defun my-projectile-ignore-project (project-root)
+  (defun my/projectile-ignore-project (project-root)
     (f-descendant-of? project-root (expand-file-name "/module")))
-  (setq projectile-ignored-project-function #'my-projectile-ignore-project)
+  (setq projectile-ignored-project-function #'my/projectile-ignore-project)
   )
 
 (provide 'init-project)

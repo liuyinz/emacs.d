@@ -2,22 +2,27 @@
 ;;; Commentary:
 ;;; Code:
 
-(defconst my-dir-core
+(defconst my/dir-core
   (expand-file-name "core" user-emacs-directory)
   "User dir for Emacs configs.")
 
-(defconst my-dir-ext
+(defconst my/dir-ext
   (expand-file-name "ext" user-emacs-directory)
   "User dir for external tools.")
 
-(defconst my-dir-cache
+(defconst my/dir-lib
+  (expand-file-name "lib" user-emacs-directory)
+  "User dir for submodules.")
+
+(defconst my/dir-cache
   (expand-file-name ".cache" user-emacs-directory)
   "User dir for recentf,places and so on.")
 
 ;; ensure dir exists
-(dolist (dir `(,my-dir-cache
-               ,my-dir-core
-               ,my-dir-ext))
+(dolist (dir `(,my/dir-cache
+               ,my/dir-core
+               ,my/dir-lib
+               ,my/dir-ext))
   (make-directory dir t))
 
 (defconst user-home-page

@@ -25,7 +25,7 @@
   (advice-add func :around #'ad/silent-message))
 
 ;; load custom.el if exists.
-(setq custom-file (expand-file-name "etc/custom.el" my-dir-cache))
+(setq custom-file (expand-file-name "etc/custom.el" my/dir-cache))
 (when (file-exists-p custom-file)
   (load custom-file nil :no-message))
 

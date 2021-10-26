@@ -23,7 +23,7 @@
   (let ((default-directory (file-name-as-directory dir)))
     (add-to-list 'load-path dir)
     (normal-top-level-add-subdirs-to-load-path)))
-(add-subdirs-to-load-path my-dir-lib)
+(add-subdirs-to-load-path my/dir-lib)
 
 (load-theme 'wombat)
 

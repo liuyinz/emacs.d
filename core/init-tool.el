@@ -107,7 +107,7 @@
           js-mode
           magit-mode-bury-buffer
           markdown-outdent-or-delete
-          my-company-yasnippet
+          my/company-yasnippet
           org-beginning-of-line
           org-ctrl-c-ctrl-c
           org-cycle

@@ -4,7 +4,7 @@
 
 (use-package elisp-mode
   :config
-  (defun my-headerise-elisp ()
+  (defun my/headerise-elisp ()
     "Add minimal header and footer to an elisp buffer in order to placate flycheck."
     (interactive)
     (let ((fname (if (buffer-file-name)
@@ -21,7 +21,7 @@
   (with-no-warnings
     ;; Align indent keywords,
     ;; SEE https://emacs.stackexchange.com/questions/10230/how-to-indent-keywords-aligned
-    (defun my-lisp-indent-function (indent-point state)
+    (defun my/lisp-indent-function (indent-point state)
       "This function is the normal value of the variable `lisp-indent-function'.
 The function `calculate-lisp-indent' calls this to determine
 if the arguments of a Lisp function call should be indented specially.
@@ -92,7 +92,7 @@ Lisp function does not specify a special indentation."
                    (funcall method indent-point state))))))))
     (add-hook 'emacs-lisp-mode-hook (lambda ()
                                       (setq-local lisp-indent-function
-                                                  #'my-lisp-indent-function)))))
+                                                  #'my/lisp-indent-function)))))
 
 ;; Syntax highlighting of known Elisp symbols
 (use-package highlight-defined

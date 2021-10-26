@@ -37,8 +37,8 @@
 (use-package no-littering
   :demand t
   :init
-  (setq no-littering-etc-directory (expand-file-name "etc/" my-dir-cache)
-        no-littering-var-directory (expand-file-name "var/" my-dir-cache))
+  (setq no-littering-etc-directory (expand-file-name "etc/" my/dir-cache)
+        no-littering-var-directory (expand-file-name "var/" my/dir-cache))
   :config
   ;; save auto-save file if needed
   (setq auto-save-file-name-transforms

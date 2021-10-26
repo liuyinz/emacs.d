@@ -40,7 +40,7 @@
     (if (and (not (display-graphic-p))
              (eq system-type 'darwin))
         (call-process "osascript" nil t nil
-                      (expand-file-name "kitty-toggle.scpt" my-dir-ext))
+                      (expand-file-name "kitty-toggle.scpt" my/dir-ext))
       (funcall fn)))
   (advice-add 'toggle-frame-fullscreen :around #'ad/enable-tui-fullscreen))
 
