@@ -61,8 +61,6 @@
              ,(gh-profile-remote-regexp "github.com")))))
   )
 
-;; Open github/gitlab/bitbucket page
-(use-package browse-at-remote)
 
 (use-package vc-msg
   :init

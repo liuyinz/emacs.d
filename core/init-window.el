@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package transpose-frame)
-
 ;; SEE https://github.com/cyrus-and/zoom
 (use-package zoom
   :init (setq zoom-size '(0.618 . 0.618)))

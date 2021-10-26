@@ -30,25 +30,15 @@
 (use-package json-mode
   :mode "\\.\\(json\\|versionrc\\)\\'")
 
-;; REQUIRE brew install jq
-(use-package jq-mode)
-
 (use-package lua-mode
   :init
   (setq lua-indent-level 2)
   (setq lua-indent-string-contents t)
   (setq lua-prefix-key nil))
 
-(use-package csv-mode)
-
-(use-package yaml-mode)
 
 (use-package vimrc-mode
   :mode "\\.vim\\(rc\\)?\\'")
-
-(use-package handlebars-mode)
-
-(use-package plantuml-mode)
 
 (use-package logview
   :hook (logview-mode-hook . auto-revert-tail-mode))
@@ -56,7 +46,7 @@
 ;; (use-package mermaid-mode)
 
 (use-package eldoc-toml
-  :hook (conf-toml-mode-hook . #'eldoc-toml))
+  :hook (conf-toml-mode-hook . eldoc-toml-mode))
 
 ;;; -------------------------- Macos -------------------------------
 
@@ -64,8 +54,6 @@
   :init
   ;; TODO add `indent-line-function'
   (setq as-indent-offset 2))
-
-(use-package osx-plist)
 
 (provide 'init-lang)
 ;;; init-lang.el ends here
