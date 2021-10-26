@@ -12,9 +12,8 @@
                   gc-cons-percentage 0.1)))
 
 (when (boundp 'native-comp-eln-load-path)
-  (setq native-comp-speed 2)
-  (setq native-comp-async-jobs-number 7
-        native-comp-deferred-compilation nil
+  (setq native-comp-speed 2
+        native-comp-deferred-compilation t
         native-comp-async-report-warnings-errors nil)
   (setcar native-comp-eln-load-path
           (expand-file-name (convert-standard-filename ".cache/var/eln-cache/")
