@@ -482,3 +482,6 @@
 [submodule "org-present"]
 	path = lib/org-present
 	url = https://github.com/rlister/org-present.git
+[submodule "sort-tab"]
+	path = lib/sort-tab
+	url = https://github.com/manateelazycat/sort-tab.git
