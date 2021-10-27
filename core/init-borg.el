@@ -34,7 +34,6 @@
         auto-compile-use-mode-line nil)
   :config
   (auto-compile-on-load-mode)
-  (auto-compile-on-save-mode)
   )
 
 (provide 'init-borg)
