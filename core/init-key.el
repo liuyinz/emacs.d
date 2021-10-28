@@ -10,7 +10,7 @@
 
 (with-eval-after-load 'evil
 
-  ;;; -------------------------- Global ------------------------------
+  ;; -------------------------- Global ------------------------------
 
   (evil-define-key nil 'global
     (kbd "C-x <escape> <escape>") nil
@@ -87,7 +87,7 @@
     (kbd "<leader> p") 'my/repl
     (kbd "<leader> r") 'my/run)
 
-  ;;; ------------------------ Major-mode ----------------------------
+  ;; ------------------------ Major-mode ----------------------------
 
   (evil-define-key nil minibuffer-mode-map
     (kbd "ESC") 'minibuffer-keyboard-quit
@@ -123,7 +123,7 @@
     "R" 'rg-replace
     "?" 'rg-menu)
 
-  ;;; ------------------------ Minor-mode ----------------------------
+  ;; ------------------------ Minor-mode ----------------------------
   ;; Defining keybindings with `minor-mode' has higher precedence than with
   ;; `minor-mode-map'
 
@@ -161,11 +161,11 @@
     "]f" 'flycheck-next-error
     "[f" 'flycheck-previous-error)
 
-  ;;; ---------------------- Non-evil minor --------------------------
+  ;; ---------------------- Non-evil minor --------------------------
 
   (evil-define-key nil vertico-map
     ;; vertico-repeat
-    (kbd "C-c C-r") 'vertico-repeat
+    ;; (kbd "C-c C-r") 'vertico-repeat
     ;; vertico-directory
     (kbd "RET") 'vertico-directory-enter
     (kbd "<return>") 'vertico-directory-enter

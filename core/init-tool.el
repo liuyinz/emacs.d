@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-;;; ------------------------ Translate -----------------------------
+;; ------------------------ Translate -----------------------------
 
 ;; SEE https://www.emacswiki.org/emacs/RegularExpression
 (use-package xr)
@@ -22,7 +22,7 @@
 
 (use-package pandoc-mode)
 
-;;; ------------------------- Network ------------------------------
+;; ------------------------- Network ------------------------------
 
 (use-package proxy-mode
   :init
@@ -42,7 +42,7 @@
   :demand t
   :init (setq with-proxy-http-server (getenv "HTTP")))
 
-;;; -------------------------- Record ------------------------------
+;; -------------------------- Record ------------------------------
 
 (use-package interaction-log
   :hook (ilog-log-buffer-mode-hook . (lambda ()

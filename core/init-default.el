@@ -22,7 +22,7 @@
                              (unless (or (daemonp) (server-running-p))
                                (server-start)))))
 
-;;; --------------------------- Tui --------------------------------
+;; --------------------------- Tui --------------------------------
 
 (use-package frame
   :init
@@ -62,7 +62,7 @@
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
 
-;;; ------------------------ Apperance -----------------------------
+;; ------------------------ Apperance -----------------------------
 
 ;; TODO multiple desktop settings,see
 ;; https://www.emacswiki.org/emacs/DesktopMultipleSaveFiles
@@ -161,7 +161,7 @@
   (advice-add 'hs-hide-all :after (lambda () (setq hs-all-hide-p t)))
   )
 
-;;; -------------------------- Buffer ------------------------------
+;; -------------------------- Buffer ------------------------------
 
 (use-package files
   :init
@@ -234,7 +234,7 @@
         '(read-only t cursor-intangible t face minibuffer-prompt))
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 
-;;; --------------------------- Edit -------------------------------
+;; --------------------------- Edit -------------------------------
 
 (use-package elec-pair
   :hook (after-init-hook . electric-pair-mode)
@@ -425,7 +425,7 @@ CHAR-FUNCTION
 ;;         auto-revert-use-notify nil
 ;;         auto-revert-verbose nil))
 
-;;; --------------------------- Jump -------------------------------
+;; --------------------------- Jump -------------------------------
 
 (use-package xref
   :init
@@ -507,7 +507,7 @@ CHAR-FUNCTION
 
   )
 
-;;; --------------------------- Tool -------------------------------
+;; --------------------------- Tool -------------------------------
 
 (use-package auth-source
   :commands auth-source-user-and-password
@@ -528,7 +528,7 @@ CHAR-FUNCTION
        (t str))))
   (advice-add 'profiler-format-number :filter-return #'ad/profiler-bytes-h))
 
-;;; -------------------------- Encode ------------------------------
+;; -------------------------- Encode ------------------------------
 
 (define-coding-system-alias 'UTF-8 'utf-8)
 (when (fboundp 'set-charset-priority)
@@ -537,7 +537,7 @@ CHAR-FUNCTION
 (setq locale-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 
-;;; ------------------------- C source -----------------------------
+;; ------------------------- C source -----------------------------
 
 (setq use-short-answers t
       use-file-dialog nil

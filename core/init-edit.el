@@ -4,7 +4,7 @@
 
 (require 'init-const)
 
-;;; --------------------------- Edit -------------------------------
+;; --------------------------- Edit -------------------------------
 
 (use-package hungry-delete
   :hook (after-init-hook . global-hungry-delete-mode)
@@ -93,7 +93,7 @@
             (xclip-set-selection 'clipboard str))))
   )
 
-;;; --------------------------- Undo -------------------------------
+;; --------------------------- Undo -------------------------------
 
 (use-package undohist
   :hook (after-init-hook . undohist-initialize)
@@ -103,7 +103,7 @@
   :hook (after-init-hook . vundo-ascii-mode)
   :init (setq vundo--window-max-height 5))
 
-;;; --------------------------- Jump -------------------------------
+;; --------------------------- Jump -------------------------------
 
 (use-package avy
   :hook (after-init-hook . avy-setup-default)

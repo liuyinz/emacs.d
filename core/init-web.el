@@ -16,7 +16,7 @@
         emmet-indent-after-insert nil
         emmet-postwrap-goto-edit-point t))
 
-;;; --------------------------- Css --------------------------------
+;; --------------------------- Css --------------------------------
 
 (use-package css-mode
   :init
@@ -30,7 +30,7 @@
 ;; (use-package less-css-mode
 ;;   :init (setq less-css-compile-at-save nil))
 
-;;; --------------------------- Html -------------------------------
+;; --------------------------- Html -------------------------------
 
 ;; ;; Major mode for editing web templates
 ;; (use-package web-mode
@@ -57,7 +57,7 @@
 ;;         web-mode-enable-element-tag-fontification t
 ;;         ))
 
-;;; ---------------------------- JS --------------------------------
+;; ---------------------------- JS --------------------------------
 
 (use-package js
   :init
@@ -78,11 +78,11 @@
 
 (use-package imenu-extra)
 
-;;; ---------------------------- TS --------------------------------
+;; ---------------------------- TS --------------------------------
 
 (use-package typescript-mode)
 
-;;; --------------------------- Node -------------------------------
+;; --------------------------- Node -------------------------------
 
 ;; Adds node_modules/.bin directory to `exec_path'
 (use-package add-node-modules-path

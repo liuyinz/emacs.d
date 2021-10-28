@@ -7,7 +7,7 @@
 (require 'cl-lib)
 (require 'init-const)
 
-;;; -------------------------- Macro -------------------------------
+;; -------------------------- Macro -------------------------------
 
 (defmacro message! (arg)
   "Echo `ARG' info."
@@ -37,7 +37,7 @@ FN-R : region function, FN: default function"
        (funcall ',fn-r (region-beginning) (region-end))
      (funcall ',fn)))
 
-;;; ------------------------- Function -----------------------------
+;; ------------------------- Function -----------------------------
 
 ;; Dos2Unix/Unix2Dos
 (defun dos2unix ()

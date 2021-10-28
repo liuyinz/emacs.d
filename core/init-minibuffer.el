@@ -126,7 +126,7 @@
 
   :config
 
-  ;;; -------------------------- Source ------------------------------
+  ;; -------------------------- Source ------------------------------
 
   ;; extend hidden source
   (appendq! consult-buffer-filter '("\\`\\*.*\\*\\'"
@@ -227,7 +227,7 @@
     "Org buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-org)
 
-  ;;; ------------------------- Preview ------------------------------
+  ;; ------------------------- Preview ------------------------------
 
   (prependq! consult-preview-excluded-hooks
              '(undohist-recover-safe
@@ -242,7 +242,7 @@
    consult-ripgrep consult-git-grep consult-grep
    :preview-key nil)
 
-  ;;; -------------------------- Extra -------------------------------
+  ;; -------------------------- Extra -------------------------------
 
   (unless emacs/>=28.1p
     (require 'consult-xref)
@@ -273,7 +273,7 @@
 
   ;; (require 'consult-compile)
 
-  ;;; ------------------------- Function -----------------------------
+  ;; ------------------------- Function -----------------------------
 
   (setq completion-in-region-function (lambda (&rest args)
                                         (apply (if vertico-mode

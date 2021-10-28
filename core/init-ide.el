@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;;; --------------------------- Doc --------------------------------
+;; --------------------------- Doc --------------------------------
 
 (use-package dash-at-point
   :config
@@ -15,7 +15,7 @@
               (mhtml-mode . "html,svg,css,bootstrap,foundation,awesome,javascript,jquery,jqueryui,jquerym,angularjs,backbone,marionette,meteor,moo,prototype,ember,lodash,underscore,sencha,extjs,knockout,zepto,cordova,phonegap,yui")
               )))
 
-;;; --------------------------- Lint -------------------------------
+;; --------------------------- Lint -------------------------------
 
 ;; SEE https://www.flycheck.org/en/latest/
 ;; PR https://github.com/flycheck/flycheck/pull/1896
@@ -87,7 +87,7 @@
 
   (add-hook 'flycheck-mode-hook #'my/flycheck-setup))
 
-;;; --------------------------- Run --------------------------------
+;; --------------------------- Run --------------------------------
 
 (use-package quickrun
   :init
@@ -114,7 +114,7 @@
     (python-mode (run-python))
     (t (message "no repl for selected mode"))))
 
-;;; -------------------------- Format ------------------------------
+;; -------------------------- Format ------------------------------
 
 (use-package editorconfig
   :hook (shell-mode-hook . editorconfig-mode))

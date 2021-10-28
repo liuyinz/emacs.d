@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;;; ------------------------- Default ------------------------------
+;; ------------------------- Default ------------------------------
 
 (use-package lsp-mode
   :hook ((js2-mode-hook bash-mode-hook go-mode-hook) . lsp-deferred)
@@ -35,7 +35,7 @@
   :config
   (use-package lsp-modeline :demand t)
 
-  ;;; -------------------------- Imenu -------------------------------
+  ;; -------------------------- Imenu -------------------------------
 
   (setq lsp-enable-imenu t
         lsp-imenu-show-container-name nil
@@ -61,7 +61,7 @@
                 )))
   )
 
-;;; -------------------------- Server ------------------------------
+;; -------------------------- Server ------------------------------
 
 (use-package lsp-pyright
   :hook (python-mode-hook . (lambda ()

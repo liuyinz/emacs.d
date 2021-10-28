@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;;; ------------------------- Builtin ------------------------------
+;; ------------------------- Builtin ------------------------------
 
 (use-package sh-script
   :init
@@ -51,7 +51,7 @@
 (use-package eldoc-toml
   :hook (conf-toml-mode-hook . eldoc-toml-mode))
 
-;;; -------------------------- Macos -------------------------------
+;; -------------------------- Macos -------------------------------
 
 (use-package applescript-mode
   :init
