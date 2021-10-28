@@ -25,7 +25,10 @@
 (use-package python-mode
   :mode "\\.pythonrc\\'")
 
-;;; -------------------------- Plugin ------------------------------
+(use-package make-mode
+  :mode ("\\(makefile\\|\\.mk\\)\\'" . makefile-gmake-mode))
+
+;; -------------------------- Plugin ------------------------------
 
 (use-package json-mode
   :mode "\\.\\(json\\|versionrc\\)\\'")
