@@ -5,25 +5,22 @@
 (require 'init-const)
 
 (use-package company
-  :hook (after-init-hook . global-company-mode)
+  :hook ((after-init-hook . global-company-mode)
+         (global-company-mode-hook . company-tng-mode))
   :init
   (setq company-tooltip-align-annotations t
         company-tooltip-limit 15
         company-tooltip-width-grow-only t
         company-tooltip-minimum-width 30
         company-tooltip-width-grow-only t
+        company-tooltip-idle-delay 0
+        company-idle-delay 0
         company-format-margin-function #'company-text-icons-margin
         company-text-icons-format "%s "
         company-selection-wrap-around t
-        company-idle-delay 0
-        company-tooltip-idle-delay 0
         company-minimum-prefix-length 1
         company-require-match nil
-        company-dabbrev-ignore-case nil
-        company-dabbrev-downcase nil
         company-search-regexp-function #'company-search-words-in-any-order-regexp)
-
-  (setq-default company-dabbrev-other-buffers 'all)
 
   (setq company-global-modes '(not erc-mode message-mode help-mode
                                    gud-mode eshell-mode shell-mode))
@@ -41,11 +38,27 @@
       (apply orig-fn args)))
   (advice-add 'company-capf :around #'ad/company-capf-keep-unchanged)
 
-  :config
+  ;; ---------------------- company-dabbrev -------------------------
+  (setq company-dabbrev-ignore-case nil
+        company-dabbrev-downcase nil
+        company-dabbrev-ignore-invisible t
+        company-dabbrev-other-buffers 'all)
 
-  (require 'company-tng)
-  ;; (setq company-tng-auto-configure nil)
-  (company-tng-mode))
+  ;; ------------------- company-dabbrev-code -----------------------
+  (setq company-dabbrev-code-everywhere t)
+
+  ;;SEE https://emacs-china.org/t/emacs-makefile-mode-company/18138/8
+  (defun makefile-company-setup ()
+    ;; (setq-local company-dabbrev-other-buffers nil)
+    (setq-local company-dabbrev-ignore-case t)
+    (setq-local company-keywords-ignore-case t)
+    (setq-local company-dabbrev-code-ignore-case t)
+    (setq-local company-backends '((company-dabbrev-code
+                                    company-keywords
+                                    company-yasnippet
+                                    company-dabbrev :separate))))
+  (add-hook 'makefile-mode-hook #'makefile-company-setup)
+  )
 
 (use-package yasnippet
   :hook (after-init-hook . yas-global-mode)
