@@ -5,7 +5,7 @@
 ;;; ------------------------- Default ------------------------------
 
 (use-package lsp-mode
-  :hook ((js2-mode-hook bash-mode-hook) . lsp-deferred)
+  :hook ((js2-mode-hook bash-mode-hook go-mode-hook) . lsp-deferred)
   :init
   (setq lsp-keymap-prefix nil)
   (setq lsp-completion-enable t)

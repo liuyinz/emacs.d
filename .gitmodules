@@ -485,3 +485,6 @@
 [submodule "consult-parse"]
 	path = lib/consult-parse
 	url = https://github.com/liuyinz/consult-parse.git
+[submodule "go-mode"]
+	path = lib/go-mode
+	url = https://github.com/dominikh/go-mode.el
