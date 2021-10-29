@@ -539,3 +539,6 @@
 [submodule "emacs-sql-indent"]
 	path = lib/emacs-sql-indent
 	url = https://github.com/alex-hhh/emacs-sql-indent.git
+[submodule "ace-link"]
+	path = lib/ace-link
+	url = https://github.com/abo-abo/ace-link.git
