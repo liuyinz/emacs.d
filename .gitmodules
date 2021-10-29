@@ -509,3 +509,33 @@
 [submodule "pos-tip"]
 	path = lib/pos-tip
 	url = https://github.com/pitkali/pos-tip.git
+[submodule "tablist"]
+	path = lib/tablist
+	url = https://github.com/politza/tablist.git
+[submodule "dockerfile-mode"]
+	path = lib/dockerfile-mode
+	url = https://github.com/spotify/dockerfile-mode.git
+[submodule "docker-tramp"]
+	path = lib/docker-tramp
+	url = https://github.com/emacs-pe/docker-tramp.el.git
+[submodule "docker"]
+	path = lib/docker
+	url = https://github.com/Silex/docker.el.git
+[submodule "company-shell"]
+	path = lib/company-shell
+	url = https://github.com/Alexander-Miller/company-shell.git
+[submodule "kubel"]
+	path = lib/kubel
+	url = https://github.com/abrochard/kubel.git
+[submodule "restclient"]
+	path = lib/restclient
+	url = https://github.com/pashky/restclient.el.git
+[submodule "rmsbolt"]
+	path = lib/rmsbolt
+	url = https://gitlab.com/jgkamat/rmsbolt.git
+[submodule "ssh-config-mode-el"]
+	path = lib/ssh-config-mode-el
+	url = https://github.com/jhgorrell/ssh-config-mode-el.git
+[submodule "emacs-sql-indent"]
+	path = lib/emacs-sql-indent
+	url = https://github.com/alex-hhh/emacs-sql-indent.git
