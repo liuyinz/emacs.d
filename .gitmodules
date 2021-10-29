@@ -488,3 +488,15 @@
 [submodule "go-mode"]
 	path = lib/go-mode
 	url = https://github.com/dominikh/go-mode.el
+[submodule "rust-mode"]
+	path = lib/rust-mode
+	url = https://github.com/rust-lang/rust-mode.git
+[submodule "rustic"]
+	path = lib/rustic
+	url = https://github.com/brotzeit/rustic.git
+[submodule "cargo"]
+	path = lib/cargo
+	url = https://github.com/kwrooijen/cargo.el.git
+[submodule "cargo-mode"]
+	path = lib/cargo-mode
+	url = https://github.com/ayrat555/cargo-mode.git
