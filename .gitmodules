@@ -500,3 +500,12 @@
 [submodule "cargo-mode"]
 	path = lib/cargo-mode
 	url = https://github.com/ayrat555/cargo-mode.git
+[submodule "company-quickhelp"]
+	path = lib/company-quickhelp
+	url = https://github.com/company-mode/company-quickhelp.git
+[submodule "company-quickhelp-terminal"]
+	path = lib/company-quickhelp-terminal
+	url = https://github.com/jcs-elpa/company-quickhelp-terminal.git
+[submodule "pos-tip"]
+	path = lib/pos-tip
+	url = https://github.com/pitkali/pos-tip.git
