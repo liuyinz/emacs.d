@@ -70,15 +70,15 @@
   (transient-define-prefix my/transient-consult ()
     "Command related to Consult"
     [["Jump"
-      ("b" "Buffer" consult-buffer)
-      ("B" "Buffer other window" consult-buffer-other-window)
-      ("j" "Bookmark" consult-bookmark)
-      ("o" "Outline" consult-outline)
-      ("m" "Mark" consult-mark)
-      ("M" "Global mark" consult-global-mark)
-      ("i" "Imenu" consult-imenu)
-      ("I" "Imenu project" consult-imenu-multi)
-      ]
+      ("j b" "Buffer" consult-buffer)
+      ("j o" "Buffer other window" consult-buffer-other-window)
+      ("j k" "Bookmark" consult-bookmark)
+      ("j l" "Outline" consult-outline)
+      ("j m" "Mark" consult-mark)
+      ("j M" "Global mark" consult-global-mark)
+      ("j i" "Imenu" consult-imenu)
+      ("j I" "Imenu project" consult-imenu-multi)
+      ("j p" "Projectile" consult-projectile)]
      ["Info"
       ("f" "Flycheck" consult-flycheck)
       ("h" "History" consult-complex-command)
@@ -97,6 +97,8 @@
       ("F" "Find" consult-find)
       ("r" "Ripgrep" consult-ripgrep)
       ("g" "Git grep" consult-git-grep)
+      ]
+     ["Parse"
       ]]
     )
 
