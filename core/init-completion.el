@@ -60,6 +60,15 @@
   (add-hook 'makefile-mode-hook #'makefile-company-setup)
   )
 
+(use-package company-quickhelp
+  :hook (global-company-mode-hook . company-quickhelp-mode)
+  :init
+  (setq company-quickhelp-delay nil
+        company-quickhelp-use-propertized-text t))
+
+(use-package company-quickhelp-terminal
+  :hook (company-quickhelp-mode-hook . company-quickhelp-terminal-mode))
+
 (use-package yasnippet
   :hook (after-init-hook . yas-global-mode)
   :init

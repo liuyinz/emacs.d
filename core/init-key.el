@@ -197,6 +197,7 @@
     (kbd "<backtab>") nil
     (kbd "<return>") 'company-complete-selection
     (kbd "RET") 'company-complete-selection
+    (kbd "C-h") 'company-quickhelp-manual-begin
     )
 
   (evil-define-key nil company-active-map
@@ -205,7 +206,8 @@
     (kbd "C-s") 'company-filter-candidates
     (kbd "C-t") 'company-complete-common
     (kbd "C-n") 'company-complete-common-or-cycle
-    (kbd "C-p") 'company-select-previous)
+    (kbd "C-p") 'company-select-previous
+    )
 
   (evil-define-key nil company-search-map
     (kbd "<escape>") 'company-search-abort
