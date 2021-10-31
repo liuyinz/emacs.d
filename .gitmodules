@@ -265,9 +265,6 @@
 	url = https://github.com/minad/vertico.git
 	load-path = .
 	load-path = extensions
-[submodule "lib/highlight-defined"]
-	path = lib/highlight-defined
-	url = https://github.com/Fanael/highlight-defined.git
 [submodule "osx-plist"]
 	path = lib/osx-plist
 	url = https://github.com/gonewest818/osx-plist.git
@@ -542,3 +539,6 @@
 [submodule "ace-link"]
 	path = lib/ace-link
 	url = https://github.com/abo-abo/ace-link.git
+[submodule "highlight-defined"]
+	path = lib/highlight-defined
+	url = https://github.com/Fanael/highlight-defined.git

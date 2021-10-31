@@ -96,7 +96,9 @@ Lisp function does not specify a special indentation."
 
 ;; Syntax highlighting of known Elisp symbols
 (use-package highlight-defined
-  :init (setq highlight-defined-face-use-itself t))
+  :hook (emacs-lisp-mode-hook . highlight-defined-mode)
+  :init
+  (setq highlight-defined-face-use-itself t))
 
 ;; Add demos for help
 (use-package elisp-demos
