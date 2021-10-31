@@ -8,6 +8,8 @@
 ;;; Code:
 
 (use-package org
+  :init
+  (setq org-edit-src-content-indentation 0)
   :config
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c a") 'org-agenda)

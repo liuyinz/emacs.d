@@ -10,6 +10,8 @@
       inhibit-default-init t
       auto-save-list-file-prefix nil)
 
+;; don't load sitestart.el
+(setq site-run-file nil)
 (setq user-full-name "liuyinz")
 (setq user-mail-address "liuyinz95@gmail.com")
 

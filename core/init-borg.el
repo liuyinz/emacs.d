@@ -33,6 +33,16 @@
         use-package-expand-minimally t))
 
 ;; ------------------------ auto-compile ---------------------------
+(use-package comp
+  :when (boundp 'native-comp-eln-load-path)
+  :init
+  (setq native-comp-speed 2
+        native-comp-deferred-compilation t
+        native-comp-async-report-warnings-errors nil)
+  (setcar native-comp-eln-load-path
+          (expand-file-name (convert-standard-filename ".cache/var/eln-cache/")
+                            user-emacs-directory)))
+
 (use-package auto-compile
   :demand t
   ;; :hook (after-init-hook . auto-compile-on-load-mode)
