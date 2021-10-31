@@ -15,7 +15,7 @@
 
 ;; const viriable
 (require 'init-const)
-(require 'init-lib)
+(require 'init-func)
 
 ;; add submodules to load-path
 (defun add-subdirs-to-load-path (dir)

@@ -18,13 +18,6 @@
   (expand-file-name ".cache" user-emacs-directory)
   "User dir for recentf,places and so on.")
 
-;; ensure dir exists
-(dolist (dir `(,my/dir-cache
-               ,my/dir-core
-               ,my/dir-lib
-               ,my/dir-ext))
-  (make-directory dir t))
-
 (defconst user-home-page
   "https://github.com/liuyinz"
   "The Github Page of mine.")

@@ -1,4 +1,4 @@
-;;; init-lib.el --- Macro and Function defined by user -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-func.el --- Macro and Function defined by user -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -260,5 +260,5 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
     (cons (apply 'call-process program nil (current-buffer) nil args)
           (buffer-string))))
 
-(provide 'init-lib)
+(provide 'init-func)
 ;;; init-lib.el ends here

@@ -13,7 +13,15 @@
 (add-to-list 'load-path (expand-file-name "core/" user-emacs-directory))
 
 (require 'init-const)
-(require 'init-lib)
+
+;; ensure dir exists
+(dolist (dir `(,my/dir-cache
+               ,my/dir-core
+               ,my/dir-lib
+               ,my/dir-ext))
+  (make-directory dir t))
+
+(require 'init-func)
 
 (unless emacs/>=28p
   (error "Please upgrade your emacs-version above 28 !"))
@@ -59,7 +67,7 @@
   (require 'init-web)
   (require 'init-elisp)
   (require 'init-markdown)
-  ;;   (require 'init-org)
+  (require 'init-org)
   (require 'init-transient)
   (require 'init-key)
   )
