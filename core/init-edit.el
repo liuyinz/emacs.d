@@ -10,6 +10,23 @@
   :hook (after-init-hook . global-hungry-delete-mode)
   :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
+(use-package writeroom-mode
+  :hook (writeroom-mode-hook . toggle-cjk-writeroom)
+  :init
+  (setq writeroom-width 120)
+
+  ;; toggle modes according to writeroom-mode
+  (defvar writeroom-toggle-modes '((diff-hl-mode . nil)))
+  (add-hook 'writeroom-mode-hook (lambda () (mode-hook-toggle
+                                             writeroom-mode
+                                             writeroom-toggle-modes)))
+
+  (defun toggle-cjk-writeroom ()
+    (interactive)
+    (if (bound-and-true-p writeroom-mode)
+        (cjk-font-setting "Source Han Serif" 1.4)
+      (cjk-font-setting "Sarasa Mono SC" 1))))
+
 ;; SEE https://www.python.org/dev/peps/pep-0350/#mnemonics
 (use-package hl-todo
   :hook (after-init-hook . global-hl-todo-mode)

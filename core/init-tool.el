@@ -4,6 +4,20 @@
 
 ;;; Code:
 
+;; --------------------------- Blog -------------------------------
+
+;; TODO customize easy-hugo-buffer, refactor easy-hugo, tag filter
+(use-package easy-hugo
+  :init
+  (setq easy-hugo-basedir  "~/Code/blog/"
+        easy-hugo-postdir "content/posts/"
+        easy-hugo-url  "https://liuyinz.github.io/"
+        easy-hugo-preview-url "http://localhost:1313/"
+        easy-hugo-server-flags "-D"
+        easy-hugo-no-help t)
+  :config
+  (easy-hugo-enable-menu))
+
 ;; ------------------------ Translate -----------------------------
 
 ;; SEE https://www.emacswiki.org/emacs/RegularExpression
@@ -42,7 +56,7 @@
   :demand t
   :init (setq with-proxy-http-server (getenv "HTTP")))
 
-;; -------------------------- Record ------------------------------
+;; ------------------------- Keystroke -----------------------------
 
 (use-package interaction-log
   :hook (ilog-log-buffer-mode-hook . (lambda ()

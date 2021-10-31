@@ -1,4 +1,5 @@
-;;; init-default.el --- setting for builtin package  -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-builtin.el --- setting for builtin package  -*- lexical-binding: t no-byte-compile: t -*-
+
 ;;; Commentary:
 ;;; Code:
 
@@ -530,6 +531,12 @@ CHAR-FUNCTION
        (t str))))
   (advice-add 'profiler-format-number :filter-return #'ad/profiler-bytes-h))
 
+(use-package transient
+  :demand t
+  :init
+  (setq transient-highlight-mismatched-keys nil
+        transient-detect-key-conflicts t))
+
 ;; -------------------------- Encode ------------------------------
 
 (define-coding-system-alias 'UTF-8 'utf-8)
@@ -576,5 +583,5 @@ CHAR-FUNCTION
 ;; Don't ping things that look like domain names.
 (setq ffap-machine-p-known 'reject)
 
-(provide 'init-default)
-;;; init-default.el ends here
+(provide 'init-builtin)
+;;; init-builtin.el ends here

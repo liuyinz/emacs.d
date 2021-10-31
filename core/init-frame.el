@@ -1,4 +1,4 @@
-;;; init-frame.el --- config for frames -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-frame.el --- provide frame-hooks -*- lexical-binding: t no-byte-compile: t -*-
 
 ;;; Commentary:
 
