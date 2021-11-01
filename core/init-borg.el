@@ -16,24 +16,15 @@
 (require 'borg)
 (borg-initialize)
 
-;; ------------------------ use-package ----------------------------
+;; --------------------------- leaf -------------------------------
+;; NOTE
+;; - `:defer-config' in `leaf' == `:config' in `use-package',
+;; - `:config' needed to use with `:require'
+(require 'leaf)
 
-(setq use-package-hook-name-suffix nil
-      use-package-enable-imenu-support t
-      use-package-always-defer t)
+;; -------------------------- compile ------------------------------
 
-(require 'use-package)
-
-(if nil  ; Toggle init debug
-    (setq use-package-verbose t
-          use-package-expand-minimally nil
-          use-package-compute-statistics t
-          debug-on-error t)
-  (setq use-package-verbose nil
-        use-package-expand-minimally t))
-
-;; ------------------------ auto-compile ---------------------------
-(use-package comp
+(leaf comp
   :when (boundp 'native-comp-eln-load-path)
   :init
   (setq native-comp-speed 2
@@ -43,17 +34,15 @@
           (expand-file-name (convert-standard-filename ".cache/var/eln-cache/")
                             user-emacs-directory)))
 
-(use-package auto-compile
-  :demand t
-  ;; :hook (after-init-hook . auto-compile-on-load-mode)
+(leaf auto-compile
+  :require t
   :init
   (setq auto-compile-visit-failed nil
         auto-compile-ding nil
         auto-compile-update-autoloads t
         auto-compile-use-mode-line nil)
   :config
-  (auto-compile-on-load-mode)
-  )
+  (auto-compile-on-load-mode))
 
 (provide 'init-borg)
 ;;; init-borg.el ends here

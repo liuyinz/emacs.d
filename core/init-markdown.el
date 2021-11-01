@@ -6,7 +6,7 @@
 
 ;;; Code:
 
-(use-package markdown-mode
+(leaf markdown-mode
   :mode
   ("\\.md\\'" . markdown-mode)
   ("README\\.md\\'" . gfm-mode)
@@ -24,17 +24,17 @@
         markdown-enable-highlighting-syntax t
         markdown-gfm-additional-languages "Mermaid")
 
-  :config
+  :defer-config
   (prependq! markdown-code-lang-modes '(("mermaid" . mermaid-mode)
                                         ("zsh" . sh-mode))))
 
-(use-package markdown-toc
+(leaf markdown-toc
   :hook (markdown-mode-hook . markdown-toc-mode)
   :init
   (setq markdown-toc-header-toc-start "<!-- markdown-toc start -->"
         markdown-toc-indentation-space 2
         markdown-toc-header-toc-title "\n**Table of Contents**")
-  :config
+  :defer-config
 
   ;; ISSUE https://github.com/ardumont/markdown-toc/issues/47
   (defun markdown-toc-refresh-before-save ()
@@ -46,9 +46,9 @@
   (add-hook 'before-save-hook #'markdown-toc-refresh-before-save))
 
 ;; REQUIRE deps: pip install grip
-(use-package grip-mode
+(leaf grip-mode
   :commands grip-start-preview
-  :config
+  :defer-config
   (let ((info (auth-source-user-and-password "api.github.com" "liuyinz^preview")))
     (setq grip-github-user     "liuyinz"
           grip-github-password (cadr info)))

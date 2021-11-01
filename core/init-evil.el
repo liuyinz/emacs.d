@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package evil
+(leaf evil
   :hook ((after-init-hook . evil-mode)
          (evil-normal-state-entry-hook . hl-line-mode)
          (evil-normal-state-exit-hook . (lambda () (hl-line-mode -1))))
@@ -25,7 +25,7 @@
         ;; evil-want-integration t
         ;; evil-want-keybinding nil
         )
-  :config
+  :defer-config
 
   ;; ISSUE https://github.com/casouri/vundo/issues/6#issuecomment-886220526
   (defun ad/evil-with-vundo (fn &rest _)
@@ -46,7 +46,7 @@
         (evil-ex "%s/")
       (evil-ex "'<,'>s/")))
 
-  ;; (use-package evil-collection
+  ;; (leaf evil-collection
   ;;   :after evil
   ;;   :require t
   ;;   :init
@@ -106,20 +106,20 @@
                ))
     (evil-set-initial-state (car p) (cdr p))))
 
-(use-package evil-goggles
+(leaf evil-goggles
   :hook ((evil-mode-hook . evil-goggles-mode)
          (evil-goggles-mode-hook . evil-goggles-use-diff-faces)))
 
-(use-package sis
+(leaf sis
   :hook (evil-mode-hook . sis-global-respect-mode))
 
 ;; SEE https://github.com/redguardtoo/evil-matchit
-(use-package evil-matchit
+(leaf evil-matchit
   :hook (evil-mode-hook . global-evil-matchit-mode))
 
-(use-package evil-surround
+(leaf evil-surround
   :hook (evil-mode-hook . global-evil-surround-mode)
-  :config
+  :defer-config
 
   ;; add more for prog-mode
   (add-hook 'prog-mode-hook 'evil-surround-mode-setup)
@@ -134,13 +134,13 @@
       (appendq! evil-surround-pairs-alist extra-alist)))
   )
 
-(use-package evil-nerd-commenter)
+(leaf evil-nerd-commenter)
 
 ;; Pinyin support
-(use-package evil-find-char-pinyin
+(leaf evil-find-char-pinyin
   :hook (evil-mode-hook . evil-find-char-pinyin-mode))
 
-(use-package evil-terminal-cursor-changer
+(leaf evil-terminal-cursor-changer
   :hook (after-make-console-frame-hook . etcc-mode))
 
 (provide 'init-evil)

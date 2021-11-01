@@ -3,10 +3,10 @@
 ;;; Code:
 
 ;; SEE https://github.com/cyrus-and/zoom
-(use-package zoom
+(leaf zoom
   :init (setq zoom-size '(0.618 . 0.618)))
 
-(use-package shackle
+(leaf shackle
   :hook (after-init-hook . shackle-mode)
   :init
   (setq shackle-default-rule nil)

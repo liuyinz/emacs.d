@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-(use-package emmet-mode
+(leaf emmet-mode
   :hook (((css-mode-hook html-mode-hook mhtml-mode-hook web-mode-hook) . emmet-mode)
          (emmet-mode-hook . (lambda () (yas-minor-mode -1))))
   :init
@@ -18,22 +18,22 @@
 
 ;; --------------------------- Css --------------------------------
 
-(use-package css-mode
+(leaf css-mode
   :init
   (setq css-indent-offset 2)
   (setq css-fontify-colors nil))
 
 ;; ;; SCSS mode
-;; (use-package scss-mode
+;; (leaf scss-mode
 ;;   :init (setq scss-compile-at-save nil))
 
-;; (use-package less-css-mode
+;; (leaf less-css-mode
 ;;   :init (setq less-css-compile-at-save nil))
 
 ;; --------------------------- Html -------------------------------
 
 ;; ;; Major mode for editing web templates
-;; (use-package web-mode
+;; (leaf web-mode
 ;;   :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\|vue\\)$"
 ;;   :init
 ;;   (setq web-mode-markup-indent-offset 2
@@ -59,13 +59,13 @@
 
 ;; ---------------------------- JS --------------------------------
 
-(use-package js
+(leaf js
   :init
   (setq js-indent-level 2
         js-chain-indent t
         js-jsx-indent-level 2))
 
-(use-package js2-mode
+(leaf js2-mode
   :mode
   ("\\.js\\'" . js2-mode)
   ("\\.jsx\\'" . js2-minor-mode)
@@ -76,16 +76,16 @@
   (setq js2-mode-show-strict-warnings nil)
   (setq js2-mode-show-parse-errors nil))
 
-(use-package imenu-extra)
+(leaf imenu-extra)
 
 ;; ---------------------------- TS --------------------------------
 
-(use-package typescript-mode)
+(leaf typescript-mode)
 
 ;; --------------------------- Node -------------------------------
 
 ;; Adds node_modules/.bin directory to `exec_path'
-(use-package add-node-modules-path
+(leaf add-node-modules-path
   :hook ((web-mode-hook js-mode-hook js2-mode-hook) . add-node-modules-path))
 
 (provide 'init-web)

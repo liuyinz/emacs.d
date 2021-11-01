@@ -3,13 +3,13 @@
 ;;; Code:
 
 ;; Colorize color names in buffers
-(use-package rainbow-mode
+(leaf rainbow-mode
   :hook ((html-mode-hook
           php-mode-hook
           css-mode-hook
           emacs-lisp-mode-hook
           lisp-interaction-mode) . rainbow-mode)
-  :config
+  :defer-config
   (with-no-warnings
     ;; HACK Use overlay instead of text properties to override `hl-line' faces.
     ;; SEE https://emacs.stackexchange.com/questions/36420
@@ -28,12 +28,12 @@
       (remove-overlays (point-min) (point-max) 'ovrainbow t))
     (advice-add #'rainbow-turn-off :after #'ad/rainbow-clear-overlays)))
 
-(use-package rainbow-delimiters
+(leaf rainbow-delimiters
   :hook (prog-mode-hook . rainbow-delimiters-mode)
   :init
   (setq rainbow-delimiters-max-face-count 4))
 
-(use-package highlight-parentheses
+(leaf highlight-parentheses
   :hook (prog-mode-hook . highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
@@ -43,15 +43,15 @@
         highlight-parentheses-attributes '((:inverse-video t :weight bold))))
 
 ;; Highlight uncommitted changes using VC
-(use-package diff-hl
+(leaf diff-hl
   :hook (after-init-hook . global-diff-hl-mode)
   :init
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
         diff-hl-side 'left)
-  :config
+  :defer-config
 
-  (use-package diff-hl-margin
+  (leaf diff-hl-margin
     :hook (diff-hl-mode-hook . diff-hl-margin-mode)
     :init
     ;; (char-to-string ?\x258d) => "▍" , SEE https://www.htmlsymbols.xyz/box-drawing
@@ -62,11 +62,11 @@
             (unknown . "\x258d")
             (ignored . "\x258d"))))
 
-  (use-package diff-hl-dired
+  (leaf diff-hl-dired
     :hook (dired-mode-hook . diff-hl-dired-mode))
 
   ;; ;; BUG conflict with company-mode,evil-terminal-crusor-change
-  ;; (use-package diff-hl-flydiff
+  ;; (leaf diff-hl-flydiff
   ;;   :hook (diff-hl-mode-hook . diff-hl-flydiff-mode))
 
   ;; Integration with magit

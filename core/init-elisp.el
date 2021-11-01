@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package elisp-mode
-  :config
+(leaf elisp-mode
+  :defer-config
   (defun my/headerise-elisp ()
     "Add minimal header and footer to an elisp buffer in order to placate flycheck."
     (interactive)
@@ -95,13 +95,13 @@ Lisp function does not specify a special indentation."
                                                   #'my/lisp-indent-function)))))
 
 ;; Syntax highlighting of known Elisp symbols
-(use-package highlight-defined
+(leaf highlight-defined
   :hook (emacs-lisp-mode-hook . highlight-defined-mode)
   :init
   (setq highlight-defined-face-use-itself t))
 
 ;; Add demos for help
-(use-package elisp-demos
+(leaf elisp-demos
   :commands elisp-demos-find-demo)
 
 (provide 'init-elisp)

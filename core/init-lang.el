@@ -4,7 +4,7 @@
 
 ;; ------------------------- Builtin ------------------------------
 
-(use-package sh-script
+(leaf sh-script
   :init
   (setq sh-basic-offset 2
         sh-shell-file (executable-find "bash"))
@@ -19,41 +19,41 @@
 
   )
 
-(use-package conf-mode
+(leaf conf-mode
   :mode "\\.\\(ini\\|conf\\|.*rc\\)\\'" )
 
-(use-package python-mode
+(leaf python-mode
   :mode "\\.pythonrc\\'")
 
-(use-package make-mode
+(leaf make-mode
   :mode ("\\(makefile\\|\\.mk\\)\\'" . makefile-gmake-mode))
 
 ;; -------------------------- Plugin ------------------------------
 
-(use-package json-mode
+(leaf json-mode
   :mode "\\.\\(json\\|versionrc\\)\\'")
 
-(use-package lua-mode
+(leaf lua-mode
   :init
   (setq lua-indent-level 2)
   (setq lua-indent-string-contents t)
   (setq lua-prefix-key nil))
 
 
-(use-package vimrc-mode
+(leaf vimrc-mode
   :mode "\\.vim\\(rc\\)?\\'")
 
-(use-package logview
+(leaf logview
   :hook (logview-mode-hook . auto-revert-tail-mode))
 
-;; (use-package mermaid-mode)
+;; (leaf mermaid-mode)
 
-(use-package eldoc-toml
+(leaf eldoc-toml
   :hook (conf-toml-mode-hook . eldoc-toml-mode))
 
 ;; -------------------------- Macos -------------------------------
 
-(use-package applescript-mode
+(leaf applescript-mode
   :init
   ;; TODO add `indent-line-function'
   (setq as-indent-offset 2))

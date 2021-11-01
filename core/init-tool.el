@@ -7,7 +7,7 @@
 ;; --------------------------- Blog -------------------------------
 
 ;; TODO customize easy-hugo-buffer, refactor easy-hugo, tag filter
-(use-package easy-hugo
+(leaf easy-hugo
   :init
   (setq easy-hugo-basedir  "~/Code/blog/"
         easy-hugo-postdir "content/posts/"
@@ -15,16 +15,16 @@
         easy-hugo-preview-url "http://localhost:1313/"
         easy-hugo-server-flags "-D"
         easy-hugo-no-help t)
-  :config
+  :defer-config
   (easy-hugo-enable-menu))
 
 ;; ------------------------ Translate -----------------------------
 
 ;; SEE https://www.emacswiki.org/emacs/RegularExpression
-(use-package xr)
+(leaf xr)
 
 ;; REQUIRE  brew install mpg123
-(use-package fanyi
+(leaf fanyi
   :custom
   (fanyi-providers '(fanyi-longman-provider
                      fanyi-youdao-thesaurus-provider
@@ -32,13 +32,13 @@
   )
 
 ;; REQUIRE brew install opencc
-(use-package opencc)
+(leaf opencc)
 
-(use-package pandoc-mode)
+(leaf pandoc-mode)
 
 ;; ------------------------- Network ------------------------------
 
-(use-package proxy-mode
+(leaf proxy-mode
   :init
   (setq proxy-mode-emacs-http-proxy `(("http"     . ,(getenv "HTTP"))
                                       ("https"    . ,(getenv "HTTP"))
@@ -52,13 +52,13 @@
                                        5)))
 
 ;; TODO set embark with proxy
-(use-package with-proxy
-  :demand t
+(leaf with-proxy
+  :require t
   :init (setq with-proxy-http-server (getenv "HTTP")))
 
 ;; ------------------------- Keystroke -----------------------------
 
-(use-package interaction-log
+(leaf interaction-log
   :hook (ilog-log-buffer-mode-hook . (lambda ()
                                        (setq ilog-display-state 'messages)
                                        (ilog-toggle-view)))
@@ -84,7 +84,7 @@
                 (delete-window win))
             (interaction-log-mode)))))))
 
-(use-package keyfreq
+(leaf keyfreq
   :hook ((after-init-hook . keyfreq-mode)
          (keyfreq-mode-hook . keyfreq-autosave-mode))
   :init
@@ -136,7 +136,7 @@
           )))
 
 ;; ;; REQUIRE pip3 install my-cookies
-;; (use-package leetcode
+;; (leaf leetcode
 ;;   :init
 ;;   (setq leetcode-prefer-language "javascript"
 ;;         leetcode-prefer-sql "mysql"

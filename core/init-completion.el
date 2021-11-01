@@ -4,7 +4,7 @@
 
 (require 'init-const)
 
-(use-package company
+(leaf company
   :hook ((after-init-hook . global-company-mode)
          (global-company-mode-hook . company-tng-mode))
   :init
@@ -60,16 +60,16 @@
   (add-hook 'makefile-mode-hook #'makefile-company-setup)
   )
 
-(use-package company-quickhelp
+(leaf company-quickhelp
   :hook (global-company-mode-hook . company-quickhelp-mode)
   :init
   (setq company-quickhelp-delay nil
         company-quickhelp-use-propertized-text t))
 
-(use-package company-quickhelp-terminal
+(leaf company-quickhelp-terminal
   :hook (company-quickhelp-mode-hook . company-quickhelp-terminal-mode))
 
-(use-package yasnippet
+(leaf yasnippet
   :hook (after-init-hook . yas-global-mode)
   :init
   (setq yas-minor-mode-map nil)
@@ -89,10 +89,10 @@ $0`(yas-escape-text yas-selected-text)`")
   ;; silent message in start.
   (advice-add #'yas-reload-all :around #'ad/silent-message)
 
-  :config
+  :defer-config
 
-  (use-package yasnippet-collection
-    :demand t
+  (leaf yasnippet-collection
+    :require t
     :config
     (yasnippet-collection-initialize))
 
@@ -123,7 +123,7 @@ $0`(yas-escape-text yas-selected-text)`")
       ))
   )
 
-;; (use-package citre
+;; (leaf citre
 ;;   :init
 ;;   (require 'citre-config)
 ;;   (setq citre-completion-case-sensitive nil

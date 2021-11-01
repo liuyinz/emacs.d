@@ -7,10 +7,10 @@
 
 ;;; Code:
 
-(use-package org
+(leaf org
   :init
   (setq org-edit-src-content-indentation 0)
-  :config
+  :defer-config
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture))

@@ -2,16 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package magit
-  :init (setq magit-no-confirm t
-              magit-save-repository-buffers 'dontask
-              magit-auto-revert-immediately t
-              magit-submodule-remove-trash-gitdirs t
-              ;; SEE https://magit.vc/manual/magit/Diff-Options.html
-              ;; magit-diff-refine-hunk nil
-              magit-diff-paint-whitespace-lines 'all)
+(leaf magit
+  :init
+  (setq magit-no-confirm t
+        magit-save-repository-buffers 'dontask
+        magit-auto-revert-immediately t
+        magit-submodule-remove-trash-gitdirs t
+        ;; SEE https://magit.vc/manual/magit/Diff-Options.html
+        ;; magit-diff-refine-hunk nil
+        magit-diff-paint-whitespace-lines 'all)
 
-  :config
+  :defer-config
   (prependq! magit-section-initial-visibility-alist '((untracked . hide)))
 
   ;; HACK ignore submodules in magit-status when there is too many submodules.
@@ -30,16 +31,16 @@
   (advice-add 'magit-diff--get-value :around #'ad/ignore-submodules-more-than-max)
   )
 
-(use-package forge
+(leaf forge
   :after magit
   :init
   (setq  forge-topic-list-limit '(100 . -10)))
 
-(use-package git-modes
+(leaf git-modes
   :mode ("\\.\\(rg\\|docker\\)ignore\\'" . gitignore-mode))
 
-(use-package gist
-  :config
+(leaf gist
+  :defer-config
   (setq gist-ask-for-description t)
   (setq gist-list-format
         '((id "Id" 7 nil identity)
@@ -62,15 +63,15 @@
   )
 
 
-(use-package vc-msg
+(leaf vc-msg
   :init
   (setq vc-msg-show-at-line-beginning-p nil
         vc-msg-newbie-friendly-msg ""))
 
-(use-package git-commit-insert-issue
+(leaf git-commit-insert-issue
   :hook (git-commit-mode-hook . git-commit-insert-issue-mode))
 
-(use-package gitignore-templates
+(leaf gitignore-templates
   :init
   (setq gitignore-templates-api 'github)
 
@@ -82,7 +83,7 @@
        ("n" "new file" gitignore-templates-new-file)
        ("i" "select pattern" gitignore-templates-insert)])))
 
-(use-package conventional-changelog
+(leaf conventional-changelog
   :init
   (setq conventional-changelog-tmp-dir
         (expand-file-name "var/conventional-changelog" my/dir-cache))

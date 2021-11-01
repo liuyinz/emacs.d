@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package ibuffer
+(leaf ibuffer
   :defines ibuffer-show-empty-filter-groups
   :hook (ibuffer-mode-hook .  (lambda ()
                                 (ibuffer-auto-mode)
@@ -14,7 +14,7 @@
   (setq ibuffer-expert t)
   (setq ibuffer-display-summary nil)
   (setq ibuffer-show-empty-filter-groups nil)
-  :config
+  :defer-config
   ;; Use human readable Size column instead of original one
   (define-ibuffer-column size-h
     (:name "Size"
@@ -41,8 +41,8 @@
 
   )
 
-(use-package ibuffer-vc
-  :config
+(leaf ibuffer-vc
+  :defer-config
   (setq ibuffer-formats
         '((mark " " modified read-only vc-status-mini
                 " " (name 18 18 :left :elide)

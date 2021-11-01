@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package projectile
+(leaf projectile
   :hook (after-init-hook . projectile-mode)
   :init
   (setq projectile-mode-line-prefix ""
@@ -14,7 +14,7 @@
   ;; FIXME too slow while getting submodule files on Windows
   (setq projectile-git-submodule-command nil)
 
-  :config
+  :defer-config
   ;; Use the faster searcher to handle project files: ripgrep `rg'.
   (when (and (not (executable-find "fd"))
              (executable-find "rg"))

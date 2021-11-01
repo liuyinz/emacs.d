@@ -4,13 +4,13 @@
 
 ;; SEE https://github.com/purcell/emacs.d/blob/master/lisp/init-minibuffer.el
 
-(use-package vertico
+(leaf vertico
   :hook (after-init-hook . vertico-mode)
   :init
   (setq vertico-cycle t
         vertico-count 15
         resize-mini-windows t)
-  :config
+  :defer-config
   ;; HACK inspired by vertico-reverse
   (defun ad/vertico--display-prompt-bottom (lines)
     "Set prompt line to bottom in `vertico-mode'."
@@ -35,12 +35,12 @@
   ;; -------------------------- Extra ------------------------------
   )
 
-(use-package marginalia
+(leaf marginalia
   :hook (vertico-mode-hook . marginalia-mode)
-  :config
+  :defer-config
   (setq-default marginalia-annotators '(marginalia-annotators-heavy nil)))
 
-(use-package orderless
+(leaf orderless
   :after vertico
   :init
   (setq orderless-matching-styles '(orderless-literal
@@ -49,7 +49,7 @@
 
   (setq completion-styles '(orderless))
 
-  :config
+  :defer-config
 
   ;; SEE https://github.com/oantolin/orderless#company
   (defun ad/just-one-face (fn &rest args)
@@ -112,7 +112,7 @@
   )
 
 ;; TODO consult-browser-bookmark consult-browser-history
-(use-package consult
+(leaf consult
   :after vertico
   :init
   (setq consult-async-min-input 1)
@@ -124,7 +124,7 @@
   ;; Optionally configure the narrowing key.
   (setq consult-narrow-key "<")
 
-  :config
+  :defer-config
 
   ;; -------------------------- Source ------------------------------
 
@@ -255,14 +255,14 @@
   (setq register-preview-delay 0
         register-preview-function #'consult-register-format)
 
-  ;; Integrate with `use-package'
+  ;; Integrate with `leaf'
   (setq consult-imenu-config
         '((emacs-lisp-mode
            :toplevel "Functions"
            :types
            ((?f "Functions" font-lock-function-name-face)
             (?m "Macros"    font-lock-function-name-face)
-            (?p "Packages"  font-lock-constant-face)
+            (?l "Leaf"      font-lock-constant-face)
             (?t "Types"     font-lock-type-face)
             (?v "Variables" font-lock-variable-name-face)))
           (sh-mode
@@ -282,13 +282,13 @@
                                                args)))
   )
 
-(use-package embark
+(leaf embark
   ;; :init (setq embark-prompter 'embark-completing-read-prompter)
-  :config
+  :defer-config
   ;; HACK Open source code of `symbol' in other window
   (advice-add 'embark-find-definition :before #'open-in-other-window))
 
-(use-package embark-consult
+(leaf embark-consult
   :after embark consult)
 
 (provide 'init-minibuffer)

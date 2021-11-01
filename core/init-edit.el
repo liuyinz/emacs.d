@@ -6,11 +6,11 @@
 
 ;; --------------------------- Edit -------------------------------
 
-(use-package hungry-delete
+(leaf hungry-delete
   :hook (after-init-hook . global-hungry-delete-mode)
-  :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
+  :defer-config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
-(use-package writeroom-mode
+(leaf writeroom-mode
   :hook (writeroom-mode-hook . toggle-cjk-writeroom)
   :init
   (setq writeroom-width 120)
@@ -28,9 +28,9 @@
       (cjk-font-setting "Sarasa Mono SC" 1))))
 
 ;; SEE https://www.python.org/dev/peps/pep-0350/#mnemonics
-(use-package hl-todo
+(leaf hl-todo
   :hook (after-init-hook . global-hl-todo-mode)
-  :config (prependq! hl-todo-include-modes '(conf-mode))
+  :defer-config (prependq! hl-todo-include-modes '(conf-mode))
   :init
   (setq hl-todo-wrap-movement t)
   (setq hl-todo-keyword-faces
@@ -59,7 +59,7 @@
           ("WONTFIX"    . "#8c5353")
           )))
 
-(use-package edit-indirect
+(leaf edit-indirect
   :commands edit-indirect-buffer-indirect-p
   :init
   (setq edit-indirect-mode-map nil)
@@ -73,19 +73,19 @@
       (_ nil)))
   )
 
-(use-package wgrep
+(leaf wgrep
   :init
   (setq wgrep-change-readonly-file t)
   (setq wgrep-auto-save-buffer t))
 
-(use-package rg
+(leaf rg
   ;; HACK jump to first error once search finished.
   :hook (rg-mode-hook . (lambda ()
                           (run-with-idle-timer 0.1 nil #'compilation-first-error)))
   :init
   (setq rg-ignore-case 'smart
         rg-command-line-flags '("-z" "--pcre2"))
-  :config
+  :defer-config
   ;; Integration with evil-ex-substitute
   (defun rg-replace ()
     "Replace in Rg-mode."
@@ -98,10 +98,10 @@
   )
 
 ;; FIXME s-v is ok,s-c is disable in emacs -nw still, use EVIL copy instead.
-(use-package xclip
+(leaf xclip
   :hook (after-make-console-frame-hook . xclip-mode))
 
-(use-package cliphist
+(leaf cliphist
   :init
   (setq cliphist-cc-kill-ring t)
   (with-eval-after-load 'xclip
@@ -112,19 +112,19 @@
 
 ;; --------------------------- Undo -------------------------------
 
-(use-package undohist
+(leaf undohist
   :hook (after-init-hook . undohist-initialize)
   :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
 
-(use-package vundo
+(leaf vundo
   :hook (after-init-hook . vundo-ascii-mode)
   :init (setq vundo--window-max-height 5))
 
 ;; --------------------------- Jump -------------------------------
 
-(use-package avy
+(leaf avy
   :hook (after-init-hook . avy-setup-default)
-  :config
+  :defer-config
   (setq avy-all-windows t
         avy-all-windows-alt t
         avy-background t
@@ -144,13 +144,13 @@
       (avy-jump "[][(){}]")))
 
   ;; Pinyin support
-  (use-package ace-pinyin
+  (leaf ace-pinyin
     :init (setq ace-pinyin-simplified-chinese-only-p nil)
-    :config (ace-pinyin-global-mode +1))
+    :defer-config (ace-pinyin-global-mode +1))
   )
 
 ;; Disable modes below when enter `vlf-mode'
-(use-package vlf
+(leaf vlf
   :commands vlf-mode
   :init
   (setq large-file-warning-threshold (* 1024 1024))
@@ -165,8 +165,8 @@
                              (mode-hook-toggle
                               vlf-mode
                               vlf-toggle-modes)))
-  :config
-  (use-package vlf-setup
+  :defer-config
+  (leaf vlf-setup
     :init (setq vlf-application 'ask))
   )
 

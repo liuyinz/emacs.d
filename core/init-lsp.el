@@ -4,7 +4,7 @@
 
 ;; ------------------------- Default ------------------------------
 
-(use-package lsp-mode
+(leaf lsp-mode
   :hook ((js2-mode-hook bash-mode-hook go-mode-hook) . lsp-deferred)
   :init
   (setq lsp-keymap-prefix nil)
@@ -32,8 +32,8 @@
   ;;     (funcall fn)))
   ;; (advice-add 'lsp :around #'ad/disable-lsp-in-md-org)
 
-  :config
-  (use-package lsp-modeline :demand t)
+  :defer-config
+  (leaf lsp-modeline :require t)
 
   ;; -------------------------- Imenu -------------------------------
 
@@ -63,13 +63,13 @@
 
 ;; -------------------------- Server ------------------------------
 
-(use-package lsp-pyright
+(leaf lsp-pyright
   :hook (python-mode-hook . (lambda ()
                               (require 'lsp-pyright)
                               (lsp-deferred))))
 
 ;; REQUIRE deps : ccls
-(use-package ccls
+(leaf ccls
   :hook ((c-mode-hook
           c++-mode-hook
           objc-mode-hook

@@ -422,9 +422,6 @@
 [submodule "borg"]
 	path = lib/borg
 	url = https://github.com/emacscollective/borg.git
-[submodule "use-package"]
-	path = lib/use-package
-	url = https://github.com/jwiegley/use-package.git
 [submodule "auto-compile"]
 	path = lib/auto-compile
 	url = https://github.com/emacscollective/auto-compile.git
@@ -542,3 +539,6 @@
 [submodule "highlight-defined"]
 	path = lib/highlight-defined
 	url = https://github.com/Fanael/highlight-defined.git
+[submodule "leaf"]
+	path = lib/leaf
+	url = https://github.com/conao3/leaf.el.git

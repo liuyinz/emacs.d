@@ -18,7 +18,7 @@
 
 (advice-add #'display-startup-echo-area-message :override #'ignore)
 
-(use-package server
+(leaf server
   :init (setq server-client-instructions nil)
   :hook (after-init-hook . (lambda ()
                              (require 'server)
@@ -27,7 +27,7 @@
 
 ;; --------------------------- Tui --------------------------------
 
-(use-package frame
+(leaf frame
   :init
   (setq blink-cursor-blinks 0)
   ;; menu-bar-mode would called forced before gui-frame in Macos
@@ -47,7 +47,7 @@
       (funcall fn)))
   (advice-add 'toggle-frame-fullscreen :around #'ad/enable-tui-fullscreen))
 
-(use-package xt-mouse
+(leaf xt-mouse
   :init
   (defun my/mouse-setup ()
     "enable mouse and keybindings in eamcs -nw"
@@ -60,8 +60,8 @@
                                 (scroll-up 1))))
   (add-hook 'after-make-console-frame-hook #'my/mouse-setup))
 
-(use-package mwheel
-  :config
+(leaf mwheel
+  :defer-config
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
 
@@ -70,7 +70,7 @@
 ;; TODO multiple desktop settings,see
 ;; https://www.emacswiki.org/emacs/DesktopMultipleSaveFiles
 ;; https://stackoverflow.com/a/849180/13194984
-(use-package desktop
+(leaf desktop
   ;; :hook (after-init-hook . desktop-save-mode)
   :init
   (setq desktop-auto-save-timeout 600
@@ -100,7 +100,7 @@
           tags-file-name
           tags-table-list))
 
-  :config
+  :defer-config
   (defun ad/desktop-time-restore (orig &rest args)
     "Count the restore time in total."
     (message "Desktop: %.2fms restored in TOTAL" (time-count! (apply orig args))))
@@ -114,7 +114,7 @@
                (abbreviate-file-name filename))))
   (advice-add 'desktop-create-buffer :around 'ad/desktop-time-buffer-create))
 
-(use-package simple
+(leaf simple
   :init
   (setq next-error-highlight t
         next-error-highlight-no-select t
@@ -122,18 +122,18 @@
         read-extended-command-predicate #'command-completion-default-include-p
         ;; next-error-recenter '(4)
         )
-  :config
+  :defer-config
   (line-number-mode)
   (column-number-mode)
   (size-indication-mode))
 
-(use-package uniquify
+(leaf uniquify
   :init
   (setq uniquify-buffer-name-style 'forward
         uniquify-separator "/"))
 
 ;; TODO add commands to jump folds with toggle automaticlly
-(use-package hideshow
+(leaf hideshow
   :hook (prog-mode-hook . hs-minor-mode)
   :init
   (setq hs-isearch-open t
@@ -149,7 +149,7 @@
                     'face 'vertico-current))))
   (setq hs-set-up-overlay #'display-code-line-counts)
 
-  :config
+  :defer-config
 
   ;; FIXME add command `hs-toggle-all'
   (defvar-local hs-all-hide-p nil)
@@ -166,7 +166,7 @@
 
 ;; -------------------------- Buffer ------------------------------
 
-(use-package files
+(leaf files
   :init
   (setq make-backup-files nil
         enable-local-variables :all
@@ -184,11 +184,11 @@
     (setq trash-directory "~/.Trash"))
   )
 
-(use-package saveplace
+(leaf saveplace
   :init (setq save-place-limit nil)
   :hook (after-init-hook . save-place-mode))
 
-(use-package recentf
+(leaf recentf
   :hook (after-init-hook . recentf-mode)
   :init
   (setq recentf-max-saved-items nil
@@ -200,7 +200,7 @@
           "^/tmp/" "^/var/folders/.+$" "/share/emacs/.+$" "\\.git/.+$"
           "bookmarks"))
 
-  :config
+  :defer-config
   ;; auto-cleanup in save/load
   (advice-add 'recentf-save-list :before #'recentf-cleanup)
   (advice-add 'recentf-load-list :after #'recentf-cleanup)
@@ -212,7 +212,7 @@
           recentf-save-list
           recentf-cleanup)))
 
-(use-package savehist
+(leaf savehist
   :hook (after-init-hook . savehist-mode)
   :init
   (setq savehist-autosave-interval 300
@@ -223,10 +223,10 @@
           regexp-search-ring
           extended-command-history)))
 
-(use-package so-long
+(leaf so-long
   :hook (after-init-hook . global-so-long-mode))
 
-(use-package minibuffer
+(leaf minibuffer
   :init
   (setq enable-recursive-minibuffers t)
   (setq completion-category-defaults nil
@@ -239,9 +239,9 @@
 
 ;; --------------------------- Edit -------------------------------
 
-(use-package elec-pair
+(leaf elec-pair
   :hook (after-init-hook . electric-pair-mode)
-  :config
+  :defer-config
   ;; SEE https://emacs-china.org/t/html-electric-pair-mode-js/13904/11?u=cheunghsu
   (defvar electric-pair-extra-inhibit-mode-chars-alist
     '((t . nil))
@@ -285,14 +285,14 @@ CHAR-FUNCTION
               (org-mode . (?<))))
   )
 
-(use-package subword
+(leaf subword
   :hook ((prog-mode-hook . subword-mode)
          (minibuffer-setup-hook . subword-mode)))
 
-(use-package delsel
+(leaf delsel
   :hook (after-init-hook . delete-selection-mode))
 
-(use-package whitespace
+(leaf whitespace
   :init
   (setq whitespace-style '(face empty trailing))
   (face-spec-set 'whitespace-empty
@@ -301,15 +301,15 @@ CHAR-FUNCTION
                    (t
                     :background "#FF6C6B"))))
 
-(use-package copyright
+(leaf copyright
   :init (setq copyright-year-ranges t))
 
-(use-package diff-mode
+(leaf diff-mode
   :init
   ;; disable smerge-refine with set `diff-refine' to nil
   (setq diff-refine 'navigation))
 
-(use-package smerge-mode
+(leaf smerge-mode
   :hook (smerge-mode-hook . my/smerge-setup)
   :init
   (setq smerge-command-prefix ""
@@ -376,7 +376,7 @@ CHAR-FUNCTION
   )
 
 ;; ;; On-the-fly spell checker
-;; (use-package flyspell
+;; (leaf flyspell
 ;;   :if (executable-find "aspell")
 ;;   :hook (((text-mode-hook outline-mode-hook) . flyspell-mode)
 ;;          (prog-mode-hook . flyspell-prog-mode)
@@ -386,10 +386,10 @@ CHAR-FUNCTION
 ;;               ispell-program-name "aspell"
 ;;               ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
 
-;; (use-package eldoc)
+;; (leaf eldoc)
 
 ;; ;; A comprehensive visual interface to diff & patch
-;; (use-package ediff
+;; (leaf ediff
 ;;   :hook (;; show org ediffs unfolded
 ;;          ;; (ediff-prepare-buffer . outline-show-all)
 ;;          ;; restore window layout when done
@@ -421,7 +421,7 @@ CHAR-FUNCTION
 (if (get-buffer "*scratch*")
     (setq default-directory "~/"))
 
-;; (use-package autorevert
+;; (leaf autorevert
 ;;   :hook (after-init-hook . global-auto-revert-mode)
 ;;   :init
 ;;   (setq auto-revert-interval 0.01
@@ -430,21 +430,21 @@ CHAR-FUNCTION
 
 ;; --------------------------- Jump -------------------------------
 
-(use-package xref
+(leaf xref
   :init
   (when emacs/>=28.1p
     (setq xref-search-program #'ripgrep
           xref-show-xrefs-function 'xref-show-definitions-completing-read
           xref-show-definitions-function 'xref-show-definitions-completing-read)))
 
-(use-package winner
+(leaf winner
   :hook (after-init-hook . winner-mode))
 
-(use-package goto-addr
+(leaf goto-addr
   :hook ((after-init-hook . global-goto-address-mode)
          (prog-mode-hook . goto-address-prog-mode)))
 
-(use-package webjump
+(leaf webjump
   :init
   (setq webjump-sites
         '(;; Internet search engines.
@@ -472,7 +472,7 @@ CHAR-FUNCTION
           ("Wikipedia" .
            [simple-query "wikipedia.org"
                          "wikipedia.org/wiki/" ""])))
-  :config
+  :defer-config
   ;; HACK support visual selection texts in webjump()
   (defun ad/webjump-read-string-enable-visual (prompt)
     "Patch for visual selection avaible"
@@ -484,8 +484,8 @@ CHAR-FUNCTION
       (if (webjump-null-or-blank-string-p input) nil input)))
   (advice-add 'webjump-read-string :override #'ad/webjump-read-string-enable-visual))
 
-(use-package compile
-  :config
+(leaf compile
+  :defer-config
   (defun compilation-first-error ()
     "Move point to the first error in the compilation buffer."
     (interactive)
@@ -512,14 +512,14 @@ CHAR-FUNCTION
 
 ;; --------------------------- Tool -------------------------------
 
-(use-package auth-source
+(leaf auth-source
   :commands auth-source-user-and-password
   :init
   (setq auth-sources '("~/.authinfo.gpg")))
 
-(use-package profiler
+(leaf profiler
   :init
-  (setq profiler-report-use-package-mark  ">")
+  (setq profiler-report-leaf-mark  ">")
 
   (defun ad/profiler-bytes-h (str)
     "reformat with human-readeable size"
@@ -531,8 +531,8 @@ CHAR-FUNCTION
        (t str))))
   (advice-add 'profiler-format-number :filter-return #'ad/profiler-bytes-h))
 
-(use-package transient
-  :demand t
+(leaf transient
+  :require t
   :init
   (setq transient-highlight-mismatched-keys nil
         transient-detect-key-conflicts t))

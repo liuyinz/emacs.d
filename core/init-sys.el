@@ -8,21 +8,21 @@
 ;;; Code:
 
 ;; Garbage Collector Magic Hack
-(use-package gcmh
-  :demand t
+(leaf gcmh
+  :require t
   :init
   (setq gcmh-idle-delay 5
         gcmh-high-cons-threshold #x1000000) ; 16MB
   :config
   (gcmh-mode 1))
 
-(use-package exec-path-from-shell
+(leaf exec-path-from-shell
   :hook (after-make-window-frame-hook . exec-path-from-shell-initialize)
   :init
   (setq exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
         ;; Only need to load .zshenv variable
         exec-path-from-shell-arguments nil)
-  :config
+  :defer-config
 
   ;; SEE https://github.com/manateelazycat/cache-path-from-shell/blob/master/cache-path-from-shell.el
   (defvar cache-path-from-shell-loaded-p nil)
@@ -34,8 +34,8 @@
   (advice-add 'exec-path-from-shell-initialize :around #'ad/cache-path-from-shell))
 
 ;; keep ~/.emacs.d clean
-(use-package no-littering
-  :demand t
+(leaf no-littering
+  :require t
   :init
   (setq no-littering-etc-directory (expand-file-name "etc/" my/dir-cache)
         no-littering-var-directory (expand-file-name "var/" my/dir-cache))

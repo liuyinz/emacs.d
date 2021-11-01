@@ -13,7 +13,7 @@
   (run-hooks 'after-load-theme-hook))
 (advice-add #'load-theme :after #'run-after-load-theme-hook)
 
-(use-package doom-modeline
+(leaf doom-modeline
   :hook (after-init-hook . doom-modeline-mode)
   :init
   (setq doom-modeline-icon nil
@@ -33,8 +33,8 @@
         doom-modeline-buffer-file-name-style 'truncate-with-project
         doom-modeline-env-python-executable "/usr/local/bin/python3"))
 
-(use-package doom-themes
-  :demand t
+(leaf doom-themes
+  :require t
   :config
   (load-theme 'doom-city-lights t)
   :init

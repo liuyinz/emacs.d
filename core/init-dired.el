@@ -2,9 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package dired
+(leaf dired
   :hook (dired-mode-hook . dired-hide-details-mode)
-  :config
+  :defer-config
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
         dired-recursive-copies 'always)
@@ -34,11 +34,11 @@ A prefix argument means to unmark them instead."
   )
 
 
-;; (use-package dired-aux)
+;; (leaf dired-aux)
 
-(use-package dired-x
+(leaf dired-x
   :hook (dired-mode-hook . dired-omit-mode)
-  :config
+  :defer-config
   (let ((cmd "open"))
     (setq dired-guess-shell-alist-user
           '(("\\.pdf\\'" ,cmd)
@@ -57,13 +57,13 @@ A prefix argument means to unmark them instead."
         (concat dired-omit-files
                 "\\|^.DS_Store$\\|^.projectile$\\|^.git*\\|^.cache*\\|^.svn$\\|^.vscode$\\|\\.js\\.meta$\\|\\.meta$\\|\\.elc$\\|^.emacs.*")))
 
-(use-package diredfl
+(leaf diredfl
   :hook (after-init-hook . diredfl-global-mode))
 
-(use-package dired-git-info)
+(leaf dired-git-info)
 
 ;; `find-dired' alternative using `fd'
-(use-package fd-dired :when (executable-find "fd"))
+(leaf fd-dired :when (executable-find "fd"))
 
 (provide 'init-dired)
 ;;; init-dired.el ends here

@@ -4,8 +4,8 @@
 
 ;; --------------------------- Doc --------------------------------
 
-(use-package dash-at-point
-  :config
+(leaf dash-at-point
+  :defer-config
   (appendq! dash-at-point-mode-alist
             '((js-mode . "javascript,backbone,angularjs")
               (js2-mode . "javascript,backbone,angularjs")
@@ -19,7 +19,7 @@
 
 ;; SEE https://www.flycheck.org/en/latest/
 ;; PR https://github.com/flycheck/flycheck/pull/1896
-(use-package flycheck
+(leaf flycheck
   :hook (prog-mode-hook . flycheck-mode)
   :init
   (setq flycheck-stylelintrc ".stylelintrc.json"
@@ -89,11 +89,11 @@
 
 ;; --------------------------- Run --------------------------------
 
-(use-package quickrun
+(leaf quickrun
   :init
   (setq quickrun-focus-p nil
         quickrun-timeout-seconds 20)
-  :config
+  :defer-config
   (prependq! quickrun--major-mode-alist '((lisp-interaction-mode . "emacs"))))
 
 (defun my/run ()
@@ -116,10 +116,10 @@
 
 ;; -------------------------- Format ------------------------------
 
-(use-package editorconfig
+(leaf editorconfig
   :hook (shell-mode-hook . editorconfig-mode))
 
-(use-package format-all
+(leaf format-all
   :init
   (setq format-all-debug t)
   (advice-add 'format-all-buffer :before #'format-all-ensure-formatter)
@@ -133,7 +133,7 @@
     (cl-case major-mode
       (gitconfig-mode (run-general! indent-region indent-whole-buffer))
       (t (run-general! format-all-region format-all-buffer))))
-  :config
+  :defer-config
   ;; SEE https://google.github.io/styleguide/shellguide.html
   (prependq! format-all-default-formatters '(("JSONC" prettier)
                                              ("Shell" (shfmt "-i" "2" "-bn" "-ci"))))
