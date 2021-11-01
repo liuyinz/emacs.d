@@ -542,3 +542,9 @@
 [submodule "consult-dir"]
 	path = lib/consult-dir
 	url = https://github.com/karthink/consult-dir.git
+[submodule "autothemer"]
+	path = lib/autothemer
+	url = https://github.com/jasonm23/autothemer.git
+[submodule "emacs-kaolin-themes"]
+	path = lib/emacs-kaolin-themes
+	url = https://github.com/ogdenwebb/emacs-kaolin-themes.git
