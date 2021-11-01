@@ -71,6 +71,7 @@
     [["Jump"
       ("j b" "Buffer" consult-buffer)
       ("j o" "Buffer other window" consult-buffer-other-window)
+      ("j f" "File" consult-dir)
       ("j k" "Bookmark" consult-bookmark)
       ("j l" "Outline" consult-outline)
       ("j m" "Mark" consult-mark)

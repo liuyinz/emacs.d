@@ -539,3 +539,6 @@
 [submodule "leaf"]
 	path = lib/leaf
 	url = https://github.com/conao3/leaf.el.git
+[submodule "consult-dir"]
+	path = lib/consult-dir
+	url = https://github.com/karthink/consult-dir.git

@@ -166,29 +166,30 @@
     "Dired buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-dired)
 
-  ;; Dired-recentf-source
-  (defvar consult--source-recentf-dired
-    `(:name     "Dired Recentf"
-      :narrow   ?d
-      :hidden   t
-      :category file
-      :face     consult-file
-      :state    ,#'consult--file-state
-      :enabled  ,(lambda () recentf-mode)
-      :items
-      ,(lambda ()
-         (let* ((ht (consult--string-hash (consult--buffer-query
-                                           :mode 'dired-mode
-                                           :as (lambda (buffer)
-                                                 (with-current-buffer buffer
-                                                   dired-directory))))))
-           (seq-remove
-            (lambda (x) (gethash x ht))
-            (delete-dups (mapcar (lambda (file)
-                                   (abbreviate-file-name (file-name-directory file)))
-                                 recentf-list))))))
-    "Dired recentf candidate source for `consult-buffer'.")
-  (add-to-list 'consult-buffer-sources 'consult--source-recentf-dired 'append)
+  ;; ;; DEPRECATED, use `consult-dir' instead.
+  ;; ;; Dired-recentf-source
+  ;; (defvar consult--source-recentf-dired
+  ;;   `(:name     "Dired Recentf"
+  ;;     :narrow   ?d
+  ;;     :hidden   t
+  ;;     :category file
+  ;;     :face     consult-file
+  ;;     :state    ,#'consult--file-state
+  ;;     :enabled  ,(lambda () recentf-mode)
+  ;;     :items
+  ;;     ,(lambda ()
+  ;;        (let* ((ht (consult--string-hash (consult--buffer-query
+  ;;                                          :mode 'dired-mode
+  ;;                                          :as (lambda (buffer)
+  ;;                                                (with-current-buffer buffer
+  ;;                                                  dired-directory))))))
+  ;;          (seq-remove
+  ;;           (lambda (x) (gethash x ht))
+  ;;           (delete-dups (mapcar (lambda (file)
+  ;;                                  (abbreviate-file-name (file-name-directory file)))
+  ;;                                recentf-list))))))
+  ;;   "Dired recentf candidate source for `consult-buffer'.")
+  ;; (add-to-list 'consult-buffer-sources 'consult--source-recentf-dired 'append)
 
   ;; Gist-source
   (defvar consult--source-gist
@@ -281,6 +282,11 @@
                                                  #'completion--in-region)
                                                args)))
   )
+
+(leaf consult-dir
+  :defer-config
+  (when (eq consult-project-root-function #'projectile-project-root)
+    (setq consult-dir-project-list-function #'consult-dir-projectile-dirs)))
 
 (leaf embark
   ;; :init (setq embark-prompter 'embark-completing-read-prompter)
