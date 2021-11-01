@@ -14,6 +14,39 @@
 ;;; Code:
 
 (with-eval-after-load 'transient
+  (transient-define-prefix my/transient-consult ()
+    "Command related to Consult"
+    [["General"
+      ("b" "Buffer"     consult-buffer)
+      ("d" "Dir"        consult-dir)
+      ("p" "Projectile" consult-projectile)
+      ("f" "Flycheck"   consult-flycheck)
+      ("i" "Imenu"      consult-imenu)
+      ("l" "Line"       consult-line)
+      ("s" "Snippet"    consult-yasnippet)
+      ("y" "Yank"       consult-yank-from-kill-ring)]
+     ["Jump"
+      ("j b" "Bookmark" consult-bookmark)
+      ("j o" "Outline"  consult-outline)
+      ("j m" "Mark"     consult-mark)
+      ("j g" "Global mark" consult-global-mark)
+      ("j i" "Imenu project" consult-imenu-multi)]
+     ["Info"
+      ("o h" "History" consult-complex-command)
+      ("o c" "Mode command" consult-mode-command)
+      ("o q" "Macro" consult-kmacro)
+      ("o z" "Man" consult-man)
+      ("o R" "Register" consult-register)
+      ("o a" "Apropos" consult-apropos)
+      ("o t" "Theme" consult-theme)]
+     ["Search"
+      ("L" "Go-to-line" consult-goto-line)
+      ("F" "Find" consult-find)
+      ("r" "Ripgrep" consult-ripgrep)
+      ("g" "Git grep" consult-git-grep)]
+     ]
+    )
+
   (transient-define-prefix my/transient-buffer ()
     "Buffer Operation"
     [["Info"
@@ -51,12 +84,12 @@
       ("W" "Word wrap" toggle-word-wrap)
       ("d" "Highlight face" highlight-defined-mode)
       ]
-     [:description "Markdown"
+     [:description "Major"
       :if-derived markdown-mode
-      ("m" "Markdown toggle markup" markdown-toggle-markup-hiding)
-      ("T" "Markdown generate toc" markdown-toc-generate-or-refresh-toc)
-      ("D" "Markdown delete toc" markdown-toc-generate-or-refresh-toc)
-      ("g" "Markdown preview" grip-start-preview)
+      ("m m" "Markdown toggle markup" markdown-toggle-markup-hiding)
+      ("m t" "Markdown generate toc" markdown-toc-generate-or-refresh-toc)
+      ("m d" "Markdown delete toc" markdown-toc-delete-toc)
+      ("m p" "Markdown preview" grip-start-preview)
       ]
      [:description "Edit Indirect"
       :if edit-indirect-buffer-indirect-p
@@ -66,46 +99,10 @@
       ]
      ])
 
-  (transient-define-prefix my/transient-consult ()
-    "Command related to Consult"
-    [["Jump"
-      ("j b" "Buffer" consult-buffer)
-      ("j o" "Buffer other window" consult-buffer-other-window)
-      ("j f" "File" consult-dir)
-      ("j k" "Bookmark" consult-bookmark)
-      ("j l" "Outline" consult-outline)
-      ("j m" "Mark" consult-mark)
-      ("j M" "Global mark" consult-global-mark)
-      ("j i" "Imenu" consult-imenu)
-      ("j I" "Imenu project" consult-imenu-multi)
-      ("j p" "Projectile" consult-projectile)]
-     ["Info"
-      ("f" "Flycheck" consult-flycheck)
-      ("h" "History" consult-complex-command)
-      ("c" "Mode command" consult-mode-command)
-      ("q" "Macro" consult-kmacro)
-      ("z" "Man" consult-man)
-      ("R" "Register" consult-register)
-      ("a" "Apropos" consult-apropos)
-      ("Y" "Yank" consult-yank-from-kill-ring)
-      ("t" "Theme" consult-theme)
-      ("y" "Yasnippet" consult-yasnippet)
-      ]
-     ["Search"
-      ("L" "Go-to-line" consult-goto-line)
-      ("l" "Line" consult-line)
-      ("F" "Find" consult-find)
-      ("r" "Ripgrep" consult-ripgrep)
-      ("g" "Git grep" consult-git-grep)
-      ]
-     ["Parse"
-      ]]
-    )
-
   (transient-define-prefix my/transient-point ()
     "Action at Point"
     [["Info"
-      ("d" "Dash doc" dash-at-point)
+      ("u" "Dash doc" dash-at-point)
       ("h" "Elisp demos" elisp-demos-find-demo)
       ("e" "Fanyi to" fanyi-dwim2)
       ("w" "Search web" webjump)
@@ -118,7 +115,15 @@
       ("i" "Edit indirect" my/edit-indirect)
       ("y" "Insert yasnippet" consult-yasnippet :if-non-nil yas-minor-mode)
       ("t" "Insert todo" hl-todo-insert :if-non-nil hl-todo-mode)
-      ("r" "Revert hunk" diff-hl-revert-hunk :if-non-nil diff-hl-mode)
+      ]
+     [:description "diff-hl"
+      :if-non-nil diff-hl-mode
+      ("dd" "Show"   diff-hl-show-hunk)
+      ("ds" "Stage"  diff-hl-stage-current-hunk)
+      ("dr" "Revert" diff-hl-revert-hunk)
+      ("dm" "Mark"   diff-hl-mark-hunk)
+      ("dj" "Set Rev"   diff-hl-set-reference-rev)
+      ("dk" "Reset Rev"   diff-hl-reset-reference-rev)
       ]
      ])
 
