@@ -42,8 +42,6 @@
           ("HACK"       . "#d0bf8f")
           ;; Portability for specific OS, Python version,etc
           ("WORKAROUND" . "#7cb8bb")
-          ;; Remove since version X.x.x
-          ("DEPRECATED" . "#7cb8bb")
           ;; Satisfactions of specific, formal requirements.
           ("REQUIRE"    . "#7cb8bb")
           ;; Pointers to other code, web link, etc
@@ -57,6 +55,8 @@
           ("XXX+"       . "#cc9393")
           ("BUG"        . "#ff665c")
           ("WONTFIX"    . "#8c5353")
+          ;; Remove since version X.x.x
+          ("DEPRECATED" . "#8c5353")
           )))
 
 (leaf edit-indirect
