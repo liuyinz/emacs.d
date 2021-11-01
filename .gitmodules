@@ -473,9 +473,6 @@
 [submodule "org-present"]
 	path = lib/org-present
 	url = https://github.com/rlister/org-present.git
-[submodule "sort-tab"]
-	path = lib/sort-tab
-	url = https://github.com/manateelazycat/sort-tab.git
 [submodule "consult-parse"]
 	path = lib/consult-parse
 	url = https://github.com/liuyinz/consult-parse.git
