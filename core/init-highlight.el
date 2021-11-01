@@ -48,11 +48,13 @@
   :init
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
-        diff-hl-side 'left)
+        diff-hl-side 'left
+        diff-hl-command-prefix nil)
+
   :defer-config
 
   (leaf diff-hl-margin
-    :hook (diff-hl-mode-hook . diff-hl-margin-mode)
+    :hook (global-diff-hl-mode-hook . diff-hl-margin-mode)
     :init
     ;; (char-to-string ?\x258d) => "▍" , SEE https://www.htmlsymbols.xyz/box-drawing
     (setq diff-hl-margin-symbols-alist
@@ -63,7 +65,7 @@
             (ignored . "\x258d"))))
 
   (leaf diff-hl-dired
-    :hook (dired-mode-hook . diff-hl-dired-mode))
+    :hook (dired-mode-hook . diff-hl-dired-mode-unless-remote))
 
   ;; ;; BUG conflict with company-mode,evil-terminal-crusor-change
   ;; (leaf diff-hl-flydiff
