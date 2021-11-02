@@ -49,7 +49,8 @@
       (emacs-lisp-mode
        (progn
          (flycheck-package-setup)
-         (flycheck-relint-setup)))
+         (flycheck-relint-setup)
+         (flycheck-keg-setup)))
 
       (js2-mode
        (when (executable-find "eslint")

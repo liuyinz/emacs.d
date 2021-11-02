@@ -42,7 +42,16 @@
 
 (leaf comb)
 
-
+;; ---------------------------- Keg --------------------------------
+;; SEE https://github.com/melpa/melpa#recipe-format
+;; ISSUE https://github.com/conao3/keg.el/issues/42
+  ;; (setq keg-archives
+  ;;       '((gnu    . "http://elpa.zilongshanren.com/gnu/")
+  ;;         (org    . "http://elpa.zilongshanren.com/org/")
+  ;;         (melpa  . "http://elpa.zilongshanren.com/melpa/")
+  ;;         (nongnu . "https://elpa.nongnu.org/nongnu/")
+  ;;         (celpa  . "https://celpa.conao3.com/packages/")))
+(leaf keg :require t)
 
 (provide 'init-dev)
 ;;; init-dev.el ends here

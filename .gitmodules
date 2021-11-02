@@ -566,3 +566,9 @@
 [submodule "emacs-ctable"]
 	path = lib/emacs-ctable
 	url = https://github.com/kiwanami/emacs-ctable.git
+[submodule "cask-mode"]
+	path = lib/cask-mode
+	url = https://github.com/Wilfred/cask-mode.git
+[submodule "keg"]
+	path = lib/keg
+	url = https://github.com/conao3/keg.el.git
