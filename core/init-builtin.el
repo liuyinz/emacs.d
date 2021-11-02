@@ -354,8 +354,12 @@ CHAR-FUNCTION
 
       (unless (and buf (equal rev (buffer-local-value 'orig-rev buf)))
         (copy-to-buffer "*smerge-preview*" (match-beginning 0) (match-end 0))
-        (with-current-buffer "*smerge-preview*"
-          (set (make-local-variable 'orig-rev) rev)))
+
+        ;; SEE https://emacs.stackexchange.com/a/32817
+        ;; (with-current-buffer "*smerge-preview*"
+        ;;   (set (make-local-variable 'orig-rev) rev))
+        (setf (buffer-local-value 'orig-rev buf) rev)
+        )
 
       (if (setq win (get-buffer-window buf))
           (with-selected-window win

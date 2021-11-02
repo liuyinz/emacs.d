@@ -146,10 +146,11 @@
                         :as #'buffer-name
                         :predicate
                         (lambda (buffer)
-                          (with-current-buffer buffer
-                            (not (or (eq major-mode 'dired-mode)
-                                     (string-match "\\`\\*gist-.+\\*/.+\\'"
-                                                   (buffer-name)))))))))
+                          (let ((mode (buffer-local-value 'major-mode buffer))
+                                (name (buffer-name buffer)))
+                            (not (or (eq mode 'dired-mode)
+                                     (string-match "\\`\\*gist-.+\\*/.+\\'" name))))))))
+
   ;; Dired-source
   (defvar consult--source-dired
     `(:name     "Dired"
@@ -166,31 +167,6 @@
     "Dired buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-dired)
 
-  ;; ;; DEPRECATED, use `consult-dir' instead.
-  ;; ;; Dired-recentf-source
-  ;; (defvar consult--source-recentf-dired
-  ;;   `(:name     "Dired Recentf"
-  ;;     :narrow   ?d
-  ;;     :hidden   t
-  ;;     :category file
-  ;;     :face     consult-file
-  ;;     :state    ,#'consult--file-state
-  ;;     :enabled  ,(lambda () recentf-mode)
-  ;;     :items
-  ;;     ,(lambda ()
-  ;;        (let* ((ht (consult--string-hash (consult--buffer-query
-  ;;                                          :mode 'dired-mode
-  ;;                                          :as (lambda (buffer)
-  ;;                                                (with-current-buffer buffer
-  ;;                                                  dired-directory))))))
-  ;;          (seq-remove
-  ;;           (lambda (x) (gethash x ht))
-  ;;           (delete-dups (mapcar (lambda (file)
-  ;;                                  (abbreviate-file-name (file-name-directory file)))
-  ;;                                recentf-list))))))
-  ;;   "Dired recentf candidate source for `consult-buffer'.")
-  ;; (add-to-list 'consult-buffer-sources 'consult--source-recentf-dired 'append)
-
   ;; Gist-source
   (defvar consult--source-gist
     `(:name     "Gist"
@@ -205,9 +181,8 @@
                                 :as #'buffer-name
                                 :predicate
                                 (lambda (buffer)
-                                  (with-current-buffer buffer
-                                    (string-match "\\`\\*gist-.+\\*/.+\\'"
-                                                  (buffer-name)))))))
+                                  (string-match "\\`\\*gist-.+\\*/.+\\'"
+                                                (buffer-name buffer))))))
     "Gist buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-gist)
 
