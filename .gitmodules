@@ -572,3 +572,6 @@
 [submodule "keg"]
 	path = lib/keg
 	url = https://github.com/conao3/keg.el.git
+[submodule "blamer"]
+	path = lib/blamer
+	url = https://github.com/Artawower/blamer.el.git
