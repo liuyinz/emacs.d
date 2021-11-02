@@ -519,7 +519,7 @@ CHAR-FUNCTION
 (leaf auth-source
   :commands auth-source-user-and-password
   :init
-  (setq auth-sources '("~/.authinfo.gpg")))
+  (setq auth-sources '("~/.authinfo")))
 
 (leaf profiler
   :init
