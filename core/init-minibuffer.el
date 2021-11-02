@@ -261,7 +261,27 @@
 (leaf consult-dir
   :defer-config
   (when (eq consult-project-root-function #'projectile-project-root)
-    (setq consult-dir-project-list-function #'consult-dir-projectile-dirs)))
+    (setq consult-dir-project-list-function #'consult-dir-projectile-dirs))
+
+  ;; HACK zlua directory jump
+  (defun consult-dir--zlua-dirs ()
+    "Return list of zlua dirs."
+    (nreverse (mapcar
+               #'abbreviate-file-name
+               ;; REQUIRE export `ZLUA_SCRIPT' in parent-shell
+               (split-string (shell-command-to-string
+                              "lua $ZLUA_SCRIPT -l | awk '{ print $2 }'") "\n" t))))
+  (defvar consult-dir--source-zlua
+    `(:name     "Zlua"
+      :narrow   ?z
+      :category file
+      :face     consult-file
+      :history  file-name-history
+      :enabled  ,(lambda () (getenv "ZLUA_SCRIPT"))
+      :items    ,#'consult-dir--zlua-dirs)
+    "Zlua directory source for `consult-dir'.")
+  (add-to-list 'consult-dir-sources 'consult-dir--source-zlua t)
+  )
 
 (leaf embark
   ;; :init (setq embark-prompter 'embark-completing-read-prompter)
