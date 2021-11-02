@@ -56,6 +56,7 @@
   (require 'init-dired)
   (require 'init-edit)
   (require 'init-tool)
+  (require 'init-dev)
   ;;   ;; programing
   (require 'init-ide)
   (require 'init-vcs)

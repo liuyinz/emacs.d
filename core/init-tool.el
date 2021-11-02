@@ -56,33 +56,15 @@
   :require t
   :init (setq with-proxy-http-server (getenv "HTTP")))
 
-;; ------------------------- Keystroke -----------------------------
+;; ;; REQUIRE pip3 install my-cookies
+;; (leaf leetcode
+;;   :init
+;;   (setq leetcode-prefer-language "javascript"
+;;         leetcode-prefer-sql "mysql"
+;;         leetcode-save-solutions t
+;;         leetcode-directory "~/Documents/repo/leetcode"))
 
-(leaf interaction-log
-  :hook (ilog-log-buffer-mode-hook . (lambda ()
-                                       (setq ilog-display-state 'messages)
-                                       (ilog-toggle-view)))
-  :init
-  (setq ilog-log-max nil)
-  ;; FIXME press twice should be avoided.
-  (defun toggle-keylog ()
-    "Toggle keybinds log."
-    (interactive)
-    (require 'interaction-log)
-    (unless (bufferp ilog-buffer-name)
-      (interaction-log-mode))
-    (with-current-buffer ilog-buffer-name
-      (let ((win (get-buffer-window (current-buffer))))
-        (if (not (windowp win))
-            (progn
-              (unless interaction-log-mode
-                (interaction-log-mode))
-              (display-buffer (current-buffer)))
-          (if interaction-log-mode
-              (progn
-                (interaction-log-mode -1)
-                (delete-window win))
-            (interaction-log-mode)))))))
+;; -------------------------- record ------------------------------
 
 (leaf keyfreq
   :hook ((after-init-hook . keyfreq-mode)
@@ -134,14 +116,6 @@
           orgtbl-self-insert-command
           handle-switch-frame
           )))
-
-;; ;; REQUIRE pip3 install my-cookies
-;; (leaf leetcode
-;;   :init
-;;   (setq leetcode-prefer-language "javascript"
-;;         leetcode-prefer-sql "mysql"
-;;         leetcode-save-solutions t
-;;         leetcode-directory "~/Documents/repo/leetcode"))
 
 (provide 'init-tool)
 ;;; init-tool.el ends here

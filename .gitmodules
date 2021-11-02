@@ -548,3 +548,21 @@
 [submodule "emacs-kaolin-themes"]
 	path = lib/emacs-kaolin-themes
 	url = https://github.com/ogdenwebb/emacs-kaolin-themes.git
+[submodule "keycast"]
+	path = lib/keycast
+	url = https://github.com/tarsius/keycast.git
+[submodule "emacs-gif-screencast"]
+	path = lib/emacs-gif-screencast
+	url = https://gitlab.com/ambrevar/emacs-gif-screencast.git
+[submodule "comb"]
+	path = lib/comb
+	url = https://github.com/cyrus-and/comb.git
+[submodule "bui"]
+	path = lib/bui
+	url = https://github.com/alezost/bui.el.git
+[submodule "emacs-aio"]
+	path = lib/emacs-aio
+	url = https://github.com/skeeto/emacs-aio.git
+[submodule "emacs-ctable"]
+	path = lib/emacs-ctable
+	url = https://github.com/kiwanami/emacs-ctable.git
