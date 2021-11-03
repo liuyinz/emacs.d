@@ -267,7 +267,7 @@
   (defun consult-dir--zlua-dirs ()
     "Return list of zlua dirs."
     (nreverse (mapcar
-               #'abbreviate-file-name
+               (lambda (p) (abbreviate-file-name (file-name-as-directory p)))
                ;; REQUIRE export `ZLUA_SCRIPT' in parent-shell
                (split-string (shell-command-to-string
                               "lua $ZLUA_SCRIPT -l | awk '{ print $2 }'") "\n" t))))
