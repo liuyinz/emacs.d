@@ -8,3 +8,4 @@ TODO:
 - [ ] borg-queen
 - [ ] add make-checkmake
 - [ ] rewrite vue-mode like mhtml-mode
+- [ ] straight-freeze-version
