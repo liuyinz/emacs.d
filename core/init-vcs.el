@@ -2,11 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf forge
-  :after magit
-  :init
-  (setq  forge-topic-list-limit '(100 . -10)))
-
 (leaf git-modes
   :mode ("\\.\\(rg\\|docker\\)ignore\\'" . gitignore-mode))
 
@@ -30,14 +25,20 @@
              :token   ,(cadr info)
              :url "https://api.github.com"
              :remote-regexp
-             ,(gh-profile-remote-regexp "github.com")))))
-  )
-
+             ,(gh-profile-remote-regexp "github.com"))))))
 
 (leaf vc-msg
   :init
   (setq vc-msg-show-at-line-beginning-p nil
         vc-msg-newbie-friendly-msg ""))
+
+(leaf conventional-changelog
+  :init
+  ;; Integrate to `magit-tag'
+  (with-eval-after-load 'magit-tag
+    (transient-append-suffix 'magit-tag
+      '(1 0 -1)
+      '("c" "changelog" conventional-changelog-menu))))
 
 (leaf git-commit-insert-issue
   :hook (git-commit-mode-hook . git-commit-insert-issue-mode))
@@ -54,16 +55,10 @@
        ("n" "new file" gitignore-templates-new-file)
        ("i" "select pattern" gitignore-templates-insert)])))
 
-(leaf conventional-changelog
+(leaf forge
+  :after magit
   :init
-  (setq conventional-changelog-tmp-dir
-        (expand-file-name "var/conventional-changelog" my/dir-cache))
-
-  ;; Integrate to `magit-tag'
-  (with-eval-after-load 'magit-tag
-    (transient-append-suffix 'magit-tag
-      '(1 0 -1)
-      '("c" "changelog" conventional-changelog-menu))))
+  (setq  forge-topic-list-limit '(100 . -10)))
 
 (leaf magit
   :init
