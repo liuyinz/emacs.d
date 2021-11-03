@@ -159,11 +159,6 @@
      '(web-mode-current-column-highlight-face ((t (:background "#384551"
                                                    :foreground nil))))
      '(emmet-preview-output ((t (:inherit unspecified))))
-
-     '(blamer-face ((t :foreground "#7a88cf"
-                       :background nil
-                       :height 140
-                       :italic t)))
      )))
 
 (provide 'init-ui)

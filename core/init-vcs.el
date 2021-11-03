@@ -39,13 +39,6 @@
   (setq vc-msg-show-at-line-beginning-p nil
         vc-msg-newbie-friendly-msg ""))
 
-(leaf blamer
-  :hook (after-init-hook . global-blamer-mode)
-  :init
-  (setq blamer-idle-time 0.3
-        blamer-min-offset 70)
-  )
-
 (leaf git-commit-insert-issue
   :hook (git-commit-mode-hook . git-commit-insert-issue-mode))
 
