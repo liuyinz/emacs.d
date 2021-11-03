@@ -2,35 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf magit
-  :init
-  (setq magit-no-confirm t
-        magit-save-repository-buffers 'dontask
-        magit-auto-revert-immediately t
-        magit-submodule-remove-trash-gitdirs t
-        ;; SEE https://magit.vc/manual/magit/Diff-Options.html
-        ;; magit-diff-refine-hunk nil
-        magit-diff-paint-whitespace-lines 'all)
-
-  :defer-config
-  (prependq! magit-section-initial-visibility-alist '((untracked . hide)))
-
-  ;; HACK ignore submodules in magit-status when there is too many submodules.
-  (defvar magit-status-submodule-max 10
-    "Maximum number of submodules that will be not ignored in `magit-status'.")
-  (defun ad/ignore-submodules-more-than-max (orig-fn &rest args)
-    (let ((default-directory (magit-toplevel)))
-      (if (< magit-status-submodule-max (length (magit-list-module-paths)))
-          ;; SEE https://emacs.stackexchange.com/a/57594/35676
-          (cl-letf (((get 'magit-status-mode 'magit-diff-default-arguments)
-                     (cl-pushnew
-                      "--ignore-submodules=all"
-                      (get 'magit-status-mode 'magit-diff-default-arguments))))
-            (apply orig-fn args))
-        (apply orig-fn args))))
-  (advice-add 'magit-diff--get-value :around #'ad/ignore-submodules-more-than-max)
-  )
-
 (leaf forge
   :after magit
   :init
@@ -100,6 +71,49 @@
     (transient-append-suffix 'magit-tag
       '(1 0 -1)
       '("c" "changelog" conventional-changelog-menu))))
+
+(leaf magit
+  :init
+  (setq magit-no-confirm t
+        magit-save-repository-buffers 'dontask
+        magit-auto-revert-immediately t
+        magit-submodule-remove-trash-gitdirs t
+        ;; SEE https://magit.vc/manual/magit/Diff-Options.html
+        ;; magit-diff-refine-hunk nil
+        magit-diff-paint-whitespace-lines 'all
+        magit-fetch-modules-jobs 7)
+
+  :defer-config
+  (prependq! magit-section-initial-visibility-alist '((untracked . hide)))
+
+  ;; ------------------------- submodul -----------------------------
+
+  ;; HACK ignore submodules in magit-status when there is too many submodules.
+  (defvar magit-status-submodule-max 20
+    "Maximum number of submodules that will be not ignored in `magit-status'.")
+  (defun ad/ignore-submodules-more-than-max (orig-fn &rest args)
+    (let ((default-directory (magit-toplevel)))
+      (if (< magit-status-submodule-max (length (magit-list-module-paths)))
+          ;; SEE https://emacs.stackexchange.com/a/57594/35676
+          (cl-letf (((get 'magit-status-mode 'magit-diff-default-arguments)
+                     (cl-pushnew
+                      "--ignore-submodules=all"
+                      (get 'magit-status-mode 'magit-diff-default-arguments))))
+            (apply orig-fn args))
+        (apply orig-fn args))))
+  (advice-add 'magit-diff--get-value :around #'ad/ignore-submodules-more-than-max)
+
+  ;; disable `magit-insert-modules-overview'
+  (setq magit-module-sections-hook
+        '(magit-insert-modules-unpulled-from-upstream
+          magit-insert-modules-unpulled-from-pushremote
+          magit-insert-modules-unpushed-to-upstream
+          magit-insert-modules-unpushed-to-pushremote))
+  ;; add module in `magit-status'
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules
+                          'magit-insert-untracked-files)
+  )
 
 (provide 'init-vcs)
 ;;; init-vcs.el ends here
