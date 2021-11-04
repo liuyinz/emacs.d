@@ -572,3 +572,6 @@
 [submodule "keg"]
 	path = lib/keg
 	url = https://github.com/conao3/keg.el.git
+[submodule "devdocs"]
+	path = lib/devdocs
+	url = https://github.com/astoff/devdocs.el.git
