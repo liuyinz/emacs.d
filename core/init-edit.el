@@ -47,8 +47,9 @@
           ;; Pointers to other code, web link, etc
           ("SEE"        . "#99d0f6")
           ;; Code shared on Github
-          ("ISSUE"      . "#dc8cc3")
           ("PR"         . "#dc8cc3")
+          ("ISSUE"      . "#dc8cc3")
+          ("DISCUSSION" . "#dc8cc3")
           ;; Reviewer thinks needs more discussion
           ("NOTE"       . "#dc8cc3")
           ;; Problems
