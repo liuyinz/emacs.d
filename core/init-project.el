@@ -27,7 +27,8 @@
   ;; ignore some dirs
   (require 'f)
   (defun my/projectile-ignore-project (project-root)
-    (f-descendant-of? project-root (expand-file-name "/module")))
+    ;; exclude `Trash' directory
+    (f-descendant-of? project-root "~/.Trash/"))
   (setq projectile-ignored-project-function #'my/projectile-ignore-project)
   )
 
