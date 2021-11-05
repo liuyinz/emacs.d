@@ -44,6 +44,15 @@
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
+  ;; DISCUSSION https://github.com/emacscollective/no-littering/discussions/164
+  (when (fboundp 'lisp-data-mode)
+    (add-to-list 'auto-mode-alist
+                 `(,(concat (regexp-quote no-littering-etc-directory) ".*\\.el\\'")
+                   . lisp-data-mode))
+    (add-to-list 'auto-mode-alist
+                 `(,(concat (regexp-quote no-littering-var-directory) ".*\\.el\\'")
+                   . lisp-data-mode)))
+
   ;; exclude these in recentf
   (with-eval-after-load 'recentf
     (appendq! recentf-exclude
