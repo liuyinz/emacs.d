@@ -463,7 +463,7 @@
 	url = https://github.com/it-is-wednesday/eldoc-toml.git
 [submodule "consult-projectile"]
 	path = lib/consult-projectile
-	url = https://gitlab.com/OlMon/consult-projectile
+	url = https://gitlab.com/OlMon/consult-projectile.git
 [submodule "git-timemachine"]
 	path = lib/git-timemachine
 	url = https://gitlab.com/pidu/git-timemachine.git
