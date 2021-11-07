@@ -2,6 +2,8 @@ DRONES_DIR = $(shell git config "borg.drones-directory" || echo "lib")
 
 -include $(DRONES_DIR)/borg/borg.mk
 
+.PHONY: bootstrap-borg update-all build-all build-update clean-all menu
+
 bootstrap-borg:
 	@git submodule--helper clone --name borg --path $(DRONES_DIR)/borg \
 		--url https://github.com/emacscollective/borg.git
