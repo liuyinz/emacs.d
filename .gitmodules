@@ -1,12 +1,25 @@
+## ---------------------------- dev --------------------------------
+[submodule "packed"]
+	path = lib/packed
+	url = https://github.com/emacscollective/packed.git
+[submodule "borg"]
+	path = lib/borg
+	url = https://github.com/emacscollective/borg.git
+[submodule "auto-compile"]
+	path = lib/auto-compile
+	url = https://github.com/emacscollective/auto-compile.git
+[submodule "leaf"]
+	path = lib/leaf
+	url = https://github.com/conao3/leaf.el.git
+[submodule "keg"]
+	path = lib/keg
+	url = https://github.com/conao3/keg.el.git
+[submodule "benchmark-init-el"]
+	path = lib/benchmark-init-el
+	url = https://github.com/dholm/benchmark-init-el.git
 [submodule "magit"]
 	path = lib/magit
 	url = https://github.com/magit/magit.git
-[submodule "evil"]
-	path = lib/evil
-	url = https://github.com/emacs-evil/evil.git
-[submodule "evil-nerd-commenter"]
-	path = lib/evil-nerd-commenter
-	url = https://github.com/redguardtoo/evil-nerd-commenter.git
 [submodule "emacs-doom-themes"]
 	path = lib/emacs-doom-themes
 	url = https://github.com/hlissner/emacs-doom-themes.git
@@ -34,24 +47,12 @@
 [submodule "emacs-format-all-the-code"]
 	path = lib/emacs-format-all-the-code
 	url = https://github.com/lassik/emacs-format-all-the-code.git
-[submodule "evil-matchit"]
-	path = lib/evil-matchit
-	url = https://github.com/redguardtoo/evil-matchit.git
-[submodule "evil-surround"]
-	path = lib/evil-surround
-	url = https://github.com/emacs-evil/evil-surround.git
 [submodule "exec-path-from-shell"]
 	path = lib/exec-path-from-shell
 	url = https://github.com/purcell/exec-path-from-shell.git
-[submodule "flycheck"]
-	path = lib/flycheck
-	url = https://github.com/flycheck/flycheck.git
 [submodule "git-modes"]
 	path = lib/git-modes
 	url = https://github.com/magit/git-modes.git
-[submodule "goto-chg"]
-	path = lib/goto-chg
-	url = https://github.com/emacs-evil/goto-chg.git
 [submodule "hungry-delete"]
 	path = lib/hungry-delete
 	url = https://github.com/nflath/hungry-delete.git
@@ -85,9 +86,6 @@
 [submodule "fd-dired"]
 	path = lib/fd-dired
 	url = https://github.com/yqrashawn/fd-dired.git
-[submodule "benchmark-init-el"]
-	path = lib/benchmark-init-el
-	url = https://github.com/dholm/benchmark-init-el.git
 [submodule "emacs-noflet"]
 	path = lib/emacs-noflet
 	url = https://github.com/nicferrier/emacs-noflet.git
@@ -116,9 +114,6 @@
 [submodule "orderless"]
 	path = lib/orderless
 	url = https://github.com/oantolin/orderless.git
-[submodule "consult"]
-	path = lib/consult
-	url = https://github.com/minad/consult.git
 	branch = main
 [submodule "embark"]
 	path = lib/embark
@@ -166,21 +161,9 @@
 [submodule "mermaid-mode"]
 	path = lib/mermaid-mode
 	url = https://github.com/abrochard/mermaid-mode.git
-[submodule "lsp-mode"]
-	path = lib/lsp-mode
-	url = https://github.com/emacs-lsp/lsp-mode.git
-	load-path = .
-	load-path = clients
-	load-path = use-package
 [submodule "hydra"]
 	path = lib/hydra
 	url = https://github.com/abo-abo/hydra.git
-[submodule "lsp-pyright"]
-	path = lib/lsp-pyright
-	url = https://github.com/emacs-lsp/lsp-pyright.git
-[submodule "emacs-ccls"]
-	path = lib/emacs-ccls
-	url = https://github.com/MaskRay/emacs-ccls.git
 [submodule "dired-hacks"]
 	path = lib/dired-hacks
 	url = https://github.com/Fuco1/dired-hacks.git
@@ -257,9 +240,6 @@
 [submodule "epl"]
 	path = lib/epl
 	url = https://github.com/cask/epl.git
-[submodule "consult-flycheck"]
-	path = lib/consult-flycheck
-	url = https://github.com/minad/consult-flycheck.git
 [submodule "vertico"]
 	path = lib/vertico
 	url = https://github.com/minad/vertico.git
@@ -286,24 +266,15 @@
 [submodule "ace-pinyin"]
 	path = lib/ace-pinyin
 	url = https://github.com/cute-jumper/ace-pinyin.git
-[submodule "evil-find-char-pinyin"]
-	path = lib/evil-find-char-pinyin
-	url = https://github.com/cute-jumper/evil-find-char-pinyin.git
 [submodule "xclip"]
 	path = lib/xclip
 	url = https://github.com/emacsmirror/xclip.git
-[submodule "evil-terminal-cursor-changer"]
-	path = lib/evil-terminal-cursor-changer
-	url = https://github.com/7696122/evil-terminal-cursor-changer.git
 [submodule "xr"]
 	path = lib/xr
 	url = https://github.com/mattiase/xr.git
 [submodule "relint"]
 	path = lib/relint
 	url = https://github.com/mattiase/relint.git
-[submodule "flycheck-relint"]
-	path = lib/flycheck-relint
-	url = https://github.com/purcell/flycheck-relint.git
 [submodule "proxy-mode"]
 	path = lib/proxy-mode
 	url = https://github.com/stardiviner/proxy-mode.git
@@ -343,9 +314,6 @@
 [submodule "nvm"]
 	path = lib/nvm
 	url = https://github.com/rejeep/nvm.el.git
-[submodule "lsp-tailwindcss"]
-	path = lib/lsp-tailwindcss
-	url = https://github.com/merrickluo/lsp-tailwindcss.git
 [submodule "ox-hugo"]
 	path = lib/ox-hugo
 	url = https://github.com/kaushalmodi/ox-hugo.git
@@ -398,15 +366,6 @@
 [submodule "package-lint"]
 	path = lib/package-lint
 	url = https://github.com/purcell/package-lint.git
-[submodule "flycheck-package"]
-	path = lib/flycheck-package
-	url = https://github.com/purcell/flycheck-package.git
-[submodule "consult-yasnippet"]
-	path = lib/consult-yasnippet
-	url = https://github.com/mohkale/consult-yasnippet.git
-[submodule "consult-todo"]
-	path = lib/consult-todo
-	url = https://github.com/liuyinz/consult-todo.git
 [submodule "git-commit-insert-issue"]
 	path = lib/git-commit-insert-issue
 	url = https://github.com/emacsmirror/git-commit-insert-issue.git
@@ -419,18 +378,6 @@
 [submodule "emacs-htmlize"]
 	path = lib/emacs-htmlize
 	url = https://github.com/hniksic/emacs-htmlize.git
-[submodule "borg"]
-	path = lib/borg
-	url = https://github.com/emacscollective/borg.git
-[submodule "auto-compile"]
-	path = lib/auto-compile
-	url = https://github.com/emacscollective/auto-compile.git
-[submodule "packed"]
-	path = lib/packed
-	url = https://github.com/emacscollective/packed.git
-[submodule "emacs-smart-input-source"]
-	path = lib/emacs-smart-input-source
-	url = https://github.com/laishulu/emacs-smart-input-source.git
 [submodule "highlight-parentheses"]
 	path = lib/highlight-parentheses
 	url = https://github.com/emacsmirror/highlight-parentheses.git
@@ -455,15 +402,9 @@
 [submodule "yasnippet-collection"]
 	path = lib/yasnippet-collection
 	url = https://github.com/liuyinz/yasnippet-collection.git
-[submodule "evil-goggles"]
-	path = lib/evil-goggles
-	url = https://github.com/edkolev/evil-goggles.git
 [submodule "eldoc-toml"]
 	path = lib/eldoc-toml
 	url = https://github.com/it-is-wednesday/eldoc-toml.git
-[submodule "consult-projectile"]
-	path = lib/consult-projectile
-	url = https://gitlab.com/OlMon/consult-projectile.git
 [submodule "git-timemachine"]
 	path = lib/git-timemachine
 	url = https://gitlab.com/pidu/git-timemachine.git
@@ -473,12 +414,6 @@
 [submodule "org-present"]
 	path = lib/org-present
 	url = https://github.com/rlister/org-present.git
-[submodule "consult-parse"]
-	path = lib/consult-parse
-	url = https://github.com/liuyinz/consult-parse.git
-[submodule "go-mode"]
-	path = lib/go-mode
-	url = https://github.com/dominikh/go-mode.el
 [submodule "rust-mode"]
 	path = lib/rust-mode
 	url = https://github.com/rust-lang/rust-mode.git
@@ -536,12 +471,6 @@
 [submodule "highlight-defined"]
 	path = lib/highlight-defined
 	url = https://github.com/Fanael/highlight-defined.git
-[submodule "leaf"]
-	path = lib/leaf
-	url = https://github.com/conao3/leaf.el.git
-[submodule "consult-dir"]
-	path = lib/consult-dir
-	url = https://github.com/karthink/consult-dir.git
 [submodule "autothemer"]
 	path = lib/autothemer
 	url = https://github.com/jasonm23/autothemer.git
@@ -569,9 +498,101 @@
 [submodule "cask-mode"]
 	path = lib/cask-mode
 	url = https://github.com/Wilfred/cask-mode.git
-[submodule "keg"]
-	path = lib/keg
-	url = https://github.com/conao3/keg.el.git
 [submodule "devdocs"]
 	path = lib/devdocs
 	url = https://github.com/astoff/devdocs.el.git
+## ---------------------------- go --------------------------------
+[submodule "go-mode"]
+	path = lib/go-mode
+	url = https://github.com/dominikh/go-mode.el.git
+[submodule "go-dlv"]
+	path = lib/go-dlv
+	url = https://github.com/benma/go-dlv.el.git
+[submodule "go-impl"]
+	path = lib/go-impl
+	url = https://github.com/emacsorphanage/go-impl.git
+[submodule "gotest"]
+	path = lib/gotest
+	url = https://github.com/nlamirault/gotest.el.git
+[submodule "go-gen-test"]
+	path = lib/go-gen-test
+	url = https://github.com/s-kostyaev/go-gen-test.git
+[submodule "go-playground"]
+	path = lib/go-playground
+	url = https://github.com/grafov/go-playground.git
+## -------------------------- consult ------------------------------
+[submodule "consult"]
+	path = lib/consult
+	url = https://github.com/minad/consult.git
+[submodule "consult-dir"]
+	path = lib/consult-dir
+	url = https://github.com/karthink/consult-dir.git
+[submodule "consult-flycheck"]
+	path = lib/consult-flycheck
+	url = https://github.com/minad/consult-flycheck.git
+[submodule "consult-yasnippet"]
+	path = lib/consult-yasnippet
+	url = https://github.com/mohkale/consult-yasnippet.git
+[submodule "consult-projectile"]
+	path = lib/consult-projectile
+	url = https://gitlab.com/OlMon/consult-projectile.git
+[submodule "consult-todo"]
+	path = lib/consult-todo
+	url = https://github.com/liuyinz/consult-todo.git
+[submodule "consult-parse"]
+	path = lib/consult-parse
+	url = https://github.com/liuyinz/consult-parse.git
+## ------------------------- flycheck -----------------------------
+[submodule "flycheck"]
+	path = lib/flycheck
+	url = https://github.com/flycheck/flycheck.git
+[submodule "flycheck-relint"]
+	path = lib/flycheck-relint
+	url = https://github.com/purcell/flycheck-relint.git
+[submodule "flycheck-package"]
+	path = lib/flycheck-package
+	url = https://github.com/purcell/flycheck-package.git
+## --------------------------- evil -------------------------------
+[submodule "goto-chg"]
+	path = lib/goto-chg
+	url = https://github.com/emacs-evil/goto-chg.git
+[submodule "evil"]
+	path = lib/evil
+	url = https://github.com/emacs-evil/evil.git
+[submodule "evil-nerd-commenter"]
+	path = lib/evil-nerd-commenter
+	url = https://github.com/redguardtoo/evil-nerd-commenter.git
+[submodule "evil-matchit"]
+	path = lib/evil-matchit
+	url = https://github.com/redguardtoo/evil-matchit.git
+[submodule "evil-surround"]
+	path = lib/evil-surround
+	url = https://github.com/emacs-evil/evil-surround.git
+[submodule "evil-find-char-pinyin"]
+	path = lib/evil-find-char-pinyin
+	url = https://github.com/cute-jumper/evil-find-char-pinyin.git
+[submodule "evil-terminal-cursor-changer"]
+	path = lib/evil-terminal-cursor-changer
+	url = https://github.com/7696122/evil-terminal-cursor-changer.git
+[submodule "evil-goggles"]
+	path = lib/evil-goggles
+	url = https://github.com/edkolev/evil-goggles.git
+[submodule "emacs-smart-input-source"]
+	path = lib/emacs-smart-input-source
+	url = https://github.com/laishulu/emacs-smart-input-source.git
+## ---------------------------- lsp --------------------------------
+[submodule "lsp-mode"]
+	path = lib/lsp-mode
+	url = https://github.com/emacs-lsp/lsp-mode.git
+	load-path = .
+	load-path = clients
+	load-path = use-package
+[submodule "lsp-pyright"]
+	path = lib/lsp-pyright
+	url = https://github.com/emacs-lsp/lsp-pyright.git
+[submodule "emacs-ccls"]
+	path = lib/emacs-ccls
+	url = https://github.com/MaskRay/emacs-ccls.git
+[submodule "lsp-tailwindcss"]
+	path = lib/lsp-tailwindcss
+	url = https://github.com/merrickluo/lsp-tailwindcss.git
