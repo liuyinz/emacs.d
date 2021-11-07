@@ -66,6 +66,7 @@
   (require 'init-web)
   (require 'init-lang)
   (require 'init-elisp)
+  (require 'init-go)
   (require 'init-markdown)
   (require 'init-org)
   (require 'init-key)
