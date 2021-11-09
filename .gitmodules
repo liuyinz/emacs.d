@@ -596,3 +596,6 @@
 [submodule "lsp-tailwindcss"]
 	path = lib/lsp-tailwindcss
 	url = https://github.com/merrickluo/lsp-tailwindcss.git
+[submodule "pip-requirements"]
+	path = lib/pip-requirements
+	url = https://github.com/Wilfred/pip-requirements.el.git
