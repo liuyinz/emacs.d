@@ -58,7 +58,8 @@
 (leaf forge
   :after magit
   :init
-  (setq  forge-topic-list-limit '(100 . -10)))
+  (setq forge-topic-list-limit '(100 . -10)
+        forge-owned-accounts '(("liuyinz" :remote-name "upstream"))))
 
 (leaf magit
   :init
