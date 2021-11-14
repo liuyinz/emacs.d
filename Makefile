@@ -10,17 +10,23 @@ bootstrap-borg:
 	@cd $(DRONES_DIR)/borg; git symbolic-ref HEAD refs/heads/master
 	@cd $(DRONES_DIR)/borg; git reset --hard HEAD
 
+move-eln:
+	@rm -rf eln-cache
+
 update-all:
 	git submodule update --remote --jobs $(shell nproc)
 
 build-all:
 	@make $(DRONES_DIR)/*
+	@make move-eln
 
 build-update:
 	@make $(shell git status -s --porcelain -- $(DRONES_DIR) | awk '{ print $$2 }' | tr '\n' ' ')
+	@make move-eln
 
 clean-all:
 	@make clean
+	@make move-eln
 
 menu::
 	$(info make bootstrap-borg  = bootstrap borg itself)
