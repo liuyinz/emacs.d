@@ -3,7 +3,9 @@
 ;;; Code:
 
 (leaf git-modes
-  :mode ("\\.\\(rg\\|docker\\)ignore\\'" . gitignore-mode))
+  :mode
+  ("\\.\\(rg\\|docker\\)ignore\\'" . gitignore-mode)
+  ("\\.gitconfig\\.local\\'" . gitconfig-mode))
 
 (leaf gist
   :defer-config
