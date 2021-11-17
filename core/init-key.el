@@ -75,6 +75,7 @@
       ("e" "Debug-on-error" toggle-debug-on-error)
       ("t" "Debug-on-quit" toggle-debug-on-quit)
       ("k" "Keylog" toggle-keylog)
+      ("K" "Keycast" toggle-keycast)
       ("s" "Proxy" global-proxy-mode)
       ("w" "Writeroom" writeroom-mode)
       ("V" "Vlf" vlf-mode)
