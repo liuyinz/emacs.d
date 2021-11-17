@@ -313,9 +313,6 @@
 [submodule "nvm"]
 	path = lib/nvm
 	url = https://github.com/rejeep/nvm.el.git
-[submodule "ox-hugo"]
-	path = lib/ox-hugo
-	url = https://github.com/kaushalmodi/ox-hugo.git
 [submodule "logito"]
 	path = lib/logito
 	url = https://github.com/sigma/logito.git
@@ -470,12 +467,6 @@
 [submodule "highlight-defined"]
 	path = lib/highlight-defined
 	url = https://github.com/Fanael/highlight-defined.git
-[submodule "autothemer"]
-	path = lib/autothemer
-	url = https://github.com/jasonm23/autothemer.git
-[submodule "emacs-kaolin-themes"]
-	path = lib/emacs-kaolin-themes
-	url = https://github.com/ogdenwebb/emacs-kaolin-themes.git
 [submodule "keycast"]
 	path = lib/keycast
 	url = https://github.com/tarsius/keycast.git
