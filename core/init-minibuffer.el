@@ -213,8 +213,8 @@
 
   ;; disable preview
   (consult-customize
-   consult-recent-file consult-bookmark consult--source-file
-   consult--source-project-file consult--source-bookmark
+   consult-recent-file consult-bookmark consult--source-recent-file
+   consult--source-project-recent-file consult--source-bookmark
    consult-ripgrep consult-git-grep consult-grep
    :preview-key nil)
 
