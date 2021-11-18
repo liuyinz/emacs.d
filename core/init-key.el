@@ -103,7 +103,7 @@
   (transient-define-prefix my/transient-point ()
     "Action at Point"
     [["Info"
-      ("u" "Dash doc" dash-at-point)
+      ("u" "Devdocs" devdocs-lookup-online)
       ("h" "Elisp demos" elisp-demos-find-demo)
       ("e" "Fanyi to" fanyi-dwim2)
       ("w" "Search web" webjump)
