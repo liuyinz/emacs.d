@@ -118,7 +118,6 @@
   :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
 
 (leaf vundo
-  :hook (after-init-hook . vundo-ascii-mode)
   :init (setq vundo--window-max-height 5))
 
 ;; --------------------------- Jump -------------------------------
