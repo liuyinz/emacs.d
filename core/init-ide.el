@@ -4,16 +4,17 @@
 
 ;; --------------------------- Doc --------------------------------
 
-(leaf dash-at-point
-  :defer-config
-  (appendq! dash-at-point-mode-alist
-            '((js-mode . "javascript,backbone,angularjs")
-              (js2-mode . "javascript,backbone,angularjs")
-              (lisp-interaction-mode . "elisp")
-              (css-mode . "css,bootstrap,foundation,less,awesome,emmet")
-              (jq-mode . "jq")
-              (mhtml-mode . "html,svg,css,bootstrap,foundation,awesome,javascript,jquery,jqueryui,jquerym,angularjs,backbone,marionette,meteor,moo,prototype,ember,lodash,underscore,sencha,extjs,knockout,zepto,cordova,phonegap,yui")
-              )))
+(define-command-mixed
+  devdocs-at-point
+  word
+  "Search devdocs.io"
+
+  ;; SEE https://devdocs.io/help
+  ;; (browse-url (format "https://devdocs.io/#q=%s" (url-hexify-string query)))
+
+  ;; SEE https://github.com/egoist/devdocs-desktop#using-homebrew
+  (shell-command (format "open devdocs://search/%s" (url-hexify-string query)))
+  )
 
 ;; --------------------------- Lint -------------------------------
 

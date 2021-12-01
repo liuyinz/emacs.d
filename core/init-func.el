@@ -37,6 +37,27 @@ FN-R : region function, FN: default function"
        (funcall ',fn-r (region-beginning) (region-end))
      (funcall ',fn)))
 
+(defmacro define-command-mixed (func-name thing-type prompt body)
+  ""
+  `(defun ,func-name ()
+     (interactive)
+     (let* ((sym-here (thing-at-point ',thing-type t))
+            (default-val
+              (if sym-here
+                  (format
+                   (propertize "(default %s)" 'face 'font-lock-doc-face)
+                   (propertize sym-here 'face 'font-lock-variable-name-face))
+                ""))
+            (query (if (use-region-p)
+                       (buffer-substring-no-properties
+                        (region-beginning)
+                        (region-end))
+                     (read-string
+                      (format "%s %s: " ,prompt default-val)
+                      nil nil sym-here))))
+       ,body)))
+
+
 ;; ------------------------- Function -----------------------------
 
 ;; Dos2Unix/Unix2Dos
