@@ -3,19 +3,19 @@
 ;;; Code:
 
 (defconst my/dir-core
-  (expand-file-name "core" user-emacs-directory)
+  (expand-file-name "core/" user-emacs-directory)
   "User dir for Emacs configs.")
 
 (defconst my/dir-ext
-  (expand-file-name "ext" user-emacs-directory)
+  (expand-file-name "ext/" user-emacs-directory)
   "User dir for external tools.")
 
 (defconst my/dir-lib
-  (expand-file-name "lib" user-emacs-directory)
+  (expand-file-name "lib/" user-emacs-directory)
   "User dir for submodules.")
 
 (defconst my/dir-cache
-  (expand-file-name ".cache" user-emacs-directory)
+  (expand-file-name ".cache/" user-emacs-directory)
   "User dir for recentf,places and so on.")
 
 (defconst user-home-page

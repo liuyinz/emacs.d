@@ -70,7 +70,29 @@
   ;; toggle-transient
   (transient-define-prefix my/transient-toggle ()
     "Invoke toggle command generally or related to modes"
-    [["General"
+    [["Configuration"
+      ("n e" "Early-init" (lambda ()
+                           (interactive)
+                           (find-file
+                            (expand-file-name "early-init.el" user-emacs-directory))))
+
+      ("n i" "Init" (lambda ()
+                     (interactive)
+                     (find-file (expand-file-name "init.el" user-emacs-directory))))
+
+      ("n c" "Core" (lambda ()
+                     (interactive)
+                     (let ((default-directory my/dir-core))
+                       (call-interactively #'find-file))))
+
+      ("n l" "Lib" (lambda ()
+                    (interactive)
+                    (let ((default-directory my/dir-lib))
+                      (call-interactively #'find-file))))
+
+      ("n f" "Leaf" leaf-find)
+      ]
+     ["General"
       ("p" "Profiler" toggle-profiler)
       ("e" "Debug-on-error" toggle-debug-on-error)
       ("t" "Debug-on-quit" toggle-debug-on-quit)

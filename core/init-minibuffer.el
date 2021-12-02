@@ -147,8 +147,10 @@
                         :predicate
                         (lambda (buffer)
                           (let ((mode (buffer-local-value 'major-mode buffer))
-                                (name (buffer-name buffer)))
+                                (name (buffer-name buffer))
+                                (path (abbreviate-file-name (or (buffer-file-name buffer) ""))))
                             (not (or (eq mode 'dired-mode)
+                                     (string-prefix-p user-emacs-directory path)
                                      (string-match "\\`\\*gist-.+\\*/.+\\'" name))))))))
 
   ;; Dired-source
@@ -167,6 +169,25 @@
     "Dired buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-dired)
 
+  (defvar consult--source-conf
+    `(:name     "Conf"
+      :narrow   ?c
+      :hidden   t
+      :category buffer
+      :state    ,#'consult--buffer-state
+      :items
+      ,(lambda ()
+         (consult--buffer-query
+          :sort 'visibility
+          :as #'buffer-name
+          :predicate
+          (lambda (buffer)
+            (string-prefix-p user-emacs-directory
+                             (abbreviate-file-name (or (buffer-file-name buffer)
+                                                       "")))))))
+    "Configuration buffer candidate source for `consult-buffer'.")
+  (add-to-list 'consult-buffer-sources 'consult--source-conf)
+
   ;; Gist-source
   (defvar consult--source-gist
     `(:name     "Gist"
@@ -177,12 +198,12 @@
       :state    ,#'consult--buffer-state
       :items
       ,(lambda ()
-         (consult--buffer-query :sort 'visibility
-                                :as #'buffer-name
-                                :predicate
-                                (lambda (buffer)
-                                  (string-match "\\`\\*gist-.+\\*/.+\\'"
-                                                (buffer-name buffer))))))
+         (consult--buffer-query
+          :sort 'visibility
+          :as #'buffer-name
+          :predicate
+          (lambda (buffer)
+            (string-match "\\`\\*gist-.+\\*/.+\\'" (buffer-name buffer))))))
     "Gist buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-gist)
 
