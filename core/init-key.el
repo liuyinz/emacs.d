@@ -549,7 +549,6 @@
     (kbd "<backtab>") nil
     (kbd "<return>") 'company-complete-selection
     (kbd "RET") 'company-complete-selection
-    (kbd "C-h") 'company-quickhelp-manual-begin
     )
 
   (evil-define-key nil company-active-map

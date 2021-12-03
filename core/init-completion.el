@@ -5,8 +5,7 @@
 (require 'init-const)
 
 (leaf company
-  :hook ((after-init-hook . global-company-mode)
-         (global-company-mode-hook . company-tng-mode))
+  :hook ((after-init-hook . global-company-mode))
   :init
   (setq company-tooltip-align-annotations t
         company-tooltip-limit 15
@@ -58,16 +57,11 @@
                                     company-yasnippet
                                     company-dabbrev :separate))))
   (add-hook 'makefile-mode-hook #'makefile-company-setup)
+
+    ;; ------------------------ company-tng ----------------------------
+  (leaf company-tng
+    :hook (after-init-hook . company-tng-mode))
   )
-
-(leaf company-quickhelp
-  :hook (global-company-mode-hook . company-quickhelp-mode)
-  :init
-  (setq company-quickhelp-delay nil
-        company-quickhelp-use-propertized-text t))
-
-(leaf company-quickhelp-terminal
-  :hook (company-quickhelp-mode-hook . company-quickhelp-terminal-mode))
 
 (leaf yasnippet
   :hook (after-init-hook . yas-global-mode)
