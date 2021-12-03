@@ -29,6 +29,9 @@
 [submodule "company-mode"]
 	path = lib/company-mode
 	url = https://github.com/company-mode/company-mode.git
+[submodule "company-shell"]
+	path = lib/company-shell
+	url = https://github.com/Alexander-Miller/company-shell.git
 [submodule "diff-hl"]
 	path = lib/diff-hl
 	url = https://github.com/dgutov/diff-hl.git
@@ -431,9 +434,6 @@
 [submodule "docker"]
 	path = lib/docker
 	url = https://github.com/Silex/docker.el.git
-[submodule "company-shell"]
-	path = lib/company-shell
-	url = https://github.com/Alexander-Miller/company-shell.git
 [submodule "kubel"]
 	path = lib/kubel
 	url = https://github.com/abrochard/kubel.git
