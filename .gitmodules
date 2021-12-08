@@ -560,7 +560,6 @@
 	url = https://github.com/emacs-lsp/lsp-mode.git
 	load-path = .
 	load-path = clients
-	load-path = use-package
 [submodule "lsp-pyright"]
 	path = lib/lsp-pyright
 	url = https://github.com/emacs-lsp/lsp-pyright.git
