@@ -67,11 +67,4 @@
   (push '(ns-appearance . dark) default-frame-alist)
   (push '(ns-use-native-fullscreen . nil) default-frame-alist))
 
-;; native-comp
-(when (featurep 'native-compile)
-  (setq native-comp-deferred-compilation nil)
-  (setcar native-comp-eln-load-path
-          (expand-file-name (convert-standard-filename ".cache/var/eln-cache/")
-                            user-emacs-directory)))
-
 ;;; early-init.el ends here

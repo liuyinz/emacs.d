@@ -24,20 +24,18 @@
 
 ;; -------------------------- compile ------------------------------
 
+;; native-comp
+(when (featurep 'native-compile)
+  ;; if t, auto compile elc to eln
+  (setq native-comp-deferred-compilation nil)
+  (setcar native-comp-eln-load-path
+          (expand-file-name (convert-standard-filename ".cache/var/eln-cache/")
+                            user-emacs-directory)))
+
 (leaf comp
   :init
   (setq native-comp-speed 2
         native-comp-async-report-warnings-errors nil))
-
-;; (leaf auto-compile
-;;   :require t
-;;   :init
-;;   (setq auto-compile-visit-failed nil
-;;         auto-compile-ding nil
-;;         auto-compile-update-autoloads t
-;;         auto-compile-use-mode-line nil)
-;;   :config
-;;   (auto-compile-on-load-mode))
 
 (provide 'init-borg)
 ;;; init-borg.el ends here
