@@ -40,8 +40,7 @@
 ;; ------------------------- Loading ------------------------------
 
 (with-temp-message ""
-  (require 'init-borg)
-  (require 'init-benchmark)
+  (require 'init-bootstrap)
   (require 'init-sys)
   (require 'init-frame)
   (require 'init-builtin)

@@ -1,13 +1,12 @@
-;;; init-borg.el --- Bootstrap borg -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-bootstrap.el --- Bootstrap modules -*- lexical-binding: t no-byte-compile: t -*-
 
-;; Author: liuyinz <liuyinz@gmail.com>
-;; Created: 2021-10-16 02:37:13
+;; Author: liuyinz <liuyinz95@gmail.com>
 
 ;;; Commentary:
 
 ;;; Code:
 
-;; ------------------------- bootstrap -----------------------------
+;; --------------------------- borg -------------------------------
 
 (setq borg-rewrite-urls-alist
       '(("git@github.com:" . "https://github.com/")
@@ -37,5 +36,5 @@
   (setq native-comp-speed 2
         native-comp-async-report-warnings-errors nil))
 
-(provide 'init-borg)
-;;; init-borg.el ends here
+(provide 'init-bootstrap)
+;;; init-bootstrap.el ends here
