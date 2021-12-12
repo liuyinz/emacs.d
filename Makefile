@@ -1,4 +1,5 @@
 DRONES_DIR = $(shell git config "borg.drones-directory" || echo "lib")
+ELN_DIR= ".cache/var/"
 
 -include $(DRONES_DIR)/borg/borg.mk
 
@@ -11,7 +12,7 @@ bootstrap-borg:
 	@cd $(DRONES_DIR)/borg; git reset --hard HEAD
 
 move-eln:
-	@rm -rf eln-cache
+	@if [ -d "eln-cache" ]; then cp -r eln-cache $(ELN_DIR) && rm -rf eln-cache; fi
 
 update-all:
 	git submodule update --remote --jobs $(shell nproc)
@@ -21,7 +22,7 @@ build-all:
 	@make move-eln
 
 build-update:
-	@make $(shell git status -s --porcelain -- $(DRONES_DIR) | awk '{ print $$2 }' | tr '\n' ' ')
+	@make $(shell git status -s --porcelain -- $(DRONES_DIR) | grep 'M' | awk '{ print $$2 }' | tr '\n' ' ')
 	@make move-eln
 
 clean-all:
