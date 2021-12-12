@@ -5,9 +5,6 @@
 [submodule "borg"]
 	path = lib/borg
 	url = https://github.com/emacscollective/borg.git
-[submodule "auto-compile"]
-	path = lib/auto-compile
-	url = https://github.com/emacscollective/auto-compile.git
 [submodule "leaf"]
 	path = lib/leaf
 	url = https://github.com/conao3/leaf.el.git
