@@ -29,15 +29,15 @@
   (setq native-comp-speed 2
         native-comp-async-report-warnings-errors nil))
 
-(leaf auto-compile
-  :require t
-  :init
-  (setq auto-compile-visit-failed nil
-        auto-compile-ding nil
-        auto-compile-update-autoloads t
-        auto-compile-use-mode-line nil)
-  :config
-  (auto-compile-on-load-mode))
+;; (leaf auto-compile
+;;   :require t
+;;   :init
+;;   (setq auto-compile-visit-failed nil
+;;         auto-compile-ding nil
+;;         auto-compile-update-autoloads t
+;;         auto-compile-use-mode-line nil)
+;;   :config
+;;   (auto-compile-on-load-mode))
 
 (provide 'init-borg)
 ;;; init-borg.el ends here

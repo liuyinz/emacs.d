@@ -69,7 +69,7 @@
 
 ;; native-comp
 (when (featurep 'native-compile)
-  (setq native-comp-deferred-compilation t)
+  (setq native-comp-deferred-compilation nil)
   (setcar native-comp-eln-load-path
           (expand-file-name (convert-standard-filename ".cache/var/eln-cache/")
                             user-emacs-directory)))
