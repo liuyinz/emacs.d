@@ -22,7 +22,7 @@ build-all:
 	@make move-eln
 
 build-update:
-	@make $(shell git status -s --porcelain -- $(DRONES_DIR) | grep 'M' | awk '{ print $$2 }' | tr '\n' ' ')
+	@make $(shell git status -s --porcelain -- $(DRONES_DIR) | grep -E '( M|A )' | awk '{ print $$2 }' | tr '\n' ' ')
 	@make move-eln
 
 clean-all:
