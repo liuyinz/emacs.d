@@ -9,9 +9,6 @@
 [submodule "leaf"]
 	path = lib/leaf
 	url = https://github.com/conao3/leaf.el.git
-[submodule "keg"]
-	path = lib/keg
-	url = https://github.com/conao3/keg.el.git
 [submodule "benchmark-init-el"]
 	path = lib/benchmark-init-el
 	url = https://github.com/dholm/benchmark-init-el.git
@@ -274,7 +271,7 @@
 	url = https://github.com/mattiase/relint.git
 [submodule "proxy-mode"]
 	path = lib/proxy-mode
-	url = https://github.com/stardiviner/proxy-mode.git
+	url = https://repo.or.cz/proxy-mode.git
 [submodule "vlfi"]
 	path = lib/vlfi
 	url = https://github.com/m00natic/vlfi.git
@@ -524,31 +521,7 @@
 [submodule "flycheck-package"]
 	path = lib/flycheck-package
 	url = https://github.com/purcell/flycheck-package.git
-## --------------------------- evil -------------------------------
-[submodule "goto-chg"]
-	path = lib/goto-chg
-	url = https://github.com/emacs-evil/goto-chg.git
-[submodule "evil"]
-	path = lib/evil
-	url = https://github.com/emacs-evil/evil.git
-[submodule "evil-nerd-commenter"]
-	path = lib/evil-nerd-commenter
-	url = https://github.com/redguardtoo/evil-nerd-commenter.git
-[submodule "evil-matchit"]
-	path = lib/evil-matchit
-	url = https://github.com/redguardtoo/evil-matchit.git
-[submodule "evil-surround"]
-	path = lib/evil-surround
-	url = https://github.com/emacs-evil/evil-surround.git
-[submodule "evil-find-char-pinyin"]
-	path = lib/evil-find-char-pinyin
-	url = https://github.com/cute-jumper/evil-find-char-pinyin.git
-[submodule "evil-terminal-cursor-changer"]
-	path = lib/evil-terminal-cursor-changer
-	url = https://github.com/7696122/evil-terminal-cursor-changer.git
-[submodule "evil-goggles"]
-	path = lib/evil-goggles
-	url = https://github.com/edkolev/evil-goggles.git
+## --------------------------- meow -------------------------------
 [submodule "emacs-smart-input-source"]
 	path = lib/emacs-smart-input-source
 	url = https://github.com/laishulu/emacs-smart-input-source.git
@@ -573,3 +546,27 @@
 [submodule "xterm-color"]
 	path = lib/xterm-color
 	url = https://github.com/atomontage/xterm-color.git
+[submodule "emacs-perl-one-line"]
+	path = lib/emacs-perl-one-line
+	url = https://github.com/liuyinz/emacs-perl-one-line.git
+[submodule "meow"]
+	path = lib/meow
+	url = https://github.com/meow-edit/meow.git
+[submodule "focus"]
+	path = lib/focus
+	url = https://github.com/larstvei/Focus.git
+[submodule "aggressive-indent-mode"]
+	path = lib/aggressive-indent-mode
+	url = https://github.com/Malabarba/aggressive-indent-mode.git
+[submodule "envrc"]
+	path = lib/envrc
+	url = https://github.com/purcell/envrc.git
+[submodule "popper"]
+	path = lib/popper
+	url = https://github.com/karthink/popper.git
+[submodule "dirvish"]
+	path = lib/dirvish
+	url = https://github.com/alexluigit/dirvish.git
+[submodule "org-modern"]
+	path = lib/org-modern
+	url = https://github.com/minad/org-modern.git

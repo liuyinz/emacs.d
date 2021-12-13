@@ -54,9 +54,5 @@
 
 (leaf comb)
 
-;; ---------------------------- Keg --------------------------------
-;; SEE https://github.com/melpa/melpa#recipe-format
-(leaf keg)
-
 (provide 'init-dev)
 ;;; init-dev.el ends here
