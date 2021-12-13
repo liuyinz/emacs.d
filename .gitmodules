@@ -569,3 +569,6 @@
 [submodule "pip-requirements"]
 	path = lib/pip-requirements
 	url = https://github.com/Wilfred/pip-requirements.el.git
+[submodule "xterm-color"]
+	path = lib/xterm-color
+	url = https://github.com/atomontage/xterm-color.git
