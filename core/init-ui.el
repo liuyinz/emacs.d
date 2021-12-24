@@ -37,12 +37,14 @@
   :require t
   :config
   (load-theme 'doom-city-lights t)
+  (my/doom-theme-city-lights-customize)
   :init
-  (add-hook 'after-load-theme-hook #'my/doom-theme-vibrant-customize)
-  (defun my/doom-theme-vibrant-customize ()
+  (defun my/doom-theme-city-lights-customize ()
     (custom-set-faces
      '(default ((t (:foreground "#a0b3c5"
                     :background "#1d252c"))))
+     `(font-lock-comment-face ((t (:foreground ,(doom-darken "#718ca1" 0.1)
+                                   :italic t))))
      '(font-lock-string-face ((t (:foreground "#008b94"))))
      '(font-lock-builtin-face ((t (:foreground "#718ca1"))))
      '(font-lock-warning-face ((t (:foreground "#d95468"))))
