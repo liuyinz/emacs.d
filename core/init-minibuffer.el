@@ -169,8 +169,8 @@
     "Dired buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-dired)
 
-  (defvar consult--source-conf
-    `(:name     "Conf"
+  (defvar consult--source-config
+    `(:name     "Config"
       :narrow   ?c
       :hidden   t
       :category buffer
@@ -186,7 +186,7 @@
                              (abbreviate-file-name (or (buffer-file-name buffer)
                                                        "")))))))
     "Configuration buffer candidate source for `consult-buffer'.")
-  (add-to-list 'consult-buffer-sources 'consult--source-conf)
+  (add-to-list 'consult-buffer-sources 'consult--source-config)
 
   ;; Gist-source
   (defvar consult--source-gist
