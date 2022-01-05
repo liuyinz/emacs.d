@@ -28,6 +28,11 @@
 (leaf make-mode
   :mode ("\\(makefile\\|\\.mk\\)\\'" . makefile-gmake-mode))
 
+;; (leaf cperl-mode
+;;   :init
+;;   (defalias 'perl-mode 'cperl-mode)
+;;   )
+
 ;; -------------------------- Plugin ------------------------------
 
 (leaf json-mode

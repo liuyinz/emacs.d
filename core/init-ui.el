@@ -161,6 +161,11 @@
      '(web-mode-current-column-highlight-face ((t (:background "#384551"
                                                    :foreground nil))))
      '(emmet-preview-output ((t (:inherit unspecified))))
+     ;; cperl-mode
+     '(cperl-array-face ((t (:inherit font-lock-variable-name-face))))
+     '(cperl-hash-face ((t (:inherit font-lock-type-face))))
+     ;; perl-mode
+     '(perl-non-scalar-variable ((t (:inherit font-lock-type-face))))
      )))
 
 (provide 'init-ui)

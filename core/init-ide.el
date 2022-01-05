@@ -84,6 +84,10 @@
 
       (sass-mode
        (flycheck-select-checker 'sass))
+
+      ((cperl-mode perl-mode)
+       (when (executable-find "perlcritic")
+         (flycheck-select-checker 'perl-perlcritic)))
       (t nil)))
 
   (add-hook 'flycheck-mode-hook #'my/flycheck-setup))
