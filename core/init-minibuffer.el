@@ -38,7 +38,8 @@
 (leaf marginalia
   :hook (vertico-mode-hook . marginalia-mode)
   :defer-config
-  (setq-default marginalia-annotators '(marginalia-annotators-heavy nil)))
+  (setq marginalia-align 'right
+        marginalia-align-offset -1))
 
 (leaf orderless
   :after vertico
