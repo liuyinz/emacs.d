@@ -290,7 +290,7 @@
                (lambda (p) (abbreviate-file-name (file-name-as-directory p)))
                ;; REQUIRE export `ZLUA_SCRIPT' in parent-shell
                (split-string (shell-command-to-string
-                              "lua $ZLUA_SCRIPT -l | awk '{ print $2 }'") "\n" t))))
+                              "lua $ZLUA_SCRIPT -l | perl -lane 'print $F[1]'") "\n" t))))
   (defvar consult-dir--source-zlua
     `(:name     "Zlua"
       :narrow   ?z
