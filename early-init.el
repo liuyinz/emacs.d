@@ -22,6 +22,12 @@
 ;; load newst file always
 (setq load-prefer-newer t)
 
+;; change eln-cache position
+(when (fboundp 'startup-redirect-eln-cache)
+  (startup-redirect-eln-cache
+   (convert-standard-filename
+	(expand-file-name  ".cache/var/eln-cache/" user-emacs-directory))))
+
 ;; Do not resize the frame at this early stage.
 (setq frame-inhibit-implied-resize t)
 

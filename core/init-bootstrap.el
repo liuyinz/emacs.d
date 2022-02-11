@@ -26,10 +26,7 @@
 ;; native-comp
 (when (featurep 'native-compile)
   ;; if t, auto compile elc to eln
-  (setq native-comp-deferred-compilation nil)
-  (setcar native-comp-eln-load-path
-          (expand-file-name (convert-standard-filename ".cache/var/eln-cache/")
-                            user-emacs-directory)))
+  (setq native-comp-deferred-compilation nil))
 
 (leaf comp
   :init
