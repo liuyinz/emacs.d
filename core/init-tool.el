@@ -34,6 +34,8 @@
 ;; REQUIRE brew install opencc
 (leaf opencc)
 
+(leaf pinyinlib :require t)
+
 (leaf pandoc-mode)
 
 ;; ------------------------- Network ------------------------------

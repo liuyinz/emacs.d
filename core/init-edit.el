@@ -118,7 +118,31 @@
   :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
 
 (leaf vundo
-  :init (setq vundo--window-max-height 5))
+  :init
+  (setq vundo--window-max-height 5)
+  :bind
+  ("C-c u" . vundo)
+  (:vundo--mode-map
+   :package vundo
+   ("l" . vundo-forward)
+   ("h" . vundo-backward)
+   ("j" . vundo-next)
+   ("k" . vundo-previous)
+   ("<escape>" . vundo-quit))
+
+  ;; :defer-config
+  ;; (defun ad/undo-with-vundo (fn &rest _)
+  ;;   "Integretion undo and vundo."
+  ;;   (if (not (fboundp 'vundo))
+  ;;       (funcall fn 1)
+  ;;     (vundo)
+  ;;     (if (eq this-command 'undo-redo)
+  ;;         (vundo-forward 1)
+  ;;       (vundo-backward 1))))
+  ;; (advice-add 'undo :around #'ad/undo-with-vundo)
+  ;; (advice-add 'undo-redo :around #'ad/undo-with-vundo)
+
+  )
 
 ;; --------------------------- Jump -------------------------------
 

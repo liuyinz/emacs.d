@@ -57,11 +57,12 @@
   (advice-add 'company-capf--candidates :around #'ad/just-one-face)
 
   ;; SEE https://github.com/cute-jumper/pinyinlib.el#pinyinlib-build-regexp-string
-  (defun ad/orderless-regexp-pinyin (args)
-    "Patch `orderless-regexp' with pinyin surpport"
-    (setf (car args) (pinyinlib-build-regexp-string (car args)))
-    args)
-  (advice-add 'orderless-regexp :filter-args #'ad/orderless-regexp-pinyin)
+  (with-eval-after-load 'pinyinlib
+    (defun ad/orderless-regexp-pinyin (args)
+      "Patch `orderless-regexp' with pinyin surpport"
+      (setf (car args) (pinyinlib-build-regexp-string (car args)))
+      args)
+    (advice-add 'orderless-regexp :filter-args #'ad/orderless-regexp-pinyin))
 
   ;; SEE https://github.com/minad/consult/wiki#orderless-style-dispatchers-ensure-that-the--regexp-works-with-consult-buffer
   ;; Recognizes the following patterns:
@@ -123,6 +124,11 @@
   ;; Optionally configure the narrowing key.
   (setq consult-narrow-key "<")
 
+  :bind
+  ([remap switch-to-buffer] . consult-buffer)
+  ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
+  ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
+
   :defer-config
 
   ;; -------------------------- Source ------------------------------
@@ -149,7 +155,6 @@
                                 (name (buffer-name buffer))
                                 (path (abbreviate-file-name (or (buffer-file-name buffer) ""))))
                             (not (or (eq mode 'dired-mode)
-                                     (string-prefix-p user-emacs-directory path)
                                      (string-match "\\`\\*gist-.+\\*/.+\\'" name))))))))
 
   ;; Dired-source
@@ -167,25 +172,6 @@
                                 :as #'buffer-name)))
     "Dired buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-dired)
-
-  (defvar consult--source-config
-    `(:name     "Config"
-      :narrow   ?c
-      :hidden   t
-      :category buffer
-      :state    ,#'consult--buffer-state
-      :items
-      ,(lambda ()
-         (consult--buffer-query
-          :sort 'visibility
-          :as #'buffer-name
-          :predicate
-          (lambda (buffer)
-            (string-prefix-p user-emacs-directory
-                             (abbreviate-file-name (or (buffer-file-name buffer)
-                                                       "")))))))
-    "Configuration buffer candidate source for `consult-buffer'.")
-  (add-to-list 'consult-buffer-sources 'consult--source-config)
 
   ;; Gist-source
   (defvar consult--source-gist
