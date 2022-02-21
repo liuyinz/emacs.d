@@ -301,6 +301,27 @@ CHAR-FUNCTION
                    (t
                     :background "#FF6C6B"))))
 
+(leaf newcomment
+  :init
+  (setq comment-auto-fill-only-comments t)
+  :bind
+  ([remap comment-dwim] . #'newcomment-toggle)
+  :defer-config
+  (defun newcomment-toggle (n)
+    "Toggle the comments as evil-nerd-comment."
+    (interactive "*p")
+    (if (or (use-region-p)
+            (save-excursion
+              (beginning-of-line)
+              (looking-at "\\s-*$")))
+        (call-interactively 'comment-dwim)
+      (let ((range
+             (list (line-beginning-position)
+                   (goto-char (line-end-position n)))))
+        (comment-or-uncomment-region
+         (apply #'min range)
+         (apply #'max range))))))
+
 (leaf copyright
   :init (setq copyright-year-ranges t))
 
