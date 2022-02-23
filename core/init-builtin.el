@@ -333,7 +333,7 @@ CHAR-FUNCTION
 (leaf smerge-mode
   :hook (smerge-mode-hook . my/smerge-setup)
   :init
-  (setq smerge-command-prefix ""
+  (setq smerge-command-prefix "\e"
         smerge-change-buffer-confirm nil
         smerge-refine-ignore-whitespace nil)
 
@@ -389,14 +389,6 @@ CHAR-FUNCTION
               (error
                (goto-char (point-min)))))
         (display-buffer buf nil))))
-
-  ;; (find-file-hook . my/smerge-setup)
-  ;; (defun  my/smerge-setup ()
-  ;;   "If conflicts detected enable `smerge-mode'"
-  ;;   (save-excursion
-  ;;     (goto-char (point-min))
-  ;;     (when (re-search-forward "^<<<<<<< " nil t)
-  ;;       (smerge-mode 1))))
 
   )
 
