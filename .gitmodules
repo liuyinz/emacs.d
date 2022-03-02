@@ -161,9 +161,6 @@
 [submodule "dired-hacks"]
 	path = lib/dired-hacks
 	url = https://github.com/Fuco1/dired-hacks.git
-[submodule "shackle"]
-	path = lib/shackle
-	url = https://depp.brause.cc/shackle.git
 [submodule "undohist"]
 	path = lib/undohist
 	url = https://github.com/emacsorphanage/undohist.git
@@ -216,9 +213,6 @@
 [submodule "gh"]
 	path = lib/gh
 	url = https://github.com/sigma/gh.el.git
-[submodule "forge"]
-	path = lib/forge
-	url = https://github.com/magit/forge.git
 [submodule "helpful"]
 	path = lib/helpful
 	url = https://github.com/Wilfred/helpful.git
@@ -332,10 +326,6 @@
 [submodule "json-snatcher"]
 	path = lib/json-snatcher
 	url = https://github.com/Sterlingg/json-snatcher.git
-[submodule "emacsql"]
-	path = lib/emacsql
-	url = https://github.com/skeeto/emacsql.git
-	no-byte-compile = emacsql-pg.el
 [submodule "jq-mode"]
 	path = lib/jq-mode
 	url = https://github.com/ljos/jq-mode.git
@@ -363,9 +353,6 @@
 [submodule "graphql-mode"]
 	path = lib/graphql-mode
 	url = https://github.com/davazp/graphql-mode.git
-[submodule "closql"]
-	path = lib/closql
-	url = https://github.com/emacscollective/closql.git
 [submodule "emacs-htmlize"]
 	path = lib/emacs-htmlize
 	url = https://github.com/hniksic/emacs-htmlize.git
@@ -375,9 +362,6 @@
 [submodule "fanyi"]
 	path = lib/fanyi
 	url = https://github.com/condy0919/fanyi.el.git
-[submodule "yaml"]
-	path = lib/yaml
-	url = https://github.com/zkry/yaml.el.git
 [submodule "treepy"]
 	path = lib/treepy
 	url = https://github.com/volrath/treepy.el.git
@@ -567,6 +551,14 @@
 [submodule "dirvish"]
 	path = lib/dirvish
 	url = https://github.com/alexluigit/dirvish.git
+	load-path = .
+	load-path = extensions
 [submodule "org-modern"]
 	path = lib/org-modern
 	url = https://github.com/minad/org-modern.git
+[submodule "clojure-mode"]
+	path = lib/clojure-mode
+	url = https://github.com/clojure-emacs/clojure-mode.git
+[submodule "consult-lsp"]
+	path = lib/consult-lsp
+	url = https://github.com/gagbo/consult-lsp.git

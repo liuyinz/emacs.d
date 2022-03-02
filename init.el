@@ -44,7 +44,7 @@
   (require 'init-sys)
   (require 'init-frame)
   (require 'init-builtin)
-  (require 'init-evil)
+  (require 'init-meow)
   (require 'init-completion)
   (require 'init-minibuffer)
   ;;   ;; ui
@@ -62,6 +62,7 @@
   (require 'init-project)
   ;;   ;; language
   (require 'init-lsp)
+  ;; (require 'init-eglot)
   (require 'init-web)
   (require 'init-lang)
   (require 'init-elisp)

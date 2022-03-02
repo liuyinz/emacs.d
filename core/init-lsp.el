@@ -61,6 +61,9 @@
                 )))
   )
 
+(leaf consult-lsp :require t)
+(leaf consult-lsp-marginalia :require t)
+
 ;; -------------------------- Server ------------------------------
 
 (leaf lsp-pyright

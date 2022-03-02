@@ -83,6 +83,19 @@
   ;; HACK jump to first error once search finished.
   :hook (rg-mode-hook . (lambda ()
                           (run-with-idle-timer 0.1 nil #'compilation-first-error)))
+  :bind
+  ((kbd "C-c s") . rg-menu)
+  (:rg-mode-map
+   ("n" . compilation-next-error)
+   ("p" . compilation-previous-erro)
+   ("f" . compilation-first-error)
+   ("l" . compilation-last-error)
+   ("N" . compilation-next-file)
+   ("P" . compilation-previous-file)
+   ((kbd "SPC") . compilation-display-error)
+   ((kbd "<space>") . compilation-display-error)
+   ("R" . rg-replace)
+   ("?" . rg-menu))
   :init
   (setq rg-ignore-case 'smart
         rg-command-line-flags '("-z" "--pcre2"))
@@ -122,27 +135,14 @@
   (setq vundo--window-max-height 5)
   :bind
   ("C-c u" . vundo)
-  (:vundo--mode-map
+  (:vundo-mode-map
    :package vundo
    ("l" . vundo-forward)
    ("h" . vundo-backward)
    ("j" . vundo-next)
    ("k" . vundo-previous)
-   ("<escape>" . vundo-quit))
-
-  ;; :defer-config
-  ;; (defun ad/undo-with-vundo (fn &rest _)
-  ;;   "Integretion undo and vundo."
-  ;;   (if (not (fboundp 'vundo))
-  ;;       (funcall fn 1)
-  ;;     (vundo)
-  ;;     (if (eq this-command 'undo-redo)
-  ;;         (vundo-forward 1)
-  ;;       (vundo-backward 1))))
-  ;; (advice-add 'undo :around #'ad/undo-with-vundo)
-  ;; (advice-add 'undo-redo :around #'ad/undo-with-vundo)
-
-  )
+   ((kbd "<escape>") . vundo-quit)
+   ((kbd "ESC") . vundo-quit)))
 
 ;; --------------------------- Jump -------------------------------
 

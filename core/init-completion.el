@@ -6,6 +6,17 @@
 
 (leaf company
   :hook ((after-init-hook . global-company-mode))
+  :bind
+  (:company-active-map
+   ([escape]    . company-abort)
+   ((kbd "C-n") . company-complete-common-or-cycle)
+   ((kbd "C-p") . company-select-previous)
+   ((kbd "C-s") . company-filter-candidates)
+   ((kbd "C-t") . company-complete-common))
+  (:company-search-map
+   (([return]    . company-complete-selection)
+    ((kbd "RET") . company-complete-selection)
+    ([escape]    . company-search-abort)))
   :init
   (setq company-tooltip-align-annotations t
         company-tooltip-limit 15
@@ -46,7 +57,7 @@
   ;; ------------------- company-dabbrev-code -----------------------
   (setq company-dabbrev-code-everywhere t)
 
-  ;;SEE https://emacs-china.org/t/emacs-makefile-mode-company/18138/8
+  ;; SEE https://emacs-china.org/t/emacs-makefile-mode-company/18138/8
   (defun makefile-company-setup ()
     ;; (setq-local company-dabbrev-other-buffers nil)
     (setq-local company-dabbrev-ignore-case t)
@@ -58,13 +69,31 @@
                                     company-dabbrev :separate))))
   (add-hook 'makefile-mode-hook #'makefile-company-setup)
 
-    ;; ------------------------ company-tng ----------------------------
+  ;; ------------------------ company-tng ----------------------------
+
   (leaf company-tng
-    :hook (after-init-hook . company-tng-mode))
+    :hook (global-company-mode-hook . company-tng-mode)
+    :bind
+    (:company-tng-map
+     ([return] . company-complete-selection)
+     ((kbd "RET") . company-complete-selection)
+     ([tab] . nil)
+     ;; ((kbd "TAB") . nil)
+     ([backtab] . nil)
+     ((kbd "S-TAB") . nil))
+    ;; HACK "TAB" keybindings fail in :bind
+    :defer-config
+    (keymap-set company-tng-map "TAB" nil)
+    )
   )
 
 (leaf yasnippet
+  :commands yas-expand
   :hook (after-init-hook . yas-global-mode)
+  :bind
+  (:yas-keymap
+   ([tab] . yas-next-field)
+   ((kbd "TAB") . yas-next-field))
   :init
   (setq yas-minor-mode-map nil)
   (setq yas-alias-to-yas/prefix-p nil)

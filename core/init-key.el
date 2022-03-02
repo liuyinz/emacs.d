@@ -7,48 +7,64 @@
 
 ;; SEE https://github.com/magit/transient/wiki
 ;; SEE https://stackoverflow.com/a/1052296/13194984
-;; SEE http://ergoemacs.org/emacs/emacs_key_notation_return_vs_RET.html
-;; SEE http://ergoemacs.org/emacs/keystroke_rep.html
-;; SEE https://evil.readthedocs.io/en/latest/keymaps.html
+;; SEE http://xahlee.info/emacs/emacs/emacs_key_notation_return_vs_RET.html
+;; SEE http://xahlee.info/emacs/emacs/keystroke_rep.html
+;; SEE https://www.masteringemacs.org/article/mastering-key-bindings-emacs
 
 ;;; Code:
 
+(require 'dash)
+
 (with-eval-after-load 'transient
+  (transient-define-prefix my/transient-jump ()
+    "Invoke commands about jump"
+    [["Avy"
+      ("l" "line"  avy-goto-line)
+      ("c" "char"  avy-goto-char)
+      ("w" "word"  avy-goto-word-0)
+      ("p" "paren" avy-goto-paren)]
+
+     ["Hideshow"
+      ("a" "toggle-all"   hs-toggle-all)
+      ("b" "toggle-block" hs-toggle-hiding)
+      ("s" "hide-level"   hs-hide-level)]
+
+     ])
+
   (transient-define-prefix my/transient-consult ()
-    "Command related to Consult"
+    "Invoke commands about Consult"
     [["General"
-      ("b" "Buffer"     consult-buffer)
-      ("d" "Dir"        consult-dir)
-      ("p" "Projectile" consult-projectile)
-      ("f" "Flycheck"   consult-flycheck)
-      ("i" "Imenu"      consult-imenu)
-      ("l" "Line"       consult-line)
-      ("s" "Snippet"    consult-yasnippet)
-      ("y" "Yank"       consult-yank-from-kill-ring)]
+      ("b" "Buffer"        consult-buffer)
+      ("d" "Dir"           consult-dir)
+      ("p" "Projectile"    consult-projectile)
+      ("f" "Flycheck"      consult-flycheck)
+      ("i" "Imenu"         consult-imenu)
+      ("l" "Line"          consult-line)
+      ("s" "Snippet"       consult-yasnippet)
+      ("y" "Yank"          consult-yank-from-kill-ring)]
      ["Jump"
-      ("j b" "Bookmark" consult-bookmark)
-      ("j o" "Outline"  consult-outline)
-      ("j m" "Mark"     consult-mark)
-      ("j g" "Global mark" consult-global-mark)
-      ("j i" "Imenu project" consult-imenu-multi)]
+      ("B" "Bookmark"      consult-bookmark)
+      ("O" "Outline"       consult-outline)
+      ("M" "Mark"          consult-mark)
+      ("G" "Global mark"   consult-global-mark)
+      ("I" "Imenu project" consult-imenu-multi)]
      ["Info"
-      ("o h" "History" consult-complex-command)
-      ("o c" "Mode command" consult-mode-command)
-      ("o q" "Macro" consult-kmacro)
-      ("o z" "Man" consult-man)
-      ("o R" "Register" consult-register)
-      ("o a" "Apropos" consult-apropos)
-      ("o t" "Theme" consult-theme)]
+      ("h" "History"       consult-complex-command)
+      ("c" "Mode command"  consult-mode-command)
+      ("m" "Macro"         consult-kmacro)
+      ("H" "Man"           consult-man)
+      ("R" "Register"      consult-register)
+      ("a" "Apropos"       consult-apropos)
+      ("t" "Theme"         consult-theme)]
      ["Search"
-      ("L" "Go-to-line" consult-goto-line)
-      ("F" "Find" consult-find)
-      ("r" "Ripgrep" consult-ripgrep)
-      ("g" "Git grep" consult-git-grep)]
-     ]
-    )
+      ("L" "Go-to-line"    consult-goto-line)
+      ("F" "Find"          consult-find)
+      ("r" "Ripgrep"       consult-ripgrep)
+      ("g" "Git grep"      consult-git-grep)]
+     ])
 
   (transient-define-prefix my/transient-buffer ()
-    "Buffer Operation"
+    "Invoke commands about buffer"
     [["Info"
       ("N" "Base name" buffer-base-name)
       ("A" "Absolute path" file-absolute-path)
@@ -64,34 +80,12 @@
      ["Content"
       ;; ("u" "change utf")
       ("u" "Dos2unix" dos2unix)
-      ("U" "Unix2dos" unix2dos)
-      ]])
+      ("U" "Unix2dos" unix2dos)]
+     ])
 
-  ;; toggle-transient
   (transient-define-prefix my/transient-toggle ()
     "Invoke toggle command generally or related to modes"
-    [["Configuration"
-      ("n e" "Early-init" (lambda ()
-                           (interactive)
-                           (find-file
-                            (expand-file-name "early-init.el" user-emacs-directory))))
-
-      ("n i" "Init" (lambda ()
-                     (interactive)
-                     (find-file (expand-file-name "init.el" user-emacs-directory))))
-
-      ("n c" "Core" (lambda ()
-                     (interactive)
-                     (let ((default-directory my/dir-core))
-                       (call-interactively #'find-file))))
-
-      ("n l" "Lib" (lambda ()
-                    (interactive)
-                    (let ((default-directory my/dir-lib))
-                      (call-interactively #'find-file))))
-
-      ("n f" "Leaf" leaf-find)
-      ]
+    [
      ["General"
       ("p" "Profiler" toggle-profiler)
       ("e" "Debug-on-error" toggle-debug-on-error)
@@ -122,33 +116,51 @@
       ]
      ])
 
+  (transient-define-prefix my/transient-ide ()
+    "Invoke commands about IDE"
+    [["ide"
+      ("r" "run" my/run)
+      ("p" "repl" my/repl)
+      ("f" "format" my/format)]
+     ])
+
   (transient-define-prefix my/transient-point ()
-    "Action at Point"
-    [["Info"
-      ("u" "Devdocs" devdocs-at-point)
-      ("h" "Elisp demos" elisp-demos-find-demo)
-      ("e" "Fanyi to" fanyi-dwim2)
-      ("w" "Search web" webjump)
-      ("f" "Flycheck error" flycheck-explain-error-at-point :if-non-nil flycheck-mode)
-      ("g" "Github browse" browse-at-remote)
-      ("m" "Version messages" vc-msg-show)
-      ]
-     ["Edit"
-      ("p" "Paste selection" cliphist-paste-item)
-      ("i" "Edit indirect" my/edit-indirect)
-      ("y" "Insert yasnippet" consult-yasnippet :if-non-nil yas-minor-mode)
-      ("t" "Insert todo" hl-todo-insert :if-non-nil hl-todo-mode)
-      ]
+    "Invoke commands at point"
+    :transient-non-suffix 'transient--do-warn
+    [["info"
+      ("i u" "Devdocs" devdocs-at-point)
+      ("i h" "Elisp demos" elisp-demos-find-demo)
+      ("i e" "Fanyi" fanyi-dwim2)
+      ("i w" "Web search" webjump)
+      ("i g" "Github browse" browse-at-remote)
+      ("i m" "Version messages" vc-msg-show)
+      ("i p" "Paste selection" cliphist-paste-item)
+      ("i i" "Edit indirect" my/edit-indirect)
+      ("i y" "Insert yasnippet" consult-yasnippet :if-non-nil yas-minor-mode)]
      [:description "diff-hl"
       :if-non-nil diff-hl-mode
-      ("dd" "Show"   diff-hl-show-hunk)
-      ("ds" "Stage"  diff-hl-stage-current-hunk)
-      ("dr" "Revert" diff-hl-revert-hunk)
-      ("dm" "Mark"   diff-hl-mark-hunk)
-      ("dj" "Set Rev"   diff-hl-set-reference-rev)
-      ("dk" "Reset Rev"   diff-hl-reset-reference-rev)
-      ]
-     ])
+      ("d j" "next" diff-hl-next-hunk :transient t)
+      ("d k" "prev" diff-hl-previous-hunk :transient t)
+      ("d w" "Show"   diff-hl-show-hunk)
+      ("d s" "Stage"  diff-hl-stage-current-hunk)
+      ("d r" "Revert" diff-hl-revert-hunk)
+      ("d m" "Mark"   diff-hl-mark-hunk)
+      ("d v" "Set Rev"   diff-hl-set-reference-rev)
+      ("d f" "Reset Rev"   diff-hl-reset-reference-rev)]
+     [:description "flycheck"
+      :if-non-nil flycheck-mode
+      ("f j" "next" flycheck-next-error :transient t)
+      ("f k" "prev" flycheck-previous-error :transient t)
+      ("f e" "explain" flycheck-explain-error-at-point :transient t)
+      ("f c" "consult" consult-flycheck)]
+     [:description "hl-todo"
+      :if-non-nil hl-todo-mode
+      ("h j" "next" hl-todo-next :transient t)
+      ("h k" "prev" hl-todo-previous :transient t)
+      ("h i" "insert" hl-todo-insert)
+      ("h o" "occur" hl-todo-occur)]
+     ]
+    )
 
   (transient-define-prefix my/transient-window ()
     "Invoke commands related to position and size of windows"
@@ -174,7 +186,6 @@
       ]
      ])
 
-  ;; smerge-transient
   (transient-define-prefix my/transient-smerge ()
     "Invoke commmands related to smerge-mode"
     :transient-suffix 'transient--do-stay
@@ -220,82 +231,82 @@
       ("q" "Abort merge" magit-merge-abort :transient nil)
       ]])
 
-  (transient-define-prefix my/transient-dired ()
-    "Dired commands."
-    [["Action"
-      ("RET" "Open file"            dired-find-file)
-      ("o" "  Open in other window" dired-find-file-other-window)
-      ("C-o" "Open in other window (No select)" dired-display-file)
-      ("v" "  Open file (View mode)"dired-view-file)
-      ("=" "  Diff"                 dired-diff)
-      ("w" "  Copy filename"        dired-copy-filename-as-kill)
-      ("W" "  Open in browser"      browse-url-of-dired-file)
-      ("y" "  Show file type"       dired-show-file-type)]
-     ["Attribute"
-      ("R"   "Rename"               dired-do-rename)
-      ("G"   "Group"                dired-do-chgrp)
-      ("M"   "Mode"                 dired-do-chmod)
-      ("O"   "Owner"                dired-do-chown)
-      ("T"   "Timestamp"            dired-do-touch)]
-     ["Navigation"
-      ("j" "  Goto file"            dired-goto-file)
-      ("+" "  Create directory"     dired-create-directory)
-      ("<" "  Jump prev directory"  dired-prev-dirline)
-      (">" "  Jump next directory"  dired-next-dirline)
-      ("^" "  Move up directory"    dired-up-directory)]
-     ["Display"
-      ("g" "  Refresh buffer"       revert-buffer)
-      ("l" "  Refresh file"         dired-do-redisplay)
-      ("k" "  Remove line"          dired-do-kill-lines)
-      ("s" "  Sort"                 dired-sort-toggle-or-edit)
-      ("(" "  Toggle detail info"   dired-hide-details-mode)
-      ("i" "  Insert subdir"        dired-maybe-insert-subdir)
-      ("$" "  Hide subdir"          dired-hide-subdir)
-      ("M-$" "Hide subdir all"      dired-hide-subdir)]
-     ["Extension"
-      ("e"   "Wdired"               wdired-change-to-wdired-mode)
-      ("/"   "Dired-filter"         ignore)
-      ("n"   "Dired-narrow"         ignore)]]
-    [["Marks"
-      ("m" "Marks..." my/transient-dired-marks)]])
+  ;; (transient-define-prefix my/transient-dired ()
+  ;;   "Dired commands."
+  ;;   [["Action"
+  ;;     ("RET" "Open file"            dired-find-file)
+  ;;     ("o" "  Open in other window" dired-find-file-other-window)
+  ;;     ("C-o" "Open in other window (No select)" dired-display-file)
+  ;;     ("v" "  Open file (View mode)"dired-view-file)
+  ;;     ("=" "  Diff"                 dired-diff)
+  ;;     ("w" "  Copy filename"        dired-copy-filename-as-kill)
+  ;;     ("W" "  Open in browser"      browse-url-of-dired-file)
+  ;;     ("y" "  Show file type"       dired-show-file-type)]
+  ;;    ["Attribute"
+  ;;     ("R"   "Rename"               dired-do-rename)
+  ;;     ("G"   "Group"                dired-do-chgrp)
+  ;;     ("M"   "Mode"                 dired-do-chmod)
+  ;;     ("O"   "Owner"                dired-do-chown)
+  ;;     ("T"   "Timestamp"            dired-do-touch)]
+  ;;    ["Navigation"
+  ;;     ("j" "  Goto file"            dired-goto-file)
+  ;;     ("+" "  Create directory"     dired-create-directory)
+  ;;     ("<" "  Jump prev directory"  dired-prev-dirline)
+  ;;     (">" "  Jump next directory"  dired-next-dirline)
+  ;;     ("^" "  Move up directory"    dired-up-directory)]
+  ;;    ["Display"
+  ;;     ("g" "  Refresh buffer"       revert-buffer)
+  ;;     ("l" "  Refresh file"         dired-do-redisplay)
+  ;;     ("k" "  Remove line"          dired-do-kill-lines)
+  ;;     ("s" "  Sort"                 dired-sort-toggle-or-edit)
+  ;;     ("(" "  Toggle detail info"   dired-hide-details-mode)
+  ;;     ("i" "  Insert subdir"        dired-maybe-insert-subdir)
+  ;;     ("$" "  Hide subdir"          dired-hide-subdir)
+  ;;     ("M-$" "Hide subdir all"      dired-hide-subdir)]
+  ;;    ["Extension"
+  ;;     ("e"   "Wdired"               wdired-change-to-wdired-mode)
+  ;;     ("/"   "Dired-filter"         ignore)
+  ;;     ("n"   "Dired-narrow"         ignore)]]
+  ;;   [["Marks"
+  ;;     ("m" "Marks..." my/transient-dired-marks)]])
 
 
-  (transient-define-prefix my/transient-dired-marks ()
-    "Sub-transient for dired."
-    [["Toggles"
-      ("mm"  "Mark"                 dired-mark)
-      ("mM"  "Mark all"             dired-mark-subdir-files)
-      ("mu"  "Unmark"               dired-unmark)
-      ("mU"  "Unmark all"           dired-unmark-all-marks)
-      ("mc"  "Change mark"          dired-change-marks)
-      ("mt"  "Toggle mark"          dired-toggle-marks)]
-     ["Type"
-      ("m*"  "Executables"          dired-mark-executables)
-      ("m/"  "Directories"          dired-mark-directories)
-      ("m@"  "Symlinks"             dired-mark-symlinks)
-      ("m&"  "Garbage files"        dired-flag-garbage-files)
-      ("m#"  "Auto save files"      dired-flag-auto-save-files)
-      ("m~"  "backup files"         dired-flag-backup-files)
-      ("m."  "Numerical backups"    dired-clean-directory)]
-     ["Search"
-      ("m%"  "Regexp"               dired-mark-files-regexp)
-      ("mg"  "Regexp file contents" dired-mark-files-containing-regexp)]]
-    [["Act on Marked"
-      ("x"   "Do action"            dired-do-flagged-delete)
-      ("C"   "Copy"                 dired-do-copy)
-      ("D"   "Delete"               dired-do-delete)
-      ("S"   "Symlink"              dired-do-symlink)
-      ("H"   "Hardlink"             dired-do-hardlink)
-      ("P"   "Print"                dired-do-print)
-      ("A"   "Find"                 dired-do-find-regexp)
-      ("Q"   "Replace"              dired-do-find-regexp-and-replace)
-      ("B"   "Elisp bytecompile"    dired-do-byte-compile)
-      ("L"   "Elisp load"           dired-do-load)
-      ("X"   "Shell command"        dired-do-shell-command)
-      ("Z"   "Compress"             dired-do-compress)
-      ("z"   "Compress to"          dired-do-compress-to)
-      ("!"   "Shell command"        dired-do-shell-command)
-      ("&"   "Async shell command"  dired-do-async-shell-command)]])
+  ;; (transient-define-prefix my/transient-dired-marks ()
+  ;;   "Sub-transient for dired."
+  ;;   [["Toggles"
+  ;;     ("mm"  "Mark"                 dired-mark)
+  ;;     ("mM"  "Mark all"             dired-mark-subdir-files)
+  ;;     ("mu"  "Unmark"               dired-unmark)
+  ;;     ("mU"  "Unmark all"           dired-unmark-all-marks)
+  ;;     ("mc"  "Change mark"          dired-change-marks)
+  ;;     ("mt"  "Toggle mark"          dired-toggle-marks)]
+  ;;    ["Type"
+  ;;     ("m*"  "Executables"          dired-mark-executables)
+  ;;     ("m/"  "Directories"          dired-mark-directories)
+  ;;     ("m@"  "Symlinks"             dired-mark-symlinks)
+  ;;     ("m&"  "Garbage files"        dired-flag-garbage-files)
+  ;;     ("m#"  "Auto save files"      dired-flag-auto-save-files)
+  ;;     ("m~"  "backup files"         dired-flag-backup-files)
+  ;;     ("m."  "Numerical backups"    dired-clean-directory)]
+  ;;    ["Search"
+  ;;     ("m%"  "Regexp"               dired-mark-files-regexp)
+  ;;     ("mg"  "Regexp file contents" dired-mark-files-containing-regexp)]]
+  ;;   [["Act on Marked"
+  ;;     ("x"   "Do action"            dired-do-flagged-delete)
+  ;;     ("C"   "Copy"                 dired-do-copy)
+  ;;     ("D"   "Delete"               dired-do-delete)
+  ;;     ("S"   "Symlink"              dired-do-symlink)
+  ;;     ("H"   "Hardlink"             dired-do-hardlink)
+  ;;     ("P"   "Print"                dired-do-print)
+  ;;     ("A"   "Find"                 dired-do-find-regexp)
+  ;;     ("Q"   "Replace"              dired-do-find-regexp-and-replace)
+  ;;     ("B"   "Elisp bytecompile"    dired-do-byte-compile)
+  ;;     ("L"   "Elisp load"           dired-do-load)
+  ;;     ("X"   "Shell command"        dired-do-shell-command)
+  ;;     ("Z"   "Compress"             dired-do-compress)
+  ;;     ("z"   "Compress to"          dired-do-compress-to)
+  ;;     ("!"   "Shell command"        dired-do-shell-command)
+  ;;     ("&"   "Async shell command"  dired-do-async-shell-command)]])
 
   ;; (transient-define-prefix my/help-transient ()
   ;;   "Help commands that I use. A subset of C-h with others thrown in."
@@ -360,235 +371,37 @@
   ;; (global-set-key (kbd "C-h") 'hrm-help-transient)
   )
 
-(with-eval-after-load 'evil
+;;; define-keys
 
-  ;; -------------------------- Global ------------------------------
+(defun define-keys (keymap &rest pairs)
+  "Define alternating key-def PAIRS for KEYMAP."
+  (-each
+      (-partition 2 pairs)
+    (-lambda ((key def))
+      (define-key keymap key def))))
 
-  (evil-define-key nil 'global
-    (kbd "C-x <escape> <escape>") nil
-    (kbd "C-x s") nil
-    (kbd "C-/") nil
-    (kbd "M-c") nil
-    (kbd "C-o") nil
-    (kbd "C-l") 'embark-act
-    ;; jump between two buffer
-    (kbd "C-r") (lambda () (interactive) (switch-to-buffer nil))
-    ;; window
-    (kbd "C-x j") 'transpose-frame
-    ;; consult
-    [remap switch-to-buffer] 'consult-buffer
-    [remap switch-to-buffer-other-window] 'consult-buffer-other-window
-    [remap switch-to-buffer-other-frame] 'consult-buffer-other-frame
-    ;; helpful
-    [remap describe-key] 'helpful-key
-    [remap describe-variable] 'helpful-variable
-    [remap describe-command] 'helpful-command
-    [remap describe-function] 'helpful-callable
-    [remap describe-symbol] 'helpful-at-point
-    )
+;;; global-set-keys
 
-  (evil-define-key 'motion 'global
-    ";" nil
-    "," nil
-    (kbd "C-y") nil
-    (kbd "C-o") nil
-    "'" 'evil-goto-mark
-    "`" 'evil-goto-mark-line)
+(defun global-set-keys (&rest pairs)
+  "Set alternating key-def PAIRS globally."
+  (-each
+      (-partition 2 pairs)
+    (-lambda ((key def))
+      (global-set-key key def))))
 
-  (evil-define-key 'insert 'global
-    (kbd "C-o") 'evil-execute-in-normal-state)
+(global-set-keys
 
-  (evil-define-key '(normal visual) 'global
-    ;; replace redo with U
-    (kbd "C-r") nil
-    "U" 'evil-redo
-    "?" 'evil-substitute-normal
-    "zt" 'recenter-top-bottom
-    "zz" 'hs-toggle-all
-
-    ;; avy
-    "zl" 'avy-goto-line
-    "zc" 'avy-goto-char
-    "zw" 'avy-goto-word-0
-    "zp" 'avy-goto-paren
-
-    ;; run the macro in the q register
-    "Q" "@q"
-    ;; select the previously pasted text
-    "gp" "`[v`]"
-
-    ;; xref
-    "gb" 'xref-pop-marker-stack
-
-    ;; magit
-    "gm" 'magit-dispatch
-    "gt" 'magit-file-dispatch
-    "gs" 'magit-status
-    "gla" 'magit-log-all-branches
-
-    (kbd "<localleader> t") 'my/transient-toggle
-    (kbd "<localleader> c") 'my/transient-consult
-    (kbd "<localleader> f") 'my/transient-buffer
-    (kbd "<localleader> ,") 'my/transient-point
-    ;; (kbd "<localleader> g") 'my/transient-smerge
-    (kbd "<localleader> w") 'my/transient-window
-    (kbd "<localleader> m") 'rg-menu
-
-    (kbd "<leader> c") 'evilnc-comment-or-uncomment-lines
-    (kbd "<leader> f") 'my/format
-    (kbd "<leader> p") 'my/repl
-    (kbd "<leader> r") 'my/run)
-
-  ;; ------------------------ Major-mode ----------------------------
-
-  (evil-define-key nil minibuffer-mode-map
-    (kbd "ESC") 'minibuffer-keyboard-quit
-    (kbd "<escape>") 'minibuffer-keyboard-quit)
-
-  (evil-define-key nil dired-mode-map
-    (kbd "C-c C-p") 'wdired-change-to-wdired-mode
-    (kbd "C-c C-z f") 'browse-url-of-file
-    "[" 'dired-omit-mode
-    "]" 'dired-hide-details-mode
-    "{" 'dired-git-info-mode
-    "?" 'my/transient-dired
-    )
-
-  (evil-define-key nil transient-map
-    (kbd "ESC") 'transient-quit-one
-    (kbd "<escape>") 'transient-quit-one)
-
-  (evil-define-key nil emacs-lisp-mode-map
-    (kbd "C-c C-x") 'ielm
-    (kbd "C-c C-c") 'eval-defun
-    (kbd "C-c C-b") 'eval-buffer)
-
-  (evil-define-key nil rg-mode-map
-    "n" 'compilation-next-error
-    "p" 'compilation-previous-error
-    "f" 'compilation-first-error
-    "l" 'compilation-last-error
-    "N" 'compilation-next-file
-    "P" 'compilation-previous-file
-    (kbd "SPC") 'compilation-display-error
-    (kbd "<space>") 'compilation-display-error
-    "R" 'rg-replace
-    "?" 'rg-menu)
-
-  ;; ------------------------ Minor-mode ----------------------------
-  ;; Defining keybindings with `minor-mode' has higher precedence than with
-  ;; `minor-mode-map'
-
-  (evil-define-key 'insert 'yas-minor-mode
-    (kbd "C-j") 'yas-expand)
-
-  (evil-define-key 'insert 'emmet-mode
-    (kbd "C-j") 'emmet-expand-line
-    (kbd "TAB") 'emmet-next-edit-point
-    (kbd "<tab>")  'emmet-next-edit-point
-    (kbd "S-TAB") 'emmet-prev-edit-point
-    (kbd "<backtab>")  'emmet-prev-edit-point)
-
-  (evil-define-key 'visual 'emmet-mode
-    (kbd "C-j") 'emmet-wrap-with-markup)
-
-  (evil-define-key 'normal 'smerge-mode
-    "?" 'my/transient-smerge)
-
-  (evil-define-key '(normal visual) 'evil-matchit-mode
-    "zm" 'evilmi-jump-items)
-
-  (evil-define-key 'normal 'hl-todo-mode
-    "[h" 'hl-todo-previous
-    "]h" 'hl-todo-next
-    "gh" 'hl-todo-occur
-    )
-
-  (evil-define-key 'normal 'diff-hl-mode
-    "[g" 'diff-hl-previous-hunk
-    "]g" 'diff-hl-next-hunk
-    )
-
-  (evil-define-key 'normal 'flycheck-mode
-    "]f" 'flycheck-next-error
-    "[f" 'flycheck-previous-error)
-
-  ;; ---------------------- Non-evil minor --------------------------
-
-  (evil-define-key nil vertico-map
-    ;; vertico-repeat
-    ;; (kbd "C-c C-r") 'vertico-repeat
-    ;; vertico-directory
-    (kbd "RET") 'vertico-directory-enter
-    (kbd "<return>") 'vertico-directory-enter
-    (kbd "DEL") 'vertico-directory-delete-char
-    (kbd "<delete>") 'vertico-directory-delete-char
-    ;; embark
-    (kbd "C-l") 'embark-act
-    (kbd "C-c C-o") 'embark-export
-    (kbd "C-c C-a") 'marginalia-cycle
-    )
-
-  (evil-define-key nil consult-narrow-map
-    (vconcat consult-narrow-key "?") 'consult-narrow-help)
-
-  (evil-define-key nil embark-general-map
-    (kbd "C-c C-a") 'marginalia-cycle
-    )
-
-  ;; ;; embark-consult
-  ;; (evil-define-key nil embark-collect-mode-map
-  ;;   (kbd "C-j") 'embark-consult-preview-at-point)
-
-  ;; company
-  (evil-define-key nil company-tng-map
-    ;; disable tab key in `tng-mode'
-    (kbd "TAB") nil
-    (kbd "<tab>") nil
-    (kbd "S-TAB") nil
-    (kbd "<backtab>") nil
-    (kbd "<return>") 'company-complete-selection
-    (kbd "RET") 'company-complete-selection
-    )
-
-  (evil-define-key nil company-active-map
-    (kbd "ESC") 'company-abort
-    (kbd "<escape>") 'company-abort
-    (kbd "C-s") 'company-filter-candidates
-    (kbd "C-t") 'company-complete-common
-    (kbd "C-n") 'company-complete-common-or-cycle
-    (kbd "C-p") 'company-select-previous
-    )
-
-  (evil-define-key nil company-search-map
-    (kbd "<escape>") 'company-search-abort
-    (kbd "ESC") 'company-search-abort
-    (kbd "<return>") 'company-complete-selection
-    (kbd "RET") 'company-complete-selection)
-
-  (evil-define-key nil yas-keymap
-    (kbd "<tab>") 'yas-next-field
-    (kbd "TAB") 'yas-next-field)
-
-  (evil-define-key nil vundo--mode-map
-    "U" 'vundo-forward
-    "u" 'vundo-backward
-    "l" 'vundo-forward
-    "h" 'vundo-backward
-    "j" 'vundo-next
-    "k" 'vundo-previous
-    (kbd "ESC") 'vundo-quit
-    (kbd "<escape>") 'vundo-quit
-    )
-
-  ;; (evil-define-key 'normal wgrep-mode-map
-  ;;   ;; "" 'wgrep-mark-deletion
-  ;;   "ZQ" 'wgrep-abort-changes
-  ;;   "ZZ" 'wgrep-finish-edit
-  ;;   (kbd "ESC") 'wgrep-exit
-  ;;   (kbd "<escape>") 'wgrep-exit)
-
-  )
+ (kbd "C-c i") 'my/transient-ide
+ (kbd "C-c w") 'my/transient-window
+ (kbd "C-c p") 'my/transient-point
+ (kbd "C-c t") 'my/transient-toggle
+ (kbd "C-c b") 'my/transient-buffer
+ (kbd "C-c j") 'my/transient-consult
+ 
+ (kbd "C-j") 'yas-expand
+ (kbd "C-l") 'embark-act
+ (kbd "C-r") (lambda () (interactive) (switch-to-buffer nil))
+ )
 
 (provide 'init-key)
 ;;; init-key.el ends here

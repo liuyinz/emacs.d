@@ -70,11 +70,11 @@
                                :background "#3d4451"
                                ))))
 
-     ;; evil
-     '(evil-ex-substitute-matches ((t (:inherit font-lock-warning-face
-                                       :weight bold
-                                       :inverse-video t))))
-     '(evil-ex-substitute-replacement ((t (:inherit match))))
+     ;; ;; evil
+     ;; '(evil-ex-substitute-matches ((t (:inherit font-lock-warning-face
+     ;;                                   :weight bold
+     ;;                                   :inverse-video t))))
+     ;; '(evil-ex-substitute-replacement ((t (:inherit match))))
 
      ;; orderless
      '(orderless-match-face-0 ((t (:inherit font-lock-keyword-face
@@ -166,6 +166,9 @@
      '(cperl-hash-face ((t (:inherit font-lock-type-face))))
      ;; perl-mode
      '(perl-non-scalar-variable ((t (:inherit font-lock-type-face))))
+     '(fill-column-indicator ((t (:inherit unspecified
+                                  :foreground nil
+                                  :background "#181f25"))))
      )))
 
 (provide 'init-ui)

@@ -137,7 +137,7 @@
   :hook (prog-mode-hook . hs-minor-mode)
   :init
   (setq hs-isearch-open t
-        hs-hide-comments-when-hiding-all nil)
+        hs-hide-comments-when-hiding-all t)
 
   ;; display more information
   (defun display-code-line-counts (ov)
@@ -163,6 +163,12 @@
   (advice-add 'hs-show-all :after (lambda () (setq hs-all-hide-p nil)))
   (advice-add 'hs-hide-all :after (lambda () (setq hs-all-hide-p t)))
   )
+
+;; (leaf display-fill-column-indicator
+;;   :hook (after-init-hook . global-display-fill-column-indicator-mode)
+;;   :init
+;;   ;; use white space character
+;;   (setq-default display-fill-column-indicator-character ?\u0020))
 
 ;; -------------------------- Buffer ------------------------------
 
@@ -550,6 +556,10 @@ CHAR-FUNCTION
 
 (leaf transient
   :require t
+  :bind
+  (:transient-map
+   ((kbd "ESC") . transient-quit-one)
+   ((kbd "<escape>") . transient-quit-one))
   :init
   (setq transient-highlight-mismatched-keys nil
         transient-detect-key-conflicts t))

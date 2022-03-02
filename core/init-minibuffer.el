@@ -10,6 +10,11 @@
   (setq vertico-cycle t
         vertico-count 15
         resize-mini-windows t)
+  :bind
+  ((kbd "C-c C-r") . vertico-repeat)
+  (:vertico-map
+   ((kbd "RET") . vertico-directory-enter)
+   ((kbd "DEL") . vertico-directory-delete-char))
   :defer-config
   ;; HACK inspired by vertico-reverse
   (defun ad/vertico--display-prompt-bottom (lines)
@@ -119,20 +124,20 @@
   (setq consult-async-split-style 'semicolon)
   (setq consult-line-start-from-top t)
   (setq consult-find-config "fd --color=never --full-path ARG OPTS")
-  (setq consult-project-root-function #'projectile-project-root)
-
-  ;; Optionally configure the narrowing key.
-  (setq consult-narrow-key "<")
+  (setq consult-project-function #'projectile-project-root)
 
   :bind
   ([remap switch-to-buffer] . consult-buffer)
   ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
   ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
-
+  
   :defer-config
 
-  ;; -------------------------- Source ------------------------------
+  ;; Optionally configure the narrowing key.
+  (setq consult-narrow-key "<")
+  (define-key consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help)
 
+  ;; -------------------------- Source ------------------------------
   ;; extend hidden source
   (appendq! consult-buffer-filter '("\\`\\*.*\\*\\'"
                                     "\\`.*\\.el\\.gz\\'"
@@ -290,7 +295,15 @@
   )
 
 (leaf embark
+  :after vertico
   ;; :init (setq embark-prompter 'embark-completing-read-prompter)
+  :bind
+  (:embark-general-map
+   ((kbd "C-c C-a") . marginalia-cycle))
+  (:vertico-map
+   ((kbd "C-l") . embark-act)
+   ((kbd "C-c C-o") . embark-export)
+   ((kbd "C-c C-a") . marginalia-cycle))
   :defer-config
   ;; HACK Open source code of `symbol' in other window
   (advice-add 'embark-find-definition :before #'open-in-other-window))

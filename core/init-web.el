@@ -10,11 +10,28 @@
 (leaf emmet-mode
   :hook (((css-mode-hook html-mode-hook mhtml-mode-hook web-mode-hook) . emmet-mode)
          (emmet-mode-hook . (lambda () (yas-minor-mode -1))))
+  :bind
+  (:emmet-mode-keymap
+   ((kbd "C-j")   . my/emmet-expand)
+   ([tab]         . emmet-next-edit-point)
+   ((kbd "TAB")   . emmet-next-edit-point)
+   ([backtab]     . emmet-prev-edit-point)
+   ((kbd "S-TAB") . emmet-prev-edit-point))
+
   :init
   (setq emmet-indentation 2
         emmet-insert-flash-time -1
         emmet-indent-after-insert nil
-        emmet-postwrap-goto-edit-point t))
+        emmet-postwrap-goto-edit-point t)
+
+  (defun my/emmet-expand ()
+    "Expand emmet with select region or not."
+    (interactive)
+    (when (bound-and-true-p emmet-mode)
+      (if (use-region-p)
+          (emmet-wrap-with-markup)
+        (emmet-expand-line))))
+  )
 
 ;; --------------------------- Css --------------------------------
 

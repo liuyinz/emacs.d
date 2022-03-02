@@ -57,12 +57,6 @@
        ("n" "new file" gitignore-templates-new-file)
        ("i" "select pattern" gitignore-templates-insert)])))
 
-(leaf forge
-  :after magit
-  :init
-  (setq forge-topic-list-limit '(100 . -10)
-        forge-owned-accounts '(("liuyinz" :remote-name "upstream"))))
-
 (leaf magit
   :init
   (setq magit-no-confirm t
@@ -73,6 +67,8 @@
         ;; magit-diff-refine-hunk nil
         magit-diff-paint-whitespace-lines 'all
         magit-fetch-modules-jobs 7)
+  :bind
+  ((kbd "C-c l") . magit-dispatch)
 
   :defer-config
   (prependq! magit-section-initial-visibility-alist '((untracked . hide)))

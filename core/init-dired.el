@@ -4,6 +4,14 @@
 
 (leaf dired
   :hook (dired-mode-hook . dired-hide-details-mode)
+  :bind
+  (:dired-mode-map
+   ((kbd "C-c C-p") . wdired-change-to-wdired-mode)
+   ((kbd "C-c C-z f") . browse-url-of-file)
+   ("[" . dired-omit-mode)
+   ("]" . dired-hide-details-mode)
+   ("{" . dired-git-info-mode)
+   ("?" . my/transient-dired))
   :defer-config
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
