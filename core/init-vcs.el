@@ -71,7 +71,9 @@
   ((kbd "C-c l") . magit-dispatch)
 
   :defer-config
-  (prependq! magit-section-initial-visibility-alist '((untracked . hide)))
+  (prependq! magit-section-initial-visibility-alist
+             '((untracked . hide)
+               (unpushed  . show)))
 
   ;; ------------------------- submodul -----------------------------
 
