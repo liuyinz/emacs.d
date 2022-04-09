@@ -271,7 +271,7 @@
 
 (leaf consult-dir
   :defer-config
-  (when (eq consult-project-root-function #'projectile-project-root)
+  (when (eq consult-project-function #'projectile-project-root)
     (setq consult-dir-project-list-function #'consult-dir-projectile-dirs))
 
   ;; HACK zlua directory jump
