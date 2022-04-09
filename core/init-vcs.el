@@ -75,6 +75,11 @@
 
   ;; ------------------------- submodul -----------------------------
 
+  ;; add module in `magit-status'
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules
+                          'magit-insert-untracked-files)
+
   ;; HACK ignore submodules in magit-status when there is too many submodules.
   (defvar magit-status-submodule-max 20
     "Maximum number of submodules that will be not ignored in `magit-status'.")
@@ -90,16 +95,6 @@
         (apply orig-fn args))))
   (advice-add 'magit-diff--get-value :around #'ad/ignore-submodules-more-than-max)
 
-  ;; disable `magit-insert-modules-overview'
-  (setq magit-module-sections-hook
-        '(magit-insert-modules-unpulled-from-upstream
-          magit-insert-modules-unpulled-from-pushremote
-          magit-insert-modules-unpushed-to-upstream
-          magit-insert-modules-unpushed-to-pushremote))
-  ;; add module in `magit-status'
-  (magit-add-section-hook 'magit-status-sections-hook
-                          'magit-insert-modules
-                          'magit-insert-untracked-files)
   )
 
 (provide 'init-vcs)
