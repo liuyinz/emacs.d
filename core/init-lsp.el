@@ -7,6 +7,7 @@
 (leaf lsp-mode
   :hook ((js2-mode-hook bash-mode-hook go-mode-hook) . lsp-deferred)
   :init
+  ;; SEE https://emacs-lsp.github.io/lsp-mode/page/performance/
   (setq lsp-keymap-prefix nil)
   (setq lsp-completion-enable t)
   (setq lsp-enable-snippet nil)
@@ -24,6 +25,9 @@
   (setq lsp-eldoc-enable-hover nil)           ;; disable eldoc hover
   (setq lsp-log-io nil)                       ;; debug only
   (setq lsp-auto-guess-root t)                ;; auto guess root
+
+  (setq lsp-use-plists t)
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
   ;; ;; HACK disbale lsp in md/org-mode
   ;; (defun ad/disable-lsp-in-md-org (fn)
