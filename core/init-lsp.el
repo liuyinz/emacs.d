@@ -38,6 +38,8 @@
 
   :defer-config
   (leaf lsp-modeline :require t)
+  
+  (leaf consult-lsp :require t)
 
   ;; -------------------------- Imenu -------------------------------
 
@@ -64,8 +66,6 @@
                    (?v "Variables" font-lock-variable-name-face)))
                 )))
   )
-
-(leaf consult-lsp :require t)
 
 ;; -------------------------- Server ------------------------------
 
