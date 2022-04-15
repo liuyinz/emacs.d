@@ -71,14 +71,6 @@
   :require t
   :init (setq with-proxy-http-server (getenv "HTTP")))
 
-;; ;; REQUIRE pip3 install my-cookies
-;; (leaf leetcode
-;;   :init
-;;   (setq leetcode-prefer-language "javascript"
-;;         leetcode-prefer-sql "mysql"
-;;         leetcode-save-solutions t
-;;         leetcode-directory "~/Documents/repo/leetcode"))
-
 ;; -------------------------- record ------------------------------
 
 (leaf keyfreq

@@ -76,5 +76,6 @@
   (require 'init-markdown)
   (require 'init-org)
   (require 'init-key)
+  (require 'init-gui)
   )
 ;;; init.el ends here
