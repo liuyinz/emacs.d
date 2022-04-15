@@ -37,6 +37,12 @@
 (when (file-exists-p custom-file)
   (load custom-file nil :no-message))
 
+(defun benchmark-show-init-time ()
+  "Show startup time."
+  (message "init completed in %.2fms"
+           (* 1000.0 (float-time (time-subtract after-init-time before-init-time)))))
+(add-hook 'after-init-hook #'benchmark-show-init-time)
+
 ;; ------------------------- Loading ------------------------------
 
 (with-temp-message ""
