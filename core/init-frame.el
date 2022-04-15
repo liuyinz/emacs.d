@@ -11,7 +11,7 @@
   "Hooks to run after creating a new TTY frame.")
 
 (defvar after-make-window-system-frame-hook '()
-  "Hooks to run after creating a new `window-system' frame.")
+  "Hooks to run after creating a new window-system frame.")
 
 (defun my/frame-setup ()
   "Setup for frame related hooks."
