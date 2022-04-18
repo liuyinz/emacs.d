@@ -130,6 +130,12 @@
   :hook (after-init-hook . undohist-initialize)
   :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
 
+(leaf undo-hl
+  :hook ((text-mode-hook prog-mode-hook) . undo-hl-mode)
+  :defer-config
+  (appendq! undo-hl-undo-commands '(meow-undo))
+  (setq undo-hl-flash-duration 0.2))
+
 (leaf vundo
   :init
   (setq vundo--window-max-height 5)
