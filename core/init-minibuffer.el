@@ -114,6 +114,16 @@
 
   (setq orderless-component-separator #'orderless-escapable-split-on-space
         orderless-style-dispatchers '(my/orderless-dispatch))
+
+  (with-eval-after-load 'consult
+
+    ;; SEE https://github.com/minad/consult/wiki#use-orderless-as-pattern-compiler-for-consult-grepripgrepfind
+    (defun consult--orderless-regexp-compiler (input type &rest _config)
+      (setq input (orderless-pattern-compiler input))
+      (cons
+       (mapcar (lambda (r) (consult--convert-regexp r type)) input)
+       (lambda (str) (orderless--highlight input str))))
+    (setq consult--regexp-compiler #'consult--orderless-regexp-compiler))
   )
 
 ;; TODO consult-browser-bookmark consult-browser-history
@@ -130,7 +140,7 @@
   ([remap switch-to-buffer] . consult-buffer)
   ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
   ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
-  
+
   :defer-config
 
   ;; Optionally configure the narrowing key.
