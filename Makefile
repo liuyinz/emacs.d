@@ -22,7 +22,7 @@ build-all:
 	@make move-eln
 
 build-update:
-	@make $(shell git status -s --porcelain -- $(DRONES_DIR) | perl -ne '/^( M|A )\s*(.*)$$/m && printf " %s", $$2')
+	@make $(shell git status -s --porcelain -- $(DRONES_DIR) | perl -ne '/^( M|M |A )\s*(.*)$$/m && printf " %s", $$2')
 	@make move-eln
 
 clean-all:
