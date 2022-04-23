@@ -225,12 +225,7 @@
   (add-to-list 'consult-buffer-sources 'consult--source-org)
 
   ;; ------------------------- Preview ------------------------------
-
-  (prependq! consult-preview-excluded-hooks
-             '(undohist-recover-safe
-               save-place-find-file-hook
-               recentf-track-opened-file
-               auto-revert-find-file-function))
+  (setq consult-preview-allowed-hooks '(global-font-lock-mode-check-buffers))
 
   ;; disable preview
   (consult-customize
