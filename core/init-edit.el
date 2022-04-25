@@ -138,7 +138,7 @@
 
 (leaf vundo
   :init
-  (setq vundo--window-max-height 5)
+  (setq vundo-window-max-height 5)
   :bind
   ("C-c u" . vundo)
   (:vundo-mode-map
