@@ -87,7 +87,7 @@
   ((kbd "C-c s") . rg-menu)
   (:rg-mode-map
    ("n" . compilation-next-error)
-   ("p" . compilation-previous-erro)
+   ("p" . compilation-previous-error)
    ("f" . compilation-first-error)
    ("l" . compilation-last-error)
    ("N" . compilation-next-file)
