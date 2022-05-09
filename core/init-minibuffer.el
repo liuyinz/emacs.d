@@ -50,26 +50,18 @@
   :after vertico
   :init
   (setq orderless-matching-styles '(orderless-literal orderless-regexp))
-
-  (setq completion-styles '(orderless))
+  (setq completion-styles '(basic orderless))
 
   :defer-config
 
-  ;; SEE https://github.com/oantolin/orderless#company
-  (defun ad/just-one-face (fn &rest args)
-    (let ((orderless-match-faces [completions-common-part]))
-      (apply fn args)))
-  (advice-add 'company-capf--candidates :around #'ad/just-one-face)
+  ;; SEE https://github.com/minad/consult/wiki#minads-orderless-configuration
+  (defvar my/orderless-dispatch-alist
+    '((?% . char-fold-to-regexp)
+      (?! . orderless-without-literal)
+      (?` . orderless-initialism)
+      (?= . orderless-literal)
+      (?~ . orderless-flex)))
 
-  ;; SEE https://github.com/cute-jumper/pinyinlib.el#pinyinlib-build-regexp-string
-  (with-eval-after-load 'pinyinlib
-    (defun ad/orderless-regexp-pinyin (args)
-      "Patch `orderless-regexp' with pinyin surpport"
-      (setf (car args) (pinyinlib-build-regexp-string (car args)))
-      args)
-    (advice-add 'orderless-regexp :filter-args #'ad/orderless-regexp-pinyin))
-
-  ;; SEE https://github.com/minad/consult/wiki#orderless-style-dispatchers-ensure-that-the--regexp-works-with-consult-buffer
   ;; Recognizes the following patterns:
   ;; * ~flex flex~
   ;; * =literal literal=
@@ -80,12 +72,9 @@
   ;; * regexp$ (regexp matching at end)
   (defun my/orderless-dispatch (pattern index _total)
     (cond
-     ;; Treat first component as prefix. This is useful for Corfu completion-in-region.
-     ((and completion-in-region-mode (= index 0))
-      `(orderless-regexp . ,(concat "^" (regexp-quote pattern))))
      ;; Ensure that $ works with Consult commands, which add disambiguation suffixes
      ((string-suffix-p "$" pattern)
-      `(orderless-regexp . ,(concat (substring pattern 0 -1) "[\x100000-\x10FFFD]*$")))
+      `(orderless-regexp . ,(concat (substring pattern 0 -1) "[\x200000-\x300000]*$")))
      ;; File extensions
      ((and
        ;; Completing filename or eshell
@@ -93,37 +82,42 @@
            (derived-mode-p 'eshell-mode))
        ;; File extension
        (string-match-p "\\`\\.." pattern))
-      `(orderless-regexp . ,(concat "\\." (substring pattern 1) "[\x100000-\x10FFFD]*$")))
+      `(orderless-regexp . ,(concat "\\." (substring pattern 1) "[\x200000-\x300000]*$")))
      ;; Ignore single !
      ((string= "!" pattern) `(orderless-literal . ""))
-     ;; Character folding
-     ((string-prefix-p "%" pattern) `(char-fold-to-regexp . ,(substring pattern 1)))
-     ((string-suffix-p "%" pattern) `(char-fold-to-regexp . ,(substring pattern 0 -1)))
-     ;; Without literal
-     ((string-prefix-p "!" pattern) `(orderless-without-literal . ,(substring pattern 1)))
-     ((string-suffix-p "!" pattern) `(orderless-without-literal . ,(substring pattern 0 -1)))
-     ;; Initialism matching
-     ((string-prefix-p "`" pattern) `(orderless-initialism . ,(substring pattern 1)))
-     ((string-suffix-p "`" pattern) `(orderless-initialism . ,(substring pattern 0 -1)))
-     ;; Literal matching
-     ((string-prefix-p "=" pattern) `(orderless-literal . ,(substring pattern 1)))
-     ((string-suffix-p "=" pattern) `(orderless-literal . ,(substring pattern 0 -1)))
-     ;; Flex matching
-     ((string-prefix-p "~" pattern) `(orderless-flex . ,(substring pattern 1)))
-     ((string-suffix-p "~" pattern) `(orderless-flex . ,(substring pattern 0 -1)))))
+     ;; Prefix and suffix
+     ((if-let (x (assq (aref pattern 0) my/orderless-dispatch-alist))
+          (cons (cdr x) (substring pattern 1))
+        (when-let (x (assq (aref pattern (1- (length pattern))) my/orderless-dispatch-alist))
+          (cons (cdr x) (substring pattern 0 -1)))))))
 
   (setq orderless-component-separator #'orderless-escapable-split-on-space
         orderless-style-dispatchers '(my/orderless-dispatch))
 
+  ;; SEE https://github.com/minad/consult/wiki#use-orderless-as-pattern-compiler-for-consult-grepripgrepfind
   (with-eval-after-load 'consult
-
-    ;; SEE https://github.com/minad/consult/wiki#use-orderless-as-pattern-compiler-for-consult-grepripgrepfind
     (defun consult--orderless-regexp-compiler (input type &rest _config)
       (setq input (orderless-pattern-compiler input))
       (cons
        (mapcar (lambda (r) (consult--convert-regexp r type)) input)
        (lambda (str) (orderless--highlight input str))))
     (setq consult--regexp-compiler #'consult--orderless-regexp-compiler))
+
+  ;; ;; SEE https://github.com/oantolin/orderless#company
+  ;; (with-eval-after-load 'company
+  ;;   (defun ad/just-one-face (fn &rest args)
+  ;;     (let ((orderless-match-faces [completions-common-part]))
+  ;;       (apply fn args)))
+  ;;   (advice-add 'company-capf--candidates :around #'ad/just-one-face))
+
+  ;; SEE https://github.com/cute-jumper/pinyinlib.el#pinyinlib-build-regexp-string
+  (with-eval-after-load 'pinyinlib
+    (defun ad/orderless-regexp-pinyin (args)
+      "Patch `orderless-regexp' with pinyin surpport"
+      (setf (car args) (pinyinlib-build-regexp-string (car args)))
+      args)
+    (advice-add 'orderless-regexp :filter-args #'ad/orderless-regexp-pinyin))
+  
   )
 
 ;; TODO consult-browser-bookmark consult-browser-history
