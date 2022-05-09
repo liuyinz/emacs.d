@@ -4,88 +4,65 @@
 
 (require 'init-const)
 
-(leaf company
-  :hook ((after-init-hook . global-company-mode))
+(leaf corfu
+  :hook (after-init-hook . global-corfu-mode)
   :bind
-  (:company-active-map
-   ([escape]    . company-abort)
-   ((kbd "C-n") . company-complete-common-or-cycle)
-   ((kbd "C-p") . company-select-previous)
-   ((kbd "C-s") . company-filter-candidates)
-   ((kbd "C-t") . company-complete-common))
-  (:company-search-map
-   (([return]    . company-complete-selection)
-    ((kbd "RET") . company-complete-selection)
-    ([escape]    . company-search-abort)))
+  (:corfu-map
+   ([tab]    . nil)
+   ("TAB"    . nil)
+   ([escape] . corfu-reset)
+   ("ESC"    . corfu-reset)
+   ([?\C- ]  . corfu-insert-separator)
+   ("\C- "   . corfu-insert-separator))
   :init
-  (setq company-tooltip-align-annotations t
-        company-tooltip-limit 15
-        company-tooltip-width-grow-only t
-        company-tooltip-minimum-width 30
-        company-tooltip-width-grow-only t
-        company-tooltip-idle-delay 0
-        company-idle-delay 0
-        company-format-margin-function #'company-text-icons-margin
-        company-text-icons-format "%s "
-        company-selection-wrap-around t
-        company-minimum-prefix-length 1
-        company-require-match nil
-        company-search-regexp-function #'company-search-words-in-any-order-regexp)
+  (setq corfu-auto t
+        corfu-auto-prefix 1
+        corfu-auto-delay 0.4
+        corfu-cycle t
+        corfu-preselect-first nil
+        corfu-min-width 30
 
-  (setq company-global-modes '(not erc-mode message-mode help-mode
-                                   gud-mode eshell-mode shell-mode))
+        ;; hide scroll-bar
+        corfu-bar-width 0
+        corfu-right-margin-width 0)
 
-  (setq company-backends  '(company-capf
-                            ;; (company-capf company-citre :separate)
-                            (company-dabbrev-code company-keywords company-files)
-                            company-dabbrev))
+  (leaf corfu-terminal
+    :init (setq corfu-terminal-disable-on-gui nil)
+    :hook (global-corfu-mode-hook . corfu-terminal-mode))
 
-  (setq company-transformers '(company-sort-prefer-same-case-prefix))
+  :config
 
-  ;; ISSUE https://github.com/oantolin/orderless/issues/48#issuecomment-856750410
-  (defun ad/company-capf-keep-unchanged (orig-fn &rest args)
-    (let ((completion-styles '(basic partial-completion)))
-      (apply orig-fn args)))
-  (advice-add 'company-capf :around #'ad/company-capf-keep-unchanged)
+  (leaf kind-icon
+    :require t
+    :init
+    (setq kind-icon-use-icons nil
+          kind-icon-blend-frac 0.05
+          kind-icon-default-face 'corfu-default)
+    (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
-  ;; ---------------------- company-dabbrev -------------------------
-  (setq company-dabbrev-ignore-case nil
-        company-dabbrev-downcase nil
-        company-dabbrev-ignore-invisible t
-        company-dabbrev-other-buffers 'all)
+  (leaf cape
+    :require t
+    :config
+    (appendq! completion-at-point-functions
+              '(cape-keyword
+                cape-symbol
+                cape-file
+                cape-abbrev
+                cape-dabbrev
+                cape-history
+                cape-sgml
+                ;; cape-rfc1345
+                ;; cape-line
+                ;; cape-ispell
+                ;; cape-tex
+                ;; cape-dict
+                )))
 
-  ;; ------------------- company-dabbrev-code -----------------------
-  (setq company-dabbrev-code-everywhere t)
-
-  ;; SEE https://emacs-china.org/t/emacs-makefile-mode-company/18138/8
-  (defun makefile-company-setup ()
-    ;; (setq-local company-dabbrev-other-buffers nil)
-    (setq-local company-dabbrev-ignore-case t)
-    (setq-local company-keywords-ignore-case t)
-    (setq-local company-dabbrev-code-ignore-case t)
-    (setq-local company-backends '((company-dabbrev-code
-                                    company-keywords
-                                    company-yasnippet
-                                    company-dabbrev :separate))))
-  (add-hook 'makefile-mode-hook #'makefile-company-setup)
-
-  ;; ------------------------ company-tng ----------------------------
-
-  (leaf company-tng
-    :hook (global-company-mode-hook . company-tng-mode)
+  (leaf corfu-english-helper
+    :require t
     :bind
-    (:company-tng-map
-     ([return] . company-complete-selection)
-     ((kbd "RET") . company-complete-selection)
-     ([tab] . nil)
-     ;; ((kbd "TAB") . nil)
-     ([backtab] . nil)
-     ((kbd "S-TAB") . nil))
-    ;; HACK "TAB" keybindings fail in :bind
-    :defer-config
-    (keymap-set company-tng-map "TAB" nil)
-    )
-  )
+    (:corfu-map
+     ("\C-s" . corfu-english-helper-search))))
 
 (leaf yasnippet
   :commands yas-expand
@@ -93,7 +70,7 @@
   :bind
   (:yas-keymap
    ([tab] . yas-next-field)
-   ((kbd "TAB") . yas-next-field))
+   ("TAB" . yas-next-field))
   :init
   (setq yas-minor-mode-map nil)
   (setq yas-alias-to-yas/prefix-p nil)

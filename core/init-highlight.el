@@ -68,9 +68,8 @@
   (leaf diff-hl-dired
     :hook (dired-mode-hook . diff-hl-dired-mode-unless-remote))
 
-  ;; ;; BUG conflict with company-mode
-  ;; (leaf diff-hl-flydiff
-  ;;   :hook (diff-hl-mode-hook . diff-hl-flydiff-mode))
+  (leaf diff-hl-flydiff
+    :hook (diff-hl-mode-hook . diff-hl-flydiff-mode))
 
   ;; Integration with magit
   (with-eval-after-load 'magit

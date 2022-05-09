@@ -100,6 +100,7 @@
       ("C" "Truncated line" toggle-truncate-lines)
       ("W" "Word wrap" toggle-word-wrap)
       ("d" "Highlight face" highlight-defined-mode)
+      ("E" "English-helper" toggle-corfu-english-helper)
       ]
      [:description "Major"
       :if-derived markdown-mode

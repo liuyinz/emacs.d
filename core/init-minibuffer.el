@@ -103,13 +103,6 @@
        (lambda (str) (orderless--highlight input str))))
     (setq consult--regexp-compiler #'consult--orderless-regexp-compiler))
 
-  ;; ;; SEE https://github.com/oantolin/orderless#company
-  ;; (with-eval-after-load 'company
-  ;;   (defun ad/just-one-face (fn &rest args)
-  ;;     (let ((orderless-match-faces [completions-common-part]))
-  ;;       (apply fn args)))
-  ;;   (advice-add 'company-capf--candidates :around #'ad/just-one-face))
-
   ;; SEE https://github.com/cute-jumper/pinyinlib.el#pinyinlib-build-regexp-string
   (with-eval-after-load 'pinyinlib
     (defun ad/orderless-regexp-pinyin (args)

@@ -30,8 +30,7 @@
         doom-modeline-env-load-string "..."
         doom-modeline-vcs-max-length 20
         doom-modeline-window-width-limit (+ fill-column 20)
-        doom-modeline-buffer-file-name-style 'truncate-with-project
-        doom-modeline-env-python-executable "/usr/local/bin/python3"))
+        doom-modeline-buffer-file-name-style 'truncate-with-project))
 
 (leaf doom-themes
   :require t
@@ -59,7 +58,6 @@
      '(lazy-highlight ((t (:inherit match
                            :foreground nil
                            :background nil))))
-     '(completions-common-part ((t (:inherit match))))
      '(cursor ((t (:background "#a0b3c5"
                    :foreground "#1d252c"
                    ))))
@@ -69,12 +67,6 @@
      '(next-error-message ((t (:inherit unspecified
                                :background "#3d4451"
                                ))))
-
-     ;; ;; evil
-     ;; '(evil-ex-substitute-matches ((t (:inherit font-lock-warning-face
-     ;;                                   :weight bold
-     ;;                                   :inverse-video t))))
-     ;; '(evil-ex-substitute-replacement ((t (:inherit match))))
 
      ;; orderless
      '(orderless-match-face-0 ((t (:inherit font-lock-keyword-face
@@ -104,13 +96,13 @@
      '(vertico-current ((t (:foreground "white"
                             :background "#384551"
                             :extend t))))
-
-     ;; company
-     '(company-tooltip-mouse ((t (:inherit company-tooltip :background nil))))
-     '(company-tooltip-selection ((t (:inherit vertico-current :background nil))))
-     '(company-tooltip-search ((t (:inherit font-lock-variable-name-face
-                                   :background nil
-                                   :foreground nil))))
+     
+     '(completions-common-part ((t (:inherit font-lock-keyword-face))))
+     ;; corfu
+     '(corfu-default ((t (:background "#181f25"))))
+     '(corfu-current ((t (:inherit vertico-current
+                          :background nil
+                          :foreground nil))))
 
      ;;consult
      '(consult-file ((t (:inherit font-lock-doc-face))))

@@ -86,7 +86,7 @@
           "\\`\\(suspend\\|execute-extended\\|transient\\|indent\\electric\\)-.*\\'"
           "\\`\\(profiler-report\\|compilation\\|smerge\\)-.*\\'"
           ;; third-party
-          "\\`\\(keyfreq\\|vertico\\|evil\\|company\\|vundo\\|yas\\|vterm\\)-.*\\'"
+          "\\`\\(keyfreq\\|vertico\\|evil\\|corfu\\|vundo\\|yas\\|vterm\\)-.*\\'"
           "\\`\\(magit\\|helpful\\|web-mode\\|ilog\\|hungry-delete\\|meow\\)-.*\\'"
           "\\`\\(markdown-insert\\|markdown-table\\|my/transient\\|sis-set\\)-.*\\'"
           ))
@@ -110,7 +110,6 @@
           js-mode
           magit-mode-bury-buffer
           markdown-outdent-or-delete
-          my/company-yasnippet
           org-beginning-of-line
           org-ctrl-c-ctrl-c
           org-cycle

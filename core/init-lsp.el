@@ -10,6 +10,8 @@
   ;; SEE https://emacs-lsp.github.io/lsp-mode/page/performance/
   (setq lsp-keymap-prefix nil)
   (setq lsp-completion-enable t)
+  (setq lsp-completion-provider :none)
+  (setq lsp-idle-delay 0.3)
   (setq lsp-enable-snippet nil)
   (setq lsp-enable-links nil)
   (setq lsp-enable-folding nil)
@@ -38,7 +40,6 @@
 
   :defer-config
   (leaf lsp-modeline :require t)
-  
   (leaf consult-lsp :require t)
 
   ;; -------------------------- Imenu -------------------------------

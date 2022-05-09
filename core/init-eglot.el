@@ -11,7 +11,7 @@
   :defer-config
   
   ;; disable initialisation
-  (setq eglot-stay-out-of '(company flymake))
+  (setq eglot-stay-out-of '(flymake))
   
   ;; add taliwindcss server
   ;; (add-to-list 'eglot-server-programs '((web-mode :language-id "html") . ("tailwindcss-language-server")))
