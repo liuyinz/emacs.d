@@ -39,7 +39,6 @@
   (setq highlight-parentheses-colors nil
         highlight-parentheses-delay 0.05
         highlight-parentheses-highlight-adjacent t
-        ;; BUG highlight overlay cover margin face such as diff-hl
         highlight-parentheses-attributes '((:inverse-video t :weight bold))))
 
 ;; Highlight uncommitted changes using VC

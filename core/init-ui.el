@@ -59,14 +59,13 @@
                            :foreground nil
                            :background nil))))
      '(cursor ((t (:background "#a0b3c5"
-                   :foreground "#1d252c"
-                   ))))
+                   :foreground "#1d252c"))))
      '(isearch ((t (:inherit cursor))))
      '(link ((t (:weight normal))))
      '(next-error ((t (:inherit match))))
      '(next-error-message ((t (:inherit unspecified
-                               :background "#3d4451"
-                               ))))
+                               :background "#3d4451"))))
+     '(completions-common-part ((t (:inherit font-lock-keyword-face))))
 
      ;; orderless
      '(orderless-match-face-0 ((t (:inherit font-lock-keyword-face
@@ -96,8 +95,7 @@
      '(vertico-current ((t (:foreground "white"
                             :background "#384551"
                             :extend t))))
-     
-     '(completions-common-part ((t (:inherit font-lock-keyword-face))))
+
      ;; corfu
      '(corfu-default ((t (:background "#181f25"))))
      '(corfu-current ((t (:inherit vertico-current
@@ -115,9 +113,9 @@
      '(marginalia-date ((t (:inherit font-lock-keyword-face))))
 
      ;;diff-hl
-     '(diff-hl-change ((t (:foreground "#ebbf83" :background nil))))
-     '(diff-hl-insert ((t (:background nil))))
-     '(diff-hl-delete ((t (:background nil))))
+     '(diff-hl-change ((t (:foreground "#ebbf83" :background nil :inverse-video nil))))
+     '(diff-hl-insert ((t (:background nil :inverse-video nil))))
+     '(diff-hl-delete ((t (:background nil :inverse-video nil))))
      ;; yasnippet
      '(yas-field-highlight-face ((t (:inherit font-lock-variable-name-face
                                      :weight bold
