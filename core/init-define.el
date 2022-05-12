@@ -1,13 +1,109 @@
-;;; init-func.el --- Macro and Function defined by user -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-define.el --- Definition by user -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 
-;;; Code:
+;; ------------------------- Variable -----------------------------
 
-(require 'cl-lib)
-(require 'init-const)
+(defconst my/dir-core
+  (expand-file-name "core/" user-emacs-directory)
+  "User dir for Emacs configs.")
+
+(defconst my/dir-ext
+  (expand-file-name "ext/" user-emacs-directory)
+  "User dir for external tools.")
+
+(defconst my/dir-lib
+  (expand-file-name "lib/" user-emacs-directory)
+  "User dir for submodules.")
+
+(defconst my/dir-cache
+  (expand-file-name ".cache/" user-emacs-directory)
+  "User dir for recentf,places and so on.")
+
+(defconst user-home-page
+  "https://github.com/liuyinz"
+  "The Github Page of mine.")
+
+(defconst sys/win32p
+  (eq system-type 'windows-nt)
+  "Are we running on a WinTel system?")
+
+(defconst sys/linuxp
+  (eq system-type 'gnu/linux)
+  "Are we running on a GNU/Linux system?")
+
+(defconst sys/macp
+  (eq system-type 'darwin)
+  "Are we running on a Mac system?")
+
+(defconst sys/mac-x-p
+  (and (display-graphic-p) sys/macp)
+  "Are we running under X on a Mac system?")
+
+(defconst sys/mac-ns-p
+  (eq window-system 'ns)
+  "Are we running on a GNUstep or Macintosh Cocoa display?")
+
+(defconst sys/mac-cocoa-p
+  (featurep 'cocoa)
+  "Are we running with Cocoa on a Mac system?")
+
+(defconst sys/mac-port-p
+  (eq window-system 'mac)
+  "Are we running a macport build on a Mac system?")
+
+(defconst sys/linux-x-p
+  (and (display-graphic-p) sys/linuxp)
+  "Are we running under X on a GNU/Linux system?")
+
+(defconst sys/cygwinp
+  (eq system-type 'cygwin)
+  "Are we running on a Cygwin system?")
+
+(defconst sys/rootp
+  (string-equal "root" (getenv "USER"))
+  "Are you using ROOT user?")
+
+(defconst emacs/>=25p
+  (>= emacs-major-version 25)
+  "Emacs is 25 or above.")
+
+(defconst emacs/>=26p
+  (>= emacs-major-version 26)
+  "Emacs is 26 or above.")
+
+(defconst emacs/>=27p
+  (>= emacs-major-version 27)
+  "Emacs is 27 or above.")
+
+(defconst emacs/>=28p
+  (>= emacs-major-version 28)
+  "Emacs is 28 or above.")
+
+(defconst emacs/>=29p
+  (>= emacs-major-version 29)
+  "Emacs is 29 or above.")
+
+(defconst emacs/>=25.2p
+  (or emacs/>=26p
+      (and (= emacs-major-version 25)
+           (>= emacs-minor-version 2)))
+  "Emacs is 25.2 or above.")
+
+(defconst emacs/>=25.3p
+  (or emacs/>=26p
+      (and (= emacs-major-version 25)
+           (>= emacs-minor-version 3)))
+  "Emacs is 25.3 or above.")
+
+(defconst emacs/>=28.1p
+  (or emacs/>=29p
+      (and (= emacs-major-version 28)
+           (>= emacs-minor-version 1)))
+  "Emacs is 28.1 or above.")
 
 ;; -------------------------- Macro -------------------------------
+(require 'cl-lib)
 
 (defmacro message! (arg)
   "Echo `ARG' info."
@@ -264,7 +360,6 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
                         (funcall mode (when (xor hook enable) -1)))))
         alist))
 
-
 (defun tty-frame-list ()
   "Return a list of all tty frames, except the daemon <frame F1>."
   (seq-filter (lambda (f) (frame-parameter f 'tty))
@@ -281,5 +376,45 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
     (cons (apply 'call-process program nil (current-buffer) nil args)
           (buffer-string))))
 
-(provide 'init-func)
-;;; init-lib.el ends here
+;; --------------------------- Hook -------------------------------
+
+;; SEE https://www.reddit.com/r/emacs/comments/lelbr5/how_to_start_emacsclient_such_that_it_respects_my/gmhbyv7?utm_source=share&utm_medium=web2x&context=3
+;; https://github.com/purcell/emacs.d/blob/adf337dfa8c324983e5dc01ed055a34c3cc4a964/lisp/init-frame-hooks.el
+
+(defvar after-load-theme-hook nil
+  "Hook run after a color theme is loaded using `load-theme'.")
+(defun run-after-load-theme-hook (&rest _)
+  "Run `after-load-theme-hook'."
+  (run-hooks 'after-load-theme-hook))
+(advice-add #'load-theme :after #'run-after-load-theme-hook)
+
+(defvar after-make-console-frame-hook '()
+  "Hooks to run after creating a new TTY frame.")
+
+(defvar after-make-window-system-frame-hook '()
+  "Hooks to run after creating a new window-system frame.")
+
+(defun my/frame-setup ()
+  "Setup for frame related hooks."
+  (run-hooks (if (display-graphic-p)
+                 'after-make-window-system-frame-hook
+               'after-make-console-frame-hook)))
+(add-hook 'server-after-make-frame-hook #'my/frame-setup)
+
+(defun my/frame-no-server-setup (frame)
+  "Run configured hooks in response to the newly-created FRAME.
+Selectively runs either `after-make-console-frame-hooks' or
+`after-make-window-system-frame-hooks'"
+  (unless (daemonp)
+    (with-selected-frame frame
+      (my/frame-setup))))
+(add-hook 'after-make-frame-functions 'my/frame-no-server-setup)
+
+(defconst my/initial-frame (selected-frame)
+  "The frame (if any) active during Emacs initialization.")
+(add-hook 'after-init-hook
+          (lambda () (when my/initial-frame
+                       (my/frame-no-server-setup my/initial-frame))))
+
+(provide 'init-define)
+;;; init-define.el ends here

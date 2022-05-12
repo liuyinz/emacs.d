@@ -94,12 +94,6 @@ Lisp function does not specify a special indentation."
                                       (setq-local lisp-indent-function
                                                   #'my/lisp-indent-function)))))
 
-;; Syntax highlighting of known Elisp symbols
-(leaf highlight-defined
-  :hook (emacs-lisp-mode-hook . highlight-defined-mode)
-  :init
-  (setq highlight-defined-face-use-itself t))
-
 ;; Add demos for help
 (leaf elisp-demos
   :commands elisp-demos-find-demo)

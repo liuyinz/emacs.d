@@ -41,7 +41,11 @@
         highlight-parentheses-highlight-adjacent t
         highlight-parentheses-attributes '((:inverse-video t :weight bold))))
 
-;; Highlight uncommitted changes using VC
+;; Syntax highlighting of known Elisp symbols
+(leaf highlight-defined
+  :init (setq highlight-defined-face-use-itself t))
+
+;; BUG confilct with meow in cursor shape
 (leaf diff-hl
   :hook (after-init-hook . global-diff-hl-mode)
   :init

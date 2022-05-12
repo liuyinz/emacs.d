@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-const)
-
-;; BUG confilct with meow in mouse shape
 (leaf corfu
   :hook (after-init-hook . global-corfu-mode)
   :bind

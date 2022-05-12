@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'init-const)
-
 ;; --------------------------- Edit -------------------------------
 
 (leaf hungry-delete

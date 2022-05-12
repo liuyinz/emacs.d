@@ -6,13 +6,6 @@
 
 ;; (require 'subr-x)
 
-(defvar after-load-theme-hook nil
-  "Hook run after a color theme is loaded using `load-theme'.")
-(defun run-after-load-theme-hook (&rest _)
-  "Run `after-load-theme-hook'."
-  (run-hooks 'after-load-theme-hook))
-(advice-add #'load-theme :after #'run-after-load-theme-hook)
-
 (leaf doom-modeline
   :hook (after-init-hook . doom-modeline-mode)
   :init

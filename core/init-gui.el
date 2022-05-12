@@ -7,6 +7,23 @@
 
 ;;; Code:
 
+(leaf exec-path-from-shell
+  :hook (after-make-window-frame-hook . exec-path-from-shell-initialize)
+  :init
+  (setq exec-path-from-shell-variables '("PATH" "MANPATH" "PYTHONPATH" "GOPATH")
+        ;; Only need to load .zshenv variable
+        exec-path-from-shell-arguments nil)
+  :defer-config
+
+  ;; SEE https://github.com/manateelazycat/cache-path-from-shell/blob/master/cache-path-from-shell.el
+  (defvar cache-path-from-shell-loaded-p nil)
+  (defun ad/cache-path-from-shell (fn &rest _)
+    "Cache $PATH once for all."
+    (unless cache-path-from-shell-loaded-p
+      (funcall fn)
+      (setq cache-path-from-shell-loaded-p t)))
+  (advice-add 'exec-path-from-shell-initialize :around #'ad/cache-path-from-shell))
+
 ;; REQUIRE pip3 install my-cookies
 (leaf leetcode
   :init
