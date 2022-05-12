@@ -4,6 +4,7 @@
 
 (require 'init-const)
 
+;; BUG confilct with meow in mouse shape
 (leaf corfu
   :hook (after-init-hook . global-corfu-mode)
   :bind
@@ -129,8 +130,11 @@ $0`(yas-escape-text yas-selected-text)`")
 ;;   (setq citre-completion-case-sensitive nil
 ;;         citre-default-create-tags-file-location 'global-cache
 ;;         citre-use-project-root-when-creating-tags t
-;;         citre-prompt-language-for-ctags-command t
-;;         citre-project-root-function #'projectile-project-root))
+;;         citre-prompt-language-for-ctags-command t)
+
+;;   (with-eval-after-load 'projectile
+;;     (setq citre-project-root-function #'projectile-project-root))
+;;   )
 
 (provide 'init-completion)
 ;;; init-completion.el ends here

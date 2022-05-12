@@ -110,7 +110,7 @@
       (setf (car args) (pinyinlib-build-regexp-string (car args)))
       args)
     (advice-add 'orderless-regexp :filter-args #'ad/orderless-regexp-pinyin))
-  
+
   )
 
 ;; TODO consult-browser-bookmark consult-browser-history
@@ -121,7 +121,9 @@
   (setq consult-async-split-style 'semicolon)
   (setq consult-line-start-from-top t)
   (setq consult-find-config "fd --color=never --full-path ARG OPTS")
-  (setq consult-project-function #'projectile-project-root)
+
+  (with-eval-after-load 'projectile
+    (setq consult-project-function #'projectile-project-root))
 
   :bind
   ([remap switch-to-buffer] . consult-buffer)

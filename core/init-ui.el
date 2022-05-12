@@ -21,7 +21,6 @@
         doom-modeline-height 15
         doom-modeline-persp-name nil
         doom-modeline-irc nil
-        doom-modeline-project-detection 'projectile
         doom-modeline-minor-modes nil
         doom-modeline-enable-word-count nil
         doom-modeline-buffer-encoding nil
@@ -31,6 +30,9 @@
         doom-modeline-vcs-max-length 20
         doom-modeline-window-width-limit (+ fill-column 20)
         doom-modeline-buffer-file-name-style 'truncate-with-project))
+
+(with-eval-after-load 'projectile
+  (setq doom-modeline-project-detection 'projectile))
 
 (leaf doom-themes
   :require t
