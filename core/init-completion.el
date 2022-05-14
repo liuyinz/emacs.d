@@ -15,7 +15,7 @@
   :init
   (setq corfu-auto t
         corfu-auto-prefix 1
-        corfu-auto-delay 0.4
+        corfu-auto-delay 0.3
         corfu-cycle t
         corfu-preselect-first nil
         corfu-min-width 30
@@ -28,13 +28,22 @@
     :init (setq corfu-terminal-disable-on-gui nil)
     :hook (global-corfu-mode-hook . corfu-terminal-mode))
 
+  (leaf corfu-history
+    :init (add-to-list 'savehist-additional-variables 'corfu-history)
+    :hook (global-corfu-mode-hook . corfu-history-mode))
+
   :config
+
+  ;; ISSUE https://github.com/oantolin/orderless/issues/48#issuecomment-856750410
+  (defun ad/corfu-style-keep-unchanged (orig-fn &rest args)
+    (let ((completion-styles '(basic orderless)))
+      (apply orig-fn args)))
+  (advice-add 'corfu--recompute-candidates :around #'ad/corfu-style-keep-unchanged)
 
   (leaf kind-icon
     :require t
     :init
     (setq kind-icon-use-icons nil
-          kind-icon-blend-frac 0.05
           kind-icon-default-face 'corfu-default)
     (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 

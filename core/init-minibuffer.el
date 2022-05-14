@@ -50,7 +50,7 @@
   :after vertico
   :init
   (setq orderless-matching-styles '(orderless-literal orderless-regexp))
-  (setq completion-styles '(basic orderless))
+  (setq completion-styles '(orderless basic))
 
   :defer-config
 
