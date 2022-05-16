@@ -59,8 +59,18 @@
      '(link ((t (:weight normal))))
      '(next-error ((t (:inherit match))))
      '(next-error-message ((t (:inherit unspecified
-                               :background "#3d4451"))))
+                               :background "#384551"))))
      '(completions-common-part ((t (:inherit font-lock-keyword-face))))
+     '(secondary-selection ((t (:background "#384551"))))
+
+     ;; meow
+     '(meow-normal-indicator ((t (:inherit font-lock-keyword-face :bold t))))
+     '(meow-insert-indicator ((t (:inherit font-lock-warning-face :bold t))))
+     '(meow-beacon-indicator ((t (:inherit font-lock-type-face :bold t))))
+     '(meow-keypad-indicator ((t (:inherit font-lock-function-name-face :bold t))))
+     '(meow-motion-indicator ((t (:inherit font-lock-string-face :bold t))))
+     '(meow-search-indicator ((t (:inherit font-lock-variable-name-face :bold t))))
+     '(meow-beacon-fake-cursor ((t :inherit meow-beacon-indicator :inverse-video t)))
 
      ;; orderless
      '(orderless-match-face-0 ((t (:inherit font-lock-keyword-face
