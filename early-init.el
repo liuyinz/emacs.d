@@ -39,31 +39,38 @@
         (:eval (if (buffer-modified-p)
                    " *"))))
 
-;; Calculating width differently in terminal and window system
-;; SEE https://www.gnu.org/software/emacs/manual/html_node/elisp/Frame-Layout.html
+;; SEE https://www.gnu.org/software/emacs/manual/html_node/elisp/Frame-Layout.html#index-frame_002dedges
+;; frame position in pixels
+;; (frame-edges nil 'outer-edges)
+;; = "outer-border" + (frame-edges nil 'native-edges)
+;; = "outer-border" + "internal-border" + (frame-edges nil 'inner-edges)
+
 ;; SEE https://www.gnu.org/software/emacs/manual/html_node/elisp/Layout-Parameters.html
+;; frame width in pixels
 ;; (frame-outer-width)
-;; = (frame-border-width) + (frame-native-width)
-;; = (frame-border-width) + (frame-internal-border-width) + (frame-inner-width)
-;; = (frame-border-width) + (frame-internal-border-width) + (frame-scroll-bar-width) + (frame-fringe-width) + (frame-text-width);;(frame-width)
+;; = (frame-native-width) + "external-border,gui only"|"outer-border,child-frame or tooltip only"
+;; = (frame-internal-border-width)|(frame-border-width) + (frame-inner-width)
+;; = (frame-internal-border-width)|(frame-border-width) + (frame-scroll-bar-width) + (frame-fringe-width) + (frame-text-width)|(frame-width)
+
+;; SEE https://www.gnu.org/software/emacs/manual/html_node/elisp/Fringe-Size_002fPos.html
+;; margin belong to buffer, fringe belong to windows frame
+;; (frame-width) = (window-margins) + "maximal column number"
+
 (setq default-frame-alist
       '((menu-bar-lines . 0)
         (tool-bar-lines . 0)
         (vertical-scroll-bars . nil)
         (horizontal-scroll-bars . nil)
-        ;; margin belong to buffer, fringe belong to windows frame
-        ;; SEE https://www.gnu.org/software/emacs/manual/html_node/elisp/Fringe-Size_002fPos.html
         (left-fringe . 0)
         (right-fringe . 0)
-        (minibuffer . t)
-        (font . "Sarasa Mono SC 16")
-        ;; (alpha . (98 . 100))
-        (fullscreen . fullheight)
+        (internal-border-width . 0)
         (width . 90) ; (frame-text-width) half 90,full 180
+        (fullscreen . fullheight)
         (background-mode . dark)
         (background-color . "#1d252c")
         (foreground-color . "#bbc2cf")
-        ))
+        ;; (alpha . (98 . 100))
+        (font . "Sarasa Mono SC 16")))
 
 (when (featurep 'ns)
   ;; disable icon and text in frame title
