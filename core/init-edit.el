@@ -106,21 +106,15 @@
     (unwind-protect
         (evil-ex (concat "%s/" (rg-search-pattern rg-cur-search)))
       (wgrep-finish-edit)))
-  (rg-menu-transient-insert "Rerun" "R" "Replace" #'rg-replace)
-  )
+  (rg-menu-transient-insert "Rerun" "R" "Replace" #'rg-replace))
 
-;; FIXME s-v is ok,s-c is disable in emacs -nw still, use EVIL copy instead.
-(leaf xclip
-  :hook (after-make-console-frame-hook . xclip-mode))
-
-(leaf cliphist
+;; NOTE command-key [super] couldn't identifiled in emacs -nw
+;; PR https://github.com/rolandwalker/simpleclip/pull/20
+(leaf simpleclip
   :init
-  (setq cliphist-cc-kill-ring t)
-  (with-eval-after-load 'xclip
-    (setq cliphist-select-item-callback
-          (lambda (num str)
-            (xclip-set-selection 'clipboard str))))
-  )
+  (setq simpleclip-less-feedback t
+        simpleclip-unmark-on-copy t)
+  :hook (after-init-hook . simpleclip-mode))
 
 ;; --------------------------- Undo -------------------------------
 
