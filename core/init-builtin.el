@@ -30,7 +30,8 @@
 (leaf frame
   :init
   (setq blink-cursor-blinks 0)
-  ;; menu-bar-mode would called forced before gui-frame in Macos
+  
+  ;; HACK menu-bar-mode would called forced before gui-frame in Macos
   (add-hook 'after-make-window-system-frame-hook (lambda () (menu-bar-mode -1)))
 
   ;; set vertical split bar to "│"
@@ -182,7 +183,8 @@
         save-silently t
         ;; large-file-warning-threshold nil
         confirm-kill-processes nil
-        find-file-suppress-same-file-warnings t)
+        find-file-suppress-same-file-warnings t
+        find-file-visit-truename t)
 
   ;; ISSUE https://github.com/emacsorphanage/osx-trash/issues/5#issuecomment-882759527
   (setq delete-by-moving-to-trash t)
