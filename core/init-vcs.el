@@ -42,8 +42,8 @@
       '(1 0 -1)
       '("c" "changelog" conventional-changelog-menu))))
 
-(leaf git-commit-insert-issue
-  :hook (git-commit-mode-hook . git-commit-insert-issue-mode))
+;; (leaf git-commit-insert-issue
+;;   :hook (git-commit-mode-hook . git-commit-insert-issue-mode))
 
 (leaf gitignore-templates
   :init
@@ -58,24 +58,40 @@
        ("i" "select pattern" gitignore-templates-insert)])))
 
 (leaf magit
-  :init
-  (setq magit-no-confirm t
-        magit-save-repository-buffers 'dontask
-        magit-auto-revert-immediately t
-        magit-submodule-remove-trash-gitdirs t
-        ;; SEE https://magit.vc/manual/magit/Diff-Options.html
-        ;; magit-diff-refine-hunk nil
-        magit-diff-paint-whitespace-lines 'all
-        magit-fetch-modules-jobs 7)
-  :bind
-  ((kbd "C-c l") . magit-dispatch)
-
+  :bind ((kbd "C-c l") . magit-dispatch)
   :defer-config
+  (setq magit-slow-confirm nil)
+  (setq magit-auto-revert-immediately t)
+  (setq magit-save-repository-buffers 'dontask
+        magit-bury-buffer-function #'magit-restore-window-configuration)
+
+  ;; Display fullframe buffer in some magit-*-modes
+  (defvar magit-modes-display-fullframe-selected
+    '(magit-log-mode magit-reflog-mode magit-submodule-list-mode)
+    "List of modes related to magit to display in fullframe.")
+  (defun my/magit-display-buffer-fullframe-selected (buffer)
+    "Display BUFFER, filling entier frame if BUFFER's major mode included in
+ `magit-modes-display-fullframe-selected'.
+Otherwise, behave like `magit-display-buffer-traditional'."
+    (if (member (buffer-local-value 'major-mode buffer)
+                magit-modes-display-fullframe-selected)
+        (display-buffer buffer '(magit--display-buffer-fullframe))
+      (magit-display-buffer-traditional buffer)))
+  (setq magit-display-buffer-function #'my/magit-display-buffer-fullframe-selected)
+
+  ;; -------------------------- section ------------------------------
+
   (prependq! magit-section-initial-visibility-alist
              '((untracked . hide)
                (unpushed  . show)))
 
-  ;; ------------------------- submodul -----------------------------
+  ;; -------------------------- commit ------------------------------
+
+  (setq magit-commit-reword-override-date nil)
+
+  ;; ------------------------- submodule ----------------------------
+
+  (setq magit-submodule-remove-trash-gitdirs t)
 
   ;; add module in `magit-status'
   (magit-add-section-hook 'magit-status-sections-hook
@@ -97,6 +113,19 @@
         (apply orig-fn args))))
   (advice-add 'magit-diff--get-value :around #'ad/ignore-submodules-more-than-max)
 
+  ;; ---------------------------- log --------------------------------
+
+  ;; Predefined log command arguments
+  (with-eval-after-load 'magit-log
+    (put 'magit-log-mode 'magit-log-default-arguments
+         '("--graph" "-n256" "--decorate" "--color")))
+
+  ;; --------------------------- diff -------------------------------
+
+  ;; SEE https://magit.vc/manual/magit/Diff-Options.html
+  (setq magit-diff-refine-hunk 'all
+        magit-diff-refine-ignore-whitespace t
+        magit-diff-paint-whitespace-lines 'all)
   )
 
 (provide 'init-vcs)
