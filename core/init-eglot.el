@@ -18,13 +18,14 @@
 
   (with-eval-after-load 'consult-imenu
     (appendq! consult-imenu-config
-              '((js2-mode :types
+              '((js-mode :types
                   ((?c "Class"     font-lock-type-face)
                    (?f "Function"  font-lock-function-name-face)
                    (?s "Constant"  font-lock-constant-face)
                    (?m "Method"    font-lock-string-face)
                    (?p "Property"  font-lock-builtin-face)
-                   (?v "Variable"  font-lock-variable-name-face)))
+                   (?v "Variable"  font-lock-variable-name-face)
+                   (?e "Fields"     font-lock-warning-face)))
                 (python-mode :types
                   ((?c "Class"     font-lock-type-face)
                    (?f "Function"  font-lock-function-name-face)

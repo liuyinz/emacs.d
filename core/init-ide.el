@@ -52,11 +52,6 @@
          (flycheck-package-setup)
          (flycheck-relint-setup)))
 
-      (js2-mode
-       (when (executable-find "eslint")
-         (flycheck-add-mode 'javascript-eslint major-mode)
-         (flycheck-select-checker 'javascript-eslint)))
-
       ((mhtml-mode html-mode web-mode)
        (when (executable-find "tidy")
          (flycheck-add-mode 'html-tidy major-mode)
@@ -73,6 +68,11 @@
        (when (and (string= "js" (file-name-extension (buffer-name)))
                   (executable-find "eslint"))
          (flycheck-select-checker 'javascript-eslint)))
+
+      ;; (js2-mode
+      ;;  (when (executable-find "eslint")
+      ;;    (flycheck-add-mode 'javascript-eslint major-mode)
+      ;;    (flycheck-select-checker 'javascript-eslint)))
 
       (scss-mode
        (when (executable-find "stylelint")

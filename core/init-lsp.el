@@ -5,7 +5,7 @@
 ;; ------------------------- Default ------------------------------
 
 (leaf lsp-mode
-  :hook ((js2-mode-hook bash-mode-hook go-mode-hook) . lsp-deferred)
+  :hook ((js-mode-hook bash-mode-hook go-mode-hook) . lsp-deferred)
   :init
   ;; SEE https://emacs-lsp.github.io/lsp-mode/page/performance/
   (setq lsp-keymap-prefix nil)
@@ -51,13 +51,14 @@
 
   (with-eval-after-load 'consult-imenu
     (appendq! consult-imenu-config
-              '((js2-mode :types
+              '((js-mode :types
                   ((?c "Classes"    font-lock-type-face)
                    (?f "Functions"  font-lock-function-name-face)
                    (?s "Constants"  font-lock-constant-face)
                    (?m "Methods"    font-lock-string-face)
                    (?p "Properties" font-lock-builtin-face)
-                   (?v "Variables"  font-lock-variable-name-face)))
+                   (?v "Variables"  font-lock-variable-name-face)
+                   (?e "Fields"     font-lock-warning-face)))
                 (python-mode :types
                   ((?c "Classes"    font-lock-type-face)
                    (?f "Functions"  font-lock-function-name-face)

@@ -82,16 +82,16 @@
         js-chain-indent t
         js-jsx-indent-level 2))
 
-(leaf js2-mode
-  :mode
-  ("\\.js\\'" . js2-mode)
-  ("\\.jsx\\'" . js2-minor-mode)
-  :interpreter ("node" . js2-mode)
-  :init
-  (setq js2-mode-assume-strict nil)
-  (setq js2-strict-missing-semi-warning nil)
-  (setq js2-mode-show-strict-warnings nil)
-  (setq js2-mode-show-parse-errors nil))
+;; (leaf js2-mode
+;;   :mode
+;;   ("\\.js\\'" . js2-mode)
+;;   ("\\.jsx\\'" . js2-minor-mode)
+;;   :interpreter ("node" . js2-mode)
+;;   :init
+;;   (setq js2-mode-assume-strict nil)
+;;   (setq js2-strict-missing-semi-warning nil)
+;;   (setq js2-mode-show-strict-warnings nil)
+;;   (setq js2-mode-show-parse-errors nil))
 
 (leaf imenu-extra)
 
