@@ -9,10 +9,10 @@
           bash-mode-hook
           go-mode-hook) . eglot-ensure)
   :defer-config
-  
-  ;; disable initialisation
+
   (setq eglot-stay-out-of '(flymake))
-  
+  (setq eglot-events-buffer-size 0)
+
   ;; add taliwindcss server
   ;; (add-to-list 'eglot-server-programs '((web-mode :language-id "html") . ("tailwindcss-language-server")))
 
