@@ -330,7 +330,8 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   (interactive)
   (let ((begin (point-min))
         (end (point-max)))
-    (indent-region begin end nil)))
+    (indent-region begin end nil)
+    (whitespace-cleanup-region begin end)))
 
 (defun toggle-profiler ()
   "Start,stop or report in one command."

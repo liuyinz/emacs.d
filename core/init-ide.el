@@ -38,7 +38,7 @@
          (flycheck-select-checker 'sh-shellcheck)))
 
       ;; REQUIRE brew install jq
-      (json-mode
+      ((json-mode jsonian-mode)
        (when (executable-find "jq")
          (flycheck-select-checker 'json-jq)))
 
@@ -124,25 +124,26 @@
 (leaf editorconfig
   :hook (shell-mode-hook . editorconfig-mode))
 
-(leaf format-all
-  :init
-  (setq format-all-debug t)
-  (advice-add 'format-all-buffer :before #'format-all-ensure-formatter)
-
-  ;; silent ensure message
-  ;; (advice-add #'format-all-ensure-formatter :around #'ad/silent-message)
-
-  (defun my/format ()
-    "Formating files."
-    (interactive)
-    (cl-case major-mode
-      (gitconfig-mode (run-general! indent-region indent-whole-buffer))
-      (t (run-general! format-all-region format-all-buffer))))
+(leaf apheleia
   :defer-config
-  ;; SEE https://google.github.io/styleguide/shellguide.html
-  (prependq! format-all-default-formatters '(("JSONC" prettier)
-                                             ("Shell" (shfmt "-i" "2" "-bn" "-ci"))))
+  (setq apheleia-hide-log-buffers t)
+  (prependq! apheleia-mode-alist
+             '((jsonian-mode . prettier)))
+
+  (prependq! apheleia-formatters
+             '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))))
+  
   )
+
+(defun my/format ()
+  "Formating current buffer."
+  (interactive)
+  (cl-case major-mode
+    ((emacs-lisp-mode lisp-interaction-mode)
+     (indent-whole-buffer))
+    (t
+     (call-interactively #'apheleia-format-buffer))))
+
 
 (provide 'init-ide)
 ;;; init-ide.el ends here
