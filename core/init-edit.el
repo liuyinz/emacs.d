@@ -69,6 +69,7 @@
     (pcase major-mode
       ('snippet-mode (yas-edit-elisp-indirect))
       ((or 'markdown-mode 'gfm-mode) (markdown-edit-code-block))
+      ('jsonian-mode (jsonian-edit-string))
       (_ nil)))
   )
 

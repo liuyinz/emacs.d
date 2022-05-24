@@ -114,7 +114,7 @@
   (cl-case major-mode
     ((emacs-lisp-mode lisp-interaction-mode)
      (run-general! eval-region eval-buffer))
-    ((js-mode js2-mode)
+    ((js-mode js2-mode jsonian-mode)
      (run-general! nodejs-repl-send-region nodejs-repl-send-buffer))
     (python-mode (run-python))
     (t (message "no repl for selected mode"))))
@@ -132,7 +132,6 @@
 
   (prependq! apheleia-formatters
              '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))))
-  
   )
 
 (defun my/format ()

@@ -35,8 +35,16 @@
 
 ;; -------------------------- Plugin ------------------------------
 
-(leaf json-mode
-  :mode "\\.\\(json\\|versionrc\\)\\'")
+(leaf jsonian
+  :mode "\\.\\(jsonc\\|versionrc\\)\\'"
+  :init
+  (setq jsonian-spaces-per-indentation 2)
+  :defer-config
+  (with-eval-after-load 'flycheck
+    (jsonian-enable-flycheck))
+  (with-eval-after-load 'so-long
+    (jsonian-no-so-long-mode))
+  )
 
 (leaf lua-mode
   :init

@@ -135,7 +135,6 @@
       ("i w" "Web search" webjump)
       ("i g" "Github browse" browse-at-remote)
       ("i m" "Version messages" vc-msg-show)
-      ("i p" "Paste selection" cliphist-paste-item)
       ("i i" "Edit indirect" my/edit-indirect)
       ("i y" "Insert yasnippet" consult-yasnippet :if-non-nil yas-minor-mode)]
      [:description "diff-hl"
