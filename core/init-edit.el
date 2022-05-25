@@ -139,9 +139,7 @@
    ("l" . vundo-forward)
    ("h" . vundo-backward)
    ("j" . vundo-next)
-   ("k" . vundo-previous)
-   ((kbd "<escape>") . vundo-quit)
-   ((kbd "ESC") . vundo-quit)))
+   ("k" . vundo-previous)))
 
 ;; --------------------------- Jump -------------------------------
 
