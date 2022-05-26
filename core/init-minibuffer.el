@@ -15,7 +15,9 @@
   (:vertico-map
    ((kbd "RET") . vertico-directory-enter)
    ((kbd "DEL") . vertico-directory-delete-char))
+
   :defer-config
+
   ;; HACK inspired by vertico-reverse
   (defun ad/vertico--display-prompt-bottom (lines)
     "Set prompt line to bottom in `vertico-mode'."
@@ -37,7 +39,6 @@
             cand))
   (advice-add #'vertico--format-candidate :around #'ad/vertico-customize-candidate)
 
-  ;; -------------------------- Extra ------------------------------
   )
 
 (leaf marginalia
@@ -48,13 +49,24 @@
 
 (leaf orderless
   :after vertico
-  :init
-  (setq orderless-matching-styles '(orderless-literal orderless-regexp))
-  (setq completion-styles '(orderless basic))
-
+  :require t
   :defer-config
-
+  
   ;; SEE https://github.com/minad/consult/wiki#minads-orderless-configuration
+  (setq completion-styles '(orderless basic)
+        orderless-component-separator #'orderless-escapable-split-on-space)
+
+  ;; Apply orderless style with initialism in category
+  (orderless-define-completion-style my/orderless-with-initialism
+    (orderless-matching-styles '(orderless-initialism orderless-literal orderless-regexp)))
+  (setq completion-category-defaults nil
+        completion-category-overrides
+        '((file     (styles partial-completion))
+          (command  (styles my/orderless-with-initialism))
+          (variable (styles my/orderless-with-initialism))
+          (symbol   (styles my/orderless-with-initialism))))
+
+  ;; define dispatch
   (defvar my/orderless-dispatch-alist
     '((?% . char-fold-to-regexp)
       (?! . orderless-without-literal)
@@ -62,14 +74,6 @@
       (?= . orderless-literal)
       (?~ . orderless-flex)))
 
-  ;; Recognizes the following patterns:
-  ;; * ~flex flex~
-  ;; * =literal literal=
-  ;; * %char-fold char-fold%
-  ;; * `initialism initialism`
-  ;; * !without-literal without-literal!
-  ;; * .ext (file extension)
-  ;; * regexp$ (regexp matching at end)
   (defun my/orderless-dispatch (pattern index _total)
     (cond
      ;; Ensure that $ works with Consult commands, which add disambiguation suffixes
@@ -90,9 +94,7 @@
           (cons (cdr x) (substring pattern 1))
         (when-let (x (assq (aref pattern (1- (length pattern))) my/orderless-dispatch-alist))
           (cons (cdr x) (substring pattern 0 -1)))))))
-
-  (setq orderless-component-separator #'orderless-escapable-split-on-space
-        orderless-style-dispatchers '(my/orderless-dispatch))
+  (setq orderless-style-dispatchers '(my/orderless-dispatch))
 
   ;; SEE https://github.com/minad/consult/wiki#use-orderless-as-pattern-compiler-for-consult-grepripgrepfind
   (with-eval-after-load 'consult
@@ -116,6 +118,11 @@
 ;; TODO consult-browser-bookmark consult-browser-history
 (leaf consult
   :after vertico
+  :bind
+  ([remap switch-to-buffer] . consult-buffer)
+  ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
+  ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
+
   :init
   (setq consult-async-min-input 1)
   (setq consult-async-split-style 'semicolon)
@@ -124,11 +131,6 @@
 
   (with-eval-after-load 'projectile
     (setq consult-project-function #'projectile-project-root))
-
-  :bind
-  ([remap switch-to-buffer] . consult-buffer)
-  ([remap switch-to-buffer-other-window] . consult-buffer-other-window)
-  ([remap switch-to-buffer-other-frame] . consult-buffer-other-frame)
 
   :defer-config
 
@@ -237,30 +239,26 @@
         register-preview-function #'consult-register-format)
 
   ;; Integrate with `leaf'
+  (require 'consult-imenu)
   (setq consult-imenu-config
         '((emacs-lisp-mode
-           :toplevel "Functions"
            :types
            ((?f "Functions" font-lock-function-name-face)
             (?m "Macros"    font-lock-function-name-face)
             (?l "Leaf"      font-lock-constant-face)
             (?t "Types"     font-lock-type-face)
-            (?v "Variables" font-lock-variable-name-face)))
-          (sh-mode
-           :types
-           ((?f "Functions" font-lock-function-name-face)
-            (?v "Variables" font-lock-variable-name-face)))
-          ))
+            (?v "Variables" font-lock-variable-name-face)))))
 
   ;; (require 'consult-compile)
 
   ;; ------------------------- Function -----------------------------
 
-  (setq completion-in-region-function (lambda (&rest args)
-                                        (apply (if vertico-mode
-                                                   #'consult-completion-in-region
-                                                 #'completion--in-region)
-                                               args)))
+  (setq completion-in-region-function
+        (lambda (&rest args)
+          (apply (if vertico-mode
+                     #'consult-completion-in-region
+                   #'completion--in-region)
+                 args)))
   )
 
 (leaf consult-dir
@@ -275,7 +273,9 @@
                (lambda (p) (abbreviate-file-name (file-name-as-directory p)))
                ;; REQUIRE export `ZLUA_SCRIPT' in parent-shell
                (split-string (shell-command-to-string
-                              "lua $ZLUA_SCRIPT -l | perl -lane 'print $F[1]'") "\n" t))))
+                              "lua $ZLUA_SCRIPT -l | perl -lane 'print $F[1]'")
+                             "\n" t))))
+
   (defvar consult-dir--source-zlua
     `(:name     "Zlua"
       :narrow   ?z

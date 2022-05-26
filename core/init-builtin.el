@@ -316,7 +316,7 @@ CHAR-FUNCTION
   ([remap comment-dwim] . #'newcomment-toggle)
   :defer-config
   (defun newcomment-toggle (n)
-    "Toggle the comments as evil-nerd-comment."
+    "Toggle the comments."
     (interactive "*p")
     (if (or (use-region-p)
             (save-excursion

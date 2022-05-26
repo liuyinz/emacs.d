@@ -11,37 +11,56 @@
    ([escape] . corfu-reset)
    ("ESC"    . corfu-reset)
    ([?\C- ]  . corfu-insert-separator)
-   ("\C- "   . corfu-insert-separator))
+   ("\C- "   . corfu-insert-separator)
+   ("\C-h"   . corfu-doc-toggle)
+   ("\C-f"   . corfu-doc-scroll-up)
+   ("\C-b"   . corfu-doc-scroll-down)
+   ("\C-s"   . corfu-english-helper-search))
   :init
   (setq corfu-auto t
         corfu-auto-prefix 1
         corfu-auto-delay 0.3
         corfu-cycle t
         corfu-preselect-first nil
-        corfu-min-width 30
+        corfu-min-width 25
 
         ;; hide scroll-bar
         corfu-bar-width 0
         corfu-right-margin-width 0)
 
-  (leaf corfu-terminal
-    :init (setq corfu-terminal-disable-on-gui nil)
-    :hook (global-corfu-mode-hook . corfu-terminal-mode))
-
   (leaf corfu-history
-    :init (add-to-list 'savehist-additional-variables 'corfu-history)
-    :hook (global-corfu-mode-hook . corfu-history-mode))
+    :hook (global-corfu-mode-hook . corfu-history-mode)
+    :init (add-to-list 'savehist-additional-variables 'corfu-history))
+
+  (leaf corfu-doc
+    :hook (global-corfu-mode-hook . corfu-doc-mode)
+    :defer-config
+    (setq corfu-doc-auto t
+          corfu-doc-delay 0.8
+          coruf-doc-transition 'hide
+          corfu-doc-max-height corfu-count))
+
+  (leaf corfu-terminal
+    :hook (global-corfu-mode-hook . corfu-terminal-mode)
+    :init
+    (leaf corfu-doc-terminal
+      :hook (corfu-terminal-mode-hook . (lambda ()
+                                          (unless (display-graphic-p)
+                                            (corfu-doc-terminal-mode +1))))
+      :init
+      (setq corfu-doc-terminal-right-margin ""
+            corfu-doc-terminal-scroll-bar ""))
+    )
 
   :config
 
-  ;; ISSUE https://github.com/oantolin/orderless/issues/48#issuecomment-856750410
-  (defun ad/corfu-style-keep-unchanged (orig-fn &rest args)
-    (let ((completion-styles '(basic orderless)))
-      (apply orig-fn args)))
-  (advice-add 'corfu--recompute-candidates :around #'ad/corfu-style-keep-unchanged)
+  ;; ;; ISSUE https://github.com/oantolin/orderless/issues/48#issuecomment-856750410
+  ;; (defun ad/corfu-style-keep-unchanged (orig-fn &rest args)
+  ;;   (let ((completion-styles '(basic orderless)))
+  ;;     (apply orig-fn args)))
+  ;; (advice-add 'corfu--recompute-candidates :around #'ad/corfu-style-keep-unchanged)
 
   (leaf kind-icon
-    :require t
     :init
     (setq kind-icon-use-icons nil
           kind-icon-default-face 'corfu-default)
@@ -65,11 +84,7 @@
                 ;; cape-dict
                 )))
 
-  (leaf corfu-english-helper
-    :require t
-    :bind
-    (:corfu-map
-     ("\C-s" . corfu-english-helper-search))))
+  )
 
 (leaf yasnippet
   :commands yas-expand

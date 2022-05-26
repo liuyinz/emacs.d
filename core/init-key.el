@@ -94,7 +94,6 @@
       ("K" "Keycast" toggle-keycast)
       ("s" "Proxy" global-proxy-mode)
       ("w" "Writeroom" writeroom-mode)
-      ("V" "Vlf" vlf-mode)
       ("f" "Fullscreen" toggle-frame-fullscreen)
       ("L" "Visual line" visual-line-mode)
       ("C" "Truncated line" toggle-truncate-lines)

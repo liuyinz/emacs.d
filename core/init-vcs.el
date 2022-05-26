@@ -5,29 +5,7 @@
 (leaf git-modes
   :mode
   ("\\.\\(rg\\|docker\\)ignore\\'" . gitignore-mode)
-  ("\\.gitconfig\\.local\\'" . gitconfig-mode))
-
-(leaf gist
-  :defer-config
-  (setq gist-ask-for-description t)
-  (setq gist-list-format
-        '((id "Id" 7 nil identity)
-          (created "Created" 15 nil "%y-%m-%d %R")
-          (visibility "Visibility" 10 nil
-                      (lambda (public)
-                        (or (and public "public")
-                            "private")))
-          (description "Description" 0 nil identity)))
-
-  (let ((info (auth-source-user-and-password "api.github.com" "liuyinz^gist")))
-    (setq gh-profile-alist
-          `(("github"
-             :username "liuyinz"
-             :password nil
-             :token   ,(cadr info)
-             :url "https://api.github.com"
-             :remote-regexp
-             ,(gh-profile-remote-regexp "github.com"))))))
+  ("\\.gitconfig\\'" . gitconfig-mode))
 
 (leaf vc-msg
   :init
@@ -41,9 +19,6 @@
     (transient-append-suffix 'magit-tag
       '(1 0 -1)
       '("c" "changelog" conventional-changelog-menu))))
-
-;; (leaf git-commit-insert-issue
-;;   :hook (git-commit-mode-hook . git-commit-insert-issue-mode))
 
 (leaf gitignore-templates
   :init

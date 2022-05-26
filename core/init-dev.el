@@ -52,7 +52,5 @@
 
 ;; -------------------------- Review ------------------------------
 
-(leaf comb)
-
 (provide 'init-dev)
 ;;; init-dev.el ends here

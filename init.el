@@ -57,7 +57,7 @@
     (require 'init-ide)
     (require 'init-vcs)
     (require 'init-project)
-    (require 'init-lsp)
+    ;; (require 'init-lsp)
     ;; (require 'init-eglot)
     ;; langs
     (require 'init-web)

@@ -56,10 +56,7 @@
 (leaf vimrc-mode
   :mode "\\.vim\\(rc\\)?\\'")
 
-(leaf logview
-  :hook (logview-mode-hook . auto-revert-tail-mode))
-
-;; (leaf mermaid-mode)
+(leaf mermaid-mode)
 
 (leaf eldoc-toml
   :hook (conf-toml-mode-hook . eldoc-toml-mode))

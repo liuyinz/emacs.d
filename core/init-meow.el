@@ -107,5 +107,18 @@
   (meow-setup)
   (meow-global-mode 1))
 
+;; (leaf sis
+;;   :require t
+;;   :after meow
+;;   :config
+;;   ;; (sis-ism-lazyman-config nil "rime" 'native)
+
+;;   (with-eval-after-load 'meow
+;;     (add-hook 'meow-insert-exit-hook #'sis-set-english))
+
+;;   ;; BUG 不能开启 global-respect-mode 会导致 meow 的 keypad 模式快捷键不起作用
+;;   (sis-global-respect-mode t)
+;;   )
+
 (provide 'init-meow)
 ;;; init-meow.el ends here

@@ -170,26 +170,5 @@
     :defer-config (ace-pinyin-global-mode +1))
   )
 
-;; Disable modes below when enter `vlf-mode'
-(leaf vlf
-  :commands vlf-mode
-  :init
-  (setq large-file-warning-threshold (* 1024 1024))
-  (setq vlf-save-in-place t
-        vlf-batch-size (* 1 1024 1024))
-
-  ;; toggle modes according to vlf-mode
-  (defvar vlf-toggle-modes '((flycheck-mode . nil)
-                             (auto-revert-mode . nil)
-                             (diff-hl-mode . nil)))
-  (add-hook 'vlf-mode-hook (lambda ()
-                             (mode-hook-toggle
-                              vlf-mode
-                              vlf-toggle-modes)))
-  :defer-config
-  (leaf vlf-setup
-    :init (setq vlf-application 'ask))
-  )
-
 (provide 'init-edit)
 ;;; init-edit.el ends here
