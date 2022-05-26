@@ -70,6 +70,10 @@
         (background-color . "#1d252c")
         (foreground-color . "#bbc2cf")
         ;; (alpha . (98 . 100))
+
+        ;; NOTE only work in X-windows
+        ;; (alpha-background . 20)
+
         (font . "Sarasa Mono SC 16")))
 
 (when (featurep 'ns)
@@ -79,5 +83,21 @@
   (push '(ns-transparent-titlebar . t) default-frame-alist)
   (push '(ns-appearance . dark) default-frame-alist)
   (push '(ns-use-native-fullscreen . nil) default-frame-alist))
+
+(when (featurep 'mac)
+
+  ;; SEE https://gist.github.com/railwaycat/3498096
+  (setq mac-option-modifier 'meta
+        mac-command-modifier 'hyper)
+
+  ;; HACK https://emacs-china.org/t/emacs-mac-port/15056/3?u=cheunghsu
+  (set-face-background 'default "#1d252c")
+  (dolist (f (face-list)) (set-face-stipple f "alpha:40%"))
+  (setq face-remapping-alist (append face-remapping-alist '((default my/default-blurred))))
+  (defface my/default-blurred
+    '((t :inherit 'default :stipple "alpha:40%"))
+    "Like 'default but blurred."
+    :group 'my)
+  )
 
 ;;; early-init.el ends here
