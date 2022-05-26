@@ -37,7 +37,8 @@
 
 (with-temp-message ""
   (require 'init-bootstrap)
-  (if (not (vc-up-to-date-p (expand-file-name "init-debug.el" my/dir-core)))
+  (if (and (require 'vc-hooks nil t)
+           (not (vc-up-to-date-p (expand-file-name "init-debug.el" my/dir-core))))
       (require 'init-debug)
     ;; normal loading
     (require 'init-builtin)
