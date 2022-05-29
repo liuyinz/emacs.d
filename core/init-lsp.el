@@ -2,11 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ------------------------- Default ------------------------------
+;; ------------------------- lsp-mode -----------------------------
 
 (leaf lsp-mode
-  :hook ((js-mode-hook bash-mode-hook go-mode-hook) . lsp-deferred)
+  :hook ((js-mode-hook sh-mode-hook go-mode-hook) . lsp-deferred)
   :init
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+
   ;; SEE https://emacs-lsp.github.io/lsp-mode/page/performance/
   (setq lsp-keymap-prefix nil)
   (setq lsp-completion-enable t)
@@ -25,11 +27,11 @@
   (setq lsp-modeline-diagnostics-enable nil)  ;; as above
   (setq lsp-keep-workspace-alive nil)         ;; auto kill lsp server
   (setq lsp-eldoc-enable-hover nil)           ;; disable eldoc hover
-  (setq lsp-log-io nil)                       ;; debug only
+  (setq lsp-log-io t)                       ;; debug only
   (setq lsp-auto-guess-root t)                ;; auto guess root
 
+  ;; REQUIRE export LSP_USE_PLISTS=true
   (setq lsp-use-plists t)
-  (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
   ;; ;; HACK disbale lsp in md/org-mode
   ;; (defun ad/disable-lsp-in-md-org (fn)
@@ -38,11 +40,19 @@
   ;;     (funcall fn)))
   ;; (advice-add 'lsp :around #'ad/disable-lsp-in-md-org)
 
+  (leaf lsp-pyright
+    :hook (python-mode-hook . (lambda ()
+                                (require 'lsp-pyright)
+                                (lsp-deferred))))
+
+  ;; REQUIRE deps : ccls
+  (leaf ccls
+    :hook ((c-mode-hook
+            c++-mode-hook) . (lambda () (require 'ccls) (lsp-deferred))))
+
   :defer-config
   (leaf lsp-modeline :require t)
   (leaf consult-lsp :require t)
-
-  ;; -------------------------- Imenu -------------------------------
 
   (setq lsp-enable-imenu t
         lsp-imenu-show-container-name nil
@@ -69,19 +79,60 @@
                 )))
   )
 
-;; -------------------------- Server ------------------------------
+;; --------------------------- eglot -------------------------------
 
-(leaf lsp-pyright
-  :hook (python-mode-hook . (lambda ()
-                              (require 'lsp-pyright)
-                              (lsp-deferred))))
+;; (leaf eglot
+;;   :hook ((python-mode-hook
+;;           js-mode-hook
+;;           bash-mode-hook
+;;           go-mode-hook) . eglot-ensure)
+;;   :defer-config
+;;   (setq eglot-stay-out-of '(flymake company))
+;;   (setq eglot-events-buffer-size 0)
 
-;; REQUIRE deps : ccls
-(leaf ccls
-  :hook ((c-mode-hook
-          c++-mode-hook
-          objc-mode-hook
-          cuda-mode-hook) . (lambda () (require 'ccls) (lsp-deferred))))
+;;   ;; add taliwindcss server
+;;   ;; (add-to-list 'eglot-server-programs '((web-mode :language-id "html") . ("tailwindcss-language-server")))
+
+;;   (with-eval-after-load 'consult-imenu
+;;     (appendq! consult-imenu-config
+;;               '((js-mode :types
+;;                   ((?c "Class"     font-lock-type-face)
+;;                    (?f "Function"  font-lock-function-name-face)
+;;                    (?s "Constant"  font-lock-constant-face)
+;;                    (?m "Method"    font-lock-string-face)
+;;                    (?p "Property"  font-lock-builtin-face)
+;;                    (?v "Variable"  font-lock-variable-name-face)
+;;                    (?e "Fields"     font-lock-warning-face)))
+;;                 (python-mode :types
+;;                   ((?c "Class"     font-lock-type-face)
+;;                    (?f "Function"  font-lock-function-name-face)
+;;                    (?v "Variable"  font-lock-variable-name-face)))
+;;                 (sh-mode :types
+;;                   ((?f "Function"  font-lock-function-name-face)
+;;                    (?v "Variable"  font-lock-variable-name-face)))
+;;                 )))
+;;   )
+
+;; ------------------------ lsp-bridge ----------------------------
+
+;; ;; BUG https://emacs-china.org/t/lsp-bridge/20786/934?u=cheunghsu
+;; ;; REQUIRE pip install epc
+;; (leaf lsp-bridge
+;;   :hook ((js-mode-hook
+;;           bash-mode-hook
+;;           go-mode-hook
+;;           python-mode-hook
+;;           web-mode-hook
+;;           css-mode-hook) . lsp-bridge-mode)
+;;   :defer-config
+;;   (setq lsp-bridge-enable-auto-import t
+;;         ;; lsp-bridge-enable-log t
+;;         ;; lsp-bridge-enable-debug t
+;;         )
+
+;;   ;; (require 'lsp-bridge-orderless)
+
+;;   )
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here
