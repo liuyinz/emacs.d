@@ -12,7 +12,7 @@
   :init
   (with-eval-after-load 'consult
     (setq meow-goto-line-function #'consult-goto-line))
-  
+
   (defun meow-setup ()
     (meow-normal-define-key
      '("0" . meow-expand-0)
@@ -107,18 +107,14 @@
   (meow-setup)
   (meow-global-mode 1))
 
-;; (leaf sis
-;;   :require t
-;;   :after meow
-;;   :config
-;;   ;; (sis-ism-lazyman-config nil "rime" 'native)
-
-;;   (with-eval-after-load 'meow
-;;     (add-hook 'meow-insert-exit-hook #'sis-set-english))
-
-;;   ;; BUG 不能开启 global-respect-mode 会导致 meow 的 keypad 模式快捷键不起作用
-;;   (sis-global-respect-mode t)
-;;   )
+;; REQUIRE brew tap laishulu/macism
+(leaf sis
+  :hook ((meow-insert-exit-hook
+          meow-beacon-mode-hook
+          meow-motion-mode-hook
+          meow-keypad-mode-hook
+          minibuffer-mode-hook) . sis-set-english)
+  )
 
 (provide 'init-meow)
 ;;; init-meow.el ends here
