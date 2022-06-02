@@ -105,7 +105,16 @@
   :defer-config
 
   (meow-setup)
-  (meow-global-mode 1))
+  (meow-global-mode 1)
+
+  (defun my/meow-motion-temporary ()
+    "Switch between meow-motion-mode and meow-normal-mode automatically."
+    (when (region-active-p)
+      (meow--cancel-selection))
+    (if meow-motion-mode
+        (meow-normal-mode)
+      (meow-motion-mode))))
+
 
 ;; REQUIRE brew tap laishulu/macism
 (leaf sis

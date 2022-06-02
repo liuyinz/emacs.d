@@ -64,6 +64,9 @@ Otherwise, behave like `magit-display-buffer-traditional'."
 
   (setq magit-commit-reword-override-date nil)
 
+  ;; Set to meow-insert-mode automatically
+  (add-hook 'git-commit-setup-hook #'meow-insert-mode)
+
   ;; ------------------------- submodule ----------------------------
 
   (setq magit-submodule-remove-trash-gitdirs t)
@@ -101,6 +104,10 @@ Otherwise, behave like `magit-display-buffer-traditional'."
   (setq magit-diff-refine-hunk 'all
         magit-diff-refine-ignore-whitespace t
         magit-diff-paint-whitespace-lines 'all)
+
+  ;; --------------------------- blame -------------------------------
+
+  (add-hook 'magit-blame-mode-hook #'my/meow-motion-temporary)
   )
 
 (provide 'init-vcs)
