@@ -161,7 +161,7 @@
                                 (name (buffer-name buffer))
                                 (path (abbreviate-file-name (or (buffer-file-name buffer) ""))))
                             (not (or (eq mode 'dired-mode)
-                                     (string-match "\\`\\*gist-.+\\*/.+\\'" name))))))))
+                                     (string-match "\\`.+~.+~\\'" name))))))))
 
   ;; Dired-source
   (defvar consult--source-dired
@@ -179,9 +179,9 @@
     "Dired buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-dired)
 
-  ;; Gist-source
-  (defvar consult--source-gist
-    `(:name     "Gist"
+  ;; Blob-source
+  (defvar consult--source-blob
+    `(:name     "Blob"
       :narrow   ?g
       :hidden   t
       :category buffer
@@ -194,9 +194,9 @@
           :as #'buffer-name
           :predicate
           (lambda (buffer)
-            (string-match "\\`\\*gist-.+\\*/.+\\'" (buffer-name buffer))))))
-    "Gist buffer candidate source for `consult-buffer'.")
-  (add-to-list 'consult-buffer-sources 'consult--source-gist)
+            (string-match "\\`.+~.+~\\'" (buffer-name buffer))))))
+    "Blob buffer candidate source for `consult-buffer'.")
+  (add-to-list 'consult-buffer-sources 'consult--source-blob)
 
   ;; Org-source
   (autoload 'org-buffer-list "org")
