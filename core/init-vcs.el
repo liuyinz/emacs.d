@@ -33,7 +33,10 @@
        ("i" "select pattern" gitignore-templates-insert)])))
 
 (leaf magit
-  :bind ((kbd "C-c l") . magit-dispatch)
+  :bind
+  ((kbd "C-c l") . magit-dispatch)
+  ((kbd "C-c f") . magit-file-dispatch)
+
   :defer-config
   (setq magit-slow-confirm nil)
   (setq magit-auto-revert-immediately t)
