@@ -57,11 +57,25 @@ Otherwise, behave like `magit-display-buffer-traditional'."
       (magit-display-buffer-traditional buffer)))
   (setq magit-display-buffer-function #'my/magit-display-buffer-fullframe-selected)
 
-  ;; -------------------------- section ------------------------------
+  ;; -------------------------- status ------------------------------
 
   (prependq! magit-section-initial-visibility-alist
              '((untracked . hide)
                (unpushed  . show)))
+
+  ;; add module in `magit-status'
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules
+                          'magit-insert-untracked-files)
+
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-stashes
+                          'magit-insert-untracked-files)
+
+  ;; Predefined status command arguments
+  (with-eval-after-load 'magit-status
+    (put 'magit-status-mode 'magit-diff-default-arguments
+         '("--no-ext-diff" "--ignore-submodules=all")))
 
   ;; -------------------------- commit ------------------------------
 
@@ -74,32 +88,20 @@ Otherwise, behave like `magit-display-buffer-traditional'."
 
   (setq magit-submodule-remove-trash-gitdirs t)
 
-  ;; add module in `magit-status'
-  (magit-add-section-hook 'magit-status-sections-hook
-                          'magit-insert-modules
-                          'magit-insert-untracked-files)
-
-  ;; HACK ignore submodules in magit-status when there is too many submodules.
-  (defvar magit-status-submodule-max 20
-    "Maximum number of submodules that will be not ignored in `magit-status'.")
-  (defun ad/ignore-submodules-more-than-max (orig-fn &rest args)
-    (let ((default-directory (magit-toplevel)))
-      (if (< magit-status-submodule-max (length (magit-list-module-paths)))
-          ;; SEE https://emacs.stackexchange.com/a/57594/35676
-          (cl-letf (((get 'magit-status-mode 'magit-diff-default-arguments)
-                     (cl-pushnew
-                      "--ignore-submodules=all"
-                      (get 'magit-status-mode 'magit-diff-default-arguments))))
-            (apply orig-fn args))
-        (apply orig-fn args))))
-  (advice-add 'magit-diff--get-value :around #'ad/ignore-submodules-more-than-max)
-
   ;; ---------------------------- log --------------------------------
 
   ;; Predefined log command arguments
   (with-eval-after-load 'magit-log
     (put 'magit-log-mode 'magit-log-default-arguments
          '("--graph" "-n256" "--decorate" "--color")))
+
+  ;; ;; preview blob buffer in magit-log-mode
+  ;; (add-hook 'magit-section-movement-hook 'magit-log-maybe-update-blob-buffer)
+  ;; (keymap-set magit-log-mode-map "C-<return>" magit-blog-show-or-scroll)
+  ;; (defun magit-blob-show-or-scroll (args)
+  ;;   "docstring"
+  ;;   (interactive)
+  ;;   )
 
   ;; --------------------------- diff -------------------------------
 
