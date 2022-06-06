@@ -18,13 +18,13 @@
   ;; Use human readable Size column instead of original one
   (define-ibuffer-column size-h
     (:name "Size"
-           :inline t
-           :header-mouse-map ibuffer-size-header-map
-           :summarizer
-           (lambda (column-strings)
-             (cl-loop for s in column-strings
-                      sum (get-text-property (1- (length s)) 'size s) into total
-                      finally return (file-size-human-readable total))))
+     :inline t
+     :header-mouse-map ibuffer-size-header-map
+     :summarizer
+     (lambda (column-strings)
+       (cl-loop for s in column-strings
+                sum (get-text-property (1- (length s)) 'size s) into total
+                finally return (file-size-human-readable total))))
     (let ((size (buffer-size)))
       (propertize (file-size-human-readable size)
                   'size size)))

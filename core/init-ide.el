@@ -136,14 +136,13 @@
   )
 
 (defun my/format ()
-  "Formating current buffer."
+  "Formatting current buffer."
   (interactive)
   (cl-case major-mode
     ((emacs-lisp-mode lisp-interaction-mode)
      (indent-whole-buffer))
     (t
      (call-interactively #'apheleia-format-buffer))))
-
 
 (provide 'init-ide)
 ;;; init-ide.el ends here

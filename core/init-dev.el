@@ -10,6 +10,7 @@
 ;;; Code:
 
 ;; ----------------------- Demonstration ---------------------------
+
 (leaf keycast
   :commands toggle-keycast
   :defer-config
