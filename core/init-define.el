@@ -333,6 +333,20 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
     (indent-region begin end nil)
     (whitespace-cleanup-region begin end)))
 
+(defun indent-dir-files (dir ext)
+  "Formatting files with EXT in DIR."
+  (interactive (list (read-directory-name "Directory: ")
+                     (read-string "File extension: " ".")))
+  (let ((bufs (buffer-list))
+        (cur (current-buffer)))
+    (dolist (file (directory-files-recursively dir ext))
+      (find-file file)
+      (indent-region (point-min) (point-max))
+      (save-buffer)
+      (unless (member (get-file-buffer file) bufs)
+        (kill-buffer nil)))
+    (switch-to-buffer cur)))
+
 (defun toggle-profiler ()
   "Start,stop or report in one command."
   (interactive)
