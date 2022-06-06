@@ -30,7 +30,7 @@
 (leaf frame
   :init
   (setq blink-cursor-blinks 0)
-  
+
   ;; HACK menu-bar-mode would called forced before gui-frame in Macos
   (add-hook 'after-make-window-system-frame-hook (lambda () (menu-bar-mode -1)))
 
@@ -310,10 +310,8 @@ CHAR-FUNCTION
                     :background "#FF6C6B"))))
 
 (leaf newcomment
-  :init
-  (setq comment-auto-fill-only-comments t)
-  :bind
-  ([remap comment-dwim] . #'newcomment-toggle)
+  :init (setq comment-empty-lines t)
+  :bind ([remap comment-dwim] . #'newcomment-toggle)
   :defer-config
   (defun newcomment-toggle (n)
     "Toggle the comments."
