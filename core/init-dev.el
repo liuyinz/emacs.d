@@ -13,17 +13,21 @@
 
 (leaf keycast
   :commands toggle-keycast
-  :defer-config
-  ;; ISSUE https://github.com/seagle0128/doom-modeline/issues/122#issuecomment-780683648
+  :init
+  (setq keycast-mode-line-format "%10s%K%R%C")
+  ;; SEE https://github.com/seagle0128/doom-modeline/issues/122#issuecomment-1133838869
   (defun toggle-keycast()
     (interactive)
-    (if (member '("" mode-line-keycast " ") global-mode-string)
-        (progn (setq global-mode-string (delete '("" mode-line-keycast " ") global-mode-string))
-               (remove-hook 'pre-command-hook 'keycast--update)
-               (message "Keycast disabled"))
-      (add-to-list 'global-mode-string '("" mode-line-keycast " "))
-      (add-hook 'pre-command-hook 'keycast--update t)
-      (message "Keycast enabled"))))
+    (require 'keycast)
+    (let ((key '("" keycast-mode-line " ")))
+      (if (member key global-mode-string)
+          (progn (setq global-mode-string (delete key global-mode-string))
+                 (remove-hook 'pre-command-hook 'keycast--update)
+                 (message "Keycast OFF"))
+        (add-to-list 'global-mode-string key)
+        (add-hook 'pre-command-hook 'keycast--update t)
+        (message "Keycast ON"))))
+  )
 
 (leaf interaction-log
   :hook (ilog-log-buffer-mode-hook . (lambda ()
