@@ -30,30 +30,31 @@
   )
 
 (leaf interaction-log
-  :hook (ilog-log-buffer-mode-hook . (lambda ()
-                                       (setq ilog-display-state 'messages)
-                                       (ilog-toggle-view)))
   :init
-  (setq ilog-log-max nil)
-  ;; FIXME press twice should be avoided.
-  (defun toggle-keylog ()
-    "Toggle keybinds log."
+  (defun toggle-ilog ()
+    "Toggle interaction-log."
     (interactive)
     (require 'interaction-log)
-    (unless (bufferp ilog-buffer-name)
-      (interaction-log-mode))
-    (with-current-buffer ilog-buffer-name
-      (let ((win (get-buffer-window (current-buffer))))
-        (if (not (windowp win))
-            (progn
-              (unless interaction-log-mode
-                (interaction-log-mode))
-              (display-buffer (current-buffer)))
-          (if interaction-log-mode
-              (progn
-                (interaction-log-mode -1)
-                (delete-window win))
-            (interaction-log-mode)))))))
+    (let ((win (get-buffer-window ilog-buffer-name)))
+      (if (and interaction-log-mode win)
+          (progn
+            (interaction-log-mode -1)
+            (delete-window win)
+            (kill-buffer ilog-buffer-name))
+        (unless interaction-log-mode (interaction-log-mode +1))
+        (unless win
+          (run-with-timer
+           (if (get-buffer ilog-buffer-name) 0 (* ilog-idle-time 2))
+           nil
+           (lambda ()
+             (with-current-buffer ilog-buffer-name
+               (remove-from-invisibility-spec 'ilog-command)
+               (add-to-invisibility-spec 'ilog-load)
+               (add-to-invisibility-spec 'ilog-buffer)
+               (add-to-invisibility-spec 'ilog-message)
+               (setq ilog-display-state 'commands))
+             (display-buffer ilog-buffer-name)))))))
+  )
 
 ;; -------------------------- Review ------------------------------
 

@@ -90,7 +90,7 @@
       ("p" "Profiler" toggle-profiler)
       ("e" "Debug-on-error" toggle-debug-on-error)
       ("t" "Debug-on-quit" toggle-debug-on-quit)
-      ("k" "Keylog" toggle-keylog)
+      ("k" "Ilog" toggle-ilog)
       ("K" "Keycast" toggle-keycast)
       ("s" "Proxy" global-proxy-mode)
       ("w" "Writeroom" writeroom-mode)
