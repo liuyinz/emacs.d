@@ -79,9 +79,9 @@
   (setq wgrep-auto-save-buffer t))
 
 (leaf rg
-  ;; HACK jump to first error once search finished.
   :hook (rg-mode-hook . (lambda ()
-                          (run-with-idle-timer 0.1 nil #'compilation-first-error)))
+                          (setq-local compilation-scroll-output 'first-error
+                                      compilation-always-kill t)))
   :bind
   ((kbd "C-c s") . rg-menu)
   (:rg-mode-map
@@ -95,10 +95,13 @@
    ((kbd "<space>") . compilation-display-error)
    ("R" . rg-replace)
    ("?" . rg-menu))
+
   :init
   (setq rg-ignore-case 'smart
         rg-command-line-flags '("-z" "--pcre2"))
+
   :defer-config
+
   ;; Integration with evil-ex-substitute
   (defun rg-replace ()
     "Replace in Rg-mode."
@@ -110,7 +113,6 @@
   (rg-menu-transient-insert "Rerun" "R" "Replace" #'rg-replace))
 
 ;; NOTE command-key [super] couldn't identifiled in emacs -nw
-;; PR https://github.com/rolandwalker/simpleclip/pull/20
 (leaf simpleclip
   :init
   (setq simpleclip-less-feedback t

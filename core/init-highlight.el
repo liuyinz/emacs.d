@@ -34,7 +34,7 @@
   (setq rainbow-delimiters-max-face-count 4))
 
 (leaf highlight-parentheses
-  :hook (prog-mode-hook . highlight-parentheses-mode)
+  :hook ((prog-mode-hook helpful-mode-hook) . highlight-parentheses-mode)
   :init
   (setq highlight-parentheses-colors nil
         highlight-parentheses-delay 0.05

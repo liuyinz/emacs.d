@@ -63,6 +63,7 @@
   (leaf kind-icon
     :init
     (setq kind-icon-use-icons nil
+          kind-icon-blend-background nil
           kind-icon-default-face 'corfu-default)
     (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
