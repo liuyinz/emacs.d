@@ -102,13 +102,28 @@
 
   :defer-config
 
-  ;; Integration with evil-ex-substitute
+  ;; ;; Integration with evil-ex-substitute
+  ;; (defun rg-replace-evil ()
+  ;;   "Replace in Rg-mode."
+  ;;   (interactive)
+  ;;   (wgrep-change-to-wgrep-mode)
+  ;;   (unwind-protect
+  ;;       (evil-ex (concat "%s/" (rg-search-pattern rg-cur-search)))
+  ;;     (wgrep-finish-edit)))
+
+  ;; FIXME emacs regexp not support, use rg-match-face to replace in future
   (defun rg-replace ()
-    "Replace in Rg-mode."
+    "Replace current search in Rg-mode."
     (interactive)
     (wgrep-change-to-wgrep-mode)
     (unwind-protect
-        (evil-ex (concat "%s/" (rg-search-pattern rg-cur-search)))
+        (let* ((literal (rg-search-literal rg-cur-search))
+               (prompt (concat "Query replace" (unless literal " regexp")))
+               (from (rg-search-pattern rg-cur-search))
+               (to (query-replace-read-to from prompt nil)))
+          (if literal
+              (query-replace from to)
+            (query-replace-regexp from to)))
       (wgrep-finish-edit)))
   (rg-menu-transient-insert "Rerun" "R" "Replace" #'rg-replace))
 
