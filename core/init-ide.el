@@ -21,7 +21,7 @@
 ;; SEE https://www.flycheck.org/en/latest/
 ;; PR https://github.com/flycheck/flycheck/pull/1896
 (leaf flycheck
-  :hook (prog-mode-hook . flycheck-mode)
+  :hook ((prog-mode-hook yaml-mode-hook) . flycheck-mode)
   :init
   (setq flycheck-stylelintrc ".stylelintrc.json"
         flycheck-tidyrc ".tidyrc"
@@ -89,6 +89,12 @@
       ((cperl-mode perl-mode)
        (when (executable-find "perlcritic")
          (flycheck-select-checker 'perl-perlcritic)))
+
+      ;; REQUIRE pip install yamllint
+      (yaml-mode
+       (when (executable-find "yamllint")
+         (flycheck-select-checker 'yaml-yamllint)))
+
       (t nil)))
 
   (add-hook 'flycheck-mode-hook #'my/flycheck-setup))
