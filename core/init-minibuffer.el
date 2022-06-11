@@ -34,7 +34,7 @@
   (defun ad/vertico-customize-candidate (orig cand prefix suffix index _start)
     (setq cand (funcall orig cand prefix suffix index _start))
     (concat (if (= vertico--index index)
-                (propertize "> " 'face 'hl-todo)
+                (propertize "> " 'face 'font-lock-warning-face)
               "  ")
             cand))
   (advice-add #'vertico--format-candidate :around #'ad/vertico-customize-candidate)
@@ -51,7 +51,7 @@
   :after vertico
   :require t
   :defer-config
-  
+
   ;; SEE https://github.com/minad/consult/wiki#minads-orderless-configuration
   (setq completion-styles '(orderless basic)
         orderless-component-separator #'orderless-escapable-split-on-space)
