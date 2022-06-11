@@ -138,11 +138,17 @@
   (define-key consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help)
 
   ;; -------------------------- Source ------------------------------
-  ;; extend hidden source
+
+  ;; NOTE
+  ;; 1. hidden: add regexp in `consult-buffer-filter' or filter with :predicate
+  ;;    in `consult--source-buffer'
+  ;; 2. extract: set :filter nil and :predicate in consult--source-*
+
   (appendq! consult-buffer-filter '("\\`\\*.*\\*\\'"
                                     "\\`.*\\.el\\.gz\\'"
                                     "\\`magit[:-].*\\'"
-                                    "\\`COMMIT_EDITMSG\\'"))
+                                    "\\`COMMIT_EDITMSG\\'"
+                                    "\\`.+~.+~\\'"))
 
   ;; enable hidden buffer preview
   (consult-customize consult--source-hidden-buffer :state #'consult--buffer-state)
@@ -156,11 +162,8 @@
                         :as #'buffer-name
                         :predicate
                         (lambda (buffer)
-                          (let ((mode (buffer-local-value 'major-mode buffer))
-                                (name (buffer-name buffer))
-                                (path (abbreviate-file-name (or (buffer-file-name buffer) ""))))
-                            (not (or (eq mode 'dired-mode)
-                                     (string-match "\\`.+~.+~\\'" name))))))))
+                          (let ((mode (buffer-local-value 'major-mode buffer)))
+                            (not (eq mode 'dired-mode)))))))
 
   ;; Dired-source
   (defvar consult--source-dired
@@ -172,9 +175,11 @@
       :state    ,#'consult--buffer-state
       :items
       ,(lambda ()
-         (consult--buffer-query :mode 'dired-mode
-                                :sort 'visibility
-                                :as #'buffer-name)))
+         (consult--buffer-query
+          :mode 'dired-mode
+          :filter nil
+          :sort 'visibility
+          :as #'buffer-name)))
     "Dired buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-dired)
 
@@ -191,6 +196,7 @@
          (consult--buffer-query
           :sort 'visibility
           :as #'buffer-name
+          :filter nil
           :predicate
           (lambda (buffer)
             (string-match "\\`.+~.+~\\'" (buffer-name buffer))))))
@@ -208,13 +214,16 @@
       :state    ,#'consult--buffer-state
       :items
       ,(lambda ()
-         (consult--buffer-query :mode 'org-mode
-                                :sort 'visibility
-                                :as #'buffer-name)))
+         (consult--buffer-query
+          :mode 'org-mode
+          :filter nil
+          :sort 'visibility
+          :as #'buffer-name)))
     "Org buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-org)
 
   ;; ------------------------- Preview ------------------------------
+
   (setq consult-preview-allowed-hooks '(global-font-lock-mode-check-buffers))
 
   ;; disable preview
