@@ -46,6 +46,10 @@
     (jsonian-no-so-long-mode))
   )
 
+(leaf yaml-mode
+  :init
+  (setq yaml-imenu-generic-expression '((nil  "^\\(:?[0-9a-zA-Z_-]+\\):" 1))))
+
 (leaf lua-mode
   :init
   (setq lua-indent-level 2)
