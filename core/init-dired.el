@@ -70,8 +70,5 @@ A prefix argument means to unmark them instead."
 
 (leaf dired-git-info)
 
-;; `find-dired' alternative using `fd'
-(leaf fd-dired :when (executable-find "fd"))
-
 (provide 'init-dired)
 ;;; init-dired.el ends here

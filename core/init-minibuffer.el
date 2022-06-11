@@ -127,7 +127,6 @@
   (setq consult-async-min-input 1)
   (setq consult-async-split-style 'semicolon)
   (setq consult-line-start-from-top t)
-  (setq consult-find-config "fd --color=never --full-path ARG OPTS")
 
   (with-eval-after-load 'projectile
     (setq consult-project-function #'projectile-project-root))

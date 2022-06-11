@@ -16,8 +16,7 @@
 
   :defer-config
   ;; Use the faster searcher to handle project files: ripgrep `rg'.
-  (when (and (not (executable-find "fd"))
-             (executable-find "rg"))
+  (when (executable-find "rg")
     (setq projectile-generic-command
           (let ((rg-cmd ""))
             (dolist (dir projectile-globally-ignored-directories)
