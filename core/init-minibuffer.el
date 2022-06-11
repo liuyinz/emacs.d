@@ -272,7 +272,10 @@
 (leaf consult-dir
   :defer-config
   (when (eq consult-project-function #'projectile-project-root)
-    (setq consult-dir-project-list-function #'consult-dir-projectile-dirs))
+    (setq consult-dir-project-list-function #'consult-dir-projectile-dirs)
+    (if (or (fboundp #'consult-projectile-find-file)
+            (require 'consult-projectile nil t))
+        (setq consult-dir-default-command #'consult-projectile-find-file)))
 
   ;; HACK zlua directory jump
   (defun consult-dir--zlua-dirs ()
