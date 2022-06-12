@@ -20,6 +20,10 @@
   (expand-file-name ".cache/" user-emacs-directory)
   "User dir for recentf,places and so on.")
 
+(defconst my/config-debug
+  (expand-file-name "init-debug.el" my/dir-core)
+  "Mininmal config for debug.")
+
 (defconst user-home-page
   "https://github.com/liuyinz"
   "The Github Page of mine.")
@@ -155,6 +159,10 @@ FN-R : region function, FN: default function"
 
 
 ;; ------------------------- Function -----------------------------
+
+(defun debug-start-p ()
+  "Return t if mininal debug start."
+  (/= (file-attribute-size (file-attributes my/config-debug)) 551))
 
 ;; Dos2Unix/Unix2Dos
 (defun dos2unix ()

@@ -85,16 +85,21 @@
   :bind
   ((kbd "C-c s") . rg-menu)
   (:rg-mode-map
-   ("n" . compilation-next-error)
-   ("p" . compilation-previous-error)
-   ("f" . compilation-first-error)
-   ("l" . compilation-last-error)
-   ("N" . compilation-next-file)
-   ("P" . compilation-previous-file)
-   ((kbd "SPC") . compilation-display-error)
-   ((kbd "<space>") . compilation-display-error)
-   ("R" . rg-replace)
-   ("?" . rg-menu))
+   ("<"    . compilation-first-error)
+   (">"    . compilation-last-error)
+   ("n"    . compilation-next-error)
+   ("p"    . compilation-previous-error)
+   ("\C-o" . compilation-display-error)
+   ("\C-n" . next-error-no-select)
+   ("\C-p" . previous-error-no-select)
+   
+   ("N"    . rg-next-file)
+   ("P"    . rg-prev-file)
+   ("w"    . rg-forward-history)
+   ("b"    . rg-back-history)
+   ("R"    . rg-replace)
+   ("?"    . rg-menu)
+   )
 
   :init
   (setq rg-ignore-case 'smart
@@ -112,19 +117,21 @@
   ;;     (wgrep-finish-edit)))
 
   ;; FIXME emacs regexp not support, use rg-match-face to replace in future
+  ;; BUG undo when wgrep finished ?
   (defun rg-replace ()
     "Replace current search in Rg-mode."
     (interactive)
-    (wgrep-change-to-wgrep-mode)
-    (unwind-protect
-        (let* ((literal (rg-search-literal rg-cur-search))
-               (prompt (concat "Query replace" (unless literal " regexp")))
-               (from (rg-search-pattern rg-cur-search))
-               (to (query-replace-read-to from prompt nil)))
-          (if literal
-              (query-replace from to)
-            (query-replace-regexp from to)))
-      (wgrep-finish-edit)))
+    (save-excursion
+      (wgrep-change-to-wgrep-mode)
+      (unwind-protect
+          (let* ((literal (rg-search-literal rg-cur-search))
+                 (pattern (rg-search-pattern rg-cur-search))
+                 (cmd (if literal 'query-replace 'query-replace-regexp))
+                 (prompt (concat "Query replace" (unless literal " regexp")))
+                 (from (if literal pattern (query-replace-read-from prompt t)))
+                 (to (query-replace-read-to from prompt nil)))
+            (funcall cmd from to))
+        (wgrep-finish-edit))))
   (rg-menu-transient-insert "Rerun" "R" "Replace" #'rg-replace))
 
 ;; NOTE command-key [super] couldn't identifiled in emacs -nw
