@@ -43,6 +43,8 @@
     (require 'init-builtin)
     (require 'init-meow)
     (require 'init-minibuffer)
+    (require 'init-consult)
+    (require 'init-embark)
     (require 'init-completion)
     (require 'init-ui)
     (require 'init-highlight)
