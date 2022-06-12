@@ -112,6 +112,10 @@ $0`(yas-escape-text yas-selected-text)`")
   ;; silent message in start.
   (advice-add #'yas-reload-all :around #'ad/silent-message)
 
+  ;; quit first if corfu--frame is live
+  (advice-add #'yas-expand :before (lambda ()
+                                     (when (frame-live-p corfu--frame)
+                                       (corfu-quit))))
   :defer-config
 
   (leaf yasnippet-collection
