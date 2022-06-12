@@ -47,6 +47,7 @@
   )
 
 (leaf yaml-mode
+  :mode "\\.yamllint\\'"
   :init
   (setq yaml-imenu-generic-expression '((nil  "^\\(:?[0-9a-zA-Z_-]+\\):" 1))))
 

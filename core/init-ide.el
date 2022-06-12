@@ -23,12 +23,13 @@
 (leaf flycheck
   :hook ((prog-mode-hook yaml-mode-hook) . flycheck-mode)
   :init
-  (setq flycheck-stylelintrc ".stylelintrc.json"
-        flycheck-tidyrc ".tidyrc"
-        flycheck-emacs-lisp-load-path 'inherit
+  (setq flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save idle-change mode-enabled)
         flycheck-idle-change-delay 3
         flycheck-indication-mode 'right-margin)
+  ;; rc files
+  (setq flycheck-stylelintrc ".stylelintrc.json"
+        flycheck-tidyrc ".tidyrc")
 
   (defun my/flycheck-setup ()
     "set checker for different buffer"
