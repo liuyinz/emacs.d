@@ -132,24 +132,23 @@
 (leaf editorconfig
   :hook (shell-mode-hook . editorconfig-mode))
 
-(leaf apheleia
+(leaf format-all
+  :init
+  (setq format-all-debug t)
+  (advice-add 'format-all-buffer :before #'format-all-ensure-formatter)
+
+  (defun my/format ()
+    "Formatting current buffer."
+    (interactive)
+    (cl-case major-mode
+      (gitconfig-mode (run-general! indent-region indent-whole-buffer))
+      (t (run-general! format-all-region format-all-buffer))))
   :defer-config
-  (setq apheleia-hide-log-buffers t)
-  (prependq! apheleia-mode-alist
-             '((jsonian-mode . prettier)))
-
-  (prependq! apheleia-formatters
-             '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))))
+  (prependq! format-all-default-formatters
+             '(("JSONC" prettier)
+               ;; SEE https://google.github.io/styleguide/shellguide.html
+               ("Shell" (shfmt "-i" "2" "-bn" "-ci"))))
   )
-
-(defun my/format ()
-  "Formatting current buffer."
-  (interactive)
-  (cl-case major-mode
-    ((emacs-lisp-mode lisp-interaction-mode)
-     (indent-whole-buffer))
-    (t
-     (call-interactively #'apheleia-format-buffer))))
 
 (provide 'init-ide)
 ;;; init-ide.el ends here
