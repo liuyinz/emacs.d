@@ -9,7 +9,7 @@
   (setq sh-basic-offset 2
         sh-shell-file (executable-find "bash"))
 
-  ;; HACK create `bash-mode-hook'
+  ;; define `bash-mode-hook'
   (defvar bash-mode-hook nil "Hook run after enter sh-mode[Bash]")
   (defun run-bash-mode-hook (&rest _)
     "Run `bash-mode-hook' when enabled."

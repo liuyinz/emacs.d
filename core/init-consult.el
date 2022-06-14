@@ -178,7 +178,7 @@
             (require 'consult-projectile nil t))
         (setq consult-dir-default-command #'consult-projectile-find-file)))
 
-  ;; HACK zlua directory jump
+  ;; zlua directory jump
   (defun consult-dir--zlua-dirs ()
     "Return list of zlua dirs."
     (nreverse (mapcar
