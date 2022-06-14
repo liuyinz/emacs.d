@@ -154,22 +154,21 @@
                    (propertize
                     (format "...%d folding..."
                             (- (count-lines (overlay-start ov) (overlay-end ov)) 1))
-                    'face 'vertico-current))))
+                    'face 'shadow))))
   (setq hs-set-up-overlay #'display-code-line-counts)
 
-  :defer-config
-
-  ;; FIXME add command `hs-toggle-all'
-  (defvar-local hs-all-hide-p nil)
+  ;; define command `hs-toggle-all'
+  (add-hook 'hs-minor-mode-hook (lambda () (defvar-local hs-all-hide-p nil)))
   (defun hs-toggle-all ()
     "Toggle all folds at once."
     (interactive)
     (hs-life-goes-on
      (if (bound-and-true-p hs-all-hide-p)
-         (hs-show-all)
-       (hs-hide-all))))
-  (advice-add 'hs-show-all :after (lambda () (setq hs-all-hide-p nil)))
-  (advice-add 'hs-hide-all :after (lambda () (setq hs-all-hide-p t)))
+         (progn (hs-show-all)
+                (setq-local hs-all-hide-p nil))
+       (hs-hide-all)
+       (setq-local hs-all-hide-p t))))
+
   )
 
 ;; (leaf display-fill-column-indicator
