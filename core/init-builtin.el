@@ -128,6 +128,13 @@
   (column-number-mode)
   (size-indication-mode))
 
+;; disable show-paren-mode by default
+(leaf paren
+  :hook (after-init-hook . (lambda () (show-paren-mode -1)))
+  :init
+  (setq show-paren-style 'mixed
+        show-paren-context-when-offscreen 'overlay))
+
 (leaf uniquify
   :init
   (setq uniquify-buffer-name-style 'forward

@@ -34,11 +34,13 @@
   (setq rainbow-delimiters-max-face-count 4))
 
 (leaf highlight-parentheses
-  :hook ((prog-mode-hook helpful-mode-hook) . highlight-parentheses-mode)
+  :hook
+  ((prog-mode-hook helpful-mode-hook) . highlight-parentheses-mode)
+  (minibuffer-setup-hook . highlight-parentheses-minibuffer-setup)
   :init
-  (setq highlight-parentheses-colors nil
-        highlight-parentheses-delay 0.05
+  (setq highlight-parentheses-delay 0.05
         highlight-parentheses-highlight-adjacent t
+        highlight-parentheses-colors nil
         highlight-parentheses-attributes '((:inverse-video t :weight bold))))
 
 ;; Syntax highlighting of known Elisp symbols
