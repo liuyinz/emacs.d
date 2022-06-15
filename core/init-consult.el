@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-;; TODO consult-browser-bookmark consult-browser-history
+;; TODO consult-browser-bookmark consult-browser-history consult-git-log
 (leaf consult
   :after vertico
   :bind
