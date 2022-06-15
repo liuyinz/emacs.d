@@ -59,22 +59,18 @@
          (flycheck-add-mode 'html-tidy major-mode)
          (flycheck-select-checker 'html-tidy)))
 
-      (css-mode
-       ;; NOTE disable `css-stylelint' in `mhtml-mode'
-       (when (and (string= "css" (file-name-extension (buffer-name)))
-                  (executable-find "stylelint"))
-         (flycheck-select-checker 'css-stylelint)))
-
       (js-mode
        ;; NOTE disable `javascript-eslint' in `mhtml-mode'
        (when (and (string= "js" (file-name-extension (buffer-name)))
                   (executable-find "eslint"))
          (flycheck-select-checker 'javascript-eslint)))
 
-      ;; (js2-mode
-      ;;  (when (executable-find "eslint")
-      ;;    (flycheck-add-mode 'javascript-eslint major-mode)
-      ;;    (flycheck-select-checker 'javascript-eslint)))
+      ;; ;; BUG may run: nil
+      ;; (css-mode
+      ;;  ;; NOTE disable `css-stylelint' in `mhtml-mode'
+      ;;  (when (and (string= "css" (file-name-extension (buffer-name)))
+      ;;             (executable-find "stylelint"))
+      ;;    (flycheck-select-checker 'css-stylelint)))
 
       (scss-mode
        (when (executable-find "stylelint")
@@ -133,6 +129,7 @@
   :hook (shell-mode-hook . editorconfig-mode))
 
 (leaf format-all
+  :require t
   :init
   (setq format-all-debug t)
   (advice-add 'format-all-buffer :before #'format-all-ensure-formatter)
