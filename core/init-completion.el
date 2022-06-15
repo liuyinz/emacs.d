@@ -12,6 +12,7 @@
    ("ESC"    . corfu-reset)
    ([?\C- ]  . corfu-insert-separator)
    ("\C- "   . corfu-insert-separator)
+   ("\C-n"   . corfu-complete-common-or-next)
    ("\C-h"   . corfu-doc-toggle)
    ("\C-f"   . corfu-doc-scroll-up)
    ("\C-b"   . corfu-doc-scroll-down)
@@ -19,10 +20,9 @@
   :init
   (setq corfu-auto t
         corfu-auto-prefix 1
-        corfu-auto-delay 0.3
-        corfu-cycle t
         corfu-preselect-first nil
-        corfu-min-width 25
+        corfu-cycle t
+        corfu-min-width 20
 
         ;; hide scroll-bar
         corfu-bar-width 0
@@ -59,6 +59,22 @@
   ;;   (let ((completion-styles '(basic orderless)))
   ;;     (apply orig-fn args)))
   ;; (advice-add 'corfu--recompute-candidates :around #'ad/corfu-style-keep-unchanged)
+
+  (defun corfu-complete-common-or-next ()
+    "Complete common prefix or go to next candidate."
+    (interactive)
+    (if (= corfu--total 1)
+        (progn
+          (corfu--goto 1)
+          (corfu-insert))
+      (let* ((str (car corfu--input))
+             (pt (cdr corfu--input))
+             (common (try-completion str corfu--candidates)))
+        (if (and (stringp common)
+                 (not (string= str common)))
+            (insert (substring common pt))
+          (corfu-next)))))
+  (put 'corfu-complete-common-or-next 'completion-predicate #'ignore)
 
   (leaf kind-icon
     :init
