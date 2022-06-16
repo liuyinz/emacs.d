@@ -114,14 +114,12 @@
   `(message (concat "[" (symbol-name ',arg) "] >> TYPE: %s , VALUE: %s ")
             (type-of (symbol-value ',arg)) ,arg))
 
-;; time
 (defmacro time-count! (&rest body)
   "Measure the time (ms) it takes evaluating BODY."
   `(let ((time (current-time)))
      ,@body
      (* 1000.0 (float-time (time-since time)))))
 
-;; Mutation
 (defmacro appendq! (sym &rest lists)
   "Append LISTS to SYM in place."
   `(setq ,sym (append ,sym ,@lists)))

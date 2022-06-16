@@ -67,27 +67,8 @@
         lsp-imenu-detailed-outline nil
         lsp-imenu-index-function #'lsp-imenu-create-categorized-index)
 
-  (with-eval-after-load 'consult-imenu
-    (appendq! consult-imenu-config
-              '((js-mode :types
-                  ((?c "Classes"    font-lock-type-face)
-                   (?f "Functions"  font-lock-function-name-face)
-                   (?s "Constants"  font-lock-constant-face)
-                   (?m "Methods"    font-lock-string-face)
-                   (?p "Properties" font-lock-builtin-face)
-                   (?v "Variables"  font-lock-variable-name-face)
-                   (?e "Fields"     font-lock-warning-face)))
-                (python-mode :types
-                  ((?c "Classes"    font-lock-type-face)
-                   (?f "Functions"  font-lock-function-name-face)
-                   (?v "Variables"  font-lock-variable-name-face)))
-                (sh-mode :types
-                  ((?f "Functions" font-lock-function-name-face)
-                   (?v "Variables" font-lock-variable-name-face))))))
-
   ;; -------------------------- server ------------------------------
 
-  ;; emmet-ls setting
   (defun my/emmet-ls-setup ()
     "Setup for emmet-ls"
     (setq-local corfu-auto-delay 0.8
