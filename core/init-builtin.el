@@ -36,7 +36,7 @@
 
   ;; set vertical split bar to "│"
   ;; SEE https://www.reddit.com/r/emacs/comments/5tm9zy/vertical_split_bar/ddnw72f?utm_source=share&utm_medium=web2x&context=3
-  (set-display-table-slot standard-display-table 'vertical-border ?│)
+  (set-display-table-slot standard-display-table 'vertical-border (make-glyph-code ?│))
 
   ;; SEE https://apple.stackexchange.com/a/36947
   (defun ad/enable-tui-fullscreen (fn)
