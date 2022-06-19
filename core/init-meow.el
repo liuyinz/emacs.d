@@ -118,11 +118,17 @@
 
 ;; REQUIRE brew tap laishulu/macism
 (leaf sis
-  :hook ((meow-insert-exit-hook
-          meow-beacon-mode-hook
-          meow-motion-mode-hook
-          meow-keypad-mode-hook
-          minibuffer-mode-hook) . sis-set-english)
+  :init
+  (defun my/meow-reset-sis (&rest _)
+    "Reset english input when not in meow-insert-state."
+    (unless meow-insert-mode
+      (sis-set-english)))
+
+  ;; Reset when switch to non-insert meow-state
+  (add-hook 'meow-switch-state-hook #'my/meow-reset-sis)
+  ;; Reset when refocus in frame
+  (add-function :after after-focus-change-function #'my/meow-reset-sis)
+
   )
 
 (provide 'init-meow)
