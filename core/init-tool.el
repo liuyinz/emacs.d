@@ -42,21 +42,28 @@
 
 (leaf proxy-mode
   :init
-  (setq proxy-mode-emacs-http-proxy `(("http"     . ,(getenv "HTTP"))
-                                      ("https"    . ,(getenv "HTTP"))
-                                      ("ftp"      . ,(getenv "HTTP"))
-                                      ("no_proxy" . "127.0.0.1")
-                                      ("no_proxy" . "^.*\\(baidu\\|sina)\\.com")))
+  (when-let ((http (getenv "HTTP")))
+    (setq proxy-mode-env-http-proxy (concat "http://" http))
+    (setq proxy-mode-emacs-http-proxy
+          `(("http"     . ,http)
+            ("https"    . ,http)
+            ("ftp"      . ,http)
+            ("no_proxy" . "127.0.0.1"))))
 
-  (setq proxy-mode-emacs-socks-proxy `("Default server"
-                                       ,(substring (getenv "SOCKS") 0 -5)
-                                       ,(substring (getenv "SOCKS") -4 nil)
-                                       5)))
+  (when-let ((sock (getenv "SOCKS")))
+    (setq proxy-mode-emacs-socks-proxy
+          `("Default server"
+            ,(substring sock 0 -5)
+            ,(substring sock -4 nil)
+            5)))
+  )
 
 ;; TODO set embark with proxy
 (leaf with-proxy
   :require t
-  :init (setq with-proxy-http-server (getenv "HTTP")))
+  :init
+  (when-let ((http (getenv "HTTP")))
+    (setq with-proxy-http-server http)))
 
 ;; -------------------------- record ------------------------------
 
