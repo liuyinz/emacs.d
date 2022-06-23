@@ -38,7 +38,7 @@
 (leaf jsonian
   :mode "\\.\\(jsonc\\|versionrc\\)\\'"
   :init
-  (setq jsonian-spaces-per-indentation 2)
+  (setq jsonian-default-indentation 2)
   :defer-config
   (with-eval-after-load 'flycheck
     (jsonian-enable-flycheck))
