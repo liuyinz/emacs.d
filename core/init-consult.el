@@ -21,6 +21,7 @@
   (setq consult-line-start-from-top t)
 
   :defer-config
+  (setq-default completion-in-region-function #'consult-completion-in-region)
 
   (with-eval-after-load 'projectile
     (setq consult-project-function #'projectile-project-root))
@@ -176,12 +177,6 @@
 
   ;; ------------------------- Function -----------------------------
 
-  (setq completion-in-region-function
-        (lambda (&rest args)
-          (apply (if vertico-mode
-                     #'consult-completion-in-region
-                   #'completion--in-region)
-                 args)))
   )
 
 (leaf consult-dir

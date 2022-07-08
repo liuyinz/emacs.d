@@ -40,18 +40,6 @@
           coruf-doc-transition 'hide
           corfu-doc-max-height corfu-count))
 
-  (leaf corfu-terminal
-    :hook (global-corfu-mode-hook . corfu-terminal-mode)
-    :init
-    (leaf corfu-doc-terminal
-      :hook (corfu-terminal-mode-hook . (lambda ()
-                                          (unless (display-graphic-p)
-                                            (corfu-doc-terminal-mode +1))))
-      :init
-      (setq corfu-doc-terminal-right-margin ""
-            corfu-doc-terminal-scroll-bar ""))
-    )
-
   :config
 
   ;; ;; ISSUE https://github.com/oantolin/orderless/issues/48#issuecomment-856750410
