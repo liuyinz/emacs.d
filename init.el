@@ -45,7 +45,8 @@
     (require 'init-minibuffer)
     (require 'init-consult)
     (require 'init-embark)
-    (require 'init-completion)
+    (require 'init-corfu)
+    (require 'init-yas)
     (require 'init-ui)
     (require 'init-highlight)
     (require 'init-window)
@@ -59,6 +60,7 @@
     (require 'init-vcs)
     (require 'init-project)
     (require 'init-lsp)
+    ;; (require 'init-bridge)
     ;; langs
     (require 'init-web)
     (require 'init-lang)

@@ -95,26 +95,5 @@
 
   )
 
-;; ------------------------ lsp-bridge ----------------------------
-
-;; ;; BUG https://emacs-china.org/t/lsp-bridge/20786/934?u=cheunghsu
-;; ;; REQUIRE pip install epc
-;; (leaf lsp-bridge
-;;   :hook ((js-mode-hook
-;;           bash-mode-hook
-;;           go-mode-hook
-;;           python-mode-hook
-;;           web-mode-hook
-;;           css-mode-hook) . lsp-bridge-mode)
-;;   :defer-config
-;;   (setq lsp-bridge-enable-auto-import t
-;;         ;; lsp-bridge-enable-log t
-;;         ;; lsp-bridge-enable-debug t
-;;         )
-
-;;   ;; (require 'lsp-bridge-orderless)
-
-;;   )
-
 (provide 'init-lsp)
 ;;; init-lsp.el ends here
