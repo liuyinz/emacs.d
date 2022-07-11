@@ -51,6 +51,7 @@
   ;; (setq lsp-completion-show-detail nil)
   (setq lsp-completion-show-kind nil)
   ;; (setq lsp-headerline-breadcrumb-enable nil)
+  (setq lsp-headerline-breadcrumb-enable-diagnostics nil)
 
   ;; -------------------------- feature ------------------------------
 
