@@ -215,7 +215,7 @@
         '("\\.?cache" "-autoloads\\.el\\'" ".cask" "url" "COMMIT_EDITMSG\\'"
           "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
           "\\.?ido\\.last$" "\\.revive$" "/G?TAGS$" "/.elfeed/" "/.Trash/"
-          "^/tmp/" "^/var/folders/.+$" "/share/emacs/.+$" "\\.git/.+$"
+          "^/tmp/" "^/private/tmp/" "^/var/folders/.+$" "/share/emacs/.+$" "\\.git/.+$"
           "bookmarks"))
 
   :defer-config
