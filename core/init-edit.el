@@ -92,7 +92,6 @@
    ("\C-o" . compilation-display-error)
    ("\C-n" . next-error-no-select)
    ("\C-p" . previous-error-no-select)
-   
    ("N"    . rg-next-file)
    ("P"    . rg-prev-file)
    ("w"    . rg-forward-history)
@@ -106,15 +105,6 @@
         rg-command-line-flags '("-z" "--pcre2"))
 
   :defer-config
-
-  ;; ;; Integration with evil-ex-substitute
-  ;; (defun rg-replace-evil ()
-  ;;   "Replace in Rg-mode."
-  ;;   (interactive)
-  ;;   (wgrep-change-to-wgrep-mode)
-  ;;   (unwind-protect
-  ;;       (evil-ex (concat "%s/" (rg-search-pattern rg-cur-search)))
-  ;;     (wgrep-finish-edit)))
 
   ;; FIXME emacs regexp not support, use rg-match-face to replace in future
   ;; BUG undo when wgrep finished ?
