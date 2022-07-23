@@ -96,6 +96,7 @@
       ("w" "Writeroom" writeroom-mode)
       ("f" "Fullscreen" toggle-frame-fullscreen)
       ("L" "Visual line" visual-line-mode)
+      ("c" "Hide comments" obvious-mode)
       ("C" "Truncated line" toggle-truncate-lines)
       ("W" "Word wrap" toggle-word-wrap)
       ("d" "Highlight face" highlight-defined-mode)
