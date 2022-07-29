@@ -8,6 +8,11 @@
   :hook (after-init-hook . global-hungry-delete-mode)
   :defer-config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
+(leaf isolate
+  :require t
+  :defer-config
+  (add-hook 'isolate-add-mode-hook #'my/meow-motion-temporary))
+
 (leaf writeroom-mode
   :hook (writeroom-mode-hook . toggle-cjk-writeroom)
   :init
