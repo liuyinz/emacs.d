@@ -110,6 +110,7 @@
   (interactive)
   (cond
    ((member major-mode '(markdown-mode gfm-mode)) (grip-start-preview))
+   ((member major-mode '(web-mode html-mode mhtml-mode)) (imp-visit-buffer))
    (t (run-general! quickrun-region quickrun))))
 
 (defun my/repl ()
