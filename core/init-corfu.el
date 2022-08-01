@@ -66,7 +66,7 @@
 
   (leaf kind-icon
     :init
-    (setq kind-icon-use-icons nil
+    (setq kind-icon-use-icons t
           kind-icon-blend-background nil
           kind-icon-default-face 'corfu-default)
     (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
@@ -81,7 +81,7 @@
                 cape-abbrev
                 cape-dabbrev
                 cape-history
-                cape-sgml
+                ;; cape-sgml
                 ;; cape-rfc1345
                 ;; cape-line
                 ;; cape-ispell
