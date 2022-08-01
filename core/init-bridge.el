@@ -11,9 +11,12 @@
 (leaf lsp-bridge
   :hook (after-init-hook . global-lsp-bridge-mode)
   :defer-config
-  (setq lsp-bridge-enable-signature-help t)
-
-  ;; (push (cons '("css") "emmet-ls") lsp-bridge-lang-server-extension-list)
+  ;; acm related
+  (setq acm-enable-doc nil)
+  ;; Setup multi server
+  (appendq! lsp-bridge-multi-lang-server-extension-list
+            '((("css" "less" "scss") . "css_emmet")
+              (("html") . "html_emmet")))
 
   ;; ;; Debug: REQUIRE brew install gdb
   ;; (setq lsp-bridge-enable-log t
