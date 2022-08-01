@@ -20,15 +20,24 @@
     "Invoke commands about jump"
     [["Avy"
       ("l" "line"  avy-goto-line)
-      ("c" "char"  avy-goto-char)
+      ("a" "char"  avy-goto-char)
       ("w" "word"  avy-goto-word-0)
       ("p" "paren" avy-goto-paren)]
 
      ["Hideshow"
-      ("a" "toggle-all"   hs-toggle-all)
+      ("t" "toggle-all"   hs-toggle-all)
       ("b" "toggle-block" hs-toggle-hiding)
-      ("s" "hide-level"   hs-hide-level)]
+      ("e" "hide-level"   hs-hide-level)]
 
+     ["Isolate"
+      :if (lambda () (featurep 'isolate))
+      ("s" "add quick"    isolate-quick-add :if region-active-p)
+      ("d" "delete quick" isolate-quick-delete)
+      ("c" "change quick" isolate-quick-change)
+      ("S" "add long"     isolate-long-add :if region-active-p)
+      ("D" "delete long"  isolate-long-delete)
+      ("C" "change long"  isolate-long-change)
+      ]
      ])
 
   (transient-define-prefix my/transient-consult ()
@@ -397,7 +406,7 @@
  (kbd "C-c t") 'my/transient-toggle
  (kbd "C-c b") 'my/transient-buffer
  (kbd "C-c j") 'my/transient-consult
- 
+
  (kbd "C-j") 'yas-expand
  (kbd "C-l") 'embark-act
  (kbd "C-r") (lambda () (interactive) (switch-to-buffer nil))
