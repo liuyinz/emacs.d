@@ -23,6 +23,9 @@
 
 ;; --------------------------- Html -------------------------------
 
+(leaf impatient-mode
+  :commands imp-visit-buffer)
+
 ;; ;; Major mode for editing web templates
 ;; (leaf web-mode
 ;;   :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\|vue\\)$"
