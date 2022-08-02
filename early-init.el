@@ -66,9 +66,10 @@
         (internal-border-width . 0)
         (width . 90) ; (frame-text-width) half 90,full 180
         (fullscreen . fullheight)
-        (background-mode . dark)
-        (background-color . "#1d252c")
-        (foreground-color . "#bbc2cf")
+        ;; (background-mode . dark)
+        ;; (background-color . "#1d252c")
+        ;; (foreground-color . "#bbc2cf")
+        
         ;; (alpha . (98 . 100))
 
         ;; NOTE only work in X-windows
@@ -81,7 +82,7 @@
   (setq ns-use-proxy-icon nil)
 
   (push '(ns-transparent-titlebar . t) default-frame-alist)
-  (push '(ns-appearance . dark) default-frame-alist)
+  ;; (push '(ns-appearance . dark) default-frame-alist)
   (push '(ns-use-native-fullscreen . nil) default-frame-alist))
 
 (when (featurep 'mac)
