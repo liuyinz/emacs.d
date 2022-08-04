@@ -94,6 +94,14 @@ Lisp function does not specify a special indentation."
                                       (setq-local lisp-indent-function
                                                   #'my/lisp-indent-function)))))
 
+
+;; add extra font-lock for elisp
+(leaf elispfl
+  :after elisp-mode
+  :config
+  (elispfl-mode)
+  (elispfl-ielm-mode))
+
 ;; Add demos for help
 (leaf elisp-demos
   :commands elisp-demos-find-demo)
