@@ -136,7 +136,7 @@
 (leaf paren
   :hook (after-init-hook . (lambda () (show-paren-mode -1)))
   :init
-  (setq show-paren-style 'mixed
+  (setq show-paren-style 'parenthesis
         show-paren-context-when-offscreen 'overlay))
 
 (leaf uniquify
