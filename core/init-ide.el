@@ -46,8 +46,8 @@
 
       ;; REQUIRE pip3 install pylint rather than brew.
       (python-mode
-       (when (executable-find "pylint")
-         (flycheck-select-checker 'python-pylint)))
+       (when (executable-find "pyright")
+         (flycheck-select-checker 'python-pyright)))
 
       (emacs-lisp-mode
        (progn
