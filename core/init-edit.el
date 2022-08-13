@@ -30,6 +30,9 @@
         (cjk-font-setting "Source Han Serif" 1.4)
       (cjk-font-setting "Sarasa Mono SC" 1))))
 
+(leaf topsy
+  :hook (emacs-lisp-mode-hook . topsy-mode))
+
 ;; SEE https://www.python.org/dev/peps/pep-0350/#mnemonics
 (leaf hl-todo
   :hook (after-init-hook . global-hl-todo-mode)
