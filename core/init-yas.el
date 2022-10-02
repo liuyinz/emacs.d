@@ -72,17 +72,5 @@ $0`(yas-escape-text yas-selected-text)`")
       ))
   )
 
-;; (leaf citre
-;;   :init
-;;   (require 'citre-config)
-;;   (setq citre-completion-case-sensitive nil
-;;         citre-default-create-tags-file-location 'global-cache
-;;         citre-use-project-root-when-creating-tags t
-;;         citre-prompt-language-for-ctags-command t)
-
-;;   (with-eval-after-load 'projectile
-;;     (setq citre-project-root-function #'projectile-project-root))
-;;   )
-
 (provide 'init-yas)
 ;;; init-yas.el ends here
