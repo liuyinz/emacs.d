@@ -11,12 +11,6 @@
 (leaf lsp-bridge
   :hook (after-init-hook . global-lsp-bridge-mode)
   :defer-config
-  (setq acm-enable-quick-access nil
-        acm-enable-tabnine nil
-        acm-backend-yas-candidates-number 10
-        acm-snippet-insert-index 0
-        acm-backend-yas-match-by-trigger-keyword t
-        acm-backend-yas-show-trigger-keyword " [%s]")
   (setq lsp-bridge-enable-diagnostics nil)
 
   ;; ;; Debug: REQUIRE brew install gdb
@@ -27,7 +21,30 @@
   (appendq! lsp-bridge-multi-lang-server-extension-list
             '((("css" "less" "scss") . "css_emmet")
               (("html") . "html_emmet")))
-)
+
+  (leaf acm
+    :bind
+    (:acm-mode-map
+     ((kbd "C-n") . acm-insert-common-or-next))
+    :init
+    (setq acm-enable-quick-access nil
+          acm-enable-tabnine nil
+          acm-backend-yas-candidates-number 10
+          acm-snippet-insert-index 0
+          acm-backend-yas-match-by-trigger-keyword t
+          acm-backend-yas-show-trigger-keyword " [%s]")
+
+    (defun acm-insert-common-or-next ()
+      "Insert common prefix of menu or select next candidate."
+      (interactive)
+      (let ((inhibit-message t)
+            (num (length (acm-get-input-prefix))))
+        (acm-insert-common)
+        (when (= num (length (acm-get-input-prefix)))
+          (acm-select-next))))
+    (put 'acm-insert-common-or-next 'completion-predicate #'ignore))
+
+  )
 
 (provide 'init-bridge)
 ;;; init-bridge.el ends here
