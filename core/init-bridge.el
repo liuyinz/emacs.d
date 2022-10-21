@@ -11,11 +11,16 @@
 (leaf lsp-bridge
   :hook (after-init-hook . global-lsp-bridge-mode)
   :defer-config
-  (setq lsp-bridge-enable-diagnostics nil)
 
   ;; ;; Debug: REQUIRE brew install gdb
   ;; (setq lsp-bridge-enable-log t
   ;;       lsp-bridge-enable-debug t)
+
+  (setq lsp-bridge-enable-diagnostics nil)
+
+  (advice-add 'lsp-bridge--mode-line-format
+              :filter-return
+              (lambda (s) (ignore-errors (substring s 4 10))))
 
   ;; Setup multi server
   (appendq! lsp-bridge-multi-lang-server-extension-list
