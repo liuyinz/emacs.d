@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-;; REQUIRE pip install epc
+;; REQUIRE pip install epc orjson six
 (leaf lsp-bridge
   :hook (after-init-hook . global-lsp-bridge-mode)
   :defer-config
