@@ -31,8 +31,9 @@
   (setq flycheck-stylelintrc ".stylelintrc.json"
         flycheck-tidyrc ".tidyrc")
 
+  (add-hook 'flycheck-mode-hook #'my/flycheck-setup)
   (defun my/flycheck-setup ()
-    "set checker for different buffer"
+    "set checker for different MODE"
     (cl-case major-mode
       (sh-mode
        (when (and (executable-find "shellcheck")
@@ -94,7 +95,7 @@
 
       (t nil)))
 
-  (add-hook 'flycheck-mode-hook #'my/flycheck-setup))
+  )
 
 ;; --------------------------- Run --------------------------------
 
