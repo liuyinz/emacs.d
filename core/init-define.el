@@ -20,9 +20,13 @@
   (expand-file-name ".cache/" user-emacs-directory)
   "User dir for recentf,places and so on.")
 
-(defconst my/config-debug
-  (expand-file-name "init-debug.el" my/dir-core)
-  "Mininmal config for debug.")
+(defconst my/dir-debug
+  (expand-file-name "debug/" my/dir-cache)
+  "User dir for minimal debugging config.")
+
+(defconst my/file-debug
+  (expand-file-name "debug-default.el" my/dir-debug)
+  "Default file for debug.")
 
 (defconst user-home-page
   "https://github.com/liuyinz"
@@ -157,10 +161,6 @@ FN-R : region function, FN: default function"
 
 
 ;; ------------------------- Function -----------------------------
-
-(defun debug-start-p ()
-  "Return t if mininal debug start."
-  (/= (file-attribute-size (file-attributes my/config-debug)) 551))
 
 ;; Dos2Unix/Unix2Dos
 (defun dos2unix ()
@@ -396,6 +396,83 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   (with-temp-buffer
     (cons (apply 'call-process program nil (current-buffer) nil args)
           (buffer-string))))
+
+;; --------------------------- Debug -------------------------------
+
+;; TODO miniconfig package
+
+(defun my/debug-begin-p ()
+  "Return t if mininal debug begin."
+  (and (file-exists-p my/file-debug)
+       (> (nth 7 (file-attributes my/file-debug)) 0)))
+
+(defun my/debug-begin ()
+  "Begin debug with existed config or new one."
+  (interactive)
+  (my/debug-end)
+  (let* ((new my/file-debug)
+         (dir (expand-file-name "backup/" my/dir-debug))
+         ;; (dir (make-directory (expand-file-name "backup/" my/dir-debug) t))
+         (select (and (file-exists-p dir)
+                      (not (directory-empty-p dir))
+                      (yes-or-no-p "Select existed config? ")))
+         (old (and select (condition-case nil
+                              (read-file-name "Debug config: " dir "")
+                            (quit "")))))
+    (if (length> old 0)
+        (copy-file old new 'overwrite)
+      (make-empty-file new))
+    (display-buffer (find-file-noselect new))))
+
+(defun my/debug-add ()
+  "Copy selected config to `my/file-debug'."
+  (interactive)
+  (let* ((f my/file-debug)
+         (buf (or (get-file-buffer f)
+                  (find-file-noselect f)))
+         (pos (save-excursion
+                (if (use-region-p)
+                    (cons (region-beginning) (region-end))
+                  (condition-case _err
+                      (while (not (looking-at "(leaf "))
+                        (backward-up-list 1))
+                    (error nil))
+                  (cons (line-beginning-position) (scan-sexps (point) 1)))))
+         (str (buffer-substring-no-properties (car pos) (cdr pos))))
+    (with-current-buffer buf
+      (goto-char (point-max))
+      (insert (format "\n%s\n" str))
+      (indent-region (point-min) (point-max))
+      (emacs-lisp-mode)
+      (save-buffer)
+      (display-buffer buf))))
+
+(defun my/debug-end ()
+  "Exit debug process."
+  (interactive)
+  (let* ((buf (get-file-buffer my/file-debug))
+         (win (get-buffer-window buf)))
+    (ignore-errors
+      (and buf win (delete-window win))
+      (and buf (kill-buffer buf))
+      (delete-file my/file-debug))))
+
+(defun my/debug-backup ()
+  "Backup minimal config file."
+  (interactive)
+  (if (my/debug-begin-p)
+      (let* ((default-directory (expand-file-name "backup/" my/dir-debug))
+             (old my/file-debug)
+             (new (condition-case nil
+                      (read-from-minibuffer
+                       (format "Backup %s to debug-*.el: "
+                               (file-name-nondirectory old)))
+                    (quit ""))))
+        (if (string-empty-p new)
+            (message "File name is illegal.")
+          (make-directory default-directory t)
+          (copy-file old (concat "debug-" new ".el") 1)))
+    (message "Debug hasn't begined yet.")))
 
 ;; --------------------------- Hook -------------------------------
 

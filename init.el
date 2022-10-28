@@ -17,7 +17,8 @@
 ;; ensure dir exists
 (dolist (dir `(,my/dir-cache
                ,my/dir-lib
-               ,my/dir-ext))
+               ,my/dir-ext
+               ,my/dir-debug))
   (make-directory dir t))
 
 (unless emacs/>=28p
@@ -37,7 +38,7 @@
 
 (with-temp-message ""
   (require 'init-bootstrap)
-  (if (debug-start-p)
+  (if (my/debug-begin-p)
       (require 'init-debug)
     ;; normal loading
     (require 'init-builtin)

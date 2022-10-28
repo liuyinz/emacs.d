@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; -------------------------- Default ------------------------------
-
 (column-number-mode)
 (line-number-mode)
 (size-indication-mode)
@@ -11,15 +9,12 @@
 (scroll-bar-mode -1)
 (tooltip-mode -1)
 (load-theme 'wombat)
-
 (recentf-mode)
 (global-set-key "\C-o" #'recentf-open-files)
 (setq recentf-max-saved-items nil)
 
-;; --------------------------- Debug -------------------------------
-
-
-
+(load-file my/file-debug)
+;; (load my/file-debug nil nil t)
 
 (provide 'init-debug)
 ;;; init-debug.el ends here
