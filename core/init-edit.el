@@ -192,5 +192,12 @@
     :defer-config (ace-pinyin-global-mode +1))
   )
 
+(leaf bicycle
+  :bind
+  (:outline-minor-mode-map
+   :package outline
+   ([C-tab] . bicycle-cycle)
+   ([S-tab] . bicycle-cycle-global)))
+
 (provide 'init-edit)
 ;;; init-edit.el ends here

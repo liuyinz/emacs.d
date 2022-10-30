@@ -144,7 +144,15 @@
   (setq uniquify-buffer-name-style 'forward
         uniquify-separator "/"))
 
-;; TODO add commands to jump folds with toggle automaticlly
+(leaf outline
+  :hook (prog-mode-hook . outline-minor-mode)
+  :init
+  (set-display-table-slot
+   standard-display-table
+   'selective-display
+   (let ((face-offset (* (face-id 'shadow) (lsh 1 22))))
+     (vconcat (mapcar (lambda (c) (+ face-offset c)) "...")))))
+
 (leaf hideshow
   :hook (prog-mode-hook . hs-minor-mode)
   :init
@@ -156,22 +164,22 @@
     (when (eq 'code (overlay-get ov 'hs))
       (overlay-put ov 'display
                    (propertize
-                    (format "...%d folding..."
+                    (format "...%d"
                             (- (count-lines (overlay-start ov) (overlay-end ov)) 1))
                     'face 'shadow))))
   (setq hs-set-up-overlay #'display-code-line-counts)
 
-  ;; define command `hs-toggle-all'
-  (add-hook 'hs-minor-mode-hook (lambda () (defvar-local hs-all-hide-p nil)))
-  (defun hs-toggle-all ()
-    "Toggle all folds at once."
-    (interactive)
-    (hs-life-goes-on
-     (if (bound-and-true-p hs-all-hide-p)
-         (progn (hs-show-all)
-                (setq-local hs-all-hide-p nil))
-       (hs-hide-all)
-       (setq-local hs-all-hide-p t))))
+  ;; ;; define command `hs-toggle-all'
+  ;; (add-hook 'hs-minor-mode-hook (lambda () (defvar-local hs-all-hide-p nil)))
+  ;; (defun hs-toggle-all ()
+  ;;   "Toggle all folds at once."
+  ;;   (interactive)
+  ;;   (hs-life-goes-on
+  ;;    (if (bound-and-true-p hs-all-hide-p)
+  ;;        (progn (hs-show-all)
+  ;;               (setq-local hs-all-hide-p nil))
+  ;;      (hs-hide-all)
+  ;;      (setq-local hs-all-hide-p t))))
 
   )
 

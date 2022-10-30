@@ -24,11 +24,6 @@
       ("w" "word"  avy-goto-word-0)
       ("p" "paren" avy-goto-paren)]
 
-     ["Hideshow"
-      ("t" "toggle-all"   hs-toggle-all)
-      ("b" "toggle-block" hs-toggle-hiding)
-      ("e" "hide-level"   hs-hide-level)]
-
      ["Isolate"
       :if (lambda () (featurep 'isolate))
       ("s" "add quick"    isolate-quick-add :if region-active-p)
