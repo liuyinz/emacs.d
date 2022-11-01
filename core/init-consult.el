@@ -151,27 +151,27 @@
   ;; Integrate with `leaf'
   (require 'consult-imenu)
   (setq consult-imenu-config
-        '((emacs-lisp-mode :types
-            ((?f "Functions" font-lock-function-name-face)
-             (?m "Macros"    font-lock-function-name-face)
-             (?l "Leaf"      font-lock-constant-face)
-             (?t "Types"     font-lock-type-face)
-             (?v "Variables" font-lock-variable-name-face)))
-          (js-mode :types
-            ((?c "Classes"    font-lock-type-face)
-             (?f "Functions"  font-lock-function-name-face)
-             (?s "Constants"  font-lock-constant-face)
-             (?m "Methods"    font-lock-string-face)
-             (?p "Properties" font-lock-builtin-face)
-             (?v "Variables"  font-lock-variable-name-face)
-             (?e "Fields"     font-lock-warning-face)))
-          (python-mode :types
-            ((?c "Classes"    font-lock-type-face)
-             (?f "Functions"  font-lock-function-name-face)
-             (?v "Variables"  font-lock-variable-name-face)))
-          (sh-mode :types
-            ((?f "Functions" font-lock-function-name-face)
-             (?v "Variables" font-lock-variable-name-face)))))
+        '((emacs-lisp-mode
+           :toplevel "Functions"
+           :types ((?f "Functions" font-lock-function-name-face)
+                   (?l "Leaf"      font-lock-constant-face)
+                   (?t "Types"     font-lock-type-face)
+                   (?v "Variables" font-lock-variable-name-face)))
+          (js-mode
+           :types ((?c "Classes"    font-lock-type-face)
+                   (?f "Functions"  font-lock-function-name-face)
+                   (?s "Constants"  font-lock-constant-face)
+                   (?m "Methods"    font-lock-string-face)
+                   (?p "Properties" font-lock-builtin-face)
+                   (?v "Variables"  font-lock-variable-name-face)
+                   (?e "Fields"     font-lock-warning-face)))
+          (python-mode
+           :types ((?c "Classes"    font-lock-type-face)
+                   (?f "Functions"  font-lock-function-name-face)
+                   (?v "Variables"  font-lock-variable-name-face)))
+          (sh-mode
+           :types ((?f "Functions" font-lock-function-name-face)
+                   (?v "Variables" font-lock-variable-name-face)))))
 
   ;; (require 'consult-compile)
 
