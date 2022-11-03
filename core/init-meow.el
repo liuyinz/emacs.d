@@ -10,11 +10,51 @@
 (leaf meow
   :require t
   :init
-  (with-eval-after-load 'consult
-    (setq meow-goto-line-function #'consult-goto-line))
 
   (defun meow-setup ()
     (meow-normal-define-key
+     ;; argument
+     '("-" . negative-argument)
+     '("q" . meow-quit)
+
+     ;; jump
+     '("h" . meow-left)
+     '("j" . meow-next)
+     '("k" . meow-prev)
+     '("l" . meow-right)
+     '("b" . meow-back-word)
+     '("e" . meow-next-word)
+     '("B" . meow-back-symbol)
+     '("E" . meow-next-symbol)
+     '("f" . meow-find)
+     '("t" . meow-till)
+
+     ;; edit
+     '("a" . meow-append)
+     '("A" . meow-open-below)
+     '("i" . meow-insert)
+     '("I" . meow-open-above)
+     '("c" . meow-change)
+     '("C" . meow-change-save)
+     '("d" . meow-delete)
+     '("D" . meow-backward-delete)
+     '("u" . meow-undo)
+     '("U" . meow-undo-in-selection)
+
+     ;; kill-region (cut)
+     '("x" . meow-kill)
+     '("X" . meow-kill-append)
+     ;; kill-ring-save (copy)
+     '("y" . meow-save)
+     '("Y" . meow-save-append)
+     ;; yank (paste)
+     '("p" . meow-yank)
+     '("P" . meow-yank-pop)
+     ;; replace
+     '("r" . meow-replace)
+     '("R" . meow-replace-save)
+
+     ;; selection
      '("0" . meow-expand-0)
      '("9" . meow-expand-9)
      '("8" . meow-expand-8)
@@ -25,69 +65,58 @@
      '("3" . meow-expand-3)
      '("2" . meow-expand-2)
      '("1" . meow-expand-1)
-     '("-" . negative-argument)
      '(";" . meow-reverse)
+
+     '("H" . meow-left-expand)
+     '("J" . meow-next-expand)
+     '("K" . meow-prev-expand)
+     '("L" . meow-right-expand)
+     '("v" . meow-line)
+     '("V" . meow-line-expand)
+     '("o" . meow-block)
+     '("O" . meow-to-block)
+     '("T" . meow-join)
+
+     '("g" . meow-cancel-selection)
+     '("s" . meow-pop-selection)
+
+     ;; grab
+     '("G" . meow-grab)
+     '("F" . meow-sync-grab)
+     '("S" . meow-swap-grab)
+     ;; '("x" . meow-pop-grab)
+
+     ;; search
+     '("n" . meow-search)
+     '("N" . meow-visit)
+     '("w" . meow-mark-word)
+     '("W" . meow-mark-symbol)
+
+     ;; macro
+     '("m" . meow-start-kmacro-or-insert-counter)
+     '("M" . meow-end-or-call-kmacro)
+
+     ;; thing
      '("," . meow-inner-of-thing)
      '("." . meow-bounds-of-thing)
      '("<" . meow-beginning-of-thing)
      '(">" . meow-end-of-thing)
-     '("a" . meow-append)
-     '("A" . meow-open-below)
-     '("b" . meow-back-word)
-     '("B" . meow-back-symbol)
-     '("c" . meow-change)
-     '("d" . meow-delete)
-     '("D" . meow-backward-delete)
-     '("e" . meow-next-word)
-     '("E" . meow-next-symbol)
-     '("f" . meow-find)
-     '("g" . meow-cancel-selection)
-     '("G" . meow-grab)
-     '("h" . meow-left)
-     '("H" . meow-left-expand)
-     '("i" . meow-insert)
-     '("I" . meow-open-above)
-     '("j" . meow-next)
-     '("J" . meow-next-expand)
-     '("k" . meow-prev)
-     '("K" . meow-prev-expand)
-     '("l" . meow-right)
-     '("L" . meow-right-expand)
-     '("m" . meow-start-kmacro-or-insert-counter)
-     '("M" . meow-end-or-call-kmacro)
-     '("n" . meow-search)
-     '("N" . meow-visit)
-     '("o" . meow-block)
-     '("O" . meow-to-block)
-     '("p" . meow-yank)
-     '("q" . meow-quit)
-     '("r" . meow-pop-selection)
-     ;; '("r" . meow-replace)
-     '("R" . meow-swap-grab)
-     '("s" . meow-kill)
-     '("S" . meow-replace)
-     '("t" . meow-till)
-     '("u" . meow-undo)
-     '("U" . meow-undo-in-selection)
-     '("v" . meow-join)
-     '("w" . meow-mark-word)
-     '("W" . meow-mark-symbol)
-     '("x" . meow-line)
-     '("X" . meow-goto-line)
-     '("y" . meow-save)
-     '("Y" . meow-sync-grab)
-     '("z" . my/transient-jump)
-     '("'" . repeat)
+
+     ;; self-defined
      '("/" . isearch-forward-regexp)
+     '("'" . repeat)
+     '("z" . my/transient-jump)
      '("<escape>" . ignore))
+
     (meow-motion-overwrite-define-key
-     ;; '("j" . meow-next)
-     ;; '("k" . meow-prev)
+     '("j" . meow-next)
+     '("k" . meow-prev)
      '("<escape>" . ignore))
+
     (meow-leader-define-key
      ;; SPC j/k will run the original command in MOTION state.
-     ;; '("j" . "H-j")
-     ;; '("k" . "H-k")
+     '("j" . "H-j")
+     '("k" . "H-k")
      ;; Use SPC (0-9) for digit arguments.
      '("1" . meow-digit-argument)
      '("2" . meow-digit-argument)
@@ -102,18 +131,23 @@
      '("/" . meow-keypad-describe-key)
      '("?" . meow-cheatsheet)))
 
-  :defer-config
-
-  (meow-setup)
-  (meow-global-mode 1)
-
   (defun my/meow-motion-temporary ()
     "Switch between meow-motion-mode and meow-normal-mode automatically."
     (when (region-active-p)
       (meow--cancel-selection))
     (if meow-motion-mode
         (meow-normal-mode)
-      (meow-motion-mode))))
+      (meow-motion-mode)))
+
+  :defer-config
+
+  (meow-setup)
+  (meow-global-mode 1)
+
+  (with-eval-after-load 'consult
+    (setq meow-goto-line-function #'consult-goto-line))
+
+  )
 
 
 ;; REQUIRE brew tap laishulu/macism
