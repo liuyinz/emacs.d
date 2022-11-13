@@ -141,6 +141,24 @@
 
   :defer-config
 
+  ;; customize thing
+  ;; TODO add <></> for web-mode
+  (setq meow-display-thing-help t)
+  (setq meow-char-thing-table
+        '((?r . round)
+          (?s . square)
+          (?c . curly)
+          (?a . angle)
+          (?g . string)
+          (?e . symbol)
+          (?d . defun)
+          (?l . line)
+          (?p . paragraph)
+          (?b . buffer)))
+  (meow-thing-register 'angle
+                       '(pair ("<") (">"))
+                       '(pair ("<") (">")))
+
   (meow-setup)
   (meow-global-mode 1)
 
