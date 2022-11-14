@@ -83,6 +83,7 @@
           "\\`\\(keyfreq\\|vertico\\|evil\\|corfu\\|vundo\\|yas\\|vterm\\)-.*\\'"
           "\\`\\(magit\\|helpful\\|web-mode\\|ilog\\|hungry-delete\\|meow\\)-.*\\'"
           "\\`\\(markdown-insert\\|markdown-table\\|my/transient\\|sis-set\\)-.*\\'"
+          "\\`\\(acm\\|yaml-electric\\)-.*\\'"
           ))
 
   (setq keyfreq-excluded-commands
@@ -93,9 +94,12 @@
           newline
           newline-and-indent
           yank
+          indent-for-tab-command
+          push-button
           choose-completion
           comint-previous-input
           comint-send-input
+          compile-goto-error
           embark-act
           dired ;; nothing to optimize in dired
           dired-do-async-shell-command
