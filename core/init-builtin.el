@@ -193,11 +193,8 @@
 
 (leaf files
   :init
-  (setq make-backup-files nil
+  (setq auto-mode-case-fold nil
         enable-local-variables :all
-        create-lockfiles nil
-        auto-save-default nil
-        auto-mode-case-fold nil
         save-silently t
         ;; large-file-warning-threshold nil
         confirm-kill-processes nil
@@ -206,8 +203,17 @@
 
   ;; ISSUE https://github.com/emacsorphanage/osx-trash/issues/5#issuecomment-882759527
   (setq delete-by-moving-to-trash t)
-  (when (eq system-type 'darwin)
+  (when sys/macp
     (setq trash-directory "~/.Trash"))
+
+  ;; auto-save
+  (add-hook 'after-init-hook #'auto-save-visited-mode)
+  (setq make-backup-files nil
+        create-lockfiles nil
+        auto-save-default t
+        auto-save-visited-interval 10)
+  (setq auto-save-visited-predicate
+        (lambda () (and (buffer-modified-p))))
   )
 
 (leaf saveplace
@@ -627,6 +633,19 @@ CHAR-FUNCTION
 
 ;; Don't ping things that look like domain names.
 (setq ffap-machine-p-known 'reject)
+
+
+;; ---------------------- disabled command -------------------------
+
+;; disable all commands
+;; (setq disabled-command-functions nil)
+
+(defvar disabled-command-list '(set-goal-column help-fns-edit-variable))
+(mapatoms (lambda (sym)
+            (when (and (commandp sym)
+                       (get sym 'disabled)
+                       (not (member sym disabled-command-list)))
+              (put sym 'disabled nil))))
 
 (provide 'init-builtin)
 ;;; init-builtin.el ends here
