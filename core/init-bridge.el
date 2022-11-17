@@ -16,6 +16,10 @@
   ;; (setq lsp-bridge-enable-log t
   ;;       lsp-bridge-enable-debug t)
 
+  (appendq! lsp-bridge-default-mode-hooks
+            '(snippet-mode-hook
+              git-commit-mode-hook))
+
   (setq lsp-bridge-enable-diagnostics nil
         lsp-bridge-disable-backup nil)
 
