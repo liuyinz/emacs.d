@@ -107,13 +107,14 @@ Lisp function does not specify a special indentation."
   :commands elisp-demos-find-demo)
 
 (leaf helpful
+  :init
+  (setq helpful-switch-buffer-function #'display-buffer)
   :bind
   ([remap describe-key]      . helpful-key)
   ([remap describe-variable] . helpful-variable)
   ([remap describe-command]  . helpful-command)
   ([remap describe-function] . helpful-callable)
-  ([remap describe-symbol]   . helpful-at-point)
-  )
+  ([remap describe-symbol]   . helpful-symbol))
 
 (provide 'init-elisp)
 ;;; init-elisp.el ends here

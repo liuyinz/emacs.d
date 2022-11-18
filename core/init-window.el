@@ -27,7 +27,7 @@
           ("*nodejs*" :select t :size 0.4 :align 'below)
 
           ("*format-all-errors*" :size 0.3 :align 'below)
-
+          (helpful-mode :other t :select nil)
           (" *Flycheck checkers*" :select t :size 0.3 :align 'below)
           ((flycheck-error-list-mode flymake-diagnostics-buffer-mode)
            :select t :size 0.25 :align 'below)
