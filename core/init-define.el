@@ -306,12 +306,6 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   (interactive)
   (save-buffer-as-utf8 'gbk))
 
-(defun capitalize-first (s)
-  "Capitalize the first char of string S."
-  (if (> (length s) 0)
-      (concat (upcase (substring s 0 1)) (downcase (substring s 1)))
-    nil))
-
 (defun save-and-kill ()
   "Save and kill current buffer."
   (interactive)
