@@ -557,6 +557,10 @@ CHAR-FUNCTION
 
   )
 
+(leaf executable
+  :init
+  (setq executable-prefix-env t))
+
 ;; --------------------------- Tool -------------------------------
 
 (leaf auth-source

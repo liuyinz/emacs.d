@@ -9,13 +9,20 @@
   (setq sh-basic-offset 2
         sh-shell-file (executable-find "bash"))
 
+  ;; HACK customize mode-name
+  (defun my/customize-sh-mode-name ()
+    (setq mode-name (s-capitalize (format "%s" sh-shell)))
+    (setq mode-line-process nil))
+  (add-hook 'sh-set-shell-hook #'my/customize-sh-mode-name)
+
   ;; define `bash-mode-hook'
-  (defvar bash-mode-hook nil "Hook run after enter sh-mode[Bash]")
+  (defvar bash-mode-hook nil
+    "Hook run after enter Shell-script[bash]")
   (defun run-bash-mode-hook (&rest _)
     "Run `bash-mode-hook' when enabled."
     (when (eq sh-shell 'bash)
       (run-hooks 'bash-mode-hook)))
-  (add-hook 'sh-mode-hook #'run-bash-mode-hook)
+  (add-hook 'sh-set-shell-hook #'run-bash-mode-hook)
 
   )
 
