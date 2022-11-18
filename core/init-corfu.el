@@ -32,13 +32,11 @@
     :hook (global-corfu-mode-hook . corfu-history-mode)
     :init (add-to-list 'savehist-additional-variables 'corfu-history))
 
-  (leaf corfu-doc
-    :hook (global-corfu-mode-hook . corfu-doc-mode)
+  (leaf corfu-docframe
+    :hook (global-corfu-mode-hook . corfu-docframe-mode)
     :defer-config
-    (setq corfu-doc-auto t
-          corfu-doc-delay 0.8
-          coruf-doc-transition 'hide
-          corfu-doc-max-height corfu-count))
+    (setq corfu-docframe-delay 0.5
+          corfu-docframe-max-height corfu-count))
 
   :config
 
