@@ -13,8 +13,8 @@
   :defer-config
 
   ;; ;; Debug: REQUIRE brew install gdb
-  ;; (setq lsp-bridge-enable-log t
-  ;;       lsp-bridge-enable-debug t)
+  ;; (setq lsp-bridge-enable-log t)
+  ;; (setq lsp-bridge-enable-debug t)
 
   (appendq! lsp-bridge-default-mode-hooks
             '(snippet-mode-hook
@@ -37,27 +37,30 @@
               (("html") . "html_emmet")))
 
   (leaf acm
-    :bind
     (:acm-mode-map
-     ((kbd "C-n") . acm-insert-common-or-next))
+     ((kbd "C-h") . acm-doc-toggle))
     :init
     (setq acm-enable-quick-access nil
           acm-enable-tabnine nil
-          acm-backend-yas-candidates-number 10
-          acm-snippet-insert-index 0
+          acm-enable-doc nil)
+
+    ;; yasnippet
+    (setq acm-snippet-insert-index 1
+          acm-backend-yas-candidates-number 3
           acm-backend-yas-match-by-trigger-keyword t
           acm-backend-yas-show-trigger-keyword " [%s]")
 
-    (defun acm-insert-common-or-next ()
-      "Insert common prefix of menu or select next candidate."
-      (interactive)
-      (let ((inhibit-message t)
-            (num (length (acm-get-input-prefix))))
-        (acm-insert-common)
-        (when (= num (length (acm-get-input-prefix)))
-          (acm-select-next))))
-    (put 'acm-insert-common-or-next 'completion-predicate #'ignore))
+    ;; (defun acm-insert-common-or-next ()
+    ;;   "Insert common prefix of menu or select next candidate."
+    ;;   (interactive)
+    ;;   (let ((inhibit-message t)
+    ;;         (num (length (acm-get-input-prefix))))
+    ;;     (acm-insert-common)
+    ;;     (when (= num (length (acm-get-input-prefix)))
+    ;;       (acm-select-next))))
+    ;; (put 'acm-insert-common-or-next 'completion-predicate #'ignore))
 
+    )
   )
 
 (provide 'init-bridge)
