@@ -105,14 +105,14 @@
 
      ;; self-defined
      '("/" . isearch-forward-regexp)
-     '("'" . repeat)
      '("z" . my/transient-jump)
-     '("<escape>" . ignore))
+     '("<escape>" . ignore)
+     '("'" . binky-jump))
 
     (meow-motion-overwrite-define-key
-     '("j" . meow-next)
-     '("k" . meow-prev)
-     '("<escape>" . ignore))
+     '("C-o" . meow-temp-normal)
+     '("<escape>" . ignore)
+     '("'" . binky-jump))
 
     (meow-leader-define-key
      ;; SPC j/k will run the original command in MOTION state.

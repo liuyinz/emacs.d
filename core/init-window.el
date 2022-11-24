@@ -26,6 +26,9 @@
           ("*Python*" :select t :size 0.4 :align 'below)
           ("*nodejs*" :select t :size 0.4 :align 'below)
 
+          ;; BUG other,no-select
+          ;; ("elisp-demos.org" :select nil :other t)
+
           ("*format-all-errors*" :size 0.3 :align 'below)
           (helpful-mode :other t :select nil)
           (" *Flycheck checkers*" :select t :size 0.3 :align 'below)
