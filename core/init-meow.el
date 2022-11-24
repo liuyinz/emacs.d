@@ -39,7 +39,8 @@
      '("d" . meow-delete)
      '("D" . meow-backward-delete)
      '("u" . meow-undo)
-     '("U" . meow-undo-in-selection)
+     '("U" . meow-redo)
+     ;; '("U" . meow-undo-in-selection)
 
      ;; kill-region (cut)
      '("x" . meow-kill)
@@ -138,6 +139,15 @@
     (if meow-motion-mode
         (meow-normal-mode)
       (meow-motion-mode)))
+
+  (defvar meow--kbd-undo-redo "C-?"
+    "KBD macro for command `undo-redo'.")
+  (defun meow-redo ()
+    "Cancel current selection then redo."
+    (interactive)
+    (when (region-active-p)
+      (meow--cancel-selection))
+    (meow--execute-kbd-macro meow--kbd-undo-redo))
 
   :defer-config
 

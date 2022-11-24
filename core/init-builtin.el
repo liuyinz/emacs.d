@@ -124,9 +124,10 @@
   (setq next-error-highlight t
         next-error-highlight-no-select t
         next-error-message-highlight t
-        read-extended-command-predicate #'command-completion-default-include-p
-        ;; next-error-recenter '(4)
-        )
+        read-extended-command-predicate #'command-completion-default-include-p)
+
+  (setq undo-no-redo t)
+
   :defer-config
   (line-number-mode)
   (column-number-mode)
