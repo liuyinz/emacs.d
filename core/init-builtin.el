@@ -655,5 +655,14 @@ CHAR-FUNCTION
                        (not (member sym disabled-command-list)))
               (put sym 'disabled nil))))
 
+;; -------------------- library protection ------------------------
+
+(defun lisp-directory-read-only ()
+  "Set all built-in library read-only."
+  (when (file-in-directory-p buffer-file-name lisp-directory)
+    (read-only-mode)))
+
+(add-hook #'find-file-hook #'lisp-directory-read-only)
+
 (provide 'init-builtin)
 ;;; init-builtin.el ends here
