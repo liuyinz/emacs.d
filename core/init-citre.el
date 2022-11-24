@@ -13,11 +13,7 @@
   (setq citre-completion-case-sensitive nil
         citre-default-create-tags-file-location 'global-cache
         citre-use-project-root-when-creating-tags t
-        citre-prompt-language-for-ctags-command t)
-
-  (with-eval-after-load 'projectile
-    (setq citre-project-root-function #'projectile-project-root))
-  )
+        citre-prompt-language-for-ctags-command t))
 
 (provide 'init-citre)
 ;;; init-citre.el ends here

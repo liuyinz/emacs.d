@@ -40,7 +40,7 @@
     [["General"
       ("b" "Buffer"        consult-buffer)
       ("d" "Dir"           consult-dir)
-      ("p" "Projectile"    consult-projectile)
+      ("p" "Project"       consult-project-extra-find)
       ("f" "Flycheck"      consult-flycheck)
       ("i" "Imenu"         consult-imenu)
       ("l" "Line"          consult-line)

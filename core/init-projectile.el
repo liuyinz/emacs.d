@@ -1,4 +1,4 @@
-;;; init-project.el --- project setting -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-projectile.el --- setup projectile -*- lexical-binding: t no-byte-compile: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -29,7 +29,22 @@
     ;; exclude `Trash' directory
     (f-descendant-of? project-root "~/.Trash/"))
   (setq projectile-ignored-project-function #'my/projectile-ignore-project)
+
+  ;; ------------------------ integration ----------------------------
+
+  (with-eval-after-load 'citre
+    (setq citre-project-root-function #'projectile-project-root))
+
+  (with-eval-after-load 'doom-modeline
+    (setq doom-modeline-project-detection 'projectile))
+
+  (with-eval-after-load 'consult
+    (setq consult-project-function #'projectile-project-root)
+    (with-eval-after-load 'consult-dir
+      (setq consult-dir-project-list-function #'consult-dir-projectile-dirs)
+      (with-eval-after-load 'consult-projectile
+        (setq consult-dir-default-command #'consult-projectile-find-file))))
   )
 
-(provide 'init-project)
-;;; init-project.el ends here
+(provide 'init-projectile)
+;;; init-projectile.el ends here

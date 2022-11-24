@@ -62,7 +62,7 @@
     ;; engineering
     (require 'init-ide)
     (require 'init-vcs)
-    (require 'init-project)
+    ;; (require 'init-projectile)
     ;; langs
     (require 'init-web)
     (require 'init-lang)

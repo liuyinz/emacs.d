@@ -23,9 +23,6 @@
   :defer-config
   (setq-default completion-in-region-function #'consult-completion-in-region)
 
-  (with-eval-after-load 'projectile
-    (setq consult-project-function #'projectile-project-root))
-
   ;; SEE https://github.com/minad/consult/wiki#use-orderless-as-pattern-compiler-for-consult-grepripgrepfind
   (with-eval-after-load 'orderless
     (defun consult--orderless-regexp-compiler (input type &rest _config)
@@ -179,13 +176,14 @@
 
   )
 
+(leaf consult-project-extra)
+
 (leaf consult-dir
   :defer-config
-  (when (eq consult-project-function #'projectile-project-root)
-    (setq consult-dir-project-list-function #'consult-dir-projectile-dirs)
-    (if (or (fboundp #'consult-projectile-find-file)
-            (require 'consult-projectile nil t))
-        (setq consult-dir-default-command #'consult-projectile-find-file)))
+  (setq consult-dir-default-command (if (or (fboundp #'consult-project-extra-find)
+                                            (require 'consult-project-extra nil t))
+                                        #'consult-project-extra-find
+                                      #'project-find-file))
 
   ;; zlua directory jump
   (defun consult-dir--zlua-dirs ()

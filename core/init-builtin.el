@@ -477,6 +477,10 @@ CHAR-FUNCTION
 
 ;; --------------------------- Jump -------------------------------
 
+(leaf project
+  :init
+  (setq project-vc-merge-submodules nil))
+
 (leaf xref
   :init
   (when emacs/>=28.1p

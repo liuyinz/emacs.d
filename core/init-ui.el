@@ -22,10 +22,8 @@
         doom-modeline-env-load-string "..."
         doom-modeline-vcs-max-length 20
         doom-modeline-window-width-limit (+ fill-column 20)
-        doom-modeline-buffer-file-name-style 'truncate-with-project))
-
-(with-eval-after-load 'projectile
-  (setq doom-modeline-project-detection 'projectile))
+        doom-modeline-buffer-file-name-style 'truncate-with-project
+        doom-modeline-project-detection 'project))
 
 (leaf doom-themes
   :require t
