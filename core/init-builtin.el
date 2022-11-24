@@ -52,6 +52,10 @@
       (funcall fn)))
   (advice-add 'toggle-frame-fullscreen :around #'ad/enable-tui-fullscreen))
 
+(leaf mouse
+  :init
+  (setq mouse-yank-at-point t))
+
 (leaf xt-mouse
   :init
   (defun my/mouse-setup ()
@@ -619,7 +623,7 @@ CHAR-FUNCTION
       ring-bell-function 'ignore
       history-length 1000
       history-delete-duplicates t
-      )
+      word-wrap-by-category t)
 
 (setq-default fill-column 80
               tab-width 4
