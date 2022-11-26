@@ -76,6 +76,10 @@
 
 ;; ------------------------ Apperance -----------------------------
 
+
+(leaf hl-line
+  :hook (after-init-hook . global-hl-line-mode))
+
 ;; TODO multiple desktop settings,see
 ;; https://www.emacswiki.org/emacs/DesktopMultipleSaveFiles
 ;; https://stackoverflow.com/a/849180/13194984
@@ -622,6 +626,7 @@ CHAR-FUNCTION
 ;; --------------------------- Jump -------------------------------
 
 (leaf project
+  :require t
   :init
   (setq project-vc-merge-submodules nil))
 
