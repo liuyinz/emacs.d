@@ -37,8 +37,10 @@
               (("html") . "html_emmet")))
 
   (leaf acm
+    :bind
     (:acm-mode-map
-     ((kbd "C-h") . acm-doc-toggle))
+     ((kbd "C-h") . acm-doc-toggle)
+     ((kbd "C-u") . acm-sdcv-toggle))
     :init
     (setq acm-enable-quick-access nil
           acm-enable-tabnine nil
@@ -59,6 +61,15 @@
     ;;     (when (= num (length (acm-get-input-prefix)))
     ;;       (acm-select-next))))
     ;; (put 'acm-insert-common-or-next 'completion-predicate #'ignore))
+
+    ;; FIXME wrapper of `lsp-bridge-toggle-sdcv-helper'
+    (defun acm-sdcv-toggle ()
+      "docstring"
+      (interactive)
+      (let ((inhibit-message t))
+        (lsp-bridge-toggle-sdcv-helper)
+        (acm-update)
+        (acm-menu-update)))
 
     )
   )
