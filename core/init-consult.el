@@ -151,9 +151,12 @@
         '((emacs-lisp-mode
            :toplevel "Functions"
            :types ((?f "Functions" font-lock-function-name-face)
-                   (?l "Leaf"      font-lock-constant-face)
                    (?t "Types"     font-lock-type-face)
-                   (?v "Variables" font-lock-variable-name-face)))
+                   (?v "Variables" font-lock-variable-name-face)
+                   (?c "Commands"  font-lock-constant-face)
+                   (?u "Custom"    font-lock-string-face)
+                   (?l "Leaf"      font-lock-keyword-face)
+                   ))
           (js-mode
            :types ((?c "Classes"    font-lock-type-face)
                    (?f "Functions"  font-lock-function-name-face)
