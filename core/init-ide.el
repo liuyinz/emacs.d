@@ -50,9 +50,12 @@
        (when (executable-find "pyright")
          (flycheck-select-checker 'python-pyright)))
 
-      (emacs-lisp-mode
+      ((emacs-lisp-mode lisp-interaction-mode)
        (progn
-         (flycheck-package-setup)
+         (if (buffer-file-name)
+             (flycheck-package-setup)
+           (flycheck-disable-checker 'emacs-lisp-checkdoc)
+           (flycheck-disable-checker 'emacs-lisp-package))
          (flycheck-relint-setup)))
 
       ((mhtml-mode html-mode web-mode)
