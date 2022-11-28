@@ -169,7 +169,7 @@
   :hook ((text-mode-hook prog-mode-hook) . undo-hl-mode)
   :defer-config
   (appendq! undo-hl-undo-commands '(meow-undo meow-redo))
-  (setq undo-hl-flash-duration 0.2))
+  (setq undo-hl-flash-duration 0.15))
 
 (leaf vundo
   :init
