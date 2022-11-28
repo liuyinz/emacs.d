@@ -17,7 +17,7 @@
           (("*Warnings*" "*Messages*") :size 0.3 :align 'below)
           (("*shell*" "*eshell*" "*ielm*") :popup t :size 0.3 :align 'below)
           ("\\*[Wo]*Man.*\\*" :regexp t :popup t :select t :size 0.5 :align 'below)
-
+          ("*Pp Eval Output*" :popup t :size 0.5 :align 'below :select nil)
           ;; third-party
           ;; ("*evil-marks*" :align 'below :size 0.4)
 
