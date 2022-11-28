@@ -107,7 +107,8 @@
      '("/" . isearch-forward-regexp)
      '("z" . my/transient-jump)
      '("<escape>" . ignore)
-     '("'" . binky-jump))
+     '("'" . binky-jump)
+     '("\"" . toggle-one-window))
 
     (meow-motion-overwrite-define-key
      '("C-o" . meow-temp-normal)
