@@ -400,11 +400,7 @@
  (kbd "C-c t") 'my/transient-toggle
  (kbd "C-c b") 'my/transient-buffer
  (kbd "C-c j") 'my/transient-consult
-
- (kbd "C-j") 'yas-expand
- (kbd "C-l") 'embark-act
- (kbd "C-r") (lambda () (interactive) (switch-to-buffer nil))
- )
+ (kbd "C-l") 'embark-act)
 
 (provide 'init-key)
 ;;; init-key.el ends here
