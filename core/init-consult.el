@@ -150,13 +150,13 @@
   (setq consult-imenu-config
         '((emacs-lisp-mode
            :toplevel "Functions"
-           :types ((?f "Functions" font-lock-function-name-face)
-                   (?t "Types"     font-lock-type-face)
-                   (?v "Variables" font-lock-variable-name-face)
-                   (?c "Commands"  font-lock-constant-face)
-                   (?u "Custom"    font-lock-string-face)
-                   (?l "Leaf"      font-lock-keyword-face)
-                   ))
+           :types ((?f "Functions"  font-lock-function-name-face)
+                   (?t "Types"      font-lock-type-face)
+                   (?v "Variables"  font-lock-variable-name-face)
+                   (?c "Commands"   font-lock-constant-face)
+                   (?u "Customs"    font-lock-string-face)
+                   (?a "Faces"      font-lock-type-face)
+                   (?l "Leafs"      font-lock-keyword-face)))
           (js-mode
            :types ((?c "Classes"    font-lock-type-face)
                    (?f "Functions"  font-lock-function-name-face)
@@ -170,8 +170,8 @@
                    (?f "Functions"  font-lock-function-name-face)
                    (?v "Variables"  font-lock-variable-name-face)))
           (sh-mode
-           :types ((?f "Functions" font-lock-function-name-face)
-                   (?v "Variables" font-lock-variable-name-face)))))
+           :types ((?f "Functions"  font-lock-function-name-face)
+                   (?v "Variables"  font-lock-variable-name-face)))))
 
   ;; (require 'consult-compile)
 

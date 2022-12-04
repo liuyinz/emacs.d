@@ -13,12 +13,14 @@
     (setq-local lisp-indent-function #'my/lisp-indent-function)
     (setq-local imenu-generic-expression
                 (append imenu-generic-expression
-                        `(("Custom" ,(concat "^\\s-*(defcustom\\s-+\\("
+                        `(("Customs" ,(concat "^\\s-*(defcustom\\s-+\\("
+                                             lisp-mode-symbol-regexp "\\)") 1)
+                          ("Faces" ,(concat "^\\s-*(defface\\s-+\\("
                                              lisp-mode-symbol-regexp "\\)") 1)
                           ("Commands" ,(concat "^\\s-*(defun\\s-+\\("
                                                lisp-mode-symbol-regexp
                                                "\\)\\(.*\n\\)+?\\s-*(interactive[) ].*$") 1)
-                          ("Leaf" ,(concat "^\\s-*(leaf\\s-+\\("
+                          ("Leafs" ,(concat "^\\s-*(leaf\\s-+\\("
                                            lisp-mode-symbol-regexp "\\)") 1)))))
 
 
