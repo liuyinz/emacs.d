@@ -76,7 +76,6 @@
 
 ;; ------------------------ Apperance -----------------------------
 
-
 (leaf hl-line
   :hook (after-init-hook . global-hl-line-mode))
 
@@ -642,6 +641,7 @@ CHAR-FUNCTION
 
 (leaf goto-addr
   :hook ((after-init-hook . global-goto-address-mode)
+
          (prog-mode-hook . goto-address-prog-mode)))
 
 (leaf webjump
@@ -744,6 +744,14 @@ CHAR-FUNCTION
   :init
   (setq transient-highlight-mismatched-keys nil
         transient-detect-key-conflicts t))
+
+(leaf xwidget
+  :hook (xwidget-webkit-mode-hook . xwidget-setup)
+  :init
+  (setq xwidget-webkit-buffer-name-format "*xwidge: %10T*")
+  (defun xwidget-setup ()
+    "docstring"
+    (goto-address-mode -1)))
 
 ;; -------------------------- Encode ------------------------------
 

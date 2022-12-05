@@ -45,16 +45,17 @@
       (markdown-toc-generate-toc t)))
   (add-hook 'before-save-hook #'markdown-toc-refresh-before-save))
 
-;; REQUIRE deps: pip install grip
+;; REQUIRE pip install grip colorama
 (leaf grip-mode
   :commands grip-start-preview
-  :defer-config
-  (let ((info (auth-source-user-and-password "api.github.com" "liuyinz^preview")))
-    (setq grip-github-user     "liuyinz"
-          grip-github-password (cadr info)))
+  ;; :defer-config
 
-  (setq grip-preview-use-webkit nil
-        grip-update-after-change t))
+  ;; (let ((info (auth-source-user-and-password "api.github.com" "liuyinz^preview")))
+  ;;   (setq grip-github-user     "liuyinz"
+  ;;         grip-github-password (cadr info)))
+
+  ;; (setq grip-preview-use-webkit t)
+  )
 
 (provide 'init-markdown)
 
