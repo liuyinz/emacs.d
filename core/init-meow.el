@@ -107,13 +107,13 @@
      '("/" . isearch-forward-regexp)
      '("z" . my/transient-jump)
      '("<escape>" . ignore)
-     '("'" . binky-jump)
+     '("'" . binky-binky)
      '("\"" . toggle-one-window))
 
     (meow-motion-overwrite-define-key
      '("C-o" . meow-temp-normal)
      '("<escape>" . ignore)
-     '("'" . binky-jump))
+     '("'" . binky-binky))
 
     (meow-leader-define-key
      ;; SPC j/k will run the original command in MOTION state.

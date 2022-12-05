@@ -11,23 +11,23 @@
 
 ;; ----------------------- Demonstration ---------------------------
 
-(leaf keycast
-  :commands toggle-keycast
-  :init
-  (setq keycast-mode-line-format "%10s%K%R%C")
-  ;; SEE https://github.com/seagle0128/doom-modeline/issues/122#issuecomment-1133838869
-  (defun toggle-keycast()
-    (interactive)
-    (require 'keycast)
-    (let ((key '("" keycast-mode-line " ")))
-      (if (member key global-mode-string)
-          (progn (setq global-mode-string (delete key global-mode-string))
-                 (remove-hook 'pre-command-hook 'keycast--update)
-                 (message "Keycast OFF"))
-        (add-to-list 'global-mode-string key)
-        (add-hook 'pre-command-hook 'keycast--update t)
-        (message "Keycast ON"))))
-  )
+;; (leaf keycast
+;;   :commands toggle-keycast
+;;   :init
+;;   (setq keycast-mode-line-format "%10s%K%R%C")
+;;   ;; SEE https://github.com/seagle0128/doom-modeline/issues/122#issuecomment-1133838869
+;;   (defun toggle-keycast()
+;;     (interactive)
+;;     (require 'keycast)
+;;     (let ((key '("" keycast-mode-line " ")))
+;;       (if (member key global-mode-string)
+;;           (progn (setq global-mode-string (delete key global-mode-string))
+;;                  (remove-hook 'pre-command-hook 'keycast--update)
+;;                  (message "Keycast OFF"))
+;;         (add-to-list 'global-mode-string key)
+;;         (add-hook 'pre-command-hook 'keycast--update t)
+;;         (message "Keycast ON"))))
+;;   )
 
 (leaf interaction-log
   :init

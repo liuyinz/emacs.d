@@ -48,13 +48,13 @@
 ;; REQUIRE pip install grip colorama
 (leaf grip-mode
   :commands grip-start-preview
-  ;; :defer-config
+  :defer-config
+  (setq grip-preview-use-webkit nil)
 
   ;; (let ((info (auth-source-user-and-password "api.github.com" "liuyinz^preview")))
   ;;   (setq grip-github-user     "liuyinz"
   ;;         grip-github-password (cadr info)))
 
-  ;; (setq grip-preview-use-webkit t)
   )
 
 (provide 'init-markdown)
