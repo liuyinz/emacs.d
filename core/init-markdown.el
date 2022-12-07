@@ -51,9 +51,9 @@
   :defer-config
   (setq grip-preview-use-webkit nil)
 
-  ;; (let ((info (auth-source-user-and-password "api.github.com" "liuyinz^preview")))
-  ;;   (setq grip-github-user     "liuyinz"
-  ;;         grip-github-password (cadr info)))
+  (let ((info (auth-source-user-and-password "api.github.com" "liuyinz^preview")))
+    (setq grip-github-user     "liuyinz"
+          grip-github-password (cadr info)))
 
   )
 
