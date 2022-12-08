@@ -32,6 +32,9 @@
   "https://github.com/liuyinz"
   "The Github Page of mine.")
 
+(defconst emacs-preload-features (reverse features)
+  "Emacs preload features by default.")
+
 (defconst sys/win32p
   (eq system-type 'windows-nt)
   "Are we running on a WinTel system?")
@@ -161,6 +164,11 @@ FN-R : region function, FN: default function"
 
 
 ;; ------------------------- Function -----------------------------
+
+(defun feature-preload-p (feature)
+  "Return non-nil if FEATURE is pre-loaded by default."
+  (and emacs-preload-features
+       (memq feature emacs-preload-features)))
 
 ;; Dos2Unix/Unix2Dos
 (defun dos2unix ()
