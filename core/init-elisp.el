@@ -117,5 +117,11 @@ Lisp function does not specify a special indentation."
   ([remap describe-function] . helpful-callable)
   ([remap describe-symbol]   . helpful-symbol))
 
+(leaf dash
+  :hook (after-init-hook . global-dash-fontify-mode)
+  :init
+  (with-eval-after-load 'info-look
+    (dash-register-info-lookup)))
+
 (provide 'init-elisp)
 ;;; init-elisp.el ends here
