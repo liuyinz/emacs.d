@@ -133,6 +133,8 @@
         next-error-message-highlight t
         read-extended-command-predicate #'command-completion-default-include-p)
 
+  (setq-default indent-tabs-mode nil)
+
   (setq undo-no-redo t)
   ;; jump after inserted text after undo-redo
   (advice-add #'primitive-undo :override #'my/primitive-undo)
@@ -781,7 +783,6 @@ CHAR-FUNCTION
               tab-width 4
               fringes-outside-margins t
               fringe-indicator-alist nil
-              indent-tabs-mode nil
               left-margin-width 1
               right-margin-width 1
               default-directory "~")

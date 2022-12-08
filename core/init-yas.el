@@ -16,10 +16,7 @@
   :init
   (setq yas-minor-mode-map nil)
   (setq yas-alias-to-yas/prefix-p nil)
-  (setq yas-indent-line 'fixed)
-  ;; yas-also-indent-empty-lines t
-  ;; yas-indent-line 'auto
-  ;; yas-also-auto-indent-first-line t
+  ;; (setq yas-indent-line 'fixed)
   (setq yas-new-snippet-default "\
 # -*- mode: snippet -*-
 # name: ${1:name}

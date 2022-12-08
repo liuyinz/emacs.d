@@ -18,7 +18,8 @@
 
   (appendq! lsp-bridge-default-mode-hooks
             '(snippet-mode-hook
-              git-commit-mode-hook))
+              git-commit-mode-hook
+              markdown-mode-hook))
 
   (setq lsp-bridge-enable-diagnostics nil
         lsp-bridge-disable-backup nil)
@@ -39,8 +40,9 @@
   (leaf acm
     :bind
     (:acm-mode-map
-     ((kbd "C-h") . acm-doc-toggle)
-     ((kbd "C-u") . acm-sdcv-toggle))
+     ((kbd "C-t h") . acm-doc-toggle)
+     ((kbd "C-t d") . acm-sdcv-toggle)
+     )
     :init
     (setq acm-enable-quick-access nil
           acm-enable-tabnine nil
