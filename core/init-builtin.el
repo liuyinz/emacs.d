@@ -40,6 +40,7 @@
   ;; use space for wrap line
   ;; SEE https://www.emacswiki.org/emacs/LineWrap
   (set-display-table-slot standard-display-table 'wrap ?\ )
+  (set-display-table-slot standard-display-table 'truncation ?\ )
 
   ;; SEE https://apple.stackexchange.com/a/36947
   (defun ad/enable-tui-fullscreen (fn)
