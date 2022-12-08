@@ -59,6 +59,7 @@
     (require 'init-edit)
     (require 'init-tool)
     (require 'init-dev)
+    (require 'init-benchmark)
     ;; engineering
     (require 'init-ide)
     (require 'init-vcs)
