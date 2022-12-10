@@ -35,7 +35,7 @@
     (custom-set-faces
      '(default ((t (:foreground "#a0b3c5" :background "#1d252c"))))
      '(link    ((t (:weight normal))))
-     '(vertical-border ((t (:background nil))))
+     '(vertical-border ((t (:background unspecified))))
 
      `(font-lock-comment-face ((t (:foreground ,(doom-darken "#718ca1" 0.1)
                                    :italic t))))
@@ -50,7 +50,9 @@
      '(match          ((t (:inherit font-lock-variable-name-face
                            :weight bold
                            :inverse-video t))))
-     '(lazy-highlight ((t (:inherit match :foreground nil :background nil))))
+     '(lazy-highlight ((t (:inherit match
+                           :foreground unspecified
+                           :background unspecified))))
 
      '(cursor  ((t (:background "#a0b3c5" :foreground "#1d252c"))))
      '(isearch ((t (:inherit cursor))))
@@ -60,7 +62,7 @@
      '(completions-common-part ((t (:inherit font-lock-keyword-face))))
 
      '(fill-column-indicator   ((t (:inherit unspecified
-                                    :foreground nil
+                                    :foreground unspecified
                                     :background "#181f25"))))
 
      ;; meow
@@ -74,20 +76,20 @@
 
      ;; orderless
      '(orderless-match-face-0 ((t (:inherit font-lock-keyword-face
-                                   :background nil
-                                   :foreground nil
+                                   :background unspecified
+                                   :foreground unspecified
                                    :inverse-video t))))
      '(orderless-match-face-1 ((t (:inherit font-lock-warning-face
-                                   :background nil
-                                   :foreground nil
+                                   :background unspecified
+                                   :foreground unspecified
                                    :inverse-video t))))
      '(orderless-match-face-2 ((t (:inherit font-lock-type-face
-                                   :background nil
-                                   :foreground nil
+                                   :background unspecified
+                                   :foreground unspecified
                                    :inverse-video t))))
      '(orderless-match-face-3 ((t (:inherit font-lock-string-face
-                                   :background nil
-                                   :foreground nil
+                                   :background unspecified
+                                   :foreground unspecified
                                    :inverse-video t))))
      ;; rainbow-delimiters
      '(rainbow-delimiters-depth-1-face   ((t (:foreground "#b62d65"))))
@@ -101,7 +103,9 @@
 
      ;; corfu
      '(corfu-default ((t (:background "#181f25"))))
-     '(corfu-current ((t (:inherit vertico-current :background nil :foreground nil))))
+     '(corfu-current ((t (:inherit vertico-current
+                          :background unspecified
+                          :foreground unspecified))))
 
      ;;consult
      '(consult-file         ((t (:inherit font-lock-doc-face))))
@@ -114,9 +118,11 @@
      '(marginalia-modified ((t (:inherit font-lock-variable-name-face))))
 
      ;;diff-hl
-     '(diff-hl-change ((t (:foreground "#ebbf83" :background nil :inverse-video nil))))
-     '(diff-hl-insert ((t (:background nil :inverse-video nil))))
-     '(diff-hl-delete ((t (:background nil :inverse-video nil))))
+     '(diff-hl-change ((t (:foreground "#ebbf83"
+                           :background unspecified
+                           :inverse-video nil))))
+     '(diff-hl-insert ((t (:background unspecified :inverse-video nil))))
+     '(diff-hl-delete ((t (:background unspecified :inverse-video nil))))
 
      ;; yasnippet
      '(yas-field-highlight-face ((t (:inherit font-lock-variable-name-face
@@ -133,10 +139,10 @@
      '(markdown-inline-code-face ((t (:background "#28323B"))))
 
      ;; avy
-     '(avy-lead-face   ((t (:foreground "#539afc" :background nil))))
-     '(avy-lead-face-0 ((t (:foreground "#99d0f6" :background nil))))
-     '(avy-lead-face-1 ((t (:foreground "#cfe9fb" :background nil))))
-     '(avy-lead-face-2 ((t (:foreground "#f3f9fe" :background nil))))
+     '(avy-lead-face   ((t (:foreground "#539afc" :background unspecified))))
+     '(avy-lead-face-0 ((t (:foreground "#99d0f6" :background unspecified))))
+     '(avy-lead-face-1 ((t (:foreground "#cfe9fb" :background unspecified))))
+     '(avy-lead-face-2 ((t (:foreground "#f3f9fe" :background unspecified))))
      ;; highlight-defined
      '(highlight-defined-function-name-face ((t (:inherit unspecified))))
      '(highlight-defined-variable-name-face ((t (:inherit unspecified))))
@@ -147,18 +153,21 @@
      '(rg-line-number-face ((t (:foreground "#ebbf83"))))
 
      ;; magit
-     '(magit-hash        ((t (:inherit font-lock-function-name-face :foreground nil))))
-     '(magit-log-date    ((t (:inherit font-lock-variable-name-face :foreground nil))))
-     '(magit-log-author  ((t (:inherit font-lock-keyword-face :foreground nil))))
+     '(magit-hash        ((t (:inherit font-lock-function-name-face
+                              :foreground unspecified))))
+     '(magit-log-date    ((t (:inherit font-lock-variable-name-face
+                              :foreground unspecified))))
+     '(magit-log-author  ((t (:inherit font-lock-keyword-face
+                              :foreground unspecified))))
      '(magit-header-line ((t (:inherit vertico-current
-                              :foreground nil
-                              :background nil
+                              :foreground unspecified
+                              :background unspecified
                               :box nil))))
 
      ;; web-mode
      '(web-mode-current-element-highlight-face ((t (:weight bold :inverse-video t))))
      '(web-mode-current-column-highlight-face  ((t (:background "#384551"
-                                                    :foreground nil))))
+                                                    :foreground unspecified))))
 
      ;; cperl-mode
      '(cperl-array-face ((t (:inherit font-lock-variable-name-face))))
