@@ -30,26 +30,6 @@
         (cjk-font-setting "Source Han Serif" 1.4)
       (cjk-font-setting "Sarasa Mono SC" 1))))
 
-;; TODO write transient menu for color operation
-(leaf kurecolor
-  :init
-  (defun my/kurecolor-variant (hex)
-    (interactive )
-    (let ((lst (number-sequence 0.1 1.0 0.1)))
-      (with-current-buffer (get-buffer-create "*kurecolor-variant")
-        (rainbow-mode 1)
-        (goto-char (point-max))
-        (insert (format "\n\n %s   %s\nsat: %0.2f %s\n\nbri: %0.2f %s\n\nhue: %0.2f %s"
-                        hex
-                        (mapconcat (apply-partially #'format "%0.2f") lst "    ")
-                        (kurecolor-hex-get-saturation hex)
-                        (mapconcat (apply-partially #'kurecolor-hex-set-saturation hex) lst " ")
-                        (kurecolor-hex-get-brightness hex)
-                        (mapconcat (apply-partially #'kurecolor-hex-set-brightness hex) lst " ")
-                        (kurecolor-hex-get-hue hex)
-                        (mapconcat (apply-partially #'kurecolor-hex-set-hue hex) lst " ")))
-        (display-buffer (current-buffer))))))
-
 (leaf topsy
   :hook (emacs-lisp-mode-hook . topsy-mode))
 
@@ -159,30 +139,6 @@
         simpleclip-unmark-on-copy t)
   :hook (after-init-hook . simpleclip-mode))
 
-;; --------------------------- Undo -------------------------------
-
-(leaf undohist
-  :hook (after-init-hook . undohist-initialize)
-  :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
-
-(leaf undo-hl
-  :hook ((text-mode-hook prog-mode-hook) . undo-hl-mode)
-  :defer-config
-  (appendq! undo-hl-undo-commands '(meow-undo meow-redo))
-  (setq undo-hl-flash-duration 0.15))
-
-(leaf vundo
-  :init
-  (setq vundo-window-max-height 5)
-  :bind
-  ("C-c u" . vundo)
-  (:vundo-mode-map
-   :package vundo
-   ("l" . vundo-forward)
-   ("h" . vundo-backward)
-   ("j" . vundo-next)
-   ("k" . vundo-previous)))
-
 ;; --------------------------- Jump -------------------------------
 
 (leaf avy
@@ -211,13 +167,6 @@
     :init (setq ace-pinyin-simplified-chinese-only-p nil)
     :defer-config (ace-pinyin-global-mode +1))
   )
-
-(leaf bicycle
-  :bind
-  (:outline-minor-mode-map
-   :package outline
-   ([C-tab] . bicycle-cycle)
-   ([S-tab] . bicycle-cycle-global)))
 
 (leaf binky-mode
   :hook (after-init-hook . binky-mode)

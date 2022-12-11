@@ -42,6 +42,7 @@
       ("d" "Dir"           consult-dir)
       ("p" "Project"       consult-project-extra-find)
       ("f" "Flycheck"      consult-flycheck)
+      ("j" "Flyspell"      consult-flyspell)
       ("i" "Imenu"         consult-imenu)
       ("l" "Line"          consult-line)
       ("s" "Snippet"       consult-yasnippet)

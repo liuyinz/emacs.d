@@ -173,41 +173,35 @@
            :types ((?f "Functions"  font-lock-function-name-face)
                    (?v "Variables"  font-lock-variable-name-face)))))
 
-  ;; (require 'consult-compile)
+  (leaf consult-dir
+    :defer-config
+    (setq consult-dir-default-command
+          (if (or (fboundp #'consult-project-extra-find)
+                  (require 'consult-project-extra nil t))
+              #'consult-project-extra-find
+            #'project-find-file))
 
-  ;; ------------------------- Function -----------------------------
+    ;; zlua directory jump
+    (defun consult-dir--zlua-dirs ()
+      "Return list of zlua dirs."
+      (nreverse (mapcar
+                 (lambda (p) (abbreviate-file-name (file-name-as-directory p)))
+                 ;; REQUIRE export `ZLUA_SCRIPT' in parent-shell
+                 (split-string (shell-command-to-string
+                                "lua $ZLUA_SCRIPT -l | perl -lane 'print $F[1]'")
+                               "\n" t))))
 
-  )
+    (defvar consult-dir--source-zlua
+      `(:name     "Zlua"
+        :narrow   ?z
+        :category file
+        :face     consult-file
+        :history  file-name-history
+        :enabled  ,(lambda () (getenv "ZLUA_SCRIPT"))
+        :items    ,#'consult-dir--zlua-dirs)
+      "Zlua directory source for `consult-dir'.")
+    (add-to-list 'consult-dir-sources 'consult-dir--source-zlua t))
 
-(leaf consult-project-extra)
-
-(leaf consult-dir
-  :defer-config
-  (setq consult-dir-default-command (if (or (fboundp #'consult-project-extra-find)
-                                            (require 'consult-project-extra nil t))
-                                        #'consult-project-extra-find
-                                      #'project-find-file))
-
-  ;; zlua directory jump
-  (defun consult-dir--zlua-dirs ()
-    "Return list of zlua dirs."
-    (nreverse (mapcar
-               (lambda (p) (abbreviate-file-name (file-name-as-directory p)))
-               ;; REQUIRE export `ZLUA_SCRIPT' in parent-shell
-               (split-string (shell-command-to-string
-                              "lua $ZLUA_SCRIPT -l | perl -lane 'print $F[1]'")
-                             "\n" t))))
-
-  (defvar consult-dir--source-zlua
-    `(:name     "Zlua"
-      :narrow   ?z
-      :category file
-      :face     consult-file
-      :history  file-name-history
-      :enabled  ,(lambda () (getenv "ZLUA_SCRIPT"))
-      :items    ,#'consult-dir--zlua-dirs)
-    "Zlua directory source for `consult-dir'.")
-  (add-to-list 'consult-dir-sources 'consult-dir--source-zlua t)
   )
 
 (provide 'init-consult)
