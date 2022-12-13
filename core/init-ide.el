@@ -26,7 +26,7 @@
   (setq flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save idle-change mode-enabled)
         flycheck-idle-change-delay 3
-        flycheck-indication-mode 'right-margin)
+        flycheck-indication-mode nil)
   ;; rc files
   (setq flycheck-stylelintrc ".stylelintrc.json"
         flycheck-tidyrc ".tidyrc")
