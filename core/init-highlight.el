@@ -62,13 +62,13 @@
   (leaf diff-hl-margin
     :hook (global-diff-hl-mode-hook . diff-hl-margin-mode)
     :init
-    ;; (char-to-string ?\x258d) => "▍" , SEE https://www.htmlsymbols.xyz/box-drawing
+    ;; (char-to-string ?\x258d) => "▍" , SEE https://unicode-table.com/en/search/?q=block
     (setq diff-hl-margin-symbols-alist
-          '((insert  . "\x258c")
-            (delete  . "\x258c")
-            (change  . "\x258c")
-            (unknown . "\x258c")
-            (ignored . "\x258c"))))
+          '((insert  . "\x258d")
+            (delete  . "\x258d")
+            (change  . "\x258d")
+            (unknown . "\x258d")
+            (ignored . "\x258d"))))
 
   (leaf diff-hl-dired
     :hook (dired-mode-hook . diff-hl-dired-mode-unless-remote))
