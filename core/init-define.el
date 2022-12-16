@@ -134,6 +134,12 @@
   "Prepend LISTS to SYM in place."
   `(setq ,sym (append ,@lists ,sym)))
 
+(defmacro alist-set! (sym alist)
+  "For each element of ALIST, add or replace it in SYM.
+Add the element to SYM when there is no match whose `car' equals element's
+`car'.  Replace the element in SYM when there is match."
+  `(mapc (lambda (x) (setf (alist-get (car x) ,sym) (cdr x))) ,alist))
+
 (defmacro run-general! (fn-r fn)
   "Expand as one command to rule all.
 FN-R : region function, FN: default function"
