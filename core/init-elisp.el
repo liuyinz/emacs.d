@@ -123,5 +123,13 @@ Lisp function does not specify a special indentation."
   (with-eval-after-load 'info-look
     (dash-register-info-lookup)))
 
+(leaf macroexpand
+  :init
+  (setq macrostep-expand-in-separate-buffer t
+        macrostep-expand-compiler-macros nil))
+
+(leaf info-colors
+  :hook (Info-selection-hook . info-colors-fontify-node))
+
 (provide 'init-elisp)
 ;;; init-elisp.el ends here

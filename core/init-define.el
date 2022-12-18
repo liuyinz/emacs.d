@@ -379,15 +379,6 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   "Open in other window."
   (switch-to-buffer-other-window (current-buffer)))
 
-(defun mode-hook-toggle (hook alist)
-  "When `HOOK' is called, toggle modes listed in `ALIST'.
-`ALIST' is consisted of '(MODE . ENABLE)'."
-  (mapc (lambda (s) (let ((mode (car s))
-                          (enable (cdr s)))
-                      (when (fboundp mode)
-                        (funcall mode (when (xor hook enable) -1)))))
-        alist))
-
 (defun tty-frame-list ()
   "Return a list of all tty frames, except the daemon <frame F1>."
   (seq-filter (lambda (f) (frame-parameter f 'tty))

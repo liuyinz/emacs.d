@@ -6,6 +6,16 @@
 
 ;; (require 'subr-x)
 
+(leaf redacted)
+
+(leaf insecure-lock
+  :commands insecure-lock-enter
+  :init
+  (setq insecure-lock-require-password t)
+  (setq insecure-lock-mode-hook '(insecure-lock-redact)))
+
+(leaf hide-mode-line)
+
 (leaf doom-modeline
   :hook (after-init-hook . doom-modeline-mode)
   :init

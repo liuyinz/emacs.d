@@ -335,16 +335,7 @@ CHAR-FUNCTION
         smerge-change-buffer-confirm nil
         smerge-refine-ignore-whitespace nil)
 
-  (defvar smerge-toggle-modes
-    '((diff-hl-mode . nil)
-      (hl-line-mode . nil)
-      (save-place-local-mode . nil)
-      (highlight-parentheses-mode . nil))
-    "Modes should be toggled when call smerge-mode-hook")
-
   (defun my/smerge-setup ()
-    "Setting when `smerge-mode' is enable."
-    (mode-hook-toggle smerge-mode smerge-toggle-modes)
     (my/transient-smerge)
     ;; make sure call `smerge-first' after disable `save-place-local-mode'
     ;; see `add-hook' doc about order
@@ -531,11 +522,6 @@ CHAR-FUNCTION
   (setq executable-prefix-env t))
 
 ;; --------------------------- Tool -------------------------------
-
-(leaf auth-source
-  :commands auth-source-user-and-password
-  :init
-  (setq auth-sources '("~/.authinfo")))
 
 (leaf profiler
   :init

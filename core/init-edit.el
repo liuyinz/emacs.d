@@ -14,18 +14,10 @@
   (add-hook 'isolate-add-mode-hook #'my/meow-motion-temporary))
 
 (leaf writeroom-mode
-  :hook (writeroom-mode-hook . toggle-cjk-writeroom)
+  :hook (writeroom-mode-hook . writeroom-mode-setup)
   :init
   (setq writeroom-width 120)
-
-  ;; toggle modes according to writeroom-mode
-  (defvar writeroom-toggle-modes '((diff-hl-mode . nil)))
-  (add-hook 'writeroom-mode-hook (lambda () (mode-hook-toggle
-                                             writeroom-mode
-                                             writeroom-toggle-modes)))
-
-  (defun toggle-cjk-writeroom ()
-    (interactive)
+  (defun writeroom-mode-setup ()
     (if (bound-and-true-p writeroom-mode)
         (cjk-font-setting "Source Han Serif" 1.4)
       (cjk-font-setting "Sarasa Mono SC" 1))))
@@ -173,12 +165,14 @@
   :init
   (setq binky-mark-auto '(?1 ?2 ?3 ?4 ?5 ?6 ?7)
         binky-mark-back ?'
-        binky-preview-side 'right
-        binky-preview-show-header t)
+        binky-preview-show-header t
+        binky-preview-delay 0.3
+        binky-margin-string "\x2630"
+        binky-margin-side 'right)
   :defer-config
+  (binky-margin-mode)
   (appendq! binky-exclude-regexps
-            '("\\`magit.*\\'"))
-  )
+            '("\\`magit.*\\'")))
 
 (provide 'init-edit)
 ;;; init-edit.el ends here

@@ -41,6 +41,7 @@
   (if (my/debug-begin-p)
       (require 'init-debug)
     ;; normal loading
+    (require 'init-rebound)
     (require 'init-builtin)
     (require 'init-meow)
     (require 'init-minibuffer)
@@ -61,6 +62,7 @@
     (require 'init-edit)
     (require 'init-spell)
     (require 'init-tool)
+    (require 'init-secure)
     (require 'init-dev)
     (require 'init-benchmark)
     (require 'init-color)

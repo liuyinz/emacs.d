@@ -56,7 +56,6 @@
              (display-buffer ilog-buffer-name)))))))
   )
 
-;; -------------------------- Review ------------------------------
 
 (provide 'init-dev)
 ;;; init-dev.el ends here
