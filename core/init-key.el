@@ -400,7 +400,9 @@
  (kbd "C-c t") 'my/transient-toggle
  (kbd "C-c b") 'my/transient-buffer
  (kbd "C-c j") 'my/transient-consult
- (kbd "C-l") 'embark-act)
+ (kbd "C-l") 'embark-act
+ (kbd "M-j") 'scroll-other-window
+ (kbd "M-k") 'scroll-other-window-down)
 
 (provide 'init-key)
 ;;; init-key.el ends here

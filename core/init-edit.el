@@ -8,23 +8,6 @@
   :hook (after-init-hook . global-hungry-delete-mode)
   :defer-config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
-(leaf isolate
-  :require t
-  :defer-config
-  (add-hook 'isolate-add-mode-hook #'my/meow-motion-temporary))
-
-(leaf writeroom-mode
-  :hook (writeroom-mode-hook . writeroom-mode-setup)
-  :init
-  (setq writeroom-width 120)
-  (defun writeroom-mode-setup ()
-    (if (bound-and-true-p writeroom-mode)
-        (cjk-font-setting "Source Han Serif" 1.4)
-      (cjk-font-setting "Sarasa Mono SC" 1))))
-
-(leaf topsy
-  :hook (emacs-lisp-mode-hook . topsy-mode))
-
 ;; SEE https://www.python.org/dev/peps/pep-0350/#mnemonics
 (leaf hl-todo
   :hook (after-init-hook . global-hl-todo-mode)
@@ -132,47 +115,6 @@
   :hook (after-init-hook . simpleclip-mode))
 
 ;; --------------------------- Jump -------------------------------
-
-(leaf avy
-  :hook (after-init-hook . avy-setup-default)
-  :defer-config
-  (setq avy-all-windows t
-        avy-all-windows-alt t
-        avy-background t
-        avy-style 'at-full
-        avy-keys '(?a ?s ?d ?f ?h ?j ?k ?l ?q ?u ?w ?i ?e ?o))
-  (setq avy-orders-alist
-        '((avy-goto-char . avy-order-closest)
-          (avy-goto-word-0 . avy-order-closest)
-          (avy-goto-paren . avy-order-closest)))
-
-  ;; SEE https://github.com/abo-abo/avy/wiki/custom-commands#jumping-to-an-open-paren
-  ;; https://stackoverflow.com/a/50063226/13194984
-  (defun avy-goto-paren ()
-    "Avy jump to paren."
-    (interactive)
-    (let ((avy-command this-command))
-      (avy-jump "[][(){}]")))
-
-  ;; Pinyin support
-  (leaf ace-pinyin
-    :init (setq ace-pinyin-simplified-chinese-only-p nil)
-    :defer-config (ace-pinyin-global-mode +1))
-  )
-
-(leaf binky-mode
-  :hook (after-init-hook . binky-mode)
-  :init
-  (setq binky-mark-auto '(?1 ?2 ?3 ?4 ?5 ?6 ?7)
-        binky-mark-back ?'
-        binky-preview-show-header t
-        binky-preview-delay 0.3
-        binky-margin-string "\x2630"
-        binky-margin-side 'right)
-  :defer-config
-  (binky-margin-mode)
-  (appendq! binky-exclude-regexps
-            '("\\`magit.*\\'")))
 
 (provide 'init-edit)
 ;;; init-edit.el ends here

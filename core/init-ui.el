@@ -4,9 +4,10 @@
 
 ;;; Code:
 
-;; (require 'subr-x)
-
 (leaf redacted)
+
+(leaf topsy
+  :hook (emacs-lisp-mode-hook . topsy-mode))
 
 (leaf insecure-lock
   :commands insecure-lock-enter
@@ -15,6 +16,11 @@
   (setq insecure-lock-mode-hook '(insecure-lock-redact)))
 
 (leaf hide-mode-line)
+
+(leaf page-break-lines
+  :hook (after-init-hook . global-page-break-lines-mode)
+  :init
+  (setq page-break-lines-max-width fill-column))
 
 (leaf doom-modeline
   :hook (after-init-hook . doom-modeline-mode)

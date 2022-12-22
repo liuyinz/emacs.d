@@ -32,6 +32,64 @@
        ("n" "new file" gitignore-templates-new-file)
        ("i" "select pattern" gitignore-templates-insert)])))
 
+(leaf diff-mode
+  :init
+  ;; disable smerge-refine with set `diff-refine' to nil
+  (setq diff-refine 'navigation))
+
+(leaf smerge-mode
+  :hook (smerge-mode-hook . my/smerge-setup)
+  :init
+  (setq smerge-command-prefix "\e"
+        smerge-change-buffer-confirm nil
+        smerge-refine-ignore-whitespace nil)
+
+  (defun my/smerge-setup ()
+    (my/transient-smerge)
+    ;; make sure call `smerge-first' after disable `save-place-local-mode'
+    ;; see `add-hook' doc about order
+    (smerge-first))
+
+  (defun smerge-first ()
+    "Jump to first conflict in the buffer."
+    (interactive)
+    (goto-char (point-min))
+    (unless (looking-at smerge-begin-re)
+      (smerge-next)))
+
+  (defun smerge-last ()
+    "Jump to first conflict in the buffer."
+    (interactive)
+    (goto-char (point-max))
+    (smerge-prev))
+
+  (defun smerge-conflict-preview-or-scroll ()
+    "Preview or scorll conflict region."
+    (interactive)
+    (smerge-match-conflict)
+    (let* ((rev (match-beginning 0))
+           (buf (get-buffer "*smerge-preview*"))
+           win)
+
+      (unless (and buf (equal rev (buffer-local-value 'orig-rev buf)))
+        (copy-to-buffer "*smerge-preview*" (match-beginning 0) (match-end 0))
+
+        ;; SEE https://emacs.stackexchange.com/a/32817
+        ;; (with-current-buffer "*smerge-preview*"
+        ;;   (set (make-local-variable 'orig-rev) rev))
+        (setf (buffer-local-value 'orig-rev buf) rev)
+        )
+
+      (if (setq win (get-buffer-window buf))
+          (with-selected-window win
+            (condition-case nil
+                (scroll-up)
+              (error
+               (goto-char (point-min)))))
+        (display-buffer buf nil))))
+
+  )
+
 (leaf magit
   :bind
   ((kbd "C-c l") . magit-dispatch)

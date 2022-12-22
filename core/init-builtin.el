@@ -139,13 +139,6 @@
   (column-number-mode)
   (size-indication-mode))
 
-;; disable show-paren-mode by default
-(leaf paren
-  :hook (after-init-hook . (lambda () (show-paren-mode -1)))
-  :init
-  (setq show-paren-style 'parenthesis
-        show-paren-context-when-offscreen 'overlay))
-
 (leaf uniquify
   :init
   (setq uniquify-buffer-name-style 'forward
@@ -239,52 +232,6 @@
 
 ;; --------------------------- Edit -------------------------------
 
-(leaf elec-pair
-  :hook (after-init-hook . electric-pair-mode)
-  :defer-config
-  ;; SEE https://emacs-china.org/t/html-electric-pair-mode-js/13904/11?u=cheunghsu
-  (defvar electric-pair-extra-inhibit-mode-chars-alist
-    '((t . nil))
-    "A list of major-mode and inhibit chars.
-Each element is in the form of (MODE . (CHAR/CHAR-STRING/CHAR-FUNCTION ...)).
-MODE
-    A mode, or t for all modes.
-CHAR
-    A character to match the input. for example:
-        ?\{
-CHAR-STRING
-    A pair of character and string, the character to match the input,
-    the string for ‘looking-back’. for example:
-
-        (?\{ . \":{\")
-CHAR-FUNCTION
-    A pair of character and function, the character to match the input,
-    the function accept the input character as parameter. for example:
-        (?\{ . (lambda (_c)
-                 (eq ?: (char-before (1- (point))))))")
-  (defun electric-pair-extra-inhibit (c)
-    (let ((alist
-           (append
-            (assoc-default major-mode electric-pair-extra-inhibit-mode-chars-alist)
-            (assoc-default t          electric-pair-extra-inhibit-mode-chars-alist))))
-      (or (cl-member c
-                     alist
-                     :test
-                     (lambda (c it)
-                       (cond
-                        ((characterp it) (equal c it))
-                        ((and (consp it) (equal c (car it)))
-                         (cond ((stringp   (cdr it)) (looking-back (cdr it) 1))
-                               ((functionp (cdr it)) (funcall (cdr it) c)))))))
-          (electric-pair-default-inhibit c))))
-  (setq electric-pair-inhibit-predicate #'electric-pair-extra-inhibit)
-
-  (appendq! electric-pair-extra-inhibit-mode-chars-alist
-            '((js-mode . (?<))
-              (js2-mode . (?<))
-              (org-mode . (?<))))
-  )
-
 (leaf subword
   :hook ((prog-mode-hook . subword-mode)
          (minibuffer-setup-hook . subword-mode)))
@@ -322,64 +269,6 @@ CHAR-FUNCTION
 
 (leaf copyright
   :init (setq copyright-year-ranges t))
-
-(leaf diff-mode
-  :init
-  ;; disable smerge-refine with set `diff-refine' to nil
-  (setq diff-refine 'navigation))
-
-(leaf smerge-mode
-  :hook (smerge-mode-hook . my/smerge-setup)
-  :init
-  (setq smerge-command-prefix "\e"
-        smerge-change-buffer-confirm nil
-        smerge-refine-ignore-whitespace nil)
-
-  (defun my/smerge-setup ()
-    (my/transient-smerge)
-    ;; make sure call `smerge-first' after disable `save-place-local-mode'
-    ;; see `add-hook' doc about order
-    (smerge-first))
-
-  (defun smerge-first ()
-    "Jump to first conflict in the buffer."
-    (interactive)
-    (goto-char (point-min))
-    (unless (looking-at smerge-begin-re)
-      (smerge-next)))
-
-  (defun smerge-last ()
-    "Jump to first conflict in the buffer."
-    (interactive)
-    (goto-char (point-max))
-    (smerge-prev))
-
-  (defun smerge-conflict-preview-or-scroll ()
-    "Preview or scorll conflict region."
-    (interactive)
-    (smerge-match-conflict)
-    (let* ((rev (match-beginning 0))
-           (buf (get-buffer "*smerge-preview*"))
-           win)
-
-      (unless (and buf (equal rev (buffer-local-value 'orig-rev buf)))
-        (copy-to-buffer "*smerge-preview*" (match-beginning 0) (match-end 0))
-
-        ;; SEE https://emacs.stackexchange.com/a/32817
-        ;; (with-current-buffer "*smerge-preview*"
-        ;;   (set (make-local-variable 'orig-rev) rev))
-        (setf (buffer-local-value 'orig-rev buf) rev)
-        )
-
-      (if (setq win (get-buffer-window buf))
-          (with-selected-window win
-            (condition-case nil
-                (scroll-up)
-              (error
-               (goto-char (point-min)))))
-        (display-buffer buf nil))))
-
-  )
 
 ;; ;; On-the-fly spell checker
 ;; (leaf flyspell
@@ -436,61 +325,6 @@ CHAR-FUNCTION
 
 ;; --------------------------- Jump -------------------------------
 
-(leaf xref
-  :init
-  (when emacs/>=28.1p
-    (setq xref-search-program #'ripgrep
-          xref-show-xrefs-function 'xref-show-definitions-completing-read
-          xref-show-definitions-function 'xref-show-definitions-completing-read)))
-
-(leaf winner
-  :hook (after-init-hook . winner-mode))
-
-(leaf goto-addr
-  :hook ((after-init-hook . global-goto-address-mode)
-
-         (prog-mode-hook . goto-address-prog-mode)))
-
-(leaf webjump
-  :init
-  (setq webjump-sites
-        '(;; Internet search engines.
-          ("StackOverFlow" .
-           [simple-query "stackoverflow.com"
-                         "stackoverflow.com/search?q=" ""])
-          ("Google" .
-           [simple-query "www.google.com"
-                         "www.google.com/search?q=" ""])
-          ("Github" .
-           [simple-query "www.github.com"
-                         "www.github.com/search?q=" ""])
-          ("Melpa" .
-           [simple-query "melpa.org"
-                         "melpa.org/#/?q=" ""])
-          ("Baidu" .
-           [simple-query "www.baidu.com"
-                         "www.baidu.com/s?wd=" ""])
-          ("Zhihu" .
-           [simple-query "www.zhihu.com"
-                         "www.zhihu.com/search?type=content&q=" ""])
-          ("V2ex" .
-           [simple-query "www.sov2ex.com"
-                         "www.sov2ex.com/?q=" ""])
-          ("Wikipedia" .
-           [simple-query "wikipedia.org"
-                         "wikipedia.org/wiki/" ""])))
-  :defer-config
-  ;; HACK support visual selection texts in webjump()
-  (defun ad/webjump-read-string-enable-visual (prompt)
-    "Patch for visual selection avaible"
-    (let* ((region-text (if (use-region-p)
-                            (buffer-substring-no-properties
-                             (region-beginning)
-                             (region-end)) nil))
-           (input (read-string (concat prompt ": ") region-text)))
-      (if (webjump-null-or-blank-string-p input) nil input)))
-  (advice-add 'webjump-read-string :override #'ad/webjump-read-string-enable-visual))
-
 (leaf compile
   :defer-config
   (defun compilation-first-error ()
@@ -522,20 +356,6 @@ CHAR-FUNCTION
   (setq executable-prefix-env t))
 
 ;; --------------------------- Tool -------------------------------
-
-(leaf profiler
-  :init
-  (setq profiler-report-leaf-mark  ">")
-
-  (defun ad/profiler-bytes-h (str)
-    "reformat with human-readeable size"
-    (let ((s (cl-count ?, str)))
-      (cond
-       ((= s 1) (concat (substring str 0 -4) " K"))
-       ((= s 2) (concat (substring str 0 -8) " M"))
-       ((>= s 3) (concat (substring str 0 -12) " G"))
-       (t str))))
-  (advice-add 'profiler-format-number :filter-return #'ad/profiler-bytes-h))
 
 (leaf transient
   :require t
