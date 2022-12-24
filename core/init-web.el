@@ -26,30 +26,31 @@
 (leaf impatient-mode
   :commands imp-visit-buffer)
 
-;; ;; Major mode for editing web templates
-;; (leaf web-mode
-;;   :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\|vue\\)$"
-;;   :init
-;;   (setq web-mode-markup-indent-offset 2
-;;         web-mode-css-indent-offset 2
-;;         web-mode-code-indent-offset 2
-;;         ;; web-mode-enable-auto-closing nil
-;;         ;; web-mode-enable-auto-opening nil
-;;         web-mode-enable-auto-pairing nil
-;;         web-mode-enable-auto-quoting t
-;;         ;; web-mode-enable-auto-expanding nil
-;;         ;; web-mode-enable-auto-indentation nil
-;;         web-mode-enable-current-element-highlight t
-;;         ;; web-mode-enable-current-column-highlight nil
-;;         ;; web-mode-enable-block-face t
-;;         ;; web-mode-enable-part-face t
-;;         ;; web-mode-enable-inlays t
-;;         ;; web-mode-enable-sql-detection t
-;;         ;; web-mode-enable-front-matter-block t
-;;         web-mode-enable-html-entities-fontification t
-;;         web-mode-enable-element-content-fontification t
-;;         web-mode-enable-element-tag-fontification t
-;;         ))
+;; Major mode for editing web templates
+(leaf web-mode
+  :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\|vue\\)$"
+  :init
+  (setq web-mode-markup-indent-offset 2
+        web-mode-css-indent-offset 2
+        web-mode-code-indent-offset 2
+        web-mode-part-padding 2
+        ;; web-mode-enable-auto-closing nil
+        ;; web-mode-enable-auto-opening nil
+        web-mode-enable-auto-pairing nil
+        web-mode-enable-auto-quoting t
+        ;; web-mode-enable-auto-expanding nil
+        ;; web-mode-enable-auto-indentation nil
+        web-mode-enable-current-element-highlight t
+        ;; web-mode-enable-current-column-highlight nil
+        ;; web-mode-enable-block-face t
+        ;; web-mode-enable-part-face t
+        ;; web-mode-enable-inlays t
+        ;; web-mode-enable-sql-detection t
+        ;; web-mode-enable-front-matter-block t
+        web-mode-enable-html-entities-fontification t
+        web-mode-enable-element-content-fontification t
+        web-mode-enable-element-tag-fontification t
+        ))
 
 ;; ---------------------------- JS --------------------------------
 
