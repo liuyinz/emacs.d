@@ -4,11 +4,7 @@
 
 ;; Colorize color names in buffers
 (leaf rainbow-mode
-  :hook ((html-mode-hook
-          php-mode-hook
-          css-mode-hook
-          emacs-lisp-mode-hook
-          lisp-interaction-mode) . rainbow-mode)
+  :hook ((html-mode-hook css-mode-hook) . rainbow-mode)
   :defer-config
   (with-no-warnings
     ;; HACK Use overlay instead of text properties to override `hl-line' faces.
