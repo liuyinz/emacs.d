@@ -16,11 +16,6 @@
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
 
-  (appendq! lsp-bridge-default-mode-hooks
-            '(snippet-mode-hook
-              git-commit-mode-hook
-              markdown-mode-hook))
-
   (setq lsp-bridge-enable-diagnostics nil
         lsp-bridge-disable-backup nil)
 
@@ -32,10 +27,22 @@
           '(lsp-bridge--mode-line-format))
 
 
+  (appendq! lsp-bridge-default-mode-hooks
+            '(snippet-mode-hook
+              git-commit-mode-hook
+              markdown-mode-hook
+              mhtml-mode-hook
+              html-mode-hook))
+
   ;; Setup multi server
+
   (appendq! lsp-bridge-multi-lang-server-extension-list
             '((("css" "less" "scss") . "css_emmet")
               (("html") . "html_emmet")))
+
+  ;; (appendq! lsp-bridge-multi-lang-server-mode-list
+  ;;           '(((css-mode less-css-mode scss-mode) . "css_emmet")
+  ;;             ((web-mode mhtml-mode html-mode) . "html_emmet")))
 
   (leaf acm
     :bind
@@ -73,11 +80,11 @@
         (acm-update)
         (acm-menu-update)))
     :config
-    
+
     ;; BUG use in terminal
     ;; (unless (display-graphic-p)
     ;;   (require 'acm-terminal))
-    
+
     )
   )
 

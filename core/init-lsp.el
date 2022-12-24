@@ -8,6 +8,7 @@
 (leaf lsp-mode
   :hook ((sh-mode-hook
           html-mode-hook
+          web-mode-hook
           css-mode-hook
           js-mode-hook
           yaml-mode-hook) . lsp-deferred)
@@ -92,7 +93,7 @@
   :defer-config
 
   (leaf lsp-modeline :require t)
-  (leaf consult-lsp :require t)
+  ;; (leaf consult-lsp :require t)
 
   )
 

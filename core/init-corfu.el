@@ -13,16 +13,18 @@
    ([?\C- ]  . corfu-insert-separator)
    ("\C- "   . corfu-insert-separator)
    ("\C-n"   . corfu-complete-common-or-next)
-   ("\C-h"   . corfu-doc-toggle)
-   ("\C-f"   . corfu-doc-scroll-up)
-   ("\C-b"   . corfu-doc-scroll-down)
-   ("\C-s"   . corfu-english-helper-search))
+   ("\C-h"   . corfu-popupinfo-toggle)
+   ("\M-k"   . corfu-popupinfo-scroll-up)
+   ("\M-j"   . corfu-popupinfo-scroll-down)
+   ;; ("\C-s"   . corfu-english-helper-search)
+   )
   :init
   (setq corfu-auto t
         corfu-auto-prefix 1
         corfu-preselect-first nil
         corfu-cycle t
         corfu-min-width 20
+        corfu-left-margin-width 3
 
         ;; hide scroll-bar
         corfu-bar-width 0
@@ -32,11 +34,12 @@
     :hook (global-corfu-mode-hook . corfu-history-mode)
     :init (add-to-list 'savehist-additional-variables 'corfu-history))
 
-  (leaf corfu-docframe
-    :hook (global-corfu-mode-hook . corfu-docframe-mode)
+  (leaf corfu-popupinfo
+    :hook (global-corfu-mode-hook . corfu-popupinfo-mode)
     :defer-config
-    (setq corfu-docframe-delay 0.5
-          corfu-docframe-max-height corfu-count))
+    (setq corfu-popupinfo-delay t)
+    (setq corfu-popupinfo-hide nil
+          corfu-popupinfo-max-height corfu-count))
 
   :config
 
@@ -65,8 +68,10 @@
   (put 'corfu-complete-common-or-next 'completion-predicate #'ignore)
 
   (leaf kind-icon
-    :init
-    (setq kind-icon-use-icons nil
+    :require t
+    :after corfu
+    :config
+    (setq kind-icon-use-icons t
           kind-icon-blend-background nil
           kind-icon-default-face 'corfu-default)
     (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
