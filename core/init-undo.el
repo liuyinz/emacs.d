@@ -7,6 +7,28 @@
 
 ;;; Code:
 
+(leaf undohist
+  :hook (after-init-hook . undohist-initialize)
+  :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
+
+(leaf undo-hl
+  :hook ((text-mode-hook prog-mode-hook) . undo-hl-mode)
+  :defer-config
+  (appendq! undo-hl-undo-commands '(meow-undo meow-redo))
+  (setq undo-hl-flash-duration 0.15))
+
+(leaf vundo
+  :init
+  (setq vundo-window-max-height 5)
+  :bind
+  ("C-c u" . vundo)
+  (:vundo-mode-map
+   :package vundo
+   ("l" . vundo-forward)
+   ("h" . vundo-backward)
+   ("j" . vundo-next)
+   ("k" . vundo-previous)))
+
 (leaf simple
   :init
   (setq undo-no-redo t)
@@ -151,28 +173,6 @@ Return what remains of the list."
                 (cons (list 'apply 'cdr nil) buffer-undo-list))))
     list)
   )
-
-(leaf undohist
-  :hook (after-init-hook . undohist-initialize)
-  :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
-
-(leaf undo-hl
-  :hook ((text-mode-hook prog-mode-hook) . undo-hl-mode)
-  :defer-config
-  (appendq! undo-hl-undo-commands '(meow-undo meow-redo))
-  (setq undo-hl-flash-duration 0.15))
-
-(leaf vundo
-  :init
-  (setq vundo-window-max-height 5)
-  :bind
-  ("C-c u" . vundo)
-  (:vundo-mode-map
-   :package vundo
-   ("l" . vundo-forward)
-   ("h" . vundo-backward)
-   ("j" . vundo-next)
-   ("k" . vundo-previous)))
 
 (provide 'init-undo)
 ;;; init-undo.el ends here

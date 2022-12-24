@@ -134,7 +134,6 @@
     [["info"
       ("i u" "Devdocs" devdocs-at-point)
       ("i h" "Elisp demos" elisp-demos-find-demo)
-      ("i e" "Fanyi" fanyi-dwim2)
       ("i w" "Web search" webjump)
       ("i g" "Github browse" browse-at-remote)
       ("i m" "Version messages" vc-msg-show)
@@ -182,12 +181,7 @@
       ("k" "Shrink window vertical" shrink-window :transient t)
       ("h" "Shrink window horizontal" shrink-window-horizontally :transient t)
       ("l" "Enlarge window horizontal" enlarge-window-horizontally :transient t)
-      ]
-     ["Layout"
-      ("u" "Winner undo" winner-undo :transient t)
-      ("U" "Winner redo" winner-redo :transient t)
-      ]
-     ])
+      ]])
 
   (transient-define-prefix my/transient-smerge ()
     "Invoke commmands related to smerge-mode"

@@ -9,14 +9,6 @@
 ;; SEE https://www.emacswiki.org/emacs/RegularExpression
 (leaf xr)
 
-;; REQUIRE  brew install mpg123
-(leaf fanyi
-  :custom
-  (fanyi-providers '(fanyi-longman-provider
-                     fanyi-youdao-thesaurus-provider
-                     fanyi-haici-provider))
-  )
-
 ;; REQUIRE brew install opencc
 (leaf opencc)
 
@@ -44,12 +36,12 @@
             5)))
   )
 
-;; TODO set embark with proxy
-(leaf with-proxy
-  :require t
-  :init
-  (when-let ((http (getenv "HTTP")))
-    (setq with-proxy-http-server http)))
+;; ;; TODO set embark with proxy
+;; (leaf with-proxy
+;;   :require t
+;;   :init
+;;   (when-let ((http (getenv "HTTP")))
+;;     (setq with-proxy-http-server http)))
 
 ;; -------------------------- record ------------------------------
 

@@ -2,10 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; SEE https://github.com/cyrus-and/zoom
-(leaf zoom
-  :init (setq zoom-size '(0.618 . 0.618)))
-
 (leaf shackle
   :hook (after-init-hook . shackle-mode)
   :init

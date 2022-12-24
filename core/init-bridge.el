@@ -72,7 +72,12 @@
         (lsp-bridge-toggle-sdcv-helper)
         (acm-update)
         (acm-menu-update)))
-
+    :config
+    
+    ;; BUG use in terminal
+    ;; (unless (display-graphic-p)
+    ;;   (require 'acm-terminal))
+    
     )
   )
 

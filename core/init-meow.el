@@ -108,7 +108,7 @@
      '("z" . my/transient-jump)
      '("<escape>" . ignore)
      '("'" . binky-binky)
-     '("\"" . toggle-one-window))
+     '("Q" . toggle-one-window))
 
     (meow-motion-overwrite-define-key
      '("C-o" . meow-temp-normal)

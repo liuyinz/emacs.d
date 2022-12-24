@@ -50,8 +50,7 @@
   (with-eval-after-load 'flycheck
     (jsonian-enable-flycheck))
   (with-eval-after-load 'so-long
-    (jsonian-no-so-long-mode))
-  )
+    (jsonian-no-so-long-mode)))
 
 (leaf yaml-mode
   :mode "\\.yamllint\\'"
@@ -64,7 +63,6 @@
   (setq lua-indent-string-contents t)
   (setq lua-prefix-key nil))
 
-
 (leaf vimrc-mode
   :mode "\\.vim\\(rc\\)?\\'")
 
@@ -72,13 +70,6 @@
 
 (leaf eldoc-toml
   :hook (conf-toml-mode-hook . eldoc-toml-mode))
-
-;; -------------------------- Macos -------------------------------
-
-(leaf applescript-mode
-  :init
-  ;; TODO add `indent-line-function'
-  (setq as-indent-offset 2))
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

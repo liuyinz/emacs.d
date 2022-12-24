@@ -7,6 +7,21 @@
 
 ;;; Code:
 
+(leaf binky-mode
+  :hook (after-init-hook . binky-mode)
+  :init
+  (setq binky-mark-auto '(?1 ?2 ?3 ?4 ?5 ?6 ?7)
+        binky-mark-back ?'
+        binky-preview-show-header t
+        binky-preview-auto-first nil
+        binky-preview-delay 0.3
+        binky-margin-string "\x2630"
+        binky-margin-side 'right)
+  :defer-config
+  (binky-margin-mode)
+  (appendq! binky-exclude-regexps
+            '("\\`magit.*\\'")))
+
 (leaf xref
   :init
   (when emacs/>=28.1p
@@ -22,30 +37,22 @@
   :init
   (setq webjump-sites
         '(;; Internet search engines.
-          ("StackOverFlow" .
-           [simple-query "stackoverflow.com"
-                         "stackoverflow.com/search?q=" ""])
-          ("Google" .
-           [simple-query "www.google.com"
-                         "www.google.com/search?q=" ""])
-          ("Github" .
-           [simple-query "www.github.com"
-                         "www.github.com/search?q=" ""])
-          ("Melpa" .
-           [simple-query "melpa.org"
-                         "melpa.org/#/?q=" ""])
-          ("Baidu" .
-           [simple-query "www.baidu.com"
-                         "www.baidu.com/s?wd=" ""])
-          ("Zhihu" .
-           [simple-query "www.zhihu.com"
-                         "www.zhihu.com/search?type=content&q=" ""])
-          ("V2ex" .
-           [simple-query "www.sov2ex.com"
-                         "www.sov2ex.com/?q=" ""])
-          ("Wikipedia" .
-           [simple-query "wikipedia.org"
-                         "wikipedia.org/wiki/" ""])))
+          ("StackOverFlow" . [simple-query "stackoverflow.com"
+                                           "stackoverflow.com/search?q=" ""])
+          ("Google" . [simple-query "www.google.com"
+                                    "www.google.com/search?q=" ""])
+          ("Github" . [simple-query "www.github.com"
+                                    "www.github.com/search?q=" ""])
+          ("Melpa" . [simple-query "melpa.org"
+                                   "melpa.org/#/?q=" ""])
+          ("Baidu" . [simple-query "www.baidu.com"
+                                   "www.baidu.com/s?wd=" ""])
+          ("Zhihu" . [simple-query "www.zhihu.com"
+                                   "www.zhihu.com/search?type=content&q=" ""])
+          ("V2ex" . [simple-query "www.sov2ex.com"
+                                  "www.sov2ex.com/?q=" ""])
+          ("Wiki" . [simple-query "wikipedia.org"
+                                  "wikipedia.org/wiki/" ""])))
   :defer-config
   ;; HACK support visual selection texts in webjump()
   (defun ad/webjump-read-string-enable-visual (prompt)
@@ -83,22 +90,12 @@
   (leaf ace-pinyin
     :init (setq ace-pinyin-simplified-chinese-only-p nil)
     :defer-config (ace-pinyin-global-mode +1))
-  )
 
-(leaf binky-mode
-  :hook (after-init-hook . binky-mode)
-  :init
-  (setq binky-mark-auto '(?1 ?2 ?3 ?4 ?5 ?6 ?7)
-        binky-mark-back ?'
-        binky-preview-show-header t
-        binky-preview-auto-first nil
-        binky-preview-delay 0.3
-        binky-margin-string "\x2630"
-        binky-margin-side 'right)
-  :defer-config
-  (binky-margin-mode)
-  (appendq! binky-exclude-regexps
-            '("\\`magit.*\\'")))
+  (leaf ace-link
+    :require t
+    :config
+    (ace-link-setup-default)
+    (global-set-key (kbd "M-o") 'ace-link-addr)))
 
 (provide 'init-jump)
 ;;; init-jump.el ends here
