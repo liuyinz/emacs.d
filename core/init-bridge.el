@@ -10,6 +10,29 @@
 ;; REQUIRE pip install epc orjson six
 (leaf lsp-bridge
   :hook (after-init-hook . global-lsp-bridge-mode)
+  :init
+  ;; HACK
+  (defun ah/lsp-bridge-reset-hide-characters ()
+    "Allow char : in buffer which enable emmet-ls completions."
+    (when (ignore-errors (string-match-p "emmet" (lsp-bridge-has-lsp-server-p)))
+      (setq-local lsp-bridge-completion-hide-characters
+                  (delete ":" lsp-bridge-completion-hide-characters))))
+  (add-hook 'lsp-bridge-mode-hook #'ah/lsp-bridge-reset-hide-characters)
+
+  ;; (defun ad/lsp-bridge-not-match-hide-characters ()
+  ;;   (let ((char (ignore-errors (char-to-string (char-before)))))
+  ;;     (or (and lsp-bridge-completion-obey-trigger-characters-p
+  ;;              (member char (if (boundp 'acm-backend-lsp-completion-trigger-characters)
+  ;;                               (symbol-value 'acm-backend-lsp-completion-trigger-characters))))
+  ;;         (and (string-equal char ":")
+  ;;              (cl-intersection '("emmet-ls" "emmet-ls-css")
+  ;;                               acm-backend-lsp-server-names
+  ;;                               :test #'equal))
+  ;;         (not (member char lsp-bridge-completion-hide-characters)))))
+  ;; (advice-add 'lsp-bridge-not-match-hide-characters :override #'ad/lsp-bridge-not-match-hide-characters)
+
+
+
   :defer-config
 
   ;; ;; Debug: REQUIRE brew install gdb
