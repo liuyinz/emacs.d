@@ -2,6 +2,26 @@
 ;;; Commentary:
 ;;; Code:
 
+
+(leaf winner
+  :hook (after-init-hook . winner-mode))
+
+;; TODO rewrite a window jump package
+;; 1. use with transient
+;; 2. create, split, delete; jump(ace-window); swap, rotate; size change repeat; self-defined-layout(emacs-rotate)
+;; 3. cross frame jump
+
+;; (leaf ace-window
+;;   :require t
+;;   :init
+;;   (setq
+;;    ;; aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+;;    aw-scope 'frame
+;;    aw-background nil
+;;    aw-dispatch-always t))
+
+(leaf transpose-frame)
+
 (leaf shackle
   :hook (after-init-hook . shackle-mode)
   :init

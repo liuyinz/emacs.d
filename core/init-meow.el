@@ -108,12 +108,13 @@
      '("z" . my/transient-jump)
      '("<escape>" . ignore)
      '("'" . binky-binky)
-     '("Q" . toggle-one-window))
+     '("\"" . my/transient-window))
 
     (meow-motion-overwrite-define-key
      '("C-o" . meow-temp-normal)
      '("<escape>" . ignore)
-     '("'" . binky-binky))
+     '("'" . binky-binky)
+     '("\"" . my/transient-window))
 
     (meow-leader-define-key
      ;; SPC j/k will run the original command in MOTION state.

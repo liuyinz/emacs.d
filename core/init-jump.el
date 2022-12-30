@@ -81,7 +81,7 @@
   ;; SEE https://github.com/abo-abo/avy/wiki/custom-commands#jumping-to-an-open-paren
   ;; https://stackoverflow.com/a/50063226/13194984
   (defun avy-goto-paren ()
-    "Avy jump to paren."
+    "Jump to a paren start or end."
     (interactive)
     (let ((avy-command this-command))
       (avy-jump "[][(){}]")))

@@ -20,10 +20,8 @@
     "Invoke commands about jump"
     [["Avy"
       ("l" "line"  avy-goto-line)
-      ("a" "char"  avy-goto-char)
-      ("w" "word"  avy-goto-word-0)
-      ("p" "paren" avy-goto-paren)]
-
+      ("p" "paren" avy-goto-paren)
+      ("z" "char"  avy-goto-char)]
      ["Isolate"
       :if (lambda () (featurep 'isolate))
       ("s" "add quick"    isolate-quick-add :if region-active-p)
@@ -166,22 +164,35 @@
 
   (transient-define-prefix my/transient-window ()
     "Invoke commands related to position and size of windows"
-    [["Position"
-      ("i" "Flip" flip-frame)
-      ("o" "Flop" flop-frame)
-      ("t" "Transpose" transpose-frame)
-      ("r" "Rotate" rotate-frame)
-      ("c" "Clockwise" rotate-frame-clockwise)
-      ("a" "Anti-clockwise" rotate-frame-anticlockwise)
+    [
+     ["Layout"
+      ("b"  "Below"  split-window-below)
+      ("r"  "Right"  split-window-right)
+      ("d"  "Delete" delete-window)
+      ("x"  "Only"   delete-other-windows)
+      ("u"  "Undo"   winner-undo :transient t)
+      ("U"  "Redo"   winner-redo :transient t)
+      ("\"" "Toggle" toggle-one-window)
       ]
      ["Size"
-      ("z" "Zoom window" zoom)
-      ("b" "Balance window" balance-windows)
-      ("j" "Enlarge window vertical" enlarge-window :transient t)
-      ("k" "Shrink window vertical" shrink-window :transient t)
-      ("h" "Shrink window horizontal" shrink-window-horizontally :transient t)
-      ("l" "Enlarge window horizontal" enlarge-window-horizontally :transient t)
-      ]])
+      ("e" "Balance" balance-windows)
+      ("j" "Down" enlarge-window :transient t)
+      ("k" "Up" shrink-window :transient t)
+      ("h" "Left" shrink-window-horizontally :transient t)
+      ("l" "Right" enlarge-window-horizontally :transient t)]
+     ["Position"
+      ("o"  "Jump"   other-window :transient t)
+      ("B" "Flip" flip-frame)
+      ("R" "Flop" flop-frame)
+      ("t" "Transpose" transpose-frame)
+      ("T" "Rotate" rotate-frame :transient t)
+      ("c" "Clockwise" rotate-frame-clockwise)
+      ("a" "Anti-clockwise" rotate-frame-anticlockwise)]
+     ["Zoom"
+      ("=" "In" text-scale-increase :transient t)
+      ("-" "Out" text-scale-decrease :transient t)
+      ("0" "reset" (lambda () (interactive) (text-scale-increase 0)) :transient t)]
+     ])
 
   (transient-define-prefix my/transient-smerge ()
     "Invoke commmands related to smerge-mode"
@@ -389,7 +400,7 @@
 (global-set-keys
 
  (kbd "C-c i") 'my/transient-ide
- (kbd "C-c w") 'my/transient-window
+ ;; (kbd "C-c w") 'my/transient-window
  (kbd "C-c p") 'my/transient-point
  (kbd "C-c t") 'my/transient-toggle
  (kbd "C-c b") 'my/transient-buffer
