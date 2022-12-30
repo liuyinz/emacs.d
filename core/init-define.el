@@ -385,8 +385,10 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
               (frame-list)))
 
 (defun gui-frame-list ()
-  "Return a list of all gui frames."
-  (seq-filter (lambda (f) (frame-parameter f 'display))
+  "Return a list of all non-child gui frames."
+  (seq-filter (lambda (f)
+                (and (frame-parameter f 'display)
+                     (null (frame-parameter f 'parent-frame))))
               (frame-list)))
 
 (defun shell-command-exit-code-and-output (program &rest args)
