@@ -23,7 +23,6 @@
 (leaf gitignore-templates
   :init
   (setq gitignore-templates-api 'github)
-
   ;; Integrate with `magit-gitignore'
   (with-eval-after-load 'magit-gitignore
     (require 'gitignore-templates nil t)
@@ -32,10 +31,18 @@
        ("n" "new file" gitignore-templates-new-file)
        ("i" "select pattern" gitignore-templates-insert)])))
 
-(leaf diff-mode
+(leaf git-link
   :init
-  ;; disable smerge-refine with set `diff-refine' to nil
-  (setq diff-refine 'navigation))
+  (setq git-link-use-commit t)
+  (defun ad/git-link-to-system-clip (&rest _)
+    "Copy to git link to system clip rather than kill-ring."
+    (when (and kill-ring
+               (fboundp #'simpleclip-set-contents))
+      (simpleclip-set-contents
+       (substring-no-properties (pop kill-ring)))))
+  (advice-add 'git-link--new :after #'ad/git-link-to-system-clip)
+  ;; Integrate with `magit-tool'
+  )
 
 (leaf smerge-mode
   :hook (smerge-mode-hook . my/smerge-setup)
@@ -70,25 +77,19 @@
     (let* ((rev (match-beginning 0))
            (buf (get-buffer "*smerge-preview*"))
            win)
-
       (unless (and buf (equal rev (buffer-local-value 'orig-rev buf)))
         (copy-to-buffer "*smerge-preview*" (match-beginning 0) (match-end 0))
-
         ;; SEE https://emacs.stackexchange.com/a/32817
         ;; (with-current-buffer "*smerge-preview*"
         ;;   (set (make-local-variable 'orig-rev) rev))
-        (setf (buffer-local-value 'orig-rev buf) rev)
-        )
-
+        (setf (buffer-local-value 'orig-rev buf) rev))
       (if (setq win (get-buffer-window buf))
           (with-selected-window win
             (condition-case nil
                 (scroll-up)
               (error
                (goto-char (point-min)))))
-        (display-buffer buf nil))))
-
-  )
+        (display-buffer buf nil)))))
 
 (leaf magit
   :bind

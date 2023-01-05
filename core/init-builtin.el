@@ -75,6 +75,9 @@
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
 
+(leaf pixel-scroll
+  :hook (after-init-hook . pixel-scroll-precision-mode))
+
 ;; ------------------------ Apperance -----------------------------
 
 (leaf hl-line
@@ -270,6 +273,11 @@
 (leaf copyright
   :init (setq copyright-year-ranges t))
 
+(leaf jit-lock
+  :init
+  (setq jit-lock-defer-time 0
+        jit-lock-stealth-time 16))
+
 ;; ;; On-the-fly spell checker
 ;; (leaf flyspell
 ;;   :if (executable-find "aspell")
@@ -356,6 +364,11 @@
   (setq executable-prefix-env t))
 
 ;; --------------------------- Tool -------------------------------
+
+(leaf diff-mode
+  :init
+  ;; disable smerge-refine with set `diff-refine' to nil
+  (setq diff-refine 'navigation))
 
 (leaf transient
   :require t

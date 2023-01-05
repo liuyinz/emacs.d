@@ -2,6 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
+;; ------------------------ Tree-sitter ----------------------------
+
+(setq treesit-extra-load-path
+      `(,(concat my/dir-lib "tree-sitter-module/dist")))
+
+;; -------------------------- docstr ------------------------------
 ;; --------------------------- Doc --------------------------------
 
 (define-command-mixed

@@ -4,6 +4,13 @@
 
 ;; --------------------------- Edit -------------------------------
 
+(leaf atomic-chrome
+  :init
+  (setq atomic-chrome-buffer-open-style 'split)
+  (setq atomic-chrome-url-major-mode-alist
+        '(("github\\.com" . gfm-mode)
+          ("reddit\\.com" . markdown-mode))))
+
 (leaf hungry-delete
   :hook (after-init-hook . global-hungry-delete-mode)
   :defer-config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
