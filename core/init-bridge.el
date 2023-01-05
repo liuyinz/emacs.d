@@ -31,8 +31,6 @@
   ;;         (not (member char lsp-bridge-completion-hide-characters)))))
   ;; (advice-add 'lsp-bridge-not-match-hide-characters :override #'ad/lsp-bridge-not-match-hide-characters)
 
-
-
   :defer-config
 
   ;; ;; Debug: REQUIRE brew install gdb
@@ -53,7 +51,6 @@
   (appendq! lsp-bridge-default-mode-hooks
             '(snippet-mode-hook
               git-commit-mode-hook
-              markdown-mode-hook
               mhtml-mode-hook
               html-mode-hook))
 
