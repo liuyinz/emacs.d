@@ -2,6 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+(leaf window
+  :init
+  (setq window-min-height 1
+        fit-window-to-buffer-horizontally t
+        delete-window-choose-selected 'pos))
 
 (leaf winner
   :hook (after-init-hook . winner-mode))
