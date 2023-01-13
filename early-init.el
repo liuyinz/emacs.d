@@ -23,7 +23,8 @@
 (setq load-prefer-newer t)
 
 ;; change eln-cache position
-(when (fboundp 'startup-redirect-eln-cache)
+(when (and (featurep 'native-compile)
+           (fboundp 'startup-redirect-eln-cache))
   (startup-redirect-eln-cache
    (convert-standard-filename
 	(expand-file-name  ".cache/var/eln-cache/" user-emacs-directory))))
@@ -69,7 +70,7 @@
         ;; (background-mode . dark)
         ;; (background-color . "#1d252c")
         ;; (foreground-color . "#bbc2cf")
-        
+
         ;; (alpha . (98 . 100))
 
         ;; NOTE only work in X-windows

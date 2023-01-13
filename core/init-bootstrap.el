@@ -35,12 +35,11 @@
 ;; native-comp
 (when (featurep 'native-compile)
   ;; if t, auto compile elc to eln
-  (setq native-comp-deferred-compilation nil))
-
-(leaf comp
-  :init
-  (setq native-comp-speed 2
-        native-comp-async-report-warnings-errors nil))
+  (setq native-comp-deferred-compilation nil)
+  (leaf comp
+    :init
+    (setq native-comp-speed 2
+          native-comp-async-report-warnings-errors nil)))
 
 ;; ----------------------- optimization ---------------------------
 
