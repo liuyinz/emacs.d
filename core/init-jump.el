@@ -10,9 +10,12 @@
 (leaf binky-mode
   :hook (after-init-hook . binky-mode)
   :init
-  (setq binky-mark-auto '(?1 ?2 ?3 ?4 ?5 ?6 ?7)
-        binky-mark-back ?'
-        binky-preview-show-header t
+  (setq binky-mark-back ?'
+        ;; binky-mark-auto '(?1 ?2 ?3 ?4 ?5 ?6 ?7)
+        binky-mark-auto '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+        ;; binky-record-sort-by 'frequency
+        binky-preview-show-header nil
+        ;; binky-preview-side 'right
         binky-preview-auto-first nil
         binky-preview-delay 0.3
         binky-margin-string "\x2630"
