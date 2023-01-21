@@ -11,22 +11,26 @@
   :hook (after-init-hook . rebound-mode)
   :defer-config
   (setq rebound-common-alist
-        '((margin    . ((diff-hl-margin-local-mode -1)
-                        (binky-margin-local-mode -1)))
-          (line      . ((hl-line-mode -1)
-                        (global-hl-line-mode -1)
-                        (topsy-mode -1)))
-          (mode-line . ((hide-mode-line-mode 1)))
+        '(;; built-in
+          (hl-line   . ((hl-line-mode -1)
+                        (global-hl-line-mode -1)))
+          (read-only . ((read-only-mode 1 buffer-read-only)))
           (cursor    . ((blink-cursor-mode -1)))
+          ;; third-party
+          (topsy     . ((topsy-mode -1)))
+          (mode-line . ((hide-mode-line-mode 1)))
+          (margin    . ((diff-hl-margin-local-mode -1)
+                        (binky-margin-local-mode -1)))
           (paren     . ((highlight-parentheses-mode -1)))))
 
   (setq rebound-alist
-        `((writeroom-mode . ((binky-margin-local-mode -1)
-                             (diff-hl-margin-mode -1)))
-          (redacted-mode  . (,@(rebound-extract '(margin line cursor mode-line))
-                             (read-only-mode 1 buffer-read-only)))
-          (smerge-mode    . (,@(rebound-extract '(margin paren))
-                             (save-place-local-mode -1))))))
+        `(
+          (olivetti-mode  . (,@(rebound-get '(margin mode-line topsy))
+                             (focus-mode -1)))
+          (redacted-mode  . (,@(rebound-get
+                                '(margin hl-line topsy cursor mode-line paren read-only))))
+          (smerge-mode    . (,@(rebound-get '(margin paren))
+                             (save-place-local-mode -1 save-place-mode))))))
 
 (provide 'init-rebound)
 ;;; init-rebound.el ends here
