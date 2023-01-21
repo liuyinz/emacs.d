@@ -168,7 +168,7 @@
     (interactive)
     (cl-case major-mode
       ((gitconfig-mode emacs-lisp-mode lisp-interaction-mode)
-        (run-general! indent-region indent-whole-buffer))
+       (run-general! indent-region indent-whole-buffer))
       (t (call-interactively #'apheleia-format-buffer))))
   :config
   (alist-set! apheleia-formatters
