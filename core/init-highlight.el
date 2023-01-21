@@ -43,7 +43,7 @@
 (leaf highlight-defined
   :init (setq highlight-defined-face-use-itself t))
 
-;; BUG confilct with meow in cursor shape
+;; BUG conflict with meow in cursor shape
 (leaf diff-hl
   :hook (after-init-hook . global-diff-hl-mode)
   :init
