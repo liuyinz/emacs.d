@@ -174,6 +174,7 @@
   (alist-set! apheleia-formatters
               '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))))
   (alist-set! apheleia-mode-alist
-              '((python-mode . (black isort)))))
+              '((python-mode . (black isort))
+                (sh-mode . shfmt))))
 (provide 'init-ide)
 ;;; init-ide.el ends here
