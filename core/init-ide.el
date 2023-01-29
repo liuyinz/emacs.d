@@ -137,7 +137,7 @@
 ;; -------------------------- Format ------------------------------
 
 (leaf editorconfig
-  :hook (shell-mode-hook . editorconfig-mode))
+  :hook (sh-mode-hook . editorconfig-mode))
 
 ;; ;; ISSUE https://github.com/lassik/emacs-format-all-the-code/issues/220
 ;; (leaf format-all
