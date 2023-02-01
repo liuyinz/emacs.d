@@ -41,11 +41,11 @@
         lsp-bridge-disable-backup nil)
 
   ;; customize mode-line info
-  (advice-add 'lsp-bridge--mode-line-format
-              :filter-return
-              (lambda (s) (ignore-errors (s-capitalize (substring s 4 10)))))
-  (setcdr (assoc 'lsp-bridge-mode mode-line-misc-info)
-          '(lsp-bridge--mode-line-format))
+  ;; (advice-add 'lsp-bridge--mode-line-format
+  ;;             :filter-return
+  ;;             (lambda (s) (ignore-errors (s-capitalize (substring s 4 10)))))
+  ;; (setcdr (assoc 'lsp-bridge-mode mode-line-misc-info)
+  ;;         '(lsp-bridge--mode-line-format))
 
 
   (appendq! lsp-bridge-default-mode-hooks
