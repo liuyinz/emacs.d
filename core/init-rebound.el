@@ -24,13 +24,9 @@
           (paren     . ((highlight-parentheses-mode -1)))))
 
   (setq rebound-alist
-        `(
-          (olivetti-mode  . (,@(rebound-get '(margin mode-line topsy))
-                             (focus-mode -1)))
-          (redacted-mode  . (,@(rebound-get
-                                '(margin hl-line topsy cursor mode-line paren read-only))))
-          (smerge-mode    . (,@(rebound-get '(margin paren))
-                             (save-place-local-mode -1 save-place-mode))))))
+        '((olivetti-mode  . (margin mode-line topsy (focus-mode -1)))
+          (redacted-mode  . (margin hl-line topsy cursor mode-line paren read-only))
+          (smerge-mode    . (margin paren (save-place-local-mode -1 save-place-mode))))))
 
 (provide 'init-rebound)
 ;;; init-rebound.el ends here
