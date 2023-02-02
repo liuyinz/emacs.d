@@ -22,6 +22,9 @@
       ("l" "line"  avy-goto-line)
       ("p" "paren" avy-goto-paren)
       ("z" "char"  avy-goto-char)]
+     ["Imenu"
+      ("i" "buffer" consult-imenu)
+      ("I" "project" consult-imenu-multi)]
      ["Isolate"
       :if (lambda () (featurep 'isolate))
       ("s" "add quick"    isolate-quick-add :if region-active-p)
@@ -41,23 +44,18 @@
       ("p" "Project"       consult-project-extra-find)
       ("f" "Flycheck"      consult-flycheck)
       ("j" "Flyspell"      consult-flyspell)
-      ("i" "Imenu"         consult-imenu)
       ("l" "Line"          consult-line)
       ("s" "Snippet"       consult-yasnippet)
       ("y" "Yank"          consult-yank-from-kill-ring)]
      ["Jump"
       ("B" "Bookmark"      consult-bookmark)
-      ("O" "Outline"       consult-outline)
-      ("M" "Mark"          consult-mark)
-      ("G" "Global mark"   consult-global-mark)
-      ("I" "Imenu project" consult-imenu-multi)]
+      ("O" "Outline"       consult-outline)]
      ["Info"
       ("h" "History"       consult-complex-command)
       ("c" "Mode command"  consult-mode-command)
       ("m" "Macro"         consult-kmacro)
       ("H" "Man"           consult-man)
-      ("R" "Register"      consult-register)
-      ("a" "Apropos"       consult-apropos)
+      ("i" "Info"          consult-info)
       ("t" "Theme"         consult-theme)]
      ["Search"
       ("L" "Go-to-line"    consult-goto-line)
@@ -95,8 +93,9 @@
       ("t" "Debug-on-quit" toggle-debug-on-quit)
       ("k" "Ilog" toggle-ilog)
       ("s" "Proxy" global-proxy-mode)
-      ("w" "Writeroom" writeroom-mode)
-      ("f" "Fullscreen" toggle-frame-fullscreen)
+      ("o" "Olivetti" olivetti-mode)
+      ("f" "Focus" focus-mode)
+      ("F" "Fullscreen" toggle-frame-fullscreen)
       ("L" "Visual line" visual-line-mode)
       ("c" "Hide comments" obvious-mode)
       ("C" "Truncated line" toggle-truncate-lines)
