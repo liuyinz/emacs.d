@@ -12,8 +12,18 @@
 (leaf insecure-lock
   :commands insecure-lock-enter
   :init
+  (defun insecure-lock-redact-pure ()
+    "`insecure-lock' module that redacts buffers.
+No changes in mode--line."
+    (unless (require 'redacted nil t) (user-error "Package `redacted' not available"))
+    (let ((arg (if insecure-lock-mode 1 -1)))
+      (dolist (frame (frame-list))
+        (dolist (window (window-list frame))
+          (with-current-buffer (window-buffer window)
+            (redacted-mode arg))))))
+
   (setq insecure-lock-require-password t)
-  (setq insecure-lock-mode-hook '(insecure-lock-redact)))
+  (setq insecure-lock-mode-hook '(insecure-lock-redact-pure insecure-lock-posframe)))
 
 (leaf hide-mode-line)
 
