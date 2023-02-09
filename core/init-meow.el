@@ -104,6 +104,7 @@
      '(">" . meow-end-of-thing)
 
      ;; self-defined
+     '("Q" . insecure-lock-enter)
      '("/" . isearch-forward-regexp)
      '("z" . my/transient-jump)
      '("<escape>" . ignore)

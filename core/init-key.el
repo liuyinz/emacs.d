@@ -121,7 +121,7 @@
     "Invoke commands about IDE"
     [["ide"
       ("r" "run" my/run)
-      ("p" "repl" my/repl)
+      ;; ("p" "repl" my/repl)
       ("f" "format" my/format)]
      ])
 
