@@ -179,6 +179,11 @@
                               :foreground unspecified
                               :background unspecified
                               :box nil))))
+     ;; jupyter
+     '(jupyter-repl-input-prompt  ((t :inherit font-lock-property-face)))
+     '(jupyter-repl-output-prompt ((t :inherit font-lock-function-name-face)))
+     '(jupyter-repl-traceback     ((t :inherit font-lock-warning-face
+                                      :bold t)))
 
      ;; web-mode
      '(web-mode-current-element-highlight-face ((t (:weight bold :inverse-video t))))

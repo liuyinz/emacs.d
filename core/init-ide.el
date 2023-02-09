@@ -123,17 +123,6 @@
    ((member major-mode '(web-mode html-mode mhtml-mode)) (imp-visit-buffer))
    (t (run-general! quickrun-region quickrun))))
 
-(defun my/repl ()
-  "Runinig for interactive."
-  (interactive)
-  (cl-case major-mode
-    ((emacs-lisp-mode lisp-interaction-mode)
-     (run-general! eval-region eval-buffer))
-    ((js-mode js2-mode jsonian-mode)
-     (run-general! nodejs-repl-send-region nodejs-repl-send-buffer))
-    (python-mode (run-python))
-    (t (message "no repl for selected mode"))))
-
 ;; -------------------------- Format ------------------------------
 
 (leaf editorconfig
@@ -176,5 +165,26 @@
   (alist-set! apheleia-mode-alist
               '((python-mode . (black isort))
                 (sh-mode . shfmt))))
+
+;; -------------------------- jupyter ------------------------------
+
+;; (defun my/repl ()
+;;   "Runinig for interactive."
+;;   (interactive)
+;;   (cl-case major-mode
+;;     ((emacs-lisp-mode lisp-interaction-mode)
+;;      (run-general! eval-region eval-buffer))
+;;     ((js-mode js2-mode jsonian-mode)
+;;      (run-general! nodejs-repl-send-region nodejs-repl-send-buffer))
+;;     (python-mode (run-python))
+;;     (t (message "no repl for selected mode"))))
+
+;; REQUIRE pip install notebook
+;; SEE https://github.com/jupyter/jupyter/wiki/Jupyter-kernels
+(leaf jupyter
+  :init
+  (setq jupyter-repl-prompt-margin-width 10
+        jupyter-eval-use-overlays t))
+
 (provide 'init-ide)
 ;;; init-ide.el ends here
