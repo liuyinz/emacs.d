@@ -137,6 +137,8 @@
         next-error-message-highlight t
         read-extended-command-predicate #'command-completion-default-include-p)
   (setq-default indent-tabs-mode nil)
+  ;; SEE https://emacs-china.org/t/emacs29-blinking-cursor/23683?u=cheunghsu
+  (setq copy-region-blink-delay 0)
   :defer-config
   (line-number-mode)
   (column-number-mode)
