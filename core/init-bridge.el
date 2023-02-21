@@ -37,6 +37,8 @@
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
 
+  (setq lsp-bridge-python-command "python3.10")
+
   (setq lsp-bridge-enable-diagnostics nil
         lsp-bridge-disable-backup nil)
 
