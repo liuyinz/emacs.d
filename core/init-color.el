@@ -16,15 +16,14 @@
       (with-current-buffer (get-buffer-create "*kurecolor-variant")
         (rainbow-mode 1)
         (goto-char (point-max))
-        (insert (format "\n\n %s   %s\nsat: %0.2f %s\n\nbri: %0.2f %s\n\nhue: %0.2f %s"
+        (insert (format "\n\n %s   %s\nsat: %0.2f %s\nbri: %0.2f %s"
                         hex
                         (mapconcat (apply-partially #'format "%0.2f") lst "    ")
                         (kurecolor-hex-get-saturation hex)
                         (mapconcat (apply-partially #'kurecolor-hex-set-saturation hex) lst " ")
                         (kurecolor-hex-get-brightness hex)
                         (mapconcat (apply-partially #'kurecolor-hex-set-brightness hex) lst " ")
-                        (kurecolor-hex-get-hue hex)
-                        (mapconcat (apply-partially #'kurecolor-hex-set-hue hex) lst " ")))
+                        ))
         (display-buffer (current-buffer))))))
 
 (leaf ct)
