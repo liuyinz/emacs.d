@@ -70,8 +70,14 @@
           acm-enable-doc nil)
 
     ;; yasnippet
-    (setq acm-snippet-insert-index 1
-          acm-backend-yas-candidates-number 3
+    (setq acm-completion-backend-merge-order
+          '("template-first-part-candidates"
+            "mode-first-part-candidates"
+            ;; "tabnine-candidates"
+            "template-second-part-candidates"
+            "mode-second-part-candidates"))
+    
+    (setq acm-backend-yas-candidates-number 3
           acm-backend-yas-match-by-trigger-keyword t
           acm-backend-yas-show-trigger-keyword " [%s]")
 
