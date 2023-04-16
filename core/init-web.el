@@ -73,6 +73,9 @@
 
 ;; (leaf imenu-extra)
 
+(leaf jest-test-mode
+  :hook ((js-mode-hook typescript-mode-hook) . jest-test-mode))
+
 ;; ---------------------------- TS --------------------------------
 
 (leaf typescript-mode)
