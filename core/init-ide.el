@@ -16,10 +16,10 @@
   "Search devdocs.io"
 
   ;; SEE https://devdocs.io/help
-  ;; (browse-url (format "https://devdocs.io/#q=%s" (url-hexify-string query)))
+  (browse-url (format "https://devdocs.io/#q=%s" (url-hexify-string query)))
 
   ;; SEE https://github.com/egoist/devdocs-desktop#using-homebrew
-  (shell-command (format "open devdocs://search/%s" (url-hexify-string query)))
+  ;; (shell-command (format "open devdocs://search/%s" (url-hexify-string query)))
   )
 
 ;; --------------------------- Lint -------------------------------
@@ -75,10 +75,12 @@ See URL `http://pypi.python.org/pypi/ruff'."
        (when (executable-find "jq")
          (flycheck-select-checker 'json-jq)))
 
-      ;; REQUIRE pip3 install pylint rather than brew.
       (python-mode
-       (when (executable-find "pyright")
-         (flycheck-select-checker 'python-pyright)))
+       ;; REQUIRE brew install ruff
+       (or (and (executable-find "ruff")
+                (flycheck-select-checker 'python-ruff))
+           (and (executable-find "pyright")
+                (flycheck-select-checker 'python-pyright))))
 
       ((emacs-lisp-mode lisp-interaction-mode)
        (progn
@@ -189,6 +191,17 @@ See URL `http://pypi.python.org/pypi/ruff'."
   (alist-set! apheleia-mode-alist
               '((python-mode . (black isort))
                 (sh-mode . shfmt))))
+
+;; --------------------------- test -------------------------------
+
+;; (defun my/test ()
+;;   "Testing current buffer."
+;;   (interactive)
+;;   (cl-case major-mode
+;;     ((js-mode typescript-mode)
+;;      )
+;;     )
+;;   )
 
 ;; -------------------------- jupyter ------------------------------
 

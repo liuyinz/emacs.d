@@ -121,8 +121,14 @@
     "Invoke commands about IDE"
     [["ide"
       ("r" "run" my/run)
-      ;; ("p" "repl" my/repl)
       ("f" "format" my/format)]
+     ;; ("p" "repl" my/repl)
+     ["test"
+      ("c" "point" jest-test-run-at-point)
+      ("b" "buffer" jest-test-run)
+      ("p" "project" jest-test-run-all-tests)
+      ("a" "rerun" jest-test-rerun-test)]
+     ;; ["jupyter"]
      ])
 
   (transient-define-prefix my/transient-point ()

@@ -14,8 +14,7 @@
   ((kbd "C-c C-r") . vertico-repeat)
   (:vertico-map
    ((kbd "RET") . vertico-directory-enter)
-   ((kbd "DEL") . vertico-directory-delete-char)
-   ((kbd "C-j") . vertico-exit-input))
+   ((kbd "DEL") . vertico-directory-delete-char))
 
   :defer-config
 
