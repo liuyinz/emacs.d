@@ -116,8 +116,9 @@ No changes in mode--line."
      '(diff-hl-insert ((t (:background unspecified :inverse-video nil))))
      '(diff-hl-delete ((t (:background unspecified :inverse-video nil))))
      ;; yasnippet
-     `(yas-field-highlight-face ((t (:inherit font-lock-variable-name-face
+     `(yas-field-highlight-face ((t (:inherit unspecified
                                      :weight bold
+                                     :foreground unspecified
                                      :background ,(doom-color 'base4)))))
      ;;org
      `(org-block            ((t (:background ,(doom-darken (doom-color 'base3) 0.15)))))
@@ -136,7 +137,7 @@ No changes in mode--line."
      ;; highlight-defined
      '(highlight-defined-function-name-face ((t (:inherit unspecified))))
      '(highlight-defined-variable-name-face ((t (:inherit unspecified))))
-     
+
      ;; magit
      '(magit-hash        ((t (:inherit font-lock-constant-face
                               :foreground unspecified))))
