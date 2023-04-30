@@ -37,7 +37,8 @@
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
 
-  (setq lsp-bridge-python-command "python3.10")
+  ;; REQUIRE brew install pypy3; pypy3 -m pip install epc sexpdata six paramiko
+  (setq lsp-bridge-python-command "pypy3")
 
   (setq lsp-bridge-enable-diagnostics nil
         lsp-bridge-disable-backup nil)
@@ -76,7 +77,7 @@
             ;; "tabnine-candidates"
             "template-second-part-candidates"
             "mode-second-part-candidates"))
-    
+
     (setq acm-backend-yas-candidates-number 3
           acm-backend-yas-match-by-trigger-keyword t
           acm-backend-yas-show-trigger-keyword " [%s]")
