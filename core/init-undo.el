@@ -7,9 +7,11 @@
 
 ;;; Code:
 
-(leaf undohist
-  :hook (after-init-hook . undohist-initialize)
-  :init (setq undohist-ignored-files '("\\.git/COMMIT_EDITMSG$")))
+(leaf undo-fu-session
+  :hook (after-init-hook . undo-fu-session-global-mode)
+  :init
+  (setq undo-fu-session-incompatible-files
+        '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'")))
 
 (leaf undo-hl
   :hook ((text-mode-hook prog-mode-hook) . undo-hl-mode)
