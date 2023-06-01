@@ -155,6 +155,8 @@ No changes in mode--line."
      '(jupyter-repl-output-prompt ((t :inherit font-lock-function-name-face)))
      '(jupyter-repl-traceback     ((t :inherit font-lock-warning-face
                                       :bold t)))
+     '(binky-preview-column-mark-auto ((t :inherit font-lock-string-face)))
+     '(binky-preview-column-mark-manual ((t :inherit font-lock-constant-face)))
 
      ;; web-mode
      '(web-mode-current-element-highlight-face ((t (:weight bold :inverse-video t))))
