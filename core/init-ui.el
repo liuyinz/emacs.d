@@ -36,6 +36,7 @@ No changes in mode--line."
   :hook (after-init-hook . doom-modeline-mode)
   :init
   (setq doom-modeline-icon nil
+        doom-modeline-support-imenu t
         doom-modeline-bar-width 0
         doom-modeline-height 15
         doom-modeline-persp-name nil
