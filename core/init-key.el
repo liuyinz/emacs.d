@@ -16,24 +16,29 @@
 (require 'dash)
 
 (with-eval-after-load 'transient
-  (transient-define-prefix my/transient-jump ()
-    "Invoke commands about jump"
-    [["Avy"
-      ("l" "line"  avy-goto-line)
-      ("p" "paren" avy-goto-paren)
-      ("z" "char"  avy-goto-char)]
-     ["Imenu"
-      ("i" "buffer" consult-imenu)
-      ("I" "project" consult-imenu-multi)]
-     ["Isolate"
+
+  (transient-define-prefix my/transient-transform ()
+    "Invoke commands about transform."
+    [["Isolate"
       :if (lambda () (featurep 'isolate))
       ("s" "add quick"    isolate-quick-add :if region-active-p)
       ("d" "delete quick" isolate-quick-delete)
       ("c" "change quick" isolate-quick-change)
       ("S" "add long"     isolate-long-add :if region-active-p)
       ("D" "delete long"  isolate-long-delete)
-      ("C" "change long"  isolate-long-change)
-      ]
+      ("C" "change long"  isolate-long-change)]
+     ["Coercion"
+      :if (lambda () (featurep 'coercion))
+      ("p" "PascalCase"   coercion-pascal-case)
+      ("a" "camelCase"    coercion-camel-case)
+      ("n" "snake_case"   coercion-snake-case)
+      ("g" "Giraffe_Case" coercion-giraffe-case)
+      ("m" "MACRO_CASE"   coercion-macro-case)
+      ("k" "dash-case"    coercion-dash-case)
+      ("t" "Train-Case"   coercion-train-case)
+      ("b" "COBOL-CASE"   coercion-cobol-case)
+      ("o" "dot.case"     coercion-dot-case)
+      ("f" "flatcase"     coercion-flat-case)]
      ])
 
   (transient-define-prefix my/transient-consult ()
@@ -134,7 +139,14 @@
   (transient-define-prefix my/transient-point ()
     "Invoke commands at point"
     :transient-non-suffix 'transient--do-warn
-    [["info"
+    [["Avy"
+      ("l" "line"  avy-goto-line)
+      ("p" "paren" avy-goto-paren)
+      ("z" "char"  avy-goto-char)]
+     ["Imenu"
+      ("m" "buffer" consult-imenu)
+      ("M" "project" consult-imenu-multi)]
+     ["info"
       ("i u" "Devdocs" devdocs-at-point)
       ("i h" "Elisp demos" elisp-demos-find-demo)
       ("i w" "Web search" webjump)
@@ -411,6 +423,8 @@
  (kbd "C-c b") 'my/transient-buffer
  (kbd "C-c j") 'my/transient-consult
  (kbd "C-l") 'embark-act
+
+ (kbd "M-l")   'my/transient-transform
  (kbd "M-j") 'scroll-other-window
  (kbd "M-k") 'scroll-other-window-down)
 

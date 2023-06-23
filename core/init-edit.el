@@ -15,6 +15,8 @@
   :hook (after-init-hook . global-hungry-delete-mode)
   :defer-config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
+(leaf coercion :require t)
+
 ;; SEE https://www.python.org/dev/peps/pep-0350/#mnemonics
 (leaf hl-todo
   :hook (after-init-hook . global-hl-todo-mode)
