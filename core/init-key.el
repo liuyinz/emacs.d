@@ -21,24 +21,31 @@
     "Invoke commands about transform."
     [["Isolate"
       :if (lambda () (featurep 'isolate))
-      ("s" "add quick"    isolate-quick-add :if region-active-p)
-      ("d" "delete quick" isolate-quick-delete)
-      ("c" "change quick" isolate-quick-change)
-      ("S" "add long"     isolate-long-add :if region-active-p)
-      ("D" "delete long"  isolate-long-delete)
-      ("C" "change long"  isolate-long-change)]
+      ("i a" "add quick"    isolate-quick-add :if region-active-p)
+      ("i d" "delete quick" isolate-quick-delete)
+      ("i c" "change quick" isolate-quick-change)
+      ("i A" "add long"     isolate-long-add :if region-active-p)
+      ("i D" "delete long"  isolate-long-delete)
+      ("i C" "change long"  isolate-long-change)]
      ["Coercion"
       :if (lambda () (featurep 'coercion))
-      ("p" "PascalCase"   coercion-pascal-case)
-      ("a" "camelCase"    coercion-camel-case)
-      ("n" "snake_case"   coercion-snake-case)
-      ("g" "Giraffe_Case" coercion-giraffe-case)
-      ("m" "MACRO_CASE"   coercion-macro-case)
-      ("k" "dash-case"    coercion-dash-case)
-      ("t" "Train-Case"   coercion-train-case)
-      ("b" "COBOL-CASE"   coercion-cobol-case)
-      ("o" "dot.case"     coercion-dot-case)
-      ("f" "flatcase"     coercion-flat-case)]
+      ("c p" "PascalCase"   coercion-pascal-case)
+      ("c a" "camelCase"    coercion-camel-case)
+      ("c n" "snake_case"   coercion-snake-case)
+      ("c g" "Giraffe_Case" coercion-giraffe-case)
+      ("c m" "MACRO_CASE"   coercion-macro-case)
+      ("c k" "dash-case"    coercion-dash-case)
+      ("c t" "Train-Case"   coercion-train-case)
+      ("c b" "COBOL-CASE"   coercion-cobol-case)
+      ("c o" "dot.case"     coercion-dot-case)
+      ("c f" "flatcase"     coercion-flat-case)]
+     ["Powerthesaurus"
+      :if (lambda () (featurep 'powerthesaurus))
+      ("p s" "Synonyms"    powerthesaurus-lookup-synonyms-dwim)
+      ("p a" "Antonyms"    powerthesaurus-lookup-antonyms-dwim)
+      ("p r" "Related"     powerthesaurus-lookup-related-dwim)
+      ("p d" "Definitions" powerthesaurus-lookup-definitions-dwim)
+      ("p t" "Sentences"   powerthesaurus-lookup-sentences-dwim)]
      ])
 
   (transient-define-prefix my/transient-consult ()
