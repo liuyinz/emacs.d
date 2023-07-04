@@ -7,7 +7,6 @@
 
 ;;; Code:
 
-;; REQUIRE pip install epc orjson six
 (leaf lsp-bridge
   :hook (after-init-hook . global-lsp-bridge-mode)
   :init
@@ -37,8 +36,8 @@
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
 
-  ;; REQUIRE brew install pypy3; pypy3 -m pip install epc sexpdata six paramiko
-  (setq lsp-bridge-python-command "pypy3")
+  ;; REQUIRE pthon3.10 -m pip install epc orjson sexpdata six paramiko
+  (setq lsp-bridge-python-command "python3.10")
 
   (setq lsp-bridge-enable-diagnostics nil
         lsp-bridge-disable-backup nil)
