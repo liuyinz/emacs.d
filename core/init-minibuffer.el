@@ -18,6 +18,13 @@
 
   :defer-config
 
+  (leaf vertico-multiform
+    :require t
+    :config
+    (add-to-list 'vertico-multiform-categories
+                 '(jinx grid (vertico-grid-annotate . 20)))
+    (vertico-multiform-mode 1))
+
   ;; SEE https://github.com/minad/vertico/wiki#input-at-bottom-of-completion-list
   (defun ad/vertico--prompt-bottom (lines)
     "Display LINES in bottom."

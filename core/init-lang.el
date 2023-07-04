@@ -10,7 +10,7 @@
         sh-shell-file (executable-find "bash")))
 
 (leaf conf-mode
-  :mode "\\.\\(ini\\|conf\\|.*rc\\)\\'" )
+  :mode "\\.\\(ini\\|conf\\|.*rc\\)\\'" "enchant.ordering")
 
 (leaf python-mode
   :mode "\\.pythonrc\\'")

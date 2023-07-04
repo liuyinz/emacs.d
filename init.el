@@ -62,7 +62,7 @@
     (require 'init-edit)
     (require 'init-jump)
     (require 'init-pair)
-    ;; (require 'init-spell)
+    (require 'init-spell)
     (require 'init-tool)
     (require 'init-secure)
     (require 'init-dev)
