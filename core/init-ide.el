@@ -194,14 +194,7 @@ See URL `http://pypi.python.org/pypi/ruff'."
 
 ;; --------------------------- test -------------------------------
 
-;; (defun my/test ()
-;;   "Testing current buffer."
-;;   (interactive)
-;;   (cl-case major-mode
-;;     ((js-mode typescript-mode)
-;;      )
-;;     )
-;;   )
+(leaf testrun)
 
 ;; -------------------------- jupyter ------------------------------
 

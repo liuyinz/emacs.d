@@ -136,10 +136,12 @@
       ("f" "format" my/format)]
      ;; ("p" "repl" my/repl)
      ["test"
-      ("c" "point" jest-test-run-at-point)
-      ("b" "buffer" jest-test-run)
-      ("p" "project" jest-test-run-all-tests)
-      ("a" "rerun" jest-test-rerun-test)]
+      ("c" "point" testrun-nearest)
+      ("n" "block" testrun-namespace)
+      ("b" "file" testrun-file)
+      ("a" "all" testrun-all)
+      ("l" "last" testrun-last)
+      ]
      ;; ["jupyter"]
      ])
 
@@ -429,11 +431,11 @@
  (kbd "C-c t") 'my/transient-toggle
  (kbd "C-c b") 'my/transient-buffer
  (kbd "C-c j") 'my/transient-consult
- (kbd "C-l") 'embark-act
+ (kbd "C-l")   'embark-act
 
  (kbd "M-l")   'my/transient-transform
- (kbd "M-j") 'scroll-other-window
- (kbd "M-k") 'scroll-other-window-down)
+ (kbd "M-j")   'scroll-other-window
+ (kbd "M-k")   'scroll-other-window-down)
 
 (provide 'init-key)
 ;;; init-key.el ends here
