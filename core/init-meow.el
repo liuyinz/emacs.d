@@ -106,7 +106,7 @@
      ;; self-defined
      '("Q" . insecure-lock-enter)
      '("/" . isearch-forward-regexp)
-     '("z" . my/transient-jump)
+     '("z" . my/transient-point)
      '("<escape>" . ignore)
      '("'" . binky-binky)
      '("\"" . my/transient-window))

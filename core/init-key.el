@@ -46,6 +46,11 @@
       ("p r" "Related"     powerthesaurus-lookup-related-dwim)
       ("p d" "Definitions" powerthesaurus-lookup-definitions-dwim)
       ("p t" "Sentences"   powerthesaurus-lookup-sentences-dwim)]
+     ["jinx"
+      :if (lambda () (featurep 'jinx))
+      ("j j" "Toggle"  jinx-mode)
+      ("j c" "Correct" jinx-correct)
+      ("j l" "Lang"    jinx-languages)]
      ])
 
   (transient-define-prefix my/transient-consult ()
@@ -55,7 +60,6 @@
       ("d" "Dir"           consult-dir)
       ("p" "Project"       consult-project-extra-find)
       ("f" "Flycheck"      consult-flycheck)
-      ("j" "Flyspell"      consult-flyspell)
       ("l" "Line"          consult-line)
       ("s" "Snippet"       consult-yasnippet)
       ("y" "Yank"          consult-yank-from-kill-ring)]
