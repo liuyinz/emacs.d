@@ -397,6 +397,35 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
     (cons (apply 'call-process program nil (current-buffer) nil args)
           (buffer-string))))
 
+;; SEE https://www.emacswiki.org/emacs/AsciiTable
+(defun ascii-table ()
+  "Display basic ASCII table (0 thru 128)."
+  (interactive)
+  (switch-to-buffer "*ASCII*")
+  (erase-buffer)
+  (setq buffer-read-only nil)
+  (local-set-key "q" 'bury-buffer)
+  (save-excursion
+    (let ((i -1))
+      (insert "ASCII characters 0 to 127.\n\n")
+      (insert (apply #'concat (make-list 4 " Char  Oct  Dec  Hex |")) "\n")
+      (while (< i 31)
+        (insert (format (apply
+                         #'concat
+                         (make-list 4 (mapconcat
+                                       (lambda (pair)
+                                         (propertize (car pair) 'face (cdr pair)))
+                                       '((" %4s" . font-lock-keyword-face)
+                                         (" %4o" . font-lock-comment-face)
+                                         (" %4d" . font-lock-variable-name-face)
+                                         (" %4x |" . default)))))
+                        (single-key-description (setq i (+ 1  i))) i i i
+                        (single-key-description (setq i (+ 32 i))) i i i
+                        (single-key-description (setq i (+ 32 i))) i i i
+                        (single-key-description (setq i (+ 32 i))) i i i)
+                "\n")
+        (setq i (- i 96))))))
+
 ;; --------------------------- Debug -------------------------------
 
 ;; TODO miniconfig package
