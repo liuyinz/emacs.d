@@ -71,6 +71,7 @@
     ;; engineering
     (require 'init-ide)
     (require 'init-vcs)
+    (require 'init-reader)
     ;; (require 'init-projectile)
     ;; langs
     (require 'init-web)
