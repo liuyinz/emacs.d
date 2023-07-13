@@ -11,12 +11,12 @@
   :hook (after-init-hook . binky-mode)
   :init
   (setq binky-mark-back ?'
-        ;; binky-mark-auto '(?1 ?2 ?3 ?4 ?5 ?6 ?7)
-        binky-mark-auto '(?a ?s ?d ?f)
-        binky-record-sort-by 'frequency
-        binky-preview-show-header nil
+        binky-mark-recent '(?1 ?2 ?3 ?4 ?5 ?6)
+        ;; binky-mark-recent '(?a ?s ?d ?f ?g)
+        binky-recent-sort-by 'frequency
+        ;; binky-preview-show-header t
         ;; binky-preview-side 'right
-        binky-preview-auto-first nil
+        binky-preview-in-groups t
         binky-preview-delay 0.3
         binky-margin-string "\x2630"
         binky-margin-side 'right)

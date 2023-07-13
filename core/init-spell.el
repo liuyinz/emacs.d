@@ -7,9 +7,9 @@
 
 ;;; Code:
 
-;; REQUIRE brew install enchant aspell
-(leaf jinx
-  :hook ((text-mode-hook prog-mode-hook conf-mode-hook markdown-mode) . jinx-mode))
+;; ;; REQUIRE brew install enchant aspell
+;; (leaf jinx
+;;   :hook ((text-mode-hook prog-mode-hook conf-mode-hook markdown-mode) . jinx-mode))
 
 ;; (leaf ispell
 ;;   :init
