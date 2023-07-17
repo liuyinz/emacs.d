@@ -35,6 +35,7 @@
   :init
   (setq undo-no-redo t)
 
+  ;; BUG https://lists.gnu.org/archive/html/bug-gnu-emacs/2022-12/msg01661.html
   ;; jump after inserted text after undo-redo
   (advice-add #'primitive-undo :override #'my/primitive-undo)
   (defun my/primitive-undo (n list)
@@ -144,7 +145,8 @@ Return what remains of the list."
                  (goto-char pos)
                  (insert string)
                  ;; HACK jump after inserted text
-                 (goto-char (+ pos (length string))))
+                 ;; (goto-char pos)
+                 )
                ;; Adjust the valid marker adjustments
                (dolist (adj valid-marker-adjustments)
                  ;; Insert might have invalidated some of the markers
