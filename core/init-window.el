@@ -81,19 +81,16 @@
 
 ;; ------------------------- commands -----------------------------
 
-(defvar toggle-one-window-window-configuration nil
-  "The window configuration use for `toggle-one-window'.")
-
 (defun toggle-one-window ()
-  "Toggle between window layout and one window."
+  "Toggle between window layout between multi and one."
   (interactive)
-  (if (equal (length (cl-remove-if #'window-dedicated-p (window-list))) 1)
-      (if toggle-one-window-window-configuration
+  (if (length= (cl-remove-if #'window-dedicated-p (window-list)) 1)
+      (if-let ((saved (get 'toggle-one-window 'saved)))
           (progn
-            (set-window-configuration toggle-one-window-window-configuration)
-            (setq toggle-one-window-window-configuration nil))
-        (message "No other windows exist."))
-    (setq toggle-one-window-window-configuration (current-window-configuration))
+            (set-window-configuration saved)
+            (put 'toggle-one-window 'saved nil))
+        (message "No saved window configuration."))
+    (put 'toggle-one-window 'saved (current-window-configuration))
     (delete-other-windows)))
 
 (provide 'init-window)
