@@ -438,8 +438,8 @@
  (kbd "C-l")   'embark-act
 
  (kbd "M-l")   'my/transient-transform
- (kbd "M-j")   'scroll-other-window
- (kbd "M-k")   'scroll-other-window-down)
+ (kbd "C-j")   'scroll-other-window
+ (kbd "C-k")   'scroll-other-window-down)
 
 (provide 'init-key)
 ;;; init-key.el ends here
