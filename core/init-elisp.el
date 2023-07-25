@@ -103,9 +103,17 @@ Lisp function does not specify a special indentation."
   (elispfl-mode)
   (elispfl-ielm-mode))
 
-;; Add demos for help
-(leaf elisp-demos
-  :commands elisp-demos-find-demo)
+;; ;; Add demos for help
+;; (leaf elisp-demos
+;;   :commands elisp-demos-find-demo)
+
+(leaf democratize
+  :init
+  (advice-add 'helpful-update
+              :after
+              #'democratize-insert-examples-into-helpful-buffer)
+  :defer-config
+  (mapc #'democratize-library (democratize--list-non-democratized-libraries)))
 
 (leaf helpful
   :init

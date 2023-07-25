@@ -161,7 +161,7 @@
       ("M" "project" consult-imenu-multi)]
      ["info"
       ("i u" "Devdocs" devdocs-at-point)
-      ("i h" "Elisp demos" elisp-demos-find-demo)
+      ("i h" "Elisp example" helpful-at-point)
       ("i w" "Web search" webjump)
       ("i g" "Github browse" browse-at-remote)
       ("i m" "Version messages" vc-msg-show)
