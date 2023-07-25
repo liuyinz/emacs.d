@@ -23,7 +23,7 @@
 ;; SEE https://www.flycheck.org/en/latest/
 ;; PR https://github.com/flycheck/flycheck/pull/1896
 (leaf flycheck
-  :hook ((prog-mode-hook yaml-mode-hook) . flycheck-mode)
+  :hook ((prog-mode-hook yaml-ts-mode-hook) . flycheck-mode)
   :init
   (setq flycheck-emacs-lisp-load-path 'inherit
         flycheck-check-syntax-automatically '(save idle-change mode-enabled)
@@ -54,7 +54,7 @@ See URL `http://pypi.python.org/pypi/ruff'."
               (id (one-or-more (any alpha)) (one-or-more digit)) " "
               (message (one-or-more not-newline))
               line-end))
-    :modes python-mode)
+    :modes (python-mode python-ts-mode))
   (add-to-list 'flycheck-checkers 'python-ruff)
 
   (add-hook 'flycheck-mode-hook #'my/flycheck-setup)
@@ -68,10 +68,9 @@ See URL `http://pypi.python.org/pypi/ruff'."
 
       ;; REQUIRE brew install jq
       ((json-mode js-json-mode)
-       (when (executable-find "jq")
-         (flycheck-select-checker 'json-jq)))
+       (flycheck-select-checker 'json-python-json))
 
-      (python-mode
+      ((python-mode python-ts-mode)
        ;; REQUIRE brew install ruff
        (or (and (executable-find "ruff")
                 (flycheck-select-checker 'python-ruff))
@@ -91,7 +90,7 @@ See URL `http://pypi.python.org/pypi/ruff'."
          (flycheck-add-mode 'html-tidy major-mode)
          (flycheck-select-checker 'html-tidy)))
 
-      (js-mode
+      ((js-ts-mode js-mode)
        ;; NOTE disable `javascript-eslint' in `mhtml-mode'
        (when (and (string= "js" (file-name-extension (buffer-name)))
                   (executable-find "eslint"))
@@ -120,7 +119,7 @@ See URL `http://pypi.python.org/pypi/ruff'."
          (flycheck-select-checker 'perl-perlcritic)))
 
       ;; REQUIRE pip install yamllint
-      (yaml-mode
+      (yaml-ts-mode
        (when (executable-find "yamllint")
          (flycheck-select-checker 'yaml-yamllint)))
 

@@ -49,12 +49,10 @@
 ;;   (defalias 'perl-mode 'cperl-mode)
 ;;   )
 
+(leaf yaml-ts-mode :mode "\\.yamllint\\'")
+
 ;; -------------------------- Plugin ------------------------------
 
-(leaf yaml-mode
-  :mode "\\.yamllint\\'"
-  :init
-  (setq yaml-imenu-generic-expression '((nil  "^\\(:?[0-9a-zA-Z_-]+\\):" 1))))
 
 (leaf lua-mode
   :init

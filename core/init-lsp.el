@@ -6,12 +6,12 @@
 
 ;; SEE https://emacs-lsp.github.io/lsp-mode/
 (leaf lsp-mode
-  :hook ((sh-mode-hook
+  :hook ((bash-ts-mode-hook
           html-mode-hook
           web-mode-hook
           css-mode-hook
           js-mode-hook
-          yaml-mode-hook) . lsp-deferred)
+          yaml-ts-mode-hook) . lsp-deferred)
   :init
 
   ;; --------------------------- debug -------------------------------
