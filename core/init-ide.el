@@ -2,10 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ------------------------ Tree-sitter ----------------------------
-
-(setq treesit-extra-load-path
-      `(,(concat my/dir-lib "tree-sitter-module/dist")))
 
 ;; -------------------------- docstr ------------------------------
 ;; --------------------------- Doc --------------------------------
@@ -71,7 +67,7 @@ See URL `http://pypi.python.org/pypi/ruff'."
          (flycheck-select-checker 'sh-shellcheck)))
 
       ;; REQUIRE brew install jq
-      ((json-mode jsonian-mode)
+      ((json-mode js-json-mode)
        (when (executable-find "jq")
          (flycheck-select-checker 'json-jq)))
 

@@ -2,6 +2,32 @@
 ;;; Commentary:
 ;;; Code:
 
+;; ------------------------ Tree-sitter ----------------------------
+
+(leaf treesit)
+
+(leaf treesit-auto
+  :require t
+  :config
+  (setq treesit-auto-install t)
+  (setq treesit-auto-langs
+        '(bash c c-sharp clojure cmake commonlisp cpp css dockerfile
+               elixir go gomod html javascript java json julia kotlin
+               heex python ruby rust toml tsx typescript yaml
+               ;; make lua perl markdown
+               ))
+
+  (setq treesit-extra-load-path `(,(concat my/dir-cache "etc/tree-sitter")))
+  ;; HACK Set lib dir to extra path
+  (defun ad/setup-treesit-path (fn)
+    "Install treesit lib to extra path when call install function FN."
+    (let ((treesit--install-language-grammar-out-dir-history
+           (or treesit-extra-load-path nil)))
+      (funcall fn)))
+  (advice-add 'treesit-auto-install-all :around #'ad/setup-treesit-path)
+
+  (global-treesit-auto-mode))
+
 ;; ------------------------- Builtin ------------------------------
 
 (leaf sh-script
@@ -24,16 +50,6 @@
 ;;   )
 
 ;; -------------------------- Plugin ------------------------------
-
-(leaf jsonian
-  :mode "\\.\\(jsonc\\|versionrc\\)\\'"
-  :init
-  (setq jsonian-default-indentation 2)
-  :defer-config
-  (with-eval-after-load 'flycheck
-    (jsonian-enable-flycheck))
-  (with-eval-after-load 'so-long
-    (jsonian-no-so-long-mode)))
 
 (leaf yaml-mode
   :mode "\\.yamllint\\'"

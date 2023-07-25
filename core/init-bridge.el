@@ -46,7 +46,8 @@
             '(snippet-mode-hook
               git-commit-mode-hook
               mhtml-mode-hook
-              html-mode-hook))
+              html-mode-hook
+              js-json-mode-hook))
 
   ;; Setup multi server
 
