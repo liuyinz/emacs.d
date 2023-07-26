@@ -49,7 +49,7 @@
 ;;   (defalias 'perl-mode 'cperl-mode)
 ;;   )
 
-(leaf yaml-ts-mode :mode "\\.yamllint\\'")
+(leaf yaml-ts-mode :mode "\\.\\(yamllint\\|yml\\)\\'")
 
 ;; -------------------------- Plugin ------------------------------
 
