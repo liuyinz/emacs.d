@@ -4,29 +4,47 @@
 
 ;; ------------------------ Tree-sitter ----------------------------
 
-(leaf treesit)
+(setq treesit-extra-load-path `(,(concat my/dir-cache "etc/tree-sitter")))
+
+(leaf treesit
+  :init
+  ;; Use the full theming potential of treesit
+  (setq treesit-font-lock-level 4)
+
+  ;; ;; tweak the new funcall face
+  ;; (custom-theme-set-faces
+  ;;  ;; for current theme
+  ;;  (or (car custom-enabled-themes) 'user)
+  ;;
+  ;;  ;; funcall face
+  ;;  `(font-lock-function-call-face
+  ;;    ((t :inherit font-lock-function-name-face
+  ;;        :foreground "hot pink"
+  ;;        :background "black"))))
+  )
 
 (leaf treesit-auto
-  :require t
-  :config
-  (setq treesit-auto-install t)
+  :hook (after-init-hook . global-treesit-auto-mode)
+  :init
+  (setq treesit-auto-install nil)
   (setq treesit-auto-langs
         '(bash c c-sharp clojure cmake commonlisp cpp css dockerfile
-               elixir go gomod html javascript java json julia kotlin
-               heex python ruby rust toml tsx typescript yaml lua
                ;; make perl markdown
-               ))
+               elixir go gomod html javascript java json julia kotlin
+               heex python ruby rust toml tsx typescript yaml lua))
 
-  (setq treesit-extra-load-path `(,(concat my/dir-cache "etc/tree-sitter")))
-  ;; HACK Set lib dir to extra path
-  (defun ad/setup-treesit-path (fn)
-    "Install treesit lib to extra path when call install function FN."
-    (let ((treesit--install-language-grammar-out-dir-history
-           (or treesit-extra-load-path nil)))
-      (funcall fn)))
-  (advice-add 'treesit-auto-install-all :around #'ad/setup-treesit-path)
-
-  (global-treesit-auto-mode))
+  (defun treesit-auto-install-missing ()
+    "Install missing grammar in `treesit-auto-langs'."
+    (interactive)
+    (when-let* ((missing (cl-remove-if (lambda (lang) (treesit-ready-p lang t))
+                                       treesit-auto-langs))
+                (treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
+      (message "The following tree-sitter grammars are/were missing: %s"
+               (mapconcat 'symbol-name missing ", "))
+      (mapc (lambda (lang)
+              (treesit-install-language-grammar lang (car treesit-extra-load-path)))
+            missing)))
+  )
 
 ;; ------------------------- Builtin ------------------------------
 
