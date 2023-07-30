@@ -51,6 +51,9 @@
 
   ;; Setup multi server
 
+  ;; REQUIRE pip install ruff-lsp
+  (setq lsp-bridge-python-multi-lsp-server "pyright_ruff")
+
   (appendq! lsp-bridge-multi-lang-server-extension-list
             '((("css" "less" "scss") . "css_emmet")
               (("html") . "html_emmet")))
