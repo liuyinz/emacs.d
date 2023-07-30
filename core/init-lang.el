@@ -13,8 +13,8 @@
   (setq treesit-auto-langs
         '(bash c c-sharp clojure cmake commonlisp cpp css dockerfile
                elixir go gomod html javascript java json julia kotlin
-               heex python ruby rust toml tsx typescript yaml
-               ;; make lua perl markdown
+               heex python ruby rust toml tsx typescript yaml lua
+               ;; make perl markdown
                ))
 
   (setq treesit-extra-load-path `(,(concat my/dir-cache "etc/tree-sitter")))
@@ -54,11 +54,10 @@
 ;; -------------------------- Plugin ------------------------------
 
 
-(leaf lua-mode
+(leaf lua-ts-mode
+  :mode "\\.lua\\'"
   :init
-  (setq lua-indent-level 2)
-  (setq lua-indent-string-contents t)
-  (setq lua-prefix-key nil))
+  (setq lua-ts-mode-indent-offset 2))
 
 (leaf vimrc-mode
   :mode "\\.vim\\(rc\\)?\\'")
