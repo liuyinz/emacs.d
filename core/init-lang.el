@@ -38,7 +38,7 @@
 (leaf conf-mode
   :mode "\\.\\(ini\\|conf\\|.*rc\\)\\'" "enchant.ordering")
 
-(leaf python-mode
+(leaf python
   :mode "\\.pythonrc\\'")
 
 (leaf make-mode

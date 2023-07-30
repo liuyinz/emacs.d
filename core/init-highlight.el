@@ -77,5 +77,16 @@
     (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
     (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)))
 
+;; SEE https://github.com/jdtsmith/indent-bars.git
+;; (leaf indent-bars
+;;   :hook (prog-mode-hook . indent-bars-mode)
+;;   :init
+;;   (setq
+;;    indent-bars-pattern "."
+;;    indent-bars-width-frac 0.5
+;;    indent-bars-pad-frac 0.25
+;;    indent-bars-color-by-depth nil
+;;    indent-bars-highlight-current-depth '(:face default :blend 0.4)))
+
 (provide 'init-highlight)
 ;;; init-highlight.el ends here
