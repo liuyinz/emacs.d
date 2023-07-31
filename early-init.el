@@ -22,9 +22,11 @@
 ;; load newst file always
 (setq load-prefer-newer t)
 
-;; change eln-cache position
 (when (and (featurep 'native-compile)
            (fboundp 'startup-redirect-eln-cache))
+  ;; disable native-comp
+  (setq native-comp-jit-compilation nil)
+  ;; change eln-cache position
   (startup-redirect-eln-cache
    (convert-standard-filename
 	(expand-file-name  ".cache/var/eln-cache/" user-emacs-directory))))
