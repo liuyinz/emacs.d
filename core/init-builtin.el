@@ -335,6 +335,11 @@
 
 ;; --------------------------- Jump -------------------------------
 
+(leaf xref
+  :init
+  (setq xref-history-storage 'xref-window-local-history
+        xref-search-program 'ripgrep))
+
 (leaf compile
   :defer-config
   (defun compilation-first-error ()
