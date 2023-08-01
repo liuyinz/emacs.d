@@ -97,7 +97,21 @@
           org-todo
           orgtbl-self-insert-command
           handle-switch-frame
-          )))
+          pixel-scroll-precision
+          ))
+  :config
+
+  ;; TODO support transient keybindings https://github.com/magit/transient/issues/113
+  ;; HACK filter <menu-bar> bindings
+  (defun ad/keyfreq-where-is (command)
+    (string-join
+     (cl-remove-if
+      (lambda (key)
+        (string-match-p "<\\(menu\\|vertical-scroll\\|horizontal-scroll\\)-bar>" key))
+      (mapcar 'key-description (where-is-internal command)))
+     ", "))
+  (advice-add 'keyfreq-where-is :override #'ad/keyfreq-where-is)
+  )
 
 (provide 'init-tool)
 ;;; init-tool.el ends here
