@@ -59,7 +59,8 @@
       ("b" "Buffer"        consult-buffer)
       ("d" "Dir"           consult-dir)
       ("p" "Project"       consult-project-extra-find)
-      ("f" "Flycheck"      consult-flycheck)
+      ;; ("f" "Flycheck"      consult-flycheck)
+      ("f" "Flymake"       consult-flymake)
       ("l" "Line"          consult-line)
       ("s" "Snippet"       consult-yasnippet)
       ("y" "Yank"          consult-yank-from-kill-ring)]
@@ -177,12 +178,19 @@
       ("d m" "Mark"   diff-hl-mark-hunk)
       ("d v" "Set Rev"   diff-hl-set-reference-rev)
       ("d f" "Reset Rev"   diff-hl-reset-reference-rev)]
-     [:description "flycheck"
-      :if-non-nil flycheck-mode
-      ("f j" "next" flycheck-next-error :transient t)
-      ("f k" "prev" flycheck-previous-error :transient t)
-      ("f e" "explain" flycheck-explain-error-at-point :transient t)
-      ("f c" "consult" consult-flycheck)]
+     ;; [:description "flycheck"
+     ;;  :if-non-nil flycheck-mode
+     ;;  ("f j" "next" flycheck-next-error :transient t)
+     ;;  ("f k" "prev" flycheck-previous-error :transient t)
+     ;;  ("f e" "explain" flycheck-explain-error-at-point :transient t)
+     ;;  ("f c" "consult" consult-flycheck)]
+     [:description "flymake"
+      :if-non-nil flymake-mode
+      ("f j" "next"    flymake-goto-next-error :transient t)
+      ("f k" "prev"    flymake-goto-prev-error :transient t)
+      ("f e" "buffer"  flymake-show-buffer-diagnostics)
+      ("f e" "project" flymake-show-project-diagnostics)
+      ("f c" "consult" consult-flymake)]
      [:description "hl-todo"
       :if-non-nil hl-todo-mode
       ("h j" "next" hl-todo-next :transient t)

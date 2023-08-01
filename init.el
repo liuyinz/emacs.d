@@ -70,6 +70,10 @@
     (require 'init-color)
     ;; engineering
     (require 'init-ide)
+    ;; (require 'init-flycheck)
+    (require 'init-flymake)
+    (require 'init-format)
+
     (require 'init-vcs)
     (require 'init-reader)
     ;; (require 'init-projectile)
