@@ -23,9 +23,7 @@
         markdown-fontify-code-blocks-natively t
         markdown-enable-highlighting-syntax t
         markdown-gfm-additional-languages "Mermaid")
-
-  ;; SEE https://github.com/markdownlint/markdownlint/blob/main/docs/RULES.md#md007---unordered-list-indentation
-  (setq markdown-list-indent-width 3)
+  (setq markdown-list-indent-width 2)
 
   :defer-config
   (prependq! markdown-code-lang-modes '(("mermaid" . mermaid-mode)
