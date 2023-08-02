@@ -13,6 +13,9 @@
   (setq flymake-fringe-indicator-position nil
         elisp-flymake-byte-compile-load-path load-path))
 
+(leaf package-lint-flymake
+  :hook (emacs-lisp-mode-hook . package-lint-flymake-setup))
+
 (leaf flymake-collection
   :hook (after-init-hook . flymake-collection-hook-setup)
   :init
