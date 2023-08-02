@@ -24,6 +24,9 @@
         markdown-enable-highlighting-syntax t
         markdown-gfm-additional-languages "Mermaid")
 
+  ;; SEE https://github.com/markdownlint/markdownlint/blob/main/docs/RULES.md#md007---unordered-list-indentation
+  (setq markdown-list-indent-width 3)
+
   :defer-config
   (prependq! markdown-code-lang-modes '(("mermaid" . mermaid-mode)
                                         ("zsh" . sh-mode))))
@@ -32,8 +35,8 @@
   :hook (markdown-mode-hook . markdown-toc-mode)
   :init
   (setq markdown-toc-header-toc-start "<!-- markdown-toc start -->"
-        markdown-toc-indentation-space 2
-        markdown-toc-header-toc-title "\n**Table of Contents**")
+        markdown-toc-indentation-space markdown-list-indent-width
+        markdown-toc-header-toc-title "\n## Contents")
   :defer-config
 
   ;; ISSUE https://github.com/ardumont/markdown-toc/issues/47
