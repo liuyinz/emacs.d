@@ -221,9 +221,6 @@
           regexp-search-ring
           extended-command-history)))
 
-(leaf so-long
-  :hook (after-init-hook . global-so-long-mode))
-
 (leaf minibuffer
   :init
   (setq enable-recursive-minibuffers t)
