@@ -9,8 +9,8 @@
 
 ;; -------------------------- Format ------------------------------
 
-(leaf editorconfig
-  :hook (sh-mode-hook . editorconfig-mode))
+;; (leaf editorconfig
+;;   :hook (after-init-hook . editorconfig-mode))
 
 ;; ;; ISSUE https://github.com/lassik/emacs-format-all-the-code/issues/220
 ;; (leaf format-all
@@ -48,8 +48,11 @@
               '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))))
   (alist-set! apheleia-mode-alist
               '((python-mode . (black isort))
-                (sh-mode . shfmt))))
-
+                (python-ts-mode . (black isort))
+                ((sh-mode bash-ts-mode) . shfmt)
+                (markdown-mode . prettier-markdown)
+                (gfm-mode . prettier-markdown)
+                (ruby-ts-mode . rubocop))))
 
 (provide 'init-format)
 ;;; init-format.el ends here
