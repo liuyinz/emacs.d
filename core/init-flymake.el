@@ -24,7 +24,7 @@
   ;; npm install -g less
   (setq flymake-collection-hook-config
         '(((python-ts-mode python-mode) flymake-collection-ruff)
-          ((bash-ts-mode sh-mode) flymake-collection-shellcheck)
+          ;; ((bash-ts-mode sh-mode) flymake-collection-shellcheck)
           ((yaml-mode yaml-ts-mode) flymake-collection-yamllint)
           ((web-mode html-ts-mdoe) flymake-collection-html-tidy)
           ((js-ts-mode typescript-ts-mode) flymake-collection-eslint)
