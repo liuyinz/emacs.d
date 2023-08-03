@@ -16,6 +16,9 @@
 (leaf package-lint-flymake
   :hook (emacs-lisp-mode-hook . package-lint-flymake-setup))
 
+(leaf flymake-relint
+  :hook ((emacs-lisp-mode-hook lisp-interaction-mode-hook) . flymake-relint-setup))
+
 (leaf flymake-collection
   :hook (after-init-hook . flymake-collection-hook-setup)
   :init
@@ -27,7 +30,6 @@
   ;; npm install -g less
   (setq flymake-collection-hook-config
         '(((python-ts-mode python-mode) flymake-collection-ruff)
-          ;; ((bash-ts-mode sh-mode) flymake-collection-shellcheck)
           ((yaml-mode yaml-ts-mode) flymake-collection-yamllint)
           ((web-mode html-ts-mdoe) flymake-collection-html-tidy)
           ((js-ts-mode typescript-ts-mode) flymake-collection-eslint)
