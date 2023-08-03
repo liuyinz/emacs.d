@@ -59,7 +59,6 @@
       ("b" "Buffer"        consult-buffer)
       ("d" "Dir"           consult-dir)
       ("p" "Project"       consult-project-extra-find)
-      ;; ("f" "Flycheck"      consult-flycheck)
       ("f" "Flymake"       consult-flymake)
       ("l" "Line"          consult-line)
       ("s" "Snippet"       consult-yasnippet)
@@ -178,17 +177,11 @@
       ("d m" "Mark"   diff-hl-mark-hunk)
       ("d v" "Set Rev"   diff-hl-set-reference-rev)
       ("d f" "Reset Rev"   diff-hl-reset-reference-rev)]
-     ;; [:description "flycheck"
-     ;;  :if-non-nil flycheck-mode
-     ;;  ("f j" "next" flycheck-next-error :transient t)
-     ;;  ("f k" "prev" flycheck-previous-error :transient t)
-     ;;  ("f e" "explain" flycheck-explain-error-at-point :transient t)
-     ;;  ("f c" "consult" consult-flycheck)]
      [:description "flymake"
       :if-non-nil flymake-mode
       ("f j" "next"    flymake-goto-next-error :transient t)
       ("f k" "prev"    flymake-goto-prev-error :transient t)
-      ("f e" "buffer"  flymake-show-buffer-diagnostics)
+      ("f b" "buffer"  flymake-show-buffer-diagnostics)
       ("f e" "project" flymake-show-project-diagnostics)
       ("f c" "consult" consult-flymake)]
      [:description "hl-todo"
@@ -438,7 +431,7 @@
 (global-set-keys
 
  (kbd "C-c i") 'my/transient-ide
- ;; (kbd "C-c w") 'my/transient-window
+ (kbd "C-c w") 'my/transient-window
  (kbd "C-c p") 'my/transient-point
  (kbd "C-c t") 'my/transient-toggle
  (kbd "C-c b") 'my/transient-buffer
