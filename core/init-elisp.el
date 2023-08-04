@@ -69,5 +69,14 @@
 (leaf info-colors
   :hook (Info-selection-hook . info-colors-fontify-node))
 
+(leaf pp
+  :init
+  (setq pp-default-function 'pp-fill))
+
+(leaf simple
+  :init
+  (setq eval-expression-print-length nil
+        eval-expression-print-level nil))
+
 (provide 'init-elisp)
 ;;; init-elisp.el ends here
