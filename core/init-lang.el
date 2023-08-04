@@ -69,6 +69,12 @@
 
 (leaf yaml-ts-mode :mode "\\.\\(yamllint\\|yml\\)\\'")
 
+(leaf nxml-mode
+  :hook (nxml-mode-hook . nxml-mode-setup)
+  :init
+  (defun nxml-mode-setup ()
+    (setq-local fill-column 150)))
+
 ;; -------------------------- Plugin ------------------------------
 
 

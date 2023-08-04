@@ -8,7 +8,7 @@
 ;;; Code:
 
 (leaf flymake
-  :hook ((prog-mode-hook markdown-mode-hook) . flymake-mode)
+  :hook ((prog-mode-hook markdown-mode-hook nxml-mode-hook) . flymake-mode)
   :init
   (setq flymake-fringe-indicator-position nil
         elisp-flymake-byte-compile-load-path load-path))

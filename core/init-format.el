@@ -52,7 +52,9 @@
                 ((sh-mode bash-ts-mode) . shfmt)
                 (markdown-mode . prettier-markdown)
                 (gfm-mode . prettier-markdown)
-                (ruby-ts-mode . rubocop))))
+                (ruby-ts-mode . rubocop)
+                (nxml-mode . prettier-html)
+                )))
 
 (provide 'init-format)
 ;;; init-format.el ends here
