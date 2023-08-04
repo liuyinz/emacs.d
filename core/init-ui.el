@@ -9,6 +9,9 @@
 (leaf topsy
   :hook (emacs-lisp-mode-hook . topsy-mode))
 
+;; (leaf breadcrumb
+;;   :hook (after-init-hook . breadcrumb-mode))
+
 (leaf insecure-lock
   :commands insecure-lock-enter
   :init

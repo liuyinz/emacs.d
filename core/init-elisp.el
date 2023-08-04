@@ -4,9 +4,6 @@
 
 (leaf elisp-mode
   :hook (emacs-lisp-mode-hook . elisp-setup)
-  :bind
-  (:lisp-interaction-mode-map
-   ("C-j" . #'pp-eval-last-sexp))
   :init
   (defun elisp-setup ()
     (setq-local imenu-generic-expression
