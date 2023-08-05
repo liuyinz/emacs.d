@@ -60,28 +60,22 @@
         js-chain-indent t
         js-jsx-indent-level 2))
 
-;; (leaf js2-mode
-;;   :mode
-;;   ("\\.js\\'" . js2-mode)
-;;   ("\\.jsx\\'" . js2-minor-mode)
-;;   :interpreter ("node" . js2-mode)
-;;   :init
-;;   (setq js2-mode-assume-strict nil)
-;;   (setq js2-strict-missing-semi-warning nil)
-;;   (setq js2-mode-show-strict-warnings nil)
-;;   (setq js2-mode-show-parse-errors nil))
-
 ;; (leaf imenu-extra)
 
 ;; ---------------------------- TS --------------------------------
-
-(leaf typescript-mode)
+(leaf typescript-ts-mode
+  :mode "\\.ts\\'")
 
 ;; --------------------------- Node -------------------------------
 
 ;; Adds node_modules/.bin directory to `exec_path'
 (leaf add-node-modules-path
-  :hook ((web-mode-hook js-mode-hook js2-mode-hook) . add-node-modules-path))
+  :init
+  ;; HACK https://github.com/codesuki/add-node-modules-path/issues/23#issuecomment-1594638810
+  (setq add-node-modules-path-command '("echo \"$(npm root)/.bin\""))
+  :hook ((web-mode-hook
+          js-ts-mode-hook
+          typescript-ts-mode-hook) . add-node-modules-path))
 
 (provide 'init-web)
 ;;; init-web.el ends here

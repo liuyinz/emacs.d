@@ -69,9 +69,6 @@
 
 (leaf yaml-ts-mode :mode "\\.\\(yamllint\\|yml\\)\\'")
 
-(leaf typescript-ts-mode
-  :mode "\\.ts\\'")
-
 (leaf nxml-mode
   :hook (nxml-mode-hook . nxml-mode-setup)
   :init
@@ -79,7 +76,6 @@
     (setq-local fill-column 150)))
 
 ;; -------------------------- Plugin ------------------------------
-
 
 (leaf lua-ts-mode
   :mode "\\.lua\\'"
