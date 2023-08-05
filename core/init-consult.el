@@ -165,6 +165,15 @@
                    (?p "Properties" font-lock-builtin-face)
                    (?v "Variables"  font-lock-variable-name-face)
                    (?e "Fields"     font-lock-warning-face)))
+          (js-ts-mode
+           :types ((?c "Class"      font-lock-type-face)
+                   (?f "Function"   font-lock-function-name-face)
+                   ;; (?s "Constants"  font-lock-constant-face)
+                   ;; (?m "Methods"    font-lock-string-face)
+                   ;; (?p "Properties" font-lock-builtin-face)
+                   ;; (?v "Variables"  font-lock-variable-name-face)
+                   ;; (?e "Fields"     font-lock-warning-face)
+                   ))
           (python-mode
            :types ((?c "Classes"    font-lock-type-face)
                    (?f "Functions"  font-lock-function-name-face)
