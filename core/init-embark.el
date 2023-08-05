@@ -13,9 +13,8 @@
   (setq embark-prompter 'embark-keymap-prompter
         embark-keymap-prompter-key ","
         embark-mixed-indicator-delay 0.3)
-  (setq embark-verbose-indicator-display-action '(display-buffer-at-bottom))
+  (setq embark-verbose-indicator-display-action '(display-buffer-reuse-window))
   (setq embark-indicators '(embark-mixed-indicator embark-highlight-indicator))
-  ;; (setq embark-keymap-alist)
   :bind
   (:embark-general-map
    ((kbd "C-c C-a") . marginalia-cycle))
@@ -23,13 +22,14 @@
    ((kbd "C-l") . embark-act)
    ((kbd "C-c C-o") . embark-export)
    ((kbd "C-c C-a") . marginalia-cycle))
+  (:embark-expression-map
+   ("M" . pp-macroexpand-all-expression))
+  (:embark-library-map
+   ("o" . find-library-other-window))
   :defer-config
   ;; HACK Open source code of `symbol' in other window
-  ;; (dolist (cmd '(embark-find-definition))
-  ;;   (advice-add cmd :before #'open-in-other-window))
-
-  (dolist (pair '(("o" . find-library-other-window)))
-    (define-key embark-library-map (car pair) (cdr pair)))
+  (dolist (cmd '(embark-find-definition))
+    (advice-add cmd :before #'open-in-other-window))
   )
 
 (leaf embark-consult
