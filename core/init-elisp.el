@@ -16,8 +16,29 @@
                                                lisp-mode-symbol-regexp
                                                "\\)\\(.*\n\\)+?\\s-*(interactive[) ].*$") 1)
                           ("Leafs" ,(concat "^\\s-*(leaf\\s-+\\("
-                                            lisp-mode-symbol-regexp "\\)") 1)))))
-  )
+                                            lisp-mode-symbol-regexp "\\)") 1))))))
+
+(leaf simple
+  :init
+  (setq eval-expression-print-length nil
+        eval-expression-print-level nil))
+
+(leaf pp
+  :init
+  (setq pp-default-function 'pp-28)
+
+  (defun pp-macroexpand-all-expression (expression)
+    "Macroexpand EXPRESSION all level and pretty-print its value."
+    (interactive
+     (list (read--expression "Macroexpand: ")))
+    (pp-display-expression (macroexpand-all expression) "*Pp Macroexpand Output*"
+                           pp-use-max-width)))
+
+(leaf macroexpand
+  :init
+  (setq macrostep-expand-in-separate-buffer t
+        macrostep-expand-compiler-macros nil))
+
 ;; SEE https://emacs-china.org/t/2-3-4/11875/5?u=cheunghsu
 (leaf lisp-keyword-indent
   :hook (after-init-hook . lisp-keyword-indent-mode)
@@ -29,10 +50,6 @@
   :config
   (elispfl-mode)
   (elispfl-ielm-mode))
-
-;; ;; Add demos for help
-;; (leaf elisp-demos
-;;   :commands elisp-demos-find-demo)
 
 (leaf democratize
   :init
@@ -58,22 +75,14 @@
   (with-eval-after-load 'info-look
     (dash-register-info-lookup)))
 
-(leaf macroexpand
-  :init
-  (setq macrostep-expand-in-separate-buffer t
-        macrostep-expand-compiler-macros nil))
-
 (leaf info-colors
   :hook (Info-selection-hook . info-colors-fontify-node))
 
-(leaf pp
+(leaf macrostep
   :init
-  (setq pp-default-function 'pp-fill))
+  (setq macrostep-expand-in-separate-buffer t))
 
-(leaf simple
-  :init
-  (setq eval-expression-print-length nil
-        eval-expression-print-level nil))
+(leaf psearch)
 
 (provide 'init-elisp)
 ;;; init-elisp.el ends here
