@@ -25,7 +25,11 @@
   (setq quickrun-focus-p nil
         quickrun-timeout-seconds 20)
   :defer-config
-  (prependq! quickrun--major-mode-alist '((lisp-interaction-mode . "emacs"))))
+  (prependq! quickrun--major-mode-alist
+             '((lisp-interaction-mode . "emacs")
+               (typescript-ts-mode . "typescript")
+               (js-ts-mode . "javascript")
+               (bash-ts-mode . "shellscript"))))
 
 (defun my/run ()
   "Running Current Buffer."
