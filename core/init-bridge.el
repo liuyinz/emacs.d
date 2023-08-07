@@ -36,8 +36,8 @@
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
 
-  ;; REQUIRE pthon3.10 -m pip install epc orjson sexpdata six paramiko
-  (setq lsp-bridge-python-command "python3.10")
+  ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko
+  (setq lsp-bridge-python-command "python3.11")
 
   (setq lsp-bridge-enable-diagnostics nil
         lsp-bridge-disable-backup nil)
