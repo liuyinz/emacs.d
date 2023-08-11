@@ -7,7 +7,7 @@
 
 ;;; Code:
 
-(leaf binky-mode
+(leaf binky
   :hook (after-init-hook . binky-mode)
   :init
   (setq binky-mark-back ?'
@@ -21,9 +21,11 @@
         binky-margin-string "\x2630"
         binky-margin-side 'right)
   :defer-config
-  (binky-margin-mode)
-  (appendq! binky-exclude-regexps
-            '("\\`magit.*\\'")))
+  (appendq! binky-exclude-regexps '("\\`magit.*\\'"))
+  (leaf binky-margin
+    :require t
+    :config
+    (binky-margin-mode)))
 
 (leaf xref
   :init
