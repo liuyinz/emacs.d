@@ -52,6 +52,18 @@
           ("DEPRECATED" . "#8c5353")
           )))
 
+(leaf consult-todo
+  :init
+  (setq consult-todo-narrow
+        '((?t . "TODO")
+          (?f . "FIXME")
+          (?h . "HACK")
+          (?b . "BUG")
+          (?w . "WONTFIX")
+          (?d . "DEPRECATED")
+          (?s . "SEE")
+          (?r . "REQUIRE"))))
+
 (leaf edit-indirect
   :commands edit-indirect-buffer-indirect-p
   :init

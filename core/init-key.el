@@ -60,6 +60,7 @@
       ("d" "Dir"           consult-dir)
       ("p" "Project"       consult-project-extra-find)
       ("f" "Flymake"       consult-flymake)
+      ("t" "Hl-todo"       consult-todo)
       ("l" "Line"          consult-line)
       ("s" "Snippet"       consult-yasnippet)
       ("y" "Yank"          consult-yank-from-kill-ring)]
@@ -72,7 +73,7 @@
       ("m" "Macro"         consult-kmacro)
       ("H" "Man"           consult-man)
       ("i" "Info"          consult-info)
-      ("t" "Theme"         consult-theme)]
+      ]
      ["Search"
       ("L" "Go-to-line"    consult-goto-line)
       ("F" "Find"          consult-find)
