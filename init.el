@@ -76,6 +76,7 @@
 
     (require 'init-vcs)
     (require 'init-reader)
+    (require 'init-project)
     ;; (require 'init-projectile)
     ;; langs
     (require 'init-web)
