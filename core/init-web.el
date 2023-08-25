@@ -60,11 +60,9 @@
         js-chain-indent t
         js-jsx-indent-level 2))
 
-;; (leaf imenu-extra)
-
 ;; ---------------------------- TS --------------------------------
-(leaf typescript-ts-mode
-  :mode "\\.ts\\'")
+
+(leaf typescript-ts-mode :mode "\\.ts\\'")
 
 ;; --------------------------- Node -------------------------------
 
@@ -76,6 +74,8 @@
   :hook ((web-mode-hook
           js-ts-mode-hook
           typescript-ts-mode-hook) . add-node-modules-path))
+
+(leaf eslint-init)
 
 (provide 'init-web)
 ;;; init-web.el ends here
