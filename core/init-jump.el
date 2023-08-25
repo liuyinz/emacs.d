@@ -20,6 +20,12 @@
         binky-preview-delay 0.3
         binky-margin-string "\x2630"
         binky-margin-side 'right)
+  (setq binky-preview-column
+        '((mark    0.03  4)
+          (name    0.14  15)
+          (line    0.04  6)
+          (project 0.14  nil)
+          (context 0     nil)))
   :defer-config
   (appendq! binky-exclude-regexps '("\\`magit.*\\'"))
   (leaf binky-margin
