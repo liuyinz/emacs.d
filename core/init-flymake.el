@@ -11,7 +11,8 @@
   :hook ((prog-mode-hook markdown-mode-hook nxml-mode-hook) . flymake-mode)
   :init
   (setq flymake-fringe-indicator-position nil
-        elisp-flymake-byte-compile-load-path load-path))
+        elisp-flymake-byte-compile-load-path load-path
+        flymake-no-changes-timeout 3))
 
 (leaf package-lint-flymake
   :hook (emacs-lisp-mode-hook . package-lint-flymake-setup))
