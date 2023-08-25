@@ -81,6 +81,9 @@
 ;; ------------------------ Apperance -----------------------------
 
 (leaf hl-line
+  :init
+  (setq hl-line-sticky-flag nil)
+  (setq global-hl-line-sticky-flag nil)
   :hook (after-init-hook . global-hl-line-mode))
 
 ;; TODO multiple desktop settings,see
