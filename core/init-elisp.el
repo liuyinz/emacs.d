@@ -51,6 +51,8 @@
   (elispfl-mode)
   (elispfl-ielm-mode))
 
+(leaf eros :hook (after-init-hook . eros-mode))
+
 (leaf democratize
   :init
   (advice-add 'helpful-update
