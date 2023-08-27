@@ -41,7 +41,7 @@
   (if (my/debug-begin-p)
       (require 'init-debug)
     ;; normal loading
-    (require 'init-rebounce)
+    (require 'init-duplexer)
     (require 'init-builtin)
     (require 'init-meow)
     (require 'init-minibuffer)
