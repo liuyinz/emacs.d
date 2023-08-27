@@ -98,7 +98,7 @@
           :filter nil
           :predicate
           (lambda (buffer)
-            (string-match "\\`.+~.+~\\'" (buffer-name buffer))))))
+            (string-match-p "\\`.+~.+~\\'" (buffer-name buffer))))))
     "Blob buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-blob)
 
