@@ -29,9 +29,10 @@
   (setq treesit-auto-install nil)
   (setq treesit-auto-langs
         '(bash c c-sharp clojure cmake commonlisp cpp css dockerfile
-               ;; make perl markdown
                elixir go gomod html javascript java json julia kotlin
-               heex python ruby rust toml tsx typescript yaml lua))
+               heex python ruby rust toml tsx typescript yaml lua
+               ;; third-party
+               jq))
 
   (defun treesit-auto-install-missing ()
     "Install missing grammar in `treesit-auto-langs'."
@@ -44,6 +45,13 @@
       (mapc (lambda (lang)
               (treesit-install-language-grammar lang (car treesit-extra-load-path)))
             missing)))
+  :defer-config
+  (prependq! treesit-auto-recipe-list
+             `(,(make-treesit-auto-recipe
+                 :lang 'jq
+                 :ts-mode 'jq-ts-mode
+                 :remap 'jq-mode
+                 :url "https://github.com/nverno/tree-sitter-jq")))
   )
 
 ;; ------------------------- Builtin ------------------------------
@@ -76,6 +84,8 @@
     (setq-local fill-column 150)))
 
 ;; -------------------------- Plugin ------------------------------
+
+(leaf jq-ts-mode :mode "\\.jq\\'" )
 
 (leaf lua-ts-mode
   :mode "\\.lua\\'"
