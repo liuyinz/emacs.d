@@ -45,7 +45,7 @@
           ;; Reviewer thinks needs more discussion
           ("NOTE"       . "#dc8cc3")
           ;; Problems
-          ("XXX+"       . "#cc9393")
+          ("XXX"        . "#cc9393")
           ("BUG"        . "#ff665c")
           ("WONTFIX"    . "#8c5353")
           ;; Remove since version X.x.x
@@ -58,11 +58,17 @@
         '((?t . "TODO")
           (?f . "FIXME")
           (?h . "HACK")
+          (?k . "WORKAROUND")
+          (?r . "REQUIRE")
+          (?s . "SEE")
+          (?p . "PR")
+          (?i . "ISSUE")
+          (?c . "DISCUSSION")
+          (?n . "NOTE")
+          (?x . "XXX")
           (?b . "BUG")
           (?w . "WONTFIX")
-          (?d . "DEPRECATED")
-          (?s . "SEE")
-          (?r . "REQUIRE"))))
+          (?d . "DEPRECATED"))))
 
 (leaf edit-indirect
   :commands edit-indirect-buffer-indirect-p
