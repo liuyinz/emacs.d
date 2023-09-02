@@ -12,13 +12,16 @@
   (setq vc-msg-show-at-line-beginning-p nil
         vc-msg-newbie-friendly-msg ""))
 
-(leaf conventional-changelog
+(leaf git-cliff
+  :require t
   :init
+  (setq git-cliff-extra-path (expand-file-name "git-cliff/" my/dir-ext))
+  (setq git-cliff-enable-presets nil)
   ;; Integrate to `magit-tag'
   (with-eval-after-load 'magit-tag
     (transient-append-suffix 'magit-tag
       '(1 0 -1)
-      '("c" "changelog" conventional-changelog-menu))))
+      '("c" "changelog" git-cliff-menu))))
 
 (leaf gitignore-templates
   :init
