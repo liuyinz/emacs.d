@@ -97,8 +97,7 @@
 
 (leaf mermaid-mode)
 
-(leaf eldoc-toml
-  :hook (conf-toml-mode-hook . eldoc-toml-mode))
+(leaf tera-mode :mode "\\.tera\\'")
 
 (provide 'init-lang)
 ;;; init-lang.el ends here
