@@ -40,6 +40,7 @@
           ("http://www.masteringemacs.org/feed/" emacs)
           ("http://pragmaticemacs.com/feed/" emacs)
           ("https://oremacs.com/atom.xml" emacs)
+          ("http://xahlee.info/emacs/emacs/blog.xml" emacs xah)
           ("https://pinecast.com/feed/emacscast" emacs)
           ("https://emacstil.com/feed.xml" emacs)
           ("https://www.reddit.com/r/emacs.rss" reddit emacs)
