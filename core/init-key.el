@@ -62,6 +62,8 @@
       ("f" "Flymake"       consult-flymake)
       ("t" "Hl-todo"       consult-todo)
       ("T" "Hl-todo all"   consult-todo-all)
+      ("D" "Hl-todo dir"   consult-todo-dir)
+      ("P" "Hl-todo proj"  consult-todo-project)
       ("l" "Line"          consult-line)
       ("s" "Snippet"       consult-yasnippet)
       ("y" "Yank"          consult-yank-from-kill-ring)]
