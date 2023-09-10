@@ -53,13 +53,10 @@
 
 (leaf eros :hook (after-init-hook . eros-mode))
 
-(leaf democratize
+(leaf elisp-demos
+  :commands elisp-demos-find-demo
   :init
-  (advice-add 'helpful-update
-              :after
-              #'democratize-insert-examples-into-helpful-buffer)
-  :defer-config
-  (mapc #'democratize-library (democratize--list-non-democratized-libraries)))
+  (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 (leaf helpful
   :init
