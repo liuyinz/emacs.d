@@ -16,12 +16,13 @@
   (setq embark-verbose-indicator-display-action '(display-buffer-reuse-window))
   (setq embark-indicators '(embark-mixed-indicator embark-highlight-indicator))
   :bind
+  ("C-l" . embark-act)
   (:embark-general-map
    ((kbd "C-c C-a") . marginalia-cycle))
   (:vertico-map
-   ((kbd "C-l") . embark-act)
-   ((kbd "C-c C-o") . embark-export)
-   ((kbd "C-c C-a") . marginalia-cycle))
+   ("C-l" . embark-act)
+   ("C-c C-o" . embark-export)
+   ("C-c C-a" . marginalia-cycle))
   (:embark-expression-map
    ("M" . pp-macroexpand-all-expression))
   (:embark-library-map

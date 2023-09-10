@@ -440,7 +440,6 @@
  (kbd "C-c t") 'my/transient-toggle
  (kbd "C-c b") 'my/transient-buffer
  (kbd "C-c j") 'my/transient-consult
- (kbd "C-l")   'embark-act
 
  (kbd "M-l")   'my/transient-transform
  (kbd "C-j")   'scroll-other-window

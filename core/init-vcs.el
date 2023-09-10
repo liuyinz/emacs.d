@@ -95,7 +95,7 @@
 
 (leaf magit
   :bind
-  ((kbd "C-c l") . magit-dispatch)
+  ((kbd "C-c d") . magit-dispatch)
   ((kbd "C-c f") . magit-file-dispatch)
 
   :defer-config
