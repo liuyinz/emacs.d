@@ -14,8 +14,8 @@
 
 (leaf git-cliff
   :init
-  (setq git-cliff-extra-path (expand-file-name "git-cliff/" my/dir-ext))
-  (setq git-cliff-enable-examples nil)
+  (setq git-cliff-extra-dir (expand-file-name "git-cliff/" my/dir-ext))
+  ;; (setq git-cliff-enable-examples nil)
   ;; Integrate to `magit-tag'
   (with-eval-after-load 'magit-tag
     (transient-append-suffix 'magit-tag
