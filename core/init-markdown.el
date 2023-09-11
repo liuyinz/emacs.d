@@ -16,14 +16,16 @@
     (setq markdown-command "multimarkdown"))
 
   (setq markdown-enable-wiki-links t
-        ;; markdown-enable-math t
+        markdown-enable-math t
         markdown-asymmetric-header t
         markdown-make-gfm-checkboxes-buttons t
-        markdown-gfm-uppercase-checkbox t
+        ;; markdown-gfm-uppercase-checkbox nil
         markdown-fontify-code-blocks-natively t
         markdown-enable-highlighting-syntax t
         markdown-gfm-additional-languages "Mermaid")
   (setq markdown-list-indent-width 2)
+  (setq markdown-list-item-bullets
+        '("◎" "●" "◇" "○" "◆" "►" "•"))
 
   :defer-config
   (prependq! markdown-code-lang-modes '(("mermaid" . mermaid-mode)
