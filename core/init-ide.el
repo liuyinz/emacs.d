@@ -2,6 +2,20 @@
 ;;; Commentary:
 ;;; Code:
 
+;; --------------------------- VTERM -------------------------------
+
+(leaf vterm
+  :hook (vterm-mode-hook . vterm-setup)
+  :bind
+  ("M-u" . vterm-toggle)
+  (:vterm-mode-map
+   ("M-u" . nil))
+  :init
+  (defun vterm-setup ()
+    (meow-mode -1)
+    (hide-mode-line-mode -1)))
+
+(leaf vterm-toggle)
 
 ;; -------------------------- docstr ------------------------------
 ;; --------------------------- Doc --------------------------------
