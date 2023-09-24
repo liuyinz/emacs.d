@@ -11,10 +11,10 @@
         vertico-count 15
         resize-mini-windows t)
   :bind
-  ((kbd "C-c C-r") . vertico-repeat)
+  ("C-c C-r" . vertico-repeat)
   (:vertico-map
-   ((kbd "RET") . vertico-directory-enter)
-   ((kbd "DEL") . vertico-directory-delete-char))
+   ("RET" . vertico-directory-enter)
+   ("DEL" . vertico-directory-delete-char))
 
   :defer-config
 

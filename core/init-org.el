@@ -11,9 +11,9 @@
   :init
   (setq org-edit-src-content-indentation 0)
   :defer-config
-  (global-set-key (kbd "C-c l") 'org-store-link)
-  (global-set-key (kbd "C-c a") 'org-agenda)
-  (global-set-key (kbd "C-c c") 'org-capture))
+  (keymap-global-set "C-c l" 'org-store-link)
+  (keymap-global-set "C-c a" 'org-agenda)
+  (keymap-global-set "C-c c" 'org-capture))
 
 (provide 'init-org)
 ;;; init-org.el ends here

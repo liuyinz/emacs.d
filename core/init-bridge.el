@@ -65,8 +65,8 @@
   (leaf acm
     :bind
     (:acm-mode-map
-     ((kbd "C-t h") . acm-doc-toggle)
-     ((kbd "C-t d") . acm-sdcv-toggle)
+     ("C-t h" . acm-doc-toggle)
+     ("C-t d" . acm-sdcv-toggle)
      )
     :init
     (setq acm-enable-quick-access nil

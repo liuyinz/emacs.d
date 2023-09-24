@@ -106,7 +106,7 @@
     :require t
     :config
     (ace-link-setup-default)
-    (global-set-key (kbd "M-o") 'ace-link-addr)))
+    (keymap-global-set "M-o" 'ace-link-addr)))
 
 (provide 'init-jump)
 ;;; init-jump.el ends here

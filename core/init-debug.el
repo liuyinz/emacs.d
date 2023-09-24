@@ -10,7 +10,7 @@
 (tooltip-mode -1)
 (load-theme 'wombat)
 (recentf-mode)
-(global-set-key "\C-o" #'recentf-open-files)
+(keymap-global-set "C-o" #'recentf-open-files)
 (setq recentf-max-saved-items nil)
 
 (load-file my/file-debug)

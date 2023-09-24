@@ -95,8 +95,8 @@
 
 (leaf magit
   :bind
-  ((kbd "C-c d") . magit-dispatch)
-  ((kbd "C-c f") . magit-file-dispatch)
+  ("C-c d" . magit-dispatch)
+  ("C-c f" . magit-file-dispatch)
 
   :defer-config
   (setq magit-slow-confirm nil)

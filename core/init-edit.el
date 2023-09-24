@@ -95,7 +95,7 @@
                           (setq-local compilation-scroll-output 'first-error
                                       compilation-always-kill t)))
   :bind
-  ((kbd "C-c s") . rg-menu)
+  ("C-c s" . rg-menu)
   (:rg-mode-map
    ("<"    . compilation-first-error)
    (">"    . compilation-last-error)

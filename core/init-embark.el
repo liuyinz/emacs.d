@@ -18,7 +18,7 @@
   :bind
   ("C-l" . embark-act)
   (:embark-general-map
-   ((kbd "C-c C-a") . marginalia-cycle))
+   ("C-c C-a" . marginalia-cycle))
   (:vertico-map
    ("C-l" . embark-act)
    ("C-c C-o" . embark-export)

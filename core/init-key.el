@@ -411,39 +411,35 @@
   ;;     ]
   ;;    ]
   ;;   )
-  ;; (global-set-key (kbd "C-h") 'hrm-help-transient)
+  ;; (keymap-global-set "C-h" 'hrm-help-transient)
   )
 
-;;; define-keys
-
-(defun define-keys (keymap &rest pairs)
+(defun keymap-sets (keymap &rest pairs)
   "Define alternating key-def PAIRS for KEYMAP."
   (-each
       (-partition 2 pairs)
     (-lambda ((key def))
-      (define-key keymap key def))))
+      (keymap-set keymap key def))))
 
-;;; global-set-keys
-
-(defun global-set-keys (&rest pairs)
+(defun keymap-global-sets (&rest pairs)
   "Set alternating key-def PAIRS globally."
   (-each
       (-partition 2 pairs)
     (-lambda ((key def))
-      (global-set-key key def))))
+      (keymap-global-set key def))))
 
-(global-set-keys
+(keymap-global-sets
 
- (kbd "C-c i") 'my/transient-ide
- (kbd "C-c w") 'my/transient-window
- (kbd "C-c p") 'my/transient-point
- (kbd "C-c t") 'my/transient-toggle
- (kbd "C-c b") 'my/transient-buffer
- (kbd "C-c j") 'my/transient-consult
+ "C-c i" 'my/transient-ide
+ "C-c w" 'my/transient-window
+ "C-c p" 'my/transient-point
+ "C-c t" 'my/transient-toggle
+ "C-c b" 'my/transient-buffer
+ "C-c j" 'my/transient-consult
 
- (kbd "M-l")   'my/transient-transform
- (kbd "C-j")   'scroll-other-window
- (kbd "C-k")   'scroll-other-window-down)
+ "M-l"   'my/transient-transform
+ "C-j"   'scroll-other-window
+ "C-k"   'scroll-other-window-down)
 
 (provide 'init-key)
 ;;; init-key.el ends here

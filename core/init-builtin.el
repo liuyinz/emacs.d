@@ -62,12 +62,12 @@
   (defun my/mouse-setup ()
     "enable mouse and keybindings in eamcs -nw"
     (xterm-mouse-mode)
-    (global-set-key [mouse-4] (lambda ()
-                                (interactive)
-                                (scroll-down 1)))
-    (global-set-key [mouse-5] (lambda ()
-                                (interactive)
-                                (scroll-up 1))))
+    (keymap-global-set "<mouse-4>" (lambda ()
+                                     (interactive)
+                                     (scroll-down 1)))
+    (keymap-global-set "<mouse-5>" (lambda ()
+                                     (interactive)
+                                     (scroll-up 1))))
   (add-hook 'after-make-console-frame-hook #'my/mouse-setup))
 
 (leaf mwheel
@@ -388,8 +388,8 @@
   :require t
   :bind
   (:transient-map
-   ((kbd "ESC") . transient-quit-one)
-   ((kbd "<escape>") . transient-quit-one))
+   ("ESC" . transient-quit-one)
+   ("<escape>" . transient-quit-one))
   :init
   (setq transient-highlight-mismatched-keys nil
         transient-detect-key-conflicts t))
