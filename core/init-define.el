@@ -75,18 +75,6 @@
   (string-equal "root" (getenv "USER"))
   "Are you using ROOT user?")
 
-(defconst emacs/>=25p
-  (>= emacs-major-version 25)
-  "Emacs is 25 or above.")
-
-(defconst emacs/>=26p
-  (>= emacs-major-version 26)
-  "Emacs is 26 or above.")
-
-(defconst emacs/>=27p
-  (>= emacs-major-version 27)
-  "Emacs is 27 or above.")
-
 (defconst emacs/>=28p
   (>= emacs-major-version 28)
   "Emacs is 28 or above.")
@@ -94,18 +82,6 @@
 (defconst emacs/>=29p
   (>= emacs-major-version 29)
   "Emacs is 29 or above.")
-
-(defconst emacs/>=25.2p
-  (or emacs/>=26p
-      (and (= emacs-major-version 25)
-           (>= emacs-minor-version 2)))
-  "Emacs is 25.2 or above.")
-
-(defconst emacs/>=25.3p
-  (or emacs/>=26p
-      (and (= emacs-major-version 25)
-           (>= emacs-minor-version 3)))
-  "Emacs is 25.3 or above.")
 
 (defconst emacs/>=28.1p
   (or emacs/>=29p
@@ -147,7 +123,7 @@ FN-R : region function, FN: default function"
        (funcall ',fn-r (region-beginning) (region-end))
      (funcall ',fn)))
 
-(defmacro define-command-mixed (func-name thing-type prompt body)
+(defmacro defun-mixed! (func-name thing-type prompt body)
   ""
   `(defun ,func-name ()
      (interactive)
@@ -261,25 +237,6 @@ Same as `replace-string C-q C-m RET RET'."
         (error "Cannot open tramp file")
       (browse-url (concat "file://" file-name)))))
 
-;; FIXME https://github.com/seagle0128/.emacs.d/blob/0d96e2c1acfd5f34110b567cc2f3ecfead8b96f5/lisp/init-funcs.el#L129
-(defun webkit-browse-url (url &optional pop-buffer new-session)
-  "Browse URL with webkit and switch or pop to the buffer.
-POP-BUFFER specifies whether to pop to the buffer.
-NEW-SESSION specifies whether to create a new xwidget-webkit session."
-  (interactive (progn
-                 (require 'browse-url)
-                 (browse-url-interactive-arg "xwidget-webkit URL: ")))
-  (when (and (featurep 'xwidget-internal)
-             (fboundp 'xwidget-buffer)
-             (fboundp 'xwidget-webkit-current-session))
-    (xwidget-webkit-browse-url url new-session)
-    (let ((buf (xwidget-buffer (xwidget-webkit-current-session))))
-      (when (buffer-live-p buf)
-        (and (eq buf (current-buffer)) (quit-window))
-        (if pop-buffer
-            (pop-to-buffer buf)
-          (switch-to-buffer buf))))))
-
 (defun copy-file-name ()
   "Copy the current buffer file name to the clipboard."
   (interactive)
@@ -295,17 +252,6 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   "Reload Emacs configurations."
   (interactive)
   (load user-init-file))
-
-(defun browse-homepage ()
-  "Browse the Github page of Centaur Emacs."
-  (interactive)
-  (browse-url user-home-page))
-
-(defun create-scratch-buffer ()
-  "Create a scratch buffer."
-  (interactive)
-  (switch-to-buffer (get-buffer-create "*scratch*"))
-  (lisp-interaction-mode))
 
 (defun save-buffer-as-utf8 (coding-system)
   "Revert a buffer with `CODING-SYSTEM' and save as UTF-8."
