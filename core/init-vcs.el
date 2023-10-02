@@ -13,9 +13,10 @@
         vc-msg-newbie-friendly-msg ""))
 
 (leaf git-cliff
+  :require t
   :init
   (setq git-cliff-extra-dir (expand-file-name "git-cliff/" my/dir-ext))
-  ;; (setq git-cliff-enable-examples nil)
+  (setq git-cliff-cache-file (expand-file-name "var/git-cliff-cache.el" my/dir-cache))
   ;; Integrate to `magit-tag'
   (with-eval-after-load 'magit-tag
     (transient-append-suffix 'magit-tag
