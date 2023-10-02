@@ -4,6 +4,7 @@
 
 ;; --------------------------- VTERM -------------------------------
 
+;; REQUIRE brew install libvterm cmake
 (leaf vterm
   :hook (vterm-mode-hook . vterm-setup)
   :bind
@@ -20,17 +21,17 @@
 ;; -------------------------- docstr ------------------------------
 ;; --------------------------- Doc --------------------------------
 
-(define-command-mixed
-  devdocs-at-point
-  word
-  "Search devdocs.io"
+(defun-mixed!
+ devdocs-at-point
+ word
+ "Search devdocs.io"
 
-  ;; SEE https://devdocs.io/help
-  (browse-url (format "https://devdocs.io/#q=%s" (url-hexify-string query)))
+ ;; SEE https://devdocs.io/help
+ (browse-url (format "https://devdocs.io/#q=%s" (url-hexify-string query)))
 
-  ;; SEE https://github.com/egoist/devdocs-desktop#using-homebrew
-  ;; (shell-command (format "open devdocs://search/%s" (url-hexify-string query)))
-  )
+ ;; SEE https://github.com/egoist/devdocs-desktop#using-homebrew
+ ;; (shell-command (format "open devdocs://search/%s" (url-hexify-string query)))
+ )
 
 ;; --------------------------- Run --------------------------------
 
