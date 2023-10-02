@@ -39,7 +39,7 @@
   ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko
   (setq lsp-bridge-python-command "python3.11")
 
-  (setq lsp-bridge-enable-diagnostics nil
+  (setq lsp-bridge-enable-diagnostics t
         lsp-bridge-disable-backup nil)
 
   (appendq! lsp-bridge-default-mode-hooks
@@ -63,16 +63,10 @@
   ;;             ((web-mode mhtml-mode html-mode) . "html_emmet")))
 
   (leaf acm
-    :bind
-    (:acm-mode-map
-     ("C-t h" . acm-doc-toggle)
-     ("C-t d" . acm-sdcv-toggle)
-     )
     :init
     (setq acm-enable-quick-access nil
           acm-enable-tabnine nil
           acm-enable-doc nil)
-
     ;; yasnippet
     (setq acm-completion-backend-merge-order
           '("template-first-part-candidates"
@@ -85,16 +79,6 @@
           acm-backend-yas-match-by-trigger-keyword t
           acm-backend-yas-show-trigger-keyword " [%s]")
 
-    ;; (defun acm-insert-common-or-next ()
-    ;;   "Insert common prefix of menu or select next candidate."
-    ;;   (interactive)
-    ;;   (let ((inhibit-message t)
-    ;;         (num (length (acm-get-input-prefix))))
-    ;;     (acm-insert-common)
-    ;;     (when (= num (length (acm-get-input-prefix)))
-    ;;       (acm-select-next))))
-    ;; (put 'acm-insert-common-or-next 'completion-predicate #'ignore))
-
     ;; FIXME wrapper of `lsp-bridge-toggle-sdcv-helper'
     (defun acm-sdcv-toggle ()
       "docstring"
@@ -103,14 +87,21 @@
         (lsp-bridge-toggle-sdcv-helper)
         (acm-update)
         (acm-menu-update)))
-    :config
 
-    ;; BUG use in terminal
-    ;; (unless (display-graphic-p)
-    ;;   (require 'acm-terminal))
-
+    (defun ad/acm-doc-toggle ()
+      (interactive)
+      (if (acm-frame-visible-p acm-doc-frame)
+          (progn
+            (acm-doc-hide)
+            (setq acm-enable-doc nil))
+        (setq acm-enable-doc t)
+        (acm-doc-try-show)))
+    (advice-add 'acm-doc-toggle :override #'ad/acm-doc-toggle)
     )
   )
+
+(leaf lsp-bridge-ref
+  :hook (lsp-bridge-ref-mode-hook . (lambda () (meow-mode -1))))
 
 (provide 'init-bridge)
 ;;; init-bridge.el ends here
