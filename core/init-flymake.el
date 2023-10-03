@@ -12,13 +12,7 @@
   :init
   (setq flymake-fringe-indicator-position nil
         elisp-flymake-byte-compile-load-path load-path
-        flymake-no-changes-timeout 3))
-
-(leaf package-lint-flymake
-  :hook (emacs-lisp-mode-hook . package-lint-flymake-setup))
-
-(leaf flymake-relint
-  :hook ((emacs-lisp-mode-hook lisp-interaction-mode-hook) . flymake-relint-setup))
+        flymake-no-changes-timeout 1.5))
 
 (leaf flymake-collection
   :hook (after-init-hook . flymake-collection-hook-setup)
@@ -40,39 +34,16 @@
           ((ruby-mode ruby-ts-mode) flymake-collection-rubocop)
           (sql-mode flymake-collection-sqlint)
           (nxml-mode flymake-collection-xmllint)
-          (less-mode flymake-collection-less)))
-  )
+          (less-mode flymake-collection-less))))
 
-(defun flymake-bridge (report-fn &rest _args)
-  "A flymake backend for `lsp-bridge-diagnostic'.
-Add this to `flymake-diagnostic-functions' to enable it.
-Calls REPORT-FN directly."
-  (cl-loop for ov in
-             lsp-bridge-diagnostic-overlays
-             ;; (buffer-local-value 'lsp-bridge-diagnostic-overlays
-             ;;                             (current-buffer))
-             collect
-             (flymake-make-diagnostic
-              (current-buffer)
-              (overlay-start ov)
-              (overlay-end ov)
-              (let ((face (overlay-get ov 'face)))
-                (cond
-                 ((face-equal face 'lsp-bridge-diagnostics-error-face) :error)
-                 ((face-equal face 'lsp-bridge-diagnostics-warning-face) :warning)
-                 (t :note)))
-              (overlay-get ov 'message))
-             into diags
-             finally (funcall report-fn diags)))
+(leaf package-lint-flymake
+  :hook (emacs-lisp-mode-hook . package-lint-flymake-setup))
 
-(defun flymake-bridge-setup ()
-  "docstring"
-  (interactive)
-  (if (< emacs-major-version 26)
-      (error "Package-lint-flymake requires Emacs 26 or later")
-    (add-hook 'flymake-diagnostic-functions #'flymake-bridge nil t)
-    (flymake-mode)))
-(add-hook 'lsp-bridge-mode-hook #'flymake-bridge-setup)
+(leaf flymake-relint
+  :hook ((emacs-lisp-mode-hook lisp-interaction-mode-hook) . flymake-relint-setup))
+
+(leaf flymake-bridge
+  :hook (lsp-bridge-mode-hook . flymake-bridge-setup))
 
 (provide 'init-flymake)
 ;;; init-flymake.el ends here
