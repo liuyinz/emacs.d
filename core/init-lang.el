@@ -77,6 +77,8 @@
 
 (leaf yaml-ts-mode :mode "\\.\\(yamllint\\|yml\\)\\'")
 
+(leaf rust-ts-mode :mode "\\.rs\\'")
+
 (leaf nxml-mode
   :hook (nxml-mode-hook . nxml-mode-setup)
   :init
