@@ -62,7 +62,14 @@
 
 ;; ---------------------------- TS --------------------------------
 
-(leaf typescript-ts-mode :mode "\\.ts\\'")
+(leaf typescript-ts-mode
+  :mode "\\.ts\\'"
+  :hook (typescript-ts-mode-hook . (lambda ()
+                                     ;; BUG rainbow-demiliters-mode couldn't
+                                     ;; identify single ?< if it's paired by
+                                     ;; elec-pair-extra
+                                     (when electric-pair-mode
+                                       (rainbow-delimiters-mode -1)))))
 
 ;; --------------------------- Node -------------------------------
 

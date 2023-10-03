@@ -23,8 +23,8 @@
   (setq elec-pair-extra-rules
         '((typescript-ts-mode :pair ((?\< . ?\>))
                               :inhibit ((?\< . " <")))
-          (rust-ts-mode       :pair (?')
-                              :inhibit ((?\' . "&'")))
+          ;; (rust-ts-mode       :pair (?')
+          ;;                     :inhibit ((?\' . "&'")))
           )))
 
 (leaf isolate
