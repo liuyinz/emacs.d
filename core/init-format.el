@@ -39,10 +39,12 @@
   (defun my/format ()
     "Formatting current buffer."
     (interactive)
-    (cl-case major-mode
-      ((gitconfig-mode emacs-lisp-mode lisp-interaction-mode)
-       (run-general! indent-region indent-whole-buffer))
-      (t (call-interactively #'apheleia-format-buffer))))
+    (if buffer-read-only
+        (message "%s is read-only." (buffer-name))
+      (cl-case major-mode
+        ((gitconfig-mode emacs-lisp-mode lisp-interaction-mode)
+         (run-general! indent-region indent-whole-buffer))
+        (t (call-interactively #'apheleia-format-buffer)))))
   :config
   (alist-set! apheleia-formatters
               '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))))
