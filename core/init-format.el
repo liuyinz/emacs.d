@@ -12,26 +12,6 @@
 ;; (leaf editorconfig
 ;;   :hook (after-init-hook . editorconfig-mode))
 
-;; ;; ISSUE https://github.com/lassik/emacs-format-all-the-code/issues/220
-;; (leaf format-all
-;;   ;; :require t
-;;   :init
-;;   (setq format-all-debug t)
-;;   (advice-add 'format-all-buffer :before #'format-all-ensure-formatter)
-;;
-;;   (defun my/format ()
-;;     "Formatting current buffer."
-;;     (interactive)
-;;     (cl-case major-mode
-;;       (gitconfig-mode (run-general! indent-region indent-whole-buffer))
-;;       (t (run-general! format-all-region format-all-buffer))))
-;;   :defer-config
-;;   (prependq! format-all-default-formatters
-;;              '(("JSONC" prettier)
-;;                ;; SEE https://google.github.io/styleguide/shellguide.html
-;;                ("Shell" (shfmt "-i" "2" "-bn" "-ci"))))
-;;   )
-
 (leaf apheleia
   :require t
   :init
