@@ -18,26 +18,11 @@
                   (delete ":" lsp-bridge-completion-hide-characters))))
   (add-hook 'lsp-bridge-mode-hook #'ah/lsp-bridge-reset-hide-characters)
 
-  ;; (defun ad/lsp-bridge-not-match-hide-characters ()
-  ;;   (let ((char (ignore-errors (char-to-string (char-before)))))
-  ;;     (or (and lsp-bridge-completion-obey-trigger-characters-p
-  ;;              (member char (if (boundp 'acm-backend-lsp-completion-trigger-characters)
-  ;;                               (symbol-value 'acm-backend-lsp-completion-trigger-characters))))
-  ;;         (and (string-equal char ":")
-  ;;              (cl-intersection '("emmet-ls" "emmet-ls-css")
-  ;;                               acm-backend-lsp-server-names
-  ;;                               :test #'equal))
-  ;;         (not (member char lsp-bridge-completion-hide-characters)))))
-  ;; (advice-add 'lsp-bridge-not-match-hide-characters :override #'ad/lsp-bridge-not-match-hide-characters)
-
   :defer-config
 
   ;; ;; Debug: REQUIRE brew install gdb
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
-
-  ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko
-  (setq lsp-bridge-python-command "python3.11")
 
   (setq lsp-bridge-enable-diagnostics t
         lsp-bridge-disable-backup nil)
@@ -49,10 +34,11 @@
               html-mode-hook
               js-json-mode-hook))
 
-  ;; Setup multi server
-
-  ;; REQUIRE pip install ruff-lsp
-  (setq lsp-bridge-python-multi-lsp-server "pyright_ruff")
+  ;; Setup server
+  (setq lsp-bridge-user-langserver-dir
+        (expand-file-name "lsp-bridge/single" my/dir-ext))
+  (setq lsp-bridge-user-multiserver-dir
+        (expand-file-name "lsp-bridge/multi" my/dir-ext))
 
   (appendq! lsp-bridge-multi-lang-server-extension-list
             '((("css" "less" "scss") . "css_emmet")
@@ -61,6 +47,11 @@
   ;; (appendq! lsp-bridge-multi-lang-server-mode-list
   ;;           '(((css-mode less-css-mode scss-mode) . "css_emmet")
   ;;             ((web-mode mhtml-mode html-mode) . "html_emmet")))
+
+  ;; Setup language
+  ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko ruff-lsp
+  (setq lsp-bridge-python-command "python3.11")
+  (setq lsp-bridge-python-multi-lsp-server "pyright_ruff")
 
   (leaf acm
     :init
