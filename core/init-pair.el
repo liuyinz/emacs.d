@@ -18,14 +18,20 @@
   :hook (after-init-hook . electric-pair-mode))
 
 (leaf elec-pair-extra
-  :hook (electric-pair-mode-hook . elec-pair-extra-setup)
+  :hook (after-init-hook . elec-pair-extra-setup)
   :init
   (setq elec-pair-extra-rules
-        '((typescript-ts-mode :pair ((?\< . ?\>))
-                              :inhibit ((?\< . " <")))
-          ;; (rust-ts-mode       :pair (?')
-          ;;                     :inhibit ((?\' . "&'")))
-          )))
+        '(;; enable <> auto pair for generics<T> in typescript, disable pair
+          ;; when following a space
+          (typescript-ts-mode
+           :pair ((?\< . ?\>))
+           :inhibit ((?\< . " <")))
+          ;; disable pair <> in HTML+JS submode in mhtml-mode
+          (mhtml-mode
+           :pair nil
+           :inhibit ((?\< . (lambda (c)
+                              (and (eq major-mode 'js-mode)
+                                   (= c ?<)))))))))
 
 (leaf isolate
   :require t
