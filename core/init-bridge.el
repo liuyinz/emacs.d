@@ -10,13 +10,17 @@
 (leaf lsp-bridge
   :hook (after-init-hook . global-lsp-bridge-mode)
   :init
-  ;; HACK
-  (defun ah/lsp-bridge-reset-hide-characters ()
-    "Allow char : in buffer which enable emmet-ls completions."
+  (defun lsp-bridge-mode-setup ()
+    "Setup lsp-bridge-mode"
+    ;; Allow char : in buffer which enable emmet-ls completions.
     (when (ignore-errors (string-match-p "emmet" (lsp-bridge-has-lsp-server-p)))
       (setq-local lsp-bridge-completion-hide-characters
-                  (delete ":" lsp-bridge-completion-hide-characters))))
-  (add-hook 'lsp-bridge-mode-hook #'ah/lsp-bridge-reset-hide-characters)
+                  (delete ":" lsp-bridge-completion-hide-characters)))
+    ;; disable diagnostics feature in bash-language-server,
+    ;; SEE https://github.com/bash-lsp/bash-language-server/issues/983
+    (when (member major-mode '(sh-mode bash-mode bash-ts-mode))
+      (setq-local lsp-bridge-enable-diagnostics nil)))
+  (add-hook 'lsp-bridge-mode-hook #'lsp-bridge-mode-setup -100)
 
   :defer-config
 
