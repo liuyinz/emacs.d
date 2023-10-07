@@ -28,6 +28,12 @@
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
 
+  ;; ;; NOTE for debugging
+  ;; (setq lsp-bridge-multi-lang-server-extension-list nil
+  ;;       lsp-bridge-multi-lang-server-mode-list nil
+  ;;       lsp-bridge-single-lang-server-extension-list nil
+  ;;       lsp-bridge-single-lang-server-mode-list)
+
   (setq lsp-bridge-enable-diagnostics t
         lsp-bridge-disable-backup nil)
 
@@ -36,7 +42,8 @@
               git-commit-mode-hook
               mhtml-mode-hook
               html-mode-hook
-              js-json-mode-hook))
+              js-json-mode-hook
+              json-ts-mode-hook))
 
   ;; Setup server
   (setq lsp-bridge-user-langserver-dir
@@ -44,13 +51,24 @@
   (setq lsp-bridge-user-multiserver-dir
         (expand-file-name "lsp-bridge/multi" my/dir-ext))
 
+  ;; vscode-*-language-server
+  ;; SEE https://github.com/Microsoft/vscode-eslint#settings-options
+  ;; SEE https://github.com/neoclide/coc-css
+  ;; SEE https://github.com/neoclide/coc-json, create schemstore package with this.
+
+  (appendq! lsp-bridge-single-lang-server-extension-list nil)
+
+  (appendq! lsp-bridge-single-lang-server-mode-list
+            '(((css-mode css-ts-mode) . "vscode-css-language-server")
+              ((js-json-mode json-mode json-ts-mode) . "vscode-json-language-server")))
+
   (appendq! lsp-bridge-multi-lang-server-extension-list
             '((("css" "less" "scss") . "css_emmet")
               (("html") . "html_emmet")))
 
-  ;; (appendq! lsp-bridge-multi-lang-server-mode-list
-  ;;           '(((css-mode less-css-mode scss-mode) . "css_emmet")
-  ;;             ((web-mode mhtml-mode html-mode) . "html_emmet")))
+  (appendq! lsp-bridge-multi-lang-server-mode-list
+            '(((css-mode less-css-mode scss-mode) . "css_emmet")
+              ((web-mode mhtml-mode html-mode) . "html_emmet")))
 
   ;; Setup language
   ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko ruff-lsp
