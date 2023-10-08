@@ -51,11 +51,18 @@
   (setq lsp-bridge-user-multiserver-dir
         (expand-file-name "lsp-bridge/multi" my/dir-ext))
 
-  ;; vscode-*-language-server
   ;; SEE https://github.com/Microsoft/vscode-eslint#settings-options
   ;; SEE https://github.com/neoclide/coc-css
-  ;; SEE https://github.com/neoclide/coc-json, create schemstore package with this.
+  ;; SEE https://github.com/neoclide/coc-json#configuration-options
+  ;; SEE https://github.com/redhat-developer/yaml-language-server#language-server-settings
+  ;; NOTE yaml-language-server, coc-json implements schemastore supports, however
+  ;; vscode-json-language-server not yet, which means need to add schemastore catalog
+  ;; to vscode-json-language-server.json manually.
 
+  ;; ISSUE https://github.com/redhat-developer/yaml-language-server/issues/807
+  ;; yaml server init error: "Cannot read properties of undefined (reading ’length’)"
+
+  ;; priority order
   (appendq! lsp-bridge-single-lang-server-extension-list nil)
 
   (appendq! lsp-bridge-single-lang-server-mode-list
