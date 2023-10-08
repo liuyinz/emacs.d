@@ -1,0 +1,36 @@
+{
+  "name": "yaml-language-server",
+  "languageId": "yaml",
+  "command": ["yaml-language-server", "--stdio"],
+  "settings": {
+    "yaml": {
+      "format": {
+        "enable": false,
+        // "singleQuote": false,
+        // "bracketSpacing": false,
+        // "proseWrap": "Always",
+        // "printWidth": 80
+      },
+      "validate": true,
+      "hover": true,
+      "completion": true,
+      "schemaStore": {
+        "enable": true,
+        "url": "https://www.schemastore.org/api/json/catalog.json"
+      },
+      "schemas": [],
+      // "disableDefaultProperties": null,
+      // "suggest.parentSkeletonSelectedFirst": false,
+      // "style": {
+      //   "flowMapping": "forbid",
+      //   "flowSequence": "forbid"
+      // },
+      // "keyOrdering": false,
+      // "customTags": []
+    },
+    "http": {
+      "proxy": "",
+      "proxyStrictSSL": false
+    }
+  }
+}
