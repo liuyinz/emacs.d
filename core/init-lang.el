@@ -75,7 +75,8 @@
 ;;   (defalias 'perl-mode 'cperl-mode)
 ;;   )
 
-(leaf yaml-ts-mode :mode "\\.\\(yaml\\(lint\\)?\\|yml\\)\\'")
+(leaf yaml-ts-mode
+  :mode "\\.\\(yaml\\(lint\\)?\\|yml\\|clang-format\\)\\'")
 
 (leaf rust-ts-mode :mode "\\.rs\\'")
 
