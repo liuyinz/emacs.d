@@ -34,17 +34,26 @@
                ;; third-party
                jq))
 
-  (defun treesit-auto-install-missing ()
-    "Install missing grammar in `treesit-auto-langs'."
-    (interactive)
-    (when-let* ((missing (cl-remove-if (lambda (lang) (treesit-ready-p lang t))
-                                       treesit-auto-langs))
-                (treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
-      (message "The following tree-sitter grammars are/were missing: %s"
-               (mapconcat 'symbol-name missing ", "))
-      (mapc (lambda (lang)
-              (treesit-install-language-grammar lang (car treesit-extra-load-path)))
-            missing)))
+  (defun treesit-auto-install-missing (&optional all)
+    "Install missing grammar in `treesit-auto-langs'.
+If optional arg ALL if non-nil, reinstall all grammars."
+    (interactive "P")
+    (if-let* ((to-install
+               (or (and all treesit-auto-langs)
+                   (cl-remove-if (lambda (lang) (treesit-ready-p lang t))
+                                 treesit-auto-langs)))
+              (treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
+        (progn
+          (if all
+              (message "Reinstall all tree-siiter grammars in treesit-auto-langs.")
+            (message "The following tree-sitter grammars are/were missing: %s"
+                     (mapconcat 'symbol-name missing ", ")))
+          (mapc (lambda (lang)
+                  (treesit--install-language-grammar-1
+                   (car treesit-extra-load-path) lang
+                   (car (alist-get lang treesit-language-source-alist))))
+                to-install))
+      (message "All grammars are installed already.")))
   :defer-config
   (prependq! treesit-auto-recipe-list
              `(,(make-treesit-auto-recipe
