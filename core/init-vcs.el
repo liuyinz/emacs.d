@@ -24,14 +24,14 @@
 
 (leaf gitignore-templates
   :init
-  (setq gitignore-templates-api 'github)
+  (setq gitignore-templates-api 'gitignore.io)
   ;; Integrate with `magit-gitignore'
   (with-eval-after-load 'magit-gitignore
     (require 'gitignore-templates nil t)
     (transient-append-suffix 'magit-gitignore '(0)
       ["Template"
        ("n" "new file" gitignore-templates-new-file)
-       ("i" "select pattern" gitignore-templates-insert)])))
+       ("i" "insert pattern" gitignore-templates-insert)])))
 
 (leaf git-link
   :init
