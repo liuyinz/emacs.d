@@ -64,12 +64,20 @@
 
 (leaf typescript-ts-mode
   :mode "\\.ts\\'"
-  :hook (typescript-ts-mode-hook . (lambda ()
-                                     ;; BUG rainbow-demiliters-mode couldn't
-                                     ;; identify single ?< if it's paired by
-                                     ;; elec-pair-extra
-                                     (when electric-pair-mode
-                                       (rainbow-delimiters-mode -1)))))
+  :hook (typescript-ts-mode-hook . typescript-ts-mode-setup)
+  :init
+  ;; NOTE support generics <> pair insertion, insert sinlge < use ,<
+  (defun ah/typescript-generics-angle-pair ()
+    (when (eql last-command-event ?<)
+      (if (looking-back ",<" 1)
+          (progn (backward-delete-char 2)
+                 (insert "<"))
+        (insert ">")
+        (backward-char))))
+  (defun typescript-ts-mode-setup ()
+    (add-hook 'post-self-insert-hook #'ah/typescript-generics-angle-pair))
+
+  )
 
 ;; --------------------------- Node -------------------------------
 

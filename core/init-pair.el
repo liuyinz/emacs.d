@@ -23,9 +23,9 @@
   (setq elec-pair-extra-rules
         '(;; enable <> auto pair for generics<T> in typescript, disable pair
           ;; when following a space
-          (typescript-ts-mode
-           :pair ((?\< . ?\>))
-           :inhibit ((?\< . " <")))
+          ;; (typescript-ts-mode
+          ;;  :pair ((?\< . ?\>))
+          ;;  :inhibit ((?\< . " <")))
           ;; disable pair <> in HTML+JS submode in mhtml-mode
           (mhtml-mode
            :pair nil
