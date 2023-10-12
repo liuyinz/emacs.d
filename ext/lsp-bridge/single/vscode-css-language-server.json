@@ -1,0 +1,52 @@
+{
+  "name": "vscode-css-language-server",
+  "languageId": "css",
+  "command": ["vscode-css-language-server", "--stdio"],
+  "settings": {
+    "css": {
+      "enable": true,
+      "completion": {
+        "triggerPropertyValueCompletion": true,
+        "completePropertyWithSemicolon": true
+      },
+      "validate": true,
+      "hover": {
+        "documentation": true,
+        "reference": true
+      },
+      "lint": {
+        "compatibleVendorPrefixes": "ignore",
+        "vendorPrefix": "warning",
+        "duplicateProperties": "warning",
+        "emptyRules": "warning",
+        "importStatement": "ignore",
+        "boxMode": "ignore",
+        "universalSelector": "ignore",
+        "zeroUnits": "ignore",
+        "fontFaceProperties": "warning",
+        "hexColorLength": "error",
+        "argumentsInColorFunction": "error",
+        "unknownProperties": "warning",
+        "validProperties": [],
+        "ieHack": "ignore",
+        "unknownVendorSpecificProperties": "ignore",
+        "propertyIgnoreDueToDisplay": "warning",
+        "important": "ignore",
+        "float": "ignore",
+        "idSelector": "ignore",
+        "unknownAtRules": "warning"
+      },
+      "format": {
+        "enable": true,
+        "newlineBetweenSelectors": true,
+        "newlineBetweenRules": true,
+        "spaceAroundSelectorSeparator": false,
+        "braceStyle": "collapse",
+        "preserveNewLines": true,
+        "maxPreserveNewLines": null
+      }
+    },
+    "scss": {},
+    "less": {}
+  }
+}

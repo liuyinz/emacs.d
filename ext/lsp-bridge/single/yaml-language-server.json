@@ -6,10 +6,10 @@
     "yaml": {
       "format": {
         "enable": false,
-        // "singleQuote": false,
-        // "bracketSpacing": false,
-        // "proseWrap": "Always",
-        // "printWidth": 80
+        "singleQuote": false,
+        "bracketSpacing": false,
+        "proseWrap": "Always",
+        "printWidth": 80
       },
       "validate": true,
       "hover": true,
@@ -19,14 +19,14 @@
         "url": "https://www.schemastore.org/api/json/catalog.json"
       },
       "schemas": [],
-      // "disableDefaultProperties": null,
-      // "suggest.parentSkeletonSelectedFirst": false,
-      // "style": {
-      //   "flowMapping": "forbid",
-      //   "flowSequence": "forbid"
-      // },
-      // "keyOrdering": false,
-      // "customTags": []
+      "disableDefaultProperties": null,
+      "suggest.parentSkeletonSelectedFirst": false,
+      "style": {
+        "flowMapping": "",
+        "flowSequence": ""
+      },
+      "keyOrdering": false,
+      "customTags": []
     },
     "http": {
       "proxy": "",

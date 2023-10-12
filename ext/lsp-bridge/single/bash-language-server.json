@@ -4,33 +4,14 @@
   "command": ["bash-language-server", "start"],
   "settings": {
     "bashIde": {
-      // Maximum number of files to analyze in the background. Set to 0 to disable background analysis.
-      // "backgroundAnalysisMaxFiles": 500,
-
-      // Enable diagnostics for source errors. Ignored if includeAllWorkspaceSymbols is true.
-      // "enableSourceErrorDiagnostics": false,
-
-      // Glob pattern for finding and parsing shell script files in the workspace. Used by the background analysis features across files.
-      // "globPattern": "**/*@(.sh|.inc|.bash|.command)",
-
-      // Configure explainshell server endpoint in order to get hover documentation on flags and options.
-      // And empty string will disable the feature.
-      // "explainshellEndpoint": "",
-
-      // Log level for the server. To set the right log level from the start please also use the environment variable 'BASH_IDE_LOG_LEVEL'.
-      // Can be "debug", "info", "warning", "error".
-      // "logLevel": "info",
-
-      // Controls how symbols (e.g. variables and functions) are included and used for completion and documentation.
-      // If false, then we only include symbols from sourced files (i.e. using non dynamic statements like 'source file.sh' or '. file.sh' or following ShellCheck directives).
-      // If true, then all symbols from the workspace are included.
-      // "includeAllWorkspaceSymbols": false,
-
-      // Controls the executable used for ShellCheck linting information. An empty string will disable linting.
+      "backgroundAnalysisMaxFiles": 500,
+      "enableSourceErrorDiagnostics": false,
+      "globPattern": "**/*@(.sh|.inc|.bash|.command)",
+      "explainshellEndpoint": "",
+      "logLevel": "info",
+      "includeAllWorkspaceSymbols": false,
       "shellcheckPath": "",
-
-      // Additional ShellCheck arguments. Note that we already add the following arguments: --shell, --format, --external-sources."
-      // "shellcheckArguments": []
+      "shellcheckArguments": []
     }
   }
 }
