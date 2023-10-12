@@ -13,8 +13,7 @@
    ("M-u" . nil))
   :init
   (defun vterm-setup ()
-    (meow-mode -1)
-    (hide-mode-line-mode -1)))
+    (meow-mode -1)))
 
 (leaf vterm-toggle)
 

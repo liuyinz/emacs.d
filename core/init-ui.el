@@ -4,6 +4,9 @@
 
 ;;; Code:
 
+(leaf mini-echo
+  :hook (after-init-hook . mini-echo-mode))
+
 (leaf redacted)
 
 (leaf topsy
@@ -28,32 +31,10 @@ No changes in mode--line."
   (setq insecure-lock-require-password t)
   (setq insecure-lock-mode-hook '(insecure-lock-redact-pure insecure-lock-posframe)))
 
-(leaf hide-mode-line)
-
 (leaf page-break-lines
   :hook (after-init-hook . global-page-break-lines-mode)
   :init
   (setq page-break-lines-max-width fill-column))
-
-(leaf doom-modeline
-  :hook (after-init-hook . doom-modeline-mode)
-  :init
-  (setq doom-modeline-icon nil
-        doom-modeline-support-imenu t
-        doom-modeline-bar-width 0
-        doom-modeline-height 15
-        doom-modeline-persp-name nil
-        doom-modeline-irc nil
-        doom-modeline-minor-modes nil
-        doom-modeline-enable-word-count nil
-        doom-modeline-buffer-encoding nil
-        doom-modeline-checker-simple-format nil
-        doom-modeline-indent-info nil
-        doom-modeline-env-load-string "..."
-        doom-modeline-vcs-max-length 20
-        doom-modeline-window-width-limit (+ fill-column 20)
-        doom-modeline-buffer-file-name-style 'truncate-with-project
-        doom-modeline-project-detection 'project))
 
 (leaf doom-themes
   :require t
@@ -66,6 +47,7 @@ No changes in mode--line."
      `(font-lock-comment-face ((t (:foreground
                                    ,(doom-lighten (doom-color 'comments) 0.15)))))
      `(font-lock-function-name-face ((t (:foreground ,(doom-color 'green)))))
+     `(hl-line ((t (:background ,(doom-darken (doom-color 'blue) 0.7)))))
      ;; '(match          ((t (:inherit font-lock-variable-name-face
      ;;                       :weight bold
      ;;                       :inverse-video t))))
@@ -172,6 +154,7 @@ No changes in mode--line."
 
      ;; perl-mode
      '(perl-non-scalar-variable ((t (:inherit font-lock-type-face))))
+     '(window-divider ((t (:inherit (unspecified font-lock-comment-face)))))
 
      )))
 
