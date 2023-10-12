@@ -18,8 +18,9 @@
                   (delete ":" lsp-bridge-completion-hide-characters)))
     ;; disable diagnostics feature in bash-language-server,
     ;; SEE https://github.com/bash-lsp/bash-language-server/issues/983
-    (when (member major-mode '(sh-mode bash-mode bash-ts-mode))
-      (setq-local lsp-bridge-enable-diagnostics nil)))
+    ;; (when (member major-mode '(sh-mode bash-mode bash-ts-mode))
+    ;;   (setq-local lsp-bridge-enable-diagnostics nil))
+    )
   (add-hook 'lsp-bridge-mode-hook #'lsp-bridge-mode-setup -100)
 
   :defer-config
@@ -63,11 +64,12 @@
   ;; yaml server init error: "Cannot read properties of undefined (reading ’length’)"
 
   ;; priority order
-  (appendq! lsp-bridge-single-lang-server-extension-list nil)
+  ;; (appendq! lsp-bridge-single-lang-server-extension-list nil)
 
   (appendq! lsp-bridge-single-lang-server-mode-list
             '(((css-mode css-ts-mode) . "vscode-css-language-server")
-              ((js-json-mode json-mode json-ts-mode) . "vscode-json-language-server")))
+              ((js-json-mode json-mode json-ts-mode) . "vscode-json-language-server")
+              ((toml-ts-mode conf-toml-mode) . "toml-language-server")))
 
   (appendq! lsp-bridge-multi-lang-server-extension-list
             '((("css" "less" "scss") . "css_emmet")
