@@ -154,8 +154,14 @@
 
   :defer-config
 
+  (setq meow-replace-state-name-list
+        '((normal . "<N>")
+          (motion . "<M>")
+          (keypad . "<K>")
+          (insert . "<I>")
+          (beacon . "<B>")))
+
   ;; customize thing
-  ;; TODO add <></> for web-mode
   (setq meow-display-thing-help t)
   (setq meow-char-thing-table
         '((?r . round)
