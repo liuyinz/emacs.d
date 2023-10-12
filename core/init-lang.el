@@ -76,6 +76,7 @@ If optional arg ALL if non-nil, reinstall all grammars."
 ;; ------------------------- Builtin ------------------------------
 
 (leaf sh-script
+  :mode ("\\.sh\\'" . bash-ts-mode)
   :init
   (setq sh-basic-offset 2
         sh-shell-file (executable-find "bash")))
@@ -97,7 +98,11 @@ If optional arg ALL if non-nil, reinstall all grammars."
 (leaf yaml-ts-mode
   :mode "\\.\\(yaml\\(lint\\)?\\|yml\\|clang-format\\)\\'")
 
+(leaf json-ts-mode :mode "\\.\\(eslintrc\\(\\.json\\)?\\)\\'")
+
 (leaf rust-ts-mode :mode "\\.rs\\'")
+
+(leaf toml-ts-mode :mode "\\.toml\\'")
 
 (leaf nxml-mode
   :hook (nxml-mode-hook . nxml-mode-setup)
