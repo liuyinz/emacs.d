@@ -14,8 +14,12 @@
         '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'")))
 
 (leaf vundo
+  :hook (vundo-mode-hook . vundo-mode-setup)
   :init
   (setq vundo-window-max-height 5)
+  (defun vundo-mode-setup ()
+    (and hl-line-mode (hl-line-mode 'toggle))
+    (binky-margin-local-mode -1))
   :bind
   ("C-c u" . vundo)
   (:vundo-mode-map

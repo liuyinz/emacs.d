@@ -81,10 +81,11 @@
 ;; ------------------------ Apperance -----------------------------
 
 (leaf hl-line
+  :hook
+  ((prog-mode-hook text-mode-hook) . hl-line-mode)
   :init
   (setq hl-line-sticky-flag nil)
-  (setq global-hl-line-sticky-flag nil)
-  :hook (after-init-hook . global-hl-line-mode))
+  (setq global-hl-line-sticky-flag nil))
 
 ;; TODO multiple desktop settings,see
 ;; https://www.emacswiki.org/emacs/DesktopMultipleSaveFiles

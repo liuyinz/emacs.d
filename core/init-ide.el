@@ -8,9 +8,9 @@
 (leaf vterm
   :hook (vterm-mode-hook . vterm-setup)
   :bind
-  ("M-u" . vterm-toggle)
   (:vterm-mode-map
-   ("M-u" . nil))
+   ("M-u" . nil)
+   ("M-i" . nil))
   :init
   (defun vterm-setup ()
     (meow-mode -1)))
@@ -70,12 +70,12 @@
 ;;     (python-mode (run-python))
 ;;     (t (message "no repl for selected mode"))))
 
-;; REQUIRE pip install notebook
-;; SEE https://github.com/jupyter/jupyter/wiki/Jupyter-kernels
-(leaf jupyter
-  :init
-  (setq jupyter-repl-prompt-margin-width 10
-        jupyter-eval-use-overlays t))
+;; ;; REQUIRE pip install notebook
+;; ;; SEE https://github.com/jupyter/jupyter/wiki/Jupyter-kernels
+;; (leaf jupyter
+;;   :init
+;;   (setq jupyter-repl-prompt-margin-width 10
+;;         jupyter-eval-use-overlays t))
 
 (provide 'init-ide)
 ;;; init-ide.el ends here

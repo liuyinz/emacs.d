@@ -439,7 +439,9 @@
 
  "M-l"   'my/transient-transform
  "C-j"   'scroll-other-window
- "C-k"   'scroll-other-window-down)
+ "C-k"   'scroll-other-window-down
+ "M-o"   'toggle-one-window
+ "M-u"   'vterm-toggle)
 
 (provide 'init-key)
 ;;; init-key.el ends here
