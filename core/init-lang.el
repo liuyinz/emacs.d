@@ -52,7 +52,8 @@ If optional arg ALL if non-nil, reinstall all grammars."
                   (treesit--install-language-grammar-1
                    (car treesit-extra-load-path) lang
                    (car (alist-get lang treesit-language-source-alist))))
-                to-install))
+                to-install)
+          (treesit-auto-add-to-auto-mode-alist))
       (message "All grammars are installed already.")))
   :defer-config
   (prependq! treesit-auto-recipe-list
@@ -60,23 +61,25 @@ If optional arg ALL if non-nil, reinstall all grammars."
                  :lang 'jq
                  :ts-mode 'jq-ts-mode
                  :remap 'jq-mode
-                 :url "https://github.com/nverno/tree-sitter-jq")
+                 :url "https://github.com/nverno/tree-sitter-jq"
+                 :ext "\\.jq\\'")
                ,(make-treesit-auto-recipe
                  :lang 'typst
                  :ts-mode 'typst-ts-mode
                  :remap 'typst-mode
-                 :url "https://github.com/uben0/tree-sitter-typst")
+                 :url "https://github.com/uben0/tree-sitter-typst"
+                 :ext "\\.typ\\'")
                ,(make-treesit-auto-recipe
                  :lang 'mermaid
                  :ts-mode 'mermaid-ts-mode
                  :remap 'mermaid-mode
-                 :url "https://github.com/monaqa/tree-sitter-mermaid")))
-  )
+                 :url "https://github.com/monaqa/tree-sitter-mermaid"
+                 :ext "\\.\\(mmd\\|mermaid\\)")))
+  (treesit-auto-add-to-auto-mode-alist))
 
 ;; ------------------------- Builtin ------------------------------
 
 (leaf sh-script
-  :mode ("\\.sh\\'" . bash-ts-mode)
   :init
   (setq sh-basic-offset 2
         sh-shell-file (executable-find "bash")))
@@ -96,13 +99,13 @@ If optional arg ALL if non-nil, reinstall all grammars."
 ;;   )
 
 (leaf yaml-ts-mode
-  :mode "\\.\\(yaml\\(lint\\)?\\|yml\\|clang-format\\)\\'")
+  :mode "\\.\\(yamllint\\|clang-format\\)\\'")
 
 (leaf json-ts-mode :mode "\\.\\(eslintrc\\(\\.json\\)?\\)\\'")
 
-(leaf rust-ts-mode :mode "\\.rs\\'")
+(leaf rust-ts-mode)
 
-(leaf toml-ts-mode :mode "\\.toml\\'")
+(leaf toml-ts-mode)
 
 (leaf nxml-mode
   :hook (nxml-mode-hook . nxml-mode-setup)
@@ -112,10 +115,9 @@ If optional arg ALL if non-nil, reinstall all grammars."
 
 ;; -------------------------- Plugin ------------------------------
 
-(leaf jq-ts-mode :mode "\\.jq\\'" )
+(leaf jq-ts-mode)
 
 (leaf lua-ts-mode
-  :mode "\\.lua\\'"
   :init
   (setq lua-ts-mode-indent-offset 2))
 
