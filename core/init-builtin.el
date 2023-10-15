@@ -299,8 +299,6 @@
 ;;               ispell-program-name "aspell"
 ;;               ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
 
-;; (leaf eldoc)
-
 ;; ;; A comprehensive visual interface to diff & patch
 ;; (leaf ediff
 ;;   :hook (;; show org ediffs unfolded
@@ -379,6 +377,10 @@
   (setq executable-prefix-env t))
 
 ;; --------------------------- Tool -------------------------------
+
+(leaf eldoc
+  :init
+  (setq eldoc-idle-delay 0.3))
 
 (leaf diff-mode
   :init
