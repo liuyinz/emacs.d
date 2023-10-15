@@ -5,10 +5,10 @@
 ;;; Code:
 
 (leaf mini-echo
+  :hook (after-init-hook . mini-echo-mode)
   :init
   (setq mini-echo-right-padding 2
-        mini-echo-update-interval 0.3)
-  :hook (after-init-hook . mini-echo-mode))
+        mini-echo-update-interval 0.3))
 
 (leaf redacted)
 
