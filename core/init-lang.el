@@ -32,7 +32,7 @@
                elixir go gomod html javascript java json julia kotlin
                heex python ruby rust toml tsx typescript yaml lua
                ;; third-party
-               jq typst mermaid))
+               jq typst mermaid vimscript))
 
   (defun treesit-auto-install-missing (&optional all)
     "Install missing grammar in `treesit-auto-langs'.
@@ -74,7 +74,14 @@ If optional arg ALL if non-nil, reinstall all grammars."
                  :ts-mode 'mermaid-ts-mode
                  :remap 'mermaid-mode
                  :url "https://github.com/monaqa/tree-sitter-mermaid"
-                 :ext "\\.\\(mmd\\|mermaid\\)")))
+                 :ext "\\.\\(mmd\\|mermaid\\)")
+               ,(make-treesit-auto-recipe
+                 :lang 'vimscript
+                 :ts-mode 'vimscript-ts-mode
+                 :remap 'vimrc-mode
+                 :url "https://github.com/neovim/tree-sitter-vim"
+                 :ext "\\.vim\\(rc\\)?\\'")))
+
   (treesit-auto-add-to-auto-mode-alist))
 
 ;; ------------------------- Builtin ------------------------------
@@ -120,9 +127,6 @@ If optional arg ALL if non-nil, reinstall all grammars."
 (leaf lua-ts-mode
   :init
   (setq lua-ts-mode-indent-offset 2))
-
-(leaf vimrc-mode
-  :mode "\\.vim\\(rc\\)?\\'")
 
 (leaf mermaid-ts-mode)
 
