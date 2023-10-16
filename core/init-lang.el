@@ -47,7 +47,7 @@ If optional arg ALL if non-nil, reinstall all grammars."
           (if all
               (message "Reinstall all tree-siiter grammars in treesit-auto-langs.")
             (message "The following tree-sitter grammars are/were missing: %s"
-                     (mapconcat 'symbol-name missing ", ")))
+                     (mapconcat 'symbol-name to-install ", ")))
           (mapc (lambda (lang)
                   (treesit--install-language-grammar-1
                    (car treesit-extra-load-path) lang
