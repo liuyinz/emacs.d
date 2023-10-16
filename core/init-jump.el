@@ -19,7 +19,8 @@
         binky-preview-in-groups t
         ;; binky-preview-delay 0.3
         binky-margin-string "\x2630"
-        binky-indicator-side 'right)
+        binky-indicator-side 'right
+        binky-cache-file (expand-file-name "var/binky-manual.eld" my/dir-cache))
   (setq binky-preview-column
         '((mark    0.03  4)
           (name    0.14  15)
