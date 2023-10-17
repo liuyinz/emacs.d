@@ -7,8 +7,7 @@
 (leaf mini-echo
   :hook (after-init-hook . mini-echo-mode)
   :init
-  (setq mini-echo-right-padding 2
-        mini-echo-update-interval 0.3))
+  (setq mini-echo-right-padding 2))
 
 (leaf redacted)
 
@@ -157,8 +156,6 @@ No changes in mode--line."
 
      ;; perl-mode
      '(perl-non-scalar-variable ((t (:inherit font-lock-type-face))))
-     '(window-divider ((t (:inherit (unspecified font-lock-comment-face)))))
-
      )))
 
 (provide 'init-ui)
