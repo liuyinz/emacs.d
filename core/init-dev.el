@@ -59,7 +59,6 @@
 (leaf profiler
   :init
   (setq profiler-report-leaf-mark  ">")
-
   (defun ad/profiler-bytes-h (str)
     "reformat with human-readeable size"
     (let ((s (cl-count ?, str)))
