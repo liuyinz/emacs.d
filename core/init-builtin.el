@@ -139,14 +139,11 @@
   (setq next-error-highlight t
         next-error-highlight-no-select t
         next-error-message-highlight t
+        kill-whole-line t
         read-extended-command-predicate #'command-completion-default-include-p)
   (setq-default indent-tabs-mode nil)
-  ;; SEE https://emacs-china.org/t/emacs29-blinking-cursor/23683?u=cheunghsu
-  (setq copy-region-blink-delay 0)
-  :defer-config
-  (line-number-mode)
-  (column-number-mode)
-  (size-indication-mode))
+  ;; SEE https://emacs-china.org/t/emacs29-blinking-cursor/23683
+  (setq copy-region-blink-delay 0))
 
 (leaf uniquify
   :init
