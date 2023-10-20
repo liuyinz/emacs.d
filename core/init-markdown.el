@@ -10,6 +10,7 @@
   :mode
   ("\\.md\\'" . markdown-mode)
   ("README\\.md\\'" . gfm-mode)
+  ("CHANGELOG\\.md\\'" . markdown-view-mode)
   :init
   ;; `multimarkdown' is necessary for `highlight.js' and `mermaid.js'
   (when (executable-find "multimarkdown")
@@ -28,7 +29,7 @@
         '("◎" "●" "◇" "○" "◆" "►" "•"))
 
   :defer-config
-  (prependq! markdown-code-lang-modes '(("mermaid" . mermaid-mode)
+  (prependq! markdown-code-lang-modes '(("mermaid" . mermaid-ts-mode)
                                         ("zsh" . sh-mode))))
 
 (leaf markdown-toc
