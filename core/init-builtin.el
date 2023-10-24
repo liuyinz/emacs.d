@@ -434,6 +434,14 @@
               right-margin-width 1
               default-directory "~")
 
+;; improve performance of long line
+;; SEE https://emacs-china.org/t/topic/25811/7
+(setq-default bidi-display-reordering nil)
+(setq bidi-inhibit-bpa t
+      long-line-threshold 1000
+      large-hscroll-threshold 1000
+      syntax-wholeline-max 1000)
+
 ;; SEE https://emacs.stackexchange.com/a/2555/35676;9u
 (setq-default major-mode
               (lambda () (if buffer-file-name
