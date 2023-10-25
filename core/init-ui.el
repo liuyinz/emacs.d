@@ -7,7 +7,13 @@
 (leaf mini-echo
   :hook (after-init-hook . mini-echo-mode)
   :init
-  (setq mini-echo-right-padding 2))
+  (setq mini-echo-right-padding 2)
+  (setq mini-echo-default-segments
+        '("profiler" "macro" "narrow" "selection-info" "process" "flymake"
+          "buffer-size" "buffer-position" "vcs" "buffer-name" "meow"))
+  (setq mini-echo-short-segments
+        '("profiler" "macro" "narrow" "selection-info" "process" "flymake"
+          "buffer-position" "buffer-name-short" "meow")))
 
 (leaf redacted)
 
