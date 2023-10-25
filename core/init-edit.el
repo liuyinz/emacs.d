@@ -144,6 +144,5 @@
   :hook (after-init-hook . simpleclip-mode))
 
 ;; --------------------------- Jump -------------------------------
-
 (provide 'init-edit)
 ;;; init-edit.el ends here

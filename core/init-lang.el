@@ -136,5 +136,7 @@ If optional arg ALL if non-nil, reinstall all grammars."
 
 (leaf tera-mode :mode "\\.tera\\'")
 
+;; (leaf cargo-mode)
+
 (provide 'init-lang)
 ;;; init-lang.el ends here

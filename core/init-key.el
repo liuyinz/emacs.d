@@ -111,7 +111,6 @@
       ("p" "Profiler" toggle-profiler)
       ("e" "Debug-on-error" toggle-debug-on-error)
       ("t" "Debug-on-quit" toggle-debug-on-quit)
-      ("k" "Ilog" toggle-ilog)
       ("s" "Proxy" proxy-mode)
       ("o" "Olivetti" olivetti-mode)
       ("f" "Focus" focus-mode)
