@@ -9,11 +9,12 @@
   :init
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
-        '("profiler" "macro" "narrow" "selection-info" "process" "flymake"
-          "buffer-size" "buffer-position" "vcs" "buffer-name" "meow"))
-  (setq mini-echo-short-segments
-        '("profiler" "macro" "narrow" "selection-info" "process" "flymake"
-          "buffer-position" "buffer-name-short" "meow")))
+        '(:long ("meow" "buffer-name" "vcs" "buffer-position"
+                 "buffer-size" "flymake" "process" "selection-info"
+                 "narrow" "macro" "profiler")
+          :short ("meow" "buffer-name-short" "buffer-position"
+                  "flymake" "process" "selection-info" "narrow"
+                  "macro" "profiler"))))
 
 (leaf redacted)
 
