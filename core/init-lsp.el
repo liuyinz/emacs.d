@@ -9,8 +9,9 @@
   :hook ((bash-ts-mode-hook
           html-mode-hook
           web-mode-hook
-          css-mode-hook
-          js-mode-hook
+          css-ts-mode-hook
+          js-ts-mode-hook
+          typescript-ts-mode-hook
           yaml-ts-mode-hook) . lsp-deferred)
   :init
 
@@ -37,22 +38,19 @@
 
   ;; SEE https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
   (setq lsp-enable-symbol-highlighting nil)
-  (setq lsp-ui-doc-enable nil)
-  (setq lsp-ui-doc-show-with-cursor nil)
-  (setq lsp-ui-doc-show-with-mouse nil)
-  (setq lsp-ui-sideline-enable nil)
-  (setq lsp-ui-sideline-show-code-actions nil)
-  (setq lsp-ui-sideline-show-hover nil)
   (setq lsp-modeline-code-actions-enable nil)
   (setq lsp-eldoc-enable-hover nil)
   (setq lsp-eldoc-render-all nil)
   (setq lsp-modeline-diagnostics-enable nil)
   (setq lsp-signature-auto-activate nil)
   (setq lsp-signature-render-documentation nil)
-  ;; (setq lsp-completion-show-detail nil)
-  (setq lsp-completion-show-kind nil)
-  ;; (setq lsp-headerline-breadcrumb-enable nil)
-  (setq lsp-headerline-breadcrumb-enable-diagnostics nil)
+  (setq lsp-headerline-breadcrumb-enable t)
+  ;; (setq lsp-ui-doc-enable nil)
+  ;; (setq lsp-ui-doc-show-with-cursor nil)
+  ;; (setq lsp-ui-doc-show-with-mouse nil)
+  ;; (setq lsp-ui-sideline-enable nil)
+  ;; (setq lsp-ui-sideline-show-code-actions nil)
+  ;; (setq lsp-ui-sideline-show-hover nil)
 
   ;; -------------------------- feature ------------------------------
 
@@ -63,7 +61,9 @@
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-enable-text-document-color nil)
   (setq lsp-enable-dap-auto-configure nil)
-
+  (setq lsp-before-save-edits nil)
+  (setq lsp-lens-enable nil)
+  
   (setq lsp-enable-imenu t
         lsp-imenu-show-container-name nil
         lsp-imenu-detailed-outline nil
@@ -71,18 +71,14 @@
 
   ;; -------------------------- server ------------------------------
 
-  (defun my/emmet-ls-setup ()
-    "Setup for emmet-ls"
-    (setq-local corfu-auto-delay 0.8
-                corfu-preselect-first t
-                corfu-doc-delay 0.1)
-    (setq-local lsp-completion-show-detail nil))
-  (add-hook 'lsp-emmet-ls-after-open-hook #'my/emmet-ls-setup)
+  ;; (defun my/emmet-ls-setup ()
+  ;;   "Setup for emmet-ls"
+  ;;   (setq-local corfu-auto-delay 0.8
+  ;;               corfu-preselect-first t
+  ;;               corfu-doc-delay 0.1)
+  ;;   (setq-local lsp-completion-show-detail nil))
+  ;; (add-hook 'lsp-emmet-ls-after-open-hook #'my/emmet-ls-setup)
 
-  (leaf lsp-pyright
-    :hook (python-mode-hook . (lambda ()
-                                (require 'lsp-pyright)
-                                (lsp-deferred))))
 
   ;; ;; REQUIRE deps : ccls
   ;; (leaf ccls
@@ -92,7 +88,7 @@
 
   :defer-config
 
-  (leaf lsp-modeline :require t)
+  ;; (leaf lsp-modeline :require t)
   ;; (leaf consult-lsp :require t)
 
   )

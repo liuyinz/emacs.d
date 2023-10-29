@@ -29,11 +29,11 @@
    ("j" . vundo-next)
    ("k" . vundo-previous)))
 
-(leaf undo-hl
-  :hook ((text-mode-hook prog-mode-hook) . undo-hl-mode)
-  :defer-config
-  (appendq! undo-hl-undo-commands '(meow-undo meow-redo))
-  (setq undo-hl-flash-duration 0.15))
+;; (leaf undo-hl
+;;   :hook ((text-mode-hook prog-mode-hook) . undo-hl-mode)
+;;   :defer-config
+;;   (appendq! undo-hl-undo-commands '(meow-undo meow-redo))
+;;   (setq undo-hl-flash-duration 0.15))
 
 (leaf simple
   :init

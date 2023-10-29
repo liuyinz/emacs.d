@@ -29,8 +29,9 @@
   (setq treesit-auto-install nil)
   (setq treesit-auto-langs
         '(bash c c-sharp clojure cmake commonlisp cpp css dockerfile
-               elixir go gomod html javascript java json julia kotlin
+               elixir go gomod javascript java json julia kotlin
                heex python ruby rust toml tsx typescript yaml lua
+               ;; html
                ;; third-party
                jq typst mermaid vimscript))
 
