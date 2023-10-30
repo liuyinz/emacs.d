@@ -71,9 +71,10 @@
               ((js-json-mode json-mode json-ts-mode) . "vscode-json-language-server")
               ((toml-ts-mode conf-toml-mode) . "toml-language-server")))
 
-  (appendq! lsp-bridge-multi-lang-server-extension-list
-            '((("css" "less" "scss") . "css_emmet")
-              (("html") . "html_emmet")))
+  (setq lsp-bridge-multi-lang-server-extension-list
+        '((("css" "less" "scss") . "css_emmet")
+          (("html") . "html_emmet")
+          (("vue") . "volar_emmet")))
 
   (appendq! lsp-bridge-multi-lang-server-mode-list
             '(((css-mode less-css-mode scss-mode) . "css_emmet")
