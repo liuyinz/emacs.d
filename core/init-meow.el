@@ -195,12 +195,12 @@
     (unless meow-insert-mode
       (sis-set-english)))
 
-  ;; Reset when switch to non-insert meow-state
-  (add-hook 'meow-switch-state-hook #'my/meow-reset-sis)
+  ;; Reset when switchshi to non-insert meow-state
+  (add-hook 'meow-insert-exit-hook #'sis-set-english)
   ;; Reset when refocus in frame
   (add-function :after after-focus-change-function #'my/meow-reset-sis)
-
-  )
+  ;; Reset when change window
+  (add-hook 'window-selection-change-functions #'my/meow-reset-sis))
 
 (provide 'init-meow)
 ;;; init-meow.el ends here
