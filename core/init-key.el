@@ -440,7 +440,10 @@
  "C-j"   'scroll-other-window
  "C-k"   'scroll-other-window-down
  "M-o"   'toggle-one-window
- "M-u"   'vterm-toggle)
+ ;; vscode style
+ "s-u"   'vterm-toggle
+ "s-/"   'newcomment-toggle
+ "s-p"   'project-find-file)
 
 (provide 'init-key)
 ;;; init-key.el ends here
