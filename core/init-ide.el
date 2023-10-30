@@ -14,7 +14,20 @@
   :init
   (defun vterm-setup ()
     (meow-mode -1)
-    (and hl-line-mode (hl-line-mode 'toggle))))
+    (and hl-line-mode (hl-line-mode 'toggle)))
+
+  ;; TODO rewrite a vterm toggle command to cd parent dir automatically
+  (defun my/vterm-toggle (&optional cd)
+    "Toggle vterm window,if C-u"
+    (interactive "P")
+    (vterm-toggle)
+    (when (and cd
+               (eq major-mode 'vterm-mode)
+               vterm-toggle--cd-cmd)
+      (vterm-send-string vterm-toggle--cd-cmd t)
+      (vterm-send-return)))
+
+  )
 
 (leaf vterm-toggle)
 
