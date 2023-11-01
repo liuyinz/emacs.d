@@ -65,40 +65,16 @@
           ))
 
   (setq keyfreq-excluded-commands
-        '(undefined
-          ignore
-          mwheel-scroll
-          hippie-expand
-          newline
-          newline-and-indent
-          yank
-          indent-for-tab-command
-          push-button
-          choose-completion
-          comint-previous-input
-          comint-send-input
-          compile-goto-error
-          embark-act
-          dired ;; nothing to optimize in dired
-          dired-do-async-shell-command
-          goto-line
-          ispell-minor-check
-          js-mode
-          magit-mode-bury-buffer
-          markdown-outdent-or-delete
-          org-beginning-of-line
-          org-ctrl-c-ctrl-c
-          org-cycle
-          org-delete-backward-char
-          org-end-of-line
-          org-force-self-insert
-          org-return
-          org-self-insert-command
-          org-todo
-          orgtbl-self-insert-command
-          handle-switch-frame
-          pixel-scroll-precision
-          ))
+        '(
+          undefined ignore mwheel-scroll hippie-expand newline newline-and-indent
+          yank indent-for-tab-command push-button choose-completion
+          comint-previous-input comint-send-input compile-goto-error embark-act dired
+          dired-do-async-shell-command goto-line ispell-minor-check js-mode
+          magit-mode-bury-buffer markdown-outdent-or-delete org-beginning-of-line
+          org-ctrl-c-ctrl-c org-cycle org-delete-backward-char
+          org-end-of-line org-force-self-insert org-return org-self-insert-command
+          org-todo orgtbl-self-insert-command handle-switch-frame
+          pixel-scroll-precision))
   :config
 
   ;; TODO support transient keybindings https://github.com/magit/transient/issues/113
