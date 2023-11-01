@@ -113,5 +113,31 @@
   (advice-add 'keyfreq-where-is :override #'ad/keyfreq-where-is)
   )
 
+
+
+;; --------------------------- shell -------------------------------
+
+;; TODO rewrite a shell-enhanced plugin
+(leaf dwim-shell-command
+  :commands dwim-shell-command-on-marked-files
+  :init
+  (defun my/open-with=vscode ()
+    (interactive)
+    (dwim-shell-command-on-marked-files
+     "Open current file in vscode."
+     (if (eq system-type 'darwin)
+         (if (derived-mode-p 'prog-mode)
+             (format "code --goto '<<f>>':%d:%d"
+                     (current-line)
+                     (current-column))
+           "open '<<f>>'")
+       "setsid -w xdg-open '<<f>>'")
+     :shell-args '("-x" "-c")
+     :silent-success t
+     :utils (if (eq system-type 'darwin)
+                "open"
+              "xdg-open")))
+  )
+
 (provide 'init-tool)
 ;;; init-tool.el ends here
