@@ -27,8 +27,8 @@
 ;; `:defer-config' in `leaf' == `:config' in `use-package'
 ;; `:config' needed to use with `:require'
 
-(require 'leaf)
 (setq leaf-enable-imenu-support nil)
+(require 'leaf)
 
 ;; -------------------------- compile ------------------------------
 
