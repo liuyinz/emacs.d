@@ -92,6 +92,20 @@
           js-ts-mode-hook
           typescript-ts-mode-hook) . add-node-modules-path))
 
+(leaf nodejs-repl
+  :bind
+  (:js-ts-mode-map
+   ("C-x C-e" . nodejs-repl-send-last-expression)
+   ("C-c C-e" . nodejs-repl-send-region-or-buffer))
+  :init
+  (defun nodejs-repl-send-region-or-buffer ()
+    "docstring"
+    (interactive)
+    (nodejs-repl)
+    (if (use-region-p)
+        (nodejs-repl-send-region (region-beginning) (region-end))
+      (nodejs-repl-send-region (point-min)(point-max)))))
+
 (leaf eslint-init)
 
 (provide 'init-web)
