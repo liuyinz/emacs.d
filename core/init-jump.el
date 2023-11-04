@@ -19,12 +19,11 @@
         binky-preview-in-groups t
         ;; binky-preview-delay 0.3
         binky-margin-string "\x2630"
-        binky-indicator-side 'right
-        binky-cache-directory (expand-file-name "var/binky-save/" my/dir-cache))
+        binky-indicator-side 'right)
   (setq binky-preview-column
         '((mark    0.03  4)
-          (name    0.14  15)
-          (line    0.04  6)
+          (name    0.20  15)
+          (line    nil   nil)
           (project 0.14  nil)
           (context 0     nil)))
   :defer-config

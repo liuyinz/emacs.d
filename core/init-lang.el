@@ -30,10 +30,10 @@
   (setq treesit-auto-langs
         '(bash c c-sharp clojure cmake commonlisp cpp css dockerfile
                elixir go gomod javascript java json julia kotlin
-               heex python ruby rust toml tsx typescript yaml lua
+               heex python ruby rust toml tsx typescript typst yaml lua
                ;; html
                ;; third-party
-               jq typst mermaid vimscript))
+               jq mermaid vimscript))
 
   (defun treesit-auto-install-missing (&optional all)
     "Install missing grammar in `treesit-auto-langs'.
@@ -64,12 +64,6 @@ If optional arg ALL if non-nil, reinstall all grammars."
                  :remap 'jq-mode
                  :url "https://github.com/nverno/tree-sitter-jq"
                  :ext "\\.jq\\'")
-               ,(make-treesit-auto-recipe
-                 :lang 'typst
-                 :ts-mode 'typst-ts-mode
-                 :remap 'typst-mode
-                 :url "https://github.com/uben0/tree-sitter-typst"
-                 :ext "\\.typ\\'")
                ,(make-treesit-auto-recipe
                  :lang 'mermaid
                  :ts-mode 'mermaid-ts-mode
