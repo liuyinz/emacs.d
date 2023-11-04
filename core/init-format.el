@@ -29,8 +29,8 @@
   (alist-set! apheleia-formatters
               '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))))
   (alist-set! apheleia-mode-alist
-              '((python-mode . (black isort))
-                (python-ts-mode . (black isort))
+              '((python-mode . (ruff isort))
+                (python-ts-mode . (ruff isort))
                 ((sh-mode bash-ts-mode) . shfmt)
                 (markdown-mode . prettier-markdown)
                 (gfm-mode . prettier-markdown)
