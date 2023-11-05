@@ -13,7 +13,6 @@
 ;;   :hook (after-init-hook . editorconfig-mode))
 
 (leaf apheleia
-  :require t
   :init
   (setq apheleia-hide-log-buffers t)
   (defun my/format ()
@@ -25,7 +24,7 @@
         ((gitconfig-mode emacs-lisp-mode lisp-interaction-mode)
          (run-general! indent-region indent-whole-buffer))
         (t (call-interactively #'apheleia-format-buffer)))))
-  :config
+  :defer-config
   (alist-set! apheleia-formatters
               '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))))
   (alist-set! apheleia-mode-alist
@@ -35,8 +34,7 @@
                 (markdown-mode . prettier-markdown)
                 (gfm-mode . prettier-markdown)
                 (ruby-ts-mode . rubocop)
-                (nxml-mode . prettier-html)
-                )))
+                (nxml-mode . prettier-html))))
 
 (provide 'init-format)
 ;;; init-format.el ends here

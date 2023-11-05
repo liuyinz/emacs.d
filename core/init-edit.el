@@ -17,7 +17,7 @@
 
 (leaf coercion :require t)
 
-(leaf powerthesaurus :require t)
+(leaf powerthesaurus)
 
 ;; SEE https://www.python.org/dev/peps/pep-0350/#mnemonics
 (leaf hl-todo
