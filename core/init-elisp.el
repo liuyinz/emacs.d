@@ -3,20 +3,48 @@
 ;;; Code:
 
 (leaf elisp-mode
-  :hook (emacs-lisp-mode-hook . elisp-setup)
+  :hook (emacs-lisp-mode-hook . elisp-mode-setup)
   :init
-  (defun elisp-setup ()
-    (setq-local imenu-generic-expression
-                (append imenu-generic-expression
-                        `(("Customs" ,(concat "^\\s-*(defcustom\\s-+\\("
-                                              lisp-mode-symbol-regexp "\\)") 1)
-                          ("Faces" ,(concat "^\\s-*(defface\\s-+\\("
-                                            lisp-mode-symbol-regexp "\\)") 1)
-                          ("Commands" ,(concat "^\\s-*(defun\\s-+\\("
-                                               lisp-mode-symbol-regexp
-                                               "\\)\\(.*\n\\)+?\\s-*(interactive[) ].*$") 1)
-                          ("Leafs" ,(concat "^\\s-*(leaf\\s-+\\("
-                                            lisp-mode-symbol-regexp "\\)") 1))))))
+  ;; define imenu regexp for elisp-mode
+  (defun elisp-imenu-regexp-generate (item)
+    "docstring"
+    (list (nth 0 item)
+          (concat "^\\s-*(" (regexp-opt (nth 1 item) t)
+                  "\\s-+\\(" (rx lisp-mode-symbol)
+                  (or (nth 2 item) "\\)")
+                  ) 2))
+
+  (setq my/elisp-iemnu-generic-expression
+        (mapcar #'elisp-imenu-regexp-generate
+                '(("Leafs" ("leaf"))
+                  ("Customs" ("defcustom"))
+                  ("Faces" ("defface"))
+                  ("Commands" ("defun" "cl-defun" "transient-define-suffix")
+                   "\\)\\(.*\n\\)+?\\s-*(interactive[) ].*$")
+                  ("Keys" ("define-key" "define-keymap" "global-set-key"
+                           "global-unset-key" "keymap-set" "keymap-unset"
+                           "keymap-global-set" "keymap-global-unset"))
+                  ("Macros" ("defmacro" "cl-defmacro" "cl-define-compiler-macro"))
+                  ("Transients" ("transient-define-prefix" "transient-define-suffix"
+                                 "transient-define-infix" "transient-define-argument"))
+                  ("Functions"
+                   ("defun" "cl-defun" "defun*" "defsubst" "cl-defsubst"
+                    "define-inline" "define-advice" "defadvice" "define-skeleton"
+                    "define-compilation-mode" "define-minor-mode"
+                    "define-global-minor-mode" "define-globalized-minor-mode"
+                    "define-derived-mode" "define-generic-mode" "defsetf"
+                    "define-setf-expander" "define-method-combination"
+                    "defgeneric" "cl-defgeneric" "defmethod" "cl-defmethod"
+                    "ert-deftest"))
+                  ("Variables" ("defvar" "defconst" "defconstant"
+                                "defvar-local" "defvaralias"
+                                "defparameter" "define-symbol-macro"))
+                  ("Types" ("defgroup" "deftheme" "define-widget" "define-error"
+                            "deftype" "cl-deftype" "cl-defstruct" "defstruct"
+                            "defclass" "define-condition" "defpackage")))))
+
+  (defun elisp-mode-setup ()
+    (setq-local imenu-generic-expression my/elisp-iemnu-generic-expression)))
 
 (leaf simple
   :init
