@@ -45,7 +45,13 @@
 
 (leaf benchmark-init
   :require t
-  :hook (after-init-hook . benchmark-init/deactivate))
+  :hook (after-init-hook . benchmark-init/deactivate)
+  :init
+  (with-eval-after-load 'benchmark-init-modes
+    (keymap-set benchmark-init/tree-mode-map
+                "t" #'benchmark-init/show-durations-tabulated)
+    (keymap-set benchmark-init/tabulated-mode-map
+                "t" #'benchmark-init/show-durations-tree)))
 
 (leaf gcmh
   :require t
