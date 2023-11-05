@@ -204,8 +204,8 @@
       ("r"  "Right"  split-window-right)
       ("d"  "Delete" delete-window)
       ("x"  "Only"   delete-other-windows)
-      ("u"  "Undo"   winner-undo :transient t)
-      ("U"  "Redo"   winner-redo :transient t)
+      ;; ("u"  "Undo"   winner-undo :transient t)
+      ;; ("U"  "Redo"   winner-redo :transient t)
       ("\"" "Toggle" toggle-one-window)
       ]
      ["Size"
@@ -225,7 +225,7 @@
      ["Zoom"
       ("=" "In" text-scale-increase :transient t)
       ("-" "Out" text-scale-decrease :transient t)
-      ("0" "reset" (lambda () (interactive) (text-scale-increase 0)) :transient t)]
+      ("0" "reset" my/text-scale-reset :transient t)]
      ])
 
   (transient-define-prefix my/transient-smerge ()
@@ -237,10 +237,7 @@
       ("p" "Prev conflict" smerge-prev)
       ("f" "First conflict" smerge-first)
       ("l" "Last conflict" smerge-last)
-      ("x" "Next file" (lambda () (interactive)
-                         (vc-find-conflicted-file)
-                         (smerge-first)
-                         (smerge-refine 2)))
+      ("x" "Next file" smerge-next-file)
       ]
      ["Choose"
       ("a" "Keep all" smerge-keep-all)

@@ -90,7 +90,15 @@
                 (scroll-up)
               (error
                (goto-char (point-min)))))
-        (display-buffer buf nil)))))
+        (display-buffer buf nil))))
+
+  (defun smerge-next-file ()
+    "Jump to next conflicted file."
+    (interactive)
+    (vc-find-conflicted-file)
+    (smerge-first)
+    (smerge-refine 2))
+  )
 
 (leaf magit
   :bind

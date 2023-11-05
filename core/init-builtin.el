@@ -285,6 +285,13 @@
   (setq jit-lock-defer-time 0
         jit-lock-stealth-time 16))
 
+(leaf face-remap
+  :init
+  (defun my/text-scale-reset ()
+    "Reset the font size of default face to origin value."
+    (interactive)
+    (text-scale-increase 0)))
+
 ;; ;; On-the-fly spell checker
 ;; (leaf flyspell
 ;;   :if (executable-find "aspell")
