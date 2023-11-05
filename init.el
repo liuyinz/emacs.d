@@ -80,7 +80,7 @@
     ;; (require 'init-projectile)
     ;; langs
     (require 'init-web)
-    (require 'init-vue)
+    ;; (require 'init-vue)
     (require 'init-lang)
     (require 'init-elisp)
     ;; (require 'init-go)
