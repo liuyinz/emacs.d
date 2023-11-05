@@ -36,18 +36,20 @@
 ;;   (setq undo-hl-flash-duration 0.15))
 
 (leaf simple
+  :hook (after-init-hook . undo-setup)
   :init
   (setq undo-no-redo t)
-
-  ;; BUG https://lists.gnu.org/archive/html/bug-gnu-emacs/2022-12/msg01661.html
-  ;; jump after inserted text after undo-redo
-  (psearch-patch primitive-undo
-    (psearch-forward '`(goto-char . ,rest)
-                     t (lambda (_ bounds)
-                         (when (= psearch-count-current 5)
-                           (delete-region (car bounds) (cdr bounds)))
-                         t)
-                     5))
+  (defun undo-setup ()
+    "docstring"
+    ;; BUG https://lists.gnu.org/archive/html/bug-gnu-emacs/2022-12/msg01661.html
+    ;; jump after inserted text after undo-redo
+    (psearch-patch primitive-undo
+      (psearch-forward '`(goto-char . ,rest)
+                       t (lambda (_ bounds)
+                           (when (= psearch-count-current 5)
+                             (delete-region (car bounds) (cdr bounds)))
+                           t)
+                       5)))
 
   )
 
