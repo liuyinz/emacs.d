@@ -51,7 +51,8 @@
     (keymap-set benchmark-init/tree-mode-map
                 "t" #'benchmark-init/show-durations-tabulated)
     (keymap-set benchmark-init/tabulated-mode-map
-                "t" #'benchmark-init/show-durations-tree)))
+                "t" #'benchmark-init/show-durations-tree))
+  (add-hook 'benchmark-init/tabulated-mode-hook #'hl-line-mode))
 
 (leaf gcmh
   :require t

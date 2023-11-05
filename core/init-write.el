@@ -9,17 +9,6 @@
 
 (leaf focus)
 
-;; (leaf writeroom-mode
-;;   :hook (writeroom-mode-hook . writeroom-mode-setup)
-;;   :init
-;;   (setq writeroom-width 120
-;;         writeroom-fullscreen-effect 'maximized
-;;         writeroom-restore-window-config t)
-;;   (defun writeroom-mode-setup ()
-;;     (if (bound-and-true-p writeroom-mode)
-;;         (cjk-font-setting "Source Han Serif" 1.4)
-;;       (cjk-font-setting "Sarasa Mono SC" 1))))
-
 (leaf olivetti
   :init
   (setq olivetti-body-width nil
