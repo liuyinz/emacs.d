@@ -9,7 +9,7 @@
   :init
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
-        '(:long ("meow" "buffer-name" "vcs" "envrc" "buffer-position"
+        '(:long ("meow" "buffer-name" "vcs" "buffer-position" "envrc"
                  "buffer-size" "flymake" "process" "selection-info"
                  "narrow" "macro" "profiler")
           :short ("meow" "buffer-name-short" "buffer-position"
