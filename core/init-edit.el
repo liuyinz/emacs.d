@@ -146,6 +146,31 @@
         simpleclip-unmark-on-copy t)
   :hook (after-init-hook . simpleclip-mode))
 
-;; --------------------------- Jump -------------------------------
+(leaf copy-as-format
+  :require t
+  :bind
+  ("s-C" . simpleclip-copy-as-format)
+  :init
+  (defun simpleclip-copy-as-format ()
+    "Copy the current line or active region and add it to the system clipboard as
+GitHub/Slack/JIRA/HipChat/... formatted code.  Format defaults to
+`copy-as-format-default'.  The buffer will not be modified.
+With a prefix argument prompt for the format."
+    (interactive)
+    (let* ((text (copy-as-format--extract-text))
+           (format (if current-prefix-arg
+                       (completing-read "Format: "
+                                        (mapcar 'car copy-as-format-format-alist)
+                                        nil t "" nil copy-as-format-default)
+                     copy-as-format-default))
+           (func (cadr (assoc format copy-as-format-format-alist))))
+      (when (eq (length text) 0)
+        (error "No text selected"))
+      (when (not (fboundp func))
+        (error "Missing or invalid format function for `%s'" format))
+      (simpleclip-set-contents (funcall func text (use-region-p)))
+      (setq deactivate-mark t)))
+  )
+
 (provide 'init-edit)
 ;;; init-edit.el ends here
