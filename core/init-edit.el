@@ -9,7 +9,10 @@
   (setq atomic-chrome-buffer-open-style 'split)
   (setq atomic-chrome-url-major-mode-alist
         '(("github\\.com" . gfm-mode)
-          ("reddit\\.com" . markdown-mode))))
+          ("reddit\\.com" . gfm-mode)
+          ("emacs-china\\.org" . gfm-mode)
+          ("stackexchange\\.com" . gfm-mode)
+          ("stackoverflow\\.com" . gfm-mode))))
 
 (leaf hungry-delete
   :hook (after-init-hook . global-hungry-delete-mode)
