@@ -89,5 +89,6 @@
     ;; (require 'init-org)
     (require 'init-gui)
     (require 'init-key)
+    (require 'init-env)
     ))
 ;;; init.el ends here
