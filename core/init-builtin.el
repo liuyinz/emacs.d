@@ -79,6 +79,9 @@
   :hook (after-init-hook . pixel-scroll-precision-mode))
 
 ;; ------------------------ Apperance -----------------------------
+(leaf paragraphs
+  :init
+  (setq sentence-end-double-space nil))
 
 (leaf hl-line
   :hook

@@ -67,6 +67,12 @@
   (setq macrostep-expand-in-separate-buffer t
         macrostep-expand-compiler-macros nil))
 
+;; (leaf electric
+;;   :hook (after-init-hook . electric-indent-mode))
+
+(leaf aggressive-indent
+  :hook (emacs-lisp-mode-hook . aggressive-indent-mode))
+
 ;; SEE https://emacs-china.org/t/2-3-4/11875/5?u=cheunghsu
 (leaf lisp-keyword-indent
   :hook (after-init-hook . lisp-keyword-indent-mode)

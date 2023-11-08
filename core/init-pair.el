@@ -12,6 +12,7 @@
   :hook (after-init-hook . (lambda () (show-paren-mode -1)))
   :init
   (setq show-paren-style 'parenthesis
+        show-paren-delay 0
         show-paren-context-when-offscreen 'overlay))
 
 (leaf elec-pair
