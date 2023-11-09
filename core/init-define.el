@@ -129,11 +129,11 @@ FN-R : region function, FN: default function"
      (interactive)
      (let* ((sym-here (thing-at-point ',thing-type t))
             (default-val
-              (if sym-here
-                  (format
-                   (propertize "(default %s)" 'face 'font-lock-doc-face)
-                   (propertize sym-here 'face 'font-lock-variable-name-face))
-                ""))
+             (if sym-here
+                 (format
+                  (propertize "(default %s)" 'face 'font-lock-doc-face)
+                  (propertize sym-here 'face 'font-lock-variable-name-face))
+               ""))
             (query (if (use-region-p)
                        (buffer-substring-no-properties
                         (region-beginning)
@@ -151,6 +151,7 @@ FN-R : region function, FN: default function"
   (and emacs-preload-features
        (memq feature emacs-preload-features)))
 
+;; TODO write buffer-info-dispatch to show, copy and change buffer status
 ;; Dos2Unix/Unix2Dos
 (defun dos2unix ()
   "Convert the current buffer to UNIX file format."
