@@ -147,7 +147,8 @@ Otherwise, behave like `magit-display-buffer-traditional'."
 
   ;; -------------------------- commit ------------------------------
 
-  (setq magit-commit-reword-override-date nil)
+  (setq magit-commit-reword-override-date nil
+        magit-commit-show-diff nil)
 
   ;; Set to meow-insert-mode automatically
   (add-hook 'git-commit-setup-hook #'meow-insert-mode)
