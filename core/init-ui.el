@@ -18,9 +18,6 @@
 
 (leaf redacted)
 
-(leaf topsy
-  :hook (emacs-lisp-mode-hook . topsy-mode))
-
 ;; (leaf breadcrumb
 ;;   :hook (after-init-hook . breadcrumb-mode))
 
@@ -151,6 +148,10 @@ No changes in mode--line."
                                       :bold t)))
      '(binky-preview-column-mark-auto ((t :inherit font-lock-string-face)))
      '(binky-preview-column-mark-manual ((t :inherit font-lock-constant-face)))
+     ;; ;; mini-echo
+     '(window-divider ((t :foreground "#5d6a76")))
+     ;; '(mini-echo-minibuffer-window ((((background dark)) :background "#181f25")
+     ;;                                (((background light)) :background "white")))
 
      ;; web-mode
      '(web-mode-current-element-highlight-face ((t (:weight bold :inverse-video t))))
