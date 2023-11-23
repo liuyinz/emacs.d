@@ -65,7 +65,7 @@
     (require 'init-spell)
     (require 'init-tool)
     (require 'init-secure)
-    (require 'init-dev)
+    (require 'init-package)
     (require 'init-benchmark)
     (require 'init-color)
     ;; engineering

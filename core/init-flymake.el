@@ -39,16 +39,6 @@
           (nxml-mode flymake-collection-xmllint)
           (less-mode flymake-collection-less))))
 
-(leaf package-lint-flymake
-  :hook (emacs-lisp-mode-hook . elisp-package-setup)
-  :init
-  (defun elisp-package-setup ()
-    "docstring"
-    (when-let* ((filepath (buffer-file-name))
-                ((string-prefix-p my/dir-lib filepath))
-                ((package-lint-looks-like-a-package-p)))
-      (package-lint-flymake-setup))))
-
 (leaf flymake-relint
   :hook ((emacs-lisp-mode-hook lisp-interaction-mode-hook) . flymake-relint-setup))
 
