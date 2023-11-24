@@ -53,13 +53,11 @@
 (leaf grip-mode
   :commands grip-start-preview
   :defer-config
-  (setq grip-preview-use-webkit nil)
+  ;; BUG lose md code block background
+  (setq grip-preview-use-webkit t))
 
-  (let ((info (auth-source-user-and-password "api.github.com" "liuyinz^preview")))
-    (setq grip-github-user     "liuyinz"
-          grip-github-password (cadr info)))
-
-  )
+(leaf xwidget
+  :commands xwidget-webkit-current-session)
 
 (provide 'init-markdown)
 
