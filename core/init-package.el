@@ -62,5 +62,13 @@
       (setq-local fill-column 80)
       (add-hook 'flymake-diagnostic-functions #'elisp-flymake-fill-column nil t))))
 
+;; ;; TODO imitate markdown-toc to write a function to convert and update
+;; ;; commnetary section to README.md
+;; (leaf el2readme
+
+;; )
+
+(leaf license-templates)
+
 (provide 'init-package)
 ;;; init-package.el ends here
