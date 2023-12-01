@@ -18,6 +18,13 @@
   :hook (after-init-hook . global-hungry-delete-mode)
   :defer-config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
+(leaf pangu-spacing
+  :hook (after-init-hook . global-pangu-spacing-mode)
+  :init
+  (setq pangu-spacing-real-insert-separtor t)
+  :defer-config
+  (push 'dired-mode pangu-spacing-inhibit-mode-alist))
+
 (leaf coercion :require t)
 
 (leaf powerthesaurus)
