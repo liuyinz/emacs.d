@@ -81,6 +81,30 @@
 
   )
 
+(leaf jtsx
+  :init
+  (setq js-indent-level 2)
+  (setq typescript-ts-mode-indent-offset 2)
+  (setq jtsx-switch-indent-offset 0)
+  (setq jtsx-indent-statement-block-regarding-standalone-parent nil)
+  (setq jtsx-jsx-element-move-allow-step-out t)
+  (setq jtsx-enable-jsx-electric-closing-element t)
+  (setq jtsx-enable-all-syntax-highlighting-features t)
+
+  ;; HACK adding jtsx after treesit-auto to make sure it worked
+  (defun jtsx-add-to-auto-mode-alist ()
+    "Add file extension for jtsx-tsx/jsx-mode"
+    (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jtsx-jsx-mode))
+    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . jtsx-tsx-mode)))
+  (advice-add 'treesit-auto-add-to-auto-mode-alist
+              :after #'jtsx-add-to-auto-mode-alist)
+  ;; lsp-bridge setup
+  (with-eval-after-load 'lsp-bridge
+    (prependq! lsp-bridge-single-lang-server-mode-list
+               '(((jtsx-tsx-mode) . "typescriptreact")
+                 ((jtsx-jsx-mode) . "javascript"))))
+  )
+
 ;; --------------------------- Node -------------------------------
 
 ;; Adds node_modules/.bin directory to `exec_path'
