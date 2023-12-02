@@ -2,7 +2,7 @@ TODO:
 
 - [ ] gh with transient
 - [ ] isolate optimization: t for <></>, transient
-
+- [ ] hugo.el, devkit.el, denote-hugo.el
 - [ ] dynamic filter with jq,yq,tomlq
   - support current buffer, file or shell pipe as source
   - automatically identified by major-mode, file extension or manually selected tool
