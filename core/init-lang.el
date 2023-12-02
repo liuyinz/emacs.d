@@ -87,7 +87,7 @@ If optional arg ALL if non-nil, reinstall all grammars."
         sh-shell-file (executable-find "bash")))
 
 (leaf conf-mode
-  :mode "\\.\\(ini\\|conf\\|.*rc\\)\\'" "enchant.ordering")
+  :mode "\\.\\(ini\\|conf\\)\\'" "enchant.ordering")
 
 (leaf python
   :mode "\\.pythonrc\\'")

@@ -10,7 +10,15 @@
 ;; SEE https://github.com/purcell/envrc#usage
 ;; add hook as late as possible to call it first.
 (leaf envrc
-  :hook (after-init-hook . envrc-global-mode))
+  :mode ("\\.envrc\\'" . envrc-file-mode)
+  :hook (after-init-hook . envrc-global-mode)
+  :init
+  ;; write command to add envrc for node
+  ;; for npm/pnpm project
+  ;; create or add path
+  ;; allow envrc
+
+  )
 
 (provide 'init-env)
 ;;; init-env.el ends here
