@@ -107,15 +107,6 @@
 
 ;; --------------------------- Node -------------------------------
 
-;; Adds node_modules/.bin directory to `exec_path'
-(leaf add-node-modules-path
-  :init
-  ;; HACK https://github.com/codesuki/add-node-modules-path/issues/23#issuecomment-1594638810
-  (setq add-node-modules-path-command '("echo \"$(npm root)/.bin\""))
-  :hook ((web-mode-hook
-          js-ts-mode-hook
-          typescript-ts-mode-hook) . add-node-modules-path))
-
 (leaf nodejs-repl
   :bind
   (:js-ts-mode-map
