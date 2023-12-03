@@ -26,9 +26,48 @@
           ("http://xahlee.info/emacs/emacs/blog.xml" emacs xah)
           ("https://pinecast.com/feed/emacscast" emacs)
           ("https://emacstil.com/feed.xml" emacs)
-          ("https://www.reddit.com/r/emacs.rss" reddit emacs)
           ("https://emacstalk.codeberg.page/podcast/index.xml" emacs)
           ("https://manateelazycat.github.io/feed.xml" lazycat emacs)))
+
+  ;; SEE https://emacs-china.org/t/elfeed-nerd-icons/26125
+  (setq  elfeed-search-print-entry-function #'elfeed-search-print-entry--my)
+  (defun elfeed-search-print-entry--my (entry)
+    "Print ENTRY to the buffer."
+    (let* ((date (elfeed-search-format-date (elfeed-entry-date entry)))
+           (date-width (car (cdr elfeed-search-date-format)))
+           (title (concat (or (elfeed-meta entry :title)
+                              (elfeed-entry-title entry) "")
+                          ;; NOTE: insert " " for overlay to swallow
+                          " "))
+           (title-faces (elfeed-search--faces (elfeed-entry-tags entry)))
+           (feed (elfeed-entry-feed entry))
+           (feed-title (when feed (or (elfeed-meta feed :title)
+                                      (elfeed-feed-title feed))))
+           (tags (mapcar #'symbol-name (elfeed-entry-tags entry)))
+           (tags-str (mapconcat (lambda (s)
+                                  (propertize s 'face 'elfeed-search-tag-face))
+                                tags ","))
+           (title-width (- (frame-width)
+                           ;; (window-width (get-buffer-window (elfeed-search-buffer) t))
+                           date-width elfeed-search-trailing-width))
+           (title-column (elfeed-format-column
+                          title (elfeed-clamp
+                                 elfeed-search-title-min-width
+                                 title-width
+                                 elfeed-search-title-max-width) :left))
+           ;; Title/Feed ALIGNMENT
+           (align-to-feed-pixel (+ date-width
+                                   (max elfeed-search-title-min-width
+                                        (min title-width
+                                             elfeed-search-title-max-width)))))
+      (insert (propertize date 'face 'elfeed-search-date-face) " ")
+      (insert (propertize title-column 'face title-faces 'kbd-help title))
+      (put-text-property (1- (point)) (point) 'display
+                         `(space :align-to ,align-to-feed-pixel))
+      (when feed-title
+        (insert " " (propertize feed-title 'face 'elfeed-search-feed-face) " "))
+      (when tags (insert "(" tags-str ")"))))
+
   :defer-config
 
   (leaf elfeed-webkit
