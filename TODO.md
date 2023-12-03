@@ -9,3 +9,5 @@ TODO:
   - result showd in temp buffer, combined with arguments, source and commands to copy,and paste resultes
   - resue shell pipe commands by history of current session and saved arguments
   - async commands needed
+
+- [ ] write treesit and major-mode for rescript
