@@ -20,10 +20,7 @@
                   ("Customs" ("defcustom"))
                   ("Faces" ("defface"))
                   ("Commands" ("defun" "cl-defun" "transient-define-suffix")
-                   "\\)\\(.*\n\\)+?\\s-*(interactive[) ].*$")
-                  ("Keys" ("define-key" "define-keymap" "global-set-key"
-                           "global-unset-key" "keymap-set" "keymap-unset"
-                           "keymap-global-set" "keymap-global-unset"))
+                   "\\)\\(.*\n\\)+?\\s-*(interactive.*")
                   ("Macros" ("defmacro" "cl-defmacro" "cl-define-compiler-macro"))
                   ("Transients" ("transient-define-prefix" "transient-define-suffix"
                                  "transient-define-infix" "transient-define-argument"))
