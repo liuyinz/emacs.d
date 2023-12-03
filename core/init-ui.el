@@ -141,27 +141,24 @@ No changes in mode--line."
                               :foreground unspecified
                               :background unspecified
                               :box nil))))
+     `(elfeed-search-tag-face ((t (:foreground ,(doom-color 'green)))))
+     `(elfeed-search-title-face ((t (:foreground ,(doom-color 'fg-alt)))))
      ;; jupyter
-     '(jupyter-repl-input-prompt  ((t :inherit font-lock-property-face)))
-     '(jupyter-repl-output-prompt ((t :inherit font-lock-function-name-face)))
-     '(jupyter-repl-traceback     ((t :inherit font-lock-warning-face
-                                      :bold t)))
-     '(binky-preview-column-mark-auto ((t :inherit font-lock-string-face)))
-     '(binky-preview-column-mark-manual ((t :inherit font-lock-constant-face)))
+     '(jupyter-repl-input-prompt  ((t (:inherit font-lock-property-face))))
+     '(jupyter-repl-output-prompt ((t (:inherit font-lock-function-name-face))))
+     '(jupyter-repl-traceback     ((t (:inherit font-lock-warning-face
+                                       :bold t))))
+     '(binky-preview-column-mark-auto ((t (:inherit font-lock-string-face))))
+     '(binky-preview-column-mark-manual ((t (:inherit font-lock-constant-face))))
      ;; ;; mini-echo
-     '(window-divider ((t :foreground "#5d6a76")))
-     ;; '(mini-echo-minibuffer-window ((((background dark)) :background "#181f25")
-     ;;                                (((background light)) :background "white")))
-
+     '(window-divider ((t (:foreground "#5d6a76"))))
      ;; web-mode
      '(web-mode-current-element-highlight-face ((t (:weight bold :inverse-video t))))
      `(web-mode-current-column-highlight-face  ((t (:background ,(doom-color 'base4)
                                                     :foreground unspecified))))
-
      ;; cperl-mode
      '(cperl-array-face ((t (:inherit font-lock-variable-name-face))))
      '(cperl-hash-face  ((t (:inherit font-lock-type-face))))
-
      ;; perl-mode
      '(perl-non-scalar-variable ((t (:inherit font-lock-type-face))))
      )))
