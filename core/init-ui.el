@@ -4,6 +4,16 @@
 
 ;;; Code:
 
+(leaf which-key
+  :hook (after-init-hook . which-key-mode)
+  :init
+  (setq which-key-show-prefix 'echo
+        which-key-popup-type 'side-window
+        which-key-preserve-window-configuration t
+        which-key-dont-use-unicode t
+        which-key-idle-delay 0.6
+        which-key-idle-secondary-delay 0.2))
+
 (leaf mini-echo
   :hook (after-init-hook . mini-echo-mode)
   :init

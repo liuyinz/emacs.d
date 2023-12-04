@@ -385,6 +385,11 @@
 
 ;; --------------------------- Tool -------------------------------
 
+(leaf repeat
+  :hook (after-init-hook . repeat-mode)
+  :init
+  (setq repeat-exit-key (kbd "ESC")))
+
 (leaf eldoc
   :init
   (setq eldoc-idle-delay 0.3))
