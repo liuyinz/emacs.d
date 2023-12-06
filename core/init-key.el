@@ -13,13 +13,13 @@
 
 ;;; Code:
 
-(dolist (pair '(("C-j"    . scroll-other-window)
-                ("C-k"    . scroll-other-window-down)
-                ("M-o"    . toggle-one-window)
-                ;; vscode.style
-                ("s-u"    . vterm-toggle)
-                ("s-/"    . newcomment-toggle)
-                ("s-p"    . project-find-file))
+(dolist (pair '(("C-j" . scroll-other-window)
+                ("C-k" . scroll-other-window-down)
+                ("M-o" . toggle-one-window)
+                ;; vscode style
+                ("s-u" . vterm-toggle)
+                ("s-/" . newcomment-toggle)
+                ("s-p" . project-find-file)))
   (keymap-global-set (car pair) (cdr pair)))
 
 (defvar-keymap my/toggle-map
@@ -85,9 +85,12 @@
   "B" #'binky-previous-in-buffer
   "d" #'diff-hl-next-hunk
   "D" #'diff-hl-previous-hunk)
-(map-keymap (lambda (_key cmd) (put cmd 'repeat-map 'my/jump-map))
-            my/jump-map)
 (define-key mode-specific-map "j" my/jump-map)
+
+;; HACK resolve conflicts with diff-hl-command-help
+(with-eval-after-load 'diff-hl
+  (map-keymap (lambda (_key cmd) (put cmd 'repeat-map 'my/jump-map))
+              my/jump-map))
 
 ;; (with-eval-after-load 'transient
 

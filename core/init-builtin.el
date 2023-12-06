@@ -388,7 +388,8 @@
 (leaf repeat
   :hook (after-init-hook . repeat-mode)
   :init
-  (setq repeat-exit-key (kbd "ESC")))
+  (setq repeat-exit-key (kbd "C-g"))
+  (setq repeat-echo-function #'ignore))
 
 (leaf eldoc
   :init

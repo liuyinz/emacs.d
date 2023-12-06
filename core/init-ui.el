@@ -21,10 +21,10 @@
   (setq mini-echo-default-segments
         '(:long ("meow" "buffer-name" "vcs" "buffer-position" "envrc"
                  "buffer-size" "flymake" "process" "selection-info"
-                 "narrow" "macro" "profiler")
+                 "narrow" "macro" "profiler" "repeat")
           :short ("meow" "buffer-name-short" "buffer-position"
                   "flymake" "process" "selection-info" "narrow"
-                  "macro" "profiler"))))
+                  "macro" "profiler" "repeat"))))
 
 (leaf redacted)
 
