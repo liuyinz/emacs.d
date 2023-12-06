@@ -45,15 +45,44 @@
   ;; Integrate with `magit-tool'
   )
 
+(leaf browse-at-remote)
+
 (leaf smerge-mode
   :hook (smerge-mode-hook . my/smerge-setup)
+  :bind
+  (:smerge-basic-map
+   ;; move
+   ("n" . smerge-vc-next-conflict)
+   ("f" . smerge-first)
+   ("l" . smerge-last)
+   ("x" . smerge-next-file)
+   ;; choose
+   ("a" . smerge-keep-all)
+   ("m" . smerge-keep-upper)
+   ("b" . smerge-keep-base)
+   ("o" . smerge-keep-lower)
+   ("c" . smerge-keep-current)
+   ;; diff
+   ("SPC" . smerge-conflict-preview-or-scroll)
+   ("<"   . smerge-diff-base-upper)
+   (">"   . smerge-diff-base-lower)
+   ("="   . smerge-diff-upper-lower)
+   ("e"   . smerge-ediff)
+   ("R"   . smerge-refine)
+   ;; edit
+   ("s"   . smerge-swap)
+   ("C"   . smerge-combine-with-next)
+   ("r"   . smerge-resolve)
+   ("C-r" . smerge-resolve-all)
+   ("u"   . undo)
+   ("U"   . undo-redo))
   :init
-  (setq smerge-command-prefix "\e"
-        smerge-change-buffer-confirm nil
+  (setq smerge-change-buffer-confirm nil
+        ;; smerge-command-prefix ""
         smerge-refine-ignore-whitespace nil)
 
   (defun my/smerge-setup ()
-    (my/transient-smerge)
+    ;; (my/transient-smerge)
     ;; make sure call `smerge-first' after disable `save-place-local-mode'
     ;; see `add-hook' doc about order
     (smerge-first))
@@ -98,13 +127,12 @@
     (vc-find-conflicted-file)
     (smerge-first)
     (smerge-refine 2))
+
+  :defer-config
+
   )
 
 (leaf magit
-  :bind
-  ("C-c d" . magit-dispatch)
-  ("C-c f" . magit-file-dispatch)
-
   :defer-config
   (setq magit-slow-confirm nil)
   (setq magit-auto-revert-immediately t)

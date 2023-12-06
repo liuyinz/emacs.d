@@ -50,8 +50,7 @@
   (setq diff-hl-draw-borders nil
         diff-hl-ask-before-revert-hunk nil
         diff-hl-show-staged-changes nil
-        diff-hl-side 'left
-        diff-hl-command-prefix nil)
+        diff-hl-side 'left)
 
   :defer-config
 

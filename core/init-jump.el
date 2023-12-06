@@ -19,7 +19,8 @@
         binky-preview-in-groups t
         ;; binky-preview-delay 0.3
         binky-margin-string "\x2630"
-        binky-indicator-side 'right)
+        binky-indicator-side 'right
+        binky-command-prefix nil)
   (setq binky-preview-column
         '((mark    0.03  4)
           (name    0.20  15)

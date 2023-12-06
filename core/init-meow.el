@@ -106,16 +106,13 @@
      ;; self-defined
      '("Q" . insecure-lock-enter)
      '("/" . isearch-forward-regexp)
-     '("z" . my/transient-point)
      '("<escape>" . ignore)
-     '("'" . binky-binky)
-     '("\"" . my/transient-window))
+     '("'" . binky-binky))
 
     (meow-motion-overwrite-define-key
      '("C-o" . meow-temp-normal)
      '("<escape>" . ignore)
-     '("'" . binky-binky)
-     '("\"" . my/transient-window))
+     '("'" . binky-binky))
 
     (meow-leader-define-key
      ;; SPC j/k will run the original command in MOTION state.
