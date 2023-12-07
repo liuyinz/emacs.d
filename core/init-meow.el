@@ -28,6 +28,7 @@
      '("E" . meow-next-symbol)
      '("f" . meow-find)
      '("t" . meow-till)
+     '("z" . meow-goto-line)
 
      ;; edit
      '("a" . meow-append)

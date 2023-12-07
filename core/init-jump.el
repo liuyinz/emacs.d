@@ -77,37 +77,5 @@
       (if (webjump-null-or-blank-string-p input) nil input)))
   (advice-add 'webjump-read-string :override #'ad/webjump-read-string-enable-visual))
 
-(leaf avy
-  :hook (after-init-hook . avy-setup-default)
-  :defer-config
-  (setq avy-all-windows t
-        avy-all-windows-alt t
-        avy-background t
-        avy-style 'at-full
-        avy-keys '(?a ?s ?d ?f ?h ?j ?k ?l ?q ?u ?w ?i ?e ?o))
-  (setq avy-orders-alist
-        '((avy-goto-char . avy-order-closest)
-          (avy-goto-word-0 . avy-order-closest)
-          (avy-goto-paren . avy-order-closest)))
-
-  ;; SEE https://github.com/abo-abo/avy/wiki/custom-commands#jumping-to-an-open-paren
-  ;; https://stackoverflow.com/a/50063226/13194984
-  (defun avy-goto-paren ()
-    "Jump to a paren start or end."
-    (interactive)
-    (let ((avy-command this-command))
-      (avy-jump "[][(){}]")))
-
-  ;; Pinyin support
-  (leaf ace-pinyin
-    :init (setq ace-pinyin-simplified-chinese-only-p nil)
-    :defer-config (ace-pinyin-global-mode +1))
-
-  (leaf ace-link
-    :require t
-    :config
-    (ace-link-setup-default)
-    (keymap-global-set "M-o" 'ace-link-addr)))
-
 (provide 'init-jump)
 ;;; init-jump.el ends here

@@ -131,11 +131,6 @@ No changes in mode--line."
      ;; markdown-mode
      `(markdown-code-face        ((t (:background ,(doom-darken (doom-color 'base3) 0.15)))))
      `(markdown-inline-code-face ((t (:background ,(doom-color 'base3)))))
-     ;; ;; avy
-     ;; '(avy-lead-face   ((t (:foreground "#539afc" :background unspecified))))
-     ;; '(avy-lead-face-0 ((t (:foreground "#99d0f6" :background unspecified))))
-     ;; '(avy-lead-face-1 ((t (:foreground "#cfe9fb" :background unspecified))))
-     ;; '(avy-lead-face-2 ((t (:foreground "#f3f9fe" :background unspecified))))
      ;; highlight-defined
      '(highlight-defined-function-name-face ((t (:inherit unspecified))))
      '(highlight-defined-variable-name-face ((t (:inherit unspecified))))

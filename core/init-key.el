@@ -114,16 +114,6 @@
 ;;     ("U" "Unix2dos" unix2dos)]
 ;;    ])
 
-;; (transient-define-prefix my/transient-point ()
-;;   "Invoke commands at point"
-;;   :transient-non-suffix 'transient--do-warn
-;;   [["Avy"
-;;     ("l" "line"  avy-goto-line)
-;;     ("p" "paren" avy-goto-paren)
-;;     ("z" "char"  avy-goto-char)]
-;;    ]
-;;   )
-
 ;; )
 
 (provide 'init-key)
