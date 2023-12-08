@@ -10,54 +10,37 @@
 (leaf consult
   :after vertico
   :bind
-  ("M-y" . consult-yank-pop)
-  ;;mode-specific-map
-  ("C-c M-x" . consult-mode-command)
-  ("C-c h" . consult-history)
-  ("C-c k" . consult-kmacro)
-  ("C-c m" . consult-man)
-  ("C-c i" . consult-info)
-  ("C-c y" . consult-yasnippet)
-  ("C-c C-d" . consult-dir)
-  ("C-c C-p" . consult-project-extra-find)
   ;;ctl-x-map
-  ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
-  ("C-x b"   . consult-buffer)                ;; orig. switch-to-buffer
-  ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
-  ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
-  ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
-  ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
-  ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+  ("C-x b"   . consult-buffer)
+  ("C-x 4 b" . consult-buffer-other-window)
+  ("C-x C-b"   . consult-dir)
+  ("C-x 4 C-b" . consult-dir-other-window)
+  ("C-x M-:" . consult-complex-command)
+  ("C-x r b" . consult-bookmark)
   ;;goto-map
-  ("M-g e" . consult-compile-error)
   ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
-  ("M-g g" . consult-goto-line)             ;; orig. goto-line
-  ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
-  ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
-  ("M-g m" . consult-mark)
-  ("M-g k" . consult-global-mark)
+  ("M-g M-g" . consult-goto-line)
   ("M-g i" . consult-imenu)
   ("M-g I" . consult-imenu-multi)
   ("M-g t" . consult-todo)
+  ("M-g e" . consult-compile-error)
   ;;search-map
-  ("M-s d" . consult-find)                  ;; Alternative: consult-fd
-  ("M-s c" . consult-locate)
-  ("M-s g" . consult-grep)
-  ("M-s G" . consult-git-grep)
+  ("M-s d" . consult-find)   ;; Alternative: consult-fd
   ("M-s r" . consult-ripgrep)
   ("M-s l" . consult-line)
   ("M-s L" . consult-line-multi)
   ("M-s k" . consult-keep-lines)
   ("M-s e" . consult-isearch-history)
   ("M-s u" . consult-focus-lines)
-  ;;isearch-mode-map
-  ("M-e"   . consult-isearch-history)         ;; orig. isearch-edit-string
-  ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
-  ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
-  ("M-s L" . consult-line-multi)           ;; needed by consult-line to detect isearch
-  ;;minibuffer-local-map
-  ("M-s" . consult-history)                 ;; orig. next-matching-history-element
-  ("M-r" . consult-history)
+  (:isearch-mode-map
+   ("M-e"   . consult-isearch-history)
+   ("M-s e" . consult-isearch-history) ;; orig. isearch-edit-string
+   ("M-s l" . consult-line) ;; needed by consult-line to detect isearch
+   ("M-s L" . consult-line-multi) ;; needed by consult-line to detect isearch
+   )
+  ("M-y" . consult-yank-pop)
+  ;;mode-specific-map
+  ("C-c M-x" . consult-mode-command)
 
   :init
   (setq consult-async-min-input 1)
@@ -96,16 +79,17 @@
   (consult-customize consult--source-hidden-buffer :state #'consult--buffer-state)
 
   ;; filter `consult--source-buffer'
-  (consult-customize consult--source-buffer
-                     :items
-                     (lambda ()
-                       (consult--buffer-query
-                        :sort 'visibility
-                        :as #'buffer-name
-                        :predicate
-                        (lambda (buffer)
-                          (let ((mode (buffer-local-value 'major-mode buffer)))
-                            (not (eq mode 'dired-mode)))))))
+  (consult-customize
+   consult--source-buffer
+   :items
+   (lambda ()
+     (consult--buffer-query
+      :sort 'visibility
+      :as #'buffer-name
+      :predicate
+      (lambda (buffer)
+        (let ((mode (buffer-local-value 'major-mode buffer)))
+          (not (eq mode 'dired-mode)))))))
 
   ;; Dired-source
   (defvar consult--source-dired
@@ -229,31 +213,28 @@
                    (?v "Variables"  font-lock-variable-name-face)))))
 
   (leaf consult-dir
+    :init
+    (defun consult-dir-other-window ()
+      "Variant of `consult-dir', swithcing to a buffer in another window."
+      (interactive)
+      (let ((consult-dir-default-command #'find-file-other-window))
+        (consult-dir)))
     :defer-config
-    (setq consult-dir-default-command
-          (if (or (fboundp #'consult-project-extra-find)
-                  (require 'consult-project-extra nil t))
-              #'consult-project-extra-find
-            #'project-find-file))
-
-    ;; zlua directory jump
-    (defun consult-dir--zlua-dirs ()
-      "Return list of zlua dirs."
-      (nreverse (mapcar
-                 (lambda (p) (abbreviate-file-name (file-name-as-directory p)))
-                 ;; REQUIRE export `ZLUA_SCRIPT' in parent-shell
-                 (split-string (shell-command-to-string
-                                "lua $ZLUA_SCRIPT -l | perl -lane 'print $F[1]'")
-                               "\n" t))))
-
     (defvar consult-dir--source-zlua
-      `(:name     "Zlua"
+      `(:name     "Zlua Dir"
         :narrow   ?z
         :category file
         :face     consult-file
         :history  file-name-history
         :enabled  ,(lambda () (getenv "ZLUA_SCRIPT"))
-        :items    ,#'consult-dir--zlua-dirs)
+        :items
+        ,(lambda ()
+           (nreverse (mapcar
+                      (lambda (p) (abbreviate-file-name (file-name-as-directory p)))
+                      ;; REQUIRE export `ZLUA_SCRIPT' in parent-shell
+                      (split-string (shell-command-to-string
+                                     "lua $ZLUA_SCRIPT -l | perl -lane 'print $F[1]'")
+                                    "\n" t)))))
       "Zlua directory source for `consult-dir'.")
     (add-to-list 'consult-dir-sources 'consult-dir--source-zlua t))
 
