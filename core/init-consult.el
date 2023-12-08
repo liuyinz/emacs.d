@@ -50,15 +50,6 @@
   :defer-config
   (setq-default completion-in-region-function #'consult-completion-in-region)
 
-  ;; SEE https://github.com/minad/consult/wiki#use-orderless-as-pattern-compiler-for-consult-grepripgrepfind
-  (with-eval-after-load 'orderless
-    (defun consult--orderless-regexp-compiler (input type &rest _config)
-      (setq input (orderless-pattern-compiler input))
-      (cons
-       (mapcar (lambda (r) (consult--convert-regexp r type)) input)
-       (lambda (str) (orderless--highlight input str))))
-    (setq consult--regexp-compiler #'consult--orderless-regexp-compiler))
-
   ;; Optionally configure the narrowing key.
   (setq consult-narrow-key "<")
 

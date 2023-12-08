@@ -56,63 +56,40 @@
   (setq marginalia-align 'right
         marginalia-align-offset -1))
 
+;; SEE https://github.com/minad/consult/wiki#minads-orderless-configuration
 (leaf orderless
   :after vertico
   :require t
   :defer-config
+  (setq completion-styles '(orderless basic))
+  (setq orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-category-defaults nil)
 
-  ;; SEE https://github.com/minad/consult/wiki#minads-orderless-configuration
-  (setq completion-styles '(orderless basic)
-        orderless-component-separator #'orderless-escapable-split-on-space)
-
-  ;; Apply orderless style with initialism in category
-  (orderless-define-completion-style my/orderless-with-initialism
-    (orderless-matching-styles '(orderless-initialism orderless-literal orderless-regexp)))
-  (setq completion-category-defaults nil
-        completion-category-overrides
+  (orderless-define-completion-style
+      my/orderless-mix
+    (orderless-matching-styles '(orderless-initialism
+                                 orderless-literal
+                                 orderless-regexp)))
+  (setq completion-category-overrides
         '((file     (styles partial-completion))
-          (command  (styles my/orderless-with-initialism))
-          (variable (styles my/orderless-with-initialism))
-          (symbol   (styles my/orderless-with-initialism))))
+          (command  (styles my/orderless-mix))
+          (variable (styles my/orderless-mix))
+          (symbol   (styles my/orderless-mix))))
 
-  ;; define dispatch
-  (defvar my/orderless-dispatch-alist
-    '((?% . char-fold-to-regexp)
-      (?! . orderless-without-literal)
-      (?` . orderless-initialism)
-      (?= . orderless-literal)
-      (?~ . orderless-flex)))
+  (with-eval-after-load 'consult
+    (defun consult--orderless-regexp-compiler (input type &rest _config)
+      (let ((input (orderless-pattern-compiler input)))
+        (cons
+         (mapcar (lambda (r) (consult--convert-regexp r type)) input)
+         (lambda (str) (orderless--highlight input t str)))))
+    (setq consult--regexp-compiler #'consult--orderless-regexp-compiler))
 
-  (defun my/orderless-dispatch (pattern index _total)
-    (cond
-     ;; Ensure that $ works with Consult commands, which add disambiguation suffixes
-     ((string-suffix-p "$" pattern)
-      `(orderless-regexp . ,(concat (substring pattern 0 -1) "[\x200000-\x300000]*$")))
-     ;; File extensions
-     ((and
-       ;; Completing filename or eshell
-       (or minibuffer-completing-file-name
-           (derived-mode-p 'eshell-mode))
-       ;; File extension
-       (string-match-p "\\`\\.." pattern))
-      `(orderless-regexp . ,(concat "\\." (substring pattern 1) "[\x200000-\x300000]*$")))
-     ;; Ignore single !
-     ((string= "!" pattern) `(orderless-literal . ""))
-     ;; Prefix and suffix
-     ((if-let (x (assq (aref pattern 0) my/orderless-dispatch-alist))
-          (cons (cdr x) (substring pattern 1))
-        (when-let (x (assq (aref pattern (1- (length pattern))) my/orderless-dispatch-alist))
-          (cons (cdr x) (substring pattern 0 -1)))))))
-  (setq orderless-style-dispatchers '(my/orderless-dispatch))
-
-  ;; SEE https://github.com/cute-jumper/pinyinlib.el#pinyinlib-build-regexp-string
   (with-eval-after-load 'pinyinlib
     (defun ad/orderless-regexp-pinyin (args)
       "Patch `orderless-regexp' with pinyin surpport"
       (setf (car args) (pinyinlib-build-regexp-string (car args)))
       args)
     (advice-add 'orderless-regexp :filter-args #'ad/orderless-regexp-pinyin))
-
   )
 
 (provide 'init-minibuffer)
