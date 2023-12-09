@@ -429,6 +429,8 @@
 
 ;; ------------------------- C source -----------------------------
 
+(setq y-or-n-p-use-read-key t)
+
 (setq use-short-answers t
       use-file-dialog nil
       use-dialog-box nil
