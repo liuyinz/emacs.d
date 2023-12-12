@@ -92,6 +92,17 @@
   (map-keymap (lambda (_key cmd) (put cmd 'repeat-map 'my/jump-map))
               my/jump-map))
 
+(defvar-keymap ctl-x-7-map
+  :doc "Keymap for `transpose-frame' commands"
+  :repeat t
+  "t" #'transpose-frame
+  "i" #'flip-frame
+  "o" #'flop-frame
+  "r" #'rotate-frame
+  "c" #'rotate-frame-clockwise
+  "a" #'rotate-frame-anticlockwise)
+(define-key ctl-x-map "7" ctl-x-7-map)
+
 ;; (with-eval-after-load 'transient
 
 ;; (transient-define-prefix my/transient-buffer ()

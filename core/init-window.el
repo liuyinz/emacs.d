@@ -4,24 +4,12 @@
 
 (leaf window
   :bind
-  ("C-x 7" . transpose-windows)
   :init
   (setq window-min-height 1
         fit-window-to-buffer-horizontally t
-        delete-window-choose-selected 'pos)
-  (defun transpose-windows ()
-    "Transpose two windows.  If more or less than two windows are visible, error."
-    (interactive)
-    (unless (= 2 (count-windows))
-      (error "There are not 2 windows."))
-    (let* ((windows (window-list))
-           (w1 (car windows))
-           (w2 (nth 1 windows))
-           (w1b (window-buffer w1))
-           (w2b (window-buffer w2)))
-      (set-window-buffer w1 w2b)
-      (set-window-buffer w2 w1b)
-      (other-window 1))))
+        delete-window-choose-selected 'pos))
+
+(leaf transpose-frame)
 
 (leaf shackle
   :hook (after-init-hook . shackle-mode)
