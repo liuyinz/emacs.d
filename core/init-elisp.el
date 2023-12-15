@@ -64,13 +64,12 @@
   (setq macrostep-expand-in-separate-buffer t
         macrostep-expand-compiler-macros nil))
 
-;; BUG conflicts with lsp-bridge
 ;; SEE https://github.com/manateelazycat/lsp-bridge/commit/d25a63a1e7cca38fc931bb6ddb52acf590912685
-;; (leaf electric
-;;   :hook (after-init-hook . electric-indent-mode))
+(leaf electric
+  :hook (after-init-hook . electric-indent-mode))
 
-(leaf aggressive-indent
-  :hook (emacs-lisp-mode-hook . aggressive-indent-mode))
+;; (leaf aggressive-indent
+;;   :hook (emacs-lisp-mode-hook . aggressive-indent-mode))
 
 ;; SEE https://emacs-china.org/t/2-3-4/11875/5
 (leaf lisp-keyword-indent

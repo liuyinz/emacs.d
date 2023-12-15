@@ -25,7 +25,9 @@
   :defer-config
   (push 'dired-mode pangu-spacing-inhibit-mode-alist))
 
-(leaf coercion :require t)
+(leaf coercion
+  :bind-keymap
+  ("C-c e" . coercion-command-map))
 
 (leaf powerthesaurus)
 
