@@ -34,28 +34,6 @@
   "m" #'markdown-toggle-markup-hiding)
 (define-key mode-specific-map "t" my/toggle-map)
 
-(defvar-keymap my/edit-map
-  :doc "Keymap for structure edit commands."
-  ;; isolate
-  "a" #'isolate-quick-add
-  "d" #'isolate-quick-delete
-  "c" #'isolate-quick-change
-  "A" #'isolate-long-add
-  "D" #'isolate-long-delete
-  "C" #'isolate-long-change
-  ;; coercion
-  "p" #'coercion-pascal-case
-  "l" #'coercion-camel-case
-  "n" #'coercion-snake-case
-  "g" #'coercion-giraffe-case
-  "m" #'coercion-macro-case
-  "k" #'coercion-dash-case
-  "t" #'coercion-train-case
-  "b" #'coercion-cobol-case
-  "o" #'coercion-dot-case
-  "f" #'coercion-flat-case)
-(define-key mode-specific-map "e" my/edit-map)
-
 (defvar-keymap my/ide-map
   :doc "Keymap for ide-like commands."
   "r" #'my/run
@@ -102,6 +80,17 @@
   "c" #'rotate-frame-clockwise
   "a" #'rotate-frame-anticlockwise)
 (define-key ctl-x-map "7" ctl-x-7-map)
+
+  (defvar-keymap my/edit-map
+  :doc "Keymap for structure edit commands."
+  ;; isolate
+  "a" #'isolate-quick-add
+  "d" #'isolate-quick-delete
+  "c" #'isolate-quick-change
+  "A" #'isolate-long-add
+  "D" #'isolate-long-delete
+  "C" #'isolate-long-change)
+(define-key mode-specific-map "e" my/edit-map)
 
 ;; (with-eval-after-load 'transient
 

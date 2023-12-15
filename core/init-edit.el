@@ -27,7 +27,7 @@
 
 (leaf coercion
   :bind-keymap
-  ("C-c e" . coercion-command-map))
+  ("C-c c" . coercion-command-map))
 
 (leaf powerthesaurus)
 
