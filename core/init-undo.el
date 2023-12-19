@@ -7,6 +7,18 @@
 
 ;;; Code:
 
+;; SEE https://github.com/oantolin/emacs-config/blob/master/my-lisp/block-undo.el
+(defun my/block-undo (fn &rest args)
+  "Apply FN to ARGS in such a way that it can be undone in a single step."
+  (let ((marker (prepare-change-group)))
+    (unwind-protect (apply fn args)
+      (undo-amalgamate-change-group marker))))
+
+(dolist (fn '(kmacro-call-macro
+              kmacro-exec-ring-item
+              apply-macro-to-region-lines))
+  (advice-add fn :around #'my/block-undo))
+
 (leaf undo-fu-session
   :hook (after-init-hook . undo-fu-session-global-mode)
   :init
