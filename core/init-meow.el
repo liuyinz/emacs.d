@@ -95,8 +95,9 @@
      '("W" . meow-mark-symbol)
 
      ;; macro
-     '("m" . meow-start-kmacro-or-insert-counter)
-     '("M" . meow-end-or-call-kmacro)
+     '("M" . meow-start-kmacro)
+     '("m" . meow-end-or-call-kmacro)
+     '("Z" . meow-kmacro-lines)
 
      ;; thing
      '("," . meow-inner-of-thing)
