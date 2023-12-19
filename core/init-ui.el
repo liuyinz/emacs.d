@@ -14,6 +14,17 @@
         which-key-idle-delay 0.6
         which-key-idle-secondary-delay 0.2))
 
+(leaf repeat
+  :hook (after-init-hook . repeat-mode)
+  :init
+  (setq repeat-exit-key (kbd "C-g")))
+
+(leaf repeat-help
+  :hook (repeat-mode-hook . repeat-help-mode)
+  :init
+  (setq repeat-help-popup-type 'which-key
+        repeat-help-auto t))
+
 (leaf mini-echo
   :hook (after-init-hook . mini-echo-mode)
   :init
