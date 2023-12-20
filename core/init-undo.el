@@ -39,7 +39,8 @@
    ("l" . vundo-forward)
    ("h" . vundo-backward)
    ("j" . vundo-next)
-   ("k" . vundo-previous)))
+   ("k" . vundo-previous)
+   ("s" . vundo-goto-last-saved)))
 
 ;; (leaf undo-hl
 ;;   :hook ((text-mode-hook prog-mode-hook) . undo-hl-mode)
