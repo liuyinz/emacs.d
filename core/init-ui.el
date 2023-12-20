@@ -35,10 +35,7 @@
                  "narrow" "macro" "profiler" "repeat")
           :short ("meow" "buffer-name-short" "buffer-position"
                   "flymake" "process" "selection-info" "narrow"
-                  "macro" "profiler" "repeat")))
-  :defer-config
-  (appendq! mini-echo-rules
-            '((dired-mode :both (("major-mode" . 4) ("buffer-size" . 0))))))
+                  "macro" "profiler" "repeat"))))
 
 (leaf redacted)
 
