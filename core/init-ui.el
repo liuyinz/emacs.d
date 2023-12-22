@@ -63,6 +63,26 @@ No changes in mode--line."
   :init
   (setq page-break-lines-max-width fill-column))
 
+(leaf dashboard
+  :require t
+  :init
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+  (setq dashboard-remove-missing-entry t
+        dashboard-center-content t
+        dashboard-set-navigator t
+        dashboard-set-footer t
+        dashboard-footer-messages '("江流天地外, 山色有无中.")
+        dashboard-startup-banner 'ascii
+        dashboard-banner-logo-title nil
+        dashboard-projects-backend 'project-el
+        dashboard-recentf-show-base 'align
+        dashboard-projects-show-base 'align)
+  (setq dashboard-items '((recents . 10)
+                          (projects . 5)
+                          (bookmarks . 5)))
+  :config
+  (dashboard-setup-startup-hook))
+
 (leaf doom-themes
   :require t
   :config
@@ -145,7 +165,7 @@ No changes in mode--line."
      ;; highlight-defined
      '(highlight-defined-function-name-face ((t (:inherit unspecified))))
      '(highlight-defined-variable-name-face ((t (:inherit unspecified))))
-
+ 
      ;; magit
      '(magit-hash        ((t (:inherit font-lock-constant-face
                               :foreground unspecified))))
@@ -157,6 +177,10 @@ No changes in mode--line."
                               :foreground unspecified
                               :background unspecified
                               :box nil))))
+     `(dashboard-text-banner-face ((t (:inherit font-lock-constant-face))))
+     `(dashboard-heading-face ((t (:inherit font-lock-function-name-face))))
+     `(dashboard-items-face ((t (:inherit unspecified))))
+     `(dashboard-footer-face ((t (:inherit font-lock-type-face))))
      `(elfeed-search-tag-face ((t (:foreground ,(doom-color 'green)))))
      `(elfeed-search-title-face ((t (:foreground ,(doom-color 'fg-alt)))))
      ;; jupyter
