@@ -113,6 +113,7 @@ No changes in mode--line."
      ;;                                :foreground unspecified
      ;;                                :background "#181f25"))))
 
+     `(vc-state-base ((t (:bold t :foreground ,(doom-color 'green)))))
      ;; meow
      `(meow-normal-indicator   ((t (:foreground ,(doom-color 'blue) :bold t))))
      `(meow-insert-indicator   ((t (:foreground ,(doom-color 'green) :bold t))))
