@@ -114,6 +114,10 @@ No changes in mode--line."
      ;;                                :background "#181f25"))))
 
      `(vc-state-base ((t (:bold t :foreground ,(doom-color 'green)))))
+     ;; transient
+     `(transient-key-exit ((t (:foreground ,(doom-color 'yellow)))))
+     `(transient-key-stay ((t (:foreground ,(doom-color 'green)))))
+     `(transient-key-return ((t (:foreground ,(doom-color 'violet)))))
      ;; meow
      `(meow-normal-indicator   ((t (:foreground ,(doom-color 'blue) :bold t))))
      `(meow-insert-indicator   ((t (:foreground ,(doom-color 'green) :bold t))))
