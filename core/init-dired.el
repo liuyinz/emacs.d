@@ -58,7 +58,8 @@ A prefix argument means to unmark them instead."
   (setq dirvish-attributes
         '(subtree-state collapse file-size)
         dirvish-use-mode-line t
-        dirvish-use-header-line nil)
+        dirvish-use-header-line nil
+        dirvish-preview-dispatchers nil)
   :defer-config
 
   (leaf dirvish-extras
