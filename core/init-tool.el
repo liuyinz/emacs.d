@@ -64,7 +64,9 @@
 
 ;; -------------------------- record ------------------------------
 
-(leaf keycast)
+(leaf keycast
+  :init
+  (setq keycast-mode-line-format "%k%c%r"))
 
 (leaf keyfreq
   :hook ((after-init-hook . keyfreq-mode)
