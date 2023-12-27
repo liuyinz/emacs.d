@@ -27,15 +27,24 @@
   ;; luarocks install luacheck
   ;; npm install -g less
   (setq flymake-collection-hook-config
-        '(((python-ts-mode python-mode) flymake-collection-ruff)
-          ((yaml-mode yaml-ts-mode) flymake-collection-yamllint)
-          ((web-mode html-ts-mdoe) flymake-collection-html-tidy)
-          ((js-ts-mode typescript-ts-mode) flymake-collection-eslint)
+        '(((python-ts-mode python-mode) .
+           (flymake-collection-ruff
+            (python-flymake :disable t)))
+          ((sh-mode bash-ts-mode) .
+           (flymake-collection-shellcheck
+            (sh-shellcheck-flymake :disabled t)))
+          ((yaml-mode yaml-ts-mode) .
+           flymake-collection-yamllint)
+          ((web-mode html-ts-mode) .
+           (flymake-collection-html-tidy))
+          ((js-mode js2-mode js-ts-mode typescript-mode typescript-ts-mode
+                    typescript-tsx-mode jtsx-tsx-mode jtsx-jsx-mode) .
+                    (flymake-collection-eslint))
           ((json-mode json-ts-mode) flymake-collection-jq)
           ((markdown-mode gfm-mode) flymake-collection-markdownlint)
           ((lua-mode lua-ts-mode) flymake-collection-luacheck)
-          ((ruby-mode ruby-ts-mode) flymake-collection-rubocop)
-          (sql-mode flymake-collection-sqlint)
+          ((ruby-mode ruby-ts-mode) . (flymake-collection-rubocop))
+          (sql-mode flymake-collection-sql-lint)
           (nxml-mode flymake-collection-xmllint)
           (less-mode flymake-collection-less))))
 
