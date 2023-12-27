@@ -75,19 +75,15 @@
   (string-equal "root" (getenv "USER"))
   "Are you using ROOT user?")
 
-(defconst emacs/>=28p
-  (>= emacs-major-version 28)
-  "Emacs is 28 or above.")
+(defconst emacs/>=30p
+  (>= emacs-major-version 30)
+  "Emacs is 30 or above.")
 
-(defconst emacs/>=29p
-  (>= emacs-major-version 29)
-  "Emacs is 29 or above.")
-
-(defconst emacs/>=28.1p
-  (or emacs/>=29p
-      (and (= emacs-major-version 28)
+(defconst emacs/>=29.1p
+  (or emacs/>=30p
+      (and (= emacs-major-version 29)
            (>= emacs-minor-version 1)))
-  "Emacs is 28.1 or above.")
+  "Emacs is 29.1 or above.")
 
 ;; -------------------------- Macro -------------------------------
 

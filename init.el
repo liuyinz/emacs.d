@@ -21,8 +21,8 @@
                ,my/dir-debug))
   (make-directory dir t))
 
-(unless emacs/>=28p
-  (error "Please upgrade your emacs-version above 28 !"))
+(unless emacs/>=29.1p
+  (error "Please upgrade your emacs-version above 29 !"))
 
 ;; surpress warning
 (setq byte-compile-warnings '(not docstrings free-vars obsolete))

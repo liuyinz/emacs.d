@@ -36,10 +36,9 @@
 
 (leaf xref
   :init
-  (when emacs/>=28.1p
-    (setq xref-search-program #'ripgrep
-          xref-show-xrefs-function 'xref-show-definitions-completing-read
-          xref-show-definitions-function 'xref-show-definitions-completing-read)))
+  (setq xref-search-program #'ripgrep
+        xref-show-xrefs-function 'xref-show-definitions-completing-read
+        xref-show-definitions-function 'xref-show-definitions-completing-read))
 
 (leaf goto-addr
   :hook ((after-init-hook . global-goto-address-mode)
