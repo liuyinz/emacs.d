@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+(leaf vc
+  :init
+  (setq vc-display-status 'no-backend))
+
 (leaf git-modes
   :mode
   ("\\.\\(rg\\|docker\\)ignore\\'" . gitignore-mode)
