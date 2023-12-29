@@ -147,6 +147,12 @@ FN-R : region function, FN: default function"
   (and emacs-preload-features
        (memq feature emacs-preload-features)))
 
+(defun adjust-font-family-buffer-local (font-family)
+  "Set FONT-FAMILY in current buffer only."
+  (interactive (list (completing-read "font family:" (font-family-list))))
+  (setq buffer-face-mode-face `(:family ,font-family))
+  (buffer-face-mode))
+
 ;; TODO write buffer-info-dispatch to show, copy and change buffer status
 ;; Dos2Unix/Unix2Dos
 (defun dos2unix ()
