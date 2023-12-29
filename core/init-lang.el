@@ -131,7 +131,17 @@ If optional arg ALL if non-nil, reinstall all grammars."
 
 (leaf tera-mode :mode "\\.tera\\'")
 
-;; (leaf cargo-mode)
+(leaf csv-mode
+  ;; :hook (csv-mode-hook . csv-mode-setup)
+  :init
+  ;; ;; BUG goto-address match comma wrongly in csv-mode
+  ;; SEE https://www.reddit.com/r/emacs/comments/18tn9vp/help_how_to_exculde_comma_in_gotoaddressmode_url/
+  ;; (defun csv-mode-setup ()
+  ;;   (setq-local goto-address-url-regexp
+  ;;               (concat "\\<"
+  ;;                       (regexp-opt goto-address-uri-schemes t)
+  ;;                       (string-replace "," "" thing-at-point-url-path-regexp))))
+  )
 
 (provide 'init-lang)
 ;;; init-lang.el ends here
