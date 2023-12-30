@@ -64,7 +64,7 @@
     (require 'init-pair)
     (require 'init-spell)
     (require 'init-tool)
-    (require 'init-secure)
+    (require 'init-passwd)
     (require 'init-package)
     (require 'init-benchmark)
     (require 'init-color)
