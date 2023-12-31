@@ -30,10 +30,10 @@
   :init
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
-        '(:long ("meow" "buffer-name" "vcs" "buffer-position" "envrc"
+        '(:long ("meow" "project" "vcs" "buffer-position" "envrc"
                  "buffer-size" "flymake" "process" "selection-info"
                  "narrow" "macro" "profiler" "repeat")
-          :short ("meow" "buffer-name-short" "buffer-position"
+          :short ("meow" "buffer-position"
                   "flymake" "process" "selection-info" "narrow"
                   "macro" "profiler" "repeat"))))
 
