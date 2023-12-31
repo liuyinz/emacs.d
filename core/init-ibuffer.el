@@ -3,9 +3,8 @@
 ;;; Code:
 
 (leaf ibuffer
-  :defines ibuffer-show-empty-filter-groups
   :hook (ibuffer-mode-hook .  (lambda ()
-                                (ibuffer-auto-mode)
+                                (ibuffer-auto-mode)ibuffer-vc-set-filter-groups-by-vc-root
                                 (ibuffer-vc-set-filter-groups-by-vc-root)
                                 (unless (eq ibuffer-sorting-mode 'alphabetic)
                                   (ibuffer-do-sort-by-alphabetic))))

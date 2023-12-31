@@ -56,7 +56,7 @@
     (require 'init-ui)
     (require 'init-highlight)
     (require 'init-window)
-    ;; (require 'init-ibuffer)
+    (require 'init-ibuffer)
     (require 'init-dired)
     (require 'init-undo)
     (require 'init-edit)
