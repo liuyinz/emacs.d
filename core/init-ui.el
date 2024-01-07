@@ -35,7 +35,11 @@
                  "narrow" "macro" "profiler" "repeat")
           :short ("meow" "buffer-position"
                   "flymake" "process" "selection-info" "narrow"
-                  "macro" "profiler" "repeat"))))
+                  "macro" "profiler" "repeat")))
+  :defer-config
+  (appendq! mini-echo-rules '((vterm-mode :both (("buffer-size" . 0)
+                                                 ("buffer-position" . 0)
+                                                 ("major-mode" . 3))))))
 
 (leaf redacted)
 
@@ -170,7 +174,7 @@ No changes in mode--line."
      ;; highlight-defined
      '(highlight-defined-function-name-face ((t (:inherit unspecified))))
      '(highlight-defined-variable-name-face ((t (:inherit unspecified))))
- 
+
      ;; magit
      '(magit-hash        ((t (:inherit font-lock-constant-face
                               :foreground unspecified))))
