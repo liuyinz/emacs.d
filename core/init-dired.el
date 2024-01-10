@@ -3,7 +3,7 @@
 ;;; Code:
 
 (leaf dired
-  :hook (dired-mode-hook . dired-hide-details-mode)
+  :hook (dired-mode-hook . dired-mode-setup)
   :bind
   (:dired-mode-map
    ("C-c C-p" . wdired-change-to-wdired-mode)
@@ -13,15 +13,14 @@
    ("[" . dirvish-layout-switch)
    ("]" . dirvish-layout-toggle))
   :init
-  (setq dired-free-space nil)
-  (setq dired-kill-when-opening-new-dired-buffer t)
-  ;; Always delete and copy recursively
-  (setq dired-recursive-deletes 'always
+  (setq dired-free-space nil
+        dired-kill-when-opening-new-dired-buffer t
+        dired-recursive-deletes 'always
         dired-recursive-copies 'always)
-  ;;   ;; Suppress the warning: `ls does not support --dired'.
-  ;; (setq dired-use-ls-dired nil)
+
   ;; Use GNU ls as `gls' from `coreutils' if available.
   (when (executable-find "gls")
+    (setq dired-use-ls-dired t)
     (setq insert-directory-program "gls")
     (setq dired-listing-switches "-alh --group-directories-first"))
 
@@ -35,18 +34,20 @@ A prefix argument means to unmark them instead."
        (when-let ((dir (dired-get-filename t t)))
          (directory-is-empty-p dir))
        "empty directory")))
+
+  (defun dired-mode-setup ()
+    "Dired mode setup."
+    (dired-omit-mode)
+    (dired-hide-details-mode)
+    (diredfl-mode))
+
   )
 
-(leaf dired-x
-  :hook (dired-mode-hook . dired-omit-mode)
-  :defer-config
-  (setq dired-omit-files
-        (concat dired-omit-files "\\|^\\..*$")))
+;; (leaf dired-x
+;;   :defer-config
+;;   (setq dired-omit-files (concat dired-omit-files "\\|^\\..*$")))
 
 (leaf diredfl
-  :hook
-  (dired-mode-hook . diredfl-mode)
-  (dirvish-directory-view-mode-hook . diredfl-mode)
   :defer-config
   (set-face-attribute 'diredfl-dir-name nil :bold t))
 
