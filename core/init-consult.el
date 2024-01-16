@@ -13,8 +13,7 @@
   ;;ctl-x-map
   ("C-x b"   . consult-buffer)
   ("C-x 4 b" . consult-buffer-other-window)
-  ("C-x C-b"   . consult-dir)
-  ("C-x 4 C-b" . consult-dir-other-window)
+  ("C-x C-d" . consult-dir)
   ("C-x M-:" . consult-complex-command)
   ("C-x r b" . consult-bookmark)
   ;;goto-map
@@ -203,11 +202,7 @@
 
   (leaf consult-dir
     :init
-    (defun consult-dir-other-window ()
-      "Variant of `consult-dir', swithcing to a buffer in another window."
-      (interactive)
-      (let ((consult-dir-default-command #'find-file-other-window))
-        (consult-dir)))
+    (setq consult-dir-default-command #'project-find-file)
     :defer-config
     (defvar consult-dir--source-zlua
       `(:name     "Zlua Dir"
