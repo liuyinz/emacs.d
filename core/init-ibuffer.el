@@ -3,17 +3,38 @@
 ;;; Code:
 
 (leaf ibuffer
-  :hook (ibuffer-mode-hook .  (lambda ()
-                                (ibuffer-auto-mode)ibuffer-vc-set-filter-groups-by-vc-root
-                                (ibuffer-vc-set-filter-groups-by-vc-root)
-                                (unless (eq ibuffer-sorting-mode 'alphabetic)
-                                  (ibuffer-do-sort-by-alphabetic))))
+  :hook (ibuffer-mode-hook . ibuffer-mode-setup)
   :init
-  ;; hide summary
-  (setq ibuffer-expert t)
-  (setq ibuffer-display-summary nil)
-  (setq ibuffer-show-empty-filter-groups nil)
+  (setq ibuffer-expert t
+        ibuffer-display-summary nil
+        ibuffer-show-empty-filter-groups nil
+        ibuffer-marked-char ?*)
+
+  (with-eval-after-load 'diredfl
+    (setq ibuffer-marked-face 'diredfl-flag-mark
+          ibuffer-deletion-face 'diredfl-deletion
+          ibuffer-title-face 'diredfl-dir-name
+          ibuffer-filter-group-name-face 'bold))
+
+  (setq ibuffer-formats
+        '((mark " " (name 20 20 :left :elide)
+                " " modified read-only
+                " " (size-h 7 -1 :right)
+                " " (mode 16 16 :left :elide)
+                " " (vc-status 16 16 :center)
+                " " filename-and-process)
+          (mark " " name)))
+
+  (defun ibuffer-mode-setup ()
+    "Setup ibuffer mode."
+    (ibuffer-auto-mode)
+    (ibuffer-vc-set-filter-groups-by-vc-root)
+    (unless (eq ibuffer-sorting-mode 'alphabetic)
+      (ibuffer-do-sort-by-alphabetic)))
+
   :defer-config
+  (leaf ibuffer-vc :require t)
+
   ;; Use human readable Size column instead of original one
   (define-ibuffer-column size-h
     (:name "Size"
@@ -27,45 +48,7 @@
     (let ((size (buffer-size)))
       (propertize (file-size-human-readable size)
                   'size size)))
-
-  ;; ;; Modify the default ibuffer-formats
-  ;; (setq ibuffer-formats
-  ;;       '((mark " " (name 16 16 :left :elide)
-  ;;               " " modified read-only locked
-  ;;               " " (size-h 6 -1 :center)
-  ;;               " " (mode 16 16 :left :elide)
-  ;;               " " project-relative-file
-  ;;               " " filename-and-process
-  ;;               )))
-
   )
-
-(leaf ibuffer-vc
-  :defer-config
-  (setq ibuffer-formats
-        '((mark " " modified read-only vc-status-mini
-                " " (name 18 18 :left :elide)
-                " " (size-h 7 -1 :right)
-                " " (mode 16 16 :left :elide)
-                " " (vc-status 16 16 :center)
-                " " vc-relative-file))))
-
-;; ;; defined groups
-;; (setq ibuffer-saved-filter-groups
-;;       '(("user"
-;;          ("Dired" (mode . dired-mode))
-;;          ("Config" (name . "^init-.+\\.el$"))
-;;          ("org" (mode . org-mode))
-;;          ("Sys" (name . "^\\*.+\\*$"))
-;;          ("Magit" (name . "^magit"))
-;;          )))
-;; (add-hook 'ibuffer-mode-hook
-;;           (lambda ()
-;;             (ibuffer-switch-to-saved-filter-groups "user")))
-
-;; ;; hidden filters
-;; (setq-default ibuffer-hidden-filter-groups
-;;               '("Sys" "Magit"))
 
 ;; ;; Collapse
 ;; (defun ibuffer-collapse-all-filter-groups ()
