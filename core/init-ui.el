@@ -22,8 +22,7 @@
 (leaf repeat-help
   :hook (repeat-mode-hook . repeat-help-mode)
   :init
-  (setq repeat-help-popup-type 'which-key
-        repeat-help-auto t))
+  (setq repeat-help-popup-type 'which-key))
 
 (leaf mini-echo
   :hook (after-init-hook . mini-echo-mode)
