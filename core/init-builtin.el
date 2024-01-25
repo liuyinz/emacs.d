@@ -19,11 +19,14 @@
 (advice-add #'display-startup-echo-area-message :override #'ignore)
 
 (leaf server
-  :init (setq server-client-instructions nil)
-  :hook (after-init-hook . (lambda ()
-                             (require 'server)
-                             (unless (or (daemonp) (server-running-p))
-                               (server-start)))))
+  :hook (after-init-hook . server-or-daemon-setup)
+  :init
+  (setq server-client-instructions nil)
+  (defun server-or-daemon-setup ()
+    "Start server if not running."
+    (require 'server)
+    (unless (or (daemonp) (server-running-p))
+      (server-start))))
 
 ;; --------------------------- Tui --------------------------------
 
@@ -190,12 +193,13 @@
         auto-save-default t
         auto-save-visited-interval 10)
   (setq auto-save-visited-predicate
-        (lambda () (and (buffer-modified-p))))
+        (lambda () (and (buffer-modified-p) (not buffer-read-only))))
   )
 
 (leaf saveplace
+  :hook (after-init-hook . save-place-mode)
   :init (setq save-place-limit nil)
-  :hook (after-init-hook . save-place-mode))
+  )
 
 (leaf recentf
   :hook (after-init-hook . recentf-mode)
@@ -295,41 +299,17 @@
     (interactive)
     (text-scale-increase 0)))
 
-;; ;; On-the-fly spell checker
-;; (leaf flyspell
-;;   :if (executable-find "aspell")
-;;   :hook (((text-mode-hook outline-mode-hook) . flyspell-mode)
-;;          (prog-mode-hook . flyspell-prog-mode)
-;;          )
-;;   :init (setq flyspell-issue-message-flag nil
-;;               flyspell-doublon-as-error-flag nil
-;;               ispell-program-name "aspell"
-;;               ispell-extra-args '("--sug-mode=ultra" "--lang=en_US" "--run-together")))
+(leaf isearch
+  :init
+  (setq isearch-lazy-count t))
 
-;; ;; A comprehensive visual interface to diff & patch
-;; (leaf ediff
-;;   :hook (;; show org ediffs unfolded
-;;          ;; (ediff-prepare-buffer . outline-show-all)
-;;          ;; restore window layout when done
-;;          (ediff-quit-hook . winner-undo))
-;;   :init
-;;   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
-;;   (setq ediff-split-window-function 'split-window-horizontally)
-;;   (setq ediff-merge-split-window-function 'split-window-horizontally))
-
-;; adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*"
-;; adaptive-fill-first-line-regexp "^* *$"
-;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
-;; sentence-end-double-space nil)
-
-(setq isearch-lazy-count t)
-(setq vc-follow-symlinks t)
-
-;; Add prompt indicator to `completing-read-multiple'.
-(defun ad/crm-indicator (args)
-  "Set indicater ARGS for multiple read."
-  (cons (concat "[*] " (car args)) (cdr args)))
-(advice-add #'completing-read-multiple :filter-args #'ad/crm-indicator)
+(leaf crm
+  :init
+  ;; Add prompt indicator to `completing-read-multiple'.
+  (defun ad/crm-indicator (args)
+    "Set indicater ARGS for multiple read."
+    (cons (concat "[*] " (car args)) (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'ad/crm-indicator))
 
 ;; Don't ask me when kill process buffer
 (setq kill-buffer-query-functions
@@ -393,6 +373,22 @@
   :init
   ;; disable smerge-refine with set `diff-refine' to nil
   (setq diff-refine 'navigation))
+
+;; ;; A comprehensive visual interface to diff & patch
+;; (leaf ediff
+;;   :hook (;; show org ediffs unfolded
+;;          ;; (ediff-prepare-buffer . outline-show-all)
+;;          ;; restore window layout when done
+;;          (ediff-quit-hook . winner-undo))
+;;   :init
+;;   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+;;   (setq ediff-split-window-function 'split-window-horizontally)
+;;   (setq ediff-merge-split-window-function 'split-window-horizontally))
+
+;; adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*"
+;; adaptive-fill-first-line-regexp "^* *$"
+;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
+;; sentence-end-double-space nil)
 
 (leaf transient
   :require t

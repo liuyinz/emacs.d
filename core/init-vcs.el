@@ -4,7 +4,9 @@
 
 (leaf vc
   :init
-  (setq vc-display-status 'no-backend))
+  (setq vc-display-status 'no-backend)
+  (setq vc-follow-symlinks t)
+)
 
 (leaf git-modes
   :mode
@@ -130,11 +132,7 @@
     (interactive)
     (vc-find-conflicted-file)
     (smerge-first)
-    (smerge-refine 2))
-
-  :defer-config
-
-  )
+    (smerge-refine 2)))
 
 (leaf magit
   :defer-config
