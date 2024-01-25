@@ -41,8 +41,9 @@
   (if (my/debug-begin-p)
       (require 'init-debug)
     ;; normal loading
-    (require 'init-duplexer)
+    (require 'init-elisp)
     (require 'init-builtin)
+    (require 'init-duplexer)
     (require 'init-meow)
     (require 'init-minibuffer)
     (require 'init-consult)
@@ -81,7 +82,6 @@
     (require 'init-web)
     ;; (require 'init-vue)
     (require 'init-lang)
-    (require 'init-elisp)
     ;; (require 'init-go)
     (require 'init-markdown)
     (require 'init-write)
