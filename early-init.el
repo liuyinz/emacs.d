@@ -16,9 +16,6 @@
 ;; Do not allow loading from the package cache (same reason).
 (setq package-quickstart nil)
 
-;; don't load sitestart.el
-(setq site-run-file nil)
-
 ;; load newst file always
 (setq load-prefer-newer t)
 
