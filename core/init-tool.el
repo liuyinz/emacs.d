@@ -37,23 +37,23 @@
 
 ;; ------------------------- Network ------------------------------
 
-(leaf proxy-mode
-  :init
-  (when-let ((http (getenv "HTTP")))
-    (setq proxy-mode-env-http-proxy (concat "http://" http))
-    (setq proxy-mode-emacs-http-proxy
-          `(("http"     . ,http)
-            ("https"    . ,http)
-            ("ftp"      . ,http)
-            ("no_proxy" . "127.0.0.1"))))
-
-  (when-let ((sock (getenv "SOCKS")))
-    (setq proxy-mode-emacs-socks-proxy
-          `("Default server"
-            ,(substring sock 0 -5)
-            ,(substring sock -4 nil)
-            5)))
-  )
+;; (leaf proxy-mode
+;;   :init
+;;   (when-let ((http (getenv "HTTP")))
+;;     (setq proxy-mode-env-http-proxy (concat "http://" http))
+;;     (setq proxy-mode-emacs-http-proxy
+;;           `(("http"     . ,http)
+;;             ("https"    . ,http)
+;;             ("ftp"      . ,http)
+;;             ("no_proxy" . "127.0.0.1"))))
+;; 
+;;   (when-let ((sock (getenv "SOCKS")))
+;;     (setq proxy-mode-emacs-socks-proxy
+;;           `("Default server"
+;;             ,(substring sock 0 -5)
+;;             ,(substring sock -4 nil)
+;;             5)))
+;;   )
 
 ;; ;; TODO set embark with proxy
 ;; (leaf with-proxy

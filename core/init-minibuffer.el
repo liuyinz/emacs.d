@@ -9,6 +9,7 @@
   :init
   (setq vertico-cycle t
         vertico-count 15
+        vertico-preselect 'prompt
         resize-mini-windows t)
   :bind
   ("C-c C-r" . vertico-repeat)
