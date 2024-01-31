@@ -115,13 +115,13 @@ If optional arg ALL if non-nil, reinstall all grammars."
   (defun nxml-mode-setup ()
     (setq-local fill-column 150)))
 
-;; -------------------------- Plugin ------------------------------
-
-(leaf jq-ts-mode)
-
 (leaf lua-ts-mode
   :init
   (setq lua-ts-mode-indent-offset 2))
+
+;; -------------------------- Plugin ------------------------------
+
+(leaf jq-ts-mode)
 
 (leaf mermaid-ts-mode)
 
