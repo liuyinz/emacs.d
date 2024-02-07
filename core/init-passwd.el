@@ -14,9 +14,9 @@
   ;; to read passphrase from minibuffer
   (setq epg-pinentry-mode 'loopback))
 
-(leaf pass
-  :init
-  (setq pass-show-keybindings nil))
+;; (leaf pass
+;;   :init
+;;   (setq pass-show-keybindings nil))
 
 (leaf auth-source
   :commands auth-source-user-and-password)
