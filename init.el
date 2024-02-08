@@ -41,6 +41,7 @@
   (if (my/debug-begin-p)
       (require 'init-debug)
     ;; normal loading
+    (require 'init-font)
     (require 'init-elisp)
     (require 'init-builtin)
     (require 'init-duplexer)

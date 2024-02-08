@@ -7,17 +7,6 @@
 
 ;;; Code:
 
-;; ;; setup chinese patch
-(defun my/patch-lxgw-chinese-charset ()
-  "Patch chinese character with lxgw font."
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font
-     ;; "fontset-startup"
-     (frame-parameter nil 'font)
-     charset
-     (font-spec :family "LXGW WenKai"))))
-(add-hook 'after-make-graphic-frame-hook #'my/patch-lxgw-chinese-charset)
-
 (leaf exec-path-from-shell
   :hook (after-make-graphic-frame-hook . exec-path-from-shell-initialize)
   :init

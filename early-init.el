@@ -74,8 +74,7 @@
 
         ;; NOTE only work in X-windows
         ;; (alpha-background . 20)
-
-        (font . "Sarasa Mono SC 17")))
+        ))
 
 (when (featurep 'ns)
   ;; disable icon and text in frame title
