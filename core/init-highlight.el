@@ -57,13 +57,15 @@
   (leaf diff-hl-margin
     :hook (global-diff-hl-mode-hook . diff-hl-margin-mode)
     :init
-    ;; (char-to-string ?\x258d) => "▍" , SEE https://unicode-table.com/en/search/?q=block
+    ;; SEE https://symbl.cc/en/unicode/blocks/block-elements/
+    ;; (char-to-string ?\x258d) => "▍" , ?\x2588 - 258f
+    ;; if font is designed for chinese,then use ?\x258f, or use ?\x258d instead.
     (setq diff-hl-margin-symbols-alist
-          '((insert  . "\x258d")
-            (delete  . "\x258d")
-            (change  . "\x258d")
-            (unknown . "\x258d")
-            (ignored . "\x258d"))))
+          '((insert  . "\x258f")
+            (delete  . "\x258f")
+            (change  . "\x258f")
+            (unknown . "\x258f")
+            (ignored . "\x258f"))))
 
   (leaf diff-hl-dired
     :hook (dired-mode-hook . diff-hl-dired-mode-unless-remote))
