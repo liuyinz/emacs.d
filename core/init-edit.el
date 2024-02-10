@@ -25,6 +25,14 @@
   :defer-config
   (push 'dired-mode pangu-spacing-inhibit-mode-alist))
 
+(leaf super-save
+  :hook (after-init-hook . super-save-mode)
+  :init
+  (setq super-save-auto-save-when-idle t
+        super-save-all-buffers t
+        super-save-idle-duration 10
+        super-save-silent t))
+
 (leaf coercion
   :bind-keymap
   ("C-c c" . coercion-command-map))
