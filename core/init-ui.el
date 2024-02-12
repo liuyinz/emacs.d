@@ -29,10 +29,10 @@
   :init
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
-        '(:long ("meow" "project" "vcs" "buffer-position" "envrc"
+        '(:long ("meow" "buffer-name" "vcs" "buffer-position" "envrc"
                  "buffer-size" "flymake" "process" "selection-info"
                  "narrow" "macro" "profiler" "repeat")
-          :short ("meow" "buffer-position"
+          :short ("meow" "buffer-name-short" "buffer-position"
                   "flymake" "process" "selection-info" "narrow"
                   "macro" "profiler" "repeat")))
   :defer-config
