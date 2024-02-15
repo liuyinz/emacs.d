@@ -31,13 +31,14 @@
 ;; Do not resize the frame at this early stage.
 (setq frame-inhibit-implied-resize t)
 
-;; set tile to filepath
-(setq frame-title-format
-      '((:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name))
-                 "%b"))
-        (:eval (if (buffer-modified-p)
-                   " *"))))
+;; ;; set tile to filepath
+;; (setq frame-title-format
+;;       '((:eval (if (buffer-file-name)
+;;                    (abbreviate-file-name (buffer-file-name))
+;;                  "%b"))
+;;         (:eval (if (buffer-modified-p)
+;;                    " *"))))
+(setq frame-title-format nil)
 
 ;; SEE https://www.gnu.org/software/emacs/manual/html_node/elisp/Frame-Layout.html#index-frame_002dedges
 ;; frame position in pixels
@@ -79,7 +80,6 @@
 (when (featurep 'ns)
   ;; disable icon and text in frame title
   (setq ns-use-proxy-icon nil)
-
   (push '(ns-transparent-titlebar . t) default-frame-alist)
   ;; (push '(ns-appearance . dark) default-frame-alist)
   (push '(ns-use-native-fullscreen . nil) default-frame-alist))
