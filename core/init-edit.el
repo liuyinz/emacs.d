@@ -12,7 +12,9 @@
           ("reddit\\.com" . gfm-mode)
           ("emacs-china\\.org" . gfm-mode)
           ("stackexchange\\.com" . gfm-mode)
-          ("stackoverflow\\.com" . gfm-mode))))
+          ("stackoverflow\\.com" . gfm-mode)
+          ("react.docschina.org" . jtsx-jsx-mode)
+          ("react.dev" . jtsx-jsx-mode))))
 
 (leaf hungry-delete
   :hook (after-init-hook . global-hungry-delete-mode)
