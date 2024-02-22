@@ -30,10 +30,10 @@
   (setq treesit-auto-langs
         '(bash c c-sharp clojure cmake commonlisp cpp css dockerfile
                elixir go gomod javascript java json julia kotlin
-               heex python ruby rust toml tsx typescript typst yaml lua
-               ;; html
+               heex python ruby rust toml html typst yaml lua
+               tsx typescript
                ;; third-party
-               jq mermaid vimscript))
+               jq mermaid))
 
   (defun treesit-auto-install-missing (&optional all)
     "Install missing grammar in `treesit-auto-langs'.
@@ -50,9 +50,9 @@ If optional arg ALL if non-nil, reinstall all grammars."
             (message "The following tree-sitter grammars are/were missing: %s"
                      (mapconcat 'symbol-name to-install ", ")))
           (mapc (lambda (lang)
-                  (treesit--install-language-grammar-1
-                   (car treesit-extra-load-path) lang
-                   (car (alist-get lang treesit-language-source-alist))))
+                  (treesit-install-language-grammar
+                   lang
+                   (car treesit-extra-load-path)))
                 to-install)
           (treesit-auto-add-to-auto-mode-alist))
       (message "All grammars are installed already.")))
@@ -69,13 +69,7 @@ If optional arg ALL if non-nil, reinstall all grammars."
                  :ts-mode 'mermaid-ts-mode
                  :remap 'mermaid-mode
                  :url "https://github.com/monaqa/tree-sitter-mermaid"
-                 :ext "\\.\\(mmd\\|mermaid\\)")
-               ,(make-treesit-auto-recipe
-                 :lang 'vimscript
-                 :ts-mode 'vimscript-ts-mode
-                 :remap 'vimrc-mode
-                 :url "https://github.com/neovim/tree-sitter-vim"
-                 :ext "\\.vim\\(rc\\)?\\'")))
+                 :ext "\\.\\(mmd\\|mermaid\\)")))
 
   (treesit-auto-add-to-auto-mode-alist))
 
