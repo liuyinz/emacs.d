@@ -6,7 +6,7 @@
 
 (leaf atomic-chrome
   :init
-  (setq atomic-chrome-buffer-open-style 'split)
+  (setq atomic-chrome-buffer-open-style 'full)
   (setq atomic-chrome-url-major-mode-alist
         '(("github\\.com" . gfm-mode)
           ("reddit\\.com" . gfm-mode)
