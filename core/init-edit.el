@@ -5,6 +5,7 @@
 ;; --------------------------- Edit -------------------------------
 
 (leaf atomic-chrome
+  :hook (after-init-hook . atomic-chrome-start-server)
   :init
   (setq atomic-chrome-buffer-open-style 'full)
   (setq atomic-chrome-url-major-mode-alist
