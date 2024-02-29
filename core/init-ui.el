@@ -66,25 +66,25 @@ No changes in mode--line."
   :init
   (setq page-break-lines-max-width fill-column))
 
-(leaf dashboard
-  :require t
-  :init
-  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
-  (setq dashboard-remove-missing-entry t
-        dashboard-center-content t
-        dashboard-set-navigator t
-        dashboard-set-footer t
-        dashboard-footer-messages '("江流天地外, 山色有无中.")
-        dashboard-startup-banner 'ascii
-        dashboard-banner-logo-title nil
-        dashboard-projects-backend 'project-el
-        dashboard-recentf-show-base 'align
-        dashboard-projects-show-base 'align)
-  (setq dashboard-items '((recents . 10)
-                          (projects . 5)
-                          (bookmarks . 5)))
-  :config
-  (dashboard-setup-startup-hook))
+;; (leaf dashboard
+;;   :require t
+;;   :init
+;;   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+;;   (setq dashboard-remove-missing-entry t
+;;         dashboard-center-content t
+;;         dashboard-set-navigator t
+;;         dashboard-set-footer t
+;;         dashboard-footer-messages '("江流天地外, 山色有无中.")
+;;         dashboard-startup-banner 'ascii
+;;         dashboard-banner-logo-title nil
+;;         dashboard-projects-backend 'project-el
+;;         dashboard-recentf-show-base 'align
+;;         dashboard-projects-show-base 'align)
+;;   (setq dashboard-items '((recents . 10)
+;;                           (projects . 5)
+;;                           (bookmarks . 5)))
+;;   :config
+;;   (dashboard-setup-startup-hook))
 
 (leaf doom-themes
   :require t
