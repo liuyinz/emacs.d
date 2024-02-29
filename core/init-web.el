@@ -29,7 +29,7 @@
 ;; Major mode for editing web templates
 (leaf web-mode
   ;; :hook (web-mode-hook . web-mode-setup)
-  :mode "\\.\\(p?html\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\)$"
+  :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\)$"
   :init
   (setq web-mode-markup-indent-offset 2
         web-mode-css-indent-offset 2

@@ -30,7 +30,7 @@
   (setq treesit-auto-langs
         '(bash c c-sharp clojure cmake commonlisp cpp css dockerfile
                elixir go gomod javascript java json julia kotlin
-               heex python ruby rust toml html typst yaml lua
+               heex python ruby rust toml typst yaml lua
                tsx typescript
                ;; third-party
                jq mermaid))
