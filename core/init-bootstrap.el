@@ -68,9 +68,9 @@
   (setq no-littering-etc-directory (expand-file-name "etc/" my/dir-cache)
         no-littering-var-directory (expand-file-name "var/" my/dir-cache))
   :config
-  ;; save auto-save file if needed
-  (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+  ;; ;; save auto-save file if needed
+  ;; (setq auto-save-file-name-transforms
+  ;;       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
   ;; DISCUSSION https://github.com/emacscollective/no-littering/discussions/164
   (when (fboundp 'lisp-data-mode)
