@@ -25,27 +25,25 @@
                  '(jinx grid (vertico-grid-annotate . 20)))
     (vertico-multiform-mode 1))
 
-  ;; ;; SEE https://github.com/minad/vertico/wiki#input-at-bottom-of-completion-list
-  ;; ;; BUG bottom place conflicts with transient `read-directory-name`''
-  ;; (defun ad/vertico--prompt-bottom (lines)
-  ;;   "Display LINES in bottom."
-  ;;   (move-overlay vertico--candidates-ov (point-min) (point-min))
-  ;;   (unless (eq vertico-resize t)
-  ;;     (setq lines (nconc (make-list (max 0 (- vertico-count (length lines))) "\n") lines)))
-  ;;   (let ((string (apply #'concat lines)))
-  ;;     (add-face-text-property 0 (length string) 'default 'append string)
-  ;;     (overlay-put vertico--candidates-ov 'before-string string)
-  ;;     (overlay-put vertico--candidates-ov 'after-string nil))
-  ;;   (vertico--resize-window (length lines)))
-  ;; (advice-add 'vertico--display-candidates :override #'ad/vertico--prompt-bottom)
+  ;; SEE https://github.com/minad/vertico/wiki#input-at-bottom-of-completion-list
+  (defun ad/vertico--prompt-bottom (lines)
+    "Display LINES in bottom."
+    (move-overlay vertico--candidates-ov (point-min) (point-min))
+    (unless (eq vertico-resize t)
+      (setq lines (nconc (make-list (max 0 (- vertico-count (length lines))) "\n") lines)))
+    (let ((string (apply #'concat lines)))
+      (add-face-text-property 0 (length string) 'default 'append string)
+      (overlay-put vertico--candidates-ov 'before-string string)
+      (overlay-put vertico--candidates-ov 'after-string nil))
+    (vertico--resize-window (length lines)))
+  (advice-add 'vertico--display-candidates :override #'ad/vertico--prompt-bottom)
 
   ;; SEE https://github.com/minad/vertico/wiki#prefix-current-candidate-with-arrow
   (defun ad/vertico-customize-candidate (orig cand prefix suffix index _start)
-    (setq cand (funcall orig cand prefix suffix index _start))
     (concat (if (= vertico--index index)
                 (propertize "> " 'face 'font-lock-warning-face)
               "  ")
-            cand))
+            (funcall orig cand prefix suffix index _start)))
   (advice-add 'vertico--format-candidate :around #'ad/vertico-customize-candidate)
 
   )
