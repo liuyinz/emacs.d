@@ -46,6 +46,17 @@
             (funcall orig cand prefix suffix index _start)))
   (advice-add 'vertico--format-candidate :around #'ad/vertico-customize-candidate)
 
+  ;; SEE https://github.com/minad/vertico/wiki#left-truncate-recentf-filename-candidates-eg-for-consult-buffer
+  (defun my/vertico-truncate-candidates (args)
+    (if-let ((arg (car args))
+             (type (get-text-property 0 'multi-category arg))
+             ((eq (car-safe type) 'file))
+             (w (max 30 (- (window-width) 38)))
+             (l (length arg))
+             ((> l w)))
+        (setcar args (concat ".." (truncate-string-to-width arg l (- l w)))))
+    args)
+  (advice-add #'vertico--format-candidate :filter-args #'my/vertico-truncate-candidates)
   )
 
 (leaf marginalia
