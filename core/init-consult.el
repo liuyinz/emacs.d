@@ -202,7 +202,14 @@
 
   (leaf consult-dir
     :init
-    (setq consult-dir-default-command #'project-find-file)
+    (setq consult-dir-default-command #'my/dir-find-file)
+    (defun my/dir-find-file ()
+      "Command to find file in selected directory for `consult-dir'."
+      (interactive)
+      (call-interactively
+       (if (string-equal default-directory (project-root (project-current t)))
+           #'project-find-file
+         #'find-file)))
     :defer-config
     (defvar consult-dir--source-zlua
       `(:name     "Zlua Dir"
