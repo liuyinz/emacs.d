@@ -25,6 +25,8 @@
 
 ;; ------------------------ Translate -----------------------------
 
+(leaf reverso)
+
 ;; SEE https://www.emacswiki.org/emacs/RegularExpression
 (leaf xr)
 

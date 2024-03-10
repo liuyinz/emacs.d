@@ -40,8 +40,6 @@
   :bind-keymap
   ("C-c c" . coercion-command-map))
 
-(leaf powerthesaurus)
-
 ;; SEE https://www.python.org/dev/peps/pep-0350/#mnemonics
 (leaf hl-todo
   :hook (after-init-hook . global-hl-todo-mode)
