@@ -5,8 +5,7 @@
 (leaf vc
   :init
   (setq vc-display-status 'no-backend)
-  (setq vc-follow-symlinks t)
-)
+  (setq vc-follow-symlinks t))
 
 (leaf git-modes
   :mode
@@ -161,10 +160,9 @@ Otherwise, behave like `magit-display-buffer-traditional'."
              '((untracked . hide)
                (unpushed  . show)))
 
-  ;; add module in `magit-status'
   (magit-add-section-hook 'magit-status-sections-hook
                           'magit-insert-modules
-                          'magit-insert-untracked-files)
+                          nil t)
 
   (magit-add-section-hook 'magit-status-sections-hook
                           'magit-insert-stashes
@@ -173,7 +171,8 @@ Otherwise, behave like `magit-display-buffer-traditional'."
   ;; Predefined status command arguments
   (with-eval-after-load 'magit-status
     (put 'magit-status-mode 'magit-diff-default-arguments
-         '("--no-ext-diff" "--ignore-submodules=all")))
+         ;; '("--no-ext-diff" "--ignore-submodules=all")
+         '("--no-ext-diff")))
 
   ;; -------------------------- commit ------------------------------
 
