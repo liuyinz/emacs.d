@@ -44,7 +44,8 @@
               mhtml-mode-hook
               html-mode-hook
               js-json-mode-hook
-              json-ts-mode-hook))
+              json-ts-mode-hook
+              vue-ts-mode-hook))
 
   ;; Setup server
   (setq lsp-bridge-user-langserver-dir
@@ -73,12 +74,12 @@
 
   (setq lsp-bridge-multi-lang-server-extension-list
         '((("css" "less" "scss") . "css_emmet")
-          (("html") . "html_emmet")
-          (("vue") . "volar_emmet")))
+          (("html") . "html_emmet")))
 
   (appendq! lsp-bridge-multi-lang-server-mode-list
             '(((css-mode less-css-mode scss-mode) . "css_emmet")
-              ((web-mode mhtml-mode html-mode) . "html_emmet")))
+              ((web-mode mhtml-mode html-mode) . "html_emmet")
+              ((vue-ts-mode) . "volar_emmet")))
 
   ;; Setup language
   ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko ruff-lsp
