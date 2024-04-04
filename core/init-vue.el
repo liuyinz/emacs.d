@@ -7,12 +7,14 @@
 
 ;;; Code:
 
-;; define a new major
-(define-derived-mode web-vue-mode web-mode "wVue"
-  "A major mode derived from `web-mode'.
-For editing .vue files with LSP support.")
-
-(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-vue-mode))
+(leaf vue-ts-mode
+  ;; :hook (vue-ts-mode-hook . vue-setup)
+  ;; :init
+  ;; (defun vue-setup ()
+  ;;   "Setup for vue-ts-mode."
+  ;;   ;; ISSUE https://github.com/8uff3r/vue-ts-mode/issues/7
+  ;;   (hs-minor-mode -1))
+  )
 
 (provide 'init-vue)
 ;;; init-vue.el ends here
