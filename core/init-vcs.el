@@ -171,8 +171,7 @@ Otherwise, behave like `magit-display-buffer-traditional'."
   ;; Predefined status command arguments
   (with-eval-after-load 'magit-status
     (put 'magit-status-mode 'magit-diff-default-arguments
-         ;; '("--no-ext-diff" "--ignore-submodules=all")
-         '("--no-ext-diff")))
+         '("--no-ext-diff" "--ignore-submodules=all")))
 
   ;; -------------------------- commit ------------------------------
 
