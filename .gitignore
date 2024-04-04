@@ -60,3 +60,4 @@ flycheck_*.el
 
 # yasnippet
 .yas-compiled-snippets.el
+/tree-sitter/
