@@ -4,8 +4,6 @@
 
 ;; ------------------------ Tree-sitter ----------------------------
 
-(setq treesit-extra-load-path `(,(concat my/dir-cache "etc/tree-sitter")))
-
 (leaf treesit
   :init
   ;; Use the full theming potential of treesit
@@ -28,10 +26,9 @@
   :init
   (setq treesit-auto-install nil)
   (setq treesit-auto-langs
-        '(bash c c-sharp clojure cmake commonlisp cpp css dockerfile
-               elixir go gomod javascript java json julia kotlin
-               heex python ruby rust toml typst yaml lua
-               tsx typescript
+        '(bash c c-sharp clojure cmake commonlisp cpp css dart dockerfile elixir
+               go gomod heex java javascript json julia kotlin lua make python
+               ruby rust scala sql toml tsx typescript typst vue yaml
                ;; third-party
                jq mermaid))
 
@@ -49,11 +46,7 @@ If optional arg ALL if non-nil, reinstall all grammars."
               (message "Reinstall all tree-siiter grammars in treesit-auto-langs.")
             (message "The following tree-sitter grammars are/were missing: %s"
                      (mapconcat 'symbol-name to-install ", ")))
-          (mapc (lambda (lang)
-                  (treesit-install-language-grammar
-                   lang
-                   (car treesit-extra-load-path)))
-                to-install)
+          (mapc 'treesit-install-language-grammar to-install)
           (treesit-auto-add-to-auto-mode-alist))
       (message "All grammars are installed already.")))
   :defer-config
