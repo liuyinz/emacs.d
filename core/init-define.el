@@ -2,7 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ------------------------- Variable -----------------------------
+
+;;; Variables
 
 (defconst my/dir-core
   (expand-file-name "core/" user-emacs-directory)
@@ -85,7 +86,8 @@
            (>= emacs-minor-version 1)))
   "Emacs is 29.1 or above.")
 
-;; -------------------------- Macro -------------------------------
+
+;;; Macors
 
 (defmacro message! (arg)
   "Echo `ARG' info."
@@ -139,8 +141,8 @@ FN-R : region function, FN: default function"
                       nil nil sym-here))))
        ,body)))
 
-
-;; ------------------------- Function -----------------------------
+
+;;; Functions
 
 (defun feature-preload-p (feature)
   "Return non-nil if FEATURE is pre-loaded by default."
@@ -375,9 +377,9 @@ Same as `replace-string C-q C-m RET RET'."
                 "\n")
         (setq i (- i 96))))))
 
-;; --------------------------- Debug -------------------------------
-
-;; TODO miniconfig package
+
+;;; Debug
+;;; TODO miniconfig package
 
 (defun my/debug-begin-p ()
   "Return t if mininal debug begin."
@@ -452,7 +454,8 @@ Same as `replace-string C-q C-m RET RET'."
           (copy-file old (concat "debug-" new ".el") 1)))
     (message "Debug hasn't begined yet.")))
 
-;; --------------------------- Hook -------------------------------
+
+;;; Hooks
 
 ;; SEE https://www.reddit.com/r/emacs/comments/lelbr5/how_to_start_emacsclient_such_that_it_respects_my/gmhbyv7?utm_source=share&utm_medium=web2x&context=3
 ;; https://github.com/purcell/emacs.d/blob/adf337dfa8c324983e5dc01ed055a34c3cc4a964/lisp/init-frame-hooks.el
