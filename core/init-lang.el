@@ -30,7 +30,7 @@
                go gomod heex java javascript json julia kotlin lua make python
                ruby rust scala sql toml tsx typescript typst vue yaml
                ;; third-party
-               jq mermaid))
+               jq mermaid swift))
 
   (defun treesit-auto-install-missing (&optional all)
     "Install missing grammar in `treesit-auto-langs'.
@@ -62,7 +62,13 @@ If optional arg ALL if non-nil, reinstall all grammars."
                  :ts-mode 'mermaid-ts-mode
                  :remap 'mermaid-mode
                  :url "https://github.com/monaqa/tree-sitter-mermaid"
-                 :ext "\\.\\(mmd\\|mermaid\\)")))
+                 :ext "\\.\\(mmd\\|mermaid\\)")
+               ,(make-treesit-auto-recipe
+                 :lang 'swift
+                 :ts-mode 'swift-ts-mode
+                 :remap 'swift-mode
+                 :url "https://github.com/alex-pinkus/tree-sitter-swift"
+                 :ext "\\.swift\\'")))
 
   (treesit-auto-add-to-auto-mode-alist))
 
