@@ -27,7 +27,8 @@
           ("https://pinecast.com/feed/emacscast" emacs)
           ("https://emacstil.com/feed.xml" emacs)
           ("https://emacstalk.codeberg.page/podcast/index.xml" emacs)
-          ("https://manateelazycat.github.io/feed.xml" lazycat emacs)))
+          ("https://manateelazycat.github.io/feed.xml" lazycat emacs)
+          ("https://news.ycombinator.com/rss" hacker news)))
 
   ;; SEE https://emacs-china.org/t/elfeed-nerd-icons/26125
   (setq  elfeed-search-print-entry-function #'elfeed-search-print-entry--my)
