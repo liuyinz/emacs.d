@@ -17,7 +17,7 @@
      (vconcat (mapcar (lambda (c) (+ face-offset c)) "...")))))
 
 (leaf hideshow
-  :hook (prog-mode-hook . hs-minor-mode)
+  :hook (prog-mode-hook . hs-mode-setup)
   :init
   (setq hs-isearch-open t
         hs-hide-comments-when-hiding-all t)
@@ -30,7 +30,13 @@
                     (format "...%d"
                             (- (count-lines (overlay-start ov) (overlay-end ov)) 1))
                     'face 'shadow))))
-  (setq hs-set-up-overlay #'display-code-line-counts))
+  (setq hs-set-up-overlay #'display-code-line-counts)
+  
+  (defun hs-mode-setup ()
+    "hs-minor-mode setup."
+    (unless (memq major-mode '(vue-ts-mode))
+      (hs-minor-mode 1)))
+  )
 
 (leaf bicycle
   :bind
