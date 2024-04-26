@@ -30,11 +30,11 @@
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
         '(:long ("meow" "buffer-name" "vcs" "buffer-position" "envrc"
-                 "buffer-size" "flymake" "process" "selection-info"
-                 "narrow" "macro" "profiler" "repeat")
+                 "buffer-size" "flymake" "mise" "process" "selection-info"
+                 "narrow" "macro" "profiler" "repeat" "text-scale")
           :short ("meow" "buffer-name-short" "buffer-position"
                   "flymake" "process" "selection-info" "narrow"
-                  "macro" "profiler" "repeat")))
+                  "macro" "profiler" "repeat" "text-scale")))
   :defer-config
   (appendq! mini-echo-rules '((vterm-mode :both (("buffer-size" . 0)
                                                  ("buffer-position" . 0)
