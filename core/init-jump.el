@@ -10,10 +10,7 @@
 (leaf binky
   :hook (after-init-hook . binky-mode)
   :init
-  (setq binky-mark-back ?'
-        binky-mark-recent '(?1 ?2 ?3 ?4 ?5 ?6)
-        ;; binky-mark-recent '(?a ?s ?d ?f ?g)
-        binky-recent-sort-by 'frequency
+  (setq binky-recent-sort-by 'frequency
         ;; binky-preview-show-header t
         ;; binky-preview-side 'right
         binky-preview-in-groups t
@@ -21,6 +18,11 @@
         binky-margin-string "\x2630"
         binky-indicator-side 'right
         binky-command-prefix nil)
+  (setq binky-marks
+        `((back . ?')
+          (quit . ?q)
+          (recent . (?1 ?2 ?3 ?4 ?5))
+          (manual . ,(remove ?q (number-sequence ?a ?z)))))
   (setq binky-preview-column
         '((mark    0.03  4)
           (name    0.20  15)
