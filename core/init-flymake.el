@@ -13,8 +13,7 @@
           nxml-mode-hook
           yaml-ts-mode-hook) . flymake-mode)
   :init
-  (setq flymake-fringe-indicator-position nil
-        elisp-flymake-byte-compile-load-path load-path
+  (setq flymake-indicator-type nil
         flymake-no-changes-timeout 1.5))
 
 (leaf flymake-collection
