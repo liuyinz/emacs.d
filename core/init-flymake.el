@@ -14,6 +14,9 @@
           yaml-ts-mode-hook) . flymake-mode)
   :init
   (setq flymake-indicator-type nil
+        flymake-margin-indicator-position nil
+        flymake-fringe-indicator-position nil
+        flymake-margin-indicators-string nil
         flymake-no-changes-timeout 1.5))
 
 (leaf flymake-collection
@@ -37,7 +40,7 @@
           ((web-mode html-ts-mode) .
            (flymake-collection-html-tidy))
           ((js-mode js-ts-mode typescript-mode typescript-ts-mode vue-ts-mode
-                    typescript-tsx-mode jtsx-tsx-mode jtsx-jsx-mode) .
+                    typescript-tsx-mode) .
                     (flymake-collection-eslint))
           ((json-mode json-ts-mode) flymake-collection-jq)
           ((markdown-mode gfm-mode) flymake-collection-markdownlint)
