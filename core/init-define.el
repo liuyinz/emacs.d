@@ -176,7 +176,20 @@ Same as `replace-string C-q C-m RET RET'."
     (while (search-forward "\r" nil :noerror)
       (replace-match ""))))
 
+
 ;; File and buffer
+
+(defun my/temp-file (mode)
+  "Switch to temp file with major mode MODE."
+  (interactive
+   (list (completing-read
+          "Select major mode: "
+          (mapcar #'symbol-name
+                  (seq-filter #'commandp
+                              (seq-uniq (map-values auto-mode-alist)))))))
+  (find-file (make-temp-file "Temp-"))
+  (with-current-buffer (funcall (intern mode))))
+
 (defun revert-this-buffer ()
   "Revert the current buffer."
   (interactive)
