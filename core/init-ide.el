@@ -46,6 +46,21 @@
  ;; (shell-command (format "open devdocs://search/%s" (url-hexify-string query)))
  )
 
+(defvar cheatsheets-ref-lists nil)
+(defun cheatsheets-open (&optional cn)
+  "Browser selected reference in cheatsheets.me.
+If CN is non-nil, search in zh-CN documentation."
+  (interactive "P")
+  (when-let ((ref (completing-read
+                   "Select quickref: "
+                   (with-memoization cheatsheets-ref-lists
+                     (mapcar #'file-name-sans-extension
+                             (string-split
+                              (shell-command-to-string
+                               "gh api --jq '.[].name' /repos/Fechin/reference/contents/source/_posts"))))
+                   nil t)))
+    (browse-url (concat "https://cheatsheets.zip/" (if cn (concat "zh-CN/docs/" ref ".html") ref)))))
+
 ;; --------------------------- Run --------------------------------
 
 (leaf quickrun
