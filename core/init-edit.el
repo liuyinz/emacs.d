@@ -16,6 +16,7 @@
           ("stackoverflow\\.com" . gfm-mode)
           ("react.docschina.org" . js-jsx-mode)
           ("react.dev" . js-jsx-mode)
+          ("leetcode.cn" . js-ts-mode)
           )))
 
 (leaf hungry-delete

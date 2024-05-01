@@ -25,12 +25,12 @@
   (advice-add 'exec-path-from-shell-initialize :around #'ad/cache-path-from-shell))
 
 ;; REQUIRE pip3 install my-cookies
-(leaf leetcode
-  :init
-  (setq leetcode-prefer-language "javascript"
-        leetcode-prefer-sql "mysql"
-        leetcode-save-solutions t
-        leetcode-directory "~/Documents/repo/leetcode"))
+;; (leaf leetcode
+;;   :init
+;;   (setq leetcode-prefer-language "javascript"
+;;         leetcode-prefer-sql "mysql"
+;;         leetcode-save-solutions t
+;;         leetcode-directory "~/Documents/repo/leetcode"))
 
 ;; REQUIRE npm install -g @mermaid-js/mermaid-cli
 (leaf mermaid-mode)
