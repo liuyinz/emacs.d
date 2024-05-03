@@ -161,6 +161,7 @@
           (beacon . "<B>")))
 
   ;; customize thing
+
   (setq meow-display-thing-help t)
   (setq meow-char-thing-table
         '((?r . round)
@@ -172,10 +173,30 @@
           (?d . defun)
           (?l . line)
           (?p . paragraph)
-          (?b . buffer)))
+          (?b . buffer)
+          (?t . tag)))
+
   (meow-thing-register 'angle
                        '(pair ("<") (">"))
                        '(pair ("<") (">")))
+  ;; thing for tag
+  ;; TODO implement methods for all tag-related modes, like mhtml-mode, html-ts-mode...
+  (defun meow--inner-of-tag ()
+    ;; jtsx-*-mode
+    (when-let (((jtsx-jsx-context-p))
+               (node (jtsx-enclosing-jsx-element-at-point t))
+               (end (treesit-node-start (treesit-node-child-by-field-name node "close_tag")))
+               (start (treesit-node-end (treesit-node-child-by-field-name node "open_tag"))))
+      (cons start end)))
+
+  (defun meow--bounds-of-tag ()
+    (when-let (((jtsx-jsx-context-p))
+               (node (jtsx-enclosing-jsx-element-at-point t))
+               (end (treesit-node-end (treesit-node-child-by-field-name node "close_tag")))
+               (start (treesit-node-start (treesit-node-child-by-field-name node "open_tag"))))
+      (cons start end)))
+
+  (meow-thing-register 'tag #'meow--inner-of-tag #'meow--bounds-of-tag)
 
   (meow-setup)
   (meow-global-mode 1)
