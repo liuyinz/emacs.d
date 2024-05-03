@@ -34,7 +34,10 @@
                 (markdown-mode . prettier-markdown)
                 (gfm-mode . prettier-markdown)
                 (ruby-ts-mode . rubocop)
-                (nxml-mode . prettier-html))))
+                (nxml-mode . prettier-html)
+                (jtsx-jsx-mode . prettier-javascript)
+                (jtsx-tsx-mode . prettier-typescript)
+                (jtsx-typescript-mode . prettier-typescript))))
 
 (provide 'init-format)
 ;;; init-format.el ends here

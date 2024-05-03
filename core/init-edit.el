@@ -14,9 +14,8 @@
           ("emacs-china\\.org" . gfm-mode)
           ("stackexchange\\.com" . gfm-mode)
           ("stackoverflow\\.com" . gfm-mode)
-          ("react.docschina.org" . js-jsx-mode)
-          ("react.dev" . js-jsx-mode)
-          ("leetcode.cn" . js-ts-mode)
+          ("react.docschina.org" . jtsx-jsx-mode)
+          ("react.dev" . jtsx-jsx-mode)
           )))
 
 (leaf hungry-delete

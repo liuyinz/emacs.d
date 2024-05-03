@@ -81,6 +81,59 @@
 
   )
 
+(leaf jtsx
+  :init
+  (setq js-indent-level 2)
+  (setq typescript-ts-mode-indent-offset 2)
+  (setq jtsx-switch-indent-offset 0)
+  (setq jtsx-indent-statement-block-regarding-standalone-parent nil)
+  (setq jtsx-jsx-element-move-allow-step-out t)
+  (setq jtsx-enable-jsx-electric-closing-element t)
+  (setq jtsx-enable-all-syntax-highlighting-features t)
+  (setq jtsx-enable-jsx-element-tags-auto-sync t)
+
+  ;; HACK adding jtsx after treesit-auto to make sure it worked
+  (defun jtsx-add-to-auto-mode-alist ()
+    "Add file extension for jtsx-tsx/jsx-mode"
+    (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jtsx-jsx-mode))
+    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . jtsx-tsx-mode)))
+  (advice-add 'treesit-auto-add-to-auto-mode-alist
+              :after #'jtsx-add-to-auto-mode-alist)
+  ;; lsp-bridge setup
+  (with-eval-after-load 'lsp-bridge
+    (prependq! lsp-bridge-single-lang-server-mode-list
+               '(((jtsx-tsx-mode jtsx-typescript-mode) . "typescriptreact")
+                 ((jtsx-jsx-mode) . "javascript"))))
+
+  :config
+  :config
+  (defun jtsx-bind-keys-to-mode-map (mode-map)
+    "Bind keys to MODE-MAP."
+    (dolist (pair '(("C-c h t" . jtsx-jump-jsx-element-tag-dwim)
+                    ("C-c h o" . jtsx-jump-jsx-opening-tag)
+                    ("C-c h c" . jtsx-jump-jsx-closing-tag)
+                    ("C-c h r" . jtsx-rename-jsx-element)
+                    ("C-c h j" . jtsx-move-jsx-element-tag-forward)
+                    ("C-c h k" . jtsx-move-jsx-element-tag-backward)
+                    ("C-c h J" . jtsx-move-jsx-element-forward)
+                    ("C-c h K" . jtsx-move-jsx-element-backward)
+                    ("C-c h a" . jtsx-move-jsx-element-step-in-forward)
+                    ("C-c h b" . jtsx-move-jsx-element-step-in-backward)
+                    ("C-c h w" . jtsx-wrap-in-jsx-element)
+                    ("C-c h u" . jtsx-unwrap-jsx)
+                    ("C-c h d" . jtsx-delete-jsx-node)))
+      (keymap-set jtsx-jsx-mode-map (car pair) (cdr pair))))
+
+  (defun jtsx-bind-keys-to-jtsx-jsx-mode-map ()
+    (jtsx-bind-keys-to-mode-map jtsx-jsx-mode-map))
+
+  (defun jtsx-bind-keys-to-jtsx-tsx-mode-map ()
+    (jtsx-bind-keys-to-mode-map jtsx-tsx-mode-map))
+
+  (add-hook 'jtsx-jsx-mode-hook 'jtsx-bind-keys-to-jtsx-jsx-mode-map)
+  (add-hook 'jtsx-tsx-mode-hook 'jtsx-bind-keys-to-jtsx-tsx-mode-map)
+  )
+
 ;; --------------------------- Node -------------------------------
 
 (leaf nodejs-repl
