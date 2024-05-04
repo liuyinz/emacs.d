@@ -3,13 +3,19 @@
 ;;; Code:
 
 (leaf colorful-mode
-  :hook (after-init-hook . global-colorful-mode)
+  :hook
+  (after-init-hook . global-colorful-mode)
+  (colorful-mode-hook . colorful-mode-setup)
   :init
   (setq colorful-use-prefix t
         colorful-only-strings t
         ;; black medium square
         colorful-prefix-string "\u25FC"
-        ))
+        )
+  (defun colorful-mode-setup ()
+    "colorful-mode setup."
+    (when (memq major-mode '(css-mode css-ts-mode sass-mode scss-mode))
+      (setq-local colorful-only-strings nil))))
 
 (leaf rainbow-delimiters
   :hook (prog-mode-hook . rainbow-delimiters-mode)
