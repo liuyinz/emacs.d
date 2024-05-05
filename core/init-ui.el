@@ -40,6 +40,10 @@
                                                  ("buffer-position" . 0)
                                                  ("major-mode" . 3))))))
 
+(leaf hide-mode-line
+  :init
+  (setq hide-mode-line-excluded-modes nil))
+
 (leaf redacted)
 
 ;; (leaf breadcrumb
