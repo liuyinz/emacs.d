@@ -1,0 +1,11 @@
+{
+  "name": "vscode-html-language-server",
+  "languageId": "html",
+  "command": ["vscode-html-language-server", "--stdio"],
+  "settings": {
+    "validate": true,
+    "lint": {
+      "validProperties": []
+    }
+  }
+}
