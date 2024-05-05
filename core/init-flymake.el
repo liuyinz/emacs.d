@@ -10,13 +10,11 @@
 (leaf flymake
   :hook ((prog-mode-hook
           markdown-mode-hook
-          nxml-mode-hook
           yaml-ts-mode-hook) . flymake-mode)
   :init
   (setq flymake-indicator-type nil
         flymake-margin-indicator-position nil
         flymake-fringe-indicator-position nil
-        flymake-margin-indicators-string nil
         flymake-no-changes-timeout 5))
 
 (leaf flymake-collection
