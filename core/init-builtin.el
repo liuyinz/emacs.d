@@ -195,7 +195,7 @@
   (setq auto-save-visited-predicate
         (lambda () (and (buffer-modified-p) (not buffer-read-only))))
   ;; BUG cann't find directory or file error, use super-save instead
-  ;; (add-hook 'after-init-hook #'auto-save-visited-mode)
+  (add-hook 'after-init-hook #'auto-save-visited-mode)
   )
 
 (leaf saveplace
