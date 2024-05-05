@@ -186,15 +186,16 @@
         (make-directory target-dir t))))
   (add-to-list 'find-file-not-found-functions #'my/auto-create-missing-dirs)
 
-  ;; ;; auto-save
-  ;; ;; BUG cann't find directory or file error, use super-save instead
-  ;; (add-hook 'after-init-hook #'auto-save-visited-mode
-  ;; (setq make-backup-files nil
-  ;;       create-lockfiles nil
-  ;;       auto-save-default t
-  ;;       auto-save-visited-interval 10)
-  ;; (setq auto-save-visited-predicate
-  ;;       (lambda () (and (buffer-modified-p) (not buffer-read-only))))
+  (setq make-backup-files nil
+        create-lockfiles nil)
+
+  ;; auto-save
+  (setq auto-save-default nil
+        auto-save-visited-interval 10)
+  (setq auto-save-visited-predicate
+        (lambda () (and (buffer-modified-p) (not buffer-read-only))))
+  ;; BUG cann't find directory or file error, use super-save instead
+  ;; (add-hook 'after-init-hook #'auto-save-visited-mode)
   )
 
 (leaf saveplace
