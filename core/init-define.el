@@ -187,8 +187,8 @@ Same as `replace-string C-q C-m RET RET'."
           (mapcar #'symbol-name
                   (seq-filter #'commandp
                               (seq-uniq (map-values auto-mode-alist)))))))
-  (find-file (make-temp-file "Temp-"))
-  (with-current-buffer (funcall (intern mode))))
+  (with-current-buffer (find-file (make-temp-file "Temp-"))
+    (funcall (intern mode))))
 
 (defun revert-this-buffer ()
   "Revert the current buffer."
