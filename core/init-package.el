@@ -59,8 +59,9 @@
                 ((string-prefix-p my/dir-lib filepath))
                 ((package-lint-looks-like-a-package-p)))
       (package-lint-flymake-setup)
-      (setq-local fill-column 80)
-      (add-hook 'flymake-diagnostic-functions #'elisp-flymake-fill-column nil t))))
+      ;; (setq-local fill-column 92)
+      ;; (add-hook 'flymake-diagnostic-functions #'elisp-flymake-fill-column nil t)
+      )))
 
 ;; ;; TODO imitate markdown-toc to write a function to convert and update
 ;; ;; commnetary section to README.md
