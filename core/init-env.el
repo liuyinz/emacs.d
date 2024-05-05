@@ -18,9 +18,7 @@
 ;;   )
 
 (leaf mise
-  :hook (after-init-hook . global-mise-mode)
-  :init
-  (setq mise-debug t))
+  :hook (after-init-hook . global-mise-mode))
 
 (provide 'init-env)
 ;;; init-env.el ends here
