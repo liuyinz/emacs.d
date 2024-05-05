@@ -35,6 +35,7 @@
   ;;       lsp-bridge-single-lang-server-extension-list nil
   ;;       lsp-bridge-single-lang-server-mode-list)
 
+  (setq acm-candidate-match-function 'orderless-flex)
   (setq lsp-bridge-enable-diagnostics t
         lsp-bridge-disable-backup nil)
 
