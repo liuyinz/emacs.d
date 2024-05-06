@@ -27,6 +27,7 @@
 (leaf mini-echo
   :hook (after-init-hook . mini-echo-mode)
   :init
+  (setq mode-line-position-column-line-format '("%l:%c,%p"))
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
         '(:long ("meow" "buffer-name-short" "vcs" "buffer-position" "envrc"
