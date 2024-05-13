@@ -1,0 +1,22 @@
+{
+  "name": "tailwindcss-typescriptreact",
+  "languageId": "typescriptreact",
+  "command": ["tailwindcss-language-server", "--stdio"],
+  "settings": {
+    "includeLanguages": {
+      "plaintext": "html"
+    },
+    "emmetCompletions": true,
+    "showPixelEquivalents": true,
+    "validate": "warning",
+    "lint": {
+      "invalidScreen": "error",
+      "invalidVariant": "error",
+      "invalidTailwindDirective": "error",
+      "invalidApply": "error",
+      "cssConflict": "warning",
+      "recommendedVariantOrder": "warning"
+    }
+  },
+  "support-single-file": false
+}
