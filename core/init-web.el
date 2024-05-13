@@ -95,7 +95,7 @@
   ;; HACK adding jtsx after treesit-auto to make sure it worked
   (defun jtsx-add-to-auto-mode-alist ()
     "Add file extension for jtsx-tsx/jsx-mode"
-    (add-to-list 'auto-mode-alist '("\\(App\\.js\\|\\.jsx\\)\\'" . jtsx-jsx-mode))
+    (add-to-list 'auto-mode-alist '("\\(App\\.js\\)\\|\\.jsx\\'" . jtsx-jsx-mode))
     (add-to-list 'auto-mode-alist '("\\.tsx\\'" . jtsx-tsx-mode)))
   (advice-add 'treesit-auto-add-to-auto-mode-alist
               :after #'jtsx-add-to-auto-mode-alist)
