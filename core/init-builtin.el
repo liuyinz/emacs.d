@@ -214,6 +214,24 @@
           "^/tmp/" "^/private/tmp/" "^/var/folders/.+$" "/share/emacs/.+$" "\\.git/.+$"
           "bookmarks"))
 
+  (defun recentf-prune-dir (dirs)
+    "Delete all recentf records which match selected DIRS."
+    (interactive
+     (list (let ((vertico-sort-function nil))
+             (completing-read-multiple
+              "recentf remove dir: "
+              (let (counts)
+                (dolist (path recentf-list)
+                  (cl-incf (alist-get
+                            (downcase (file-name-directory path))
+                            counts 0 nil 'equal)))
+                (mapcar #'car (seq-sort-by #'cdr #'> counts)))))))
+    (let ((re (regexp-opt dirs)))
+      (setq recentf-list
+            (seq-remove (lambda(path)
+                          (string-match-p re path 0))
+                        recentf-list))))
+
   :defer-config
   ;; auto-cleanup in save/load
   (advice-add 'recentf-save-list :before #'recentf-cleanup)
