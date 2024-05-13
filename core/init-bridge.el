@@ -29,23 +29,16 @@
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
 
-  ;; ;; NOTE for debugging
-  ;; (setq lsp-bridge-multi-lang-server-extension-list nil
-  ;;       lsp-bridge-multi-lang-server-mode-list nil
-  ;;       lsp-bridge-single-lang-server-extension-list nil
-  ;;       lsp-bridge-single-lang-server-mode-list)
-
   (setq acm-candidate-match-function 'orderless-flex)
   (setq lsp-bridge-enable-diagnostics t
         lsp-bridge-disable-backup nil)
-
+  (setq lsp-bridge-enable-completion-in-string t)
   (appendq! lsp-bridge-default-mode-hooks
             '(snippet-mode-hook
               git-commit-mode-hook
               mhtml-mode-hook
               html-mode-hook
               js-json-mode-hook
-              json-ts-mode-hook
               vue-ts-mode-hook))
 
   ;; Setup server
@@ -53,6 +46,45 @@
         (expand-file-name "lsp-bridge/single" my/dir-ext))
   (setq lsp-bridge-user-multiserver-dir
         (expand-file-name "lsp-bridge/multi" my/dir-ext))
+
+  ;; Setup language
+  ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko ruff-lsp
+  (setq lsp-bridge-python-command "python3.11")
+  (setq lsp-bridge-python-multi-lsp-server "pyright_ruff")
+
+  (setq lsp-bridge-get-multi-lang-server-by-project #'my/bridge-multi-server-detect)
+  (defun my/bridge-multi-server-detect (project-path filepath)
+    "Detect right server config for jsx/tsx project."
+    (save-excursion
+      ;; detect for web dev
+      (let* ((tailwindcss-p (directory-files
+                             project-path
+                             'full
+                             "tailwind\\.config\\.\\(j\\|cj\\|mj\\|t\\)s\\'"))
+             (ext (file-name-extension filepath))
+             (jsx-p (or (string= ext "jsx")
+                        (memq major-mode '(jtsx-jsx-mode  js-jsx-mode))))
+             (tsx-p (or (string= ext "tsx")
+                        (memq major-mode '(jtsx-tsx-mode
+                                           jtsx-typescript-mode
+                                           tsx-ts-mode))))
+             (html-p
+              (or (memq ext '("htm" "html"))
+                  (memq major-mode '(mhtml-mode html-mode html-ts-mode))))
+             (css-p
+              (or (memq ext '("css"))
+                  (memq major-mode '(css-mode css-ts-mode less-css-mode scss-mode))))
+             (server (cond
+                      ;; for jsx/tsx
+                      ((and tailwindcss-p jsx-p) "javascriptreact_tailwindcss")
+                      ((and tailwindcss-p tsx-p) "typescriptreact_tailwindcss")
+                      ;; for html
+                      ((and tailwindcss-p html-p) "html_emmet_tailwindcss")
+                      (html-p "html_emmet")
+                      ;; for css
+                      ((and tailwindcss-p css-p) "css_emmet_tailwindcss")
+                      (css-p "css_emmet"))))
+        server)))
 
   ;; SEE https://github.com/Microsoft/vscode-eslint#settings-options
   ;; SEE https://github.com/neoclide/coc-css
@@ -69,23 +101,9 @@
   ;; (appendq! lsp-bridge-single-lang-server-extension-list nil)
 
   (appendq! lsp-bridge-single-lang-server-mode-list
-            '(((css-mode css-ts-mode) . "vscode-css-language-server")
-              ((js-json-mode json-mode json-ts-mode) . "vscode-json-language-server")
-              ((toml-ts-mode conf-toml-mode) . "toml-language-server")))
+            '(((toml-ts-mode conf-toml-mode) . "toml-language-server")))
 
-  (setq lsp-bridge-multi-lang-server-extension-list
-        '((("css" "less" "scss") . "css_emmet")
-          (("html") . "html_emmet")))
-
-  (appendq! lsp-bridge-multi-lang-server-mode-list
-            '(((css-mode less-css-mode scss-mode) . "css_emmet")
-              ((web-mode mhtml-mode html-mode) . "html_emmet")
-              ((vue-ts-mode) . "volar_emmet")))
-
-  ;; Setup language
-  ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko ruff-lsp
-  (setq lsp-bridge-python-command "python3.11")
-  (setq lsp-bridge-python-multi-lsp-server "pyright_ruff")
+  (setq lsp-bridge-multi-lang-server-extension-list nil)
 
   (leaf acm
     :init
@@ -96,7 +114,6 @@
     (setq acm-completion-backend-merge-order
           '("template-first-part-candidates"
             "mode-first-part-candidates"
-            ;; "tabnine-candidates"
             "template-second-part-candidates"
             "mode-second-part-candidates"))
 
@@ -121,9 +138,7 @@
             (setq acm-enable-doc nil))
         (setq acm-enable-doc t)
         (acm-doc-try-show)))
-    (advice-add 'acm-doc-toggle :override #'ad/acm-doc-toggle)
-    )
-  )
+    (advice-add 'acm-doc-toggle :override #'ad/acm-doc-toggle)))
 
 (leaf lsp-bridge-ref
   :hook (lsp-bridge-ref-mode-hook . (lambda () (meow-mode -1))))
