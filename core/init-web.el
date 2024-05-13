@@ -103,7 +103,7 @@
   (with-eval-after-load 'lsp-bridge
     (prependq! lsp-bridge-single-lang-server-mode-list
                '(((jtsx-tsx-mode jtsx-typescript-mode) . "typescriptreact")
-                 ((jtsx-jsx-mode) . "javascript"))))
+                 ((jtsx-jsx-mode) . "javascriptreact"))))
 
   :config
   :config
