@@ -150,7 +150,17 @@
         (nodejs-repl-send-region (region-beginning) (region-end))
       (nodejs-repl-send-region (point-min)(point-max)))))
 
-(leaf eslint-init)
+(defvar tailwindcss-frameworks
+  '("nextjs" "laravel" "vite" "nuxtjs" "gatsby" "solidjs" "sveltekit" "angular"
+    "ruby-on-rails" "remix" "phoenix" "parcel" "symfony" "meteor" "create-react-app"
+    "adonisjs" "emberjs" "astro" "qwik" "rspack")
+  "List of available frameworks supported by tailwindcss.")
+
+(defun tailwindcss-framework-setup (framework)
+  "Browser instructions for FRAMEWORK to use tailwindcss."
+  (interactive
+   (list (completing-read "Select framework: " tailwindcss-frameworks nil t)))
+  (browse-url (format "https://tailwindcss.com/docs/guides/%s" (url-hexify-string framework))))
 
 (provide 'init-web)
 ;;; init-web.el ends here
