@@ -11,26 +11,19 @@
   :hook (after-init-hook . binky-mode)
   :init
   (setq binky-recent-sort-by 'frequency
-        ;; binky-preview-show-header t
-        ;; binky-preview-side 'right
         binky-preview-in-groups t
-        ;; binky-preview-delay 0.3
-        binky-margin-string "\x2630"
+        binky-margin-string nil
         binky-indicator-side 'right
-        binky-command-prefix nil)
-  (setq binky-marks
-        `((back . ?')
-          (quit . ?q)
-          (recent . (?1 ?2 ?3 ?4 ?5))
-          (manual . ,(remove ?q (number-sequence ?a ?z)))))
+        binky-command-prefix nil
+        binky-hl-use-pulse t)
+  (setq binky-back-mark ?')
   (setq binky-preview-column
         '((mark    0.03  4)
           (name    0.20  15)
-          (line    nil   nil)
+          (line    0.04   6)
           (project 0.14  nil)
           (context 0     nil)))
   :defer-config
-  (appendq! binky-exclude-regexps '("\\`magit.*\\'"))
   (leaf binky-margin
     :require t
     :config
