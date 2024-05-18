@@ -7,6 +7,7 @@
 
 ;;; Code:
 
+;;; TODO write things with treesit api
 (leaf meow
   :require t
   :init
@@ -181,22 +182,43 @@
   (meow-thing-register 'angle
                        '(pair ("<") (">"))
                        '(pair ("<") (">")))
-  ;; thing for tag
-  ;; TODO implement methods for all tag-related modes, like mhtml-mode, html-ts-mode...
+
+  ;;; thing for tag
+  (defun jtsx-jsx-element-pos ()
+    "Retun list fo positions of pair tag of current element in `jtsx'."
+    (when-let* (((jtsx-jsx-context-p))
+                (node (jtsx-enclosing-jsx-element-at-point t))
+                (open (treesit-node-child-by-field-name node "open_tag"))
+                (close (treesit-node-child-by-field-name node "close_tag")))
+      (list (treesit-node-start open)
+            (treesit-node-end open)
+            (treesit-node-start close)
+            (treesit-node-end close))))
+
+  (defun web-mode-element-pos ()
+    "Retun list fo positions of pair tag of current element in `web-mode'."
+    (when-let* ((ele-begin (web-mode-element-beginning-position))
+                (ele-end (web-mode-element-end-position)))
+      (list ele-begin
+            (1+ (web-mode-tag-end-position ele-begin))
+            (web-mode-tag-beginning-position ele-end)
+            (1+ ele-end))))
+
   (defun meow--inner-of-tag ()
-    ;; jtsx-*-mode
-    (when-let (((jtsx-jsx-context-p))
-               (node (jtsx-enclosing-jsx-element-at-point t))
-               (end (treesit-node-start (treesit-node-child-by-field-name node "close_tag")))
-               (start (treesit-node-end (treesit-node-child-by-field-name node "open_tag"))))
-      (cons start end)))
+    (-let [(_ beg end _)
+           (cond ((memq major-mode '(jtsx-jsx-mode jtsx-tsx-mode))
+                  (jtsx-jsx-element-pos))
+                 ((eq major-mode 'web-mode)
+                  (web-mode-element-pos)))]
+      (and beg end (cons beg end))))
 
   (defun meow--bounds-of-tag ()
-    (when-let (((jtsx-jsx-context-p))
-               (node (jtsx-enclosing-jsx-element-at-point t))
-               (end (treesit-node-end (treesit-node-child-by-field-name node "close_tag")))
-               (start (treesit-node-start (treesit-node-child-by-field-name node "open_tag"))))
-      (cons start end)))
+    (-let [(beg _ _ end)
+           (cond ((memq major-mode '(jtsx-jsx-mode jtsx-tsx-mode))
+                  (jtsx-jsx-element-pos))
+                 ((eq major-mode 'web-mode)
+                  (web-mode-element-pos)))]
+      (and beg end (cons beg end))))
 
   (meow-thing-register 'tag #'meow--inner-of-tag #'meow--bounds-of-tag)
 
@@ -204,9 +226,7 @@
   (meow-global-mode 1)
 
   (with-eval-after-load 'consult
-    (setq meow-goto-line-function #'consult-goto-line))
-
-  )
+    (setq meow-goto-line-function #'consult-goto-line)))
 
 
 ;; REQUIRE brew tap laishulu/macism

@@ -564,3 +564,6 @@
 [submodule "jtsx"]
 	path = lib/jtsx
 	url = https://github.com/llemaitre19/jtsx.git
+[submodule "combobulate"]
+	path = lib/combobulate
+	url = https://github.com/mickeynp/combobulate.git
