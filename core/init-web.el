@@ -7,7 +7,9 @@
 
 ;;; Code:
 
-;; --------------------------- Css --------------------------------
+
+
+;;; css
 
 (leaf css-mode
   :init
@@ -21,7 +23,21 @@
 ;; (leaf less-css-mode
 ;;   :init (setq less-css-compile-at-save nil))
 
-;; --------------------------- Html -------------------------------
+(defvar tailwindcss-frameworks
+  '("nextjs" "laravel" "vite" "nuxtjs" "gatsby" "solidjs" "sveltekit" "angular"
+    "ruby-on-rails" "remix" "phoenix" "parcel" "symfony" "meteor" "create-react-app"
+    "adonisjs" "emberjs" "astro" "qwik" "rspack")
+  "List of available frameworks supported by tailwindcss.")
+
+(defun tailwindcss-framework-setup (framework)
+  "Browser instructions for FRAMEWORK to use tailwindcss."
+  (interactive
+   (list (completing-read "Select framework: " tailwindcss-frameworks nil t)))
+  (browse-url (format "https://tailwindcss.com/docs/guides/%s"
+                      (url-hexify-string framework))))
+
+
+;;; html
 
 (leaf impatient-mode
   :commands imp-visit-buffer)
@@ -29,7 +45,7 @@
 ;; Major mode for editing web templates
 (leaf web-mode
   ;; :hook (web-mode-hook . web-mode-setup)
-  :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\)$"
+  :mode "\\.\\(htm\\|html\\|phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\)$"
   :init
   (setq web-mode-markup-indent-offset 2
         web-mode-css-indent-offset 2
@@ -54,7 +70,8 @@
         )
   )
 
-;; ---------------------------- JS --------------------------------
+
+;;; js
 
 (leaf js
   :init
@@ -62,7 +79,8 @@
         js-chain-indent t
         js-jsx-indent-level 2))
 
-;; ---------------------------- TS --------------------------------
+
+;;; ts
 
 (leaf typescript-ts-mode
   :mode "\\.ts\\'"
@@ -134,7 +152,8 @@
   (add-hook 'jtsx-tsx-mode-hook 'jtsx-bind-keys-to-jtsx-tsx-mode-map)
   )
 
-;; --------------------------- Node -------------------------------
+
+;;; node
 
 (leaf nodejs-repl
   :bind
@@ -149,18 +168,6 @@
     (if (use-region-p)
         (nodejs-repl-send-region (region-beginning) (region-end))
       (nodejs-repl-send-region (point-min)(point-max)))))
-
-(defvar tailwindcss-frameworks
-  '("nextjs" "laravel" "vite" "nuxtjs" "gatsby" "solidjs" "sveltekit" "angular"
-    "ruby-on-rails" "remix" "phoenix" "parcel" "symfony" "meteor" "create-react-app"
-    "adonisjs" "emberjs" "astro" "qwik" "rspack")
-  "List of available frameworks supported by tailwindcss.")
-
-(defun tailwindcss-framework-setup (framework)
-  "Browser instructions for FRAMEWORK to use tailwindcss."
-  (interactive
-   (list (completing-read "Select framework: " tailwindcss-frameworks nil t)))
-  (browse-url (format "https://tailwindcss.com/docs/guides/%s" (url-hexify-string framework))))
 
 (provide 'init-web)
 ;;; init-web.el ends here
