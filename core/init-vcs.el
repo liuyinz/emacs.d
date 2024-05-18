@@ -139,6 +139,8 @@
   (setq magit-auto-revert-immediately t)
   (setq magit-save-repository-buffers 'dontask
         magit-bury-buffer-function #'magit-restore-window-configuration)
+  (setq magit-show-long-lines-warning nil)
+
 
   ;; Display fullframe buffer in some magit-*-modes
   (defvar magit-modes-display-fullframe-selected
