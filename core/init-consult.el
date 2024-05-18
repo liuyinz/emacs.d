@@ -207,7 +207,7 @@
       "Command to find file in selected directory for `consult-dir'."
       (interactive)
       (call-interactively
-       (if (string-equal default-directory (project-root (project-current t)))
+       (if (string-prefix-p (project-root (project-current t)) default-directory)
            #'project-find-file
          #'find-file)))
     :defer-config
