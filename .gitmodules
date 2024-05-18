@@ -161,9 +161,6 @@
 [submodule "vc-msg"]
 	path = lib/vc-msg
 	url = https://github.com/redguardtoo/vc-msg.git
-[submodule "gcmh"]
-	path = lib/gcmh
-	url = https://github.com/emacsmirror/gcmh.git
 [submodule "ox-gfm"]
 	path = lib/ox-gfm
 	url = https://github.com/larstvei/ox-gfm.git
@@ -179,9 +176,6 @@
 [submodule "graphql-mode"]
 	path = lib/graphql-mode
 	url = https://github.com/davazp/graphql-mode.git
-[submodule "highlight-parentheses"]
-	path = lib/highlight-parentheses
-	url = https://github.com/emacsmirror/highlight-parentheses.git
 [submodule "yasnippet-collection"]
 	path = lib/yasnippet-collection
 	url = https://github.com/liuyinz/yasnippet-collection.git
@@ -567,3 +561,9 @@
 [submodule "combobulate"]
 	path = lib/combobulate
 	url = https://github.com/mickeynp/combobulate.git
+[submodule "highlight-parentheses"]
+	path = lib/highlight-parentheses
+	url = https://git.sr.ht/~tsdh/highlight-parentheses.el
+[submodule "gcmh"]
+	path = lib/gcmh
+	url = https://gitlab.com/koral/gcmh.git
