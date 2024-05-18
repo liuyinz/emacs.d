@@ -109,12 +109,14 @@
      '("Q" . insecure-lock-enter)
      '("/" . isearch-forward-regexp)
      '("<escape>" . ignore)
-     '("'" . binky-binky))
+     '("'" . binky-binky)
+     '("\"" . my/winconf-switch))
 
     (meow-motion-overwrite-define-key
      '("C-o" . meow-temp-normal)
      '("<escape>" . ignore)
-     '("'" . binky-binky))
+     '("'" . binky-binky)
+     '("\"" . my/winconf-switch))
 
     (meow-leader-define-key
      ;; SPC j/k will run the original command in MOTION state.

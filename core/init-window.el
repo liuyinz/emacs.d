@@ -63,7 +63,33 @@
                (side            . right)
                (window-width    . 0.25)))
 
-;; ------------------------- commands -----------------------------
+
+;;; window management
+
+(defvar my/winconf-list nil)
+
+;; TODO refactor and update automatically
+(defun my/winconf-switch (&optional new)
+  (interactive "P")
+  (if new
+      (let ((len (length my/winconf-list)))
+        (cl-pushnew (current-window-configuration)
+                    my/winconf-list
+                    :test #'window-configuration-equal-p)
+        (when (= (- (length my/winconf-list) len) 1)
+          (message "Add new layout !")))
+    (if my/winconf-list
+        (let* ((current (current-window-configuration))
+               (len (length my/winconf-list))
+               (head (car my/winconf-list))
+               (head-p (window-configuration-equal-p current head)))
+          (if (not head-p)
+              (set-window-configuration head)
+            (if (= len 1)
+                (message "Already on the only window layout yet.")
+              (set-window-configuration (cadr my/winconf-list))
+              (setq my/winconf-list (nconc (cdr my/winconf-list) (list head))))))
+      (message "No window layout saved yet."))))
 
 (defun toggle-one-window ()
   "Toggle between window layout between multi and one."
