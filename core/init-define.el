@@ -149,6 +149,12 @@ FN-R : region function, FN: default function"
   (and emacs-preload-features
        (memq feature emacs-preload-features)))
 
+(defun my/major-mode-list ()
+  "Return major mode list."
+  (mapcar #'symbol-name
+          (seq-filter #'commandp
+                      (seq-uniq (map-values auto-mode-alist)))))
+
 (defun adjust-font-family-buffer-local (font-family)
   "Set FONT-FAMILY in current buffer only."
   (interactive (list (completing-read "font family:" (font-family-list))))
@@ -179,16 +185,13 @@ Same as `replace-string C-q C-m RET RET'."
 
 ;; File and buffer
 
-(defun my/temp-file (mode)
-  "Switch to temp file with major mode MODE."
+(defun my/temp-file (suffix)
+  "Switch to temp file with SUFFIX."
   (interactive
-   (list (completing-read
-          "Select major mode: "
-          (mapcar #'symbol-name
-                  (seq-filter #'commandp
-                              (seq-uniq (map-values auto-mode-alist)))))))
-  (with-current-buffer (find-file (make-temp-file "Temp-"))
-    (funcall (intern mode))))
+   (list (read-string "Select file kind : ")))
+  (let ((file-name (expand-file-name (concat "Temp/temp." suffix) my/dir-cache)))
+    (with-current-buffer (find-file file-name)
+      (delete-region (point-min) (point-max)))))
 
 (defun revert-this-buffer ()
   "Revert the current buffer."
