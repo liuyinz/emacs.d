@@ -100,6 +100,9 @@
   )
 
 (leaf jtsx
+  :mode
+  ("\\(App\\.js\\)\\|\\.jsx\\'" . jtsx-jsx-mode)
+  ("\\.tsx\\'" . jtsx-tsx-mode)
   :init
   (setq js-indent-level 2)
   (setq typescript-ts-mode-indent-offset 2)

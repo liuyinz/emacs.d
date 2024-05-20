@@ -69,7 +69,7 @@ If CN is non-nil, search in zh-CN documentation."
         quickrun-timeout-seconds 20)
   :defer-config
   (prependq! quickrun--major-mode-alist
-             '((lisp-interaction-mode . "emacs")
+             '((lisp-interaction-mode . "elisp")
                (typescript-ts-mode . "typescript")
                (js-ts-mode . "javascript")
                (bash-ts-mode . "shellscript"))))
