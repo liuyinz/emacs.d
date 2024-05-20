@@ -35,11 +35,13 @@
             (sh-shellcheck-flymake :disabled t)))
           ((yaml-mode yaml-ts-mode) .
            flymake-collection-yamllint)
-          ((web-mode html-ts-mode) .
-           (flymake-collection-html-tidy))
-          ((js-mode js-ts-mode typescript-mode typescript-ts-mode vue-ts-mode
-                    typescript-tsx-mode jtsx-tsx-mode jtsx-jsx-mode jtsx-typescript-mode) .
-                    (flymake-collection-eslint))
+          ;; ((web-mode html-ts-mode) .
+          ;;  (flymake-collection-html-tidy))
+          ;; ((js-mode js-ts-mode typescript-mode typescript-ts-mode vue-ts-mode
+          ;;           typescript-tsx-mode jtsx-tsx-mode jtsx-jsx-mode jtsx-typescript-mode) .
+          ;;           (
+          ;;            ;; flymake-collection-eslint
+          ;;            flymake-collection-oxlint))
           ((json-mode json-ts-mode) flymake-collection-jq)
           ((markdown-mode gfm-mode) flymake-collection-markdownlint)
           ((lua-mode lua-ts-mode) flymake-collection-luacheck)
