@@ -15,7 +15,7 @@
   (setq flymake-indicator-type nil
         flymake-margin-indicator-position nil
         flymake-fringe-indicator-position nil
-        flymake-no-changes-timeout 5))
+        flymake-no-changes-timeout 10))
 
 (leaf flymake-collection
   :hook (after-init-hook . flymake-collection-hook-setup)
