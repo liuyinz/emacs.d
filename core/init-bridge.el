@@ -42,8 +42,9 @@
   (setq lsp-bridge-python-command "python3.11")
   (setq lsp-bridge-python-multi-lsp-server "pyright_ruff")
 
+  ;; (setq lsp-bridge-completion-popup-predicates nil)
   ;; ;; Debug: REQUIRE brew install gdb
-  (setq lsp-bridge-enable-log t)
+  ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
 
   :defer-config

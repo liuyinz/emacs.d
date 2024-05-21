@@ -12,7 +12,7 @@
 
 (defun jsreact-p (ext)
   (or (string= ext "jsx")
-      (memq major-mode '(jtsx-jsx-mode  js-jsx-mode))))
+      (memq major-mode '(jtsx-jsx-mode js-jsx-mode))))
 
 (defun tsreact-p (ext)
   (or (string= ext "tsx")
@@ -36,7 +36,7 @@
 
 
 ;;; single server detect
-
+;; (push '((jtsx-jsx-mode) . "tailwindcss") lsp-bridge-single-lang-server-mode-list)
 ;; ;; HACK remove sh-mode in default mode list and enable it only when sh-shell is not zsh
 ;; (setq lsp-bridge-single-lang-server-mode-list
 ;;       (remove (rassoc "bash-language-server" lsp-bridge-single-lang-server-mode-list)
@@ -60,30 +60,33 @@
 
 ;;; multi-server detect
 (appendq! lsp-bridge-multi-lang-server-mode-list
-          '(((jtsx-jsx-mode jtsx-tsx-mode) . "jsreact_tailwindcss")))
+          '(((jtsx-jsx-mode jtsx-tsx-mode) . "jsreact_tailwindcss")
+            ((html-mode web-mode mhtml-mode) . "html_tailwindcss")
+            ((css-mode css-ts-mode) . "css_tailwindcss")))
+
 ;; (setq lsp-bridge-get-multi-lang-server-by-project 'my/bridge-multi-server-detect)
 ;; (defun my/bridge-multi-server-detect (project_path filepath)
-;;   (and (string= (file-name-extension filepath) "html") "html_tailwindcss")
-  ;; (save-excursion
-  ;;   ;; detect for web dev
-  ;;   ;; NOTE project-path return same value as filepath if lsp-bridge cannot detect project
-  ;;   ;; so check it ahead, tailwindcss do not support single file mode
-  ;;   (let ((ext (file-name-extension filepath))
-  ;;         (tailwindcss-p (and (file-directory-p project)
-  ;;                             (directory-files
-  ;;                              project
-  ;;                              'full
-  ;;                              "tailwind\\.config\\.\\(j\\|cj\\|mj\\|t\\)s\\'"))))
-  ;;     (cond
-  ;;      ;; ext/multi
-  ;;      ((and tailwindcss-p (jsreact-p ext)) "jsreact_tailwindcss")
-  ;;      ((and tailwindcss-p (tsreact-p ext)) "tsreact_tailwindcss")
-  ;;      ((and tailwindcss-p (html-p ext)) "html_emmet_tailwindcss")
-  ;;      ((and tailwindcss-p (css-like-p ext)) "css_emmet_tailwindcss")
-  ;;      ;; lib/multi
-  ;;      ((css-like-p ext) "css_emmet")
-  ;;      ((html-p ext) "html_emmet"))))
-  ;; )
+;;   (when (string= (file-name-extension filepath) "html") "html_tailwindcss")
+;; (save-excursion
+;;   ;; detect for web dev
+;;   ;; NOTE project-path return same value as filepath if lsp-bridge cannot detect project
+;;   ;; so check it ahead, tailwindcss do not support single file mode
+;;   (let ((ext (file-name-extension filepath))
+;;         (tailwindcss-p (and (file-directory-p project)
+;;                             (directory-files
+;;                              project
+;;                              'full
+;;                              "tailwind\\.config\\.\\(j\\|cj\\|mj\\|t\\)s\\'"))))
+;;     (cond
+;;      ;; ext/multi
+;;      ((and tailwindcss-p (jsreact-p ext)) "jsreact_tailwindcss")
+;;      ((and tailwindcss-p (tsreact-p ext)) "tsreact_tailwindcss")
+;;      ((and tailwindcss-p (html-p ext)) "html_emmet_tailwindcss")
+;;      ((and tailwindcss-p (css-like-p ext)) "css_emmet_tailwindcss")
+;;      ;; lib/multi
+;;      ((css-like-p ext) "css_emmet")
+;;      ((html-p ext) "html_emmet"))))
+;;)
 
 
 
