@@ -74,6 +74,7 @@
 ;;; js
 
 (leaf js
+  :mode "\\.cjs\\'"
   :init
   (setq js-indent-level 2
         js-chain-indent t
