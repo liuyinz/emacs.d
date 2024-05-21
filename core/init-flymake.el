@@ -35,8 +35,9 @@
             (sh-shellcheck-flymake :disabled t)))
           ((yaml-mode yaml-ts-mode) .
            flymake-collection-yamllint)
-          ;; ((web-mode html-ts-mode) .
-          ;;  (flymake-collection-html-tidy))
+          ;; REQUIRE brew install tidy-html5
+          ((web-mode html-ts-mode mhtml-mode html-mode) .
+           (flymake-collection-html-tidy))
           ((js-mode js-ts-mode typescript-mode typescript-ts-mode vue-ts-mode
                     typescript-tsx-mode jtsx-tsx-mode jtsx-jsx-mode jtsx-typescript-mode) .
                     (flymake-collection-eslint))
