@@ -37,11 +37,9 @@
            flymake-collection-yamllint)
           ;; ((web-mode html-ts-mode) .
           ;;  (flymake-collection-html-tidy))
-          ;; ((js-mode js-ts-mode typescript-mode typescript-ts-mode vue-ts-mode
-          ;;           typescript-tsx-mode jtsx-tsx-mode jtsx-jsx-mode jtsx-typescript-mode) .
-          ;;           (
-          ;;            ;; flymake-collection-eslint
-          ;;            flymake-collection-oxlint))
+          ((js-mode js-ts-mode typescript-mode typescript-ts-mode vue-ts-mode
+                    typescript-tsx-mode jtsx-tsx-mode jtsx-jsx-mode jtsx-typescript-mode) .
+                    (flymake-collection-eslint))
           ((json-mode json-ts-mode) flymake-collection-jq)
           ((markdown-mode gfm-mode) flymake-collection-markdownlint)
           ((lua-mode lua-ts-mode) flymake-collection-luacheck)
