@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+;; TODO support tailwindcss
 (leaf colorful-mode
   :hook
   (after-init-hook . global-colorful-mode)
