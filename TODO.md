@@ -12,8 +12,6 @@ TODO:
   - resue shell pipe commands by history of current session and saved arguments
   - async commands needed
 
-- [ ] write treesit and major-mode for rescript
-
 - [ ] trunk
   - like tab-bar-mode, frame-local window configuration management
   - a sign "#1" to show in which configuration now

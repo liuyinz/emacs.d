@@ -141,7 +141,6 @@
         magit-bury-buffer-function #'magit-restore-window-configuration)
   (setq magit-show-long-lines-warning nil)
 
-
   ;; Display fullframe buffer in some magit-*-modes
   (defvar magit-modes-display-fullframe-selected
     '(magit-log-mode magit-reflog-mode magit-submodule-list-mode)
@@ -156,7 +155,8 @@ Otherwise, behave like `magit-display-buffer-traditional'."
       (magit-display-buffer-traditional buffer)))
   (setq magit-display-buffer-function #'my/magit-display-buffer-fullframe-selected)
 
-  ;; -------------------------- status ------------------------------
+  
+  ;;; status
 
   (prependq! magit-section-initial-visibility-alist
              '((untracked . hide)
@@ -175,7 +175,8 @@ Otherwise, behave like `magit-display-buffer-traditional'."
     (put 'magit-status-mode 'magit-diff-default-arguments
          '("--no-ext-diff" "--ignore-submodules=all")))
 
-  ;; -------------------------- commit ------------------------------
+  
+  ;;; commit
 
   (setq magit-commit-reword-override-date nil
         magit-commit-show-diff nil)
@@ -183,11 +184,13 @@ Otherwise, behave like `magit-display-buffer-traditional'."
   ;; Set to meow-insert-mode automatically
   (add-hook 'git-commit-setup-hook #'meow-insert-mode)
 
-  ;; ------------------------- submodule ----------------------------
+  
+  ;;; submodule
 
   (setq magit-submodule-remove-trash-gitdirs t)
 
-  ;; ---------------------------- log --------------------------------
+  
+  ;;; tag
 
   ;; Predefined log command arguments
   (with-eval-after-load 'magit-log
@@ -202,17 +205,18 @@ Otherwise, behave like `magit-display-buffer-traditional'."
   ;;   (interactive)
   ;;   )
 
-  ;; --------------------------- diff -------------------------------
+  
+  ;;; diff
 
   ;; SEE https://magit.vc/manual/magit/Diff-Options.html
   (setq magit-diff-refine-hunk 'all
         magit-diff-refine-ignore-whitespace t
         magit-diff-paint-whitespace-lines 'all)
 
-  ;; --------------------------- blame -------------------------------
+  
+  ;;; blame
 
-  (add-hook 'magit-blame-mode-hook #'my/meow-motion-temporary)
-  )
+  (add-hook 'magit-blame-mode-hook #'my/meow-motion-temporary))
 
 (provide 'init-vcs)
 ;;; init-vcs.el ends here
