@@ -9,9 +9,7 @@
    ("C-c C-p" . wdired-change-to-wdired-mode)
    ;; ("C-c C-z f" . browse-url-of-file)
    ("{" . dired-omit-mode)
-   ("}" . dired-hide-details-mode)
-   ("[" . dirvish-layout-switch)
-   ("]" . dirvish-layout-toggle))
+   ("}" . dired-hide-details-mode))
   :init
   (setq dired-free-space nil
         dired-kill-when-opening-new-dired-buffer t
@@ -43,9 +41,9 @@ A prefix argument means to unmark them instead."
 
   )
 
-;; (leaf dired-x
-;;   :defer-config
-;;   (setq dired-omit-files (concat dired-omit-files "\\|^\\..*$")))
+(leaf dired-x
+  :defer-config
+  (setq dired-omit-files (concat dired-omit-files "\\|^\\..*$")))
 
 (leaf diredfl
   :defer-config
@@ -55,21 +53,43 @@ A prefix argument means to unmark them instead."
   :hook (after-init-hook . dirvish-override-dired-mode)
   :bind
   ("C-x d" . dirvish)
+  (:dired-mode-map
+   ("["   . dirvish-layout-switch)
+   ("]"   . dirvish-layout-toggle)
+   ("TAB" . dirvish-toggle-subtree-anywhere))
   :init
   (setq dirvish-attributes
         '(subtree-state collapse file-size)
         dirvish-use-mode-line t
         dirvish-use-header-line nil
         dirvish-preview-dispatchers nil)
+
+  (defun dirvish-toggle-subtree-anywhere ()
+    "Toggle current directory subtree or parent directory."
+    (interactive)
+    (let ((dir-p (file-directory-p (dired-get-filename))))
+      (if (and (not dir-p)
+               (equal 0 (dirvish-subtree--depth)))
+          (dired-up-directory)
+        (and (not dir-p) (dirvish-subtree-up))
+        (dirvish-subtree-toggle))))
+
   :defer-config
 
-  (leaf dirvish-extras
+  ;; setup layout
+  (setq dirvish-default-layout '(0 0 0.75))
+  (setq dirvish-layout-recipes
+        `((1 0.11 0.55)
+          ;; HACK hide preview window as small as possible to imitate full-screen dired
+          (0 0 0.02)
+          ,dirvish-default-layout))
+
+  (leaf dirvish-subtree
     :init
-    (setq dirvish-layout-recipes
-          `((0 0 0.8)
-            (0 0 0.5)
-            ,dirvish-default-layout))
-    ))
+    (setq dirvish-subtree-listing-switches "-A"
+          dirvish-subtree-always-show-state t
+          dirvish-subtree-state-style 'arrow
+          dirvish-subtree-prefix " ")))
 
 (provide 'init-dired)
 ;;; init-dired.el ends here

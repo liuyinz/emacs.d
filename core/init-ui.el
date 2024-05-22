@@ -205,6 +205,8 @@ No changes in mode--line."
      '(binky-preview-column-mark-manual ((t (:inherit font-lock-constant-face))))
      ;; ;; mini-echo
      '(window-divider ((t (:foreground "#5d6a76"))))
+     ;; dirvish-subtree
+     '(dirvish-subtree-state ((t (:inherit dired-special))))
      ;; web-mode
      '(web-mode-current-element-highlight-face ((t (:weight bold :inverse-video t))))
      `(web-mode-current-column-highlight-face  ((t (:background ,(doom-color 'base4)
