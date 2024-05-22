@@ -175,6 +175,13 @@ Otherwise, behave like `magit-display-buffer-traditional'."
     (put 'magit-status-mode 'magit-diff-default-arguments
          '("--no-ext-diff" "--ignore-submodules=all")))
 
+  ;; TODO when move to any staged/unstaged section, close other siblings files
+  ;; ;; expand section when jump to it
+  ;; (defun my/magit-section-ensure-visible (section)
+  ;;   (when (oref section hidden)
+  ;;     (magit-section-show section)))
+  ;; (add-hook 'magit-section-movement-hook #'my/magit-section-ensure-visible)
+
   
   ;;; commit
 
