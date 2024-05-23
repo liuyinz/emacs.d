@@ -30,16 +30,51 @@
   (setq mode-line-position-column-line-format '("%l:%c,%p"))
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
-        '(:long ("meow" "buffer-name-short" "vcs" "buffer-position" "envrc"
+        '(:long ("meow" "dired" "buffer-name-short" "vcs" "buffer-position" "envrc"
                  "buffer-size" "flymake" "mise" "process" "selection-info"
                  "narrow" "macro" "profiler" "repeat" "text-scale")
-          :short ("meow" "buffer-name-short" "buffer-position"
+          :short ("meow" "dired" "buffer-name-short" "buffer-position"
                   "flymake" "process" "selection-info" "narrow"
                   "macro" "profiler" "repeat" "text-scale")))
   :defer-config
-  (appendq! mini-echo-rules '((vterm-mode :both (("buffer-size" . 0)
-                                                 ("buffer-position" . 0)
-                                                 ("major-mode" . 3))))))
+  (appendq! mini-echo-rules
+            '((vterm-mode :both (("buffer-size" . 0)
+                                 ("buffer-position" . 0)
+                                 ("major-mode" . 3)))
+              (dired-mode :both (("mise" . 0)
+                                 ("major-mode" . 0)))))
+
+  (mini-echo-define-segment "dired"
+    "Return dired info of current buffer."
+    :fetch
+    (when (eq major-mode 'dired-mode)
+      (save-match-data
+        (let* ((switches dired-actual-switches)
+               (sort-by
+                (and (string-match
+                      (concat
+                       "--sort="
+                       (regexp-opt '("size" "time" "version" "extension" "width") t))
+                      switches)
+                     (match-string 1 switches)))
+               (time-kind
+                (and (string-match
+                      (concat
+                       "--time=" (regexp-opt '("atime" "ctime" "mtime" "birth") t))
+                      switches)
+                     (match-string 1 switches)))
+               (sort-item (if sort-by
+                              (if (string= sort-by "time")
+                                  (or time-kind "mtime")
+                                sort-by)
+                            "name"))
+               (sign (if (string-match-p "--reverse" switches) "\u2191" "\u2193")))
+          (format "%s|%s%s"
+                  (propertize "Dired" 'face 'dired-special)
+                  (propertize sort-item 'face 'dired-symlink)
+                  (propertize sign 'face 'dired-warning))))))
+
+  )
 
 (leaf hide-mode-line
   :init
