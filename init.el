@@ -64,6 +64,7 @@
     (require 'init-edit)
     (require 'init-jump)
     (require 'init-pair)
+    (require 'init-diff)
     (require 'init-spell)
     (require 'init-tool)
     (require 'init-passwd)

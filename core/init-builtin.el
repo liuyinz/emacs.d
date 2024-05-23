@@ -388,27 +388,6 @@
   :init
   (setq eldoc-idle-delay 0.3))
 
-(leaf diff-mode
-  :init
-  ;; disable smerge-refine with set `diff-refine' to nil
-  (setq diff-refine 'navigation))
-
-;; ;; A comprehensive visual interface to diff & patch
-;; (leaf ediff
-;;   :hook (;; show org ediffs unfolded
-;;          ;; (ediff-prepare-buffer . outline-show-all)
-;;          ;; restore window layout when done
-;;          (ediff-quit-hook . winner-undo))
-;;   :init
-;;   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
-;;   (setq ediff-split-window-function 'split-window-horizontally)
-;;   (setq ediff-merge-split-window-function 'split-window-horizontally))
-
-;; adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*"
-;; adaptive-fill-first-line-regexp "^* *$"
-;; sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
-;; sentence-end-double-space nil)
-
 (leaf transient
   :require t
   :bind

@@ -156,6 +156,8 @@
 
   :defer-config
 
+  (prependq! meow-mode-state-list '((diff-mode . motion)))
+
   (setq meow-replace-state-name-list
         '((normal . "<N>")
           (motion . "<M>")
