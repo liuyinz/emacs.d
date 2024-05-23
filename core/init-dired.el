@@ -9,18 +9,14 @@
    ("C-c C-p" . wdired-change-to-wdired-mode)
    ;; ("C-c C-z f" . browse-url-of-file)
    ("{" . dired-omit-mode)
-   ("}" . dired-hide-details-mode))
+   ("}" . dired-hide-details-mode)
+   ;; unbind key s to set as prefix
+   ("s" . nil))
   :init
   (setq dired-free-space nil
         dired-kill-when-opening-new-dired-buffer t
         dired-recursive-deletes 'always
         dired-recursive-copies 'always)
-
-  ;; Use GNU ls as `gls' from `coreutils' if available.
-  (when (executable-find "gls")
-    (setq dired-use-ls-dired t)
-    (setq insert-directory-program "gls")
-    (setq dired-listing-switches "-alh --group-directories-first"))
 
   ;; SEE http://www.nextpoint.se/?p=808
   (defun dired-mark-empty-directories (&optional arg)
@@ -39,7 +35,51 @@ A prefix argument means to unmark them instead."
     (dired-hide-details-mode)
     (diredfl-mode))
 
+  :defer-config
+  ;; Use GNU ls as `gls' from `coreutils' if available.
+  (when (executable-find "gls")
+    (setq dired-use-ls-dired t)
+    (setq insert-directory-program "gls")
+    ;; do not include any sort options
+    (setq dired-listing-switches "-alh --group-directories-first"))
+
+  ;; SEE https://stackoverflow.com/a/38594423 try to define function use defalias
+  ;; more sort command
+  (defmacro define-dired--sort (sort-by)
+    "Define sorting command in dired with SORT-BY and REVERSER."
+    (let* ((func-name (intern (concat "dired-sort-by-" sort-by)))
+           (func-name-r (intern (concat "dired-sort-by-" sort-by "-reverse")))
+           (docstring sort-by)
+           (docstring-r (concat sort-by " reversely"))
+           (switch (concat (pcase sort-by
+                             ("name" "")
+                             ((or "size" "version" "extension" "width")
+                              (concat "--sort=" sort-by))
+                             ((or "mtime" "atime" "ctime" "birth")
+                              (concat "--sort=time --time=" sort-by)))))
+           (switch-r (concat switch " --reverse"))
+           (key (substring sort-by 0 1))
+           (key-r (upcase key)))
+      `(progn
+         (defun ,func-name ()
+           ,(concat (format "Sorting files in dired by %s." docstring))
+           (declare (modes dired-mode))
+           (interactive)
+           (dired-sort-other ,(concat dired-listing-switches " " switch)))
+         (keymap-set dired-mode-map ,(concat "s " key) #',func-name)
+         (defun ,func-name-r ()
+           ,(concat (format "Sorting files in dired by %s." docstring-r))
+           (declare (modes dired-mode))
+           (interactive)
+           (dired-sort-other ,(concat dired-listing-switches " " switch-r)))
+         (keymap-set dired-mode-map ,(concat "s " key-r) #',func-name-r))))
+
+  (dolist (sort-by '("name" "size" "version" "extension" "width"
+                     "mtime" "atime" "ctime" "birth"))
+    (eval `(define-dired--sort ,sort-by)))
+
   )
+
 
 (leaf dired-x
   :defer-config
@@ -60,7 +100,7 @@ A prefix argument means to unmark them instead."
   :init
   (setq dirvish-attributes
         '(subtree-state collapse file-size)
-        dirvish-use-mode-line t
+        dirvish-use-mode-line nil
         dirvish-use-header-line nil
         dirvish-preview-dispatchers nil)
 
