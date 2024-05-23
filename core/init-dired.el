@@ -18,6 +18,7 @@
         dired-recursive-deletes 'always
         dired-recursive-copies 'always)
 
+  (setq dired-dwim-target t)
   ;; SEE http://www.nextpoint.se/?p=808
   (defun dired-mark-empty-directories (&optional arg)
     "Mark empty directories.
@@ -80,6 +81,14 @@ A prefix argument means to unmark them instead."
 
   )
 
+(leaf dired-aux
+  :init
+  (setq dired-create-destination-dirs 'always
+        dired-compress-directory-default-suffix t
+        dired-vc-rename-file t
+        dired-backup-overwrite t
+        dired-do-revert-buffer t
+        dired-isearch-filenames t))
 
 (leaf dired-x
   :defer-config
