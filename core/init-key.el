@@ -81,7 +81,7 @@
   "a" #'rotate-frame-anticlockwise)
 (define-key ctl-x-map "7" ctl-x-7-map)
 
-  (defvar-keymap my/edit-map
+(defvar-keymap my/edit-map
   :doc "Keymap for structure edit commands."
   ;; isolate
   "a" #'isolate-quick-add
