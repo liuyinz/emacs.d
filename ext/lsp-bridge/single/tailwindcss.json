@@ -1,0 +1,14 @@
+{
+  "name": "tailwindcss",
+  "languageId": "",
+  "command": ["tailwindcss-language-server", "--stdio"],
+  "settings": {
+    "includeLanguages": {
+      "plaintext": "html",
+      "html": "html",
+      "css": "css"
+    },
+    "validate": true,
+    "emmetCompletions": true
+  }
+}
