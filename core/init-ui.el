@@ -41,7 +41,9 @@
             '((vterm-mode :both (("buffer-size" . 0)
                                  ("buffer-position" . 0)
                                  ("major-mode" . 3)))
+              ;; BUG buffer-position not hided in dired-mode
               (dired-mode :both (("mise" . 0)
+                                 ("buffer-position" . 0)
                                  ("major-mode" . 0)))))
 
   (mini-echo-define-segment "dired"
