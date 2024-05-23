@@ -32,7 +32,7 @@
 
 (defun html-p (ext)
   (or (memq ext '("htm" "html"))
-      (memq major-mode '(mhtml-mode html-mode html-ts-mode))))
+      (memq major-mode '(mhtml-mode html-mode html-ts-mode web-mode))))
 
 
 ;;; single server detect
@@ -59,34 +59,27 @@
 
 
 ;;; multi-server detect
-(appendq! lsp-bridge-multi-lang-server-mode-list
-          '(((jtsx-jsx-mode jtsx-tsx-mode) . "jsreact_tailwindcss")
-            ((html-mode web-mode mhtml-mode) . "html_tailwindcss")
-            ((css-mode css-ts-mode) . "css_tailwindcss")))
-
-;; (setq lsp-bridge-get-multi-lang-server-by-project 'my/bridge-multi-server-detect)
-;; (defun my/bridge-multi-server-detect (project_path filepath)
-;;   (when (string= (file-name-extension filepath) "html") "html_tailwindcss")
-;; (save-excursion
-;;   ;; detect for web dev
-;;   ;; NOTE project-path return same value as filepath if lsp-bridge cannot detect project
-;;   ;; so check it ahead, tailwindcss do not support single file mode
-;;   (let ((ext (file-name-extension filepath))
-;;         (tailwindcss-p (and (file-directory-p project)
-;;                             (directory-files
-;;                              project
-;;                              'full
-;;                              "tailwind\\.config\\.\\(j\\|cj\\|mj\\|t\\)s\\'"))))
-;;     (cond
-;;      ;; ext/multi
-;;      ((and tailwindcss-p (jsreact-p ext)) "jsreact_tailwindcss")
-;;      ((and tailwindcss-p (tsreact-p ext)) "tsreact_tailwindcss")
-;;      ((and tailwindcss-p (html-p ext)) "html_emmet_tailwindcss")
-;;      ((and tailwindcss-p (css-like-p ext)) "css_emmet_tailwindcss")
-;;      ;; lib/multi
-;;      ((css-like-p ext) "css_emmet")
-;;      ((html-p ext) "html_emmet"))))
-;;)
+(setq lsp-bridge-get-multi-lang-server-by-project 'my/bridge-multi-server-detect)
+(defun my/bridge-multi-server-detect (project_path filepath)
+  (save-excursion
+    ;; detect for web dev
+    ;; NOTE project-path return same value as filepath if lsp-bridge cannot detect project
+    ;; so check it ahead, tailwindcss do not support single file mode
+    (let ((ext (file-name-extension filepath))
+          (tailwindcss-p (and (file-directory-p project_path)
+                              (directory-files
+                               project_path
+                               'full
+                               "tailwind\\.config\\.\\(j\\|cj\\|mj\\|t\\)s\\'"))))
+      (cond
+       ;; ext/multi
+       ((and tailwindcss-p (jsreact-p ext)) "jsreact_tailwindcss")
+       ((and tailwindcss-p (tsreact-p ext)) "tsreact_tailwindcss")
+       ((and tailwindcss-p (html-p ext)) "html_emmet_tailwindcss")
+       ((and tailwindcss-p (css-like-p ext)) "css_emmet_tailwindcss")
+       ;; lib/multi
+       ((css-like-p ext) "css_emmet")
+       ((html-p ext) "html_emmet")))))
 
 
 
