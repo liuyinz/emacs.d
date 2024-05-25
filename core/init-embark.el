@@ -27,6 +27,8 @@
    ("M" . pp-macroexpand-all-expression))
   (:embark-library-map
    ("o" . find-library-other-window))
+  (:embark-identifier-map
+   ("d" . lsp-bridge-find-def-other-window))
   :defer-config
   ;; HACK Open source code of `symbol' in other window
   (dolist (cmd '(embark-find-definition))
