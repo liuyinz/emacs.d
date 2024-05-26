@@ -94,17 +94,12 @@
 (leaf edit-indirect
   :commands edit-indirect-buffer-indirect-p
   :init
-  (setq edit-indirect-mode-map nil)
-
   (defun my/edit-indirect ()
     "Edit indirectly according to `major-mode'"
     (interactive)
     (pcase major-mode
       ('snippet-mode (yas-edit-elisp-indirect))
-      ((or 'markdown-mode 'gfm-mode) (markdown-edit-code-block))
-      ('jsonian-mode (jsonian-edit-string))
-      (_ nil)))
-  )
+      ((or 'markdown-mode 'gfm-mode) (markdown-edit-code-block)))))
 
 (leaf wgrep
   :init
