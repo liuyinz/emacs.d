@@ -121,11 +121,6 @@
     (add-to-list 'auto-mode-alist '("\\.tsx\\'" . jtsx-tsx-mode)))
   (advice-add 'treesit-auto-add-to-auto-mode-alist
               :after #'jtsx-add-to-auto-mode-alist)
-  ;; lsp-bridge setup
-  (with-eval-after-load 'lsp-bridge
-    (prependq! lsp-bridge-single-lang-server-mode-list
-               '(((jtsx-tsx-mode jtsx-typescript-mode) . "typescriptreact")
-                 ((jtsx-jsx-mode) . "javascriptreact"))))
 
   :config
   :config
