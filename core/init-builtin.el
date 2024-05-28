@@ -91,7 +91,21 @@
   ((prog-mode-hook text-mode-hook) . hl-line-mode)
   :init
   (setq hl-line-sticky-flag nil)
-  (setq global-hl-line-sticky-flag nil))
+  (setq global-hl-line-sticky-flag nil)
+  
+  ;; HACK show/hide hl-line-mode according to region is active or not
+  (defvar-local hl-line-recover-p nil)
+  (add-hook 'post-command-hook #'my/toggle-hl-line-with-selection)
+  (defun my/toggle-hl-line-with-selection ()
+    "Show or hide hl-line according to whether region is active or not."
+    (when (boundp hl-line-mode)
+      (when (or (and (use-region-p) hl-line-mode)
+                (and (not (use-region-p))
+                     (not hl-line-mode)
+                     hl-line-recover-p))
+        (hl-line-mode 'toggle)
+        (setq-local hl-line-recover-p (not hl-line-recover-p)))))
+  )
 
 ;; TODO multiple desktop settings,see
 ;; https://www.emacswiki.org/emacs/DesktopMultipleSaveFiles
