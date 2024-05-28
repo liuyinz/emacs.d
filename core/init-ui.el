@@ -30,11 +30,11 @@
   (setq mode-line-position-column-line-format '("%l:%c,%p"))
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
-        '(:long ("meow" "dired" "buffer-name-short" "vcs" "buffer-position" "envrc"
-                 "buffer-size" "flymake" "mise" "process" "selection-info"
+        '(:long ("meow" "buffer-name-short" "vcs" "buffer-position" "envrc"
+                 "buffer-size" "flymake" "mise" "dired" "process" "selection-info"
                  "narrow" "macro" "profiler" "repeat" "text-scale")
-          :short ("meow" "dired" "buffer-name-short" "buffer-position"
-                  "flymake" "process" "selection-info" "narrow"
+          :short ("meow" "buffer-name-short" "buffer-position"
+                  "flymake" "dired" "process" "selection-info" "narrow"
                   "macro" "profiler" "repeat" "text-scale")))
   :defer-config
   (appendq! mini-echo-rules
