@@ -139,7 +139,9 @@ No changes in mode--line."
      `(font-lock-comment-face ((t (:foreground
                                    ,(doom-lighten (doom-color 'comments) 0.15)))))
      `(font-lock-function-name-face ((t (:foreground ,(doom-color 'green)))))
-     `(hl-line ((t (:background ,(doom-darken (doom-color 'blue) 0.7)))))
+     `(secondary-selection ((t (:background ,(doom-darken (doom-color 'blue) 0.7)))))
+     `(region ((t (:background ,(doom-darken (doom-color 'dark-blue) 0.6)))))
+     `(hl-line ((t (:inherit hl-line))))
      ;; '(match          ((t (:inherit font-lock-variable-name-face
      ;;                       :weight bold
      ;;                       :inverse-video t))))
@@ -151,7 +153,6 @@ No changes in mode--line."
      ;; '(isearch ((t (:inherit cursor))))
      ;; '(next-error              ((t (:inherit match))))
      ;; '(next-error-message      ((t (:inherit unspecified :background "#384551"))))
-     ;; '(secondary-selection     ((t (:background "#384551"))))
      ;; '(completions-common-part ((t (:inherit font-lock-keyword-face))))
 
      ;; '(fill-column-indicator   ((t (:inherit unspecified
