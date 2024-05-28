@@ -4,6 +4,8 @@
 
 (leaf ibuffer
   :hook (ibuffer-mode-hook . ibuffer-mode-setup)
+  :bind
+  ("C-x C-b" . ibuffer)
   :init
   (setq ibuffer-expert t
         ibuffer-display-summary nil
