@@ -7,17 +7,24 @@
 
 ;;; Code:
 
-;; (leaf envrc
-;;   :mode ("\\.envrc\\'" . envrc-file-mode)
-;;   :hook (after-init-hook . envrc-global-mode)
-;;   :init
-;;   ;; write command to add envrc for node
-;;   ;; for npm/pnpm project
-;;   ;; create or add path
-;;   ;; allow envrc
+;; write command to add envrc for node
+;; for npm/pnpm project
+;; create or add path
+;; allow envrc
+;; (defun my/env-add-path ()
+;;   (interactive)
+;;
 ;;   )
 
+(leaf envrc
+  :mode ("\\.envrc\\'" . envrc-file-mode)
+  ;; :hook (after-init-hook . envrc-global-mode)
+  :init
+  )
+
 (leaf mise
+  :init
+  (setq mini-echo-mise-show-always nil)
   :hook (after-init-hook . global-mise-mode))
 
 (provide 'init-env)
