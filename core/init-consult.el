@@ -63,7 +63,8 @@
                                     "\\`.*\\.el\\.gz\\'"
                                     "\\`magit[:-].*\\'"
                                     "\\`COMMIT_EDITMSG\\'"
-                                    "\\`.+~.+~\\'"))
+                                    "\\`.+~.+~\\'"
+                                    "\\`\\*vterm\\*.*\\'"))
 
   ;; enable hidden buffer preview
   (consult-customize consult--source-hidden-buffer :state #'consult--buffer-state)
