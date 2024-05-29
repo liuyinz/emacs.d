@@ -36,14 +36,15 @@
 
 
 ;;; single server detect
-;; (push '((jtsx-jsx-mode) . "tailwindcss") lsp-bridge-single-lang-server-mode-list)
+(push '((jtsx-jsx-mode) . "javascriptreact") lsp-bridge-single-lang-server-mode-list)
+(push '((jtsx-tsx-mode) . "typescriptreact") lsp-bridge-single-lang-server-mode-list)
 ;; ;; HACK remove sh-mode in default mode list and enable it only when sh-shell is not zsh
 ;; (setq lsp-bridge-single-lang-server-mode-list
 ;;       (remove (rassoc "bash-language-server" lsp-bridge-single-lang-server-mode-list)
 ;;               lsp-bridge-single-lang-server-mode-list))
 
 ;; (setq lsp-bridge-get-single-lang-server-by-project #'my/bridge-single-server-detect)
-;; (defun my/bridge-single-server-detect (project-path filepath)
+;; (defun my/bridge-single-server-detect (project_path filepath)
 ;;   "Detect right server config for single server."
 ;;   (save-excursion
 ;;     (let* ((ext (file-name-extension filepath))
@@ -53,9 +54,13 @@
 ;;             (or (memq major-mode '(bash-mode bash-ts-mode))
 ;;                 (and (eq major-mode 'sh-mode) (not (string= ext "zsh"))))))
 ;;       (cond
+;;        ((tsreact-p ext) "typescriptreact")
+;;        ((jsreact-p ext) "javascriptreact")
 ;;        (toml-p "toml-language-server")
 ;;        ;; (non-zsh-sh-p "bash-language-server")
-;;        ))))
+;;        )
+;;       (message "pro: %S, fp: %S, jsreact-p: %S" project_path filepath (tsreact-))
+;;       )))
 
 
 ;;; multi-server detect
