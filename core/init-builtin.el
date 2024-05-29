@@ -92,7 +92,7 @@
   :init
   (setq hl-line-sticky-flag nil)
   (setq global-hl-line-sticky-flag nil)
-  
+
   ;; HACK show/hide hl-line-mode according to region is active or not
   (defvar-local hl-line-recover-p nil)
   (add-hook 'post-command-hook #'my/toggle-hl-line-with-selection)

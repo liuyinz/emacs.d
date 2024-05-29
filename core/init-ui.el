@@ -30,17 +30,17 @@
   (setq mode-line-position-column-line-format '("%l:%c,%p"))
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
-        '(:long ("meow" "buffer-name-short" "vcs" "buffer-position" "envrc"
-                 "buffer-size" "flymake" "mise" "dired" "process" "selection-info"
+        '(:long ("meow" "shrink-path" "vcs" "ide" "buffer-position" "envrc"
+                 "buffer-size" "flymake" "mise" "dired"  "process" "selection-info"
                  "narrow" "macro" "profiler" "repeat" "text-scale")
-          :short ("meow" "buffer-name-short" "buffer-position"
+          :short ("meow" "buffer-name" "ide" "buffer-position"
                   "flymake" "dired" "process" "selection-info" "narrow"
                   "macro" "profiler" "repeat" "text-scale")))
   :defer-config
   (appendq! mini-echo-rules
             '((vterm-mode :both (("buffer-size" . 0)
                                  ("buffer-position" . 0)
-                                 ("major-mode" . 3)))
+                                 ("major-mode" . 0)))
               ;; BUG buffer-position not hided in dired-mode
               (dired-mode :both (("mise" . 0)
                                  ("buffer-position" . 0)
@@ -75,6 +75,24 @@
                   (propertize "Dired" 'face 'dired-special)
                   (propertize sort-item 'face 'dired-symlink)
                   (propertize sign 'face 'dired-warning))))))
+
+  (mini-echo-define-segment "ide"
+    "Return vterm,quickrun info."
+    :fetch
+    (when (memq major-mode '(vterm-mode quickrun--mode))
+      (string-join
+       (->> (buffer-list)
+            (--filter (memq (buffer-local-value 'major-mode it)
+                            '(vterm-mode quickrun--mode)))
+            (-map #'buffer-name)
+            (-sort #'string-lessp)
+            (reverse)
+            (--map (mini-echo-segment--print
+                    it (if (string= it (buffer-name))
+                           'dired-symlink
+                         'font-lock-doc-face)
+                    20)))
+       (propertize "|" 'face 'font-lock-doc-face))))
 
   )
 
