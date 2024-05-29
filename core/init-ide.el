@@ -2,8 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-;; --------------------------- VTERM -------------------------------
-
+
 ;; REQUIRE brew install libvterm cmake
 (leaf vterm
   :hook (vterm-mode-hook . vterm-setup)
@@ -12,24 +11,28 @@
    ("M-u" . nil)
    ("M-i" . nil))
   :init
+  (setq vterm-term-environment-variable "xterm-kitty")
+  (setq vterm-buffer-name "*vterm*")
+
   (defun vterm-setup ()
     (meow-mode -1)
     (and hl-line-mode (hl-line-mode 'toggle)))
 
+  ;; 1.switch to directory when goto vterm
   ;; TODO rewrite a vterm toggle command to cd parent dir automatically
-  (defun my/vterm-toggle (&optional cd)
-    "Toggle vterm window,if C-u"
-    (interactive "P")
-    (vterm-toggle)
-    (when (and cd
-               (eq major-mode 'vterm-mode)
-               vterm-toggle--cd-cmd)
-      (vterm-send-string vterm-toggle--cd-cmd t)
-      (vterm-send-return)))
+  ;; (defun my/vterm-toggle (&optional cd)
+  ;;   "Toggle vterm window,if C-u"
+  ;;   (interactive "P")
+  ;;   (vterm-toggle)
+  ;;   (when (and cd
+  ;;              (eq major-mode 'vterm-mode)
+  ;;              vterm-toggle--cd-cmd)
+  ;;     (vterm-send-string vterm-toggle--cd-cmd t)
+  ;;     (vterm-send-return)))
 
   )
 
-(leaf vterm-toggle)
+;; (leaf vterm-toggle)
 
 ;; -------------------------- docstr ------------------------------
 ;; --------------------------- Doc --------------------------------
@@ -61,8 +64,8 @@ If CN is non-nil, search in zh-CN documentation."
                    nil t)))
     (browse-url (concat "https://cheatsheets.zip/" (if cn (concat "zh-CN/docs/" ref ".html") ref)))))
 
-;; --------------------------- Run --------------------------------
-
+
+;; run
 (leaf quickrun
   :init
   (setq quickrun-focus-p nil
@@ -106,6 +109,34 @@ If CN is non-nil, search in zh-CN documentation."
 ;;   (setq jupyter-repl-prompt-margin-width 10
 ;;         jupyter-eval-use-overlays t))
 
+
+;; ide
+
+(defun vterm-new (&optional other-window)
+  "Create an interactive Vterm buffer with largest number arg.
+If OTHER-WINDOW is non-nil, open in another window"
+  (interactive "P")
+  (let ((len (length (--filter (eq (buffer-local-value 'major-mode it) 'vterm-mode)
+                               (buffer-list)))))
+    (when (> len 0)
+      (cl-incf len)
+      (while (get-buffer (format "%s<%d>" vterm-buffer-name len))
+        (cl-incf len)))
+    (funcall (if other-window #'vterm-other-window #'vterm)
+             (and (> len 0) len))))
+
+(defun vterm-cycle (&optional backward)
+  "Cycle the vterm buffer."
+  (declare (modes vterm-mode))
+  (interactive "P")
+  (let* ((vterm-bufs (->> (buffer-list)
+                        (--filter (eq (buffer-local-value 'major-mode it) 'vterm-mode))
+                        (-map #'buffer-name)
+                        (-sort #'string-lessp)))
+         (new-ind (mod (funcall (if backward #'1- #'1+)
+                                (-elem-index (buffer-name) vterm-bufs))
+                       (length vterm-bufs))))
+    (switch-to-buffer (nth new-ind vterm-bufs))))
 
 (provide 'init-ide)
 ;;; init-ide.el ends here
