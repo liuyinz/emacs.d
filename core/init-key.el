@@ -17,9 +17,8 @@
                 ("C-k" . scroll-other-window-down)
                 ("M-o" . toggle-one-window)
                 ;; vscode style
-                ("s-u" . vterm-toggle)
-                ("s-/" . newcomment-toggle)
-                ("s-p" . project-find-file)))
+                ("s-p" . project-find-file)
+                ("s-/" . newcomment-toggle)))
   (keymap-global-set (car pair) (cdr pair)))
 
 (defvar-keymap my/toggle-map

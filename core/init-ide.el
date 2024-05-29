@@ -7,6 +7,9 @@
 (leaf vterm
   :hook (vterm-mode-hook . vterm-setup)
   :bind
+  ("s-u" . vterm-toggle)
+  ("s-i" . vterm-cycle)
+  ("s-n" . vterm-new)
   (:vterm-mode-map
    ("M-u" . nil)
    ("M-i" . nil))
@@ -32,7 +35,7 @@
 
   )
 
-;; (leaf vterm-toggle)
+(leaf vterm-toggle)
 
 ;; -------------------------- docstr ------------------------------
 ;; --------------------------- Doc --------------------------------
@@ -112,6 +115,7 @@ If CN is non-nil, search in zh-CN documentation."
 
 ;; ide
 
+;; TODO add more command
 (defun vterm-new (&optional other-window)
   "Create an interactive Vterm buffer with largest number arg.
 If OTHER-WINDOW is non-nil, open in another window"
@@ -127,16 +131,24 @@ If OTHER-WINDOW is non-nil, open in another window"
 
 (defun vterm-cycle (&optional backward)
   "Cycle the vterm buffer."
-  (declare (modes vterm-mode))
   (interactive "P")
-  (let* ((vterm-bufs (->> (buffer-list)
-                        (--filter (eq (buffer-local-value 'major-mode it) 'vterm-mode))
-                        (-map #'buffer-name)
-                        (-sort #'string-lessp)))
-         (new-ind (mod (funcall (if backward #'1- #'1+)
-                                (-elem-index (buffer-name) vterm-bufs))
-                       (length vterm-bufs))))
-    (switch-to-buffer (nth new-ind vterm-bufs))))
+  (if-let* ((vterm-bufs (->> (buffer-list)
+                             (--filter (eq (buffer-local-value 'major-mode it)
+                                           'vterm-mode))
+                             (-map #'buffer-name)
+                             (-sort #'string-lessp)))
+            (win (--first (eq (buffer-local-value 'major-mode (window-buffer it))
+                              'vterm-mode)
+                          (window-list nil 'no-minibuf)))
+            (new-buf (nth (mod (funcall (if backward #'1- #'1+)
+                                        (-elem-index (buffer-name (window-buffer win))
+                                                     vterm-bufs))
+                               (length vterm-bufs))
+                          vterm-bufs)))
+      (progn
+        (set-window-buffer win new-buf)
+        (message "Switch to %S" new-buf))
+    (message "can not find a window display vterm.")))
 
 (provide 'init-ide)
 ;;; init-ide.el ends here
