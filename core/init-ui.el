@@ -31,50 +31,15 @@
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
         '(:long ("meow" "shrink-path" "vcs" "ide" "buffer-position" "envrc"
-                 "buffer-size" "flymake" "mise" "dired"  "process" "selection-info"
+                 "buffer-size" "flymake" "mise" "process" "selection-info"
                  "narrow" "macro" "profiler" "repeat" "text-scale")
           :short ("meow" "buffer-name" "ide" "buffer-position"
-                  "flymake" "dired" "process" "selection-info" "narrow"
+                  "flymake" "process" "selection-info" "narrow"
                   "macro" "profiler" "repeat" "text-scale")))
   :defer-config
-  (appendq! mini-echo-rules
-            '((vterm-mode :both (("buffer-size" . 0)
-                                 ("buffer-position" . 0)
-                                 ("major-mode" . 0)))
-              ;; BUG buffer-position not hided in dired-mode
-              (dired-mode :both (("mise" . 0)
-                                 ("buffer-position" . 0)
-                                 ("major-mode" . 0)))))
-
-  (mini-echo-define-segment "dired"
-    "Return dired info of current buffer."
-    :fetch
-    (when (eq major-mode 'dired-mode)
-      (save-match-data
-        (let* ((switches dired-actual-switches)
-               (sort-by
-                (and (string-match
-                      (concat
-                       "--sort="
-                       (regexp-opt '("size" "time" "version" "extension" "width") t))
-                      switches)
-                     (match-string 1 switches)))
-               (time-kind
-                (and (string-match
-                      (concat
-                       "--time=" (regexp-opt '("atime" "ctime" "mtime" "birth") t))
-                      switches)
-                     (match-string 1 switches)))
-               (sort-item (if sort-by
-                              (if (string= sort-by "time")
-                                  (or time-kind "mtime")
-                                sort-by)
-                            "name"))
-               (sign (if (string-match-p "--reverse" switches) "\u2191" "\u2193")))
-          (format "%s|%s%s"
-                  (propertize "Dired" 'face 'dired-special)
-                  (propertize sort-item 'face 'dired-symlink)
-                  (propertize sign 'face 'dired-warning))))))
+  ;; (appendq! mini-echo-rules
+  ;;           '((vterm-mode :both (("ide" . 2)))
+  ;;             (quickrun--mode :both (("ide" . 2)))))
 
   (mini-echo-define-segment "ide"
     "Return vterm,quickrun info."
