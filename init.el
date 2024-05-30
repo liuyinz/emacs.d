@@ -47,6 +47,7 @@
     (require 'init-duplexer)
     (require 'init-meow)
     (require 'init-minibuffer)
+    (require 'init-combobulate)
     (require 'init-consult)
     (require 'init-embark)
     (require 'init-outline)

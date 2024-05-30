@@ -228,6 +228,12 @@ No changes in mode--line."
      '(window-divider ((t (:foreground "#5d6a76"))))
      ;; dirvish-subtree
      '(dirvish-subtree-state ((t (:inherit dired-special))))
+     ;; combobulate
+     '(combobulate-refactor-highlight-face ((t (:background unspecified))))
+     '(combobulate-refactor-label-face ((t (:foreground"black"
+                                            :background "white"
+                                            :bold t))))
+     '(combobulate-active-indicator-face ((t (:foreground "white"))))
      ;; web-mode
      '(web-mode-current-element-highlight-face ((t (:weight bold :inverse-video t))))
      `(web-mode-current-column-highlight-face  ((t (:background ,(doom-color 'base4)
