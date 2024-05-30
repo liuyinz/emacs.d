@@ -124,7 +124,7 @@ No changes in mode--line."
      `(font-lock-function-name-face ((t (:foreground ,(doom-color 'green)))))
      `(secondary-selection ((t (:background ,(doom-darken (doom-color 'blue) 0.7)))))
      `(region ((t (:background ,(doom-darken (doom-color 'dark-blue) 0.6)))))
-     `(hl-line ((t (:inherit hl-line))))
+     `(hl-line ((t (:background ,(doom-darken (doom-color 'dark-blue) 0.6)))))
      ;; '(match          ((t (:inherit font-lock-variable-name-face
      ;;                       :weight bold
      ;;                       :inverse-video t))))
@@ -194,7 +194,7 @@ No changes in mode--line."
      `(org-block-end-line   ((t (:background ,(doom-darken 'base3 0.15)
                                  :foreground ,(doom-color 'fg-alt)))))
      ;; markdown-mode
-     `(markdown-code-face        ((t (:background ,(doom-darken (doom-color 'base3) 0.15)))))
+     `(markdown-code-face   ((t (:background ,(doom-darken (doom-color 'base3) 0.15)))))
      `(markdown-inline-code-face ((t (:background ,(doom-color 'base3)))))
      ;; highlight-defined
      '(highlight-defined-function-name-face ((t (:inherit unspecified))))
