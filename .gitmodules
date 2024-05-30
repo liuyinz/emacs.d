@@ -415,9 +415,6 @@
 	build-step = mkdir -p build && cd build && cmake .. && make
 	build-step = borg-byte-compile
 	build-step = borg-update-autoloads
-[submodule "vterm-toggle"]
-	path = lib/vterm-toggle
-	url = https://github.com/jixiuf/vterm-toggle.git
 [submodule "elec-pair-extra"]
 	path = lib/elec-pair-extra
 	url = https://github.com/liuyinz/elec-pair-extra.git
