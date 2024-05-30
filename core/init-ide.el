@@ -21,21 +21,67 @@
     (meow-mode -1)
     (and hl-line-mode (hl-line-mode 'toggle)))
 
-  ;; 1.switch to directory when goto vterm
-  ;; TODO rewrite a vterm toggle command to cd parent dir automatically
-  ;; (defun my/vterm-toggle (&optional cd)
-  ;;   "Toggle vterm window,if C-u"
-  ;;   (interactive "P")
-  ;;   (vterm-toggle)
-  ;;   (when (and cd
-  ;;              (eq major-mode 'vterm-mode)
-  ;;              vterm-toggle--cd-cmd)
-  ;;     (vterm-send-string vterm-toggle--cd-cmd t)
-  ;;     (vterm-send-return)))
+  ;; vterm enhanced commands
+  (defun vterm--get-buffers ()
+    "Return a list of vterm buffers."
+    (--filter (eq (buffer-local-value 'major-mode it) 'vterm-mode)
+              (buffer-list)))
 
+  (defun vterm--get-windows ()
+    "Return a list of windows display vterm buffers."
+    (--filter (eq (buffer-local-value 'major-mode (window-buffer it))
+                  'vterm-mode)
+              (window-list nil 'no-minibuf)))
+
+  (defun vterm-new ()
+    "Create an new interactive Vterm buffer.
+If here is a window display vterm buffer, then creat a new one in that window.
+Or create a new one in other window."
+    (interactive)
+    (let ((len (length (vterm--get-buffers)))
+          (win (car (vterm--get-windows)))
+          (dir default-directory))
+      (when (> len 0)
+        (cl-incf len)
+        (while (get-buffer (format "%s<%d>" vterm-buffer-name len))
+          (cl-incf len)))
+      (let ((arg (and (> len 0) len)))
+        (if (not win)
+            (vterm-other-window arg)
+          (select-window win)
+          (let ((default-directory dir))
+            (vterm arg))))))
+
+  (defun vterm-toggle ()
+    "Toggle to show or hide vterm window."
+    (interactive)
+    (let* ((bufs (vterm--get-buffers))
+           (win (car (vterm--get-windows))))
+      (cond
+       ((not bufs) (vterm-other-window))
+       ((not win) (switch-to-buffer-other-window (car bufs)))
+       (t (delete-window win)))))
+
+  (defun vterm-cycle (&optional backward)
+    "Cycle the vterm buffer.
+If BACKWARD is non-nil, cycle vterms buffers reversely"
+    (interactive "P")
+    (let* ((bufs (vterm--get-buffers))
+           (win (car (vterm--get-windows))))
+      (cond
+       ((not bufs) (vterm-other-window))
+       ((not win) (switch-to-buffer-other-window (car bufs)))
+       (t (save-selected-window
+            (let* ((order-bufs (-sort #'string-lessp (-map #'buffer-name bufs) ))
+                   (new-buf
+                    (-> (if backward #'1- #'1+)
+                        (funcall (-elem-index (buffer-name (window-buffer win)) order-bufs))
+                        (mod (length order-bufs))
+                        (nth order-bufs))))
+              (select-window win)
+              (switch-to-buffer new-buf)
+              (message "Switch to %S" new-buf)))))))
   )
-
-(leaf vterm-toggle)
 
 ;; -------------------------- docstr ------------------------------
 ;; --------------------------- Doc --------------------------------
@@ -115,40 +161,6 @@ If CN is non-nil, search in zh-CN documentation."
 
 ;; ide
 
-;; TODO add more command
-(defun vterm-new (&optional other-window)
-  "Create an interactive Vterm buffer with largest number arg.
-If OTHER-WINDOW is non-nil, open in another window"
-  (interactive "P")
-  (let ((len (length (--filter (eq (buffer-local-value 'major-mode it) 'vterm-mode)
-                               (buffer-list)))))
-    (when (> len 0)
-      (cl-incf len)
-      (while (get-buffer (format "%s<%d>" vterm-buffer-name len))
-        (cl-incf len)))
-    (funcall (if other-window #'vterm-other-window #'vterm)
-             (and (> len 0) len))))
-
-(defun vterm-cycle (&optional backward)
-  "Cycle the vterm buffer."
-  (interactive "P")
-  (if-let* ((vterm-bufs (->> (buffer-list)
-                             (--filter (eq (buffer-local-value 'major-mode it)
-                                           'vterm-mode))
-                             (-map #'buffer-name)
-                             (-sort #'string-lessp)))
-            (win (--first (eq (buffer-local-value 'major-mode (window-buffer it))
-                              'vterm-mode)
-                          (window-list nil 'no-minibuf)))
-            (new-buf (nth (mod (funcall (if backward #'1- #'1+)
-                                        (-elem-index (buffer-name (window-buffer win))
-                                                     vterm-bufs))
-                               (length vterm-bufs))
-                          vterm-bufs)))
-      (progn
-        (set-window-buffer win new-buf)
-        (message "Switch to %S" new-buf))
-    (message "can not find a window display vterm.")))
 
 (provide 'init-ide)
 ;;; init-ide.el ends here
