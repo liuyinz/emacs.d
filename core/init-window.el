@@ -27,7 +27,7 @@
           ;; third-party
           ;; ("*evil-marks*" :align 'below :size 0.4)
 
-          ("*vterm*" :align 'below :size 0.4)
+          ("\\`\\*vterm\\*\\(.*\\)\\'" :regexp t :align 'below :size 0.4)
           ;; ("*quickrun*" :select t :size 0.4 :align 'below)
           ("*Python*" :select t :size 0.4 :align 'below)
           ("*nodejs*" :select t :size 0.4 :align 'below)
