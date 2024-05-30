@@ -99,10 +99,19 @@
   (defun my/toggle-hl-line-with-selection ()
     "Show or hide hl-line according to whether region is active or not."
     (when (boundp hl-line-mode)
-      (when (or (and (use-region-p) hl-line-mode)
-                (and (not (use-region-p))
-                     (not hl-line-mode)
-                     hl-line-recover-p))
+      (when (or
+             ;; compatiable with region selection
+             (and mark-active hl-line-mode)
+             (and (not mark-active)
+                  (not hl-line-mode)
+                  hl-line-recover-p)
+             ;; ;; TODO compatiable with combobulate refactor
+             ;; ISSUE https://github.com/mickeynp/combobulate/issues/106
+             ;; (and combobulate-refactor--active-sessions hl-line-mode)
+             ;; (and (not combobulate-refactor--active-sessions)
+             ;;      (not hl-line-mode)
+             ;;      hl-line-recover-p)
+             )
         (hl-line-mode 'toggle)
         (setq-local hl-line-recover-p (not hl-line-recover-p)))))
   )
