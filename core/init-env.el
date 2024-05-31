@@ -19,7 +19,6 @@
 (leaf envrc
   :mode ("\\.envrc\\'" . envrc-file-mode)
   ;; :hook (after-init-hook . envrc-global-mode)
-  :init
   )
 
 (leaf mise
@@ -27,5 +26,9 @@
   (setq mini-echo-mise-show-always nil)
   :hook (after-init-hook . global-mise-mode))
 
+;; TODO switch envrc/mise accroding to project
+;; (defun my/switch-envrc-mise ()
+;;   (interactive)
+;;   )
 (provide 'init-env)
 ;;; init-env.el ends here
