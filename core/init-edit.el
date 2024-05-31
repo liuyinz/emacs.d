@@ -150,6 +150,37 @@
                  (to (query-replace-read-to from prompt nil)))
             (funcall cmd from to))
         (wgrep-finish-edit))))
+
+  ;; use rg-match-face and text-property-search-forward
+  (defun rg-replace-enh ()
+    (interactive)
+    (save-excursion
+      (wgrep-change-to-wgrep-mode)
+      (unwind-protect
+          (let* ((literal (rg-search-literal rg-cur-search))
+                 (pattern (rg-search-pattern rg-cur-search))
+                 (cmd (if literal 'query-replace 'query-replace-regexp))
+                 (prompt (concat "Query replace" (unless literal " regexp")))
+                 (from (if literal pattern (query-replace-read-from prompt t)))
+                 (to (query-replace-read-to from prompt nil)))
+            (funcall cmd from to))
+        (wgrep-finish-edit)))
+    ;; parse nippon-color
+    ;;   (let ((json-object-type 'plist)
+    ;;     (json-array-type 'list)
+    ;;     )
+    ;; (with-current-buffer (get-buffer-create "temp.el")
+    ;;   (erase-buffer)
+    ;;   (let ((print-level nil)
+    ;;         (print-length nil)
+    ;;         (fill-column 130))
+    ;;     (pp (json-read-file (buffer-file-name (get-buffer "nippon-color.json")))
+    ;;         (current-buffer)))
+    ;;   )
+    ;; )
+    )
+
+
   (rg-menu-transient-insert "Rerun" "R" "Replace" #'rg-replace))
 
 ;; NOTE command-key [super] couldn't identifiled in emacs -nw
