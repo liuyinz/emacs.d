@@ -125,8 +125,7 @@
    ("w"    . rg-forward-history)
    ("b"    . rg-back-history)
    ("R"    . rg-replace)
-   ("?"    . rg-menu)
-   )
+   ("?"    . rg-menu))
 
   :init
   (setq rg-ignore-case 'smart
@@ -134,51 +133,54 @@
 
   :defer-config
 
-  ;; FIXME emacs regexp not support, use rg-match-face to replace in future
-  ;; BUG undo when wgrep finished ?
-  (defun rg-replace ()
-    "Replace current search in Rg-mode."
-    (interactive)
-    (save-excursion
-      (wgrep-change-to-wgrep-mode)
+  ;; FIXME replace failed when rg search with --multiline
+  ;; now use `query-replace-regexp' to replace \n (`C-q C-j') first
+  (defun rg-replace (to-string)
+    "Replace matched result in rg-mode buffer."
+    (interactive (list (read-string "Rg replace reulst with: ")))
+    (let ((final-pos (point)))
       (unwind-protect
-          (let* ((literal (rg-search-literal rg-cur-search))
-                 (pattern (rg-search-pattern rg-cur-search))
-                 (cmd (if literal 'query-replace 'query-replace-regexp))
-                 (prompt (concat "Query replace" (unless literal " regexp")))
-                 (from (if literal pattern (query-replace-read-from prompt t)))
-                 (to (query-replace-read-to from prompt nil)))
-            (funcall cmd from to))
-        (wgrep-finish-edit))))
+          (let* ((keep-asking t)
+                 (stop-replace nil)
+                 (prompt (format "Replace match string with %s: (y,n,q,!,.) ?" to-string)))
+            (cl-flet ((replace-func (prop)
+                        (delete-region (prop-match-beginning prop) (prop-match-end prop))
+                        (insert to-string)))
+              (wgrep-change-to-wgrep-mode)
+              (while (and (not stop-replace)
+                          (setq cur-match (text-property-search-forward
+                                           'face 'rg-match-face t)))
+                (if keep-asking
+                    (let ((illegal-key t))
+                      (while illegal-key
+                        (let ((key (single-key-description (read-key prompt) t)))
+                          (pcase key
+                            ("!" (setq keep-asking nil))
+                            ((or "q" "RET" "C-g" "." "ESC") (setq stop-replace t)))
+                          (when (member key '("!" "y" "Y" "." "SPC"))
+                            (replace-func cur-match))
+                          (when (member key '("!" "Y" "y" "N" "n"
+                                              "DEL" "." "q" "RET" "C-g"))
+                            (setq illegal-key nil))))
+                      (setq final-pos (point)))
+                  (replace-func cur-match)))))
+        (wgrep-finish-edit)
+        (goto-char final-pos))))
 
-  ;; use rg-match-face and text-property-search-forward
-  (defun rg-replace-enh ()
-    (interactive)
-    (save-excursion
-      (wgrep-change-to-wgrep-mode)
-      (unwind-protect
-          (let* ((literal (rg-search-literal rg-cur-search))
-                 (pattern (rg-search-pattern rg-cur-search))
-                 (cmd (if literal 'query-replace 'query-replace-regexp))
-                 (prompt (concat "Query replace" (unless literal " regexp")))
-                 (from (if literal pattern (query-replace-read-from prompt t)))
-                 (to (query-replace-read-to from prompt nil)))
-            (funcall cmd from to))
-        (wgrep-finish-edit)))
-    ;; parse nippon-color
-    ;;   (let ((json-object-type 'plist)
-    ;;     (json-array-type 'list)
-    ;;     )
-    ;; (with-current-buffer (get-buffer-create "temp.el")
-    ;;   (erase-buffer)
-    ;;   (let ((print-level nil)
-    ;;         (print-length nil)
-    ;;         (fill-column 130))
-    ;;     (pp (json-read-file (buffer-file-name (get-buffer "nippon-color.json")))
-    ;;         (current-buffer)))
-    ;;   )
-    ;; )
-    )
+  ;; light theme background: "#F0F3F4i"
+  ;; parse nippon-color
+  ;;   (let ((json-object-type 'plist)
+  ;;     (json-array-type 'list)
+  ;;     )
+  ;; (with-current-buffer (get-buffer-create "temp.el")
+  ;;   (erase-buffer)
+  ;;   (let ((print-level nil)
+  ;;         (print-length nil)
+  ;;         (fill-column 130))
+  ;;     (pp (json-read-file (buffer-file-name (get-buffer "nippon-color.json")))
+  ;;         (current-buffer)))
+  ;;   )
+  ;; )
 
 
   (rg-menu-transient-insert "Rerun" "R" "Replace" #'rg-replace))

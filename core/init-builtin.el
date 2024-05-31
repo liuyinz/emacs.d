@@ -88,7 +88,7 @@
 
 (leaf hl-line
   :hook
-  ((prog-mode-hook text-mode-hook) . hl-line-mode)
+  ((prog-mode-hook text-mode-hook ibuffer-mode-hook rg-mode-hook) . hl-line-mode)
   :init
   (setq hl-line-sticky-flag nil)
   (setq global-hl-line-sticky-flag nil)
