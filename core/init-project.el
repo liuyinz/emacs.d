@@ -15,7 +15,8 @@
     "Command to find file in selected directory for `consult-dir'."
     (interactive)
     (call-interactively
-     (if (string-prefix-p (project-root (project-current t)) default-directory)
+     (if (string-prefix-p (file-truename (project-root (project-current t)))
+                          (file-truename default-directory))
          #'project-find-file
        #'find-file))))
 
