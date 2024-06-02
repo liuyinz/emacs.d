@@ -352,7 +352,10 @@
   (defun ad/crm-indicator (args)
     "Set indicater ARGS for multiple read."
     (cons (concat "[*] " (car args)) (cdr args)))
-  (advice-add #'completing-read-multiple :filter-args #'ad/crm-indicator))
+  (advice-add #'completing-read-multiple :filter-args #'ad/crm-indicator)
+
+  ;; TODO bind to C-t to select all filtered items at once
+  (defun crm-complete-all ()))
 
 ;; Don't ask me when kill process buffer
 (setq kill-buffer-query-functions
