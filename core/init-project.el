@@ -10,7 +10,14 @@
 (leaf project
   :require t
   :init
-  (setq project-vc-merge-submodules nil))
+  (setq project-vc-merge-submodules nil)
+  (defun my/dir-find-file ()
+    "Command to find file in selected directory for `consult-dir'."
+    (interactive)
+    (call-interactively
+     (if (string-prefix-p (project-root (project-current t)) default-directory)
+         #'project-find-file
+       #'find-file))))
 
 (leaf consult-project-extra)
 
