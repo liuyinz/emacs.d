@@ -9,10 +9,12 @@
   :bind
   ("s-u" . vterm-toggle)
   ("s-i" . vterm-cycle)
-  ("s-n" . vterm-new)
+  ("s-t" . vterm-new)
+  ("s-n" . vterm-new-other-window)
   (:vterm-mode-map
    ("M-u" . nil)
-   ("M-i" . nil))
+   ("M-i" . nil)
+   ("s-d" . kill-buffer-and-window))
   :init
   (setq vterm-term-environment-variable "xterm-kitty")
   (setq vterm-buffer-name "*vterm*")
@@ -33,24 +35,43 @@
                   'vterm-mode)
               (window-list nil 'no-minibuf)))
 
-  (defun vterm-new ()
+  (defun vterm-new (&optional other)
     "Create an new interactive Vterm buffer.
 If here is a window display vterm buffer, then creat a new one in that window.
 Or create a new one in other window."
-    (interactive)
+    (interactive "P")
     (let ((len (length (vterm--get-buffers)))
-          (win (car (vterm--get-windows)))
+          (wins (vterm--get-windows))
           (dir default-directory))
       (when (> len 0)
         (cl-incf len)
         (while (get-buffer (format "%s<%d>" vterm-buffer-name len))
           (cl-incf len)))
       (let ((arg (and (> len 0) len)))
-        (if (not win)
+        (if (not wins)
             (vterm-other-window arg)
-          (select-window win)
-          (let ((default-directory dir))
-            (vterm arg))))))
+          (let ((default-directory dir)
+                (win (if (memq (selected-window) wins)
+                         (car wins)
+                       (car (last wins)))))
+            (select-window
+             (or (and other
+                      (if (or (window-full-width-p win)
+                              (eq 'vterm-mode
+                                  (buffer-local-value
+                                   'major-mode
+                                   (window-buffer
+                                    (window-in-direction 'left win)))))
+                          (split-window-right nil win)
+                        (split-window-below nil win)))
+                 win))
+            (vterm arg)
+            (balance-windows (window-parent win)))))))
+
+  (defun vterm-new-other-window ()
+    "Open new vterm in other window."
+    (interactive)
+    (vterm-new 'other))
 
   (defun vterm-toggle ()
     "Toggle to show or hide vterm window."
