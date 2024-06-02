@@ -237,19 +237,20 @@
           "^/tmp/" "^/private/tmp/" "^/var/folders/.+$" "/share/emacs/.+$" "\\.git/.+$"
           "bookmarks"))
 
-  (defun recentf-prune-dir (dirs)
+  ;; TODO support literal/regexp filter and select all keybinding
+  (defun recentf-prune-dir (&optional regex)
     "Delete all recentf records which match selected DIRS."
-    (interactive
-     (list (let ((vertico-sort-function nil))
-             (completing-read-multiple
-              "recentf remove dir: "
-              (let (counts)
-                (dolist (path recentf-list)
-                  (cl-incf (alist-get
-                            (downcase (file-name-directory path))
-                            counts 0 nil 'equal)))
-                (mapcar #'car (seq-sort-by #'cdr #'> counts)))))))
-    (let ((re (regexp-opt dirs)))
+    (interactive "P")
+    (let ((re (if regex (read-string "recentf: input regexp: ")
+                (regexp-opt (let ((vertico-sort-function nil))
+                              (completing-read-multiple
+                               "recentf remove dir: "
+                               (let (counts)
+                                 (dolist (path recentf-list)
+                                   (cl-incf (alist-get
+                                             (downcase (file-name-directory path))
+                                             counts 0 nil 'equal)))
+                                 (mapcar #'car (seq-sort-by #'cdr #'> counts)))))))))
       (setq recentf-list
             (seq-remove (lambda(path)
                           (string-match-p re path 0))
