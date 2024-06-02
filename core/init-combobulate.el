@@ -13,7 +13,12 @@
   :init
   (setq combobulate-proffer-allow-numeric-selection t
         combobulate-flash-node nil
-        combobulate-proffer-indicators "ox"))
+        combobulate-proffer-indicators "ox")
+  :defer-config
+  ;; BUG esc failed
+  (keymap-set combobulate-proffer-map "ESC" 'cancel)
+  (keymap-set combobulate-proffer-map "C-e" 'cancel)
+  )
 
 (provide 'init-combobulate)
 ;;; init-combobulate.el ends here
