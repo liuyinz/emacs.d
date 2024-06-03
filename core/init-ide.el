@@ -7,10 +7,6 @@
 (leaf vterm
   :hook (vterm-mode-hook . vterm-setup)
   :bind
-  ("s-u" . vterm-toggle)
-  ("s-i" . vterm-cycle)
-  ("s-t" . vterm-new)
-  ("s-n" . vterm-new-other-window)
   (:vterm-mode-map
    ("M-u" . nil)
    ("M-i" . nil)
@@ -23,12 +19,11 @@
     (meow-mode -1)
     (and hl-line-mode (hl-line-mode 'toggle)))
 
-  ;; vterm enhanced commands
   (defun vterm--get-buffers ()
     "Return a list of vterm buffers."
     (--filter (eq (buffer-local-value 'major-mode it) 'vterm-mode)
               (buffer-list)))
-
+  
   (defun vterm--get-windows ()
     "Return a list of windows display vterm buffers."
     (--filter (eq (buffer-local-value 'major-mode (window-buffer it))
@@ -68,41 +63,70 @@ Or create a new one in other window."
             (vterm arg)
             (balance-windows (window-parent win)))))))
 
-  (defun vterm-new-other-window ()
-    "Open new vterm in other window."
-    (interactive)
-    (vterm-new 'other))
+  ;; (defun vterm-new-other-window ()
+  ;;   "Open new vterm in other window."
+  ;;   (interactive)
+  ;;   (vterm-new 'other))
 
-  (defun vterm-toggle ()
-    "Toggle to show or hide vterm window."
-    (interactive)
-    (let* ((bufs (vterm--get-buffers))
-           (win (car (vterm--get-windows))))
-      (cond
-       ((not bufs) (vterm-other-window))
-       ((not win) (switch-to-buffer-other-window (car bufs)))
-       (t (delete-window win)))))
-
-  (defun vterm-cycle (&optional backward)
-    "Cycle the vterm buffer.
-If BACKWARD is non-nil, cycle vterms buffers reversely"
-    (interactive "P")
-    (let* ((bufs (vterm--get-buffers))
-           (win (car (vterm--get-windows))))
-      (cond
-       ((not bufs) (vterm-other-window))
-       ((not win) (switch-to-buffer-other-window (car bufs)))
-       (t (save-selected-window
-            (let* ((order-bufs (-sort #'string-lessp (-map #'buffer-name bufs) ))
-                   (new-buf
-                    (-> (if backward #'1- #'1+)
-                        (funcall (-elem-index (buffer-name (window-buffer win)) order-bufs))
-                        (mod (length order-bufs))
-                        (nth order-bufs))))
-              (select-window win)
-              (switch-to-buffer new-buf)
-              (message "Switch to %S" new-buf)))))))
+  ;;   (defun vterm-toggle ()
+  ;;     "Toggle to show or hide vterm window."
+  ;;     (interactive)
+  ;;     (let* ((bufs (vterm--get-buffers))
+  ;;            (win (car (vterm--get-windows))))
+  ;;       (cond
+  ;;        ((not bufs) (vterm-other-window))
+  ;;        ((not win) (switch-to-buffer-other-window (car bufs)))
+  ;;        (t (delete-window win)))))
+  ;;
+  ;;   (defun vterm-cycle (&optional backward)
+  ;;     "Cycle the vterm buffer.
+  ;; If BACKWARD is non-nil, cycle vterms buffers reversely"
+  ;;     (interactive "P")
+  ;;     (let* ((bufs (vterm--get-buffers))
+  ;;            (win (car (vterm--get-windows))))
+  ;;       (cond
+  ;;        ((not bufs) (vterm-other-window))
+  ;;        ((not win) (switch-to-buffer-other-window (car bufs)))
+  ;;        (t (save-selected-window
+  ;;             (let* ((order-bufs (-sort #'string-lessp (-map #'buffer-name bufs) ))
+  ;;                    (new-buf
+  ;;                     (-> (if backward #'1- #'1+)
+  ;;                         (funcall (-elem-index (buffer-name (window-buffer win)) order-bufs))
+  ;;                         (mod (length order-bufs))
+  ;;                         (nth order-bufs))))
+  ;;               (select-window win)
+  ;;               (switch-to-buffer new-buf)
+  ;;               (message "Switch to %S" new-buf)))))))
   )
+
+
+;;; repl
+(defun my/repl ()
+  "Runinig for interactive."
+  (interactive)
+  (pcase major-mode
+    ((or 'emacs-lisp-mode 'lisp-interaction-mode)
+     (run-general! eval-region eval-buffer))
+    ((or 'js-mode 'js-ts-mode)
+     (run-general! nodejs-repl-send-region nodejs-repl-send-buffer))
+    ('python-mode (run-python))
+    (_ (message "no repl for selected mode"))))
+
+;; node
+
+(leaf nodejs-repl
+  :bind
+  (:nodejs-repl-mode-map
+   ("C-l" . comint-clear-buffer))
+  :init
+  (defun nodejs-repl-send-region-or-buffer ()
+    "docstring"
+    (interactive)
+    (nodejs-repl)
+    (if (use-region-p)
+        (nodejs-repl-send-region (region-beginning) (region-end))
+      (nodejs-repl-send-region (point-min)(point-max)))))
+
 
 ;; -------------------------- docstr ------------------------------
 ;; --------------------------- Doc --------------------------------

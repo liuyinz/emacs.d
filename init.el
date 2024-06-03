@@ -92,5 +92,6 @@
     (require 'init-gui)
     (require 'init-key)
     (require 'init-env)
+    (require 'init-next)
     ))
 ;;; init.el ends here
