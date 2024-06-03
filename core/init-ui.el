@@ -30,34 +30,19 @@
   (setq mode-line-position-column-line-format '("%l:%c,%p"))
   (setq mini-echo-right-padding 2)
   (setq mini-echo-default-segments
-        '(:long ("meow" "shrink-path" "vcs" "ide" "buffer-position" "envrc"
+        '(:long ("meow" "shrink-path" "vcs" "buffer-position" "envrc"
                  "buffer-size" "flymake" "mise" "process" "selection-info"
                  "narrow" "macro" "profiler" "repeat" "text-scale")
-          :short ("meow" "buffer-name" "ide" "buffer-position"
+          :short ("meow" "buffer-name" "buffer-position"
                   "flymake" "process" "selection-info" "narrow"
                   "macro" "profiler" "repeat" "text-scale")))
   :defer-config
   ;; (appendq! mini-echo-rules
   ;;           '((vterm-mode :both (("ide" . 2)))
-  ;;             (quickrun--mode :both (("ide" . 2)))))
-
-  (mini-echo-define-segment "ide"
-    "Return vterm,quickrun info."
-    :fetch
-    (when (memq major-mode '(vterm-mode quickrun--mode))
-      (string-join
-       (->> (buffer-list)
-            (--filter (memq (buffer-local-value 'major-mode it)
-                            '(vterm-mode quickrun--mode)))
-            (-map #'buffer-name)
-            (-sort #'string-lessp)
-            (reverse)
-            (--map (mini-echo-segment--print
-                    it (if (string= it (buffer-name))
-                           'dired-symlink
-                         'font-lock-doc-face)
-                    20)))
-       (propertize "|" 'face 'font-lock-doc-face))))
+  ;;             (quickrun--mode :both (("ide" . 2)))
+  ;;             (nodejs-repl-mode :both (("ide" . 2)))
+  ;;             (inferior-python-mode :both (("ide" . 2)))
+  ;;             (inferior-emacs-lisp-mode :both (("ide" . 2)))))
 
   )
 
