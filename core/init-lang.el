@@ -83,6 +83,9 @@ If optional arg ALL if non-nil, reinstall all grammars."
   :mode "\\.\\(ini\\|conf\\)\\'" "enchant.ordering")
 
 (leaf python
+  :bind
+  (:inferior-python-mode-map
+   ("C-l" . comint-clear-buffer))
   :mode "\\.pythonrc\\'")
 
 (leaf make-mode

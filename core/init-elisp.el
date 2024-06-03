@@ -2,6 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
+(leaf ielm
+  :bind
+  (:inferior-emacs-lisp-mode-map
+   ("C-l" . comint-clear-buffer))
+  :init
+  (setq ielm-noisy nil))
+
+
 (leaf elisp-mode
   :hook (emacs-lisp-mode-hook . elisp-mode-setup)
   :init
