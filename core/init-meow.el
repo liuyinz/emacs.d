@@ -9,6 +9,7 @@
 
 ;;; TODO write things with treesit api
 (leaf meow
+  :hook (vterm-mode-hook . meow-mode)
   :require t
   :init
 
@@ -160,7 +161,13 @@
     '("M-n" . meow-open-below)
     '("M-p" . meow-open-above))
 
-  (prependq! meow-mode-state-list '((diff-mode . motion)))
+  (prependq! meow-mode-state-list
+             '((diff-mode . motion)
+               (inferior-emacs-lisp-mode . insert)
+               (inferior-python-mode . insert)
+               (nodejs-repl-mode . insert)
+               (quickrun--mode . motion)
+               (vterm-mode . insert)))
 
   (setq meow-replace-state-name-list
         '((normal . "<N>")
