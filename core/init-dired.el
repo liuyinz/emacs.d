@@ -82,13 +82,33 @@ A prefix argument means to unmark them instead."
   )
 
 (leaf dired-aux
+  :bind
+  (:dired-mode-map
+   ("E" . dired-create-empty-file))
   :init
   (setq dired-create-destination-dirs 'always
         dired-compress-directory-default-suffix t
         dired-vc-rename-file t
         dired-backup-overwrite t
         dired-do-revert-buffer t
-        dired-isearch-filenames t))
+        dired-isearch-filenames t)
+
+  (defun my/create-empty-file-multi ()
+    "Create multi empty files under directory."
+    (interactive)
+    (let ((split-string-default-separators ","))
+      (if-let ((files
+                (or (dired-get-marked-files)
+                    (->> (read-string "Input new files names(',' as seperator): ")
+                         (string-split)
+                         (-map #'string-trim)
+                         (-remove #'string-empty-p)))))
+          (--each files
+            (let* ((expanded (expand-file-name it)))
+              (if (file-exists-p expanded)
+                  (error "Cannot create file %s: file exists" expanded))
+              (make-empty-file file 'parents)))
+        (message "No files confirmed, operaton cancel.")))))
 
 (leaf dired-x
   :defer-config
