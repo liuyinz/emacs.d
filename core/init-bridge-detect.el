@@ -10,6 +10,11 @@
 
 ;;; base function
 
+;; HACK filepath like "../.zshenv" will return nil if call `file-name-extension'
+;; directly, so add a prefix to return zshenv
+(defun filepath-ext (filepath)
+  (or (file-name-extension (concat "a" (file-name-nondirectory filepath))) ""))
+
 (defun jsreact-p (ext)
   (or (string= ext "jsx")
       (memq major-mode '(jtsx-jsx-mode js-jsx-mode))))
@@ -34,43 +39,42 @@
   (or (memq ext '("htm" "html"))
       (memq major-mode '(mhtml-mode html-mode html-ts-mode web-mode))))
 
+(defun non-zsh-p (ext)
+  (or (memq major-mode '(bash-mode bash-ts-mode))
+      (and (eq major-mode 'sh-mode)
+           (not (string-match-p "zsh\\(rc\\|env\\)?$" ext)))))
+
 
 ;;; single server detect
-(push '((jtsx-jsx-mode) . "javascriptreact") lsp-bridge-single-lang-server-mode-list)
-(push '((jtsx-tsx-mode) . "typescriptreact") lsp-bridge-single-lang-server-mode-list)
-;; ;; HACK remove sh-mode in default mode list and enable it only when sh-shell is not zsh
+;; HACK remove sh-mode in default mode list and enable it only when sh-shell is not zsh
 ;; (setq lsp-bridge-single-lang-server-mode-list
 ;;       (remove (rassoc "bash-language-server" lsp-bridge-single-lang-server-mode-list)
 ;;               lsp-bridge-single-lang-server-mode-list))
 
-;; (setq lsp-bridge-get-single-lang-server-by-project #'my/bridge-single-server-detect)
-;; (defun my/bridge-single-server-detect (project_path filepath)
-;;   "Detect right server config for single server."
-;;   (save-excursion
-;;     (let* ((ext (file-name-extension filepath))
-;;            (toml-p (or (string= ext "toml")
-;;                        (memq major-mode '(toml-ts-mode conf-toml-mode))))
-;;            (non-zsh-sh-p
-;;             (or (memq major-mode '(bash-mode bash-ts-mode))
-;;                 (and (eq major-mode 'sh-mode) (not (string= ext "zsh"))))))
-;;       (cond
-;;        ((tsreact-p ext) "typescriptreact")
-;;        ((jsreact-p ext) "javascriptreact")
-;;        (toml-p "toml-language-server")
-;;        ;; (non-zsh-sh-p "bash-language-server")
-;;        )
-;;       (message "pro: %S, fp: %S, jsreact-p: %S" project_path filepath (tsreact-))
-;;       )))
+(setq lsp-bridge-get-single-lang-server-by-project #'my/bridge-single-server-detect)
+(defun my/bridge-single-server-detect (project_path filepath)
+  (save-excursion
+    (let* ((ext (filepath-ext filepath))
+           (toml-p (or (and ext (string= ext "toml"))
+                       (memq major-mode '(toml-ts-mode conf-toml-mode)))))
+      (cond
+       ((tsreact-p ext) "typescriptreact")
+       ((jsreact-p ext) "javascriptreact")
+       ((non-zsh-p ext) "bash-language-server")
+       (toml-p "toml-language-server")))))
 
 
 ;;; multi-server detect
+(setq lsp-bridge-multi-lang-server-extension-list nil)
+;; (setq lsp-bridge-multi-lang-server-mode-list nil)
+
 (setq lsp-bridge-get-multi-lang-server-by-project 'my/bridge-multi-server-detect)
 (defun my/bridge-multi-server-detect (project_path filepath)
   (save-excursion
     ;; detect for web dev
     ;; NOTE project-path return same value as filepath if lsp-bridge cannot detect project
     ;; so check it ahead, tailwindcss do not support single file mode
-    (let ((ext (file-name-extension filepath))
+    (let ((ext (filepath-ext filepath))
           (tailwindcss-p (and (file-directory-p project_path)
                               (directory-files
                                project_path
@@ -85,7 +89,6 @@
        ;; lib/multi
        ((css-like-p ext) "css_emmet")
        ((html-p ext) "html_emmet")))))
-
 
 
 ;;; multi-server languageId detect
