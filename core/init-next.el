@@ -73,7 +73,7 @@ If BACKWARD is non-nil, cycle vterms buffers reversely"
 
 (dolist (pair '(("s-u" . next-toggle)
                 ("s-i" . next-cycle)
-                ("s-t" . vterm-new)))
+                ("s-n" . vterm-new)))
   (keymap-global-set (car pair) (cdr pair)))
 
 (provide 'init-next)

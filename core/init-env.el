@@ -17,7 +17,7 @@
 ;;   )
 
 (leaf envrc
-  :mode ("\\.envrc\\'" . envrc-file-mode)
+  :mode ("\\.env\\(rc\\)?\\'" . envrc-file-mode)
   ;; :hook (after-init-hook . envrc-global-mode)
   )
 

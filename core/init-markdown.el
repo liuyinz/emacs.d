@@ -8,7 +8,7 @@
 
 (leaf markdown-mode
   :mode
-  ("\\.md\\'" . markdown-mode)
+  ("\\.mdx?\\'" . markdown-mode)
   ("README\\.md\\'" . gfm-mode)
   ("CHANGELOG\\.md\\'" . markdown-view-mode)
   :init

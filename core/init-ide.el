@@ -163,7 +163,7 @@ If CN is non-nil, search in zh-CN documentation."
 (leaf quickrun
   :init
   (setq quickrun-focus-p nil
-        quickrun-timeout-seconds 20)
+        quickrun-timeout-seconds 1000000)
   :defer-config
   (prependq! quickrun--major-mode-alist
              '((lisp-interaction-mode . "elisp")

@@ -42,6 +42,8 @@
   (setq lsp-bridge-python-command "python3.11")
   (setq lsp-bridge-python-multi-lsp-server "pyright_ruff")
 
+  (setq lsp-bridge-enable-inlay-hint t)
+
   ;; (setq lsp-bridge-completion-popup-predicates nil)
   ;; ;; Debug: REQUIRE brew install gdb
   ;; (setq lsp-bridge-enable-log t)
@@ -59,8 +61,8 @@
     ;; yasnippet
     (setq acm-completion-backend-merge-order
           '("template-first-part-candidates"
-            "mode-first-part-candidates"
             "template-second-part-candidates"
+            "mode-first-part-candidates"
             "mode-second-part-candidates"))
 
     (setq acm-backend-yas-candidates-number 3

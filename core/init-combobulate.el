@@ -9,7 +9,7 @@
 
 (leaf combobulate
   :hook
-  ((jtsx-tsx-mode-hook jtsx-jsx-mode-hook) . combobulate-mode)
+  ((jtsx-tsx-mode-hook jtsx-jsx-mode-hook js-ts-mode typescript-ts-mode) . combobulate-mode)
   :init
   (setq combobulate-proffer-allow-numeric-selection t
         combobulate-flash-node nil

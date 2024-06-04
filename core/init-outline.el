@@ -7,14 +7,14 @@
 
 ;;; Code:
 
-(leaf outline
-  :hook (prog-mode-hook . outline-minor-mode)
-  :init
-  (set-display-table-slot
-   standard-display-table
-   'selective-display
-   (let ((face-offset (* (face-id 'shadow) (lsh 1 22))))
-     (vconcat (mapcar (lambda (c) (+ face-offset c)) "...")))))
+;; (leaf outline
+;;   :hook (prog-mode-hook . outline-minor-mode)
+;;   :init
+;;   (set-display-table-slot
+;;    standard-display-table
+;;    'selective-display
+;;    (let ((face-offset (* (face-id 'shadow) (lsh 1 22))))
+;;      (vconcat (mapcar (lambda (c) (+ face-offset c)) "...")))))
 
 (leaf hideshow
   :hook (prog-mode-hook . hs-mode-setup)
