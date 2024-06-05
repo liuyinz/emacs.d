@@ -104,7 +104,10 @@
               mhtml-mode-hook
               html-mode-hook
               js-json-mode-hook
-              vue-ts-mode-hook))
+              vue-ts-mode-hook
+              jtsx-jsx-mode-hook
+              jtsx-tsx-mode-hook
+              jtsx-typescript-mode-hook))
   )
 
 (provide 'init-bridge)

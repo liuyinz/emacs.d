@@ -158,8 +158,8 @@
   :defer-config
 
   (meow-define-keys 'insert
-    '("M-n" . meow-open-below)
-    '("M-p" . meow-open-above))
+    '("C-j" . meow-open-below)
+    '("C-k" . meow-open-above))
 
   (prependq! meow-mode-state-list
              '((diff-mode . motion)

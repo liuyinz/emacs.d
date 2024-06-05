@@ -13,8 +13,8 @@
 
 ;;; Code:
 
-(dolist (pair '(("C-j" . scroll-other-window)
-                ("C-k" . scroll-other-window-down)
+(dolist (pair '(("M-j" . scroll-other-window)
+                ("M-k" . scroll-other-window-down)
                 ("M-o" . toggle-one-window)
                 ;; vscode style
                 ("s-p" . my/dir-find-file)
