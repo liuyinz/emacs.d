@@ -38,7 +38,8 @@
                 (nxml-mode . prettier-html)
                 (jtsx-jsx-mode . prettier-javascript)
                 (jtsx-tsx-mode . prettier-typescript)
-                (jtsx-typescript-mode . prettier-typescript))))
+                (jtsx-typescript-mode . prettier-typescript)
+                (astro-mode . prettier-astro))))
 
 (provide 'init-format)
 ;;; init-format.el ends here

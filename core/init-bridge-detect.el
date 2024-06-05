@@ -23,6 +23,10 @@
   (or (string= ext "tsx")
       (memq major-mode '(jtsx-tsx-mode jtsx-typescript-mode tsx-ts-mode))))
 
+(defun astro-p (ext)
+  (or (string= ext "astro")
+      (eq major-mode 'astro-mode)))
+
 (defun markdown-p (ext)
   (or (member ext '("md" "gfm"))
       (memq major-mode '(markdown-mode markdown-ts-mode))))
@@ -58,6 +62,7 @@
            (toml-p (or (and ext (string= ext "toml"))
                        (memq major-mode '(toml-ts-mode conf-toml-mode)))))
       (cond
+       ((astro-p ext) "astro-ls")
        ((tsreact-p ext) "typescriptreact")
        ((jsreact-p ext) "javascriptreact")
        ((non-zsh-p ext) "bash-language-server")
@@ -86,6 +91,7 @@
        ((and tailwindcss-p (tsreact-p ext)) "tsreact_tailwindcss")
        ((and tailwindcss-p (html-p ext)) "html_emmet_tailwindcss")
        ((and tailwindcss-p (css-like-p ext)) "css_emmet_tailwindcss")
+       ((and tailwindcss-p (astro-p ext)) "astro_tailwindcss")
        ;; lib/multi
        ((css-like-p ext) "css_emmet")
        ((html-p ext) "html_emmet")))))

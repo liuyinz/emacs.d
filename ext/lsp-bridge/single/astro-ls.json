@@ -1,0 +1,11 @@
+{
+  "name": "astro-ls",
+  "languageId": "astro",
+  "command": ["astro-ls", "--stdio"],
+  "settings": {},
+  "initializationOptions": {
+    "typescript": {
+      "tsdk": "/Users/liuyinz/Library/pnpm/global/5/node_modules/typescript/lib"
+    }
+  }
+}

@@ -105,6 +105,7 @@
               html-mode-hook
               js-json-mode-hook
               vue-ts-mode-hook
+              astro-mode-hook
               jtsx-jsx-mode-hook
               jtsx-tsx-mode-hook
               jtsx-typescript-mode-hook))
