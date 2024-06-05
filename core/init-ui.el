@@ -99,7 +99,7 @@ No changes in mode--line."
 (leaf doom-themes
   :require t
   :config
-  (load-theme 'doom-city-lights t)
+  (load-theme 'doom-tomorrow-night t)
   (my/doom-theme-city-lights-customize)
   :init
   (defun my/doom-theme-city-lights-customize ()
@@ -108,8 +108,8 @@ No changes in mode--line."
                                    ,(doom-lighten (doom-color 'comments) 0.15)))))
      `(font-lock-function-name-face ((t (:foreground ,(doom-color 'green)))))
      `(secondary-selection ((t (:background ,(doom-darken (doom-color 'blue) 0.7)))))
-     `(region ((t (:background ,(doom-darken (doom-color 'dark-blue) 0.6)))))
-     `(hl-line ((t (:background ,(doom-darken (doom-color 'dark-blue) 0.6)))))
+     ;; `(region ((t (:background ,(doom-darken (doom-color 'dark-blue) 0.6)))))
+     ;; `(hl-line ((t (:background ,(doom-darken (doom-color 'dark-blue) 0.6)))))
      ;; '(match          ((t (:inherit font-lock-variable-name-face
      ;;                       :weight bold
      ;;                       :inverse-video t))))
