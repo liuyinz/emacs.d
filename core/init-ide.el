@@ -12,7 +12,7 @@
    ("M-i" . nil)
    ("s-d" . kill-buffer-and-window))
   :init
-  (setq vterm-term-environment-variable "xterm-kitty")
+  ;; (setq vterm-term-environment-variable "xterm-kitty")
   (setq vterm-buffer-name "*vterm*")
 
   (defun vterm-setup ()

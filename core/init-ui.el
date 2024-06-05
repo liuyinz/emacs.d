@@ -99,7 +99,8 @@ No changes in mode--line."
 (leaf doom-themes
   :require t
   :config
-  (load-theme 'doom-tomorrow-night t)
+  ;; (load-theme 'doom-tomorrow-night t)
+  (load-theme 'doom-city-lights t)
   (my/doom-theme-city-lights-customize)
   :init
   (defun my/doom-theme-city-lights-customize ()
