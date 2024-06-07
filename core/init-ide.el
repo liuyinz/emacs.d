@@ -161,9 +161,13 @@ If CN is non-nil, search in zh-CN documentation."
 
 ;; run
 (leaf quickrun
+  :hook (quickrun--mode-hook . quickrun-setup)
   :init
   (setq quickrun-focus-p nil
         quickrun-timeout-seconds 1000000)
+  (defun quickrun-setup ()
+    "docstring"
+    (setq-local cursor-in-non-selected-windows nil))
   :defer-config
   (prependq! quickrun--major-mode-alist
              '((lisp-interaction-mode . "elisp")
