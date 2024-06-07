@@ -9,8 +9,7 @@
   :bind
   (:vterm-mode-map
    ("M-u" . nil)
-   ("M-i" . nil)
-   ("s-d" . kill-buffer-and-window))
+   ("M-i" . nil))
   :init
   ;; (setq vterm-term-environment-variable "xterm-kitty")
   (setq vterm-buffer-name "*vterm*")
@@ -61,7 +60,10 @@ Or create a new one in other window."
                         (split-window-below nil win)))
                  win))
             (vterm arg)
-            (balance-windows (window-parent win)))))))
+            ;; FIXME side windows cannot be divided, if be diveide enabled,
+            ;; balance windows afterwards
+            ;; (balance-windows (window-parent win))
+            )))))
 
   ;; (defun vterm-new-other-window ()
   ;;   "Open new vterm in other window."

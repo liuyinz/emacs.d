@@ -71,9 +71,20 @@ If BACKWARD is non-nil, cycle vterms buffers reversely"
             (switch-to-buffer new-buf)
             (message "Switch to %S" new-buf)))))))
 
+(defun next-kill ()
+  "Kill the vterm buffer which is displayed in frame."
+  (interactive)
+  (let* ((win (car (next--get-windows)))
+         (buf-to-kill (window-buffer win)))
+    (if (not win)
+        (message "No ide buffer displaying to be killed.")
+      (next-cycle 'backward)
+      (kill-buffer buf-to-kill))))
+
 (dolist (pair '(("s-u" . next-toggle)
                 ("s-i" . next-cycle)
-                ("s-n" . vterm-new)))
+                ("s-n" . vterm-new)
+                ("s-d" . next-kill)))
   (keymap-global-set (car pair) (cdr pair)))
 
 (provide 'init-next)
