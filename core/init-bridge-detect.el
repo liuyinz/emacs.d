@@ -61,12 +61,15 @@
     (let* ((ext (filepath-ext filepath))
            (toml-p (or (and ext (string= ext "toml"))
                        (memq major-mode '(toml-ts-mode conf-toml-mode)))))
-      (cond
-       ((astro-p ext) "astro-ls")
-       ((tsreact-p ext) "typescriptreact")
-       ((jsreact-p ext) "javascriptreact")
-       ((non-zsh-p ext) "bash-language-server")
-       (toml-p "toml-language-server")))))
+      (let ((final (cond
+                    ((astro-p ext) "astro-ls")
+                    ((tsreact-p ext) "typescriptreact")
+                    ((jsreact-p ext) "javascriptreact")
+                    ((non-zsh-p ext) "bash-language-server")
+                    (toml-p "toml-language-server"))))
+        (message "single: pro: %S, fp: %S, ext: %S, final: %S"
+                 project_path filepath ext final)
+        final))))
 
 
 ;;; multi-server detect
@@ -85,16 +88,19 @@
                                project_path
                                'full
                                "tailwind\\.config\\.\\(j\\|cj\\|mj\\|t\\)s\\'"))))
-      (cond
-       ;; ext/multi
-       ((and tailwindcss-p (jsreact-p ext)) "jsreact_tailwindcss")
-       ((and tailwindcss-p (tsreact-p ext)) "tsreact_tailwindcss")
-       ((and tailwindcss-p (html-p ext)) "html_emmet_tailwindcss")
-       ((and tailwindcss-p (css-like-p ext)) "css_emmet_tailwindcss")
-       ((and tailwindcss-p (astro-p ext)) "astro_tailwindcss")
-       ;; lib/multi
-       ((css-like-p ext) "css_emmet")
-       ((html-p ext) "html_emmet")))))
+      (let ((final (cond
+                    ;; ext/multi
+                    ((and tailwindcss-p (jsreact-p ext)) "jsreact_tailwindcss")
+                    ((and tailwindcss-p (tsreact-p ext)) "tsreact_tailwindcss")
+                    ((and tailwindcss-p (html-p ext)) "html_emmet_tailwindcss")
+                    ((and tailwindcss-p (css-like-p ext)) "css_emmet_tailwindcss")
+                    ((and tailwindcss-p (astro-p ext)) "astro_tailwindcss")
+                    ;; lib/multi
+                    ((css-like-p ext) "css_emmet")
+                    ((html-p ext) "html_emmet"))))
+        (message "multi: pro: %S, fp: %S, ext: %S, final: %S"
+                 project_path filepath ext final)
+        final))))
 
 
 ;;; multi-server languageId detect
