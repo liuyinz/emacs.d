@@ -121,15 +121,6 @@
   (setq jtsx-enable-all-syntax-highlighting-features t)
   (setq jtsx-enable-jsx-element-tags-auto-sync t)
 
-  ;; HACK adding jtsx after treesit-auto to make sure it worked
-  (defun jtsx-add-to-auto-mode-alist ()
-    "Add file extension for jtsx-tsx/jsx-mode"
-    (add-to-list 'auto-mode-alist '("\\(App\\.js\\)\\|\\.jsx\\'" . jtsx-jsx-mode))
-    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . jtsx-tsx-mode)))
-  (advice-add 'treesit-auto-add-to-auto-mode-alist
-              :after #'jtsx-add-to-auto-mode-alist)
-
-  :config
   :config
   (defun jtsx-bind-keys-to-mode-map (mode-map)
     "Bind keys to MODE-MAP."

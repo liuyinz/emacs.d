@@ -23,7 +23,7 @@
   :defer-config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
 (leaf pangu-spacing
-  :hook (after-init-hook . global-pangu-spacing-mode)
+  :hook ((prog-mode-hook text-mode-hook) . pangu-spacing-mode)
   :init
   (setq pangu-spacing-real-insert-separtor t)
   :defer-config
