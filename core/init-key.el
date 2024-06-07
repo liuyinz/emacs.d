@@ -18,6 +18,7 @@
                 ("M-o" . toggle-one-window)
                 ;; vscode style
                 ("s-p" . my/dir-find-file)
+                ("s-s" . consult-git-grep)
                 ("s-/" . newcomment-toggle)))
   (keymap-global-set (car pair) (cdr pair)))
 
