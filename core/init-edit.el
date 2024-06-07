@@ -137,7 +137,7 @@
   ;; now use `query-replace-regexp' to replace \n (`C-q C-j') first
   (defun rg-replace (to-string)
     "Replace matched result in rg-mode buffer."
-    (interactive (list (read-string "Rg replace reulst with: ")))
+    (interactive (list (read-string "Rg replace search patten with: ")))
     (let ((final-pos (point)))
       (unwind-protect
           (let* ((keep-asking t)
