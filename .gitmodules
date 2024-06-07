@@ -38,9 +38,6 @@
 [submodule "yasnippet"]
 	path = lib/yasnippet
 	url = https://github.com/joaotavora/yasnippet.git
-[submodule "emacs-easy-hugo"]
-	path = lib/emacs-easy-hugo
-	url = https://github.com/masasam/emacs-easy-hugo.git
 [submodule "emacs-wgrep"]
 	path = lib/Emacs-wgrep
 	url = https://github.com/mhayashi1120/Emacs-wgrep.git
@@ -478,12 +475,6 @@
 [submodule "pangu-spacing"]
 	path = lib/pangu-spacing
 	url = https://github.com/coldnew/pangu-spacing.git
-[submodule "hugo"]
-	path = lib/hugo
-	url = https://github.com/liuyinz/hugo.el.git
-[submodule "denote-hugo"]
-	path = lib/denote-hugo
-	url = https://github.com/liuyinz/denote-hugo.git
 [submodule "emacs-which-key"]
 	path = lib/emacs-which-key
 	url = https://github.com/justbur/emacs-which-key.git
