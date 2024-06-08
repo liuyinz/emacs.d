@@ -29,8 +29,11 @@
         '("◎" "●" "◇" "○" "◆" "►" "•"))
 
   :defer-config
-  (prependq! markdown-code-lang-modes '(("mermaid" . mermaid-ts-mode)
-                                        ("zsh" . sh-mode))))
+  (prependq! markdown-code-lang-modes
+             '(("mermaid" . mermaid-ts-mode)
+               ("zsh" . sh-mode)
+               ("jsx" . js-jsx-mode)
+               ("tsx" . tsx-ts-mode))))
 
 (leaf markdown-toc
   :hook (markdown-mode-hook . markdown-toc-mode)
