@@ -90,7 +90,7 @@
   "A" #'isolate-long-add
   "D" #'isolate-long-delete
   "C" #'isolate-long-change)
-(define-key mode-specific-map "e" my/edit-map)
+(keymap-global-set "M-e" my/edit-map)
 
 ;; (with-eval-after-load 'transient
 
