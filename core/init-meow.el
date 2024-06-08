@@ -169,6 +169,8 @@
                (quickrun--mode . motion)
                (vterm-mode . insert)))
 
+  (setq meow-expand-hint-remove-delay 3.0)
+
   (setq meow-replace-state-name-list
         '((normal . "<N>")
           (motion . "<M>")

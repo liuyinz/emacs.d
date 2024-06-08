@@ -141,6 +141,9 @@ No changes in mode--line."
      `(meow-motion-indicator   ((t (:foreground ,(doom-color 'magenta) :bold t))))
      `(meow-search-indicator   ((t (:foreground ,(doom-color 'cyan) :bold t))))
      `(meow-beacon-fake-cursor ((t (:inherit meow-beacon-indicator :inverse-video t))))
+     `(meow-position-highlight-number ((t (:foreground ,(doom-color 'bg)
+                                           :background ,(doom-color 'cyan)
+                                           :bold t))))
      ;; rg.el
      `(rg-info-face        ((t (:foreground ,(doom-color 'blue)))))
      `(rg-filename-face    ((t (:foreground ,(doom-color 'blue) :underline t))))
@@ -216,8 +219,8 @@ No changes in mode--line."
      '(dirvish-subtree-state ((t (:inherit dired-special))))
      ;; combobulate
      '(combobulate-refactor-highlight-face ((t (:background unspecified))))
-     '(combobulate-refactor-label-face ((t (:foreground"black"
-                                            :background "white"
+     `(combobulate-refactor-label-face ((t (:foreground ,(doom-color 'bg)
+                                            :background ,(doom-color 'cyan)
                                             :bold t))))
      '(combobulate-active-indicator-face ((t (:foreground "white"))))
      ;; web-mode
