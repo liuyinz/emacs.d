@@ -128,7 +128,7 @@ A prefix argument means to unmark them instead."
    ("TAB" . dirvish-toggle-subtree-anywhere))
   :init
   (setq dirvish-attributes
-        '(subtree-state collapse file-size)
+        '(subtree-state nerd-icons collapse file-size)
         dirvish-use-mode-line nil
         dirvish-use-header-line nil
         dirvish-preview-dispatchers nil)
@@ -157,8 +157,11 @@ A prefix argument means to unmark them instead."
     :init
     (setq dirvish-subtree-listing-switches "-A"
           dirvish-subtree-always-show-state t
-          dirvish-subtree-state-style 'arrow
-          dirvish-subtree-prefix " ")))
+          dirvish-subtree-prefix " "))
+
+  (leaf dirvish-icons
+    :init
+    (setq dirvish-nerd-icons-height 0.8)))
 
 (provide 'init-dired)
 ;;; init-dired.el ends here
