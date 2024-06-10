@@ -2,12 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-;; -------------------------- Debug -------------------------------
-
+
+;;; Debug
 ;; (setq debug-on-error t)
 ;; (debug-on-entry 'load-file)
 
-;; ------------------------- Warning ------------------------------
+
+;;; Warning
 
 ;; add user config dir to load-path
 (add-to-list 'load-path (expand-file-name "core/" user-emacs-directory))
@@ -34,65 +35,83 @@
 (when (file-exists-p custom-file)
   (load custom-file nil :no-message))
 
-;; ------------------------- Loading ------------------------------
+(defun my/load-features (&rest features)
+  "Loading FEATURES and print log if error happens."
+  (dolist (f features)
+    (condition-case err
+        (require f)
+      (t (with-current-buffer (get-buffer-create " *my/load-features*")
+           (unless (derived-mode-p 'special-mode)
+             (special-mode))
+           (goto-char (point-max))
+           (let ((inhibit-read-only t))
+             (insert (format "Feature : %s\nError   : %s"
+                             (propertize (symbol-name f) 'face 'success)
+                             (propertize (error-message-string err) 'face 'error)))
+             (newline 2)))))))
+
+
+;;; Loading
 
 (with-temp-message ""
-  (require 'init-bootstrap)
+  (my/load-features 'init-bootstrap)
   (if (my/debug-begin-p)
-      (require 'init-debug)
-    ;; normal loading
-    (require 'init-font)
-    (require 'init-elisp)
-    (require 'init-builtin)
-    (require 'init-duplexer)
-    (require 'init-meow)
-    (require 'init-minibuffer)
-    (require 'init-combobulate)
-    (require 'init-consult)
-    (require 'init-embark)
-    (require 'init-outline)
-    (require 'init-icon)
-    ;; (require 'init-citre)
-    (require 'init-yas)
-    (require 'init-bridge)
-    ;; (require 'init-corfu)
-    ;; (require 'init-lsp)
-    (require 'init-ui)
-    (require 'init-highlight)
-    (require 'init-window)
-    (require 'init-ibuffer)
-    (require 'init-dired)
-    (require 'init-undo)
-    (require 'init-edit)
-    (require 'init-jump)
-    (require 'init-pair)
-    (require 'init-diff)
-    (require 'init-spell)
-    (require 'init-tool)
-    (require 'init-passwd)
-    (require 'init-package)
-    (require 'init-benchmark)
-    (require 'init-color)
-    ;; engineering
-    (require 'init-ide)
-    (require 'init-flymake)
-    (require 'init-format)
+      (my/load-features 'init-debug)
+    (my/load-features
+     ;;; normal loading
+     'init-builtin
+     ;;; ui
+     'init-gui
+     'init-icon
+     'init-font
+     'init-duplexer
+     'init-meow
+     'init-minibuffer
+     'init-dired
+     'init-combobulate
+     'init-consult
+     'init-embark
+     'init-outline
+     ;; 'init-citre
+     'init-yas
+     'init-bridge
+     ;; 'init-corfu
+     ;; 'init-lsp
+     'init-ui
+     'init-highlight
+     'init-window
+     'init-ibuffer
+     'init-undo
+     'init-edit
+     'init-jump
+     'init-pair
+     'init-diff
+     'init-spell
+     'init-tool
+     'init-passwd
+     'init-package
+     'init-benchmark
+     'init-color
+     ;;; engineering
+     'init-ide
+     'init-flymake
+     'init-format
+     'init-vcs
+     'init-reader
+     'init-project
+     ;; 'init-projectile
+     ;;; langs
+     'init-lang
+     'init-elisp
+     'init-web
+     ;; 'init-vue
+     ;; 'init-go
+     'init-markdown
+     'init-write
+     ;; 'init-org
+     'init-key
+     'init-env
+     'init-next
+     )))
 
-    (require 'init-vcs)
-    (require 'init-reader)
-    (require 'init-project)
-    ;; (require 'init-projectile)
-    ;; langs
-    (require 'init-web)
-    ;; (require 'init-vue)
-    (require 'init-lang)
-    ;; (require 'init-go)
-    (require 'init-markdown)
-    (require 'init-write)
-    ;; (require 'init-org)
-    (require 'init-gui)
-    (require 'init-key)
-    (require 'init-env)
-    (require 'init-next)
-    ))
 ;;; init.el ends here
