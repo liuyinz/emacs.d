@@ -44,7 +44,7 @@
 
   (setq ibuffer-formats
         '((mark " " (name 20 20 :left :elide)
-                " " modified read-only
+                " " modified read-only locked
                 " " (size-h 7 -1 :right)
                 " " (mode 16 16 :left :elide)
                 " " filename-and-process)

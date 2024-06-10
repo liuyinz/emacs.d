@@ -217,6 +217,7 @@ No changes in mode--line."
      '(window-divider ((t (:foreground "#5d6a76"))))
      ;; dirvish-subtree
      '(dirvish-subtree-state ((t (:inherit dired-special))))
+     '(dirvish-hl-line ((t (:inherit hl-line))))
      ;; combobulate
      '(combobulate-refactor-highlight-face ((t (:background unspecified))))
      `(combobulate-refactor-label-face ((t (:foreground ,(doom-color 'bg)

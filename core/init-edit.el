@@ -107,9 +107,7 @@
   (setq wgrep-auto-save-buffer t))
 
 (leaf rg
-  :hook (rg-mode-hook . (lambda ()
-                          (setq-local compilation-scroll-output 'first-error
-                                      compilation-always-kill t)))
+  :hook (rg-mode-hook . rg-mode-setup)
   :bind
   ("C-c s" . rg-menu)
   (:rg-mode-map
@@ -131,6 +129,10 @@
   (setq rg-ignore-case 'smart
         rg-command-line-flags '("-z" "--pcre2"))
 
+  (defun rg-mode-setup ()
+    "docstring"
+    (setq-local compilation-scroll-output 'first-error
+                compilation-always-kill t))
   :defer-config
 
   ;; FIXME replace failed when rg search with --multiline
