@@ -51,6 +51,7 @@
     (require 'init-consult)
     (require 'init-embark)
     (require 'init-outline)
+    (require 'init-icon)
     ;; (require 'init-citre)
     (require 'init-yas)
     (require 'init-bridge)

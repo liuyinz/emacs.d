@@ -13,28 +13,6 @@
 ;; setup default frame
 (add-to-list 'default-frame-alist `(font . ,my/default-font))
 
-(leaf nerd-icons)
-
-(leaf nerd-icons-completion
-  :hook (after-init-hook . nerd-icons-completion-mode)
-  :init
-  (setq nerd-icons-completion-icon-size 0.8)
-  :defer-config
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
-
-(leaf nerd-icons-ibuffer
-  :hook (ibuffer-mode-hook . nerd-icons-ibuffer-mode)
-  :init
-  (setq nerd-icons-ibuffer-icon-size 0.8)
-  (setq nerd-icons-ibuffer-formats
-        '((mark " " (icon 2 2)
-                " " (name 20 20 :left :elide)
-                " " modified read-only locked
-                " " (size-h 7 -1 :right)
-                " " (mode+ 16 16 :left :elide)
-                " " filename-and-process+)
-          (mark " " name))))
-
 ;; ;; setup chinese patch
 ;; (defun my/patch-chinese-charset ()
 ;;   "Patch chinese character with lxgw font."
