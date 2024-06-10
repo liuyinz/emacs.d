@@ -555,3 +555,12 @@
 [submodule "gcmh"]
 	path = lib/gcmh
 	url = https://gitlab.com/koral/gcmh.git
+[submodule "nerd-icons"]
+	path = lib/nerd-icons
+	url = https://github.com/rainstormstudio/nerd-icons.el.git
+[submodule "nerd-icons-ibuffer"]
+	path = lib/nerd-icons-ibuffer
+	url = https://github.com/seagle0128/nerd-icons-ibuffer.git
+[submodule "nerd-icons-completion"]
+	path = lib/nerd-icons-completion
+	url = https://github.com/rainstormstudio/nerd-icons-completion.git
