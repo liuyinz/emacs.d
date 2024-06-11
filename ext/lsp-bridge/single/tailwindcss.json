@@ -4,9 +4,7 @@
   "command": ["tailwindcss-language-server", "--stdio"],
   "settings": {
     "includeLanguages": {
-      "plaintext": "html",
-      "html": "html",
-      "css": "css"
+      "plaintext": "html"
     },
     "validate": true,
     "emmetCompletions": true
