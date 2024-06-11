@@ -81,9 +81,9 @@ If BACKWARD is non-nil, cycle vterms buffers reversely"
       (next-cycle 'backward)
       (kill-buffer buf-to-kill))))
 
-(dolist (pair '(("s-u" . next-toggle)
+(dolist (pair '(("s-t" . next-toggle)
+                ("s-u" . vterm-new)
                 ("s-i" . next-cycle)
-                ("s-n" . vterm-new)
                 ("s-d" . next-kill)))
   (keymap-global-set (car pair) (cdr pair)))
 
