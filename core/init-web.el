@@ -108,6 +108,7 @@
   )
 
 (leaf jtsx
+  :require t
   :mode
   ("\\(App\\.js\\)\\|\\.jsx\\'" . jtsx-jsx-mode)
   ("\\.tsx\\'" . jtsx-tsx-mode)
@@ -136,8 +137,9 @@
                     ("C-c h b" . jtsx-move-jsx-element-step-in-backward)
                     ("C-c h w" . jtsx-wrap-in-jsx-element)
                     ("C-c h u" . jtsx-unwrap-jsx)
-                    ("C-c h d" . jtsx-delete-jsx-node)))
-      (keymap-set jtsx-jsx-mode-map (car pair) (cdr pair))))
+                    ("C-c h d" . jtsx-delete-jsx-node)
+                    ("s-/"     . jtsx-comment-dwim)))
+      (keymap-set mode-map (car pair) (cdr pair))))
 
   (defun jtsx-bind-keys-to-jtsx-jsx-mode-map ()
     (jtsx-bind-keys-to-mode-map jtsx-jsx-mode-map))
