@@ -110,50 +110,59 @@
 
 (setq lsp-bridge-get-language-id 'my/bridge-get-language-id)
 
-(defun my/bridge-get-language-id (project filepath server ext)
-  (pcase server
-    ;; tailwindcss filetypes:
-    ;; html-kind: 'aspnetcorerazor','astro','astro-markdown','blade','django-html',
-    ;; 'edge', 'ejs', 'erb', 'gohtml', 'GoHTML', 'gohtmltmpl', 'haml', 'handlebars',
-    ;; 'hbs', 'html', 'HTML (Eex)', 'HTML (EEx)','html-eex', 'htmldjango', 'jade',
-    ;; 'leaf', 'liquid', 'markdown', 'mdx','mustache','njk','nunjucks','phoenix-heex',
-    ;; 'php', 'razor', 'slim','surface','twig',
-    ;; css-kind 'css','less', 'postcss', 'sass','scss', 'stylus', 'sugarss','tailwindcss',
-    ;; js-kind: 'javascript','javascriptreact', 'reason', 'rescript',
-    ;; 'typescript','typescriptreact','glimmer-js','glimmer-ts',
-    ("tailwindcss"
-     (pcase ext
-       ((pred jsreact-p) "javascriptreact")
-       ((pred tsreact-p) "typescriptreact")
-       ((pred markdown-p) "markdown")
-       ((pred handlebar-p) "handlebars")
-       ("js" "javascript")
-       ("ts" "typescript")
-       ("res" "rescript")
-       (_ ext)))
-    ;; emmet supports following filetype:
-    ;; 'css', 'eruby', 'html', 'javascript', 'javascriptreact', 'less',
-    ;; 'sass', 'scss', 'svelte', 'pug', 'typescriptreact', "vue"
-    ("emmet-ls"
-     (pcase ext
-       ((pred jsreact-p) "javascriptreact")
-       ((pred tsreact-p) "typescriptreact")
-       ("js" "javascript")
-       ("erb" "eruby")
-       ((or "css" "html" "less" "sass" "scss" "svelte" "pug" "vue") ext)
-       (_ "html")))
-    ;; eslint lsp support
-    ;; 'javascript', 'javascriptreact', 'typescript', 'typescriptreact',
-    ;; 'html', 'vue', 'markdown'
-    ("vscode-eslint-language-server"
-     (pcase ext
-       ((pred jsreact-p) "javascriptreact")
-       ((pred tsreact-p) "typescriptreact")
-       ((pred markdown-p) "markdown")
-       ((pred html-p) "html")
-       ("js" "javascript")
-       ("ts" "typescript")
-       ("vue" "vue")))))
+(defun my/bridge-get-language-id (project_path filepath server ext)
+  (let ((final
+         ;; HACK to suit for lsp-bridge
+         (pcase (nth 1 (string-split server "#"))
+           ;; tailwindcss filetypes:
+           ;; html-kind: 'aspnetcorerazor','astro','astro-markdown','blade','django-html',
+           ;; 'edge', 'ejs', 'erb', 'gohtml', 'GoHTML', 'gohtmltmpl', 'haml', 'handlebars',
+           ;; 'hbs', 'html', 'HTML (Eex)', 'HTML (EEx)','html-eex', 'htmldjango', 'jade',
+           ;; 'leaf', 'liquid', 'markdown', 'mdx','mustache','njk','nunjucks','phoenix-heex',
+           ;; 'php', 'razor', 'slim','surface','twig',
+           ;; css-kind 'css','less', 'postcss', 'sass','scss', 'stylus', 'sugarss','tailwindcss',
+           ;; js-kind: 'javascript','javascriptreact', 'reason', 'rescript',
+           ;; 'typescript','typescriptreact','glimmer-js','glimmer-ts',
+           ("tailwindcss"
+            (pcase ext
+              ((pred jsreact-p) "javascriptreact")
+              ((pred tsreact-p) "typescriptreact")
+              ((pred markdown-p) "markdown")
+              ((pred handlebar-p) "handlebars")
+              ("js" "javascript")
+              ("ts" "typescript")
+              ("res" "rescript")
+              (_ ext)))
+           ;; emmet supports following filetype:
+           ;; 'css', 'eruby', 'html', 'javascript', 'javascriptreact', 'less',
+           ;; 'sass', 'scss', 'svelte', 'pug', 'typescriptreact', "vue"
+           ("emmet-ls"
+            (pcase ext
+              ((pred jsreact-p) "javascriptreact")
+              ((pred tsreact-p) "typescriptreact")
+              ("js" "javascript")
+              ("erb" "eruby")
+              ((or "css" "html" "less" "sass" "scss" "svelte" "pug" "vue") ext)
+              (_ "html")))
+           ;; eslint lsp support
+           ;; 'javascript', 'javascriptreact', 'typescript', 'typescriptreact',
+           ;; 'html', 'vue', 'markdown'
+           ;; ("vscode-eslint-language-server"
+           ;;  (pcase ext
+           ;;    ((pred jsreact-p) "javascriptreact")
+           ;;    ((pred tsreact-p) "typescriptreact")
+           ;;    ((pred markdown-p) "markdown")
+           ;;    ((pred html-p) "html")
+           ;;    ("js" "javascript")
+           ;;    ("ts" "typescript")
+           ;;    ("vue" "vue")))
+           )
+         ))
+    (message "id-detect: pro: %S, fp: %S, server: %S, ext: %S, final: %S"
+             project_path filepath server ext final)
+    final
+    )
+  )
 
 (provide 'init-bridge-detect)
 ;;; init-bridge-detect.el ends here
