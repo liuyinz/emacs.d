@@ -56,7 +56,7 @@
 (defun web-file-get-server (ext)
   (cond
    ((or (member ext '("htm" "html"))
-        (memq major-mode '(mhtml-mode html-mode html-ts-mode web-mode)))
+        (memq major-mode '(mhtml-mode html-mode html-ts-mode)))
     "html")
    ((or (string= ext "astro")
         (eq major-mode 'astro-mode))
