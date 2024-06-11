@@ -48,6 +48,14 @@
       (and (eq major-mode 'sh-mode)
            (not (string-match-p "zsh\\(rc\\|env\\)?$" ext)))))
 
+;; NOTE project-path return same value as filepath if lsp-bridge cannot detect project
+;; so check it ahead, tailwindcss do not support single file mode
+(defun tailwindcss-p (project_path)
+  (and (file-directory-p project_path)
+       (directory-files
+        project_path
+        'full
+        "tailwind\\.config\\.\\(j\\|cj\\|mj\\|t\\)s\\'")))
 
 ;;; single server detect
 ;; HACK remove sh-mode in default mode list and enable it only when sh-shell is not zsh
@@ -80,21 +88,19 @@
 (defun my/bridge-multi-server-detect (project_path filepath)
   (save-excursion
     ;; detect for web dev
-    ;; NOTE project-path return same value as filepath if lsp-bridge cannot detect project
-    ;; so check it ahead, tailwindcss do not support single file mode
-    (let ((ext (filepath-ext filepath))
-          (tailwindcss-p (and (file-directory-p project_path)
-                              (directory-files
-                               project_path
-                               'full
-                               "tailwind\\.config\\.\\(j\\|cj\\|mj\\|t\\)s\\'"))))
+    (let ((ext (filepath-ext filepath)))
       (let ((final (cond
                     ;; ext/multi
-                    ((and tailwindcss-p (jsreact-p ext)) "jsreact_tailwindcss")
-                    ((and tailwindcss-p (tsreact-p ext)) "tsreact_tailwindcss")
-                    ((and tailwindcss-p (html-p ext)) "html_emmet_tailwindcss")
-                    ((and tailwindcss-p (css-like-p ext)) "css_emmet_tailwindcss")
-                    ((and tailwindcss-p (astro-p ext)) "astro_tailwindcss")
+                    ((and (tailwindcss-p project_path) (jsreact-p ext))
+                     "jsreact_tailwindcss")
+                    ((and (tailwindcss-p project_path) (tsreact-p ext))
+                     "tsreact_tailwindcss")
+                    ((and (tailwindcss-p project_path) (html-p ext))
+                     "html_emmet_tailwindcss")
+                    ((and (tailwindcss-p project_path) (css-like-p ext))
+                     "css_emmet_tailwindcss")
+                    ((and (tailwindcss-p project_path) (astro-p ext))
+                     "astro_tailwindcss")
                     ;; lib/multi
                     ((css-like-p ext) "css_emmet")
                     ((html-p ext) "html_emmet"))))
@@ -112,8 +118,7 @@
 
 (defun my/bridge-get-language-id (project_path filepath server ext)
   (let ((final
-         ;; HACK to suit for lsp-bridge
-         (pcase (nth 1 (string-split server "#"))
+         (pcase server
            ;; tailwindcss filetypes:
            ;; html-kind: 'aspnetcorerazor','astro','astro-markdown','blade','django-html',
            ;; 'edge', 'ejs', 'erb', 'gohtml', 'GoHTML', 'gohtmltmpl', 'haml', 'handlebars',
