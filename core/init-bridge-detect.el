@@ -43,10 +43,9 @@
   (or (memq ext '("htm" "html"))
       (memq major-mode '(mhtml-mode html-mode html-ts-mode web-mode))))
 
-(defun non-zsh-p (ext)
-  (or (memq major-mode '(bash-mode bash-ts-mode))
-      (and (eq major-mode 'sh-mode)
-           (not (string-match-p "zsh\\(rc\\|env\\)?$" ext)))))
+(defun zsh-p (ext)
+  (and (eq major-mode 'sh-mode)
+       (string-match-p "zsh\\(rc\\|env\\)?$" ext)))
 
 ;; NOTE project-path return same value as filepath if lsp-bridge cannot detect project
 ;; so check it ahead, tailwindcss do not support single file mode
@@ -56,6 +55,7 @@
         project_path
         'full
         "tailwind\\.config\\.\\(j\\|cj\\|mj\\|t\\)s\\'")))
+
 
 ;;; single server detect
 ;; HACK remove sh-mode in default mode list and enable it only when sh-shell is not zsh
@@ -69,44 +69,61 @@
     (let* ((ext (filepath-ext filepath))
            (toml-p (or (and ext (string= ext "toml"))
                        (memq major-mode '(toml-ts-mode conf-toml-mode)))))
-      (let ((final (cond
-                    ((astro-p ext) "astro-ls")
-                    ((tsreact-p ext) "typescriptreact")
-                    ((jsreact-p ext) "javascriptreact")
-                    ((non-zsh-p ext) "bash-language-server")
-                    (toml-p "toml-language-server"))))
-        (message "single: pro: %S, fp: %S, ext: %S, final: %S"
-                 project_path filepath ext final)
-        final))))
+      (let ((server (cond
+                     ((astro-p ext) "astro-ls")
+                     ((tsreact-p ext) "typescriptreact")
+                     ((jsreact-p ext) "javascriptreact")
+                     ;; ((zsh-p ext) "no-server")
+                     (toml-p "toml-language-server"))))
+        (message "single: pro: %S, fp: %S, ext: %S, server: %S"
+                 project_path filepath ext server)
+        server))))
+
+;; NOTE must set a server for any major-mode
+(alist-set! lsp-bridge-single-lang-server-mode-list
+            '((jtsx-jsx-mode . "javascriptreact")
+              ((jtsx-tsx-mode jtsx-typescript-mode) . "typescriptreact")))
 
 
 ;;; multi-server detect
 (setq lsp-bridge-multi-lang-server-extension-list nil)
 ;; (setq lsp-bridge-multi-lang-server-mode-list nil)
 
+(defun my/bridge-server-setup (filepath server)
+  (with-current-buffer (get-file-buffer filepath)
+    (pcase server
+      ;; enable : in emmet completion
+      ((pred (string-match-p "emmet"))
+       (setq-local lsp-bridge-completion-hide-characters
+                   (delete ":" lsp-bridge-completion-hide-characters)))
+      ;; enable - in tailwindcss completion
+      ((pred (string-match-p "tailwindcss"))
+       (modify-syntax-entry ?- "w")))))
+
 (setq lsp-bridge-get-multi-lang-server-by-project 'my/bridge-multi-server-detect)
 (defun my/bridge-multi-server-detect (project_path filepath)
   (save-excursion
     ;; detect for web dev
     (let ((ext (filepath-ext filepath)))
-      (let ((final (cond
-                    ;; ext/multi
-                    ((and (tailwindcss-p project_path) (jsreact-p ext))
-                     "jsreact_tailwindcss")
-                    ((and (tailwindcss-p project_path) (tsreact-p ext))
-                     "tsreact_tailwindcss")
-                    ((and (tailwindcss-p project_path) (html-p ext))
-                     "html_emmet_tailwindcss")
-                    ((and (tailwindcss-p project_path) (css-like-p ext))
-                     "css_emmet_tailwindcss")
-                    ((and (tailwindcss-p project_path) (astro-p ext))
-                     "astro_tailwindcss")
-                    ;; lib/multi
-                    ((css-like-p ext) "css_emmet")
-                    ((html-p ext) "html_emmet"))))
-        (message "multi: pro: %S, fp: %S, ext: %S, final: %S"
-                 project_path filepath ext final)
-        final))))
+      (let ((server (cond
+                     ;; ext/multi
+                     ((and (tailwindcss-p project_path) (jsreact-p ext))
+                      "jsreact_tailwindcss")
+                     ((and (tailwindcss-p project_path) (tsreact-p ext))
+                      "tsreact_tailwindcss")
+                     ((and (tailwindcss-p project_path) (html-p ext))
+                      "html_emmet_tailwindcss")
+                     ((and (tailwindcss-p project_path) (css-like-p ext))
+                      "css_emmet_tailwindcss")
+                     ((and (tailwindcss-p project_path) (astro-p ext))
+                      "astro_tailwindcss")
+                     ;; lib/multi
+                     ((css-like-p ext) "css_emmet")
+                     ((html-p ext) "html_emmet"))))
+        (message "multi: pro: %S, fp: %S, ext: %S, server: %S"
+                 project_path filepath ext server)
+        (my/bridge-server-setup filepath server)
+        server))))
 
 
 ;;; multi-server languageId detect
@@ -117,57 +134,40 @@
 (setq lsp-bridge-get-language-id 'my/bridge-get-language-id)
 
 (defun my/bridge-get-language-id (project_path filepath server ext)
-  (let ((final
-         (pcase server
-           ;; tailwindcss filetypes:
-           ;; html-kind: 'aspnetcorerazor','astro','astro-markdown','blade','django-html',
-           ;; 'edge', 'ejs', 'erb', 'gohtml', 'GoHTML', 'gohtmltmpl', 'haml', 'handlebars',
-           ;; 'hbs', 'html', 'HTML (Eex)', 'HTML (EEx)','html-eex', 'htmldjango', 'jade',
-           ;; 'leaf', 'liquid', 'markdown', 'mdx','mustache','njk','nunjucks','phoenix-heex',
-           ;; 'php', 'razor', 'slim','surface','twig',
-           ;; css-kind 'css','less', 'postcss', 'sass','scss', 'stylus', 'sugarss','tailwindcss',
-           ;; js-kind: 'javascript','javascriptreact', 'reason', 'rescript',
-           ;; 'typescript','typescriptreact','glimmer-js','glimmer-ts',
-           ("tailwindcss"
-            (pcase ext
-              ((pred jsreact-p) "javascriptreact")
-              ((pred tsreact-p) "typescriptreact")
-              ((pred markdown-p) "markdown")
-              ((pred handlebar-p) "handlebars")
-              ("js" "javascript")
-              ("ts" "typescript")
-              ("res" "rescript")
-              (_ ext)))
-           ;; emmet supports following filetype:
-           ;; 'css', 'eruby', 'html', 'javascript', 'javascriptreact', 'less',
-           ;; 'sass', 'scss', 'svelte', 'pug', 'typescriptreact', "vue"
-           ("emmet-ls"
-            (pcase ext
-              ((pred jsreact-p) "javascriptreact")
-              ((pred tsreact-p) "typescriptreact")
-              ("js" "javascript")
-              ("erb" "eruby")
-              ((or "css" "html" "less" "sass" "scss" "svelte" "pug" "vue") ext)
-              (_ "html")))
-           ;; eslint lsp support
-           ;; 'javascript', 'javascriptreact', 'typescript', 'typescriptreact',
-           ;; 'html', 'vue', 'markdown'
-           ;; ("vscode-eslint-language-server"
-           ;;  (pcase ext
-           ;;    ((pred jsreact-p) "javascriptreact")
-           ;;    ((pred tsreact-p) "typescriptreact")
-           ;;    ((pred markdown-p) "markdown")
-           ;;    ((pred html-p) "html")
-           ;;    ("js" "javascript")
-           ;;    ("ts" "typescript")
-           ;;    ("vue" "vue")))
-           )
-         ))
-    (message "id-detect: pro: %S, fp: %S, server: %S, ext: %S, final: %S"
-             project_path filepath server ext final)
-    final
-    )
-  )
+  (let ((id (pcase server
+              ;; tailwindcss filetypes:
+              ;; html-kind: 'aspnetcorerazor','astro','astro-markdown','blade','django-html',
+              ;; 'edge', 'ejs', 'erb', 'gohtml', 'GoHTML', 'gohtmltmpl', 'haml', 'handlebars',
+              ;; 'hbs', 'html', 'HTML (Eex)', 'HTML (EEx)','html-eex', 'htmldjango', 'jade',
+              ;; 'leaf', 'liquid', 'markdown', 'mdx','mustache','njk','nunjucks','phoenix-heex',
+              ;; 'php', 'razor', 'slim','surface','twig',
+              ;; css-kind 'css','less', 'postcss', 'sass','scss', 'stylus', 'sugarss','tailwindcss',
+              ;; js-kind: 'javascript','javascriptreact', 'reason', 'rescript',
+              ;; 'typescript','typescriptreact','glimmer-js','glimmer-ts',
+              ("tailwindcss"
+               (pcase ext
+                 ((pred jsreact-p) "javascriptreact")
+                 ((pred tsreact-p) "typescriptreact")
+                 ((pred markdown-p) "markdown")
+                 ((pred handlebar-p) "handlebars")
+                 ("js" "javascript")
+                 ("ts" "typescript")
+                 ("res" "rescript")
+                 (_ ext)))
+              ;; emmet supports following filetype:
+              ;; 'css', 'eruby', 'html', 'javascript', 'javascriptreact', 'less',
+              ;; 'sass', 'scss', 'svelte', 'pug', 'typescriptreact', "vue"
+              ("emmet-ls"
+               (pcase ext
+                 ((pred jsreact-p) "javascriptreact")
+                 ((pred tsreact-p) "typescriptreact")
+                 ("js" "javascript")
+                 ("erb" "eruby")
+                 ((or "css" "html" "less" "sass" "scss" "svelte" "pug" "vue") ext)
+                 (_ "html"))))))
+    (message "id-detect: pro: %S, fp: %S, server: %S, ext: %S, id: %S"
+             project_path filepath server ext id)
+    id))
 
 (provide 'init-bridge-detect)
 ;;; init-bridge-detect.el ends here
