@@ -1,6 +1,6 @@
 {
   "name": "vscode-css-language-server",
-  "languageId": "css",
+  "languageId": "",
   "command": ["vscode-css-language-server", "--stdio"],
   "settings": {
     "css": {
@@ -45,8 +45,6 @@
         "preserveNewLines": true,
         "maxPreserveNewLines": null
       }
-    },
-    "scss": {},
-    "less": {}
+    }
   }
 }

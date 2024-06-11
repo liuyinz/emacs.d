@@ -1,0 +1,6 @@
+{
+  "name": "typescript-ls",
+  "languageId": "",
+  "command": ["typescript-language-server", "--stdio"],
+  "settings": {}
+}

@@ -5,6 +5,17 @@
 
 ;;; Commentary:
 
+;; SEE https://github.com/Microsoft/vscode-eslint#settings-options
+;; SEE https://github.com/neoclide/coc-css
+;; SEE https://github.com/neoclide/coc-json#configuration-options
+;; SEE https://github.com/redhat-developer/yaml-language-server#language-server-settings
+;; NOTE yaml-language-server, coc-json implements schemastore supports, however
+;; vscode-json-language-server not yet, which means need to add schemastore catalog
+;; to vscode-json-language-server.json manually.
+
+;; ISSUE https://github.com/redhat-developer/yaml-language-server/issues/807
+;; yaml server init error: "Cannot read properties of undefined (reading ’length’)"
+
 ;;; Code:
 
 
@@ -15,33 +26,52 @@
 (defun filepath-ext (filepath)
   (or (file-name-extension (concat "a" (file-name-nondirectory filepath))) ""))
 
-(defun jsreact-p (ext)
-  (or (string= ext "jsx")
-      (memq major-mode '(jtsx-jsx-mode js-jsx-mode))))
+(defun typescript-ls-get-id (ext)
+  (cond
+   ((or (string= ext "js")
+        (memq major-mode '(js-mode js-ts-mode rjsx-mode)))
+    "javascript")
+   ((or (string= ext "ts")
+        (memq major-mode '(typescript-mode typescript-ts-mode)))
+    "typescript")
+   ((or (string= ext "jsx")
+        (memq major-mode '(jtsx-jsx-mode js-jsx-mode)))
+    "javascriptreact")
+   ((or (string= ext "tsx")
+        (memq major-mode '(jtsx-tsx-mode jtsx-typescript-mode tsx-ts-mode)))
+    "typescriptreact")))
 
-(defun tsreact-p (ext)
-  (or (string= ext "tsx")
-      (memq major-mode '(jtsx-tsx-mode jtsx-typescript-mode tsx-ts-mode))))
+(defun css-ls-get-id (ext)
+  (cond
+   ((or (string= ext "css")
+        (memq major-mode '(css-mode css-ts-mode)))
+    "css")
+   ((or (string= ext "scss")
+        (eq major-mode 'scss-mode))
+    "scss")
+   ((or (string= ext "less")
+        (eq major-mode 'less-css-mode))
+    "less")))
 
-(defun astro-p (ext)
-  (or (string= ext "astro")
-      (eq major-mode 'astro-mode)))
-
-(defun markdown-p (ext)
-  (or (member ext '("md" "gfm"))
-      (memq major-mode '(markdown-mode markdown-ts-mode))))
+(defun web-file-get-server (ext)
+  (cond
+   ((or (member ext '("htm" "html"))
+        (memq major-mode '(mhtml-mode html-mode html-ts-mode web-mode)))
+    "html")
+   ((or (string= ext "astro")
+        (eq major-mode 'astro-mode))
+    "astro")
+   ((or (member ext '("css" "less" "scss"))
+        (memq major-mode '(css-mode css-ts-mode less-css-mode scss-mode)))
+    "css")))
 
 (defun handlebar-p (ext)
   (or (member ext '("handlebars" "hbs"))
       (eq major-mode 'handlebars-mode)))
 
-(defun css-like-p (ext)
-  (or (member ext '("css" "less" "scss"))
-      (memq major-mode '(css-mode css-ts-mode less-css-mode scss-mode))))
-
-(defun html-p (ext)
-  (or (memq ext '("htm" "html"))
-      (memq major-mode '(mhtml-mode html-mode html-ts-mode web-mode))))
+(defun markdown-p (ext)
+  (or (string= ext "md")
+      (memq major-mode '(markdown-mode gfm-mode markdown-ts-mode))))
 
 (defun zsh-p (ext)
   (and (eq major-mode 'sh-mode)
@@ -56,8 +86,22 @@
         'full
         "tailwind\\.config\\.\\(j\\|cj\\|mj\\|t\\)s\\'")))
 
+(defun eslint-p (project_path)
+  (and (file-directory-p project_path)
+       (directory-files
+        project_path
+        'full
+        "\\`\\(eslint\\.config\\.[m|c]?js\\|\\.eslintrc\\.\\(c?js\\|ya?ml\\|json\\)\\)\\'")))
+
 
 ;;; single server detect
+(prependq! lsp-bridge-single-lang-server-mode-list
+           '(((js-mode js-ts-mode rjsx-mode
+                       typescript-mode typescript-ts-mode tsx-ts-mode
+                       jtsx-jsx-mode js-jsx-mode
+                       jtsx-tsx-mode jtsx-typescript-mode tsx-ts-mode)
+              . "typescript-ls")))
+
 ;; HACK remove sh-mode in default mode list and enable it only when sh-shell is not zsh
 ;; (setq lsp-bridge-single-lang-server-mode-list
 ;;       (remove (rassoc "bash-language-server" lsp-bridge-single-lang-server-mode-list)
@@ -70,19 +114,12 @@
            (toml-p (or (and ext (string= ext "toml"))
                        (memq major-mode '(toml-ts-mode conf-toml-mode)))))
       (let ((server (cond
-                     ((astro-p ext) "astro-ls")
-                     ((tsreact-p ext) "typescriptreact")
-                     ((jsreact-p ext) "javascriptreact")
+                     ((typescript-ls-get-id ext) "typescript-ls")
                      ;; ((zsh-p ext) "no-server")
                      (toml-p "toml-language-server"))))
         (message "single: pro: %S, fp: %S, ext: %S, server: %S"
                  project_path filepath ext server)
         server))))
-
-;; NOTE must set a server for any major-mode
-(alist-set! lsp-bridge-single-lang-server-mode-list
-            '((jtsx-jsx-mode . "javascriptreact")
-              ((jtsx-tsx-mode jtsx-typescript-mode) . "typescriptreact")))
 
 
 ;;; multi-server detect
@@ -104,25 +141,19 @@
 (defun my/bridge-multi-server-detect (project_path filepath)
   (save-excursion
     ;; detect for web dev
-    (let ((ext (filepath-ext filepath)))
-      (let ((server (cond
-                     ;; ext/multi
-                     ((and (tailwindcss-p project_path) (jsreact-p ext))
-                      "jsreact_tailwindcss")
-                     ((and (tailwindcss-p project_path) (tsreact-p ext))
-                      "tsreact_tailwindcss")
-                     ((and (tailwindcss-p project_path) (html-p ext))
-                      "html_emmet_tailwindcss")
-                     ((and (tailwindcss-p project_path) (css-like-p ext))
-                      "css_emmet_tailwindcss")
-                     ((and (tailwindcss-p project_path) (astro-p ext))
-                      "astro_tailwindcss")
-                     ;; lib/multi
-                     ((css-like-p ext) "css_emmet")
-                     ((html-p ext) "html_emmet"))))
+    (let* ((ext (filepath-ext filepath)))
+      (let ((server
+             (cond
+              ;; TODO insert eslint
+              ((and (typescript-ls-get-id ext)
+                    (tailwindcss-p project_path))
+               "typescript_tailwindcss")
+              ((web-file-get-server ext)
+               (concat (web-file-get-server ext) "_emmet"
+                       (and (tailwindcss-p project_path) "_tailwindcss"))))))
         (message "multi: pro: %S, fp: %S, ext: %S, server: %S"
                  project_path filepath ext server)
-        (my/bridge-server-setup filepath server)
+        (and (stringp server) (my/bridge-server-setup filepath server))
         server))))
 
 
@@ -130,41 +161,32 @@
 
 ;; SEE https://github.com/tailwindlabs/tailwindcss-intellisense/blob/master/packages/tailwindcss-language-service/src/util/languages.ts
 ;; SEE https://github.com/aca/emmet-ls#readme
+;; SEE https://github.com/microsoft/vscode-eslint/blob/3147111b1bd430a9f29d7a66916e1d822eba3df3/package.json#L307-L316
 
 (setq lsp-bridge-get-language-id 'my/bridge-get-language-id)
 
 (defun my/bridge-get-language-id (project_path filepath server ext)
   (let ((id (pcase server
-              ;; tailwindcss filetypes:
-              ;; html-kind: 'aspnetcorerazor','astro','astro-markdown','blade','django-html',
-              ;; 'edge', 'ejs', 'erb', 'gohtml', 'GoHTML', 'gohtmltmpl', 'haml', 'handlebars',
-              ;; 'hbs', 'html', 'HTML (Eex)', 'HTML (EEx)','html-eex', 'htmldjango', 'jade',
-              ;; 'leaf', 'liquid', 'markdown', 'mdx','mustache','njk','nunjucks','phoenix-heex',
-              ;; 'php', 'razor', 'slim','surface','twig',
-              ;; css-kind 'css','less', 'postcss', 'sass','scss', 'stylus', 'sugarss','tailwindcss',
-              ;; js-kind: 'javascript','javascriptreact', 'reason', 'rescript',
-              ;; 'typescript','typescriptreact','glimmer-js','glimmer-ts',
+              ("typescript-ls" (typescript-ls-get-id ext))
+              ("vscode-css-language-server" (css-ls-get-id ext))
               ("tailwindcss"
                (pcase ext
-                 ((pred jsreact-p) "javascriptreact")
-                 ((pred tsreact-p) "typescriptreact")
+                 ((pred typescript-ls-get-id) (typescript-ls-get-id ext))
                  ((pred markdown-p) "markdown")
                  ((pred handlebar-p) "handlebars")
-                 ("js" "javascript")
-                 ("ts" "typescript")
                  ("res" "rescript")
                  (_ ext)))
-              ;; emmet supports following filetype:
-              ;; 'css', 'eruby', 'html', 'javascript', 'javascriptreact', 'less',
-              ;; 'sass', 'scss', 'svelte', 'pug', 'typescriptreact', "vue"
               ("emmet-ls"
                (pcase ext
-                 ((pred jsreact-p) "javascriptreact")
-                 ((pred tsreact-p) "typescriptreact")
-                 ("js" "javascript")
+                 ((pred typescript-ls-get-id) (typescript-ls-get-id ext))
                  ("erb" "eruby")
                  ((or "css" "html" "less" "sass" "scss" "svelte" "pug" "vue") ext)
-                 (_ "html"))))))
+                 (_ "html")))
+              ("vscode-eslint-language-server"
+               (pcase ext
+                 ((pred typescript-ls-get-id) (typescript-ls-get-id ext))
+                 ((pred markdown-p) "markdown")
+                 (_ ext))))))
     (message "id-detect: pro: %S, fp: %S, server: %S, ext: %S, id: %S"
              project_path filepath server ext id)
     id))

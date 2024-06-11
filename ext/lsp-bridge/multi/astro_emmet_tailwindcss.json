@@ -1,0 +1,22 @@
+{
+  "completion": ["emmet-ls", "tailwindcss", "astro-ls"],
+  "completion_item_resolve": ["emmet-ls", "tailwindcss", "astro-ls"],
+  "diagnostics": ["astro-ls", "tailwindcss", "emmet-ls"],
+  "code_action": ["astro-ls", "tailwindcss", "emmet-ls"],
+  "execute_command": ["astro-ls", "tailwindcss", "emmet-ls"],
+  "find_define": "astro-ls",
+  "find_type_define": "astro-ls",
+  "peek_find_definition": "astro-ls",
+  "peek_find_references": "astro-ls",
+  "find_implementation": "astro-ls",
+  "find_references": "astro-ls",
+  "formatting": "astro-ls",
+  "hover": "astro-ls",
+  "signature_help": "astro-ls",
+  "prepare_rename": "astro-ls",
+  "rename": "astro-ls",
+  "document_symbol": "astro-ls",
+  "workspace_symbol": "astro-ls",
+  "semantic_tokens": "astro-ls",
+  "inlay_hint": "astro-ls"
+}
