@@ -128,14 +128,13 @@
 
 (defun my/bridge-server-setup (filepath server)
   (with-current-buffer (get-file-buffer filepath)
-    (pcase server
-      ;; enable : in emmet completion
-      ((pred (string-match-p "emmet"))
-       (setq-local lsp-bridge-completion-hide-characters
-                   (delete ":" lsp-bridge-completion-hide-characters)))
-      ;; enable - in tailwindcss completion
-      ((pred (string-match-p "tailwindcss"))
-       (modify-syntax-entry ?- "w")))))
+    ;; enable : in emmet completion
+    (when (string-match-p "emmet" server)
+      (setq-local lsp-bridge-completion-hide-characters
+                  (delete ":" lsp-bridge-completion-hide-characters)))
+    ;; enable - in tailwindcss completion
+    (when (string-match-p "tailwindcss" server)
+      (modify-syntax-entry ?- "w"))))
 
 (setq lsp-bridge-get-multi-lang-server-by-project 'my/bridge-multi-server-detect)
 (defun my/bridge-multi-server-detect (project_path filepath)
