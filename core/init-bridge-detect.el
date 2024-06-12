@@ -73,10 +73,6 @@
   (or (string= ext "md")
       (memq major-mode '(markdown-mode gfm-mode markdown-ts-mode))))
 
-(defun zsh-p (ext)
-  (and (eq major-mode 'sh-mode)
-       (string-match-p "zsh\\(rc\\|env\\)?$" ext)))
-
 ;; NOTE project-path return same value as filepath if lsp-bridge cannot detect project
 ;; so check it ahead, tailwindcss do not support single file mode
 (defun tailwindcss-p (project_path)
@@ -102,11 +98,6 @@
                        jtsx-tsx-mode jtsx-typescript-mode tsx-ts-mode)
               . "typescript-ls")))
 
-;; HACK remove sh-mode in default mode list and enable it only when sh-shell is not zsh
-;; (setq lsp-bridge-single-lang-server-mode-list
-;;       (remove (rassoc "bash-language-server" lsp-bridge-single-lang-server-mode-list)
-;;               lsp-bridge-single-lang-server-mode-list))
-
 (setq lsp-bridge-get-single-lang-server-by-project #'my/bridge-single-server-detect)
 (defun my/bridge-single-server-detect (project_path filepath)
   (save-excursion
@@ -115,7 +106,6 @@
                        (memq major-mode '(toml-ts-mode conf-toml-mode)))))
       (let ((server (cond
                      ((typescript-ls-get-id ext) "typescript-ls")
-                     ;; ((zsh-p ext) "no-server")
                      (toml-p "toml-language-server"))))
         (message "single: pro: %S, fp: %S, ext: %S, server: %S"
                  project_path filepath ext server)
@@ -125,16 +115,6 @@
 ;;; multi-server detect
 (setq lsp-bridge-multi-lang-server-extension-list nil)
 ;; (setq lsp-bridge-multi-lang-server-mode-list nil)
-
-(defun my/bridge-server-setup (filepath server)
-  (with-current-buffer (get-file-buffer filepath)
-    ;; enable : in emmet completion
-    (when (string-match-p "emmet" server)
-      (setq-local lsp-bridge-completion-hide-characters
-                  (delete ":" lsp-bridge-completion-hide-characters)))
-    ;; enable - in tailwindcss completion
-    (when (string-match-p "tailwindcss" server)
-      (modify-syntax-entry ?- "w"))))
 
 (setq lsp-bridge-get-multi-lang-server-by-project 'my/bridge-multi-server-detect)
 (defun my/bridge-multi-server-detect (project_path filepath)
@@ -151,7 +131,6 @@
                (concat (web-file-get-server ext) "_emmet" tailwindcss-suffix)))))
         (message "multi: pro: %S, fp: %S, ext: %S, server: %S"
                  project_path filepath ext server)
-        (and (stringp server) (my/bridge-server-setup filepath server))
         server))))
 
 

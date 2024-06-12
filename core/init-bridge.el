@@ -25,6 +25,22 @@
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
 
+  (defun my/bridge-server-setup ()
+    (with-current-buffer (current-buffer)
+      (when (bound-and-true-p acm-backend-lsp-server-names)
+        (let ((servers acm-backend-lsp-server-names))
+          ;; enable : in emmet completion
+          (when (member "emmet-ls" servers)
+            (setq-local lsp-bridge-completion-hide-characters
+                        (delete ":" lsp-bridge-completion-hide-characters)))
+          ;; enable - in tailwindcss completion
+          (when (member "tailwindcss" servers)
+            (modify-syntax-entry ?- "w"))))))
+
+  (add-hook 'lsp-bridge-mode-hook
+            (lambda ()
+              (run-with-timer 3 nil #'my/bridge-server-setup)))
+
   :defer-config
 
   (my/load-features 'init-bridge-detect)
