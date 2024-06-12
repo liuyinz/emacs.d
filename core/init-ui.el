@@ -37,12 +37,9 @@
                   "flymake" "process" "selection-info" "narrow"
                   "macro" "profiler" "repeat" "text-scale")))
   :defer-config
-  ;; (appendq! mini-echo-rules
-  ;;           '((vterm-mode :both (("ide" . 2)))
-  ;;             (quickrun--mode :both (("ide" . 2)))
-  ;;             (nodejs-repl-mode :both (("ide" . 2)))
-  ;;             (inferior-python-mode :both (("ide" . 2)))
-  ;;             (inferior-emacs-lisp-mode :both (("ide" . 2)))))
+  (appendq! mini-echo-rules
+            '((magit-section-mode :both (("buffer-position" . 0)
+                                         ("buffer-size" . 0)))))
 
   )
 
