@@ -35,20 +35,24 @@
 (when (file-exists-p custom-file)
   (load custom-file nil :no-message))
 
+(defun temp-log (msg)
+  (with-current-buffer (get-buffer-create " *temp-log*")
+    (unless (derived-mode-p 'special-mode)
+      (special-mode))
+    (goto-char (point-max))
+    (let ((inhibit-read-only t))
+      (insert msg)
+      (newline 2))))
+
 (defun my/load-features (&rest features)
   "Loading FEATURES and print log if error happens."
   (dolist (f features)
     (condition-case err
         (require f)
-      (t (with-current-buffer (get-buffer-create " *my/load-features*")
-           (unless (derived-mode-p 'special-mode)
-             (special-mode))
-           (goto-char (point-max))
-           (let ((inhibit-read-only t))
-             (insert (format "Feature : %s\nError   : %s"
-                             (propertize (symbol-name f) 'face 'success)
-                             (propertize (error-message-string err) 'face 'error)))
-             (newline 2)))))))
+      (t (temp-log (format "%s\n%-10s: %s\n%-10s: %s"
+                           (propertize "[init-require-feature]" 'face 'error)
+                           "feature" (symbol-name f)
+                           "error" (error-message-string err)))))))
 
 
 ;;; Loading

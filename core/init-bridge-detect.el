@@ -107,8 +107,12 @@
       (let ((server (cond
                      ((typescript-ls-get-id ext) "typescript-ls")
                      (toml-p "toml-language-server"))))
-        (message "single: pro: %S, fp: %S, ext: %S, server: %S"
-                 project_path filepath ext server)
+        (temp-log (format "%s\n%-10s: %S\n%-10s: %S\n%-10s: %S\n%-10s: %S"
+                          (propertize "[lsp-bridge-single-server]" 'face 'success)
+                          "project" project_path
+                          "filepath" filepath
+                          "extension" ext
+                          "server" server))
         server))))
 
 
@@ -129,8 +133,12 @@
                (concat "typescript_emmet" tailwindcss-suffix))
               ((web-file-get-server ext)
                (concat (web-file-get-server ext) "_emmet" tailwindcss-suffix)))))
-        (message "multi: pro: %S, fp: %S, ext: %S, server: %S"
-                 project_path filepath ext server)
+        (temp-log (format "%s\n%-10s: %S\n%-10s: %S\n%-10s: %S\n%-10s: %S"
+                          (propertize "[lsp-bridge-multi-server]" 'face 'error)
+                          "project" project_path
+                          "filepath" filepath
+                          "extension" ext
+                          "server" server))
         server))))
 
 
@@ -164,8 +172,13 @@
                  ((pred typescript-ls-get-id) (typescript-ls-get-id ext))
                  ((pred markdown-p) "markdown")
                  (_ ext))))))
-    (message "id-detect: pro: %S, fp: %S, server: %S, ext: %S, id: %S"
-             project_path filepath server ext id)
+    (temp-log (format "%s\n%-10s: %S\n%-10s: %S\n%-10s: %S\n%-10s: %S\n%-10s: %S"
+                      (propertize "[lsp-bridge-get-id]" 'face 'warning)
+                      "project" project_path
+                      "filepath" filepath
+                      "extension" ext
+                      "server" server
+                      "id" id))
     id))
 
 (provide 'init-bridge-detect)
