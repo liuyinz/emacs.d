@@ -141,16 +141,15 @@
 (defun my/bridge-multi-server-detect (project_path filepath)
   (save-excursion
     ;; detect for web dev
-    (let* ((ext (filepath-ext filepath)))
+    (let* ((ext (filepath-ext filepath))
+           (tailwindcss-suffix (and (tailwindcss-p project_path) "_tailwindcss")))
       (let ((server
              (cond
               ;; TODO insert eslint
-              ((and (typescript-ls-get-id ext)
-                    (tailwindcss-p project_path))
-               "typescript_tailwindcss")
+              ((member (typescript-ls-get-id ext) '("javascriptreact" "typescriptreact"))
+               (concat "typescript_emmet" tailwindcss-suffix))
               ((web-file-get-server ext)
-               (concat (web-file-get-server ext) "_emmet"
-                       (and (tailwindcss-p project_path) "_tailwindcss"))))))
+               (concat (web-file-get-server ext) "_emmet" tailwindcss-suffix)))))
         (message "multi: pro: %S, fp: %S, ext: %S, server: %S"
                  project_path filepath ext server)
         (and (stringp server) (my/bridge-server-setup filepath server))

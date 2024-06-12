@@ -1,0 +1,22 @@
+{
+  "completion": ["emmet-ls", "typescript-ls"],
+  "completion_item_resolve": ["emmet-ls", "typescript-ls"],
+  "diagnostics": ["typescript-ls", "emmet-ls"],
+  "code_action": ["typescript-ls", "emmet-ls"],
+  "execute_command": ["typescript-ls", "emmet-ls"],
+  "find_define": "typescript-ls",
+  "find_type_define": "typescript-ls",
+  "peek_find_definition": "typescript-ls",
+  "peek_find_references": "typescript-ls",
+  "find_implementation": "typescript-ls",
+  "find_references": "typescript-ls",
+  "formatting": "typescript-ls",
+  "hover": "typescript-ls",
+  "signature_help": "typescript-ls",
+  "prepare_rename": "typescript-ls",
+  "rename": "typescript-ls",
+  "document_symbol": "typescript-ls",
+  "workspace_symbol": "typescript-ls",
+  "semantic_tokens": "typescript-ls",
+  "inlay_hint": "typescript-ls"
+}
