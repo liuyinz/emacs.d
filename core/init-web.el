@@ -90,22 +90,19 @@
 
 ;;; ts
 
+;; NOTE support generics <> with ,<
+(defun ah/typescript-generics-angle-pair ()
+  (when (and (eql last-command-event ?<) (looking-back ",<" 1))
+    (backward-delete-char 2)
+    (insert "<>")
+    (backward-char)))
+
 (leaf typescript-ts-mode
   :mode "\\.ts\\'"
   :hook (typescript-ts-mode-hook . typescript-ts-mode-setup)
   :init
-  ;; NOTE support generics <> pair insertion, insert sinlge < use ,<
-  (defun ah/typescript-generics-angle-pair ()
-    (when (eql last-command-event ?<)
-      (if (looking-back ",<" 1)
-          (progn (backward-delete-char 2)
-                 (insert "<"))
-        (insert ">")
-        (backward-char))))
   (defun typescript-ts-mode-setup ()
-    (add-hook 'post-self-insert-hook #'ah/typescript-generics-angle-pair))
-
-  )
+    (add-hook 'post-self-insert-hook #'ah/typescript-generics-angle-pair nil t)))
 
 (leaf jtsx
   :require t
@@ -122,7 +119,6 @@
   (setq jtsx-enable-all-syntax-highlighting-features t)
   (setq jtsx-enable-jsx-element-tags-auto-sync t)
 
-  :config
   (defun jtsx-bind-keys-to-mode-map (mode-map)
     "Bind keys to MODE-MAP."
     (dolist (pair '(("C-c h t" . jtsx-jump-jsx-element-tag-dwim)
@@ -141,14 +137,15 @@
                     ("s-/"     . jtsx-comment-dwim)))
       (keymap-set mode-map (car pair) (cdr pair))))
 
-  (defun jtsx-bind-keys-to-jtsx-jsx-mode-map ()
+  (defun jtsx-jsx-mode-setup ()
     (jtsx-bind-keys-to-mode-map jtsx-jsx-mode-map))
 
-  (defun jtsx-bind-keys-to-jtsx-tsx-mode-map ()
-    (jtsx-bind-keys-to-mode-map jtsx-tsx-mode-map))
+  (defun jtsx-tsx-mode-setup ()
+    (jtsx-bind-keys-to-mode-map jtsx-tsx-mode-map)
+    (add-hook 'post-self-insert-hook #'ah/typescript-generics-angle-pair nil t))
 
-  (add-hook 'jtsx-jsx-mode-hook 'jtsx-bind-keys-to-jtsx-jsx-mode-map)
-  (add-hook 'jtsx-tsx-mode-hook 'jtsx-bind-keys-to-jtsx-tsx-mode-map)
+  (add-hook 'jtsx-jsx-mode-hook 'jtsx-jsx-mode-setup)
+  (add-hook 'jtsx-tsx-mode-hook 'jtsx-tsx-mode-setup)
   )
 
 
