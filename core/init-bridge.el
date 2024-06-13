@@ -42,14 +42,35 @@
               (run-with-timer 3 nil #'my/bridge-server-setup)))
 
   :defer-config
-
   (my/load-features 'init-bridge-detect)
+
+  ;; Setup server
+  (setq lsp-bridge-user-langserver-dir
+        (expand-file-name "lsp-bridge/single" my/dir-ext))
+  (setq lsp-bridge-user-multiserver-dir
+        (expand-file-name "lsp-bridge/multi" my/dir-ext))
+
+  (setq lsp-bridge-enable-diagnostics t
+        lsp-bridge-disable-backup nil)
+  (setq lsp-bridge-enable-completion-in-string t)
+  (appendq! lsp-bridge-default-mode-hooks
+            '(snippet-mode-hook
+              git-commit-mode-hook
+              mhtml-mode-hook
+              html-mode-hook
+              js-json-mode-hook
+              vue-ts-mode-hook
+              astro-mode-hook
+              jtsx-jsx-mode-hook
+              jtsx-tsx-mode-hook
+              jtsx-typescript-mode-hook))
 
   (leaf acm
     :init
     (setq acm-enable-quick-access nil
           acm-enable-tabnine nil
           acm-enable-doc nil)
+    (setq acm-candidate-match-function 'orderless-flex)
     ;; yasnippet
     (setq acm-completion-backend-merge-order
           '("template-first-part-candidates"
@@ -79,28 +100,6 @@
         (setq acm-enable-doc t)
         (acm-doc-try-show)))
     (advice-add 'acm-doc-toggle :override #'ad/acm-doc-toggle))
-
-  ;; Setup server
-  (setq lsp-bridge-user-langserver-dir
-        (expand-file-name "lsp-bridge/single" my/dir-ext))
-  (setq lsp-bridge-user-multiserver-dir
-        (expand-file-name "lsp-bridge/multi" my/dir-ext))
-
-  (setq acm-candidate-match-function 'orderless-flex)
-  (setq lsp-bridge-enable-diagnostics t
-        lsp-bridge-disable-backup nil)
-  (setq lsp-bridge-enable-completion-in-string t)
-  (appendq! lsp-bridge-default-mode-hooks
-            '(snippet-mode-hook
-              git-commit-mode-hook
-              mhtml-mode-hook
-              html-mode-hook
-              js-json-mode-hook
-              vue-ts-mode-hook
-              astro-mode-hook
-              jtsx-jsx-mode-hook
-              jtsx-tsx-mode-hook
-              jtsx-typescript-mode-hook))
   )
 
 (provide 'init-bridge)
