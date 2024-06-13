@@ -29,10 +29,12 @@
     (with-current-buffer (current-buffer)
       (when (bound-and-true-p acm-backend-lsp-server-names)
         (let ((servers acm-backend-lsp-server-names))
-          ;; enable : in emmet completion
+          ;; enable :,], in emmet completion
+          ;; FIXME try to separate emmet
           (when (member "emmet-ls" servers)
             (setq-local lsp-bridge-completion-hide-characters
-                        (delete ":" lsp-bridge-completion-hide-characters)))
+                        (seq-difference lsp-bridge-completion-hide-characters
+                                        '(":" "(" ")" "[" "]" "{" "}" "\""))))
           ;; enable - in tailwindcss completion
           (when (member "tailwindcss" servers)
             (modify-syntax-entry ?- "w"))))))
