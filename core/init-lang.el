@@ -32,6 +32,12 @@
                ;; third-party
                jq mermaid swift))
 
+  (defun treesit-binary-update ()
+    "Update precompiled dylib in treesitter-langs."
+    (interactive)
+    (call-process "bash" nil nil nil
+                  (expand-file-name "treesit-binary-update.sh" my/dir-ext)))
+
   (defun treesit-auto-install-missing (&optional all)
     "Install missing grammar in `treesit-auto-langs'.
 If optional arg ALL if non-nil, reinstall all grammars."
@@ -56,19 +62,7 @@ If optional arg ALL if non-nil, reinstall all grammars."
                  :ts-mode 'jq-ts-mode
                  :remap 'jq-mode
                  :url "https://github.com/nverno/tree-sitter-jq"
-                 :ext "\\.jq\\'")
-               ,(make-treesit-auto-recipe
-                 :lang 'mermaid
-                 :ts-mode 'mermaid-ts-mode
-                 :remap 'mermaid-mode
-                 :url "https://github.com/monaqa/tree-sitter-mermaid"
-                 :ext "\\.\\(mmd\\|mermaid\\)")
-               ,(make-treesit-auto-recipe
-                 :lang 'swift
-                 :ts-mode 'swift-ts-mode
-                 :remap 'swift-mode
-                 :url "https://github.com/alex-pinkus/tree-sitter-swift"
-                 :ext "\\.swift\\'")))
+                 :ext "\\.jq\\'")))
 
   (treesit-auto-add-to-auto-mode-alist))
 
@@ -117,9 +111,11 @@ If optional arg ALL if non-nil, reinstall all grammars."
 
 ;; -------------------------- Plugin ------------------------------
 
+(leaf swift-ts-mode :mode "\\.swift\\'")
+
 (leaf jq-ts-mode)
 
-(leaf mermaid-ts-mode)
+(leaf mermaid-ts-mode :mode "\\.\\(mmd\\|mermaid\\)")
 
 (leaf typst-ts-mode
   :init
