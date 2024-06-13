@@ -564,3 +564,6 @@
 [submodule "nerd-icons-completion"]
 	path = lib/nerd-icons-completion
 	url = https://github.com/rainstormstudio/nerd-icons-completion.git
+[submodule "dart-ts-mode"]
+	path = lib/dart-ts-mode
+	url = https://github.com/50ways2sayhard/dart-ts-mode.git
