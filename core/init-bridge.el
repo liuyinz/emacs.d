@@ -77,10 +77,31 @@
             "template-second-part-candidates"
             "mode-first-part-candidates"
             "mode-second-part-candidates"))
-
     (setq acm-backend-yas-candidates-number 3
           acm-backend-yas-match-by-trigger-keyword t
           acm-backend-yas-show-trigger-keyword " [%s]")
+
+    :defer-config
+    ;; enable acm cycle style
+    (defun ad/acm-select-prev ()
+      (interactive)
+      (acm-menu-update
+       (cond ((> acm-menu-index 0)
+              (setq-local acm-menu-index (1- acm-menu-index)))
+             ((> acm-menu-offset 0)
+              (setq-local acm-menu-offset (1- acm-menu-offset)))
+             (t (call-interactively #'acm-select-last)))))
+    (advice-add 'acm-select-prev :override #'ad/acm-select-prev)
+
+    (defun ad/acm-select-next ()
+      (interactive)
+      (acm-menu-update
+       (cond ((< acm-menu-index (1- (length acm-menu-candidates)))
+              (setq-local acm-menu-index (1+ acm-menu-index)))
+             ((< (+ acm-menu-offset acm-menu-index) (1- (length acm-candidates)))
+              (setq-local acm-menu-offset (1+ acm-menu-offset)))
+             (t (call-interactively #'acm-select-first)))))
+    (advice-add 'acm-select-next :override #'ad/acm-select-next)
 
     ;; FIXME wrapper of `lsp-bridge-toggle-sdcv-helper'
     (defun acm-sdcv-toggle ()
