@@ -32,7 +32,7 @@
   "C" #'toggle-truncate-lines
   "W" #'toggle-word-wrap
   "m" #'markdown-toggle-markup-hiding)
-(define-key mode-specific-map "t" my/toggle-map)
+(keymap-set mode-specific-map "t" my/toggle-map)
 
 (defvar-keymap my/ide-map
   :doc "Keymap for ide-like commands."
@@ -51,7 +51,7 @@
   "v" #'vc-msg-show
   "j" #'browse-at-remote
   "J" #'git-link)
-(define-key mode-specific-map "i" my/ide-map)
+(keymap-set mode-specific-map "i" my/ide-map)
 
 (defvar-keymap my/jump-map
   :doc "Keymap for jump commands"
@@ -63,7 +63,7 @@
   "B" #'binky-previous-in-buffer
   "d" #'diff-hl-next-hunk
   "D" #'diff-hl-previous-hunk)
-(define-key mode-specific-map "j" my/jump-map)
+(keymap-set mode-specific-map "j" my/jump-map)
 
 ;; HACK resolve conflicts with diff-hl-command-help
 (with-eval-after-load 'diff-hl
@@ -79,7 +79,7 @@
   "r" #'rotate-frame
   "c" #'rotate-frame-clockwise
   "a" #'rotate-frame-anticlockwise)
-(define-key ctl-x-map "7" ctl-x-7-map)
+(keymap-set ctl-x-map "7" ctl-x-7-map)
 
 (defvar-keymap my/edit-map
   :doc "Keymap for structure edit commands."
@@ -90,7 +90,7 @@
   "A" #'isolate-long-add
   "D" #'isolate-long-delete
   "C" #'isolate-long-change)
-(keymap-global-set "M-e" my/edit-map)
+(keymap-set mode-specific-map "e" my/edit-map)
 
 ;; (with-eval-after-load 'transient
 
