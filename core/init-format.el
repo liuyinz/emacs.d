@@ -13,7 +13,9 @@
 ;;   :hook (after-init-hook . editorconfig-mode))
 
 (leaf apheleia
-  :hook ((jtsx-jsx-mode-hook jtsx-tsx-mode-hook jtsx-typescript-mode-hook) . apheleia-mode)
+  :hook ((jtsx-jsx-mode-hook jtsx-tsx-mode-hook jtsx-typescript-mode-hook
+                             typescript-ts-mode-hook js-ts-mode-hook)
+         . apheleia-mode)
   :init
   (setq apheleia-hide-log-buffers t)
   (defun my/format ()
