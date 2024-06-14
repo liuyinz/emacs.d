@@ -237,25 +237,24 @@
           "^/tmp/" "^/private/tmp/" "^/var/folders/.+$" "/share/emacs/.+$" "\\.git/.+$"
           "bookmarks"))
 
-  ;; TODO support literal/regexp filter and select all keybinding
-  (defun recentf-prune-dir (&optional regex)
+  (defun recentf-prune-dir ()
     "Delete all recentf records which match selected DIRS."
-    (interactive "P")
-    (let ((re (if regex (read-string "recentf: input regexp: ")
-                (regexp-opt (let ((vertico-sort-function nil))
-                              (completing-read-multiple
-                               "recentf remove dir: "
-                               (let (counts)
-                                 (dolist (path recentf-list)
-                                   (cl-incf (alist-get
-                                             (downcase (file-name-directory path))
-                                             counts 0 nil 'equal)))
-                                 (mapcar #'car (seq-sort-by #'cdr #'> counts)))))))))
-      (setq recentf-list
-            (seq-remove (lambda(path)
-                          (string-match-p re path 0))
-                        recentf-list))))
-
+    (interactive)
+    (let* ((vertico-sort-function nil)
+           (parent-dirs (let (counts)
+                          (dolist (path recentf-list)
+                            (cl-incf (alist-get
+                                      (abbreviate-file-name
+                                       (file-name-parent-directory path))
+                                      counts 0 nil 'equal)))
+                          (mapcar #'car (seq-sort-by #'cdr #'> counts)))))
+      (when-let ((to-prune (completing-read-multiple "recentf remove dir: " parent-dirs)))
+        (setq recentf-list
+              (seq-remove (lambda (file)
+                            (seq-some (lambda (pre)
+                                        (string-prefix-p pre file))
+                                      to-prune))
+                          recentf-list)))))
   :defer-config
   ;; auto-cleanup in save/load
   (advice-add 'recentf-save-list :before #'recentf-cleanup)
