@@ -35,6 +35,11 @@
 (when (file-exists-p custom-file)
   (load custom-file nil :no-message))
 
+;; load private info if exists
+(setq private-file (expand-file-name "etc/private.el" my/dir-cache))
+(when (file-exists-p private-file)
+  (load private-file nil :no-message))
+
 (defun temp-log (msg)
   (with-current-buffer (get-buffer-create " *temp-log*")
     (unless (derived-mode-p 'special-mode)

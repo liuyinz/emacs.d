@@ -48,7 +48,7 @@
 ;;             ("https"    . ,http)
 ;;             ("ftp"      . ,http)
 ;;             ("no_proxy" . "127.0.0.1"))))
-;; 
+;;
 ;;   (when-let ((sock (getenv "SOCKS")))
 ;;     (setq proxy-mode-emacs-socks-proxy
 ;;           `("Default server"
@@ -135,8 +135,18 @@
      :silent-success t
      :utils (if (eq system-type 'darwin)
                 "open"
-              "xdg-open")))
-  )
+              "xdg-open"))))
+
+(require 'gptel-curl)
+(require 'gptel-gemini)
+(leaf gptel
+  :require t
+  :init
+  ;; OPTIONAL configuration
+  (setq gptel-model "gemini-1.5-pro-latest"
+        gptel-backend (gptel-make-gemini "Gemini"
+                        :key gptel-gemini-apikey
+                        :stream t)))
 
 (provide 'init-tool)
 ;;; init-tool.el ends here
