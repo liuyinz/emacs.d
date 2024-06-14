@@ -63,7 +63,10 @@
   :hook (vertico-mode-hook . marginalia-mode)
   :defer-config
   (setq marginalia-align 'right
-        marginalia-align-offset -1))
+        marginalia-align-offset -1)
+  (appendq! marginalia-prompt-categories
+            '(("\\<directory\\|directories\\>" . file)))
+  )
 
 ;; SEE https://github.com/minad/consult/wiki#minads-orderless-configuration
 (leaf orderless
