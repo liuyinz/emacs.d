@@ -86,5 +86,14 @@
     (appendq! recentf-exclude
               `(,no-littering-var-directory ,no-littering-etc-directory))))
 
+(defun my/load-default-lib ()
+  (run-with-timer 3 nil
+                  (lambda()
+                    (require 'dash nil t)
+                    (require 's nil t)
+                    (require 'f nil t))))
+
+(add-hook 'after-init-hook #'my/load-default-lib)
+
 (provide 'init-bootstrap)
 ;;; init-bootstrap.el ends here
