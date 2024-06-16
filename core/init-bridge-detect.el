@@ -107,12 +107,12 @@
       (let ((server (cond
                      ((typescript-ls-get-id ext) "typescript-ls")
                      (toml-p "toml-language-server"))))
-        (temp-log (format "%s\n%-10s: %S\n%-10s: %S\n%-10s: %S\n%-10s: %S"
+        (temp-log (format (concat "%s" (s-repeat 4 "\n%-13s: %S"))
                           (propertize "[lsp-bridge-single-server]" 'face 'success)
-                          "project" project_path
-                          "filepath" filepath
-                          "extension" ext
-                          "server" server))
+                          "project_path" project_path
+                          "file_path" filepath
+                          "file_ext" ext
+                          "start_server" server))
         server))))
 
 
@@ -133,12 +133,12 @@
                (concat "typescript_emmet" tailwindcss-suffix))
               ((web-file-get-server ext)
                (concat (web-file-get-server ext) "_emmet" tailwindcss-suffix)))))
-        (temp-log (format "%s\n%-10s: %S\n%-10s: %S\n%-10s: %S\n%-10s: %S"
+        (temp-log (format (concat "%s" (s-repeat 4 "\n%-13s: %S"))
                           (propertize "[lsp-bridge-multi-server]" 'face 'error)
-                          "project" project_path
-                          "filepath" filepath
-                          "extension" ext
-                          "server" server))
+                          "project_path" project_path
+                          "file_path" filepath
+                          "file_ext" ext
+                          "start_server" server))
         server))))
 
 
@@ -172,13 +172,13 @@
                  ((pred typescript-ls-get-id) (typescript-ls-get-id ext))
                  ((pred markdown-p) "markdown")
                  (_ ext))))))
-    (temp-log (format "%s\n%-10s: %S\n%-10s: %S\n%-10s: %S\n%-10s: %S\n%-10s: %S"
+    (temp-log (format (concat "%s" (s-repeat 5 "\n%-13s: %S"))
                       (propertize "[lsp-bridge-get-id]" 'face 'warning)
-                      "project" project_path
-                      "filepath" filepath
-                      "extension" ext
-                      "server" server
-                      "id" id))
+                      "project_path" project_path
+                      "file_path" filepath
+                      "file_ext" ext
+                      "start_server" server
+                      "lang_id" id))
     id))
 
 (provide 'init-bridge-detect)
