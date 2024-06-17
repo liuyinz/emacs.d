@@ -139,35 +139,38 @@
   ;; now use `query-replace-regexp' to replace \n (`C-q C-j') first
   (defun rg-replace (to-string)
     "Replace matched result in rg-mode buffer."
-    (interactive (list (read-string "Rg replace search patten with: ")))
-    (let ((final-pos (point)))
+    (interactive (list (read-string "Rg replace search pattern with: ")))
+    (let ((stop-pos (point)))
       (unwind-protect
-          (let* ((keep-asking t)
-                 (stop-replace nil)
-                 (prompt (format "Replace match string with %s: (y,n,q,!,.) ?" to-string)))
-            (cl-flet ((replace-func (prop)
-                        (delete-region (prop-match-beginning prop) (prop-match-end prop))
-                        (insert to-string)))
-              (wgrep-change-to-wgrep-mode)
-              (while (and (not stop-replace)
-                          (setq cur-match (text-property-search-forward
-                                           'face 'rg-match-face t)))
-                (if keep-asking
-                    (let ((illegal-key t))
-                      (while illegal-key
-                        (let ((key (single-key-description (read-key prompt) t)))
-                          (pcase key
-                            ("!" (setq keep-asking nil))
-                            ((or "q" "RET" "C-g" "." "ESC") (setq stop-replace t)))
-                          (when (member key '("!" "y" "Y" "." "SPC"))
-                            (replace-func cur-match))
-                          (when (member key '("!" "Y" "y" "N" "n"
-                                              "DEL" "." "q" "RET" "C-g"))
-                            (setq illegal-key nil))))
-                      (setq final-pos (point)))
-                  (replace-func cur-match)))))
+          (let ((keep-asking t)
+                (replace-quit nil)
+                (prompt (format "Replace match string with %s: (y,n,q,!,.) ?" to-string))
+                (to-replaces (seq-filter (lambda (match)
+                                           (< stop-pos
+                                              (+ (marker-position (car match))
+                                                 (cdr match))))
+                                         rg-match-positions)))
+            (wgrep-change-to-wgrep-mode)
+            (catch 'quit
+              (dolist (cur-match to-replaces)
+                (goto-char (setq stop-pos (car cur-match)))
+                (let ((replace-p (not keep-asking)))
+                  (when keep-asking
+                    (catch 'pass
+                      (while-let ((key (single-key-description (read-key prompt) t)))
+                        (when (member key '("q" "C-g" "ESC" "." "!" "y"
+                                            "Y" "SPC" "n" "N" "DEL"))
+                          (setq keep-asking (not (string= key "!")))
+                          (setq replace-p (member key '("." "!" "y" "Y" "SPC")))
+                          (setq replace-quit (member key '("q" "C-g" "ESC" ".")))
+                          (throw 'pass nil)))))
+                  (when replace-p
+                    (let ((begin (marker-position (car cur-match))))
+                      (delete-region begin (+ begin (cdr cur-match)))
+                      (insert to-string)))
+                  (when replace-quit (throw 'quit nil))))))
         (wgrep-finish-edit)
-        (goto-char final-pos))))
+        (goto-char stop-pos))))
 
   ;; light theme background: "#F0F3F4i"
   ;; parse nippon-color
