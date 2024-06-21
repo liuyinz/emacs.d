@@ -95,6 +95,7 @@
 [submodule "rg"]
 	path = lib/rg
 	url = https://github.com/dajva/rg.el.git
+	pin = true
 [submodule "f"]
 	path = lib/f
 	url = https://github.com/rejeep/f.el.git
@@ -361,6 +362,7 @@
 	load-path = .
 	load-path = src
 	load-path = src/checkers
+	pin = true
 [submodule "flymake-relint"]
 	path = lib/flymake-relint
 	url = https://github.com/liuyinz/flymake-relint.git
@@ -475,14 +477,12 @@
 [submodule "pangu-spacing"]
 	path = lib/pangu-spacing
 	url = https://github.com/coldnew/pangu-spacing.git
-[submodule "emacs-which-key"]
-	path = lib/emacs-which-key
-	url = https://github.com/justbur/emacs-which-key.git
 [submodule "dirvish"]
 	path = lib/dirvish
 	url = https://github.com/alexluigit/dirvish.git
 	load-path = .
 	load-path = extensions
+	pin = true
 [submodule "consult-dir"]
 	path = lib/consult-dir
 	url = https://github.com/karthink/consult-dir.git
@@ -564,6 +564,7 @@
 [submodule "nerd-icons-completion"]
 	path = lib/nerd-icons-completion
 	url = https://github.com/rainstormstudio/nerd-icons-completion.git
+	pin = true
 [submodule "dart-ts-mode"]
 	path = lib/dart-ts-mode
 	url = https://github.com/50ways2sayhard/dart-ts-mode.git
