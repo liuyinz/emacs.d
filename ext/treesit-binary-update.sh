@@ -17,7 +17,7 @@ download_tar() {
 
 uncompress_dylib() {
   [[ -d "$TREESIT_TEMP_DIR" ]] && rm -rf "$TREESIT_TEMP_DIR"
-  mkdir "$TREESIT_TEMP_DIR" && find . -name "$TREESIT_TAR" -exec tar xf {} \
+  mkdir "$TREESIT_TEMP_DIR" && find . -name "$TREESIT_TAR" -mtime -1 -exec tar xf {} \
     --directory "$TREESIT_TEMP_DIR" \
     --wildcards "*.dylib" \;
 }
