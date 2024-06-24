@@ -43,6 +43,7 @@
                     (flymake-collection-eslint))
           ((json-mode json-ts-mode) flymake-collection-jq)
           ((markdown-mode gfm-mode) flymake-collection-markdownlint)
+          (c-ts-mode flymake-collection-clang)
           ((lua-mode lua-ts-mode) flymake-collection-luacheck)
           ((ruby-mode ruby-ts-mode) . (flymake-collection-rubocop))
           (sql-mode flymake-collection-sql-lint)

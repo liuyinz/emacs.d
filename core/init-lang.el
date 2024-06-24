@@ -109,6 +109,10 @@ If optional arg ALL if non-nil, reinstall all grammars."
   :init
   (setq lua-ts-mode-indent-offset 2))
 
+(leaf c-ts-mode
+  :init
+  (setq c-ts-mode-indent-offset 2))
+
 ;; -------------------------- Plugin ------------------------------
 
 (leaf swift-ts-mode :mode "\\.swift\\'")
