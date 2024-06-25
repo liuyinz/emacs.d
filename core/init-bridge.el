@@ -12,6 +12,8 @@
 
 (leaf lsp-bridge
   :hook (after-init-hook . global-lsp-bridge-mode)
+  :bind
+  ("M-d" . lsp-bridge-doc-toggle)
   :init
   ;; Setup language
   ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko ruff-lsp
@@ -42,6 +44,12 @@
   (add-hook 'lsp-bridge-mode-hook
             (lambda ()
               (run-with-timer 3 nil #'my/bridge-server-setup)))
+
+  (defun lsp-bridge-doc-toggle ()
+    (interactive)
+    (if (acm-frame-visible-p lsp-bridge-popup-documentation-frame)
+        (acm-hide)
+      (lsp-bridge-popup-documentation)))
 
   :defer-config
   (my/load-features 'init-bridge-detect)
