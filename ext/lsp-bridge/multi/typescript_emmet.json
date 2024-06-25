@@ -1,6 +1,6 @@
 {
-  "completion": ["emmet-ls", "typescript-ls"],
-  "completion_item_resolve": ["emmet-ls", "typescript-ls"],
+  "completion": ["typescript-ls", "emmet-ls"],
+  "completion_item_resolve": ["typescript-ls", "emmet-ls"],
   "diagnostics": ["typescript-ls", "emmet-ls"],
   "code_action": ["typescript-ls", "emmet-ls"],
   "execute_command": ["typescript-ls", "emmet-ls"],

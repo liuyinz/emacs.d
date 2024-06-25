@@ -1,6 +1,6 @@
 {
-  "completion": ["emmet-ls", "tailwindcss", "astro-ls"],
-  "completion_item_resolve": ["emmet-ls", "tailwindcss", "astro-ls"],
+  "completion": ["astro-ls", "tailwindcss", "emmet-ls"],
+  "completion_item_resolve": ["astro-ls", "tailwindcss", "emmet-ls"],
   "diagnostics": ["astro-ls", "tailwindcss", "emmet-ls"],
   "code_action": ["astro-ls", "tailwindcss", "emmet-ls"],
   "execute_command": ["astro-ls", "tailwindcss", "emmet-ls"],

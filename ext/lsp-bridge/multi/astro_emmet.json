@@ -1,6 +1,6 @@
 {
-  "completion": ["emmet-ls", "astro-ls"],
-  "completion_item_resolve": ["emmet-ls", "astro-ls"],
+  "completion": ["astro-ls", "emmet-ls"],
+  "completion_item_resolve": ["astro-ls", "emmet-ls"],
   "diagnostics": ["astro-ls", "emmet-ls"],
   "code_action": ["astro-ls", "emmet-ls"],
   "execute_command": ["astro-ls", "emmet-ls"],
