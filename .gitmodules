@@ -362,7 +362,6 @@
 	load-path = .
 	load-path = src
 	load-path = src/checkers
-	pin = true
 [submodule "flymake-relint"]
 	path = lib/flymake-relint
 	url = https://github.com/liuyinz/flymake-relint.git
