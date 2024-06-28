@@ -117,9 +117,11 @@ No changes in mode--line."
      `(meow-keypad-indicator   ((t (:foreground ,(doom-color 'violet) :bold t))))
      `(meow-motion-indicator   ((t (:foreground ,(doom-color 'magenta) :bold t))))
      `(meow-search-indicator   ((t (:foreground ,(doom-color 'cyan) :bold t))))
-     `(meow-beacon-fake-cursor ((t (:inherit meow-beacon-indicator :inverse-video t))))
+     `(meow-beacon-fake-cursor ((t (:foreground ,(doom-color 'bg)
+                                    :background ,(doom-blend 'yellow 'bg 0.7)
+                                    :bold t))))
      `(meow-position-highlight-number ((t (:foreground ,(doom-color 'bg)
-                                           :background ,(doom-color 'cyan)
+                                           :background ,(doom-blend 'cyan 'bg 0.7)
                                            :bold t))))
      ;; rg.el
      `(rg-info-face        ((t (:foreground ,(doom-color 'blue)))))
@@ -198,11 +200,13 @@ No changes in mode--line."
      ;; combobulate
      '(combobulate-refactor-highlight-face ((t (:background unspecified))))
      `(combobulate-refactor-label-face ((t (:foreground ,(doom-color 'bg)
-                                            :background ,(doom-color 'cyan)
+                                            :background ,(doom-blend 'cyan 'bg 0.7)
                                             :bold t))))
-     '(combobulate-active-indicator-face ((t (:foreground "white"))))
+     `(combobulate-active-indicator-face ((t (:foreground ,(doom-blend 'cyan 'bg 0.7)
+                                              :bold t))))
      ;; web-mode
-     '(web-mode-current-element-highlight-face ((t (:weight bold :inverse-video t))))
+     `(web-mode-current-element-highlight-face ((t (:weight bold
+                                                    :background ,(doom-blend 'methods 'bg 0.3)))))
      `(web-mode-current-column-highlight-face  ((t (:background ,(doom-color 'base4)
                                                     :foreground unspecified))))
      ;; cperl-mode
