@@ -7,7 +7,8 @@
   :bind
   ("C-x C-b" . ibuffer)
   (:ibuffer-mode-map
-   ("G" . ibuffer-toggle))
+   ("G" . ibuffer-toggle)
+   ("=" . ibuffer-diff-buffers))
   :init
   (setq ibuffer-expert t
         ibuffer-display-summary nil
@@ -15,8 +16,19 @@
         ibuffer-marked-char ?*)
 
   (defun ibuffer-toggle ()
+    "Toggle to show or hide all filtered buffers in `ibuffer-mode'."
+    (declare (modes ibuffer-mode))
     (interactive)
     (ibuffer-update 'show-all))
+
+  (defun ibuffer-diff-buffers (&optional switches)
+    "Display difference of two marked buffers in `'ibuffer-mode'."
+    (declare (modes ibuffer-mode))
+    (interactive (list (diff-switches)))
+    (if-let* ((bufs (ibuffer-get-marked-buffers))
+              ((= (length bufs) 2)))
+        (diff-buffers (car bufs) (cadr bufs) switches)
+      (user-error "diff: Must be two marked buffers")))
 
   (setq ibuffer-maybe-show-predicates '(my/ibuffer-not-show-predicate))
   (defun my/ibuffer-not-show-predicate (buf)
