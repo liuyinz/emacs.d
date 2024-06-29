@@ -76,6 +76,10 @@
               jtsx-typescript-mode-hook))
 
   (leaf acm
+    :bind
+    (:acm-mode-map
+     ("C-j" . nil)
+     ("C-k" . nil))
     :init
     (setq acm-enable-quick-access nil
           acm-enable-tabnine nil
