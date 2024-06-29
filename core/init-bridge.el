@@ -31,12 +31,21 @@
     (with-current-buffer (current-buffer)
       (when (bound-and-true-p acm-backend-lsp-server-names)
         (let ((servers acm-backend-lsp-server-names))
-          ;; enable :,], in emmet completion
-          ;; FIXME try to separate emmet
-          (when (member "emmet-ls" servers)
-            (setq-local lsp-bridge-completion-hide-characters
-                        (seq-difference lsp-bridge-completion-hide-characters
-                                        '(":" "(" ")" "[" "]" "{" "}" "\""))))
+          ;;; no need to setup at all.
+          ;; (when (member "emmet-ls" servers)
+          ;;   (cond
+          ;;    ((member "vscode-css-language-server" servers)
+          ;;     (setq-local lsp-bridge-completion-hide-characters
+          ;;                 (seq-difference lsp-bridge-completion-hide-characters
+          ;;                                 '("@" "!" "+"))))
+          ;;    ((seq-intersection '("vscode-html-language-server"
+          ;;                         "astro-ls"
+          ;;                         "typescript-ls")
+          ;;                       servers)
+          ;;     ;; HACK trade off between emme-ls and html
+          ;;     (setq-local lsp-bridge-completion-hide-characters
+          ;;                 (seq-difference lsp-bridge-completion-hide-characters
+          ;;                                 '("$" "*" "#" "." "!"))))))
           ;; enable - in tailwindcss completion
           (when (member "tailwindcss" servers)
             (modify-syntax-entry ?- "w"))))))
