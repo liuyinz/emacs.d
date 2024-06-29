@@ -241,8 +241,21 @@
   (meow-global-mode 1)
 
   (with-eval-after-load 'consult
-    (setq meow-goto-line-function #'consult-goto-line)))
+    (setq meow-goto-line-function #'consult-goto-line))
 
+  ;; HACK disable colorful-mode in meow-grab
+  (with-eval-after-load 'colorful-mode
+    (defun av/colorful-toggle-on-meow-grab ()
+      (when (bound-and-true-p colorful-mode)
+        (when (secondary-selection-exist-p)
+          (save-excursion
+            (font-lock-fontify-region (overlay-start mouse-secondary-overlay)
+                                      (overlay-end mouse-secondary-overlay))))
+        (when (region-active-p)
+          (dolist (ov (overlays-in (region-beginning) (region-end)))
+            (when (overlay-get ov 'colorful--overlay)
+              (colorful--delete-overlay ov))))))
+    (advice-add 'meow-grab :before #'av/colorful-toggle-on-meow-grab)))
 
 ;; REQUIRE brew tap laishulu/macism
 (leaf sis
