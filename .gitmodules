@@ -260,9 +260,6 @@
 [submodule "impatient-mode"]
 	path = lib/impatient-mode
 	url = https://github.com/skeeto/impatient-mode.git
-[submodule "skewer-mode"]
-	path = lib/skewer-mode
-	url = https://github.com/skeeto/skewer-mode.git
 [submodule "elispfl"]
 	path = lib/elispfl
 	url = https://github.com/cireu/elispfl.git
@@ -570,3 +567,6 @@
 [submodule "gptel"]
 	path = lib/gptel
 	url = https://github.com/karthink/gptel.git
+[submodule "nushell-mode"]
+	path = lib/nushell-mode
+	url = https://github.com/mrkkrp/nushell-mode.git
