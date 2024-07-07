@@ -29,6 +29,7 @@
   :init
   (setq mode-line-position-column-line-format '("%l:%c,%p"))
   (setq mini-echo-right-padding 2)
+  (setq mini-echo-mise-show-always nil)
   (setq mini-echo-default-segments
         '(:long ("meow" "shrink-path" "vcs" "buffer-position" "envrc"
                  "buffer-size" "flymake" "mise" "process" "selection-info"

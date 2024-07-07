@@ -23,7 +23,6 @@
 
 (leaf mise
   :init
-  (setq mini-echo-mise-show-always nil)
   :hook (after-init-hook . global-mise-mode))
 
 ;; TODO switch envrc/mise accroding to project

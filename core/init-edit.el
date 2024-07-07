@@ -223,5 +223,11 @@ With a prefix argument prompt for the format."
       (setq deactivate-mark t)))
   )
 
+
+(leaf delim-col
+  :init
+  ;; TODO write alignment command based-on this library
+  )
+
 (provide 'init-edit)
 ;;; init-edit.el ends here
