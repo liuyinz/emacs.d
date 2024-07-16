@@ -40,7 +40,53 @@
 ;;; html
 
 (leaf impatient-mode
-  :commands imp-visit-buffer)
+  :commands imp-visit-buffer
+  :init
+  (defun html-anchor-local-files ()
+    "Return a list of local files which is anchord to current html buffer."
+    (let (files)
+      (save-excursion
+        (save-match-data
+          (goto-char (point-min))
+          (while (re-search-forward
+                  "<\\(link\\|script\\)[^>]+\\(href\\|src\\)=[\"']\\([^\"']+\\(\\.css\\|\\.js\\)\\)[\"']" nil t)
+            (let* ((file (expand-file-name (match-string 3))))
+              (when (file-exists-p file)
+                (push file files))))))
+      (reverse files)))
+
+  (defun impatient--anchored-on-change (anchor-buf html-buf)
+    (when (and (buffer-live-p anchor-buf)
+               (buffer-modified-p anchor-buf)
+               (buffer-live-p html-buf)
+               (buffer-local-value 'impatient-mode html-buf))
+      (with-current-buffer anchor-buf
+        (basic-save-buffer))
+      (with-current-buffer html-buf
+        (imp--update-buffer))))
+
+  (defun impatient-watch-anchored-files ()
+    "Watch buffer changes of anchord files in current html buffer if impatient enabled."
+    (interactive)
+    (let ((html-buf (current-buffer)))
+      (when impatient-mode
+        (dolist (f (html-anchor-local-files))
+          (let ((anchor-buf (or (get-file-buffer f) (find-file-noselect f))))
+            (with-current-buffer anchor-buf
+              (setq-local impatient-anchored-timer
+                          (run-with-idle-timer
+                           2
+                           :repeat
+                           #'impatient--anchored-on-change
+                           anchor-buf
+                           html-buf))
+              (add-hook 'kill-buffer-hook
+                        (lambda ()
+                          (when (timerp impatient-anchored-timer)
+                            (cancel-timer impatient-anchored-timer)))
+                        nil t)))))))
+
+  )
 
 ;; Major mode for editing web templates
 (leaf web-mode
