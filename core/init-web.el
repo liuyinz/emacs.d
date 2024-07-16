@@ -23,6 +23,8 @@
 ;; (leaf less-css-mode
 ;;   :init (setq less-css-compile-at-save nil))
 
+;; TODO tailwind color completion font-awesome completion or to write a consult-fontawesome command
+;; SEE https://github.com/FortAwesome/Font-Awesome/blob/6.x/metadata/icons.json
 (defvar tailwindcss-frameworks
   '("nextjs" "laravel" "vite" "nuxtjs" "gatsby" "solidjs" "sveltekit" "angular"
     "ruby-on-rails" "remix" "phoenix" "parcel" "symfony" "meteor" "create-react-app"
