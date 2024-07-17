@@ -107,7 +107,7 @@
   (setq wgrep-auto-save-buffer t))
 
 (leaf rg
-  :hook (rg-mode-hook . rg-mode-setup)
+  ;; :hook (rg-mode-hook . rg-mode-setup)
   :bind
   ("C-c s" . rg-menu)
   (:rg-mode-map
@@ -129,11 +129,13 @@
   (setq rg-ignore-case 'smart
         rg-command-line-flags '("-z" "--pcre2"))
 
-  (defun rg-mode-setup ()
-    "docstring"
-    (setq-local compilation-scroll-output 'first-error
-                compilation-always-kill t))
   :defer-config
+
+  ;; set point at first match if succeed
+  (defun rg-first-match-after-finish (&rest _)
+    (ignore-errors
+      (compilation-next-error 1 nil (point-min))))
+  (push #'rg-first-match-after-finish rg-finish-functions)
 
   ;; FIXME replace failed when rg search with --multiline
   ;; now use `query-replace-regexp' to replace \n (`C-q C-j') first
@@ -171,24 +173,22 @@
                   (when replace-quit (throw 'quit nil))))))
         (wgrep-finish-edit)
         (goto-char stop-pos))))
-
-  ;; light theme background: "#F0F3F4i"
-  ;; parse nippon-color
-  ;;   (let ((json-object-type 'plist)
-  ;;     (json-array-type 'list)
-  ;;     )
-  ;; (with-current-buffer (get-buffer-create "temp.el")
-  ;;   (erase-buffer)
-  ;;   (let ((print-level nil)
-  ;;         (print-length nil)
-  ;;         (fill-column 130))
-  ;;     (pp (json-read-file (buffer-file-name (get-buffer "nippon-color.json")))
-  ;;         (current-buffer)))
-  ;;   )
-  ;; )
-
-
   (rg-menu-transient-insert "Rerun" "R" "Replace" #'rg-replace))
+
+;; light theme background: "#F0F3F4i"
+;; parse nippon-color
+;;   (let ((json-object-type 'plist)
+;;     (json-array-type 'list)
+;;     )
+;; (with-current-buffer (get-buffer-create "temp.el")
+;;   (erase-buffer)
+;;   (let ((print-level nil)
+;;         (print-length nil)
+;;         (fill-column 130))
+;;     (pp (json-read-file (buffer-file-name (get-buffer "nippon-color.json")))
+;;         (current-buffer)))
+;;   )
+;; )
 
 ;; NOTE command-key [super] couldn't identifiled in emacs -nw
 (leaf simpleclip
