@@ -48,7 +48,8 @@
           ;;                                 '("$" "*" "#" "." "!"))))))
           ;; enable - in tailwindcss completion
           (when (member "tailwindcss" servers)
-            (modify-syntax-entry ?- "w"))))))
+            (modify-syntax-entry ?- "w")
+            (setq-local lsp-bridge-enable-completion-in-string t))))))
 
   (add-hook 'lsp-bridge-mode-hook
             (lambda ()
@@ -71,7 +72,7 @@
 
   (setq lsp-bridge-enable-diagnostics t
         lsp-bridge-disable-backup nil)
-  (setq lsp-bridge-enable-completion-in-string t)
+  ;; (setq lsp-bridge-completion-in-string-file-types '("vue" "dart"))
   (appendq! lsp-bridge-default-mode-hooks
             '(snippet-mode-hook
               git-commit-mode-hook
