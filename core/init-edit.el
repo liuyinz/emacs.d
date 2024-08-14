@@ -192,10 +192,39 @@
 
 ;; NOTE command-key [super] couldn't identifiled in emacs -nw
 (leaf simpleclip
+  :hook (after-init-hook . simpleclip-mode)
   :init
   (setq simpleclip-less-feedback t
         simpleclip-unmark-on-copy t)
-  :hook (after-init-hook . simpleclip-mode))
+
+  ;; HACK support vterm-mode
+  (advice-add 'simpleclip-paste :override #'av/simpleclip-paste)
+  (defun av/simpleclip-paste ()
+    "Paste the contents of the system clipboard at the point."
+    (interactive)
+    (let ((str-val (simpleclip-get-contents)))
+      (unless str-val
+        (error "No content to paste"))
+      (cond
+       ((eq major-mode 'vterm-mode)
+        (let ((inhibit-read-only t))
+          (vterm-goto-char (point))
+          (cl-letf (((symbol-function 'insert-for-yank) #'vterm-insert))
+            (insert-for-yank str-val))))
+       (buffer-read-only
+        (error "Buffer is read-only"))
+       ((derived-mode-p 'term-mode)
+        (term-send-raw-string str-val))
+       (t
+        (when (use-region-p)
+          (delete-region (region-beginning) (region-end)))
+        (push-mark (point) t)
+        (insert-for-yank str-val)))
+      (when (and (not (minibufferp))
+                 (not simpleclip-less-feedback)
+                 (simpleclip-called-interactively-p 'interactive))
+        (message "pasted from clipboard"))))
+  )
 
 (leaf copy-as-format
   :require t
