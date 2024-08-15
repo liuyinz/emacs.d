@@ -473,6 +473,7 @@
 [submodule "pangu-spacing"]
 	path = lib/pangu-spacing
 	url = https://github.com/coldnew/pangu-spacing.git
+	pin = true
 [submodule "dirvish"]
 	path = lib/dirvish
 	url = https://github.com/alexluigit/dirvish.git

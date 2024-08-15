@@ -18,7 +18,7 @@
   ;; Setup language
   ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko ruff-lsp
   (setq lsp-bridge-python-command "python3.11")
-  (setq lsp-bridge-python-multi-lsp-server "pyright_ruff")
+  (setq lsp-bridge-python-multi-lsp-server "basedpyright_ruff")
 
   (setq lsp-bridge-enable-inlay-hint t)
 
