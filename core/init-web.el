@@ -38,6 +38,36 @@
   (browse-url (format "https://tailwindcss.com/docs/guides/%s"
                       (url-hexify-string framework))))
 
+;; TODO write a plugin for transform.tools
+(defvar transform-tools-options
+  '("svg-to-jsx" "svg-to-react-native" "html-to-jsx" "html-to-pug" "json-to-proptypes"
+    "json-to-flow" "json-to-graphql" "json-to-typescript" "json-to-mobx-state-tree"
+    "json-to-sarcastic" "json-to-io-ts" "json-to-rust-serde" "json-to-mongoose"
+    "json-to-big-query" "json-to-mysql" "json-to-scala-case-class" "json-to-go"
+    "json-to-go-bson" "json-to-yaml" "json-to-jsdoc" "json-to-kotlin" "json-to-java"
+    "json-to-json-schema" "json-to-toml" "json-to-zod" "json-schema-to-typescript"
+    "json-schema-to-openapi-schema" "json-schema-to-protobuf" "json-schema-to-zod"
+    "css-to-js" "object-styles-to-template-literal" "css-to-tailwind" "js-object-to-json"
+    "js-object-to-typescript" "graphql-to-typescript" "graphql-to-flow" "graphql-to-java"
+    "graphql-to-resolvers-signature" "graphql-to-introspection-json" "graphql-to-schema-ast"
+    "graphql-to-fragment-matcher" "graphql-to-components" "graphql-to-typescript-mongodb"
+    "jsonld-to-nquads" "jsonld-to-expanded" "jsonld-to-compacted" "jsonld-to-flattened"
+    "jsonld-to-framed" "jsonld-to-normalized" "typescript-to-flow" "typescript-to-typescript-declaration"
+    "typescript-to-json-schema" "typescript-to-javascript" "typescript-to-zod" "flow-to-typescript"
+    "flow-to-typescript-declaration" "flow-to-javascript" "xml-to-json" "yaml-to-json" "yaml-to-toml"
+    "markdown-to-html" "toml-to-json" "toml-to-yaml" "cadence-to-go")
+  "List of available options supported by transform.tools.")
+
+(defun transform-tools-search (option)
+  "Browser transform page for OPTION in transform.tools."
+  (interactive
+   (list (completing-read "Select option " transform-tools-options nil t)))
+  (when (use-region-p)
+    (simpleclip-set-contents
+     (substring-no-properties
+      (filter-buffer-substring (region-beginning) (region-end)))))
+  (browse-url (format "https://transform.tools/%s" (url-hexify-string option))))
+
 
 ;;; html
 
