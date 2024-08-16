@@ -24,6 +24,7 @@
   :init
   (setq repeat-help-popup-type 'which-key))
 
+;; FIXME shining when move up/down in rg-mode result when display is enabled
 (leaf mini-echo
   :hook (after-init-hook . mini-echo-mode)
   :init
