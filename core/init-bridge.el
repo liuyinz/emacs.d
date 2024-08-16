@@ -19,6 +19,7 @@
   ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko ruff-lsp
   (setq lsp-bridge-python-command "python3.11")
   (setq lsp-bridge-python-multi-lsp-server "basedpyright_ruff")
+  (setq lsp-bridge-lua-lsp-server "sumneko")
 
   (setq lsp-bridge-enable-inlay-hint t)
 
@@ -78,6 +79,7 @@
               git-commit-mode-hook
               mhtml-mode-hook
               html-mode-hook
+              lua-ts-mode-hook
               js-json-mode-hook
               vue-ts-mode-hook
               astro-mode-hook

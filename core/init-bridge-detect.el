@@ -93,10 +93,11 @@
 ;;; single server detect
 (prependq! lsp-bridge-single-lang-server-mode-list
            '(((js-mode js-ts-mode rjsx-mode
-                       typescript-mode typescript-ts-mode tsx-ts-mode
+                       typescript-mode typescript-ts-mode
                        jtsx-jsx-mode js-jsx-mode
                        jtsx-tsx-mode jtsx-typescript-mode tsx-ts-mode)
-              . "typescript-ls")))
+              . "typescript-ls")
+             (lua-ts-mode . "sumneko")))
 
 (setq lsp-bridge-get-single-lang-server-by-project #'my/bridge-single-server-detect)
 (defun my/bridge-single-server-detect (project_path filepath)
