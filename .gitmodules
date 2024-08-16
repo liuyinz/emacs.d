@@ -314,9 +314,6 @@
 [submodule "git-link"]
 	path = lib/git-link
 	url = https://github.com/sshaw/git-link.git
-[submodule "atomic-chrome"]
-	path = lib/atomic-chrome
-	url = https://github.com/alpha22jp/atomic-chrome.git
 [submodule "bicycle"]
 	path = lib/bicycle
 	url = https://github.com/tarsius/bicycle.git
@@ -571,3 +568,6 @@
 [submodule "nushell-mode"]
 	path = lib/nushell-mode
 	url = https://github.com/mrkkrp/nushell-mode.git
+[submodule "atomic-chrome"]
+	path = lib/atomic-chrome
+	url = https://github.com/KarimAziev/atomic-chrome.git
