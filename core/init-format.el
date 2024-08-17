@@ -29,7 +29,8 @@
         (t (call-interactively #'apheleia-format-buffer)))))
   :defer-config
   (alist-set! apheleia-formatters
-              '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))))
+              '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))
+                (stylua . ("stylua" "--search-parent-directories" "-"))))
   (alist-set! apheleia-mode-alist
               '((python-mode . (ruff isort))
                 (python-ts-mode . (ruff isort))
