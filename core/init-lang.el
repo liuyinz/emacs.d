@@ -44,8 +44,10 @@ If optional arg ALL if non-nil, reinstall all grammars."
     (interactive "P")
     (if-let* ((to-install
                (or (and all treesit-auto-langs)
-                   (cl-remove-if (lambda (lang) (treesit-ready-p lang t))
-                                 treesit-auto-langs)))
+                   ;; HACK lua dylib in treesit-binary-update has problem
+                   ;; so to replace with building always
+                   (seq-uniq (cons 'lua (cl-remove-if (lambda (lang) (treesit-ready-p lang t))
+                                                      treesit-auto-langs)))))
               (treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
         (progn
           (if all
