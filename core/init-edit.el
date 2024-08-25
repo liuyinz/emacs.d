@@ -7,16 +7,24 @@
 (leaf atomic-chrome
   :hook (after-init-hook . atomic-chrome-start-server)
   :init
+  (setq atomic-chrome-create-file-strategy `(,(list (concat my/dir-cache "atomic"))))
   (setq atomic-chrome-buffer-open-style 'full)
+  (setq atomic-chrome-auto-remove-file t)
   (setq atomic-chrome-url-major-mode-alist
-        '(("github\\.com" . gfm-mode)
-          ("reddit\\.com" . gfm-mode)
-          ("emacs-china\\.org" . gfm-mode)
-          ("stackexchange\\.com" . gfm-mode)
-          ("stackoverflow\\.com" . gfm-mode)
-          ("react.docschina.org" . jtsx-jsx-mode)
-          ("react.dev" . jtsx-jsx-mode)
-          )))
+        '(("ramdajs\\.com"           . js-ts-mode)
+          ("codesandbox\\.io"        . js-ts-mode)
+          ("w3schools\\.com"         . js-ts-mode)
+          ("jsfiddle\\.net"          . js-ts-mode)
+          ("github\\.com"            . gfm-mode)
+          ("gitlab\\.com"            . gfm-mode)
+          ("reddit\\.com"            . gfm-mode)
+          ("emacs-china\\.org"       . gfm-mode)
+          ("stackexchange\\.com"     . gfm-mode)
+          ("stackoverflow\\.com"     . gfm-mode)
+          ("leetcode\\.com"          . typescript-ts-mode)
+          ("typescriptlang\\.org"    . typescript-ts-mode)
+          ("react\\.docschina\\.org" . jtsx-jsx-mode)
+          ("react\\.dev"             . jtsx-jsx-mode))))
 
 (leaf hungry-delete
   :hook (after-init-hook . global-hungry-delete-mode)
