@@ -45,10 +45,6 @@
 
   )
 
-(leaf hide-mode-line
-  :init
-  (setq hide-mode-line-excluded-modes nil))
-
 (leaf redacted)
 
 ;; (leaf breadcrumb
