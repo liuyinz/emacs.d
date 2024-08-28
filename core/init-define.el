@@ -476,12 +476,21 @@ Same as `replace-string C-q C-m RET RET'."
 ;; SEE https://www.reddit.com/r/emacs/comments/lelbr5/how_to_start_emacsclient_such_that_it_respects_my/gmhbyv7?utm_source=share&utm_medium=web2x&context=3
 ;; https://github.com/purcell/emacs.d/blob/adf337dfa8c324983e5dc01ed055a34c3cc4a964/lisp/init-frame-hooks.el
 
-(defvar after-load-theme-hook nil
-  "Hook run after a color theme is loaded using `load-theme'.")
-(defun run-after-load-theme-hook (&rest _)
-  "Run `after-load-theme-hook'."
-  (run-hooks 'after-load-theme-hook))
-(advice-add #'load-theme :after #'run-after-load-theme-hook)
+;; (defvar after-load-theme-hook nil
+;;   "Hook run after a color theme is loaded using `load-theme'.")
+;; (defun run-after-load-theme-hook (&rest _)
+;;   "Run `after-load-theme-hook'."
+;;   (run-hooks 'after-load-theme-hook))
+;; (advice-add #'load-theme :after #'run-after-load-theme-hook)
+
+(defun av/update-frame-title-foreground (theme &rest _)
+  "Advice for update frame tile foreground when load THEME."
+  (when (featurep 'ns)
+    (modify-all-frames-parameters
+     (list (cons 'ns-appearance
+                 ;; FIXME failed on doom-*-themes
+                 (plist-get (get theme 'theme-properties) :background-mode))))))
+(advice-add #'load-theme :after #'av/update-frame-title-foreground)
 
 (defvar after-make-console-frame-hook '()
   "Hooks to run after creating a new TTY frame.")
