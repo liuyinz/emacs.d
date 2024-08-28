@@ -31,14 +31,9 @@
 ;; Do not resize the frame at this early stage.
 (setq frame-inhibit-implied-resize t)
 
-;; ;; set tile to filepath
 (setq frame-title-format
-      '((:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name))
-                 "%b"))
-        (:eval (if (buffer-modified-p)
-                   " *"))))
-;; (setq frame-title-format nil)
+      '((:eval (concat (if (buffer-file-name) "%f" "%b")
+                       (and (buffer-modified-p) " *")))))
 
 ;; SEE https://www.gnu.org/software/emacs/manual/html_node/elisp/Frame-Layout.html#index-frame_002dedges
 ;; frame position in pixels
