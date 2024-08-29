@@ -422,9 +422,6 @@
 [submodule "mermaid-ts-mode"]
 	path = lib/mermaid-ts-mode
 	url = https://github.com/JonathanHope/mermaid-ts-mode.git
-[submodule "popper"]
-	path = lib/popper
-	url = https://github.com/karthink/popper.git
 [submodule "mini-echo"]
 	path = lib/mini-echo
 	url = https://github.com/liuyinz/mini-echo.el.git
@@ -571,3 +568,6 @@
 [submodule "atomic-chrome"]
 	path = lib/atomic-chrome
 	url = https://github.com/KarimAziev/atomic-chrome.git
+[submodule "popper"]
+	path = lib/popper
+	url = https://github.com/karthink/popper.git
