@@ -38,12 +38,25 @@
           :short ("meow" "buffer-name" "buffer-position"
                   "flymake" "process" "selection-info" "narrow"
                   "macro" "profiler" "repeat" "text-scale")))
-  :defer-config
-  (appendq! mini-echo-rules
-            '((magit-section-mode :both (("buffer-position" . 0)
-                                         ("buffer-size" . 0)))))
 
-  )
+  (setq mini-echo-rule-detect #'my/mini-echo-rules)
+  (defun my/mini-echo-rules ()
+    (with-current-buffer (current-buffer)
+      (let ((temp '("process" "selection-info" "narrow" "macro" "profiler" "repeat")))
+        (pcase major-mode
+          ((guard (bound-and-true-p atomic-chrome-edit-mode))
+           `(:both ("meow" "major-mode" "atomic-chrome" "buffer-name" ,@temp)))
+          ('diff-mode `(:both ("meow" "diff" ,@temp)))
+          ('ibuffer-mode `(:both ("meow" "ibuffer" ,@temp)))
+          ('dired-mode `(:both ("meow" "dired" ,@temp)))
+          ('special-mode `(:both ("meow" "buffer-position" ,@temp)))
+          ('magit-status-mode `(:both ("meow" "major-mode" "buffer-name" ,@temp)))
+          ('xwidget-webkit-mode `(:long ("meow" "shrink-path" ,@temp)
+                                  :short ("meow" "buffer-name" ,@temp)))
+          ((or 'vterm-mode 'quickrun--mode 'inferior-python-mode
+               'nodejs-repl-mode 'inferior-emacs-lisp-mode)
+           `(:both ("meow" "ide" ,@temp)))
+          (_ nil))))))
 
 (leaf redacted)
 
