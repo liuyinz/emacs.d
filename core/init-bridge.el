@@ -21,6 +21,9 @@
   (setq lsp-bridge-python-multi-lsp-server "basedpyright_ruff")
   (setq lsp-bridge-lua-lsp-server "sumneko")
 
+  ;; BUG method not found in marksman lsp
+  ;; (setq lsp-bridge-markdown-lsp-server "marksman")
+
   (setq lsp-bridge-enable-inlay-hint t)
 
   ;; (setq lsp-bridge-completion-popup-predicates nil)

@@ -97,6 +97,8 @@
                        jtsx-jsx-mode js-jsx-mode
                        jtsx-tsx-mode jtsx-typescript-mode tsx-ts-mode)
               . "typescript-ls")
+             ;; BUG bug in lsp
+             ;; ((markdown-ts-mode gfm-mode) . "marksman")
              (lua-ts-mode . "sumneko")))
 
 (setq lsp-bridge-get-single-lang-server-by-project #'my/bridge-single-server-detect)
