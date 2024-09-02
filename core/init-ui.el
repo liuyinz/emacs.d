@@ -10,6 +10,7 @@
   (setq which-key-show-prefix 'top
         which-key-popup-type 'minibuffer
         which-key-preserve-window-configuration t
+        which-key-max-description-length 45
         which-key-dont-use-unicode t
         which-key-idle-delay 0.6
         which-key-idle-secondary-delay 0.2))
