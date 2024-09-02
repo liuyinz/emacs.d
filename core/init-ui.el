@@ -40,23 +40,27 @@
                   "flymake" "process" "selection-info" "narrow"
                   "macro" "profiler" "repeat" "text-scale")))
 
-  (setq mini-echo-rule-detect #'my/mini-echo-rules)
+  (setq mini-echo-rules-function #'my/mini-echo-rules)
   (defun my/mini-echo-rules ()
     (with-current-buffer (current-buffer)
       (let ((temp '("process" "selection-info" "narrow" "macro" "profiler" "repeat")))
         (pcase major-mode
           ((guard (bound-and-true-p atomic-chrome-edit-mode))
-           `(:both ("meow" "atomic-chrome" "buffer-name" "buffer-position" "flymake" ,@temp)))
+           `(:both ("meow" "atomic-chrome" "buffer-name"
+                    "buffer-position" "flymake" ,@temp)))
           ('diff-mode `(:both ("meow" "diff" ,@temp)))
-          ('ibuffer-mode `(:both ("meow" "ibuffer" ,@temp)))
+          ('ibuffer-mode `(:both ("meow" ,@temp)))
           ('dired-mode `(:both ("meow" "dired" ,@temp)))
           ('special-mode `(:both ("meow" "buffer-position" ,@temp)))
-          ('magit-status-mode `(:both ("meow" "major-mode" "buffer-name" ,@temp)))
           ('xwidget-webkit-mode `(:long ("meow" "shrink-path" ,@temp)
                                   :short ("meow" "buffer-name" ,@temp)))
           ((or 'vterm-mode 'quickrun--mode 'inferior-python-mode
                'nodejs-repl-mode 'inferior-emacs-lisp-mode)
            `(:both ("meow" "ide" ,@temp)))
+          ((guard (or (memq major-mode '(git-commit-elisp-text-mode git-rebase-mode))
+                      (string-match-p "\\`magit-.*-mode\\'" (symbol-name major-mode))))
+           `(:both ("meow" "major-mode" "project" ,@temp)))
+
           (_ nil))))))
 
 (leaf redacted)
