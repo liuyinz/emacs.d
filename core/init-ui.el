@@ -45,7 +45,7 @@
       (let ((temp '("process" "selection-info" "narrow" "macro" "profiler" "repeat")))
         (pcase major-mode
           ((guard (bound-and-true-p atomic-chrome-edit-mode))
-           `(:both ("meow" "major-mode" "atomic-chrome" "buffer-name" ,@temp)))
+           `(:both ("meow" "atomic-chrome" "buffer-name" "buffer-position" "flymake" ,@temp)))
           ('diff-mode `(:both ("meow" "diff" ,@temp)))
           ('ibuffer-mode `(:both ("meow" "ibuffer" ,@temp)))
           ('dired-mode `(:both ("meow" "dired" ,@temp)))

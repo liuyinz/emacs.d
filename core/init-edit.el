@@ -24,7 +24,21 @@
           ("leetcode\\.com"          . typescript-ts-mode)
           ("typescriptlang\\.org"    . typescript-ts-mode)
           ("react\\.docschina\\.org" . jtsx-jsx-mode)
-          ("react\\.dev"             . jtsx-jsx-mode))))
+          ("react\\.dev"             . jtsx-jsx-mode)))
+
+  :defer-config
+  ;; HACK adjust priorities of major-mode
+  (advice-add 'atomic-chrome-set-major-mode :override #'av/atomic-fix-mode-priority)
+  (defun av/atomic-fix-mode-priority(url)
+    (let ((mode (assoc-default url atomic-chrome-url-major-mode-alist
+                               'string-match)))
+      (cond (mode (funcall mode))
+            ((and buffer-file-name
+                  (file-name-extension buffer-file-name))
+             (set-auto-mode))
+            (t (funcall atomic-chrome-default-major-mode)))))
+
+  )
 
 (leaf hungry-delete
   :hook (after-init-hook . global-hungry-delete-mode)
