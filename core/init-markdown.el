@@ -23,7 +23,7 @@
         ;; markdown-gfm-uppercase-checkbox nil
         markdown-fontify-code-blocks-natively t
         markdown-enable-highlighting-syntax t
-        markdown-gfm-additional-languages "Mermaid")
+        markdown-gfm-additional-languages '("Mermaid"))
   (setq markdown-list-indent-width 2)
   (setq markdown-list-item-bullets
         '("◎" "●" "◇" "○" "◆" "►" "•"))
@@ -32,8 +32,8 @@
   (prependq! markdown-code-lang-modes
              '(("mermaid" . mermaid-ts-mode)
                ("zsh" . sh-mode)
-               ("jsx" . js-jsx-mode)
-               ("tsx" . tsx-ts-mode))))
+               ("jsx" . jtsx-jsx-mode)
+               ("tsx" . jtsx-tsx-mode))))
 
 (leaf markdown-toc
   :hook (markdown-mode-hook . markdown-toc-mode)
