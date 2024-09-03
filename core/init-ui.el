@@ -35,10 +35,10 @@
   (setq mini-echo-default-segments
         '(:long ("meow" "shrink-path" "vcs" "buffer-position" "envrc"
                  "buffer-size" "flymake" "mise" "process" "selection-info"
-                 "narrow" "macro" "profiler" "repeat" "text-scale")
+                 "narrow" "macro" "profiler" "repeat" "text-scale" "blame")
           :short ("meow" "buffer-name" "buffer-position"
                   "flymake" "process" "selection-info" "narrow"
-                  "macro" "profiler" "repeat" "text-scale")))
+                  "macro" "profiler" "repeat" "text-scale" "blame")))
 
   (setq mini-echo-rules-function #'my/mini-echo-rules)
   (defun my/mini-echo-rules ()
