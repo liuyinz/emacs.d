@@ -32,36 +32,57 @@
   (setq mode-line-position-column-line-format '("%l:%c,%p"))
   (setq mini-echo-right-padding 2)
   (setq mini-echo-mise-show-always nil)
-  (setq mini-echo-default-segments
-        '(:long ("meow" "shrink-path" "vcs" "buffer-position" "envrc"
-                 "buffer-size" "flymake" "mise" "process" "selection-info"
-                 "narrow" "macro" "profiler" "repeat" "text-scale" "blame")
-          :short ("meow" "buffer-name" "buffer-position"
-                  "flymake" "process" "selection-info" "narrow"
-                  "macro" "profiler" "repeat" "text-scale" "blame")))
+  (setq mini-echo-persistent-rule
+        '(:long ("meow" "shrink-path" "vcs" "buffer-position"
+                 "buffer-size" "flymake" "mise" "envrc")
+          :short ("meow" "buffer-name" "buffer-position" "flymake")))
 
-  (setq mini-echo-rules-function #'my/mini-echo-rules)
-  (defun my/mini-echo-rules ()
+  (setq mini-echo-persistent-function #'my/mini-echo-persistent-detect)
+  (defun my/mini-echo-persistent-detect ()
     (with-current-buffer (current-buffer)
-      (let ((temp '("process" "selection-info" "narrow" "macro" "profiler" "repeat")))
-        (pcase major-mode
-          ((guard (bound-and-true-p atomic-chrome-edit-mode))
-           `(:both ("meow" "atomic-chrome" "buffer-name"
-                    "buffer-position" "flymake" ,@temp)))
-          ('diff-mode `(:both ("meow" "diff" ,@temp)))
-          ('ibuffer-mode `(:both ("meow" ,@temp)))
-          ('dired-mode `(:both ("meow" "dired" ,@temp)))
-          ('special-mode `(:both ("meow" "buffer-position" ,@temp)))
-          ('xwidget-webkit-mode `(:long ("meow" "shrink-path" ,@temp)
-                                  :short ("meow" "buffer-name" ,@temp)))
-          ((or 'vterm-mode 'quickrun--mode 'inferior-python-mode
-               'nodejs-repl-mode 'inferior-emacs-lisp-mode)
-           `(:both ("meow" "ide" ,@temp)))
-          ((guard (or (memq major-mode '(git-commit-elisp-text-mode git-rebase-mode))
-                      (string-match-p "\\`magit-.*-mode\\'" (symbol-name major-mode))))
-           `(:both ("meow" "major-mode" "project" ,@temp)))
-
-          (_ nil))))))
+      (pcase major-mode
+        ((guard (bound-and-true-p atomic-chrome-edit-mode))
+         '(:both ("meow" "atomic-chrome" "buffer-name" "buffer-position" "flymake")))
+        ((guard (or (memq major-mode '(git-commit-elisp-text-mode git-rebase-mode))
+                    (string-match-p "\\`magit-.*-mode\\'" (symbol-name major-mode))))
+         '(:both ("meow" "major-mode" "project")))
+        ('diff-mode '(:both ("meow" "major-mode")))
+        ('ibuffer-mode '(:both ("meow" "major-mode")))
+        ('dired-mode '(:both ("meow" "major-mode" "dired")))
+        ('helpful-mode '(:both ("meow" "major-mode" "helpful")))
+        ('xwidget-webkit-mode '(:long ("meow" "shrink-path")
+                                :short ("meow" "buffer-name")))
+        ((or 'vterm-mode 'quickrun--mode 'inferior-python-mode
+             'nodejs-repl-mode 'inferior-emacs-lisp-mode)
+         '(:both ("meow" "ide")))
+        (_ nil))))
+  
+  (mini-echo-define-segment "ide"
+    "Return info about vterm,quickrun and other repl buffers."
+    :fetch
+    (let* ((modes '(vterm-mode quickrun--mode nodejs-repl-mode
+                               inferior-emacs-lisp-mode
+                               inferior-python-mode))
+           (face (pcase major-mode
+                   ('vterm-mode 'mini-echo-blue-bold)
+                   ('quickrun--mode 'mini-echo-yellow-bold)
+                   ((or 'nodejs-repl-mode 'inferior-emacs-lisp-mode
+                        'inferior-python-mode)
+                    'mini-echo-red-bold)
+                   (_ nil))))
+      (when face
+        (string-join
+         (->> (buffer-list)
+              (--filter (memq (buffer-local-value 'major-mode it) modes))
+              (-map #'buffer-name)
+              (-sort #'string-lessp)
+              (reverse)
+              (--map (mini-echo-segment--print
+                      it (if (string= it (buffer-name))
+                             face
+                           'font-lock-doc-face)
+                      20)))
+         (propertize "|" 'face 'font-lock-doc-face))))))
 
 (leaf redacted)
 

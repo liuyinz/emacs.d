@@ -100,7 +100,9 @@
 
 (leaf helpful
   :init
-  (setq helpful-switch-buffer-function #'display-buffer)
+  (setq helpful-switch-buffer-function #'display-buffer
+        helpful-max-buffers nil)
+
   :bind
   ([remap describe-key]      . helpful-key)
   ([remap describe-variable] . helpful-variable)
