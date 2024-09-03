@@ -163,7 +163,14 @@
   ;; now use `query-replace-regexp' to replace \n (`C-q C-j') first
   (defun rg-replace (to-string)
     "Replace matched result in rg-mode buffer."
-    (interactive (list (read-string "Rg replace search pattern with: ")))
+    ;; SEE https://emacs.stackexchange.com/a/72155
+    (interactive (list (minibuffer-with-setup-hook
+                           (lambda () (set-mark (minibuffer-prompt-end)))
+                         (read-string "Rg replace matched string with: "
+                                      (pcase-let ((`(,begin . ,length)
+                                                   (car rg-match-positions)))
+                                        (buffer-substring-no-properties
+                                         begin (+ length (marker-position begin))))))))
     (let ((stop-pos (point)))
       (unwind-protect
           (let ((keep-asking t)
