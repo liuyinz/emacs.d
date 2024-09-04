@@ -7,7 +7,6 @@
 
 ;;; Code:
 
-;; TODO to split window , do not use side win
 (add-to-list 'display-buffer-alist
              '("^\\*\\(quickrun\\|Python\\|nodejs\\|ielm\\)\\*$"
                (display-buffer-reuse-window
@@ -80,6 +79,10 @@ If BACKWARD is non-nil, cycle vterms buffers reversely"
         (message "No ide buffer displaying to be killed.")
       (next-cycle 'backward)
       (kill-buffer buf-to-kill))))
+
+;; TODO
+;; 1. add comamnd to switch bottom and right
+;; 2. split window commadn
 
 (dolist (pair '(("s-t" . next-toggle)
                 ("s-u" . vterm-new)

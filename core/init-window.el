@@ -49,6 +49,22 @@
                (side            . right)
                (window-width    . 0.25)))
 
+
+;; (leaf popper
+;;   :hook (after-init-hook . popper-mode)
+;;   :init
+;;   (setq popper-display-control nil)
+;;   (setq popper-reference-buffers
+;;         '(
+;;           ;; "\\*Messages\\*$"
+;;           ;; "\\*Async Shell Command\\*"
+;;           ;; compilation-mode
+;;           vterm-mode quickrun--mode nodejs-repl-mode
+;;           inferior-emacs-lisp-mode
+;;           inferior-python-mode))
+;;
+;;   )
+
 
 ;;; window management
 

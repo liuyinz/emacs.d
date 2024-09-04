@@ -23,6 +23,8 @@
   :init
   (setq rainbow-delimiters-max-face-count 4))
 
+;; FIXME only show overlays on selected-window
+;; window-selection-change-functions
 (leaf highlight-parentheses
   :hook
   ((prog-mode-hook helpful-mode-hook) . highlight-parentheses-mode)
