@@ -56,7 +56,7 @@
              'nodejs-repl-mode 'inferior-emacs-lisp-mode)
          '(:both ("meow" "ide")))
         (_ nil))))
-  
+
   (mini-echo-define-segment "ide"
     "Return info about vterm,quickrun and other repl buffers."
     :fetch
@@ -160,6 +160,12 @@ No changes in mode--line."
      `(meow-position-highlight-number ((t (:foreground ,(doom-color 'bg)
                                            :background ,(doom-blend 'cyan 'bg 0.7)
                                            :bold t))))
+     `(meow-position-highlight-number-2 ((t (:foreground ,(doom-color 'bg)
+                                             :background ,(doom-blend 'magenta 'bg 0.7)
+                                             :bold t))))
+     `(meow-position-highlight-number-3 ((t (:foreground ,(doom-color 'bg)
+                                             :background ,(doom-blend 'yellow 'bg 0.7)
+                                             :bold t))))
      ;; rg.el
      `(rg-info-face        ((t (:foreground ,(doom-color 'blue)))))
      `(rg-filename-face    ((t (:foreground ,(doom-color 'blue) :underline t))))
