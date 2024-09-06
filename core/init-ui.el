@@ -84,26 +84,26 @@
                       20)))
          (propertize "|" 'face 'font-lock-doc-face))))))
 
-(leaf redacted)
-
 ;; (leaf breadcrumb
 ;;   :hook (after-init-hook . breadcrumb-mode))
 
+;; TODO matrix screensaver
 (leaf insecure-lock
-  :commands insecure-lock-enter
+  :bind
+  ("s-q" . insecure-lock-enter)
   :init
-  (defun insecure-lock-redact-pure ()
+  (setq insecure-lock-require-password nil)
+  (setq insecure-lock-mode-hook '(insecure-lock-redact-with-minibuf insecure-lock-posframe))
+  (defun insecure-lock-redact-with-minibuf ()
     "`insecure-lock' module that redacts buffers.
-No changes in mode--line."
+No changes in mode-line."
     (unless (require 'redacted nil t) (user-error "Package `redacted' not available"))
     (let ((arg (if insecure-lock-mode 1 -1)))
       (dolist (frame (frame-list))
-        (dolist (window (window-list frame))
+        ;; NOTE call redacted-mode also in minibuf
+        (dolist (window (window-list frame t))
           (with-current-buffer (window-buffer window)
-            (redacted-mode arg))))))
-
-  (setq insecure-lock-require-password t)
-  (setq insecure-lock-mode-hook '(insecure-lock-redact-pure insecure-lock-posframe)))
+            (redacted-mode arg)))))))
 
 (leaf page-break-lines
   :hook (after-init-hook . global-page-break-lines-mode)
