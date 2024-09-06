@@ -25,18 +25,18 @@
      '("k" . meow-prev)
      '("l" . meow-right)
      '("b" . meow-back-word)
-     '("e" . meow-next-word)
      '("B" . meow-back-symbol)
+     '("e" . meow-next-word)
      '("E" . meow-next-symbol)
      '("f" . meow-find)
      '("t" . meow-till)
      '("z" . meow-goto-line)
 
      ;; edit
-     '("a" . meow-append)
-     '("A" . meow-open-below)
      '("i" . meow-insert)
      '("I" . meow-open-above)
+     '("a" . meow-append)
+     '("A" . meow-open-below)
      '("c" . meow-change)
      '("C" . meow-change-save)
      '("d" . meow-delete)
@@ -88,7 +88,7 @@
      '("G" . meow-grab)
      '("F" . meow-sync-grab)
      '("S" . meow-swap-grab)
-     ;; '("x" . meow-pop-grab)
+     '("Q" . meow-pop-grab)
 
      ;; search
      '("n" . meow-search)
@@ -108,7 +108,6 @@
      '(">" . meow-end-of-thing)
 
      ;; self-defined
-     '("Q" . insecure-lock-enter)
      '("/" . isearch-forward-regexp)
      '("<escape>" . ignore)
      '("'" . binky-binky)
