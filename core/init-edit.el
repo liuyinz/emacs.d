@@ -129,7 +129,6 @@
   (setq wgrep-auto-save-buffer t))
 
 (leaf rg
-  ;; :hook (rg-mode-hook . rg-mode-setup)
   :bind
   ("C-c s" . rg-menu)
   (:rg-mode-map
@@ -159,8 +158,6 @@
       (compilation-next-error 1 nil (point-min))))
   (push #'rg-first-match-after-finish rg-finish-functions)
 
-  ;; FIXME replace failed when rg search with --multiline
-  ;; now use `query-replace-regexp' to replace \n (`C-q C-j') first
   (defun rg-replace (to-string)
     "Replace matched result in rg-mode buffer."
     ;; SEE https://emacs.stackexchange.com/a/72155
