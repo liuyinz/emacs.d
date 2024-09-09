@@ -100,6 +100,26 @@
     "Dired buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-dired)
 
+  ;; atomic-chrome buffers
+  (defvar consult--source-atomic
+    `(:name     "Atomic"
+      :narrow   ?a
+      :hidden   t
+      :category buffer
+      :face     dired-warning
+      :state    ,#'consult--buffer-state
+      :items
+      ,(lambda ()
+         (consult--buffer-query
+          :sort 'visibility
+          :as #'buffer-name
+          :filter nil
+          :predicate
+          (lambda (buffer)
+            (buffer-local-value 'atomic-chrome-edit-mode buffer)))))
+    "Atomic buffer candidate source for `consult-buffer'.")
+  (add-to-list 'consult-buffer-sources 'consult--source-atomic)
+
   ;; Blob-source
   (defvar consult--source-blob
     `(:name     "Blob"
