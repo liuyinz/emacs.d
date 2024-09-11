@@ -27,17 +27,15 @@
           ("react\\.dev"             . jtsx-jsx-mode)))
 
   :defer-config
-  ;; HACK adjust priorities of major-mode
-  (advice-add 'atomic-chrome-set-major-mode :override #'av/atomic-fix-mode-priority)
-  (defun av/atomic-fix-mode-priority(url)
-    (let ((mode (assoc-default url atomic-chrome-url-major-mode-alist
-                               'string-match)))
-      (cond (mode (funcall mode))
-            ((and buffer-file-name
-                  (file-name-extension buffer-file-name))
-             (set-auto-mode))
-            (t (funcall atomic-chrome-default-major-mode)))))
-
+  ;; HACK change major mode if website extension is wrong
+  (defun atomic-edit-setup ()
+    (let ((infos (atomic-chrome-get-info (current-buffer))))
+      (when (and buffer-file-name
+                 (string= (nth 2 infos) ".js")
+                 (string-match-p "react\\.docschina\\.org" (nth 0 infos))
+                 (not (eq major-mode 'jtsx-jsx-mode)))
+        (jtsx-jsx-mode))))
+  (add-hook 'atomic-chrome-edit-mode-hook #'atomic-edit-setup)
   )
 
 (leaf hungry-delete
