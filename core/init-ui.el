@@ -46,43 +46,35 @@
         ((guard (or (memq major-mode '(git-commit-elisp-text-mode git-rebase-mode))
                     (string-match-p "\\`magit-.*-mode\\'" (symbol-name major-mode))))
          '(:both ("meow" "major-mode" "project")))
+        ((guard (popper-popup-p (current-buffer))) '(:both ("meow" "popper")))
         ('diff-mode '(:both ("meow" "major-mode")))
         ('ibuffer-mode '(:both ("meow" "major-mode")))
         ('dired-mode '(:both ("meow" "major-mode" "dired")))
         ('helpful-mode '(:both ("meow" "major-mode" "helpful")))
         ('xwidget-webkit-mode '(:long ("meow" "shrink-path")
                                 :short ("meow" "buffer-name")))
-        ((or 'vterm-mode 'quickrun--mode 'inferior-python-mode
-             'nodejs-repl-mode 'inferior-emacs-lisp-mode)
-         '(:both ("meow" "ide")))
         (_ nil))))
 
-  (mini-echo-define-segment "ide"
-    "Return info about vterm,quickrun and other repl buffers."
+  (mini-echo-define-segment "popper"
+    "Return info about popper buffers."
     :fetch
-    (let* ((modes '(vterm-mode quickrun--mode nodejs-repl-mode
-                               inferior-emacs-lisp-mode
-                               inferior-python-mode))
-           (face (pcase major-mode
-                   ('vterm-mode 'mini-echo-blue-bold)
-                   ('quickrun--mode 'mini-echo-yellow-bold)
-                   ((or 'nodejs-repl-mode 'inferior-emacs-lisp-mode
-                        'inferior-python-mode)
-                    'mini-echo-red-bold)
-                   (_ nil))))
-      (when face
-        (string-join
-         (->> (buffer-list)
-              (--filter (memq (buffer-local-value 'major-mode it) modes))
-              (-map #'buffer-name)
-              (-sort #'string-lessp)
-              (reverse)
-              (--map (mini-echo-segment--print
-                      it (if (string= it (buffer-name))
-                             face
-                           'font-lock-doc-face)
-                      20)))
-         (propertize "|" 'face 'font-lock-doc-face))))))
+    (when (rassq (current-buffer) popper-open-popup-alist)
+      (string-join
+       (->>
+        popper-buried-popup-alist
+        (alist-get (and popper-group-function (funcall popper-group-function)))
+        (-map #'cdr)
+        (cons (current-buffer))
+        (-map #'buffer-name)
+        (-sort #'string-lessp)
+        (reverse)
+        (--map (mini-echo-segment--print
+                it (if (string= it (buffer-name))
+                       'mini-echo-yellow-bold
+                     'mini-echo-gray)
+                20)))
+       (propertize "|" 'face 'font-lock-doc-face))))
+  )
 
 ;; (leaf breadcrumb
 ;;   :hook (after-init-hook . breadcrumb-mode))
