@@ -120,7 +120,6 @@
      ;; 'init-org
      'init-key
      'init-env
-     'init-next
      )))
 
 ;;; init.el ends here

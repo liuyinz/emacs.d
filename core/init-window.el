@@ -50,20 +50,58 @@
                (window-width    . 0.25)))
 
 
-;; (leaf popper
-;;   :hook (after-init-hook . popper-mode)
-;;   :init
-;;   (setq popper-display-control nil)
-;;   (setq popper-reference-buffers
-;;         '(
-;;           ;; "\\*Messages\\*$"
-;;           ;; "\\*Async Shell Command\\*"
-;;           ;; compilation-mode
-;;           vterm-mode quickrun--mode nodejs-repl-mode
-;;           inferior-emacs-lisp-mode
-;;           inferior-python-mode))
-;;
-;;   )
+(leaf popper
+  :hook (after-init-hook . popper-mode)
+  :init
+  (setq popper-display-control t)
+  (setq popper-reference-buffers
+        '(
+          ;; "\\*Messages\\*$"
+          ;; "\\*Async Shell Command\\*"
+          ;; compilation-mode
+          vterm-mode quickrun--mode nodejs-repl-mode
+          inferior-emacs-lisp-mode
+          inferior-python-mode))
+
+  ;; TODO
+  ;; 2. applied even when first pop buffer arise
+  (setq popper-display-function #'my/popper-display-switch)
+
+  (defvar my/popper-switches
+    '((bottom . 0.4) (right . 0.5) (left . 0.99)))
+
+  (defun my/popper-display-switch (buffer &optional alist)
+    (unless (get 'my/popper-switches 'current-index)
+      (put 'my/popper-switches 'current-index 0))
+    (let* ((switch (nth (get 'my/popper-switches 'current-index)
+                        my/popper-switches))
+           (win-conf `((side . ,(car switch))
+                       (slot . 1)
+                       (window-width . ,(cdr switch))
+                       (window-height . ,(cdr switch)))))
+      (select-window (display-buffer-in-side-window buffer (append alist win-conf)))))
+
+  (defun popper-switch ()
+    (interactive)
+    (when-let ((window (caar popper-open-popup-alist)))
+      (let* ((idx (get 'my/popper-switches 'current-index))
+             (next-idx (% (1+ idx) (length my/popper-switches)))
+             (args (or (and (memq (car (nth idx my/popper-switches)) '(right left))
+                            '(2 . 0))
+                       '(3 . 1)))
+             (ratio (/ (float (- (nth (car args) (window-edges window))
+                                 (nth (cdr args) (window-edges window))))
+                       (nth (car args) (window-edges (frame-root-window))))))
+        (popper-close-latest)
+        (put 'my/popper-switches 'current-index next-idx)
+        (setcdr (nth idx my/popper-switches) ratio)))
+    (popper-open-latest))
+  )
+
+(keymap-global-set "s-s" #'popper-switch)
+(keymap-global-set "s-i" #'popper-cycle)
+(keymap-global-set "s-t" #'popper-toggle)
+(keymap-global-set "s-u" #'vterm-new)
 
 
 ;;; window management
