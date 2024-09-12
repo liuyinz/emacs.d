@@ -46,7 +46,8 @@
         ((guard (or (memq major-mode '(git-commit-elisp-text-mode git-rebase-mode))
                     (string-match-p "\\`magit-.*-mode\\'" (symbol-name major-mode))))
          '(:both ("meow" "major-mode" "project")))
-        ((guard (popper-popup-p (current-buffer))) '(:both ("meow" "popper")))
+        ((guard (rassq (current-buffer) popper-open-popup-alist))
+         '(:both ("meow" "popper")))
         ('diff-mode '(:both ("meow" "major-mode")))
         ('ibuffer-mode '(:both ("meow" "major-mode")))
         ('dired-mode '(:both ("meow" "major-mode" "dired")))
@@ -54,26 +55,6 @@
         ('xwidget-webkit-mode '(:long ("meow" "shrink-path")
                                 :short ("meow" "buffer-name")))
         (_ nil))))
-
-  (mini-echo-define-segment "popper"
-    "Return info about popper buffers."
-    :fetch
-    (when (rassq (current-buffer) popper-open-popup-alist)
-      (string-join
-       (->>
-        popper-buried-popup-alist
-        (alist-get (and popper-group-function (funcall popper-group-function)))
-        (-map #'cdr)
-        (cons (current-buffer))
-        (-map #'buffer-name)
-        (-sort #'string-lessp)
-        (reverse)
-        (--map (mini-echo-segment--print
-                it (if (string= it (buffer-name))
-                       'mini-echo-yellow-bold
-                     'mini-echo-gray)
-                20)))
-       (propertize "|" 'face 'font-lock-doc-face))))
   )
 
 ;; (leaf breadcrumb

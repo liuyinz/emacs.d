@@ -20,10 +20,7 @@
         '(
           ;; builtin
           (("*Warnings*" "*Messages*") :size 0.3 :align 'below)
-          (("*shell*" "*eshell*") :popup t :size 0.3 :align 'below)
           ("\\*[Wo]*Man.*\\*" :regexp t :popup t :select t :size 0.5 :align 'below)
-          ("*Pp Eval Output*" :popup t :size 0.5 :align 'below :select nil)
-          ("*Pp Macroexpand Output*" :popup t :size 0.5 :align 'below :select nil)
           ;; third-party
 
           ;; BUG other,no-select
@@ -57,11 +54,14 @@
   (setq popper-reference-buffers
         '(
           ;; "\\*Messages\\*$"
-          ;; "\\*Async Shell Command\\*"
+          "\\*Async Shell Command\\*"
+          "*Pp Eval Output*"
+          "*Pp Macroexpand Output*"
           ;; compilation-mode
           vterm-mode quickrun--mode nodejs-repl-mode
           inferior-emacs-lisp-mode
-          inferior-python-mode))
+          inferior-python-mode
+          shell-mode eshell-mode))
 
   ;; TODO
   ;; 2. applied even when first pop buffer arise
