@@ -16,9 +16,12 @@
   (setq dired-free-space nil
         dired-kill-when-opening-new-dired-buffer t
         dired-recursive-deletes 'always
-        dired-recursive-copies 'always)
-
+        dired-recursive-copies 'always
+        dired-no-confirm t)
   (setq dired-dwim-target t)
+
+  (setq delete-by-moving-to-trash t)
+
   ;; SEE http://www.nextpoint.se/?p=808
   (defun dired-mark-empty-directories (&optional arg)
     "Mark empty directories.
