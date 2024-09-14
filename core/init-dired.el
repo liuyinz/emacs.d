@@ -16,9 +16,12 @@
   (setq dired-free-space nil
         dired-kill-when-opening-new-dired-buffer t
         dired-recursive-deletes 'always
-        dired-recursive-copies 'always
-        dired-no-confirm t)
+        dired-recursive-copies 'always)
   (setq dired-dwim-target t)
+
+  (setq dired-no-confirm t
+        dired-clean-up-buffers-too t
+        dired-clean-confirm-killing-deleted-buffers nil)
 
   (setq delete-by-moving-to-trash t)
 
