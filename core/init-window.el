@@ -39,7 +39,7 @@
 
 
 (add-to-list 'display-buffer-alist
-             '("^\\*Emacs Log*"
+             '("^\\*Emacs Log\\*"
                (display-buffer-reuse-window
 	            display-buffer-in-side-window)
                (reusable-frames . visible)
@@ -55,8 +55,9 @@
         '(
           ;; "\\*Messages\\*$"
           "\\*Async Shell Command\\*"
-          "*Pp Eval Output*"
-          "*Pp Macroexpand Output*"
+          "\\*Pp Eval Output\\*"
+          "\\*Pp Macroexpand Output\\*"
+          ;; "\\*quickrun\\*"
           ;; compilation-mode
           vterm-mode quickrun--mode nodejs-repl-mode
           inferior-emacs-lisp-mode
