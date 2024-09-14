@@ -27,6 +27,11 @@
         ((gitconfig-mode emacs-lisp-mode lisp-interaction-mode)
          (run-general! indent-region indent-whole-buffer))
         (t (call-interactively #'apheleia-format-buffer)))))
+
+  ;; do not format if functions return non-nil
+  (setq apheleia-skip-functions
+        '(yas-current-field active-minibuffer-window))
+
   :defer-config
   (alist-set! apheleia-formatters
               '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))
