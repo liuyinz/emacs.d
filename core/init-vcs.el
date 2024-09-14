@@ -141,8 +141,13 @@ Otherwise, behave like `magit-display-buffer-traditional'."
 
   
   ;;; blame
-
-  (add-hook 'magit-blame-mode-hook #'my/meow-motion-temporary))
+  (setq magit-blame-styles
+        '((margin
+           (margin-format    . (" %a %s" ""))
+           (margin-width     . 70)
+           (margin-face      . magit-blame-margin)
+           (margin-body-face . (magit-blame-dimmed)))))
+  )
 
 (provide 'init-vcs)
 ;;; init-vcs.el ends here
