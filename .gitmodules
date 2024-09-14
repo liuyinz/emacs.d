@@ -570,3 +570,6 @@
 [submodule "popper"]
 	path = lib/popper
 	url = https://github.com/karthink/popper.git
+[submodule "spookfox"]
+	path = lib/spookfox
+	url = https://github.com/bitspook/spookfox.git
