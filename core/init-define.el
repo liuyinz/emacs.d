@@ -144,6 +144,18 @@ FN-R : region function, FN: default function"
 
 ;;; Functions
 
+(defvar minor-fallback-alist
+  '((read-only-mode . buffer-read-only)
+    (save-place-local-mode . save-place-mode)))
+
+(defun minor-mode-p (mode)
+  "Return t if MODE is a minor mode."
+  (and (functionp mode)
+       (progn
+         (when (autoloadp (symbol-function mode))
+           (load (cdr (find-function-library mode)) nil t))
+         (memq (or (alist-get mode minor-fallback-alist) mode) minor-mode-list))))
+
 (defun feature-preload-p (feature)
   "Return non-nil if FEATURE is pre-loaded by default."
   (and emacs-preload-features
