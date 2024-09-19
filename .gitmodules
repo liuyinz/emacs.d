@@ -494,9 +494,6 @@
 [submodule "hydra"]
 	path = lib/hydra
 	url = https://github.com/abo-abo/hydra.git
-[submodule "zig-mode"]
-	path = lib/zig-mode
-	url = https://github.com/ziglang/zig-mode.git
 [submodule "ibuffer-vc"]
 	path = lib/ibuffer-vc
 	url = https://github.com/purcell/ibuffer-vc.git
@@ -573,3 +570,34 @@
 [submodule "spookfox"]
 	path = lib/spookfox
 	url = https://github.com/bitspook/spookfox.git
+[submodule "corfu"]
+	path = lib/corfu
+	url = https://github.com/minad/corfu.git
+	load-path = .
+	load-path = extensions
+[submodule "nerd-icons-corfu"]
+	path = lib/nerd-icons-corfu
+	url = https://github.com/LuigiPiucco/nerd-icons-corfu.git
+[submodule "cape"]
+	path = lib/cape
+	url = https://github.com/minad/cape.git
+[submodule "yasnippet-capf"]
+	path = lib/yasnippet-capf
+	url = https://github.com/elken/yasnippet-capf.git
+[submodule "lsp-mode"]
+	path = lib/lsp-mode
+	url = https://github.com/emacs-lsp/lsp-mode.git
+	load-path = .
+	load-path = clients
+[submodule "lsp-pyright"]
+	path = lib/lsp-pyright
+	url = https://github.com/emacs-lsp/lsp-pyright.git
+[submodule "markdown-ts-mode"]
+	path = lib/markdown-ts-mode
+	url = https://github.com/LionyxML/markdown-ts-mode.git
+[submodule "zig-ts-mode"]
+	path = lib/zig-ts-mode
+	url = https://codeberg.org/meow_king/zig-ts-mode.git
+[submodule "magit-todos"]
+	path = lib/magit-todos
+	url = https://github.com/alphapapa/magit-todos.git
