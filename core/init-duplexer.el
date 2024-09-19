@@ -1,4 +1,4 @@
-;;; init-duplexer.el --- rebounce setup -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-duplexer.el --- duplexer setup -*- lexical-binding: t no-byte-compile: t -*-
 
 ;; Author: liuyinz <liuyinz95@gmail.com>
 ;; Created: 2022-12-18 20:49:08
@@ -13,19 +13,21 @@
   (setq duplexer-quiet t)
   (setq duplexer-groups
         '(;; built-in
-          (hl-line-no . ((hl-line-mode -1)
-                         (global-hl-line-mode -1)))
+          (no-hl-line . ((hl-line-mode -1) (global-hl-line-mode -1)))
           (read-only  . ((read-only-mode 1)))
-          (cursor-no  . ((blink-cursor-mode -1)))
+          (no-cursor  . ((blink-cursor-mode -1)))
           ;; third-party
-          (margin-no  . ((diff-hl-margin-local-mode -1)
-                         (binky-margin-local-mode -1)))
-          (paren-no   . ((highlight-parentheses-mode -1)))))
+          (no-margin  . ((diff-hl-margin-local-mode -1) (binky-margin-local-mode -1)))
+          (no-paren   . ((highlight-parentheses-mode -1)))
+          (temp-motion . ((my/meow-temp-motion 1)))))
 
   (setq duplexer-alist
-        '((olivetti-mode . (margin-no kk hl-line-no (focus-mode 1)))
-          (redacted-mode . (margin-no hl-line-no cursor-no paren-no read-only))
-          (smerge-mode   . (margin-no paren-no (save-place-local-mode -1))))))
+        '((olivetti-mode . (no-margin no-hl-line (focus-mode 1)))
+          (redacted-mode . (no-margin no-hl-line no-paren no-cursor read-only))
+          (smerge-mode   . (no-margin no-paren (save-place-local-mode -1)))
+          (magit-blame-read-only-mode . (temp-motion 1))))
+
+  (appendq! duplexer-fallback-alist '((my/meow-temp-motion . meow--temp-state-before))))
 
 (provide 'init-duplexer)
 ;;; init-duplexer.el ends here

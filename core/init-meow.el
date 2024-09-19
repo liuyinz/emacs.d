@@ -137,21 +137,18 @@
      '("/" . meow-keypad-describe-key)
      '("?" . meow-cheatsheet)))
 
-  ;; NOTE temporarily switch meow state if minor mode toggled
-  (defvar my/meow-minor-state-list
-    '(magit-blame-read-only-mode-hook))
-
-  (defun my/meow-temp-motion ()
+  (defvar-local meow--temp-state-before nil)
+  (defun my/meow-temp-motion (&optional arg)
     "Switch between meow-motion-mode and meow-normal-mode automatically."
+    (interactive "p")
     (when (region-active-p)
       (meow--cancel-selection))
-    (setq-local meow--temp-state-before (meow--current-state))
-    (if (meow-motion-mode-p)
-        (meow--switch-state meow--temp-state-before)
+    (if (< arg 0)
+        (progn
+          (meow--switch-state meow--temp-state-before)
+          (setq-local meow--temp-state-before nil))
+      (setq-local meow--temp-state-before (meow--current-state))
       (meow--switch-state 'motion)))
-
-  (dolist (hook my/meow-minor-state-list)
-    (add-hook hook #'my/meow-temp-motion))
 
   ;; wrapper of meow-redo
   (defvar meow--kbd-undo-redo "C-?"
