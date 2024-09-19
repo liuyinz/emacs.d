@@ -220,7 +220,7 @@
 	url = https://github.com/purcell/envrc.git
 [submodule "on"]
 	path = lib/on
-	url = https://github.com/ajgrf/on.el.git
+	url = https://gitlab.com/ajgrf/on.el.git
 [submodule "simpleclip"]
 	path = lib/simpleclip
 	url = https://github.com/rolandwalker/simpleclip.git
