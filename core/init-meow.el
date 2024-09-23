@@ -231,18 +231,20 @@
 
   (defun meow--inner-of-tag ()
     (-let [(_ beg end _)
-           (cond ((memq major-mode '(jtsx-jsx-mode jtsx-tsx-mode))
-                  (jtsx-jsx-element-pos))
-                 ((eq major-mode 'web-mode)
-                  (web-mode-element-pos)))]
+           (pcase major-mode
+             ((or 'jtsx-jsx-mode 'jtsx-tsx-mode)
+              (jtsx-jsx-element-pos))
+             ('web-mode (web-mode-element-pos))
+             (_ nil))]
       (and beg end (cons beg end))))
 
   (defun meow--bounds-of-tag ()
     (-let [(beg _ _ end)
-           (cond ((memq major-mode '(jtsx-jsx-mode jtsx-tsx-mode))
-                  (jtsx-jsx-element-pos))
-                 ((eq major-mode 'web-mode)
-                  (web-mode-element-pos)))]
+           (pcase major-mode
+             ((or 'jtsx-jsx-mode 'jtsx-tsx-mode)
+              (jtsx-jsx-element-pos))
+             ('web-mode (web-mode-element-pos))
+             (_ nil))]
       (and beg end (cons beg end))))
 
   (meow-thing-register 'tag #'meow--inner-of-tag #'meow--bounds-of-tag)
