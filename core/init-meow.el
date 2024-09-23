@@ -197,8 +197,13 @@
           (?l . line)
           (?p . paragraph)
           (?b . buffer)
-          (?t . tag)))
+          (?t . tag)
+          (?u . url)
+          (?w . window)
+          (?m . email)))
 
+  (meow-thing-register 'url 'url 'url)
+  (meow-thing-register 'email 'email 'email)
   (meow-thing-register 'angle
                        '(pair ("<") (">"))
                        '(pair ("<") (">")))
