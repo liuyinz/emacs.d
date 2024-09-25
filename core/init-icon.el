@@ -32,6 +32,12 @@
                 " " filename-and-process+)
           (mark " " name))))
 
+(leaf nerd-icons-corfu
+  :require t
+  :after corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+
 ;; TODO magit
 (provide 'init-icon)
 ;;; init-icon.el ends here
