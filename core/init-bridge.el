@@ -25,6 +25,8 @@
   ;; (setq lsp-bridge-markdown-lsp-server "marksman")
 
   (setq lsp-bridge-enable-inlay-hint t)
+  (setq lsp-bridge-enable-completion-in-string t)
+  ;; (setq lsp-bridge-completion-in-string-file-types '("vue" "dart"))
 
   ;; (setq lsp-bridge-completion-popup-predicates nil)
   ;; ;; Debug: REQUIRE brew install gdb
@@ -76,7 +78,7 @@
 
   (setq lsp-bridge-enable-diagnostics t
         lsp-bridge-disable-backup nil)
-  ;; (setq lsp-bridge-completion-in-string-file-types '("vue" "dart"))
+
   (appendq! lsp-bridge-default-mode-hooks
             '(snippet-mode-hook
               git-commit-mode-hook
