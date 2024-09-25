@@ -4,7 +4,7 @@
 ;; Created: 2024-05-21 00:21:09
 
 ;;; Commentary:
-
+;; SEE https://github.com/typescript-language-server/typescript-language-server/blob/HEAD/docs/configuration.md
 ;; SEE https://github.com/Microsoft/vscode-eslint#settings-options
 ;; SEE https://github.com/neoclide/coc-css
 ;; SEE https://github.com/neoclide/coc-json#configuration-options
