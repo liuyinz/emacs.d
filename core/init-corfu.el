@@ -32,7 +32,7 @@
         corfu-cycle t
         ;; corfu-preview-current t
         corfu-preselect 'directory
-        corfu-on-exact-match nil)
+        corfu-on-exact-match 'show)
 
   (defun corfu-switch-yas ()
     "Switch completion backend between yasnippet and default.
@@ -66,7 +66,7 @@ If no corfu frame exists, call completion with yasnippet directly."
 
   :config
 
-  ;; ;; ISSUE https://github.com/oantolin/orderless/issues/48#issuecomment-856750410
+  ;; ;; ;; ISSUE https://github.com/oantolin/orderless/issues/48#issuecomment-856750410
   ;; (defun ad/corfu-style-keep-unchanged (orig-fn &rest args)
   ;;   (let ((completion-styles '(basic orderless)))
   ;;     (apply orig-fn args)))

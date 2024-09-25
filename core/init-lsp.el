@@ -6,35 +6,49 @@
 
 ;; SEE https://emacs-lsp.github.io/lsp-mode/
 (leaf lsp-mode
-  :hook ((bash-ts-mode-hook
-          html-mode-hook
-          web-mode-hook
-          css-ts-mode-hook
-          js-ts-mode-hook
-          typescript-ts-mode-hook
-          yaml-ts-mode-hook) . lsp-deferred)
+  :hook
+  ((bash-ts-mode-hook
+    html-mode-hook
+    web-mode-hook
+    css-ts-mode-hook
+    js-ts-mode-hook
+    typescript-ts-mode-hook
+    python-ts-mode-hook
+    yaml-ts-mode-hook) . lsp-deferred)
+  (lsp-mode-hook . lsp-mode-setup)
   :init
 
-  ;; --------------------------- debug -------------------------------
+  (defun lsp-mode-setup ()
+    (lsp-completion-mode)
+    (lsp-diagnostics-mode)
+    (lsp-enable-which-key-integration))
 
   ;; debugging
   ;; (setq lsp-log-io t)
 
-  (setq read-process-output-max (* 1024 1024)) ;; 1mb
-  (setq lsp-keymap-prefix nil)
+  (setq lsp-keymap-prefix "C-c l")
+
+  ;; completions
   (setq lsp-completion-enable t)
   (setq lsp-completion-provider :none)
-  ;; (setq lsp-diagnostics-provider :none)
 
-  ;; ------------------------ performance ----------------------------
+  ;; diagnostics
+  (setq lsp-diagnostics-provider :flymake)
+  (setq lsp-diagnostics-flycheck-default-level 'warning)
 
-  ;; REQUIRE export LSP_USE_PLISTS=true
+  ;; headerline
+  (setq lsp-headerline-breadcrumb-enable t)
+
+  ;; performance
+  ;; SEE https://emacs-lsp.github.io/lsp-mode/page/performance/
+  (setenv "LSP_USE_PLISTS" "true")
   (setq lsp-use-plists t)
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
-  ;; performance enhancing
   (setq lsp-warn-no-matched-clients nil)
   (setq lsp-keep-workspace-alive nil)
   (setq lsp-enable-file-watchers nil)
+  (setq lsp-idle-delay 0.5)
 
   ;; SEE https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
   (setq lsp-enable-symbol-highlighting nil)
@@ -44,7 +58,7 @@
   (setq lsp-modeline-diagnostics-enable nil)
   (setq lsp-signature-auto-activate nil)
   (setq lsp-signature-render-documentation nil)
-  (setq lsp-headerline-breadcrumb-enable t)
+
   ;; (setq lsp-ui-doc-enable nil)
   ;; (setq lsp-ui-doc-show-with-cursor nil)
   ;; (setq lsp-ui-doc-show-with-mouse nil)
@@ -63,35 +77,19 @@
   (setq lsp-enable-dap-auto-configure nil)
   (setq lsp-before-save-edits nil)
   (setq lsp-lens-enable nil)
-  
+
   (setq lsp-enable-imenu t
         lsp-imenu-show-container-name nil
         lsp-imenu-detailed-outline nil
         lsp-imenu-index-function #'lsp-imenu-create-categorized-index)
 
-  ;; -------------------------- server ------------------------------
-
-  ;; (defun my/emmet-ls-setup ()
-  ;;   "Setup for emmet-ls"
-  ;;   (setq-local corfu-auto-delay 0.8
-  ;;               corfu-preselect-first t
-  ;;               corfu-doc-delay 0.1)
-  ;;   (setq-local lsp-completion-show-detail nil))
-  ;; (add-hook 'lsp-emmet-ls-after-open-hook #'my/emmet-ls-setup)
-
-
-  ;; ;; REQUIRE deps : ccls
-  ;; (leaf ccls
-  ;;   :hook ((c-mode-hook c++-mode-hook) . (lambda ()
-  ;;                                          (require 'ccls)
-  ;;                                          (lsp-deferred))))
-
-  :defer-config
-
   ;; (leaf lsp-modeline :require t)
   ;; (leaf consult-lsp :require t)
 
-  )
+  :defer-config
+
+  (setq lsp-disabled-clients '(lsp-volar))
+  (require 'init-lsp-langs))
 
 (provide 'init-lsp)
 ;;; init-lsp.el ends here
