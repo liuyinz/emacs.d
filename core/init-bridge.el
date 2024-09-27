@@ -96,7 +96,9 @@
     :bind
     (:acm-mode-map
      ("C-j" . nil)
-     ("C-k" . nil))
+     ("C-k" . nil)
+     ;; ("C-;" . acm-switch-templates)
+     )
     :init
     (setq acm-enable-quick-access nil
           acm-enable-tabnine nil
@@ -133,6 +135,11 @@
               (setq-local acm-menu-offset (1+ acm-menu-offset)))
              (t (call-interactively #'acm-select-first)))))
     (advice-add 'acm-select-next :override #'ad/acm-select-next)
+
+    ;; ;; TODO write a acm-switch-template
+    ;; (defun acm-switch-templates ()
+    ;;   "docstring"
+    ;;   (interactive))
 
     ;; FIXME wrapper of `lsp-bridge-toggle-sdcv-helper'
     (defun acm-sdcv-toggle ()
