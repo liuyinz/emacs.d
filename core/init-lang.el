@@ -27,16 +27,20 @@
   (setq treesit-auto-install nil)
   (setq treesit-auto-langs
         '(bash c c-sharp clojure cmake commonlisp cpp css dart dockerfile elixir
-               go gomod heex java javascript json julia kotlin lua make python
-               ruby rust scala sql toml tsx typescript typst vue yaml
+               go gomod heex java javascript json julia kotlin lua make
+               python ruby rust scala sql toml tsx typescript typst vue yaml
+               ;; BUG markdown
                ;; third-party
-               jq mermaid swift))
+               jq mermaid zig
+               ;; swift doesn't have parser.c
+               ;; SEE https://github.com/alex-pinkus/tree-sitter-swift?tab=readme-ov-file#where-is-your-parserc
+               ))
 
-  (defun treesit-binary-update ()
-    "Update precompiled dylib in treesitter-langs."
-    (interactive)
-    (call-process "bash" nil nil nil
-                  (expand-file-name "treesit-binary-update.sh" my/dir-ext)))
+  ;; (defun treesit-binary-update ()
+  ;;   "Update precompiled dylib in treesitter-langs."
+  ;;   (interactive)
+  ;;   (call-process "bash" nil nil nil
+  ;;                 (expand-file-name "treesit-binary-update.sh" my/dir-ext)))
 
   (defun treesit-auto-install-missing (&optional all)
     "Install missing grammar in `treesit-auto-langs'.
@@ -44,10 +48,8 @@ If optional arg ALL if non-nil, reinstall all grammars."
     (interactive "P")
     (if-let* ((to-install
                (or (and all treesit-auto-langs)
-                   ;; HACK lua dylib in treesit-binary-update has problem
-                   ;; so to replace with building always
-                   (seq-uniq (cons 'lua (cl-remove-if (lambda (lang) (treesit-ready-p lang t))
-                                                      treesit-auto-langs)))))
+                   (seq-uniq (cl-remove-if (lambda (lang) (treesit-ready-p lang t))
+                                           treesit-auto-langs))))
               (treesit-language-source-alist (treesit-auto--build-treesit-source-alist)))
         (progn
           (if all
@@ -64,7 +66,25 @@ If optional arg ALL if non-nil, reinstall all grammars."
                  :ts-mode 'jq-ts-mode
                  :remap 'jq-mode
                  :url "https://github.com/nverno/tree-sitter-jq"
-                 :ext "\\.jq\\'")))
+                 :ext "\\.jq\\'")
+               ,(make-treesit-auto-recipe
+                 :lang 'zig
+                 :ts-mode 'zig-ts-mode
+                 :remap 'zig-mode
+                 :url "https://github.com/maxxnino/tree-sitter-zig"
+                 :ext "\\.zig\\'")
+               ;; ,(make-treesit-auto-recipe
+               ;;   :lang 'swift
+               ;;   :ts-mode 'swift-ts-mode
+               ;;   :remap 'swift-mode
+               ;;   :url "https://github.com/alex-pinkus/tree-sitter-swift"
+               ;;   :ext "\\.swift\\'")
+               ,(make-treesit-auto-recipe
+                 :lang 'mermaid
+                 :ts-mode 'mermaid-ts-mode
+                 :remap 'mermaid-mode
+                 :url "https://github.com/monaqa/tree-sitter-mermaid"
+                 :ext "\\.\\(mmd\\|mermaid\\)")))
 
   (treesit-auto-add-to-auto-mode-alist))
 
@@ -118,11 +138,13 @@ If optional arg ALL if non-nil, reinstall all grammars."
 
 ;; -------------------------- Plugin ------------------------------
 
-(leaf swift-ts-mode :mode "\\.swift\\'")
+;; (leaf swift-ts-mode :mode "\\.swift\\'")
 
-(leaf jq-ts-mode)
+;; (leaf jq-ts-mode)
 
-(leaf mermaid-ts-mode :mode "\\.\\(mmd\\|mermaid\\)")
+;; (leaf mermaid-ts-mode :mode "\\.\\(mmd\\|mermaid\\)")
+
+;; (leaf zig-ts-mode :mode "\\.zig\\'")
 
 (leaf typst-ts-mode
   :init
