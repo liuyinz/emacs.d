@@ -366,12 +366,12 @@
 (if (get-buffer "*scratch*")
     (setq default-directory "~/"))
 
-;; (leaf autorevert
-;;   :hook (after-init-hook . global-auto-revert-mode)
-;;   :init
-;;   (setq auto-revert-interval 0.01
-;;         auto-revert-use-notify nil
-;;         auto-revert-verbose nil))
+(leaf autorevert
+  :hook (after-init-hook . global-auto-revert-mode)
+  :init
+  (setq auto-revert-interval 3
+        auto-revert-use-notify t
+        auto-revert-verbose nil))
 
 ;; --------------------------- Jump -------------------------------
 
