@@ -1,4 +1,4 @@
-TODO:
+TODO
 
 - [ ] gh with transient
 - [ ] isolate optimization: t for <></>, transient
