@@ -80,6 +80,9 @@ Otherwise, behave like `magit-display-buffer-traditional'."
     (setq magit-todos-ignore-case nil)
     (setq magit-todos-update 300)
     (setq magit-todos-keyword-suffix "")
+    ;; respect gitignore files
+    (setq magit-todos-scanner #'magit-todos--scan-with-git-grep)
+
     :config
     (magit-todos-mode)
     ;; BUG not effective
