@@ -116,6 +116,7 @@
   (setq wgrep-auto-save-buffer t))
 
 (leaf rg
+  :hook (rg-mode-hook . rg-mode-setup)
   :bind
   ("C-c s" . rg-menu)
   (:rg-mode-map
@@ -137,6 +138,9 @@
   (setq rg-ignore-case 'smart
         rg-command-line-flags '("-z" "--pcre2"))
 
+  (defun rg-mode-setup ()
+    (goto-address-mode -1))
+
   :defer-config
 
   ;; set point at first match if succeed
@@ -157,14 +161,16 @@
                                          begin (+ length (marker-position begin))))))))
     (let ((stop-pos (point)))
       (unwind-protect
-          (let ((keep-asking t)
-                (replace-quit nil)
-                (prompt (format "Replace match string with %s: (y,n,q,!,.) ?" to-string))
-                (to-replaces (seq-filter (lambda (match)
-                                           (< stop-pos
-                                              (+ (marker-position (car match))
-                                                 (cdr match))))
-                                         rg-match-positions)))
+          (let* ((keep-asking t)
+                 (replace-quit nil)
+                 (prompt (format "Replace match string with %s: (y,n,q,Q,!,.) ?" to-string))
+                 (start (or (cl-position-if
+                             (lambda(x) (>= x (point)))
+                             (mapcar (lambda(x) (+ (marker-position (car x)) (cdr x)))
+                                     rg-match-positions))
+                            (length rg-match-positions)))
+                 (to-replaces (append (cl-subseq rg-match-positions start)
+                                      (cl-subseq rg-match-positions 0 start))))
             (wgrep-change-to-wgrep-mode)
             (catch 'quit
               (dolist (cur-match to-replaces)
