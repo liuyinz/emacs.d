@@ -67,31 +67,20 @@
   :init
   (setq hl-todo-wrap-movement t)
   (setq hl-todo-keyword-faces
-        '(;; Informal tasks/features that are pending completion
-          ("TODO"       . "#afd8af")
-          ;; Problematic or ugly code needing refactoring or cleanup
-          ("FIXME"      . "#cc9393")
-          ;;Temporary code to force inflexible functionality
-          ("HACK"       . "#d0bf8f")
-          ;; Portability for specific OS, Python version,etc
-          ("WORKAROUND" . "#7cb8bb")
-          ;; Satisfactions of specific, formal requirements.
-          ("REQUIRE"    . "#7cb8bb")
-          ;; Pointers to other code, web link, etc
-          ("SEE"        . "#99d0f6")
-          ;; Code shared on Github
-          ("PR"         . "#dc8cc3")
-          ("ISSUE"      . "#dc8cc3")
-          ("DISCUSSION" . "#dc8cc3")
-          ;; Reviewer thinks needs more discussion
-          ("NOTE"       . "#dc8cc3")
-          ;; Problems
-          ("XXX"        . "#cc9393")
-          ("BUG"        . "#ff665c")
-          ("WONTFIX"    . "#8c5353")
-          ;; Remove since version X.x.x
-          ("DEPRECATED" . "#8c5353")
-          )))
+        '(("TODO"       . "#73daca")
+          ("HACK"       . "#bb9af7")
+          ("FIXME"      . "#ff9e64")
+          ("WORKAROUND" . "#ff9e64")
+          ("SEE"        . "#7aa2f7")
+          ("REQUIRE"    . "#7aa2f7")
+          ("NOTE"       . "#7aa2f7")
+          ("PR"         . "#e0af68")
+          ("ISSUE"      . "#e0af68")
+          ("DISCUSSION" . "#e0af68")
+          ("BUG"        . "#f7768e")
+          ("XXX"        . "#f7768e")
+          ("WONTFIX"    . "#565f89")
+          ("DEPRECATED" . "#565f89"))))
 
 (leaf consult-todo
   :init
@@ -198,21 +187,6 @@
         (wgrep-finish-edit)
         (goto-char stop-pos))))
   (rg-menu-transient-insert "Rerun" "R" "Replace" #'rg-replace))
-
-;; light theme background: "#F0F3F4i"
-;; parse nippon-color
-;;   (let ((json-object-type 'plist)
-;;     (json-array-type 'list)
-;;     )
-;; (with-current-buffer (get-buffer-create "temp.el")
-;;   (erase-buffer)
-;;   (let ((print-level nil)
-;;         (print-length nil)
-;;         (fill-column 130))
-;;     (pp (json-read-file (buffer-file-name (get-buffer "nippon-color.json")))
-;;         (current-buffer)))
-;;   )
-;; )
 
 ;; NOTE command-key [super] couldn't identifiled in emacs -nw
 (leaf simpleclip
