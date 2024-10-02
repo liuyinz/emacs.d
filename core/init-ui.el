@@ -49,6 +49,7 @@
         ((guard (and (fboundp 'popper-display-control-p)
                      (popper-display-control-p (current-buffer))))
          '(:both ("meow" "popper")))
+        ('rg-mode '(:both ("meow" "major-mode")))
         ('diff-mode '(:both ("meow" "major-mode")))
         ('ibuffer-mode '(:both ("meow" "major-mode")))
         ('dired-mode '(:both ("meow" "major-mode" "dired")))
@@ -87,151 +88,90 @@ No changes in mode-line."
 (leaf doom-themes
   :require t
   :config
-  ;; (load-theme 'doom-tomorrow-night t)
-  (load-theme 'doom-city-lights t)
-  (my/doom-theme-city-lights-customize)
+  (load-theme 'doom-tokyo-night t)
   :init
-  (defun my/doom-theme-city-lights-customize ()
-    (custom-set-faces
-     `(font-lock-comment-face ((t (:foreground
-                                   ,(doom-lighten (doom-color 'comments) 0.15)))))
-     `(font-lock-function-name-face ((t (:foreground ,(doom-color 'green)))))
-     `(secondary-selection ((t (:background ,(doom-darken (doom-color 'blue) 0.7)))))
-     ;; `(region ((t (:background ,(doom-darken (doom-color 'dark-blue) 0.6)))))
-     ;; `(hl-line ((t (:background ,(doom-darken (doom-color 'dark-blue) 0.6)))))
-     ;; '(match          ((t (:inherit font-lock-variable-name-face
-     ;;                       :weight bold
-     ;;                       :inverse-video t))))
-     ;; '(lazy-highlight ((t (:inherit match
-     ;;                       :foreground unspecified
-     ;;                       :background unspecified))))
-     ;;
-     ;; '(cursor  ((t (:background "#a0b3c5" :foreground "#1d252c"))))
-     ;; '(isearch ((t (:inherit cursor))))
-     ;; '(next-error              ((t (:inherit match))))
-     ;; '(next-error-message      ((t (:inherit unspecified :background "#384551"))))
-     ;; '(completions-common-part ((t (:inherit font-lock-keyword-face))))
-
-     ;; '(fill-column-indicator   ((t (:inherit unspecified
-     ;;                                :foreground unspecified
-     ;;                                :background "#181f25"))))
-
-     `(vc-state-base ((t (:bold t :foreground ,(doom-color 'green)))))
-     ;; transient
-     `(transient-key-exit ((t (:foreground ,(doom-color 'yellow)))))
-     `(transient-key-stay ((t (:foreground ,(doom-color 'green)))))
-     `(transient-key-return ((t (:foreground ,(doom-color 'violet)))))
-     ;; meow
-     `(meow-normal-indicator   ((t (:foreground ,(doom-color 'blue) :bold t))))
-     `(meow-insert-indicator   ((t (:foreground ,(doom-color 'green) :bold t))))
-     `(meow-beacon-indicator   ((t (:foreground ,(doom-color 'yellow) :bold t))))
-     `(meow-keypad-indicator   ((t (:foreground ,(doom-color 'violet) :bold t))))
-     `(meow-motion-indicator   ((t (:foreground ,(doom-color 'magenta) :bold t))))
-     `(meow-search-indicator   ((t (:foreground ,(doom-color 'cyan) :bold t))))
-     `(meow-beacon-fake-cursor ((t (:foreground ,(doom-color 'bg)
-                                    :background ,(doom-blend 'yellow 'bg 0.7)
-                                    :bold t))))
-     `(meow-position-highlight-number ((t (:foreground ,(doom-color 'bg)
-                                           :background ,(doom-blend 'cyan 'bg 0.7)
-                                           :bold t))))
-     `(meow-position-highlight-number-2 ((t (:foreground ,(doom-color 'bg)
-                                             :background ,(doom-blend 'magenta 'bg 0.7)
-                                             :bold t))))
-     `(meow-position-highlight-number-3 ((t (:foreground ,(doom-color 'bg)
-                                             :background ,(doom-blend 'yellow 'bg 0.7)
-                                             :bold t))))
-     ;; rg.el
-     `(rg-info-face        ((t (:foreground ,(doom-color 'blue)))))
-     `(rg-filename-face    ((t (:foreground ,(doom-color 'blue) :underline t))))
-     `(rg-line-number-face ((t (:foreground ,(doom-color 'yellow)))))
-     ;; vertico
-     `(vertico-current ((t (:foreground "white"
-                            :background ,(doom-color 'base4)
-                            :extend t))))
-     ;; corfu
-     `(corfu-default ((t (:background ,(doom-color 'bg-alt)))))
-     '(corfu-current ((t (:inherit vertico-current
-                          :background unspecified
-                          :foreground unspecified))))
-     ;;consult
-     '(consult-file         ((t (:inherit font-lock-doc-face))))
-     '(consult-imenu-prefix ((t (:inherit font-lock-doc-face :slant italic))))
-     ;;marginalia
-     '(marginalia-type     ((t (:inherit font-lock-constant-face))))
-     '(marginalia-key      ((t (:inherit font-lock-keyword-face :weight bold))))
-     '(marginalia-date     ((t (:inherit font-lock-keyword-face))))
-     '(marginalia-modified ((t (:inherit font-lock-variable-name-face))))
-     ;;diff-hl
-     `(diff-hl-change ((t (:foreground ,(doom-color 'yellow)
-                           :background unspecified
-                           :inverse-video nil))))
-     '(diff-hl-insert ((t (:background unspecified :inverse-video nil))))
-     '(diff-hl-delete ((t (:background unspecified :inverse-video nil))))
-     ;; yasnippet
-     `(yas-field-highlight-face ((t (:inherit unspecified
-                                     :weight bold
-                                     :foreground unspecified
-                                     :background ,(doom-color 'base4)))))
-     ;;org
-     `(org-block            ((t (:background ,(doom-darken (doom-color 'base3) 0.15)))))
-     `(org-block-begin-line ((t (:background ,(doom-darken (doom-color 'base3) 0.15)
-                                 :foreground ,(doom-color 'fg-alt)))))
-     `(org-block-end-line   ((t (:background ,(doom-darken 'base3 0.15)
-                                 :foreground ,(doom-color 'fg-alt)))))
-     ;; markdown-mode
-     `(markdown-code-face   ((t (:background ,(doom-darken (doom-color 'base3) 0.15)))))
-     `(markdown-inline-code-face ((t (:background ,(doom-color 'base3)))))
-     ;; highlight-defined
-     '(highlight-defined-function-name-face ((t (:inherit unspecified))))
-     '(highlight-defined-variable-name-face ((t (:inherit unspecified))))
-
-     ;; magit
-     '(magit-hash        ((t (:inherit font-lock-constant-face
-                              :foreground unspecified))))
-     '(magit-log-date    ((t (:inherit font-lock-function-name-face
-                              :foreground unspecified))))
-     '(magit-log-author  ((t (:inherit font-lock-keyword-face
-                              :foreground unspecified))))
-     '(magit-header-line ((t (:inherit vertico-current
-                              :foreground unspecified
-                              :background unspecified
-                              :box nil))))
-     `(dashboard-text-banner-face ((t (:inherit font-lock-constant-face))))
-     `(dashboard-heading-face ((t (:inherit font-lock-function-name-face))))
-     `(dashboard-items-face ((t (:inherit unspecified))))
-     `(dashboard-footer-face ((t (:inherit font-lock-type-face))))
-     `(elfeed-search-tag-face ((t (:foreground ,(doom-color 'green)))))
-     `(elfeed-search-title-face ((t (:foreground ,(doom-color 'fg-alt)))))
-     ;; jupyter
-     '(jupyter-repl-input-prompt  ((t (:inherit font-lock-property-face))))
-     '(jupyter-repl-output-prompt ((t (:inherit font-lock-function-name-face))))
-     '(jupyter-repl-traceback     ((t (:inherit font-lock-warning-face
+  (advice-add 'load-theme :after #'av/doom-theme-customize)
+  (defun av/doom-theme-customize (&rest _)
+    (pcase (car custom-enabled-themes)
+      ('doom-tokyo-night
+       (custom-set-faces
+        `(secondary-selection ((t (:background ,(doom-darken (doom-color 'violet) 0.7)))))
+        `(hl-line ((t (:background ,(doom-darken (doom-color 'blue) 0.7)))))
+        ;;consult
+        '(consult-file         ((t (:inherit font-lock-doc-face))))
+        '(consult-imenu-prefix ((t (:inherit font-lock-doc-face :slant italic))))
+        ;; vertico
+        `(vertico-current ((t (:background ,(doom-darken (doom-color 'blue) 0.7) :extend t))))
+        ;;diff-hl
+        `(diff-hl-change ((t (:background unspecified :inverse-video nil))))
+        `(diff-hl-insert ((t (:background unspecified :inverse-video nil))))
+        `(diff-hl-delete ((t (:background unspecified :inverse-video nil))))
+        ;; transient
+        `(transient-key-exit ((t (:foreground ,(doom-color 'yellow)))))
+        `(transient-key-stay ((t (:foreground ,(doom-color 'green)))))
+        `(transient-key-return ((t (:foreground ,(doom-color 'violet)))))
+        ;; meow
+        `(meow-normal-indicator   ((t (:foreground ,(doom-color 'blue) :bold t))))
+        `(meow-insert-indicator   ((t (:foreground ,(doom-color 'green) :bold t))))
+        `(meow-motion-indicator   ((t (:foreground ,(doom-color 'red) :bold t))))
+        `(meow-keypad-indicator   ((t (:foreground ,(doom-color 'magenta) :bold t))))
+        `(meow-beacon-indicator   ((t (:foreground ,(doom-color 'yellow) :bold t))))
+        `(meow-search-indicator   ((t (:foreground ,(doom-color 'cyan) :bold t))))
+        `(meow-beacon-fake-cursor ((t (:foreground ,(doom-color 'bg)
+                                       :background ,(doom-blend 'yellow 'bg 0.7)
                                        :bold t))))
-     '(binky-preview-column-mark-auto ((t (:inherit font-lock-string-face))))
-     '(binky-preview-column-mark-manual ((t (:inherit font-lock-constant-face))))
-     ;; ;; mini-echo
-     '(window-divider ((t (:foreground "#5d6a76"))))
-     ;; dirvish-subtree
-     '(dirvish-subtree-state ((t (:inherit dired-special))))
-     '(dirvish-hl-line ((t (:inherit hl-line))))
-     ;; combobulate
-     '(combobulate-refactor-highlight-face ((t (:background unspecified))))
-     `(combobulate-refactor-label-face ((t (:foreground ,(doom-color 'bg)
-                                            :background ,(doom-blend 'cyan 'bg 0.7)
-                                            :bold t))))
-     `(combobulate-active-indicator-face ((t (:foreground ,(doom-blend 'cyan 'bg 0.7)
+        `(meow-position-highlight-number ((t (:foreground ,(doom-color 'bg)
+                                              :background ,(doom-blend 'cyan 'bg 0.7)
                                               :bold t))))
-     ;; web-mode
-     `(web-mode-current-element-highlight-face ((t (:weight bold
-                                                    :background ,(doom-blend 'methods 'bg 0.3)))))
-     `(web-mode-current-column-highlight-face  ((t (:background ,(doom-color 'base4)
-                                                    :foreground unspecified))))
-     ;; cperl-mode
-     '(cperl-array-face ((t (:inherit font-lock-variable-name-face))))
-     '(cperl-hash-face  ((t (:inherit font-lock-type-face))))
-     ;; perl-mode
-     '(perl-non-scalar-variable ((t (:inherit font-lock-type-face))))
-     )))
+        `(meow-position-highlight-number-2 ((t (:foreground ,(doom-color 'bg)
+                                                :background ,(doom-blend 'magenta 'bg 0.7)
+                                                :bold t))))
+        `(meow-position-highlight-number-3 ((t (:foreground ,(doom-color 'bg)
+                                                :background ,(doom-blend 'yellow 'bg 0.7)
+                                                :bold t))))
+        ;; dirvish
+        '(dirvish-hl-line ((t (:inherit hl-line))))
+        ;; mini-echo
+        `(window-divider ((t (:foreground ,(doom-color 'base0)))))
+
+        ;; ;;org
+        ;; `(org-block            ((t (:background ,(doom-darken (doom-color 'base3) 0.15)))))
+        ;; `(org-block-begin-line ((t (:background ,(doom-darken (doom-color 'base3) 0.15)
+        ;;                             :foreground ,(doom-color 'fg-alt)))))
+        ;; `(org-block-end-line   ((t (:background ,(doom-darken 'base3 0.15)
+        ;;                             :foreground ,(doom-color 'fg-alt)))))
+        ;; ;; markdown-mode
+        ;; `(markdown-code-face   ((t (:background ,(doom-darken (doom-color 'base3) 0.15)))))
+        ;; `(markdown-inline-code-face ((t (:background ,(doom-color 'base3)))))
+
+        ;; combobulate
+        '(combobulate-refactor-highlight-face ((t (:background unspecified))))
+        `(combobulate-refactor-label-face ((t (:foreground ,(doom-color 'bg)
+                                               :background ,(doom-blend 'cyan 'bg 0.7)
+                                               :bold t))))
+        `(combobulate-active-indicator-face ((t (:foreground ,(doom-blend 'cyan 'bg 0.7)
+                                                 :bold t))))
+        ;; web-mode
+        `(web-mode-current-element-highlight-face
+          ((t (:weight bold :background ,(doom-blend 'cyan 'bg 0.3)))))
+        `(web-mode-current-column-highlight-face  ((t (:background ,(doom-color 'base4)
+                                                       :foreground unspecified))))
+
+        ;; orderless
+        `(orderless-match-face-0 ((t (:underline t))))
+        `(orderless-match-face-1 ((t (:underline t))))
+        `(orderless-match-face-2 ((t (:underline t))))
+        `(orderless-match-face-3 ((t (:underline t))))
+        ;;rg.elv
+        `(rg-match-face ((t (:inherit orderless-match-face-2 :bold t :underline t))))
+        `(rg-info-face        ((t (:foreground ,(doom-color 'red)))))
+        `(rg-filename-face    ((t (:foreground ,(doom-color 'blue) :underline t))))
+        `(rg-line-number-face ((t (:foreground ,(doom-color 'yellow)))))
+        `(rg-file-tag-face ((t (:foreground ,(doom-color 'magenta)))))
+        ;; wgrep
+        ;; `(wgrep-face)
+        ))))
+  )
 
 (provide 'init-ui)
 ;;; init-ui.el ends here
