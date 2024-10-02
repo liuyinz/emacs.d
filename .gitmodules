@@ -601,3 +601,9 @@
 [submodule "magit-todos"]
 	path = lib/magit-todos
 	url = https://github.com/alphapapa/magit-todos.git
+[submodule "list-unicode-display"]
+	path = lib/list-unicode-display
+	url = https://github.com/purcell/list-unicode-display.git
+[submodule "abridge-diff"]
+	path = lib/abridge-diff
+	url = https://github.com/jdtsmith/abridge-diff.git
