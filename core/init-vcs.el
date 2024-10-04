@@ -162,10 +162,17 @@ Otherwise, behave like `magit-display-buffer-traditional'."
   ;;; blame
   (setq magit-blame-styles
         '((margin
-           (margin-format    . (" %a %s" ""))
-           (margin-width     . 70)
+           (margin-format    . (" %a, %s%f" ""))
+           (margin-width     . 60)
            (margin-face      . magit-blame-margin)
-           (margin-body-face . (magit-blame-dimmed)))))
+           (margin-body-face . magit-blame-dimmed))))
+
+  ;; ISSUE https://github.com/magit/magit/issues/5236
+  (defun av/magit-blame--update-margin ()
+    (setq left-margin-width (or (magit-blame--style-get 'margin-width) 1))
+    (set-window-buffer (selected-window) (current-buffer)))
+  (advice-add 'magit-blame--update-margin :override #'av/magit-blame--update-margin)
+
   )
 
 (provide 'init-vcs)
