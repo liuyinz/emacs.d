@@ -110,6 +110,14 @@ No changes in mode-line."
         `(transient-key-exit ((t (:foreground ,(doom-color 'yellow)))))
         `(transient-key-stay ((t (:foreground ,(doom-color 'green)))))
         `(transient-key-return ((t (:foreground ,(doom-color 'violet)))))
+        ;; mini-echo
+        `(mini-echo-red ((t (:foreground ,(doom-color 'red)))))
+        `(mini-echo-green ((t (:foreground ,(doom-color 'green)))))
+        `(mini-echo-yellow ((t (:foreground ,(doom-color 'yellow)))))
+        `(mini-echo-blue ((t (:foreground ,(doom-color 'blue)))))
+        `(mini-echo-magenta ((t (:foreground ,(doom-color 'magenta)))))
+        `(mini-echo-cyan ((t (:foreground ,(doom-color 'cyan)))))
+        `(mini-echo-gray ((t (:foreground ,(doom-color 'dark-blue)))))
         ;; meow
         `(meow-normal-indicator   ((t (:foreground ,(doom-color 'blue) :bold t))))
         `(meow-insert-indicator   ((t (:foreground ,(doom-color 'green) :bold t))))
@@ -120,30 +128,24 @@ No changes in mode-line."
         `(meow-beacon-fake-cursor ((t (:foreground ,(doom-color 'bg)
                                        :background ,(doom-blend 'yellow 'bg 0.7)
                                        :bold t))))
-        `(meow-position-highlight-number ((t (:foreground ,(doom-color 'bg)
-                                              :background ,(doom-blend 'cyan 'bg 0.7)
-                                              :bold t))))
-        `(meow-position-highlight-number-2 ((t (:foreground ,(doom-color 'bg)
-                                                :background ,(doom-blend 'magenta 'bg 0.7)
-                                                :bold t))))
-        `(meow-position-highlight-number-3 ((t (:foreground ,(doom-color 'bg)
-                                                :background ,(doom-blend 'yellow 'bg 0.7)
-                                                :bold t))))
+        `(meow-position-highlight-number-1 ((t (:inherit orderless-match-face-1))))
+        `(meow-position-highlight-number-2 ((t (:inherit orderless-match-face-2))))
+        `(meow-position-highlight-number-3 ((t (:inherit orderless-match-face-3))))
         ;; dirvish
         '(dirvish-hl-line ((t (:inherit hl-line))))
         ;; mini-echo
         `(window-divider ((t (:foreground ,(doom-color 'base0)))))
-
+        ;; magit
+        `(magit-blame-dimmed ((t (:foreground ,(doom-color 'bg)))))
+        `(magit-blame-margin ((t (:foreground ,(doom-blend 'blue 'fg 0.6)
+                                  :background ,(doom-blend 'blue 'bg 0.1)
+                                  :bold t))))
         ;; ;;org
         ;; `(org-block            ((t (:background ,(doom-darken (doom-color 'base3) 0.15)))))
         ;; `(org-block-begin-line ((t (:background ,(doom-darken (doom-color 'base3) 0.15)
         ;;                             :foreground ,(doom-color 'fg-alt)))))
         ;; `(org-block-end-line   ((t (:background ,(doom-darken 'base3 0.15)
         ;;                             :foreground ,(doom-color 'fg-alt)))))
-        ;; ;; markdown-mode
-        ;; `(markdown-code-face   ((t (:background ,(doom-darken (doom-color 'base3) 0.15)))))
-        ;; `(markdown-inline-code-face ((t (:background ,(doom-color 'base3)))))
-
         ;; combobulate
         '(combobulate-refactor-highlight-face ((t (:background unspecified))))
         `(combobulate-refactor-label-face ((t (:foreground ,(doom-color 'bg)
@@ -156,20 +158,24 @@ No changes in mode-line."
           ((t (:weight bold :background ,(doom-blend 'cyan 'bg 0.3)))))
         `(web-mode-current-column-highlight-face  ((t (:background ,(doom-color 'base4)
                                                        :foreground unspecified))))
-
         ;; orderless
         `(orderless-match-face-0 ((t (:underline t))))
         `(orderless-match-face-1 ((t (:underline t))))
         `(orderless-match-face-2 ((t (:underline t))))
         `(orderless-match-face-3 ((t (:underline t))))
         ;;rg.elv
-        `(rg-match-face ((t (:inherit orderless-match-face-2 :bold t :underline t))))
+        `(rg-match-face ((t (:inherit orderless-match-face-2))))
         `(rg-info-face        ((t (:foreground ,(doom-color 'red)))))
         `(rg-filename-face    ((t (:foreground ,(doom-color 'blue) :underline t))))
         `(rg-line-number-face ((t (:foreground ,(doom-color 'yellow)))))
         `(rg-file-tag-face ((t (:foreground ,(doom-color 'magenta)))))
         ;; wgrep
-        ;; `(wgrep-face)
+        `(wgrep-face ((t (:foreground ,(doom-color 'yellow)
+                          :background unspecified
+                          :bold nil))))
+        `(wgrep-delete-face ((t (:foreground ,(doom-color 'red)
+                                 :background unspecified
+                                 :strike-through t))))
         ))))
   )
 
