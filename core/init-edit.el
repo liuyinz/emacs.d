@@ -149,6 +149,7 @@
       (compilation-next-error 1 nil (point-min))))
   (push #'rg-first-match-after-finish rg-finish-functions)
 
+  ;; TODO add Q to wgrep-abort-changes
   (defun rg-replace (to-string)
     "Replace matched result in rg-mode buffer."
     ;; SEE https://emacs.stackexchange.com/a/72155
@@ -169,8 +170,8 @@
                              (mapcar (lambda(x) (+ (marker-position (car x)) (cdr x)))
                                      rg-match-positions))
                             (length rg-match-positions)))
-                 (to-replaces (append (cl-subseq rg-match-positions start)
-                                      (cl-subseq rg-match-positions 0 start))))
+                 (to-replaces (nconc (cl-subseq rg-match-positions start)
+                                     (cl-subseq rg-match-positions 0 start))))
             (wgrep-change-to-wgrep-mode)
             (catch 'quit
               (dolist (cur-match to-replaces)
