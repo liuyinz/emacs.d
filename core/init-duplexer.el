@@ -24,9 +24,7 @@
   (setq duplexer-alist
         '((olivetti-mode . (no-margin no-hl-line (focus-mode 1)))
           (redacted-mode . (no-margin no-hl-line no-paren no-cursor read-only))
-          (smerge-mode   . (no-margin no-paren (save-place-local-mode -1)))
-          ;; PR https://github.com/meow-edit/meow/pull/580
-          (magit-blame-read-only-mode . (temp-motion 1))))
+          (smerge-mode   . (no-margin no-paren (save-place-local-mode -1)))))
 
   (appendq! duplexer-fallback-alist '((my/meow-temp-motion . meow--temp-state-before))))
 
