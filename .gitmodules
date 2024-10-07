@@ -460,9 +460,6 @@
 [submodule "ansi"]
 	path = lib/ansi
 	url = https://github.com/rejeep/ansi.el.git
-[submodule "screenshot"]
-	path = lib/screenshot
-	url = https://github.com/tecosaur/screenshot.git
 [submodule "pangu-spacing"]
 	path = lib/pangu-spacing
 	url = https://github.com/coldnew/pangu-spacing.git
@@ -607,3 +604,12 @@
 [submodule "abridge-diff"]
 	path = lib/abridge-diff
 	url = https://github.com/jdtsmith/abridge-diff.git
+[submodule "meow-tree-sitter"]
+	path = lib/meow-tree-sitter
+	url = https://github.com/skissue/meow-tree-sitter.git
+[submodule "carbon-now"]
+	path = lib/carbon-now
+	url = https://github.com/liuyinz/carbon-now.el
+[submodule "aider"]
+	path = lib/aider
+	url = https://github.com/tninja/aider.el.git
