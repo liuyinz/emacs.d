@@ -115,6 +115,10 @@
           acm-backend-yas-show-trigger-keyword " [%s]")
 
     :defer-config
+
+    (require 'acm-backend-lsp-workspace-symbol)
+    (setq acm-enable-lsp-workspace-symbol t)
+
     ;; enable acm cycle style
     (defun ad/acm-select-prev ()
       (interactive)
