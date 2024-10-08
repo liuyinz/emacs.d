@@ -501,7 +501,7 @@ Same as `replace-string C-q C-m RET RET'."
     (modify-all-frames-parameters
      (list (cons 'ns-appearance
                  ;; FIXME failed on doom-*-themes
-                 (plist-get (get theme 'theme-properties) :background-mode))))))
+                 (or (plist-get (get theme 'theme-properties) :background-mode) 'dark))))))
 (advice-add #'load-theme :after #'av/update-frame-title-foreground)
 
 (defvar after-make-console-frame-hook '()
