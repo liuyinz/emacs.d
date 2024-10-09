@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; TODO support tailwindcss
 (leaf colorful-mode
   :hook
   (after-init-hook . global-colorful-mode)
@@ -12,11 +11,23 @@
         colorful-only-strings t
         ;; black medium square
         colorful-prefix-string "\u25FC"
-        )
+        colorful-allow-mouse-clicks nil)
+  (setq colorful-extra-color-keyword-functions
+        '((emacs-lisp-mode . colorful-add-color-names)
+          ((mhtml-mode html-ts-mode css-mode css-ts-mode) .
+           (colorful-add-hsl-colors colorful-add-color-names))
+          (latex-mode . colorful-add-latex-colors)
+          colorful-add-hex-colors colorful-add-rgb-colors))
+
+  ;; TODO support tailwindcss
+  (defun colorful-add-tailwind-colors ())
+
   (defun colorful-mode-setup ()
     "colorful-mode setup."
     (when (memq major-mode '(css-mode css-ts-mode sass-mode scss-mode))
-      (setq-local colorful-only-strings nil))))
+      (setq-local colorful-only-strings nil)))
+
+  )
 
 (leaf rainbow-delimiters
   :hook (prog-mode-hook . rainbow-delimiters-mode)
