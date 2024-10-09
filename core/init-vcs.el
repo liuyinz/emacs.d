@@ -4,7 +4,7 @@
 
 (leaf vc
   :init
-  (setq vc-display-status 'no-backend)
+  ;; (setq vc-display-status t)
   (setq vc-follow-symlinks t))
 
 (leaf git-modes
