@@ -65,22 +65,7 @@
 (leaf hl-todo
   :hook (after-init-hook . global-hl-todo-mode)
   :init
-  (setq hl-todo-wrap-movement t)
-  (setq hl-todo-keyword-faces
-        '(("TODO"       . "#73daca")
-          ("HACK"       . "#bb9af7")
-          ("FIXME"      . "#ff9e64")
-          ("WORKAROUND" . "#ff9e64")
-          ("SEE"        . "#7aa2f7")
-          ("REQUIRE"    . "#7aa2f7")
-          ("NOTE"       . "#7aa2f7")
-          ("PR"         . "#e0af68")
-          ("ISSUE"      . "#e0af68")
-          ("DISCUSSION" . "#e0af68")
-          ("BUG"        . "#f7768e")
-          ("XXX"        . "#f7768e")
-          ("WONTFIX"    . "#565f89")
-          ("DEPRECATED" . "#565f89"))))
+  (setq hl-todo-wrap-movement t))
 
 (leaf consult-todo
   :init

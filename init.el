@@ -87,6 +87,7 @@
      ;; 'init-corfu
      ;; 'init-lsp
      'init-ui
+     'init-theme
      'init-highlight
      'init-window
      'init-ibuffer
