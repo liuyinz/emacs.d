@@ -613,3 +613,6 @@
 [submodule "aider"]
 	path = lib/aider
 	url = https://github.com/tninja/aider.el.git
+[submodule "consult-gh"]
+	path = lib/consult-gh
+	url = https://github.com/armindarvish/consult-gh.git
