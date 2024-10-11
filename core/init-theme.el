@@ -35,6 +35,7 @@
     (pcase (car custom-enabled-themes)
       ('doom-tokyo-night
        (custom-set-faces
+        `(font-lock-type-face ((t (:foreground ,(doom-color 'teal)))))
         `(secondary-selection ((t (:background ,(doom-darken (doom-color 'violet) 0.7)))))
         `(hl-line ((t (:background ,(doom-darken (doom-color 'blue) 0.7)))))
         ;;consult
