@@ -49,6 +49,7 @@
         ((guard (and (fboundp 'popper-display-control-p)
                      (popper-display-control-p (current-buffer))))
          '(:both ("meow" "popper")))
+        ('profiler-report-mode '(:both ("meow" "major-mode" "profiler-report")))
         ('rg-mode '(:both ("meow" "major-mode")))
         ('diff-mode '(:both ("meow" "major-mode")))
         ('ibuffer-mode '(:both ("meow" "major-mode")))
