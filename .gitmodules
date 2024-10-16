@@ -616,3 +616,9 @@
 [submodule "consult-gh"]
 	path = lib/consult-gh
 	url = https://github.com/armindarvish/consult-gh.git
+[submodule "uniline"]
+	path = lib/uniline
+	url = https://github.com/tbanel/uniline.git
+[submodule "moonbit-mode"]
+	path = lib/moonbit-mode
+	url = https://github.com/cxa/moonbit-mode.git
