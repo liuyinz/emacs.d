@@ -31,10 +31,10 @@
                             (- (count-lines (overlay-start ov) (overlay-end ov)) 1))
                     'face 'shadow))))
   (setq hs-set-up-overlay #'display-code-line-counts)
-  
+
   (defun hs-mode-setup ()
     "hs-minor-mode setup."
-    (unless (memq major-mode '(vue-ts-mode))
+    (unless (memq major-mode '(vue-ts-mode moonbit-mode))
       (hs-minor-mode 1)))
   )
 

@@ -31,7 +31,7 @@
                python ruby rust scala sql toml tsx typescript typst vue yaml
                ;; BUG markdown
                ;; third-party
-               jq mermaid zig
+               jq mermaid zig moonbit
                ;; swift doesn't have parser.c
                ;; SEE https://github.com/alex-pinkus/tree-sitter-swift?tab=readme-ov-file#where-is-your-parserc
                ))
@@ -84,7 +84,14 @@ If optional arg ALL if non-nil, reinstall all grammars."
                  :ts-mode 'mermaid-ts-mode
                  :remap 'mermaid-mode
                  :url "https://github.com/monaqa/tree-sitter-mermaid"
-                 :ext "\\.\\(mmd\\|mermaid\\)")))
+                 :ext "\\.\\(mmd\\|mermaid\\)")
+               ;; ,(make-treesit-auto-recipe
+               ;;   :lang 'moonbit
+               ;;   :ts-mode 'moonbit-mode
+               ;;   :remap 'moonbit-mode
+               ;;   :url "https://github.com/moonbitlang/tree-sitter-moonbit"
+               ;;   :ext "\\.mbt\\'")
+               ))
 
   (treesit-auto-add-to-auto-mode-alist))
 
@@ -151,6 +158,8 @@ If optional arg ALL if non-nil, reinstall all grammars."
   (setq typst-ts-mode-watch-options "--open"))
 
 (leaf tera-mode :mode "\\.tera\\'")
+
+(leaf moonbit-mode :mode "\\.mbt\\'")
 
 (leaf csv-mode
   ;; :hook (csv-mode-hook . csv-mode-setup)
