@@ -111,6 +111,7 @@
      'init-project
      ;; 'init-projectile
      ;;; langs
+     'init-treesit
      'init-lang
      'init-elisp
      'init-web
