@@ -16,7 +16,7 @@
   (setq embark-verbose-indicator-display-action '(display-buffer-reuse-window))
   (setq embark-indicators '(embark-mixed-indicator embark-highlight-indicator))
   :bind
-  ("C-l" . embark-act)
+  ("M-l" . embark-act)
   (:embark-general-map
    ("C-c C-a" . marginalia-cycle))
   (:vertico-map
