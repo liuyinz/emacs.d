@@ -128,14 +128,7 @@
 
   :defer-config
 
-  ;; set point at first match if succeed
-  (defun rg-first-match-after-finish (&rest _)
-    (ignore-errors
-      (compilation-next-error 1 nil (point-min))))
-  (push #'rg-first-match-after-finish rg-finish-functions)
-
-  ;; TODO add Q to wgrep-abort-changes
-  (defun rg-replace (to-string)
+  (defun rg-replace (new-str)
     "Replace matched result in rg-mode buffer."
     ;; SEE https://emacs.stackexchange.com/a/72155
     (interactive (list (minibuffer-with-setup-hook
@@ -145,38 +138,43 @@
                                                    (car rg-match-positions)))
                                         (buffer-substring-no-properties
                                          begin (+ length (marker-position begin))))))))
-    (let ((stop-pos (point)))
+    (let* ((stop-pos (point))
+           (keep-asking t)
+           (replace-stop nil)
+           (prompt (format "Replace match string with %s: (y,n,q,Q,!,.) ?" new-str))
+           (start (or (cl-position-if
+                       (lambda(x) (>= x (point)))
+                       (mapcar (lambda(x) (+ (marker-position (car x)) (cdr x)))
+                               rg-match-positions))
+                      (length rg-match-positions)))
+           (replaces (nconc (cl-subseq rg-match-positions start)
+                            (cl-subseq rg-match-positions 0 start))))
+      (wgrep-change-to-wgrep-mode)
       (unwind-protect
-          (let* ((keep-asking t)
-                 (replace-quit nil)
-                 (prompt (format "Replace match string with %s: (y,n,q,Q,!,.) ?" to-string))
-                 (start (or (cl-position-if
-                             (lambda(x) (>= x (point)))
-                             (mapcar (lambda(x) (+ (marker-position (car x)) (cdr x)))
-                                     rg-match-positions))
-                            (length rg-match-positions)))
-                 (to-replaces (nconc (cl-subseq rg-match-positions start)
-                                     (cl-subseq rg-match-positions 0 start))))
-            (wgrep-change-to-wgrep-mode)
-            (catch 'quit
-              (dolist (cur-match to-replaces)
+          (catch 'quit
+            (catch 'stop
+              (dolist (cur-match replaces)
                 (goto-char (setq stop-pos (car cur-match)))
                 (let ((replace-p (not keep-asking)))
                   (when keep-asking
                     (catch 'pass
                       (while-let ((key (single-key-description (read-key prompt) t)))
-                        (when (member key '("q" "C-g" "ESC" "." "!" "y"
+                        (when (member key '("Q" "q"))
+                          (wgrep-abort-changes)
+                          (rg-recompile)
+                          (throw 'quit nil))
+                        (when (member key '("C-g" "ESC" "." "!" "y"
                                             "Y" "SPC" "n" "N" "DEL"))
                           (setq keep-asking (not (string= key "!")))
                           (setq replace-p (member key '("." "!" "y" "Y" "SPC")))
-                          (setq replace-quit (member key '("q" "C-g" "ESC" ".")))
+                          (setq replace-stop (member key '("C-g" "ESC" ".")))
                           (throw 'pass nil)))))
                   (when replace-p
                     (let ((begin (marker-position (car cur-match))))
                       (delete-region begin (+ begin (cdr cur-match)))
-                      (insert to-string)))
-                  (when replace-quit (throw 'quit nil))))))
-        (wgrep-finish-edit)
+                      (insert new-str)))
+                  (when replace-stop (throw 'stop nil)))))
+            (wgrep-finish-edit))
         (goto-char stop-pos))))
   (rg-menu-transient-insert "Rerun" "R" "Replace" #'rg-replace))
 
