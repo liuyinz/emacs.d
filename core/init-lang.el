@@ -2,8 +2,21 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ------------------------- Builtin ------------------------------
+;; tree-sitter
+
 
+(setq major-mode-remap-alist
+      '((c-mode . c-ts-mode)
+        (c++-mode . c++-ts-mode)
+        (yaml-mode . yaml-ts-mode)
+        (toml-mode . toml-ts-mode)
+        (js-json-mode . json-ts-mode)
+        (javascript-mode . js-ts-mode)
+        (python-mode . python-ts-mode)
+        (markdown-mode . markdown-ts-mode)))
+
+;; Builtin
+
 (leaf sh-script
   :init
   (setq sh-basic-offset 2
@@ -30,7 +43,8 @@
 (leaf yaml-ts-mode
   :mode "\\.\\(yamllint\\|clang-format\\)\\'")
 
-(leaf json-ts-mode :mode "\\.\\(eslintrc\\(\\.json\\)?\\)\\'")
+(leaf json-ts-mode
+  :mode "\\.\\(eslintrc\\(\\.json\\)?\\)\\'")
 
 (leaf rust-ts-mode)
 
@@ -50,8 +64,8 @@
   :init
   (setq c-ts-mode-indent-offset 2))
 
-;; -------------------------- Plugin ------------------------------
-
+;; plugin
+
 ;; (leaf swift-ts-mode :mode "\\.swift\\'")
 
 ;; (leaf jq-ts-mode)
