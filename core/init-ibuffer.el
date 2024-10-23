@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+;; FIXME no property in marked char, not consistent with dired
 (leaf ibuffer
   :hook (ibuffer-mode-hook . ibuffer-mode-setup)
   :bind
