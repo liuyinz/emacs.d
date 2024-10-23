@@ -237,14 +237,10 @@ With a prefix argument prompt for the format."
       (when (not (fboundp func))
         (error "Missing or invalid format function for `%s'" format))
       (simpleclip-set-contents (funcall func text (use-region-p)))
-      (setq deactivate-mark t)))
-  )
+      (setq deactivate-mark t))))
 
-
-(leaf delim-col
-  :init
-  ;; TODO write alignment command based-on this library
-  )
+;; TODO write alignment command based-on this library
+(leaf delim-col)
 
 (provide 'init-edit)
 ;;; init-edit.el ends here
