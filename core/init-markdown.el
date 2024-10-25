@@ -32,8 +32,8 @@
   (prependq! markdown-code-lang-modes
              '(("mermaid" . mermaid-ts-mode)
                ("zsh" . sh-mode)
-               ("jsx" . jtsx-jsx-mode)
-               ("tsx" . jtsx-tsx-mode))))
+               ("jsx" . js-jsx-mode)
+               ("tsx" . tsx-ts-mode))))
 
 (leaf markdown-toc
   :hook (markdown-mode-hook . markdown-toc-mode)

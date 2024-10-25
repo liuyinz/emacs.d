@@ -38,8 +38,8 @@
           ;; REQUIRE brew install tidy-html5
           ((web-mode html-ts-mode mhtml-mode html-mode) .
            (flymake-collection-html-tidy))
-          ((js-mode js-ts-mode typescript-mode typescript-ts-mode vue-ts-mode
-                    typescript-tsx-mode jtsx-tsx-mode jtsx-jsx-mode jtsx-typescript-mode) .
+          ((js-mode js-ts-mode typescript-mode typescript-ts-mode vue-mode
+                    typescript-tsx-mode) .
                     (flymake-collection-eslint))
           ((json-mode json-ts-mode) flymake-collection-jq)
           ((markdown-mode gfm-mode) flymake-collection-markdownlint)

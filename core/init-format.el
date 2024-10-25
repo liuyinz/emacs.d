@@ -13,8 +13,7 @@
 ;;   :hook (after-init-hook . editorconfig-mode))
 
 (leaf apheleia
-  :hook ((jtsx-jsx-mode-hook jtsx-tsx-mode-hook jtsx-typescript-mode-hook
-                             typescript-ts-mode-hook js-ts-mode-hook)
+  :hook ((typescript-ts-mode-hook js-ts-mode-hook)
          . apheleia-mode)
   :init
   (setq apheleia-hide-log-buffers t)
@@ -44,9 +43,8 @@
                 (gfm-mode . prettier-markdown)
                 (ruby-ts-mode . rubocop)
                 (nxml-mode . prettier-html)
-                (jtsx-jsx-mode . prettier-javascript)
-                (jtsx-tsx-mode . prettier-typescript)
-                (jtsx-typescript-mode . prettier-typescript))))
+                (js-jsx-mode . prettier-javascript)
+                (tsx-ts-mode . prettier-typescript))))
 
 (provide 'init-format)
 ;;; init-format.el ends here

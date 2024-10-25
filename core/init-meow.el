@@ -209,16 +209,17 @@
                        '(pair ("<") (">")))
 
   ;;; thing for tag
-  (defun jtsx-jsx-element-pos ()
-    "Retun list fo positions of pair tag of current element in `jtsx'."
-    (when-let* (((jtsx-jsx-context-p))
-                (node (jtsx-enclosing-jsx-element-at-point t))
-                (open (treesit-node-child-by-field-name node "open_tag"))
-                (close (treesit-node-child-by-field-name node "close_tag")))
-      (list (treesit-node-start open)
-            (treesit-node-end open)
-            (treesit-node-start close)
-            (treesit-node-end close))))
+  ;; TODO write for js-jsx-mode and tsx-ts-mode
+  ;; (defun jtsx-jsx-element-pos ()
+  ;;   "Retun list fo positions of pair tag of current element in `jtsx'."
+  ;;   (when-let* (((jtsx-jsx-context-p))
+  ;;               (node (jtsx-enclosing-jsx-element-at-point t))
+  ;;               (open (treesit-node-child-by-field-name node "open_tag"))
+  ;;               (close (treesit-node-child-by-field-name node "close_tag")))
+  ;;     (list (treesit-node-start open)
+  ;;           (treesit-node-end open)
+  ;;           (treesit-node-start close)
+  ;;           (treesit-node-end close))))
 
   (defun web-mode-element-pos ()
     "Retun list fo positions of pair tag of current element in `web-mode'."
@@ -232,8 +233,8 @@
   (defun meow--inner-of-tag ()
     (-let [(_ beg end _)
            (pcase major-mode
-             ((or 'jtsx-jsx-mode 'jtsx-tsx-mode)
-              (jtsx-jsx-element-pos))
+             ;; ((or 'jtsx-jsx-mode 'jtsx-tsx-mode)
+             ;;  (jtsx-jsx-element-pos))
              ('web-mode (web-mode-element-pos))
              (_ nil))]
       (and beg end (cons beg end))))
@@ -241,8 +242,8 @@
   (defun meow--bounds-of-tag ()
     (-let [(beg _ _ end)
            (pcase major-mode
-             ((or 'jtsx-jsx-mode 'jtsx-tsx-mode)
-              (jtsx-jsx-element-pos))
+             ;; ((or 'jtsx-jsx-mode 'jtsx-tsx-mode)
+             ;;  (jtsx-jsx-element-pos))
              ('web-mode (web-mode-element-pos))
              (_ nil))]
       (and beg end (cons beg end))))

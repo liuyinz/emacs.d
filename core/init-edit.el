@@ -23,8 +23,8 @@
           ("stackoverflow\\.com"     . gfm-mode)
           ("leetcode\\.com"          . typescript-ts-mode)
           ("typescriptlang\\.org"    . typescript-ts-mode)
-          ("react\\.docschina\\.org" . jtsx-jsx-mode)
-          ("react\\.dev"             . jtsx-jsx-mode)))
+          ("react\\.docschina\\.org" . js-jsx-mode)
+          ("react\\.dev"             . js-jsx-mode)))
 
   :defer-config
   ;; HACK change major mode if website extension is wrong
@@ -33,8 +33,8 @@
       (when (and buffer-file-name
                  (string= (nth 2 infos) ".js")
                  (string-match-p "react\\.docschina\\.org" (nth 0 infos))
-                 (not (eq major-mode 'jtsx-jsx-mode)))
-        (jtsx-jsx-mode))))
+                 (not (eq major-mode 'js-jsx-mode)))
+        (js-jsx-mode))))
   (add-hook 'atomic-chrome-edit-mode-hook #'atomic-edit-setup)
   )
 

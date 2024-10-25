@@ -16,7 +16,6 @@
 
 (dolist (fn '(kmacro-call-macro
               kmacro-exec-ring-item
-              jtsx-rename-jsx-element
               apply-macro-to-region-lines))
   (advice-add fn :around #'my/block-undo))
 

@@ -35,10 +35,10 @@
         (memq major-mode '(typescript-mode typescript-ts-mode)))
     "typescript")
    ((or (string= ext "jsx")
-        (memq major-mode '(jtsx-jsx-mode js-jsx-mode)))
+        (eq major-mode 'js-jsx-mode))
     "javascriptreact")
    ((or (string= ext "tsx")
-        (memq major-mode '(jtsx-tsx-mode jtsx-typescript-mode tsx-ts-mode)))
+        (eq major-mode 'tsx-ts-mode))
     "typescriptreact")))
 
 (defun css-ls-get-id (ext)
@@ -92,14 +92,13 @@
 
 ;;; single server detect
 (prependq! lsp-bridge-single-lang-server-mode-list
-           '(((js-mode js-ts-mode rjsx-mode
-                       typescript-mode typescript-ts-mode
-                       jtsx-jsx-mode js-jsx-mode
-                       jtsx-tsx-mode jtsx-typescript-mode tsx-ts-mode)
+           '(((js-mode js-ts-mode rjsx-mode typescript-mode typescript-ts-mode js-jsx-mode
+                       tsx-ts-mode)
               . "typescript-ls")
              ;; BUG bug in lsp
              ;; ((markdown-ts-mode gfm-mode) . "marksman")
              (lua-ts-mode . "sumneko")))
+
 
 (setq lsp-bridge-get-single-lang-server-by-project #'my/bridge-single-server-detect)
 (defun my/bridge-single-server-detect (project_path filepath)

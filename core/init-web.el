@@ -182,50 +182,5 @@
   (defun typescript-ts-mode-setup ()
     (add-hook 'post-self-insert-hook #'ah/typescript-generics-angle-pair nil t)))
 
-(leaf jtsx
-  :require t
-  :mode
-  ("\\(App\\.js\\)\\|\\.jsx\\'" . jtsx-jsx-mode)
-  ("\\.tsx\\'" . jtsx-tsx-mode)
-  :init
-  (setq js-indent-level 2)
-  (setq typescript-ts-mode-indent-offset 2)
-  (setq jtsx-switch-indent-offset 0)
-  (setq jtsx-indent-statement-block-regarding-standalone-parent nil)
-  (setq jtsx-jsx-element-move-allow-step-out t)
-  (setq jtsx-enable-jsx-electric-closing-element t)
-  (setq jtsx-enable-all-syntax-highlighting-features t)
-  (setq jtsx-enable-jsx-element-tags-auto-sync t)
-
-  (defun jtsx-bind-keys-to-mode-map (mode-map)
-    "Bind keys to MODE-MAP."
-    (dolist (pair '(("C-c h t" . jtsx-jump-jsx-element-tag-dwim)
-                    ("C-c h o" . jtsx-jump-jsx-opening-tag)
-                    ("C-c h c" . jtsx-jump-jsx-closing-tag)
-                    ("C-c h r" . jtsx-rename-jsx-element)
-                    ("C-c h j" . jtsx-move-jsx-element-tag-forward)
-                    ("C-c h k" . jtsx-move-jsx-element-tag-backward)
-                    ("C-c h J" . jtsx-move-jsx-element-forward)
-                    ("C-c h K" . jtsx-move-jsx-element-backward)
-                    ("C-c h a" . jtsx-move-jsx-element-step-in-forward)
-                    ("C-c h b" . jtsx-move-jsx-element-step-in-backward)
-                    ("C-c h w" . jtsx-wrap-in-jsx-element)
-                    ("C-c h u" . jtsx-unwrap-jsx)
-                    ("C-c h d" . jtsx-delete-jsx-node)
-                    ("s-/"     . jtsx-comment-dwim)))
-      (keymap-set mode-map (car pair) (cdr pair))))
-
-  (defun jtsx-jsx-mode-setup ()
-    (jtsx-bind-keys-to-mode-map jtsx-jsx-mode-map))
-
-  (defun jtsx-tsx-mode-setup ()
-    (jtsx-bind-keys-to-mode-map jtsx-tsx-mode-map)
-    (add-hook 'post-self-insert-hook #'ah/typescript-generics-angle-pair nil t))
-
-  (add-hook 'jtsx-jsx-mode-hook 'jtsx-jsx-mode-setup)
-  (add-hook 'jtsx-tsx-mode-hook 'jtsx-tsx-mode-setup)
-  )
-
-
 (provide 'init-web)
 ;;; init-web.el ends here
