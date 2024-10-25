@@ -524,9 +524,6 @@
 [submodule "colorful-mode"]
 	path = lib/colorful-mode
 	url = https://github.com/DevelopmentCool2449/colorful-mode.git
-[submodule "jtsx"]
-	path = lib/jtsx
-	url = https://github.com/llemaitre19/jtsx.git
 [submodule "combobulate"]
 	path = lib/combobulate
 	url = https://github.com/mickeynp/combobulate.git
