@@ -86,6 +86,9 @@
   :init
   (setq sentence-end-double-space nil))
 
+(leaf display-line-numbers
+  :hook (after-init-hook . global-display-line-numbers-mode))
+
 (leaf hl-line
   :hook
   ((prog-mode-hook text-mode-hook ibuffer-mode-hook rg-mode-hook) . hl-line-mode)
@@ -466,6 +469,7 @@
               fringe-indicator-alist nil
               left-margin-width 1
               right-margin-width 1
+              line-spacing 0.15
               default-directory "~")
 
 ;; improve performance of long line
