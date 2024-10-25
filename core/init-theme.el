@@ -37,7 +37,9 @@
        (custom-set-faces
         `(font-lock-type-face ((t (:foreground ,(doom-color 'teal)))))
         `(secondary-selection ((t (:background ,(doom-darken (doom-color 'violet) 0.7)))))
-        `(hl-line ((t (:background ,(doom-darken (doom-color 'blue) 0.7)))))
+        `(hl-line ((t (:background ,(doom-darken (doom-color 'blue) 0.75)))))
+        `(line-number ((t (:italic nil))))
+        `(line-number-current-line ((t (:italic nil))))
         ;;consult
         '(consult-file         ((t (:inherit font-lock-doc-face))))
         '(consult-imenu-prefix ((t (:inherit font-lock-doc-face :slant italic))))
@@ -95,6 +97,8 @@
         `(combobulate-active-indicator-face ((t (:foreground ,(doom-blend 'cyan 'bg 0.7)
                                                  :bold t))))
         ;; web-mode
+        `(web-mode-html-tag-bracket-face ((t (:foreground ,(doom-color 'dark-blue)))))
+        `(web-mode-html-entity-face ((t (:italic nil :foreground ,(doom-color 'teal)))))
         `(web-mode-current-element-highlight-face
           ((t (:weight bold :background ,(doom-blend 'cyan 'bg 0.15)))))
         `(web-mode-current-column-highlight-face  ((t (:background ,(doom-color 'base4)
@@ -117,6 +121,11 @@
         `(wgrep-delete-face ((t (:foreground ,(doom-color 'red)
                                  :background unspecified
                                  :strike-through t))))
+        `(rainbow-delimiters-depth-1-face ((t (:foreground ,(doom-color 'blue)))))
+        `(rainbow-delimiters-depth-2-face ((t (:foreground ,(doom-color 'yellow)))))
+        `(rainbow-delimiters-depth-3-face ((t (:foreground ,(doom-color 'magenta)))))
+        `(rainbow-delimiters-depth-4-face ((t (:foreground ,(doom-color 'teal)))))
+        `(rainbow-delimiters-depth-5-face ((t (:foreground ,(doom-color 'red)))))
         ))))
   )
 
