@@ -32,7 +32,7 @@
 (leaf rainbow-delimiters
   :hook (prog-mode-hook . rainbow-delimiters-mode)
   :init
-  (setq rainbow-delimiters-max-face-count 4))
+  (setq rainbow-delimiters-max-face-count 5))
 
 ;; FIXME only show overlays on selected-window
 ;; window-selection-change-functions
