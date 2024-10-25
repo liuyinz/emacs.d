@@ -85,10 +85,7 @@
               mhtml-mode-hook
               html-mode-hook
               lua-ts-mode-hook
-              js-json-mode-hook
-              ;; vue-mode-hook
-              ;; astro-mode-hook
-              ))
+              js-json-mode-hook))
 
   (leaf acm
     :bind
