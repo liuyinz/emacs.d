@@ -96,7 +96,7 @@
                                                  :bold t))))
         ;; web-mode
         `(web-mode-current-element-highlight-face
-          ((t (:weight bold :background ,(doom-blend 'cyan 'bg 0.3)))))
+          ((t (:weight bold :background ,(doom-blend 'cyan 'bg 0.15)))))
         `(web-mode-current-column-highlight-face  ((t (:background ,(doom-color 'base4)
                                                        :foreground unspecified))))
         ;; orderless
