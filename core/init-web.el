@@ -142,10 +142,9 @@
         ;; web-mode-enable-inlays t
         ;; web-mode-enable-sql-detection t
         ;; web-mode-enable-front-matter-block t
-        web-mode-enable-html-entities-fontification t
-        web-mode-enable-element-content-fontification t
-        web-mode-enable-element-tag-fontification t
-        )
+        ;; web-mode-enable-element-content-fontification nil
+        ;; web-mode-enable-element-tag-fontification nil
+        web-mode-enable-html-entities-fontification t)
   )
 
 
