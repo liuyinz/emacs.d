@@ -9,10 +9,12 @@
 
 ;; Setup major mode
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-vue-mode))
-(define-derived-mode web-vue-mode web-mode "Vue"
+(define-derived-mode web-vue-mode web-mode "wVue"
   "Major mode for editing VUE files."
-  ;; NOTE do not underline content in templates
-  (setq-local web-mode-element-content-faces nil)
+  ;; NOTE do not fontification
+  (setq-local web-mode-enable-html-entities-fontification t)
+  (setq-local web-mode-enable-element-content-fontification nil)
+  (setq-local web-mode-enable-element-tag-fontification nil)
   )
 
 ;; Setup lsp
