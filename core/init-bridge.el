@@ -7,9 +7,6 @@
 
 ;;; Code:
 
-(leaf lsp-bridge-ref
-  :hook (lsp-bridge-ref-mode-hook . (lambda () (meow-mode -1))))
-
 (leaf lsp-bridge
   :hook (after-init-hook . global-lsp-bridge-mode)
   :bind
@@ -32,34 +29,6 @@
   ;; ;; Debug: REQUIRE brew install gdb
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
-
-  (defun my/bridge-server-setup ()
-    (with-current-buffer (current-buffer)
-      (when (bound-and-true-p acm-backend-lsp-server-names)
-        (let ((servers acm-backend-lsp-server-names))
-          ;;; no need to setup at all.
-          ;; (when (member "emmet-ls" servers)
-          ;;   (cond
-          ;;    ((member "vscode-css-language-server" servers)
-          ;;     (setq-local lsp-bridge-completion-hide-characters
-          ;;                 (seq-difference lsp-bridge-completion-hide-characters
-          ;;                                 '("@" "!" "+"))))
-          ;;    ((seq-intersection '("vscode-html-language-server"
-          ;;                         "astro-ls"
-          ;;                         "typescript-ls")
-          ;;                       servers)
-          ;;     ;; HACK trade off between emme-ls and html
-          ;;     (setq-local lsp-bridge-completion-hide-characters
-          ;;                 (seq-difference lsp-bridge-completion-hide-characters
-          ;;                                 '("$" "*" "#" "." "!"))))))
-          ;; enable - in tailwindcss completion
-          (when (member "tailwindcss" servers)
-            (modify-syntax-entry ?- "w")
-            (setq-local lsp-bridge-enable-completion-in-string t))))))
-
-  (add-hook 'lsp-bridge-mode-hook
-            (lambda ()
-              (run-with-timer 3 nil #'my/bridge-server-setup)))
 
   (defun lsp-bridge-doc-toggle ()
     (interactive)

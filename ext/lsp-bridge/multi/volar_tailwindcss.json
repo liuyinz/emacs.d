@@ -1,0 +1,22 @@
+{
+  "completion": ["volar", "tailwindcss"],
+  "completion_item_resolve": ["volar", "tailwindcss"],
+  "diagnostics": ["volar", "tailwindcss"],
+  "code_action": ["volar", "tailwindcss"],
+  "execute_command": ["volar", "tailwindcss"],
+  "find_define": "volar",
+  "find_type_define": "volar",
+  "peek_find_definition": "volar",
+  "peek_find_references": "volar",
+  "find_implementation": "volar",
+  "find_references": "volar",
+  "formatting": "volar",
+  "hover": "volar",
+  "signature_help": "volar",
+  "prepare_rename": "volar",
+  "rename": "volar",
+  "document_symbol": "volar",
+  "workspace_symbol": "volar",
+  "semantic_tokens": "volar",
+  "inlay_hint": "volar"
+}
