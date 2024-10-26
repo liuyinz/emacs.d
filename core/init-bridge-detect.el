@@ -1,8 +1,5 @@
 ;;; init-bridge-detect.el --- summary -*- lexical-binding: t no-byte-compile: t -*-
 
-;; Author: liuyinz <liuyinz95@gmail.com>
-;; Created: 2024-05-21 00:21:09
-
 ;;; Commentary:
 ;; SEE https://github.com/typescript-language-server/typescript-language-server/blob/HEAD/docs/configuration.md
 ;; SEE https://github.com/Microsoft/vscode-eslint#settings-options
