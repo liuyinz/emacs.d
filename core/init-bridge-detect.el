@@ -119,7 +119,7 @@
 
 
 ;;; multi-server detect
-(setq lsp-bridge-multi-lang-server-extension-list nil)
+;; (setq lsp-bridge-multi-lang-server-extension-list nil)
 ;; (setq lsp-bridge-multi-lang-server-mode-list nil)
 
 (setq lsp-bridge-get-multi-lang-server-by-project 'my/bridge-multi-server-detect)
