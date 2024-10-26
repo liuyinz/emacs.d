@@ -87,7 +87,18 @@
   (setq sentence-end-double-space nil))
 
 (leaf display-line-numbers
-  :hook (prog-mode-hook . display-line-numbers-mode))
+  :hook (after-init-hook . global-display-line-numbers-mode)
+  :init
+  (setq display-line-numbers-grow-only t)
+
+  ;; HACK only display line numbers in selected modes
+  (advice-add 'display-line-numbers--turn-on
+              :override #'av/display-line-numbers--turn-on)
+  (defun av/display-line-numbers--turn-on ()
+    (unless (or (minibufferp)
+                (memq major-mode '(vterm-mode dired-mode))
+                (derived-mode-p '(special-mode)))
+      (display-line-numbers-mode))))
 
 (leaf hl-line
   :hook
