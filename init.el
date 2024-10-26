@@ -116,7 +116,6 @@
      'init-elisp
      'init-web
      'init-vue
-     'init-astro
      ;; 'init-go
      'init-markdown
      'init-write

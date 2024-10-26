@@ -78,6 +78,8 @@
   :init
   (setq typst-ts-mode-watch-options "--open"))
 
+(leaf astro-ts-mode :mode "\\.astro\\'")
+
 (leaf tera-mode :mode "\\.tera\\'")
 
 (leaf moonbit-mode :mode "\\.mbt\\'")

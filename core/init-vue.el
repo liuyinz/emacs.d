@@ -19,8 +19,7 @@
 
 ;; Setup lsp
 (with-eval-after-load 'lsp-bridge
-  (add-to-list 'lsp-bridge-default-mode-hooks 'web-vue-mode-hook)
-  (add-to-list 'lsp-bridge-multi-lang-server-extension-list '(("vue") . "volar_emmet")))
+  (add-to-list 'lsp-bridge-default-mode-hooks 'web-vue-mode-hook))
 
 ;; Setup tsdk path in volar.json
 (defun tsdk-path-detect ()

@@ -5,7 +5,7 @@
   "settings": {},
   "initializationOptions": {
     "typescript": {
-      "tsdk": "/Users/liuyinz/Library/pnpm/global/5/node_modules/typescript/lib"
+      "tsdk": "/Users/liuyinz/.local/share/mise/installs/node/22.9.0/lib/node_modules/typescript/lib"
     }
   }
 }

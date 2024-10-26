@@ -54,6 +54,7 @@
               mhtml-mode-hook
               html-mode-hook
               lua-ts-mode-hook
+              astro-ts-mode-hook
               js-json-mode-hook))
 
   (leaf acm

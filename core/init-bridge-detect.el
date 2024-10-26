@@ -54,7 +54,7 @@
    ((or (member ext '("css" "less" "scss"))
         (memq major-mode '(css-mode css-ts-mode less-css-mode scss-mode)))
     "css")
-   ((or (string= ext "astro") (eq major-mode 'web-astro-mode))
+   ((or (string= ext "astro") (eq major-mode 'astro-ts-mode))
     "astro")
    ((or (string= ext "vue") (eq major-mode 'web-vue-mode))
     "volar")))
@@ -98,35 +98,43 @@
 ;;
 ;;; multi-server detect
 (setq lsp-bridge-get-multi-lang-server-by-project #'my/bridge-multi-server-detect)
+
 (defun my/bridge-multi-server-detect (project_path filepath)
+  "Return multi server config according to project extra requirements.
+PROJECT_PATH and FILEPATH is needed."
   (save-excursion
-    ;; detect for web dev
     (let* ((ext (filepath-ext filepath))
            (tailwindcss-suffix (and (tailwindcss-p project_path) "_tailwindcss"))
-           (server (cond
-                    ;; TODO insert eslint
-                    ((member (typescript-ls-get-id ext)
-                             '("javascriptreact" "typescriptreact"))
-                     (concat "typescript_emmet" tailwindcss-suffix))
-                    ((web-file-get-server ext)
-                     (concat (web-file-get-server ext)
-                             "_emmet" tailwindcss-suffix)))))
-      (temp-log (format (concat "%s" (s-repeat 4 "\n%-13s: %S"))
-                        (propertize "[lsp-bridge-multi-server]" 'face 'error)
-                        "project_path" project_path
-                        "file_path" filepath
-                        "file_ext" ext
-                        "start_server" server))
-      server)))
+           (eslint-suffix (and (eslint-p project_path) "_eslint")))
+      (when (or tailwindcss-suffix eslint-suffix)
+        (prog1
+            (cond
+             ((member (typescript-ls-get-id ext)
+                      '("javascriptreact" "typescriptreact"))
+              (concat "typescript_emmet" tailwindcss-suffix eslint-suffix))
+             ((web-file-get-server ext)
+              (concat (web-file-get-server ext)
+                      "_emmet"
+                      tailwindcss-suffix eslint-suffix)))
+          (temp-log (format (concat "%s" (s-repeat 4 "\n%-13s: %S"))
+                            (propertize "[lsp-bridge-multi-server]" 'face 'error)
+                            "project_path" project_path
+                            "file_path" filepath
+                            "file_ext" ext
+                            "start_server" server)))))))
 
 (setq lsp-bridge-multi-lang-server-extension-list
       '((("tsx")   . "typescript_emmet")
         (("jsx")   . "javascript_emmet")
-        (("vue")   . "volar_emmet")
-        (("astro") . "astro_emmet")))
+        (("html" "htm") . "html_emmet")
+        (("css" "less" "scss") . "css_emmet")))
 
 (setq lsp-bridge-multi-lang-server-mode-list
-      `(((python-mode python-ts-mode) . ,lsp-bridge-python-multi-lsp-server)))
+      `(((python-mode python-ts-mode) . ,lsp-bridge-python-multi-lsp-server)
+        ((js-jsx-mode) . "javascript_emmet")
+        ((tsx-ts-mode) . "typescript_emmet")
+        ((mhtml-mode html-mode html-ts-mode) . "html_emmet")
+        ((css-mode css-ts-mode less-css-mode scss-mode) . "css_emmet")))
 
 ;;; single server detect
 ;; (setq lsp-bridge-get-single-lang-server-by-project #'my/bridge-single-server-detect)
@@ -148,7 +156,8 @@
 
 (prependq! lsp-bridge-single-lang-server-extension-list
            '((("toml") . "toml-language-server")
-             (("vue")  . "volar")))
+             (("vue")  . "volar")
+             (("astro") . "astro-ls")))
 
 (prependq! lsp-bridge-single-lang-server-mode-list
            '(((toml-ts-mode conf-toml-mode) . "toml-language-server")
@@ -156,7 +165,7 @@
               . "typescript-ls")
              (lua-ts-mode . "sumneko")
              (web-vue-mode . "volar")
-             (web-astro-mode . "astro-ls")))
+             (astro-ts-mode . "astro-ls")))
 
 
 ;;; multi-server languageId detect
@@ -201,7 +210,7 @@
 
 ;; server customize after start
 
-(add-hook 'lsp-bridge-mode-hook my/bridge-server-setup)
+(add-hook 'lsp-bridge-mode-hook #'my/bridge-server-setup)
 (defun my/bridge-server-setup ()
   (run-with-timer
    3 nil
@@ -223,7 +232,7 @@
            ;;                         "astro-ls"
            ;;                         "typescript-ls")
            ;;                       servers)
-           ;;     ;; HACK trade off between emme-ls and html
+           ;;     ;; HACK trade off between emmet-ls and html
            ;;     (setq-local lsp-bridge-completion-hide-characters
            ;;                 (seq-difference lsp-bridge-completion-hide-characters
            ;;                                 '("$" "*" "#" "." "!"))))))
@@ -232,3 +241,7 @@
 
 (provide 'init-bridge-detect)
 ;;; init-bridge-detect.el ends here
+
+;; Local Variables:
+;; jinx-local-words: "mj"
+;; End:
