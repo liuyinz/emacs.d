@@ -50,6 +50,8 @@
 
 (leaf toml-ts-mode)
 
+(leaf tsx-ts-mode :mode "\\.tsx\\'")
+
 (leaf nxml-mode
   :hook (nxml-mode-hook . nxml-mode-setup)
   :init
