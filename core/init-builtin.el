@@ -87,7 +87,7 @@
   (setq sentence-end-double-space nil))
 
 (leaf display-line-numbers
-  :hook (after-init-hook . global-display-line-numbers-mode))
+  :hook (prog-mode-hook . display-line-numbers-mode))
 
 (leaf hl-line
   :hook
