@@ -10,7 +10,8 @@
 (leaf flymake
   :hook ((prog-mode-hook
           markdown-mode-hook
-          yaml-ts-mode-hook) . flymake-mode)
+          yaml-ts-mode-hook
+          web-vue-mode-hook) . flymake-mode)
   :init
   (setq flymake-indicator-type nil
         flymake-margin-indicator-position nil
@@ -38,9 +39,9 @@
           ;; REQUIRE brew install tidy-html5
           ((web-mode html-ts-mode mhtml-mode html-mode) .
            (flymake-collection-html-tidy))
-          ((js-mode js-ts-mode typescript-mode typescript-ts-mode vue-mode
-                    typescript-tsx-mode) .
-                    (flymake-collection-eslint))
+          ;; ((js-mode js-ts-mode typescript-mode typescript-ts-mode web-vue-mode
+          ;;           typescript-tsx-mode) .
+          ;; (flymake-collection-eslint))
           ((json-mode json-ts-mode) flymake-collection-jq)
           ((markdown-mode gfm-mode) flymake-collection-markdownlint)
           (c-ts-mode flymake-collection-clang)
