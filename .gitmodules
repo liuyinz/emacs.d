@@ -620,3 +620,6 @@
 	path = lib/tree-sitter-module
 	url = https://github.com/casouri/tree-sitter-module.git
 	pin = true
+[submodule "astro-ts-mode"]
+	path = lib/astro-ts-mode
+	url = https://github.com/Sorixelle/astro-ts-mode.git
