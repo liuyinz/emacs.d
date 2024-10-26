@@ -5,24 +5,8 @@
   "settings": {
     "eslint": {
       "enable": true,
-      "probe": ["javascript", "javascriptreact", "typescript", "typescriptreact", "html", "vue", "markdown"],
-      "validate": "probe",
       "useESLintClass": true,
-      "experimental": {
-        "useFlatConfig": false
-      },
-      "codeActionOnSave": {
-        "mode": "all"
-      },
-      "format": false,
-      "quiet": false,
-      "onIgnoredFiles": "off",
-      "options": {},
-      "rulesCustomizations": [],
       "run": "onType",
-      "problems": {
-        "shortenToSingleLine": false
-      },
       "nodePath": null,
       "codeAction": {
         "disableRuleComment": {
