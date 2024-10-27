@@ -13,7 +13,8 @@
         (js-json-mode . json-ts-mode)
         (javascript-mode . js-ts-mode)
         (python-mode . python-ts-mode)
-        (markdown-mode . markdown-ts-mode)))
+        ;; (markdown-mode . markdown-ts-mode)
+        (sh-mode . bash-ts-mode)))
 
 ;; Builtin
 
