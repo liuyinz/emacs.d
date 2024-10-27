@@ -1,0 +1,37 @@
+{
+  "completion": ["tailwindcss", "typescript-ls", "emmet-ls"],
+  "completion_item_resolve": ["tailwindcss", "typescript-ls", "emmet-ls"],
+  "diagnostics": [
+    "typescript-ls",
+    "tailwindcss",
+    "emmet-ls",
+    "vscode-eslint-language-server"
+  ],
+  "code_action": [
+    "typescript-ls",
+    "tailwindcss",
+    "emmet-ls",
+    "vscode-eslint-language-server"
+  ],
+  "execute_command": [
+    "typescript-ls",
+    "tailwindcss",
+    "emmet-ls",
+    "vscode-eslint-language-server"
+  ],
+  "find_define": "typescript-ls",
+  "find_type_define": "typescript-ls",
+  "peek_find_definition": "typescript-ls",
+  "peek_find_references": "typescript-ls",
+  "find_implementation": "typescript-ls",
+  "find_references": "typescript-ls",
+  "formatting": "typescript-ls",
+  "hover": "typescript-ls",
+  "signature_help": "typescript-ls",
+  "prepare_rename": "typescript-ls",
+  "rename": "typescript-ls",
+  "document_symbol": "typescript-ls",
+  "workspace_symbol": "typescript-ls",
+  "semantic_tokens": "typescript-ls",
+  "inlay_hint": "typescript-ls"
+}

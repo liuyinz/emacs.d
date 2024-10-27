@@ -50,11 +50,7 @@
     "html")
    ((or (member ext '("css" "less" "scss"))
         (memq major-mode '(css-mode css-ts-mode less-css-mode scss-mode)))
-    "css")
-   ((or (string= ext "astro") (eq major-mode 'astro-ts-mode))
-    "astro")
-   ((or (string= ext "vue") (eq major-mode 'web-vue-mode))
-    "volar")))
+    "css")))
 
 (defun handlebar-p (ext)
   (or (member ext '("handlebars" "hbs"))
@@ -104,21 +100,23 @@ PROJECT_PATH and FILEPATH is needed."
            (tailwindcss-suffix (and (tailwindcss-p project_path) "_tailwindcss"))
            (eslint-suffix (and (eslint-p project_path) "_eslint")))
       (when (or tailwindcss-suffix eslint-suffix)
-        (prog1
-            (cond
-             ((member (typescript-ls-get-id ext)
-                      '("javascriptreact" "typescriptreact"))
-              (concat "typescript_emmet" tailwindcss-suffix eslint-suffix))
-             ((web-file-get-server ext)
-              (concat (web-file-get-server ext)
-                      "_emmet"
-                      tailwindcss-suffix eslint-suffix)))
+        (let ((server
+               (cond
+                ((member (typescript-ls-get-id ext)
+                         '("javascriptreact" "typescriptreact"))
+                 (concat "typescript_emmet" tailwindcss-suffix eslint-suffix))
+                ((member (typescript-ls-get-id ext)
+                         '("javascript" "typescript"))
+                 (concat "typescript" eslint-suffix))
+                ((web-file-get-server ext)
+                 (concat (web-file-get-server ext) "_emmet" tailwindcss-suffix)))))
           (temp-log (format (concat "%s" (s-repeat 4 "\n%-13s: %S"))
                             (propertize "[lsp-bridge-multi-server]" 'face 'error)
                             "project_path" project_path
                             "file_path" filepath
                             "file_ext" ext
-                            "start_server" server)))))))
+                            "start_server" server))
+          server)))))
 
 (setq lsp-bridge-multi-lang-server-extension-list
       '((("tsx")   . "typescript_emmet")
@@ -234,7 +232,10 @@ PROJECT_PATH and FILEPATH is needed."
            ;;                 (seq-difference lsp-bridge-completion-hide-characters
            ;;                                 '("$" "*" "#" "." "!"))))))
            ;; enable - in tailwindcss completion
-           ))))))
+           (temp-log (format (concat "%s" (s-repeat 2 "\n%-13s: %S"))
+                             (propertize "[lsp-bridge-servers]" 'face 'warning)
+                             "current_buffer" (current-buffer)
+                             "servers" servers))))))))
 
 (provide 'init-bridge-detect)
 ;;; init-bridge-detect.el ends here
