@@ -39,7 +39,7 @@
 (defun my/sgml-get-tag ()
   "docstring"
   (save-excursion
-    (when-let ((context (car (last (sgml-get-context))))
+    (when-let* ((context (car (last (sgml-get-context))))
                (type (aref 1 context))
                ())
       ))

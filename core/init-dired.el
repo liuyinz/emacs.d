@@ -32,7 +32,7 @@ A prefix argument means to unmark them instead."
     (interactive "P")
     (let ((dired-marker-char (if arg ?\s dired-marker-char)))
       (dired-mark-if
-       (when-let ((dir (dired-get-filename t t)))
+       (when-let* ((dir (dired-get-filename t t)))
          (directory-is-empty-p dir))
        "empty directory")))
 
@@ -103,7 +103,7 @@ A prefix argument means to unmark them instead."
     "Create multi empty files under directory."
     (interactive)
     (let ((split-string-default-separators ","))
-      (if-let ((files
+      (if-let* ((files
                 (or (dired-get-marked-files)
                     (->> (read-string "Input new files names(',' as seperator): ")
                          (string-split)

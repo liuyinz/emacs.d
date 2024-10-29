@@ -262,8 +262,8 @@
                                        (file-name-parent-directory path))
                                       counts 0 nil 'equal)))
                           (mapcar #'car (seq-sort-by #'cdr #'> counts)))))
-      (when-let ((to-prune (completing-read-multiple
-                            (format-prompt "Prune recent directories" nil) parent-dirs)))
+      (when-let* ((to-prune (completing-read-multiple
+                             (format-prompt "Prune recent directories" nil) parent-dirs)))
         (setq recentf-list
               (seq-remove (lambda (file)
                             (seq-some (lambda (pre)

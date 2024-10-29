@@ -48,7 +48,7 @@
 
   ;; SEE https://github.com/minad/vertico/wiki#left-truncate-recentf-filename-candidates-eg-for-consult-buffer
   (defun my/vertico-truncate-candidates (args)
-    (if-let ((arg (car args))
+    (if-let* ((arg (car args))
              (type (get-text-property 0 'multi-category arg))
              ((eq (car-safe type) 'file))
              (w (max 30 (- (window-width) 38)))

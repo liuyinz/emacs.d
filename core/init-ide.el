@@ -150,7 +150,7 @@ Or create a new one in other window."
   "Browser selected reference in cheatsheets.me.
 If CN is non-nil, search in zh-CN documentation."
   (interactive "P")
-  (when-let ((ref (completing-read
+  (when-let* ((ref (completing-read
                    "Select quickref: "
                    (with-memoization cheatsheets-ref-lists
                      (mapcar #'file-name-sans-extension

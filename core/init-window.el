@@ -84,7 +84,7 @@
 
   (defun popper-switch ()
     (interactive)
-    (when-let ((window (caar popper-open-popup-alist)))
+    (when-let* ((window (caar popper-open-popup-alist)))
       (let* ((idx (get 'my/popper-switches 'current-index))
              (next-idx (% (1+ idx) (length my/popper-switches)))
              (args (or (and (memq (car (nth idx my/popper-switches)) '(right left))
@@ -136,7 +136,7 @@
   "Toggle between window layout between multi and one."
   (interactive)
   (if (length= (cl-remove-if #'window-dedicated-p (window-list)) 1)
-      (if-let ((saved (get 'toggle-one-window 'saved)))
+      (if-let* ((saved (get 'toggle-one-window 'saved)))
           (progn
             (set-window-configuration saved)
             (put 'toggle-one-window 'saved nil))

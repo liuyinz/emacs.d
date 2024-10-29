@@ -41,7 +41,7 @@
 
 ;; (leaf proxy-mode
 ;;   :init
-;;   (when-let ((http (getenv "HTTP")))
+;;   (when-let* ((http (getenv "HTTP")))
 ;;     (setq proxy-mode-env-http-proxy (concat "http://" http))
 ;;     (setq proxy-mode-emacs-http-proxy
 ;;           `(("http"     . ,http)
@@ -49,7 +49,7 @@
 ;;             ("ftp"      . ,http)
 ;;             ("no_proxy" . "127.0.0.1"))))
 ;;
-;;   (when-let ((sock (getenv "SOCKS")))
+;;   (when-let* ((sock (getenv "SOCKS")))
 ;;     (setq proxy-mode-emacs-socks-proxy
 ;;           `("Default server"
 ;;             ,(substring sock 0 -5)
@@ -61,7 +61,7 @@
 ;; (leaf with-proxy
 ;;   :require t
 ;;   :init
-;;   (when-let ((http (getenv "HTTP")))
+;;   (when-let* ((http (getenv "HTTP")))
 ;;     (setq with-proxy-http-server http)))
 
 ;; -------------------------- record ------------------------------
