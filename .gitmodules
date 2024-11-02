@@ -623,3 +623,12 @@
 [submodule "astro-ts-mode"]
 	path = lib/astro-ts-mode
 	url = https://github.com/Sorixelle/astro-ts-mode.git
+[submodule "easysession"]
+	path = lib/easysession
+	url = https://github.com/jamescherti/easysession.el.git
+[submodule "dir-config"]
+	path = lib/dir-config
+	url = https://github.com/jamescherti/dir-config.el.git
+[submodule "easy-escape"]
+	path = lib/easy-escape
+	url = https://github.com/cpitclaudel/easy-escape.git
