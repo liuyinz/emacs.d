@@ -8,8 +8,7 @@
 (setq major-mode-remap-alist
       '((c-mode . c-ts-mode)
         (c++-mode . c++-ts-mode)
-        (yaml-mode . yaml-ts-mode)
-        (toml-mode . toml-ts-mode)
+        (conf-toml-mode . toml-ts-mode)
         (js-json-mode . json-ts-mode)
         (javascript-mode . js-ts-mode)
         (python-mode . python-ts-mode)
@@ -42,7 +41,7 @@
 ;;   )
 
 (leaf yaml-ts-mode
-  :mode "\\.\\(yamllint\\|clang-format\\)\\'")
+  :mode "\\.\\(ya?ml\\|yamllint\\|clang-format\\)\\'")
 
 (leaf json-ts-mode
   :mode "\\.\\(eslintrc\\(\\.json\\)?\\)\\'")
