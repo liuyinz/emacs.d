@@ -53,7 +53,7 @@
     (setq ibuffer-marked-face 'diredfl-flag-mark
           ibuffer-deletion-face 'diredfl-deletion
           ibuffer-title-face 'diredfl-number
-          ibuffer-filter-group-name-face 'diredfl-symlink))
+          ibuffer-filter-group-name-face 'diredfl-dir-name))
 
   (setq ibuffer-formats
         '((mark " " (name 20 20 :left :elide)
