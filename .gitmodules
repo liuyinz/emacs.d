@@ -632,3 +632,6 @@
 [submodule "easy-escape"]
 	path = lib/easy-escape
 	url = https://github.com/cpitclaudel/easy-escape.git
+[submodule "emacs-usa-election-2024"]
+	path = lib/emacs-usa-election-2024
+	url = https://github.com/douo/emacs-usa-election-2024.git
