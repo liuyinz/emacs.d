@@ -23,7 +23,7 @@
 
 ;; Setup tsdk path in volar.json
 (defun tsdk-path-detect ()
-  (let ((bin-path (shell-command-to-string "command -v tsc")))
+  (let ((bin-path (string-trim (shell-command-to-string "command -v tsc"))))
     (string-replace "bin/tsc" "lib/node_modules/typescript/lib" bin-path)))
 
 (provide 'init-vue)
