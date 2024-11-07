@@ -10,6 +10,7 @@
   (setq atomic-chrome-create-file-strategy `(,(list (concat my/dir-cache "atomic"))))
   (setq atomic-chrome-buffer-open-style 'full)
   (setq atomic-chrome-auto-remove-file t)
+  (setq atomic-chrome-make-file-save-initial-contents t)
   (setq atomic-chrome-url-major-mode-alist
         '(("ramdajs\\.com"           . js-ts-mode)
           ("codesandbox\\.io"        . js-ts-mode)
