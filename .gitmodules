@@ -265,9 +265,6 @@
 [submodule "plur"]
 	path = lib/plur
 	url = https://github.com/xuchunyang/plur.git
-[submodule "acm-terminal"]
-	path = lib/acm-terminal
-	url = https://github.com/twlz0ne/acm-terminal.git
 [submodule "denote"]
 	path = lib/denote
 	url = https://github.com/protesilaos/denote.git
