@@ -179,9 +179,6 @@
 [submodule "rsync-mode"]
 	path = lib/rsync-mode
 	url = https://github.com/r-zip/rsync-mode.git
-[submodule "dockerfile-mode"]
-	path = lib/dockerfile-mode
-	url = https://github.com/spotify/dockerfile-mode.git
 [submodule "restclient"]
 	path = lib/restclient
 	url = https://github.com/pashky/restclient.el.git
