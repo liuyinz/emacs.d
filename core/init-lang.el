@@ -52,6 +52,9 @@
 
 (leaf tsx-ts-mode :mode "\\.tsx\\'")
 
+(leaf dockerfile-ts-mode
+  :mode "\\(?:Dockerfile\\(?:\\..*\\)?\\|\\.[Dd]ockerfile\\)\\'")
+
 (leaf nxml-mode
   :hook (nxml-mode-hook . nxml-mode-setup)
   :init
