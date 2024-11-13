@@ -540,9 +540,6 @@
 [submodule "dart-ts-mode"]
 	path = lib/dart-ts-mode
 	url = https://github.com/50ways2sayhard/dart-ts-mode.git
-[submodule "gptel"]
-	path = lib/gptel
-	url = https://github.com/karthink/gptel.git
 [submodule "nushell-mode"]
 	path = lib/nushell-mode
 	url = https://github.com/mrkkrp/nushell-mode.git
