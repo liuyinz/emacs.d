@@ -137,16 +137,16 @@
                 "open"
               "xdg-open"))))
 
-(require 'gptel-curl)
-(require 'gptel-gemini)
-(leaf gptel
-  :require t
-  :init
-  ;; OPTIONAL configuration
-  (setq gptel-model 'gemini-1.5-pro-latest
-        gptel-backend (gptel-make-gemini "Gemini"
-                        :key (getenv "GEMINI_API_KEY")
-                        :stream t)))
+;; (require 'gptel-curl)
+;; (require 'gptel-gemini)
+;; (leaf gptel
+;;   :require t
+;;   :init
+;;   ;; OPTIONAL configuration
+;;   (setq gptel-model 'gemini-1.5-pro-latest
+;;         gptel-backend (gptel-make-gemini "Gemini"
+;;                         :key (getenv "GEMINI_API_KEY")
+;;                         :stream t)))
 
 (leaf aider)
 
