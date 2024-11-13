@@ -143,10 +143,12 @@
   :require t
   :init
   ;; OPTIONAL configuration
-  (setq gptel-model "gemini-1.5-pro-latest"
+  (setq gptel-model 'gemini-1.5-pro-latest
         gptel-backend (gptel-make-gemini "Gemini"
-                        :key gptel-gemini-apikey
+                        :key (getenv "GEMINI_API_KEY")
                         :stream t)))
+
+(leaf aider)
 
 (provide 'init-tool)
 ;;; init-tool.el ends here
