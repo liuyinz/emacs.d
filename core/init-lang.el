@@ -67,7 +67,9 @@
 
 (leaf c-ts-mode
   :init
-  (setq c-ts-mode-indent-offset 2))
+  ;; google style
+  (setq c-ts-mode-indent-offset 2
+        c-ts-mode-indent-style 'gnu))
 
 ;; plugin
 

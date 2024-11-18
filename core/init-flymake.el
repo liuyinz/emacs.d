@@ -51,6 +51,10 @@
           (nxml-mode flymake-collection-xmllint)
           (less-mode flymake-collection-less))))
 
+(leaf flymake-collection-clang
+  :defer-config
+  (appendq! flymake-collection-clang-args '("-Wno-gnu")))
+
 (leaf flymake-relint
   :hook ((emacs-lisp-mode-hook lisp-interaction-mode-hook) . flymake-relint-setup))
 

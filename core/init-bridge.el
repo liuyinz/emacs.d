@@ -17,6 +17,7 @@
   (setq lsp-bridge-python-command "python3.11")
   (setq lsp-bridge-python-multi-lsp-server "basedpyright_ruff")
   (setq lsp-bridge-lua-lsp-server "sumneko")
+  (setq lsp-bridge-c-lsp-server "clangd")
 
   ;; BUG method not found in marksman lsp
   ;; (setq lsp-bridge-markdown-lsp-server "marksman")
