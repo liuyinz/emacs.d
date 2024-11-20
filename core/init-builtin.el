@@ -30,6 +30,17 @@
 
 ;; --------------------------- Tui --------------------------------
 
+(leaf which-key
+  :hook (after-init-hook . which-key-mode)
+  :init
+  (setq which-key-show-prefix 'top
+        which-key-popup-type 'minibuffer
+        which-key-preserve-window-configuration t
+        which-key-max-description-length 45
+        which-key-dont-use-unicode t
+        which-key-idle-delay 0.6
+        which-key-idle-secondary-delay 0.2))
+
 (leaf frame
   :init
   (setq blink-cursor-blinks 0)
@@ -342,6 +353,9 @@
         (comment-or-uncomment-region
          (apply #'min range)
          (apply #'max range))))))
+
+(leaf indent-aux
+  :hook (after-init-hook . kill-ring-deindent-mode))
 
 (leaf copyright
   :init (setq copyright-year-ranges t))

@@ -18,6 +18,7 @@
         dired-recursive-deletes 'always
         dired-recursive-copies 'always)
   (setq dired-dwim-target t)
+  (setq dired-movement-style 'cycle)
 
   (setq dired-no-confirm t
         dired-clean-up-buffers-too t

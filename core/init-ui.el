@@ -4,17 +4,6 @@
 
 ;;; Code:
 
-(leaf which-key
-  :hook (after-init-hook . which-key-mode)
-  :init
-  (setq which-key-show-prefix 'top
-        which-key-popup-type 'minibuffer
-        which-key-preserve-window-configuration t
-        which-key-max-description-length 45
-        which-key-dont-use-unicode t
-        which-key-idle-delay 0.6
-        which-key-idle-secondary-delay 0.2))
-
 (leaf repeat
   :hook (after-init-hook . repeat-mode)
   :init
