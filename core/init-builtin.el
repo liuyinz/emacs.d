@@ -96,7 +96,8 @@
               :override #'av/display-line-numbers--turn-on)
   (defun av/display-line-numbers--turn-on ()
     (unless (or (minibufferp)
-                (memq major-mode '(vterm-mode dired-mode dirvish-directory-view-mode))
+                (memq major-mode '(vterm-mode dired-mode dirvish-directory-view-mode
+                                              eshell-mode term-mode))
                 (derived-mode-p '(special-mode)))
       (display-line-numbers-mode))))
 

@@ -173,6 +173,8 @@
                (nodejs-repl-mode . insert)
                (quickrun--mode . motion)
                (vterm-mode . insert)
+               (term-mode . motion)
+               (eshell-mode . insert)
                (lsp-bridge-ref-mode . motion)))
 
   (setq meow-expand-hint-remove-delay 3.0)
