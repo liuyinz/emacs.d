@@ -52,20 +52,30 @@
   :init
   (setq popper-display-control t)
   (setq popper-reference-buffers
-        '(
-          ;; "\\*Messages\\*$"
-          "\\*Async Shell Command\\*"
+        '("\\*Async Shell Command\\*"
           "\\*Pp Eval Output\\*"
           "\\*Pp Macroexpand Output\\*"
-          ;; "\\*quickrun\\*"
           ;; compilation-mode
-          vterm-mode quickrun--mode nodejs-repl-mode
+
+          nodejs-repl-mode
           inferior-emacs-lisp-mode
           inferior-python-mode
-          shell-mode eshell-mode))
+          term-mode shell-mode
 
-  ;; TODO
-  ;; 2. applied even when first pop buffer arise
+          term-mode
+          "^\\*terminal\\*"
+          "^\\*ansi-term\\*"
+
+          eshell-mode
+          "^\\*eshell\\*"
+
+          vterm-mode
+          "^\\*vterm\\*"
+
+          quickrun--mode
+          "^\\*quickrun\\*"
+          "^\\*eshell-quickrun\\*"))
+
   (setq popper-display-function #'my/popper-display-switch)
 
   (defvar my/popper-switches

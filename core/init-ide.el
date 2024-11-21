@@ -3,6 +3,42 @@
 ;;; Code:
 
 
+
+(leaf term
+  :init
+
+  ;; HACK rewrite to display ansi-term with pop style
+  (defun av/ansi-term (program &optional new-buffer-name)
+    (interactive (list (read-from-minibuffer "Run program: "
+                                             (or explicit-shell-file-name
+                                                 (getenv "ESHELL")
+                                                 shell-file-name))))
+    ;; Pick the name of the new buffer.
+    (setq term-ansi-buffer-name
+          (if new-buffer-name
+              new-buffer-name
+            (if term-ansi-buffer-base-name
+                (if (eq term-ansi-buffer-base-name t)
+                    (file-name-nondirectory program)
+                  term-ansi-buffer-base-name)
+              "ansi-term")))
+    (setq term-ansi-buffer-name (concat "*" term-ansi-buffer-name "*"))
+    (setq term-ansi-buffer-name (generate-new-buffer-name term-ansi-buffer-name))
+    (let ((prog (split-string-shell-command program)))
+      (setq term-ansi-buffer-name
+            (apply #'term-ansi-make-term term-ansi-buffer-name (car prog)
+                   nil (cdr prog))))
+    (set-buffer term-ansi-buffer-name)
+    (term-mode)
+    (term-char-mode)
+    (let (term-escape-char)
+      (term-set-escape-char ?\C-x))
+    ;; use pop style rather than switch to buffer
+    (pop-to-buffer-same-window term-ansi-buffer-name))
+  (advice-add 'ansi-term :override #'av/ansi-term)
+
+  )
+
 ;; REQUIRE brew install libvterm cmake
 (leaf vterm
   :hook (vterm-mode-hook . vterm-setup)
