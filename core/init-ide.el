@@ -58,7 +58,7 @@
     "Return a list of vterm buffers."
     (--filter (eq (buffer-local-value 'major-mode it) 'vterm-mode)
               (buffer-list)))
-  
+
   (defun vterm--get-windows ()
     "Return a list of windows display vterm buffers."
     (--filter (eq (buffer-local-value 'major-mode (window-buffer it))
@@ -187,13 +187,13 @@ Or create a new one in other window."
 If CN is non-nil, search in zh-CN documentation."
   (interactive "P")
   (when-let* ((ref (completing-read
-                   "Select quickref: "
-                   (with-memoization cheatsheets-ref-lists
-                     (mapcar #'file-name-sans-extension
-                             (string-split
-                              (shell-command-to-string
-                               "gh api --jq '.[].name' /repos/Fechin/reference/contents/source/_posts"))))
-                   nil t)))
+                    "Select quickref: "
+                    (with-memoization cheatsheets-ref-lists
+                      (mapcar #'file-name-sans-extension
+                              (string-split
+                               (shell-command-to-string
+                                "gh api --jq '.[].name' /repos/Fechin/reference/contents/source/_posts"))))
+                    nil t)))
     (browse-url (concat "https://cheatsheets.zip/" (if cn (concat "zh-CN/docs/" ref ".html") ref)))))
 
 
@@ -202,10 +202,12 @@ If CN is non-nil, search in zh-CN documentation."
   :hook (quickrun--mode-hook . quickrun-setup)
   :init
   (setq quickrun-focus-p nil
-        quickrun-timeout-seconds 1000000)
+        quickrun-timeout-seconds 100)
+
   (defun quickrun-setup ()
     "docstring"
     (setq-local cursor-in-non-selected-windows nil))
+
   :defer-config
   (prependq! quickrun--major-mode-alist
              '((lisp-interaction-mode . "elisp")
