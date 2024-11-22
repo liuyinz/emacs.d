@@ -37,6 +37,7 @@
 (defvar-keymap my/ide-map
   :doc "Keymap for ide-like commands."
   "r" #'my/run
+  "R" #'quickrun-shell
   "f" #'my/format
   ;; test
   "c" #'testrun-nearest
