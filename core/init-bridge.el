@@ -19,15 +19,12 @@
   (setq lsp-bridge-lua-lsp-server "sumneko")
   (setq lsp-bridge-c-lsp-server "clangd")
 
-  ;; BUG method not found in marksman lsp
-  ;; (setq lsp-bridge-markdown-lsp-server "marksman")
-
   (setq lsp-bridge-enable-inlay-hint t)
   (setq lsp-bridge-enable-completion-in-string t)
   ;; (setq lsp-bridge-completion-in-string-file-types '("vue" "dart"))
 
   ;; (setq lsp-bridge-completion-popup-predicates nil)
-  ;; ;; Debug: REQUIRE brew install gdb
+  ;; ;; Debug
   ;; (setq lsp-bridge-enable-log t)
   ;; (setq lsp-bridge-enable-debug t)
 
