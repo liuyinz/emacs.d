@@ -79,8 +79,8 @@
 
     :defer-config
 
-    (require 'acm-backend-lsp-workspace-symbol)
-    (setq acm-enable-lsp-workspace-symbol t)
+    ;; (require 'acm-backend-lsp-workspace-symbol)
+    ;; (setq acm-enable-lsp-workspace-symbol t)
 
     ;; enable acm cycle style
     (defun ad/acm-select-prev ()
