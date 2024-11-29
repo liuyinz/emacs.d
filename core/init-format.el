@@ -34,11 +34,13 @@
   :defer-config
   (alist-set! apheleia-formatters
               '((shfmt . ("shfmt" "-i" "2" "-bn" "-ci"))
-                (stylua . ("stylua" "--search-parent-directories" "-"))))
+                (stylua . ("stylua" "--search-parent-directories" "-"))
+                (d2fmt . ("d2" "fmt" filepath))))
   (alist-set! apheleia-mode-alist
               '((python-mode . (ruff isort))
                 (python-ts-mode . (ruff isort))
                 ((sh-mode bash-ts-mode) . shfmt)
+                (d2-mode . d2fmt)
                 (markdown-mode . prettier-markdown)
                 (gfm-mode . prettier-markdown)
                 (ruby-ts-mode . rubocop)
