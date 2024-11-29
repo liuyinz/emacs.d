@@ -624,3 +624,6 @@
 [submodule "easy-escape"]
 	path = lib/easy-escape
 	url = https://github.com/cpitclaudel/easy-escape.git
+[submodule "d2-mode"]
+	path = lib/d2-mode
+	url = https://github.com/andorsk/d2-mode.git
