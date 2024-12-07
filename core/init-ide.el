@@ -209,11 +209,26 @@ If CN is non-nil, search in zh-CN documentation."
     (setq-local cursor-in-non-selected-windows nil))
 
   :defer-config
+  (prependq! quickrun-file-alist
+             '(("\\.d2\\'" . "d2")))
+
   (prependq! quickrun--major-mode-alist
              '((lisp-interaction-mode . "elisp")
                (typescript-ts-mode . "typescript")
                (js-ts-mode . "javascript")
-               (bash-ts-mode . "shellscript"))))
+               (bash-ts-mode . "shellscript")
+               (d2-mode . "d2")))
+
+  (prependq! quickrun--language-alist
+             '(("d2" . ((:command . "d2")
+                        (:cmdopt . "--layout=elk --theme=102")
+                        (:exec . ("%c %o --watch %s %s.svg"))
+                        (:compile-only . "%c %o %s %s.svg")
+                        (:remove . ("%s.svg" "%s.png"))
+                        (:tempfile nil)
+                        (:description . "Compile d2 diagram and display")))))
+
+  )
 
 (defun my/run ()
   "Running Current Buffer."
