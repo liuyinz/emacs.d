@@ -13,6 +13,9 @@
   :require t
   :init
 
+  ;; HACK to keep consistent with old behaviors
+  (setq meow-keypad-leader-dispatch "C-c")
+
   (defun meow-setup ()
     (meow-normal-define-key
      ;; argument
