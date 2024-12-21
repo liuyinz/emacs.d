@@ -36,6 +36,10 @@
       ('doom-tokyo-night
        (custom-set-faces
         `(font-lock-type-face ((t (:foreground ,(doom-color 'teal)))))
+        `(font-lock-property-name-face ((t (:foreground ,(doom-color 'base4)))))
+        `(font-lock-number-face ((t (:foreground ,(doom-color 'orange)))))
+        `(font-lock-operator-face ((t (:foreground ,(doom-color 'yellow)))))
+        `(font-lock-delimiter-face ((t (:foreground ,(doom-color 'red)))))
         `(secondary-selection ((t (:background ,(doom-darken (doom-color 'violet) 0.7)))))
         `(hl-line ((t (:background ,(doom-darken (doom-color 'blue) 0.75)))))
         `(line-number ((t (:italic nil))))
