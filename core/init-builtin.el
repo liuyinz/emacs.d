@@ -453,7 +453,8 @@
    ("<escape>" . transient-quit-one))
   :init
   (setq transient-highlight-mismatched-keys nil
-        transient-detect-key-conflicts t))
+        transient-detect-key-conflicts t)
+  (setq transient-hide-during-minibuffer-read t))
 
 (leaf xwidget
   :hook (xwidget-webkit-mode-hook . xwidget-setup)
