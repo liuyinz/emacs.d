@@ -454,7 +454,8 @@
   :init
   (setq transient-highlight-mismatched-keys nil
         transient-detect-key-conflicts t)
-  (setq transient-hide-during-minibuffer-read t))
+  (setq transient-show-during-minibuffer-read t
+        transient-hide-during-minibuffer-read nil))
 
 (leaf xwidget
   :hook (xwidget-webkit-mode-hook . xwidget-setup)
