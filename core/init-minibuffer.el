@@ -25,19 +25,6 @@
                  '(jinx grid (vertico-grid-annotate . 20)))
     (vertico-multiform-mode 1))
 
-  ;; SEE https://github.com/minad/vertico/wiki#input-at-bottom-of-completion-list
-  (defun ad/vertico--prompt-bottom (lines)
-    "Display LINES in bottom."
-    (move-overlay vertico--candidates-ov (point-min) (point-min))
-    (unless (eq vertico-resize t)
-      (setq lines (nconc (make-list (max 0 (- vertico-count (length lines))) "\n") lines)))
-    (let ((string (apply #'concat lines)))
-      (add-face-text-property 0 (length string) 'default 'append string)
-      (overlay-put vertico--candidates-ov 'before-string string)
-      (overlay-put vertico--candidates-ov 'after-string nil))
-    (vertico--resize-window (length lines)))
-  (advice-add 'vertico--display-candidates :override #'ad/vertico--prompt-bottom)
-
   ;; SEE https://github.com/minad/vertico/wiki#prefix-current-candidate-with-arrow
   (defun ad/vertico-customize-candidate (orig cand prefix suffix index _start)
     (concat (if (= vertico--index index)
@@ -49,11 +36,11 @@
   ;; SEE https://github.com/minad/vertico/wiki#left-truncate-recentf-filename-candidates-eg-for-consult-buffer
   (defun my/vertico-truncate-candidates (args)
     (if-let* ((arg (car args))
-             (type (get-text-property 0 'multi-category arg))
-             ((eq (car-safe type) 'file))
-             (w (max 30 (- (window-width) 38)))
-             (l (length arg))
-             ((> l w)))
+              (type (get-text-property 0 'multi-category arg))
+              ((eq (car-safe type) 'file))
+              (w (max 30 (- (window-width) 38)))
+              (l (length arg))
+              ((> l w)))
         (setcar args (concat ".." (truncate-string-to-width arg l (- l w)))))
     args)
   (advice-add #'vertico--format-candidate :filter-args #'my/vertico-truncate-candidates)
