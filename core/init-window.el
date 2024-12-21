@@ -52,15 +52,18 @@
   :init
   (setq popper-display-control t)
   (setq popper-reference-buffers
-        '("\\*Async Shell Command\\*"
-          "\\*Pp Eval Output\\*"
+        `("\\*Pp Eval Output\\*"
           "\\*Pp Macroexpand Output\\*"
           ;; compilation-mode
 
           nodejs-repl-mode
           inferior-emacs-lisp-mode
           inferior-python-mode
-          term-mode shell-mode
+          shell-mode
+
+          shellc-command-mode
+          ,shell-command-buffer-name
+          ,shell-command-buffer-name-async
 
           term-mode
           "^\\*terminal\\*"
