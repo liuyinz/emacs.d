@@ -217,7 +217,7 @@ If CN is non-nil, search in zh-CN documentation."
                (typescript-ts-mode . "typescript")
                (js-ts-mode . "javascript")
                (bash-ts-mode . "shellscript")
-               (d2-mode . "d2")))
+               (d2-ts-mode . "d2")))
 
   (prependq! quickrun--language-alist
              '(("d2" . ((:command . "d2")

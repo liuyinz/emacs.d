@@ -103,10 +103,7 @@
   ;;                       (string-replace "," "" thing-at-point-url-path-regexp))))
   )
 
-(leaf d2-mode
-  :mode "\\.d2\\'"
-  :init
-  (setq d2-output-format ".png"))
+(leaf d2 :mode ("\\.d2\\'" . d2-ts-mode))
 
 (provide 'init-lang)
 ;;; init-lang.el ends here

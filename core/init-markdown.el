@@ -74,7 +74,7 @@
                ("zsh" . sh-mode)
                ("jsx" . js-jsx-mode)
                ("tsx" . tsx-ts-mode)
-               ("d2"  . d2-mode))))
+               ("d2"  . d2-ts-mode))))
 
 (leaf markdown-toc
   :hook (markdown-mode-hook . markdown-toc-mode)

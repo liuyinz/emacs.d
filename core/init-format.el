@@ -40,7 +40,7 @@
               '((python-mode . (ruff isort))
                 (python-ts-mode . (ruff isort))
                 ((sh-mode bash-ts-mode) . shfmt)
-                (d2-mode . d2fmt)
+                (d2-ts-mode . d2fmt)
                 (markdown-mode . prettier-markdown)
                 (gfm-mode . prettier-markdown)
                 (ruby-ts-mode . rubocop)
