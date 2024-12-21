@@ -178,7 +178,8 @@
                (vterm-mode . insert)
                (term-mode . motion)
                (eshell-mode . insert)
-               (lsp-bridge-ref-mode . motion)))
+               (lsp-bridge-ref-mode . motion)
+               (treesit--explorer-tree-mode . normal)))
 
   (setq meow-expand-hint-remove-delay 3.0)
 
