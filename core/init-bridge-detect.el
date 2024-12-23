@@ -152,7 +152,8 @@ PROJECT_PATH and FILEPATH is needed."
 (prependq! lsp-bridge-single-lang-server-extension-list
            '((("toml") . "toml-language-server")
              (("vue")  . "volar")
-             (("astro") . "astro-ls")))
+             (("astro") . "astro-ls")
+             (("mbt")  . "moonbit-ls")))
 
 (prependq! lsp-bridge-single-lang-server-mode-list
            '(((toml-ts-mode conf-toml-mode) . "toml-language-server")
@@ -160,7 +161,8 @@ PROJECT_PATH and FILEPATH is needed."
               . "typescript-ls")
              (lua-ts-mode . "sumneko")
              (web-vue-mode . "volar")
-             (astro-ts-mode . "astro-ls")))
+             (astro-ts-mode . "astro-ls")
+             (moonbit-mode . "moonbit-ls")))
 
 
 ;;; multi-server languageId detect

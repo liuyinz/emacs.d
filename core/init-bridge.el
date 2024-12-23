@@ -53,7 +53,8 @@
               html-mode-hook
               lua-ts-mode-hook
               astro-ts-mode-hook
-              js-json-mode-hook))
+              js-json-mode-hook
+              moonbit-mode-hook))
 
   (leaf acm
     :bind
