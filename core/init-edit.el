@@ -25,7 +25,8 @@
           ("leetcode\\.com"          . typescript-ts-mode)
           ("typescriptlang\\.org"    . typescript-ts-mode)
           ("react\\.docschina\\.org" . js-jsx-mode)
-          ("react\\.dev"             . js-jsx-mode)))
+          ("react\\.dev"             . js-jsx-mode)
+          ("play\\.d2lang\\.com"     . d2-ts-mode)))
 
   :defer-config
   ;; HACK change major mode if website extension is wrong
