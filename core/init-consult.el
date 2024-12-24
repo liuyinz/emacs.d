@@ -116,7 +116,8 @@
           :filter nil
           :predicate
           (lambda (buffer)
-            (buffer-local-value 'atomic-chrome-edit-mode buffer)))))
+            (with-current-buffer buffer
+                (bound-and-true-p atomic-chrome-edit-mode))))))
     "Atomic buffer candidate source for `consult-buffer'.")
   (add-to-list 'consult-buffer-sources 'consult--source-atomic)
 
