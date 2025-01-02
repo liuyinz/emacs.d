@@ -13,13 +13,14 @@
   ("M-d" . lsp-bridge-doc-toggle)
   :init
   ;; Setup language
-  ;; REQUIRE pthon3.11 -m pip install epc orjson sexpdata six paramiko ruff-lsp
-  (setq lsp-bridge-python-command "python3.11")
+  ;; REQUIRE pthon3 -m pip install epc orjson sexpdata six paramiko ruff-lsp packaging
+  (setq lsp-bridge-python-command "python3")
   (setq lsp-bridge-python-multi-lsp-server "basedpyright_ruff")
   (setq lsp-bridge-lua-lsp-server "sumneko")
   (setq lsp-bridge-c-lsp-server "clangd")
 
   (setq lsp-bridge-enable-inlay-hint t)
+  (setq lsp-bridge-disable-electric-indent nil)
   (setq lsp-bridge-enable-completion-in-string t)
   ;; (setq lsp-bridge-completion-in-string-file-types '("vue" "dart"))
 
@@ -56,6 +57,7 @@
               js-json-mode-hook
               moonbit-mode-hook))
 
+  ;; FIXME can not detect frame switch between gui and tui, leads to crash.
   (leaf acm
     :bind
     (:acm-mode-map
