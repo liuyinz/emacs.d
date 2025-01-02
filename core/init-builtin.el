@@ -465,6 +465,13 @@
     "docstring"
     (goto-address-mode -1)))
 
+(leaf copyright
+  :init
+  (setq copyright-year-ranges t
+        copyright-query nil)
+  ;; TODO write a command to update all liuyinz packages
+  )
+
 ;; -------------------------- Encode ------------------------------
 
 (define-coding-system-alias 'UTF-8 'utf-8)
