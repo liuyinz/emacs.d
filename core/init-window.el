@@ -64,6 +64,7 @@
           shellc-command-mode
           ,shell-command-buffer-name
           ,shell-command-buffer-name-async
+          "^\\*D2 Watch-"
 
           term-mode
           "^\\*terminal\\*"
