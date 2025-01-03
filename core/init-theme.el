@@ -130,6 +130,7 @@
         `(rainbow-delimiters-depth-3-face ((t (:foreground ,(doom-color 'magenta)))))
         `(rainbow-delimiters-depth-4-face ((t (:foreground ,(doom-color 'teal)))))
         `(rainbow-delimiters-depth-5-face ((t (:foreground ,(doom-color 'red)))))
+        `(which-key-note-face ((t (:foreground ,(doom-color 'yellow)))))
         ))))
   )
 
