@@ -112,7 +112,7 @@
         `(orderless-match-face-1 ((t (:underline t))))
         `(orderless-match-face-2 ((t (:underline t))))
         `(orderless-match-face-3 ((t (:underline t))))
-        ;;rg.elv
+        ;;rg.el
         `(rg-match-face ((t (:inherit orderless-match-face-2))))
         `(rg-info-face        ((t (:foreground ,(doom-color 'red)))))
         `(rg-filename-face    ((t (:foreground ,(doom-color 'blue) :underline t))))

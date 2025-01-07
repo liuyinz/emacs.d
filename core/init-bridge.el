@@ -20,7 +20,6 @@
   (setq lsp-bridge-c-lsp-server "clangd")
 
   (setq lsp-bridge-enable-inlay-hint t)
-  (setq lsp-bridge-disable-electric-indent nil)
   (setq lsp-bridge-enable-completion-in-string t)
   ;; (setq lsp-bridge-completion-in-string-file-types '("vue" "dart"))
 

@@ -94,6 +94,7 @@ A prefix argument means to unmark them instead."
    ("E" . dired-create-empty-file))
   :init
   (setq dired-create-destination-dirs 'always
+        dired-create-destination-dirs-on-trailing-dirsep t
         dired-compress-directory-default-suffix t
         dired-vc-rename-file t
         dired-backup-overwrite t

@@ -8,7 +8,7 @@
   :hook (after-init-hook . vertico-mode)
   :init
   (setq vertico-cycle t
-        vertico-count 15
+        vertico-count 20
         resize-mini-windows t)
   :bind
   ("C-c C-r" . vertico-repeat)
